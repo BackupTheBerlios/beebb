@@ -13,9 +13,32 @@ import pl.aislib.util.crypt.UnixCrypt;
  * Klasa wyzszy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
  * @author wilk
  */
-public class DataBase {
 
-   /**
+/*
+(13:10:55) Wilk:  "wymyslilem" jak latwo mozemy buforowac zapytania z bazy danych
+(13:12:21) Wilk:  wystarczy miec w DataBase static lub nie zmienna np HashTable i po kazdym zapytaniu wrzucac obiekty: put("Objekt_ID",Object)
+(13:12:27) Wilk:  final-> ok
+(13:12:33) Wilk:  wiec np:
+(13:13:44) Wilk:  getWatek(id)
+if ( jest object w hashtable("Watek_"+id)) to go zwroc
+SELECT
+Hastable.put("Watek_"+id,to co zwrocil SELECT);
+(13:14:12) Wilk:  oczywiscie to powinno byc troszke madrzejsze, to znaczy to powinna byc HashTable z LRU
+(13:14:47) Wilk:  i o zalozonym rozmiarze .. np 100 objektow
+(13:15:25) pawelb:  brzmi sensownie
+(13:15:52) Wilk:  mozna tez zrobic oddzielne bufory dla kazdego z objektow wtedy mozna wiecej stoic, np 10 miejsc na Kategorie ale juz 100 miejsc na Watki a 300 na wypowiedzi
+(13:16:22) pawelb:  spoko, tylko mo¿e narazie siê wstrzymamy z implementacj±
+(13:16:36) pawelb:  bo musze troche przerobiæ DataBase
+(13:16:59) Wilk:  wtedy oczywiscie jest wiecej zmiennych, ale nie ma "Object_"+id tylko wystarczy sam id
+(13:17:36) Wilk:  nie no implementacje nie teraz, to oczywiste
+(13:18:01) Wilk:  tylko jak bys mogl moze wkleic te rozmowe do DataBase, albo do /teksty
+(13:18:02) Wilk:  ok ?
+(13:18:23) pawelb:  ok
+ **/
+
+public class DataBase {
+    
+    /**
      * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
      */
     static final String BEE_USERS_BASE = "Users";
@@ -31,7 +54,7 @@ public class DataBase {
     static final String BEE_PODFORA_WATKI_BASE = "Podfora_Watki";
     static final String BEE_KATEGORIE_PODFORA_BASE = "Kategorie_Podfora";
     static final String BEE_MODERATORZY_BASE = "Moderatorzy";
-
+    
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
@@ -90,11 +113,11 @@ public class DataBase {
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_KATEGORIA";
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     boolean connected = false;
-    ConnectorDB baza = new ConnectorDB("localhost","bee","bee","bee");
+    ConnectorDB baza = new ConnectorDB("localhost","Bee","bee","bee");
     
     
-    /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza bee:bee@localhost. */
-    public java() {
+    /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza Bee:bee@localhost. */
+    public DataBase() {
     }
     
     /**
@@ -104,12 +127,11 @@ public class DataBase {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public java(String host, String Db,String user, String pass)
-    {
+    public DataBase(String host, String Db,String user, String pass) {
         this.connect(host, Db, user, pass);
     }
     
-    /** 
+    /**
      * metoda sprawdzajaca czy obiekt polaczyl sie z baza - a dokladniej czy dostal base,usera i haslo
      */
     public boolean isConnected() {
@@ -123,8 +145,7 @@ public class DataBase {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public void connect(String host, String Db, String user, String pass)
-    {
+    public void connect(String host, String Db, String user, String pass) {
         baza = new ConnectorDB(host,Db,user,pass);
         connected=true;
     }
@@ -191,19 +212,19 @@ public class DataBase {
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (podforum == null) return null;
+        
+        //zrobic arraylist z lista watkow
         return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL));
     }
     
     /**
-     * Metoda zwaraca objekt Forum o podanym identyfikatorze
-     * @param ID Identyfikator szukanego Forum
+     * Metoda zwaraca objekt Forum
      * @return Zwraca obiekt Forum badz null w razie bledu.
      */
-    public Forum getForum(int ID){
-        Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE " + FORUM_ID +"=" + ID);
-        //zakladam ze mam konstruktor ktory bierze ID i Tytul
+    public Forum getForum(){
+        Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM);
         if (forum == null) return null;
-        return new Forum((String)forum.get(FORUM_ID),(String)forum.get(FORUM_NAZWA));
+        return new Forum((String)forum.get(FORUM_NAZWA),this.getKategorieForum(),this);
     }
     
     /**
@@ -215,17 +236,16 @@ public class DataBase {
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (kategoria == null) return null;
-        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL));
+        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),this.getPodforaKategorii(ID),this);
     }
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Kategorii w podanym Forum
-     * @param forum Forum w ramach ktorego interesuja nas Kategorie
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getKategorieForum(Forum forum) {
+    public ArrayList getKategorieForum() {
         ArrayList wynik = new ArrayList();
-        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_FORUM_KATEGORIE + "WHERE " + FORUM_KATEGORIE_ID_FORUM + "=" + forum.getID());
+        ArrayList kategorie = baza.query("SELECT " + FORUM_KATEGORIE_ID_KATEGORIA + " FROM "+ BEE_FORUM_KATEGORIE);
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
             int id = Integer.parseInt((String)kategoria.get(FORUM_KATEGORIE_ID_KATEGORIA));
@@ -239,9 +259,9 @@ public class DataBase {
      * @param kat Kategoria w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getPodforaKategorii(Kategoria kat) {
+    public ArrayList getPodforaKategorii(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList podfora = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + "WHERE " + WATKI_WYPOWIEDZI_ID_KATEGORII + "=" + kat.getID());
+        ArrayList podfora = baza.query("SELECT "+ WATKI_WYPOWIEDZI_ID_PODFORUM + " FROM "+ BEE_KATEGORIE_PODFORA + " WHERE " + WATKI_WYPOWIEDZI_ID_KATEGORII + "=" + ID);
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
             int id = Integer.parseInt((String)podforum.get(WATKI_WYPOWIEDZI_ID_PODFORUM));
@@ -257,7 +277,7 @@ public class DataBase {
      */
     public ArrayList getWatkiPodforum(Podforum pod) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI + "WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + pod.getID());
+        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + pod.getID());
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
             int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
@@ -273,7 +293,7 @@ public class DataBase {
      */
     public ArrayList getWypowiedziWatku(Watek wat) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + "WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + wat.getID());
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + wat.getID());
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
@@ -293,14 +313,14 @@ public class DataBase {
         if (user == null) return null;
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),"imie","nazwisko","email","gg","jabber",(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
- 
+    
     
     /**
      * Metoda zwaraca objekt User o podanym identyfikatorze
      * @param login Identyfikator (login) szukanego uzytkownika
      * @return Zwraca obiekt User badz null w razie bledu.
      */
-    public User getUser(String login){
+    public User getUser(String login) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" like \"" + login + "\"");
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
@@ -323,23 +343,23 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste Userow z bazy
-     * @return ArrayList obiektow Hashatable
-     */
-    public ArrayList getUsers() {
+    * Metoda zwaraca liste Userow z bazy
+    * @return ArrayList obiektow Hashatable
+    */
+     public ArrayList getUsers() {
         ArrayList wynik = new ArrayList();
         wynik= baza.query("SELECT * FROM "+ BEE_USERS);
         return wynik;
-    }
-    
+       }
+
     /**
-     * Metoda zmienia uprawnienia w bazie danych
-     * @param id id uzytkownika w bazie danych
-     * @param admin napis T lub N
-     * @param moderator napis T lub N
-     * @param aktywny napis T lub N
-     
-     */
+    * Metoda zmienia uprawnienia w bazie danych
+    * @param id id uzytkownika w bazie danych
+    * @param admin napis T lub N
+    * @param moderator napis T lub N
+    * @param aktywny napis T lub N
+    
+    */
     public boolean zmienUpr(int id, String admin, String moderator, String aktywny){
         return true;
     }
