@@ -364,5 +364,26 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
     }
     
+       
+    /**
+     * Metoda umieszcza kategorie w bazie danych
+     * @param nazwa nazwa kategorii
+     * @param opis kategorii
+     * @return zwraca czy insert sie powiodl
+     */
+    public boolean insertKategoria(String tytul, String opis) {
+       return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"')");
+    }
     
+ 
+     /**
+     * Metoda sprawdz czy kategoria o podantm tytult juz istnieje
+     * @param tytul tytul kategorii
+     * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
+     */
+    public boolean czyKategoria(String tytul){
+      Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
+      if (kategoria==null) return false;
+      return true;
+    }
 }
