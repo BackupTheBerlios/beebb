@@ -14,7 +14,7 @@
        kat.setOpis(opis);
        
       if( nazwa.compareTo("")== 0 ) { kat.setWiad("Nalezy podac nazwe kategorii"); %>
-      <jsp:forward page="./kategorie_form.jsp"/>
+      <jsp:forward page="./edycja_podforow.jsp"/>
       <% }
        
          if (!db_con.isConnected()) {
@@ -23,7 +23,7 @@
                 db_con.setTablePrefix(Config.DATABASE_PREFIX);
                 } catch (Exception e) {
                    kat.setWiad("Blad polaczenia z baza!");
-                   %><jsp:forward page="./kategorie_form.jsp"/> <%
+                   %><jsp:forward page="./edycja_podforow.jsp"/> <%
                 }
             }
          
@@ -38,4 +38,4 @@
                else kat.setWiad("Dodanie Kategorii nie powiodla sie");
              }
        %>
-          <jsp:forward page="./kategorie_form.jsp"/>
+          <jsp:forward page="./edycja_podforow.jsp"/>
