@@ -69,12 +69,12 @@
                     </tr> <tr>
                     <td>Hasło:</td><td><input type="password" size="20" name="haslo"/></td>
                     </tr> <tr>        
-                        <td><a href="addUser.jsp">Zapomniałem hasło</a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
+                        <td><a href="forgetPasswd.jsp">Zapomniałem hasło</a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
                     </tr>
                 </table>
                 </form>
                 <br>
-                <p>Nie masz jeszcze konta? <a href="forgetPasswd.jsp">Zarejestruj się</a></p>
+                <p>Nie masz jeszcze konta? <a href="addUser.jsp">Zarejestruj się</a></p>
             </td>
             </td>
         </table>
