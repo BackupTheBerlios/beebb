@@ -18,10 +18,9 @@
     </head>
     <body>
 
-    <a href="./Administracja/index.htm" target="main">Panel Administratora</A>
-    
-    <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
-    <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+   
+        <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
+        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
  
        <%
 
@@ -34,19 +33,17 @@
                 out.print(e);
             }
         }
-  
-        if (!auth.zalogowany()) 
-            out.print("[ <a href=\"pages/auth.jsp\">Zaloguj</a> ]");
-        else
-            out.print("Zalogowany: " + auth.user() + " [ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
-    
-        out.print("<BR><BR><BR>");
         
         Enumeration flds = request.getParameterNames();
         if (!flds.hasMoreElements()) {
             pl.ltd.bee.Forum f = db_con.getForum();
                 if (f!=null) {
-                    //out.print(f.printJSP());
+                %> <a href="./Administracja/index.htm" target="main">Panel Administratora</A> <%
+                if (!auth.zalogowany()) 
+                        out.print("[ <a href=\"pages/auth.jsp\">Zaloguj</a> ]");
+                else
+                    out.print("Zalogowany: " + auth.user() + " [ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
+                    out.print("<br><br>");
                     Forum.printMainTableJSP(out);
                     f.printJSP(out);
                     Forum.printMainTableCloseJSP(out);
@@ -56,14 +53,22 @@
         } else {
             String field = (String) flds.nextElement();
             String redirectURL;
-            
+
+           if (field.compareTo("wpid") == 0) {
+                pl.ltd.bee.Wypowiedz wp = db_con.getWypowiedz(Integer.decode(request.getParameter(field)).intValue());
+                if (wp!=null) {
+                    wp.printJSP(out);
+                }
+                else 
+                    out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorThreadNotExists()+"<br>");
+            } 
             if (field.compareTo("wid") == 0) {
                 pl.ltd.bee.Watek w = db_con.getWatek(Integer.decode(request.getParameter(field)).intValue());
                 if (w!=null)
-                    out.print(w.printJSP());
+                    w.printJSP(out);
                 else 
                     out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorThreadNotExists()+"<br>");
-            } else {
+            } 
                 if (field.compareTo("kid") == 0) {
                 pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
                 if (k!=null) 
@@ -75,7 +80,7 @@
                       }
                      else 
                         out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorCategoryNotExists()+"<br>");
-                } else {
+                } 
                     if (field.compareTo("pid") == 0) {
                         pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
                         if (p!=null) {
@@ -84,9 +89,9 @@
                         }
                         else
                             out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorSubForumNotExists()+"<br>");
-                        }
+                       
 
-                }
+               
             }
         }
     %>

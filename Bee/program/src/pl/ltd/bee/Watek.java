@@ -72,6 +72,70 @@ public class Watek {
         strona.println("</tr>");
     }
     
+    
+    /**
+     * Metoda wypisuje na stronie glown± tabele i jej naglowki
+     * @param strona strumien wyjsciowy
+     */
+    public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+        strona.println("<html>");
+        strona.println("<head>");
+        strona.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+        strona.println("<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">");
+        strona.println("<meta name=\"Copyright\" content=\"BeeBB Group &copy; 2005\" />");
+        strona.println("<meta name=\"Author\" content=\"BeeBB Group\" />");
+        strona.println("<meta name=\"description\" content=\"??\" />");
+        strona.println("<meta name=\"keywords\" content=\"??\" />");
+        
+        strona.println("<title>BeeBB :: Index</title>");
+        strona.println("<link rel=\"stylesheet\" href=\"./temat.css\" type=\"text/css\"/>");
+        strona.println("<script type=\"text/javascript\" src=\"./iframe_resize.js\"></script>");
+        strona.println("<script type=\"text/javascript\" src=\"./skrypt.js\"></script>");
+        
+        strona.println("<!--<FRAMESET ROWS=\"150,*\" BORDER=\"0\">");
+        strona.println("<FRAME SRC=\"naglowek.html\" SCROLLING=\"no\" NAME=\"Naglowek\">");
+        strona.println("<FRAME SRC=\"forum.html\" SCROLLING=\"auto\" NAME=\"Strona\">");
+        strona.println("</FRAMESET>");
+        strona.println("-->");
+        strona.println("</head>");
+        strona.println("<body onLoad=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\" onResize=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\">");
+        strona.println("<table id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
+        strona.println("<tr>");
+        strona.println("<th class=\"thTopLCorner\" width=\"15%\" height=\"25\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
+        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Wiadomo¶æ&nbsp;</th>");
+        strona.println("</tr>");
+    }
+    
+    
+    /**
+     * Metoda wypisuje na stronie zamkniecie glownej tabeli
+     * @param strona strumien wyjsciowy
+     */
+    public void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("</table>");
+        strona.println("<table width=\"0%\" cellpadding=\"2\" cellspacing=\"1\" border=\"1\" style=\"visibility:hidden\">");
+        strona.println("<tr class=\"noExists\"><td width=\"0\" height=\"0\" id=\"przyklad\"><div id=\"napis\">A</div></td></tr>");
+        strona.println("</table>");
+        strona.println("</body>");
+        strona.println("</html>");
+    }
+    
+    /**
+     * Metoda powoduje wypisanie w±tku na przekazany strumien
+     * @param strona strumien wyjsciowy
+     */
+    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        printMainTableJSP(strona);
+        for(int i=0;i<Wypowiedzi.size();i++) {
+            strona.println("<tr class=\"trWypowiedz\">");
+            strona.println("<td class=\"tdAutorBox\" align=\"center\" valign=\"middle\"><img src=\"./images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
+            strona.println("<td class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
+            strona.println("</tr>");
+        }
+        printMainTableCloseJSP(strona);
+    }
+    
     /** to do usuniecia */
     public String printJSP() {
         //outs.write("Temat: " + Temat);
