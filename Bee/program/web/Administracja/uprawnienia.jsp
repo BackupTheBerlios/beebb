@@ -35,7 +35,6 @@
           String czy_admin=(String) pom.get("ADMIN");
           String czy_moderator=(String) pom.get("MODERATOR");
           String czy_aktywny=(String) pom.get("AKTYWNY");
-          czy_aktywny="T";
          %><tr> <td> <%=login%> </td>
                 <td> <%=imie%> </td>
                 <td> <%=nazwisko%> </td>

@@ -34,13 +34,19 @@
             
         <table align="center">
          <tr> <td> UPRAWNIENIA </td> </tr>
-           <tr> <td> <input type="checkbox" name="admin" 
+           <tr> <td> <input type="checkbox" name="czy_admin" 
                       <%= dajUpr(request.getParameter("czy_admin")) ? "checked" : "" %>>Administrator</input> </td> </tr>
-            <tr> <td> <input type="checkbox" name="moderator" 
+            <tr> <td> <input type="checkbox" name="czy_moderator" 
                       <%= dajUpr(request.getParameter("czy_moderator")) ? "checked" : "" %>>Moderator</input> </td> </tr>
-           <tr> <td><input type="checkbox" name="aktywny" 
+           <tr> <td><input type="checkbox" name="czy_aktywny" 
                       <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>>Aktywny</input> </td> </tr>
              <tr> <td>  <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
+                        <input type="hidden" name="login" value="<%=dajDana(request.getParameter("login"))%>">
+                        <input type="hidden" name="imie" value="<%=dajDana(request.getParameter("imie"))%>">
+                        <input type="hidden" name="nazwisko" value="<%=dajDana(request.getParameter("nazwisko"))%>">
+                        <input type="hidden" name="email" value="<%=dajDana(request.getParameter("email"))%>">
+                        <input type="hidden" name="gg" value="<%=dajDana(request.getParameter("gg"))%>">
+                        <input type="hidden" name="jabber" value="<%=dajDana(request.getParameter("jabber"))%>">
                         <input type="submit" value="Zmien uprawnienia"></td> </tr>
         </table>
          
