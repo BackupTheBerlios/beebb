@@ -40,7 +40,7 @@
                     out.println("Uzytkownik " + nick + " zostal dodany<BR><br><a href=../../index.jsp>powrot</a><br>"); 
                  }
             } else 
-                out.print(Messages.errorKeyNewUser()+ " " + klucz);
+                out.print(Messages.errorKeyNewUser());
             
         } else out.println("<a href=../../index.jsp>powrot</a><br>"); 
         %>
