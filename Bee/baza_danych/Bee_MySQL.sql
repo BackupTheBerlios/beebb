@@ -200,6 +200,18 @@ CREATE TABLE `Bee_Podfora_Watki` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Podfora i Watki';
 
 
+--
+-- Tabela z kluczami do zapomnianych hasel
+--
+
+DROP TABLE IF EXISTS `Bee_Forget_Passwd`;
+CREATE TABLE `Bee_Forget_Passwd` (
+  `Klucz` varchar(20) NOT NULL default '',
+  `Email` varchar(100) NOT NULL default '',
+  PRIMARY KEY (`Klucz`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z kluczami do zapomnianych hasel';
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
