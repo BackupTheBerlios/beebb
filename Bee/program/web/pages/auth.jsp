@@ -16,20 +16,32 @@
         <br><br>
         <a href="addUser.jsp">Zarejestruj się</a> <br><br>
         <% } else { 
-        if (flds.hasMoreElements()) { 
             String field = (String) flds.nextElement(); 
-                if (field.compareTo("logout")==0) {
-                    auth.zaloguj("Guest","");
-                    response.sendRedirect("../index.jsp");
+            if (field.compareTo("logout")==0) {
+                auth.zaloguj("Guest","");
+                response.sendRedirect("../index.jsp");
+            }
+            else {
+                String uzytkownik;
+                String haslo;
+                try {
+                    uzytkownik=request.getParameter("user");
+                    haslo=request.getParameter("haslo");
+                    if (uzytkownik!=null && haslo!=null)
+                    {
+                        auth.zaloguj(uzytkownik,haslo);
+                        response.sendRedirect("../index.jsp");
+                    } 
+                    
+                    out.println("Bledny user lub haslo<br><a href=\"auth.jsp\">powrot</a><br>");
+                    
                 }
-                else {
+                catch (Exception e) {
+                    out.println("Blad! skontaktuj sie z administratorem strony!<BR>");
+                }
                 
-                }
+            }
         %>
-        <%= field %> = <%= request.getParameter(field) %><br>
-        <%   } %> <%--while--%>
-    
-    
     <% } %>
     </body>
 </html>

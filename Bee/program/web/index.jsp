@@ -22,7 +22,7 @@
         if (!auth.zalogowany()) 
             out.print("[ <a href=\"pages/auth.jsp\">Zaloguj</a> ]");
         else
-            out.print("[ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
+            out.print("Zalogowany: " + auth.user() + " [ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
     
         out.print("<BR><BR><BR>");
         Enumeration flds = request.getParameterNames();

@@ -32,4 +32,9 @@ public class Autoryzator {
     public boolean zalogowany() {
         return zalogowany;
     }
+    
+    public String user() {
+        return "user";
+    }
 }
+
