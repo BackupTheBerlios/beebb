@@ -4,24 +4,43 @@ import java.util.*;
 import java.sql.*;
 import java.lang.*;
 
+/**
+ * Klasa implementujaca placzenie z baza danych i wykonywanie zapytan SQL.
+ */
 public class ConnectorDB {
     
     private String Host;
     private String User;
     private String Pass;
     
+    /**
+     * Konstruktor
+     * @param Host adres serwera bazy danych
+     * @param User nazwa uzytkownika bazy danych
+     * @param Pass haslo uzytkownika bazy danych
+     */
     public ConnectorDB(String Host, String User, String Pass) {
         setParameters(Host,User,Pass);
     }
     
+    /**
+     * Metoda ustawia parametry polaczenia z baza danych
+     * @param Host adres serwera bazy danych
+     * @param User nazwa uzytkownika bazy danych
+     * @param Pass haslo uzytkownika bazy danych
+     */
     public void setParameters(String Host, String User, String Pass) {
         this.Host=Host;
         this.User=User;
         this.Pass=Pass;
     }
     
-    /**Metoda zwraca liste wierszy ktore zwieraja hashtable:
+    /**
+     * Metoda wykonuje przekazane zapytanie i zwraca liste wierszy ktore zwieraja hashtable:
      * klucz:nazwa kolumny       wartosc: wartosc w kolumnie
+     * Klucze i wartosci sa typu String
+     * @param q Zapytanie do wykonania
+     * @return ArrayList of Hashtables
      **/
     public ArrayList query(String q) {
         ArrayList pom=new ArrayList();
@@ -45,7 +64,10 @@ public class ConnectorDB {
         return pom;
     }
     
-    /**metoda wykonuje Insert, Update lub Delete **/
+    /** 
+     * Metoda wykonuje Insert, Update lub Delete 
+     * @return True jesli operacja sie powiodla, False w p.p.
+     **/
     public boolean dmlQuery(String q) {
         try{
             Connection con = DriverManager.getConnection(Host,User,Pass);
