@@ -15,8 +15,8 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
-         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-         <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
+        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+        <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
          
         <% if (!db_con.isConnected()) {
             try {
@@ -47,40 +47,40 @@
         }
        %>
        
-      <p align="center"> 
+        <p align="center"> 
       <% if ( p.getWiad().compareTo("ok") == 0 ) { %>
-       <font color="blue"> Podforum zostało zmienione </font>
+            <font color="blue"> Podforum zostało zmienione </font>
        <% } else  {%>   
-       <font color="red"> <%= p.getWiad() %> </font>  
+            <font color="red"> <%= p.getWiad() %> </font>  
        <% } %>
-     </p> 
+        </p> 
        
             
-       <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
-       <br/>
+        <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
+        <br/>
      
-    <form action="./edycja_pod_zmien.jsp" method="post">
-      <table align="center" cellpadding="2" cellspacing="1" border="0">
-       <caption> Edycja Podforum </caption>
-       <tr>  <th> Tytul </th> <th> Opis </th> <th> Wybierz kategorie: </th></tr>
-       <tr> 
-           <td> <input size="40" type="text" name="nazwa" value="<%=p.getTytul()%>"/> </td>
-           <td> <input size="40" type="text" name="opis" value="<%=p.getOpis() %>"/>  </td> 
+        <form action="./edycja_pod_zmien.jsp" method="post">
+            <table align="center" cellpadding="2" cellspacing="1" border="0">
+                <caption> Edycja Podforum </caption>
+                <tr>  <th> Tytul </th> <th> Opis </th> <th> Wybierz kategorie: </th></tr>
+                <tr> 
+                    <td> <input size="40" type="text" name="nazwa" value="<%=p.getTytul()%>"/> </td>
+                    <td> <input size="40" type="text" name="opis" value="<%=p.getOpis() %>"/>  </td> 
       
-           <td>  <select name="kategoria" > <% ArrayList tytuly=db_con.getTytulyKategorii();
+                    <td>  <select name="kategoria" > <% ArrayList tytuly=db_con.getTytulyKategorii();
                                                        for (int i=0; i<tytuly.size(); i++) { %>
-                                                    <option><%= tytuly.get(i) %></option>
+                        <option><%= tytuly.get(i) %></option>
                                                       <%  } %>      
-                 </select>
-           </td>
+                    </select>
+                    </td>
            
-        <input type="hidden" name="id_pod" value="<%=p.getID()%>"/>
-        <input type="hidden" name="id_kat" value="<%=p.getIdKat()%>"/>
-       <tr>
-         <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td> <td> </td> </tr>
-       </tr>
-      </table>
-    </form>
+                    <input type="hidden" name="id_pod" value="<%=p.getID()%>"/>
+                    <input type="hidden" name="id_kat" value="<%=p.getIdKat()%>"/>
+                    <tr>
+                    <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td> <td> </td> </tr>
+                </tr>
+            </table>
+        </form>
      
     </body>
 </html>

@@ -86,7 +86,7 @@
               else
                 if ( db_con.czyPodforum(id_k, t) ) wiad.add(Messages.errorNamePodforum());
                   else 
-                    if (db_con.insertPodforum(id_k, t, o) ) wiad.add(Messages.AddPodforum());
+                    if (db_con.insertPodforum(id_k, t, o) ) wiad.add(Messages.addPodforum());
                       else wiad.add(Messages.errorAddPodforum());
                   
             }%>

@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
-         <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
+        <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
          
      <% 
        Enumeration f = request.getParameterNames();
@@ -34,32 +34,32 @@
         }
        %>
        
-      <p align="center"> 
+        <p align="center"> 
       <% if ( k.getWiad().compareTo("ok") == 0 ) { %>
-       <font color="blue"> Kategoria została zmieniona </font>
+            <font color="blue"> Kategoria została zmieniona </font>
        <% } else  {%>   
-       <font color="red"> <%= k.getWiad() %> </font>  
+            <font color="red"> <%= k.getWiad() %> </font>  
        <% } %>
-     </p> 
+        </p> 
        
             
-       <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
-       <br/>
+        <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
+        <br/>
      
-    <form action="./edycja_kat_zmien.jsp" method="post">
-      <table align="center" cellpadding="2" cellspacing="1" border="0">
-       <caption> Edycja Kategorii </caption>
-       <tr>  <th> Tytul </th> <th> Opis </th> </tr>
-       <tr> 
-           <td> <input size="40" type="text" name="nazwa" value="<%=k.getNazwa()%>"/> </td>
-           <td> <input size="40" type="text" name="opis" value="<%=k.getOpis() %>"/>  </td> 
-      </tr>
-        <input type="hidden" name="id_kat" value="<%=k.getID()%>"/>
-       <tr>
-         <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td>
-       </tr>
-      </table>
-    </form>
+        <form action="./edycja_kat_zmien.jsp" method="post">
+            <table align="center" cellpadding="2" cellspacing="1" border="0">
+                <caption> Edycja Kategorii </caption>
+                <tr>  <th> Tytul </th> <th> Opis </th> </tr>
+                <tr> 
+                    <td> <input size="40" type="text" name="nazwa" value="<%=k.getNazwa()%>"/> </td>
+                    <td> <input size="40" type="text" name="opis" value="<%=k.getOpis() %>"/>  </td> 
+                </tr>
+                <input type="hidden" name="id_kat" value="<%=k.getID()%>"/>
+                <tr>
+                    <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td>
+                </tr>
+            </table>
+        </form>
      
     </body>
 </html>

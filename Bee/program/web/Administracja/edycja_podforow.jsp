@@ -22,11 +22,11 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
 
         <script type="text/javascript" LANGUAGE="JavaScript">
-           function Info(param)
-                    {
-                    return confirm(param);
-                    }
-       </script>
+            function Info(param)
+            {
+            return confirm(param);
+            }
+        </script>
     </head>
     
     <body> 
@@ -91,86 +91,86 @@
         }
       %>
       
-     <p align="center"> 
+        <p align="center"> 
       <% if ( k.getWiad().compareTo("ok") == 0 ) { %>
-       <font color="blue"> Kategoria została zmieniona </font>
+            <font color="blue"> Kategoria została zmieniona </font>
        <% } if ( k.getWiad().compareTo("ok") != 0 ) { %>
-       <font color="red"> <%= k.getWiad() %> </font>  
+            <font color="red"> <%= k.getWiad() %> </font>  
        <% } %>
-     </p> 
+        </p> 
        
-      <p align="center"> 
+        <p align="center"> 
       <% if ( p.getWiad().compareTo("ok") == 0 ) { %>
-       <font color="blue"> Podforum zostało zmienione </font>
+            <font color="blue"> Podforum zostało zmienione </font>
        <% } else  {%>   
-       <font color="red"> <%= p.getWiad() %> </font>  
+            <font color="red"> <%= p.getWiad() %> </font>  
        <% } %>
-     </p> 
+        </p> 
        
      
      
-       <br/>
+        <br/>
      <% ArrayList lista=db_con.getKategorie(); %>  
-      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
-       <caption> <font size="5" style="bold">TABELA KATEGORII </font> </caption>
-       <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th> <th>Edycja</th> <th>Usun</th> <th>Dodaj</th> </tr>
+        <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
+            <caption> <font size="5" style="bold">TABELA KATEGORII </font> </caption>
+            <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th> <th>Edycja</th> <th>Usun</th> <th>Dodaj</th> </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora();  
          %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
-               <td><form action="./edycja_kat.jsp" method="post">
-                     <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
-                     <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
-                     <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
-                     <input align="center" size="15"  type="submit" value="EDYTUJ"/>
-                   </form> 
-               </td> 
-               <td><form action="./edycja_podforow.jsp" method="post" onsubmit="return Info('Czy napewno chcesz usunąc kategorie?');">
-                     <input type="hidden" name="usun_kat" value="<%= kkk.getID() %>"/>
-                     <input  align="center" size="15"  type="submit" value="USUŃ"/>
-                   </form> 
-               </td> 
-                <td><form action="./podfora_form.jsp" method="post">
-                     <input name="id" type="hidden" value="<%= kkk.getID() %>"/>
-                     <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
-                     <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
-                     <input align="center" size="15"  type="submit" value="DODAJ"/>
-                   </form> 
-                </td>
-          </tr>
-          <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> Podfora kategorii: <%=kkk.getNazwa() %> </td></tr>
+             <td><form action="./edycja_kat.jsp" method="post">
+                 <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
+                 <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
+                 <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
+                 <input align="center" size="15"  type="submit" value="EDYTUJ"/>
+             </form> 
+             </td> 
+             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="return Info('Czy napewno chcesz usunąc kategorie?');">
+                 <input type="hidden" name="usun_kat" value="<%= kkk.getID() %>"/>
+                 <input  align="center" size="15"  type="submit" value="USUŃ"/>
+             </form> 
+             </td> 
+             <td><form action="./podfora_form.jsp" method="post">
+                 <input name="id" type="hidden" value="<%= kkk.getID() %>"/>
+                 <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
+                 <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
+                 <input align="center" size="15"  type="submit" value="DODAJ"/>
+             </form> 
+             </td>
+         </tr>
+            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> Podfora kategorii: <%=kkk.getNazwa() %> </td></tr>
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
          %><tr bgcolor="goldenrod"> <td> </td><td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
-                <td><form action="./edycja_pod.jsp" method="post">
-                     <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
-                     <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
-                     <input name="tytul"  type="hidden"  value="<%= podf.getTytul() %>"/>
-                     <input name="opis"   type="hidden"  value="<%= podf.getOpis() %>"/>
-                     <input align="center" size="20"  type="submit" value="EDYTUJ"/>
-                   </form> 
-                </td> 
-                <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="return Info('Czy napewno chcesz usunąć podforum?');">
-                     <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
-                     <input align="center" size="20"  type="submit" value="USUŃ"/>
-                   </form> 
-                </td> 
-                <td></td>
-          </tr>
+             <td><form action="./edycja_pod.jsp" method="post">
+                 <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
+                 <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
+                 <input name="tytul"  type="hidden"  value="<%= podf.getTytul() %>"/>
+                 <input name="opis"   type="hidden"  value="<%= podf.getOpis() %>"/>
+                 <input align="center" size="20"  type="submit" value="EDYTUJ"/>
+             </form> 
+             </td> 
+             <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="return Info('Czy napewno chcesz usunąć podforum?');">
+                 <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
+                 <input align="center" size="20"  type="submit" value="USUŃ"/>
+             </form> 
+             </td> 
+             <td></td>
+         </tr>
           <% }%>
     
        <% }%>
-     </table>
-     <br/> <br/>
-     <form action="./edycja_podforow.jsp" method="post">
-     <table align="center" cellpadding="2" cellspacing="1" border="1">
-      <caption> <font size="5" style="bold">DODAWANIE KATEGORII </font> </caption>
-      <tr> <td>NAZWA: </td>  <td> <input  size="50" type="text" name="nazwa_kat" value="<%=nazwa%>"/> </td> </tr>
-      <tr> <td>OPIS:  </td>  <td> <input  size="50" type="text" name="opis_kat" value="<%=opis%>"/>  </td>  </tr>
-      <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="DODAJ"/> </td> </tr>
-      </table>       
-    </form>
+        </table>
+        <br/> <br/>
+        <form action="./edycja_podforow.jsp" method="post">
+            <table align="center" cellpadding="2" cellspacing="1" border="1">
+                <caption> <font size="5" style="bold">DODAWANIE KATEGORII </font> </caption>
+                <tr> <td>NAZWA: </td>  <td> <input  size="50" type="text" name="nazwa_kat" value="<%=nazwa%>"/> </td> </tr>
+                <tr> <td>OPIS:  </td>  <td> <input  size="50" type="text" name="opis_kat" value="<%=opis%>"/>  </td>  </tr>
+                <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="DODAJ"/> </td> </tr>
+            </table>       
+        </form>
    
     </body>
 </html>
