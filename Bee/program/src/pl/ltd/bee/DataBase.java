@@ -490,7 +490,7 @@ public class DataBase {
     
     
     /**
-     * Metoda sprawdz czy kategoria o podantm tytult juz istnieje
+     * Metoda sprawdz czy kategoria o podanym tytule juz istnieje
      * @param tytul tytul kategorii
      * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
      */
@@ -524,17 +524,17 @@ public class DataBase {
     }
     
     /**
-     * Metoda wstawia klucz do zapomnianego has�a
+     * Metoda wstawia klucz do zapomnianego hasła
      * @param email adres mailowy uzytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale�no�ci czy insert si� powi�d�
+     * @return T lub N w zależności czy insert się powiódł
      */
     public boolean wstawZapomnianeHaslo(String email, String klucz){
         return baza.dmlQuery("INSERT INTO " + BEE_FORGET_PASSWD + " VALUES ('"+ klucz +"', '"+ email + "')");
     }
     
     /**
-     * Metoda sprawdza czy istnieje klucz do zapomnianego has�a w bazie danych
+     * Metoda sprawdza czy istnieje klucz do zapomnianego hasła w bazie danych
      * @param klucz losowo wygenerowany klucz
      * @return N lub T w zale�no�ci czy jest czy nie (T gdy klucza nie ma)
      */
@@ -627,9 +627,9 @@ public class DataBase {
     }
     
     /**
-     * Metoda usuwa klucz do zapomnianego has�a
+     * Metoda usuwa klucz do zapomnianego hasła
      * @param email email uzytkownika
-     * @return T lub N w zaleśności czy udalo sie usunac
+     * @return T lub N w zależności czy udalo sie usunac
      */
     public boolean usunZapomnianeHaslo(String email){
         return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_EMAIL + "='" + email + "'");
@@ -640,7 +640,7 @@ public class DataBase {
      * Metoda zmienia haslo uzytkownikowi
      * @param email email uzytkownika
      * @param haslo nowe haslo podane w plain txt
-     * @return T lub N w zale�no�ci czy update si� powi�d�
+     * @return T lub N w zależności czy update się powiódł
      */
     public boolean zmienHasloByEmail(String email, String haslo){
         return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_HASLO + "='" + Crypto.crypt(haslo) + "'"  + " WHERE " + USER_EMAIL  + "='" + email + "'");
@@ -650,7 +650,7 @@ public class DataBase {
     /**
      * Metoda usuwa klucz do nowego uzytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale�no�ci czy insert si� powi�d�
+     * @return T lub N w zale�no�ci czy insert się powiódł
      */
     public boolean usunKluczNewUser(String klucz){
         return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");
