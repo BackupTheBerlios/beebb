@@ -45,23 +45,30 @@ public class ConnectorDB {
     public ArrayList query(String q) {
         ArrayList pom=new ArrayList();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(Host,User,Pass);
-            Statement select = con.createStatement();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Bee","wilk","wilk");
+            Statement select = con.createStatement();        
             ResultSet result = select.executeQuery(q);
             ResultSetMetaData rsmd = result.getMetaData();
-            int licz = rsmd.getColumnCount();
             
+            Hashtable row1=new Hashtable();
+            row1.put("QUERY",q);
+            pom.add(row1);
+            int licz = rsmd.getColumnCount();            
             while(result.next()) {
                 Hashtable row=new Hashtable();
                 for(int i=0;i<licz;i++) {
                     row.put(rsmd.getColumnName(i),result.getString(i));
                 }
                 pom.add(row);
-            }
-            
+            }            
             con.close();
-        } catch( Exception e ) { e.printStackTrace(); }
+        } catch( Exception e ) { 
+            Hashtable row2=new Hashtable();
+            row2.put("EXCEPTION",e);
+            pom.add(row2);
+                //e.printStackTrace(); 
+        }
         return pom;
     }
     

@@ -133,12 +133,13 @@ public class DataBase {
      * @param ID Identyfikator szukanego watku
      * @return Zwraca obiekt Watek badz null w razie bledu.
      */
-    public Watek getWatek(int ID){
-        baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
+    public Hashtable getWatek(int ID){
+        //baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
-        if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA));
+        return watek;
+ //        if (watek == null) return null;
+//        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA));
     }
     
     /**
