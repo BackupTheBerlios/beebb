@@ -120,6 +120,7 @@ public class DataBase {
     /**
      * Metoda zwaraca objekt Watek o podanym identyfikatorze
      * @param ID Identyfikator szukanego watku
+     * @return Zwraca obiekt Watek badz null w razie bledu.
      */
     public Watek getWatek(int ID){
         // baza.query("SELECT * FROM " + Bee_Watki + " WHERE ID=" + ID);
@@ -132,6 +133,7 @@ public class DataBase {
     /**
      * Metoda zwaraca objekt Wypowiedz o podanym identyfikatorze
      * @param ID Identyfikator szukanej wypowiedzi
+     * @return Zwraca obiekt Wypowiedz badz null w razie bledu.
      */
     public Wypowiedz getWypowiedz(int ID){
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
@@ -143,6 +145,7 @@ public class DataBase {
     /**
      * Metoda zwaraca objekt Podforum o podanym identyfikatorze
      * @param ID Identyfikator szukanego podforum
+     * @return Zwraca obiekt Podforum badz null w razie bledu.
      */
     public Podforum getPodforum(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
@@ -154,6 +157,7 @@ public class DataBase {
     /**
      * Metoda zwaraca objekt Forum o podanym identyfikatorze
      * @param ID Identyfikator szukanego Forum
+     * @return Zwraca obiekt Forum badz null w razie bledu.
      */
     public Forum getForum(int ID){
         Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE " + FORUM_ID +"=" + ID);
@@ -165,6 +169,7 @@ public class DataBase {
     /**
      * Metoda zwaraca objekt Kategoria o podanym identyfikatorze
      * @param ID Identyfikator szukanej Kategorii
+     * @return Zwraca obiekt Kategoria badz null w razie bledu.
      */
     public Kategoria getKategoria(int ID){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
@@ -240,6 +245,7 @@ public class DataBase {
     /**
      * Metoda zwaraca objekt User o podanym identyfikatorze
      * @param ID Identyfikator szukanego uzytkownika
+     * @return Zwraca obiekt User badz null w razie bledu.
      */
     public User getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
