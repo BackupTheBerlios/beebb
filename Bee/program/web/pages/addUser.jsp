@@ -27,7 +27,7 @@
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
         } catch (Exception e) {
-            out.print("<p class=\"error\">Blad polaczenia z baza!</p>");
+            out.print(Messages.errorDataBaseConnection());
         } }
             //Straszny kawałek kodu, ale nie mam innego pomysłu
             boolean ok = true;
@@ -60,7 +60,7 @@
             
             if (ok) {
                 if(!db_con.insertUser(nickname,haslo1,imie,nazwisko,email,gg,jabber,"1970-01-01 00:00:00"))
-                out.println("<p class=\"error\">Nie można dodać użytkownika - skontaktuj się z administratorem forum</p>");
+                out.println(Messages.errorUserCreate());
                 else {
                     out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
                     if (Config.NEW_USER_MAIL_AUTH) {
@@ -80,21 +80,21 @@
             ok = true;
             if (nickname!=null) {
                 if (db_con.getUser(nickname)!=null) {
-                    out.println("<td colspan=\"2\"><font class=\"error\">Użytkownik " + nickname + " już istnieje!</p></td></tr><tr>");
+                    out.println("<td colspan=\"2\">"+ Messages.errorUserExists(nickname) +"</td></tr><tr>");
                     ok=false;
                 }
                 if (nickname.compareTo("")==0) { ok=false;
-                    out.println("<td colspan=\"2\"><font class=\"error\">Pole jest wymagane!</p></td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
                                 <td><b>nickname*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
                             </tr> <tr>
             <% 
             if (haslo1!=null && haslo2!=null) {
                 if (haslo1.length() < Config.MIN_PASSWD) { ok=false;
-                    out.println("<td colspan=\"2\"><font class=\"error\">Hasło musi mieć przynajmniej " + Config.MIN_PASSWD + " znaków</p></td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.errorPassToShort(Config.MIN_PASSWD) + "</td></tr><tr>"); }
                 
                 if (haslo1.compareTo(haslo2)!=0) { ok=false;
-                    out.println("<td colspan=\"2\"><font class=\"error\">Hasła się nie zgadzają</p></td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.errorPassNotMatch() + "</td></tr><tr>"); }
                 
             } else { ok=false; } %>
                             <td><b>Haslo*:</b></td><td><input type="password" size="25" name="haslo1"></td>
@@ -110,7 +110,7 @@
                 ok=false; email="";
             } else {
                 if (email.compareTo("")==0) { ok=false;
-                    out.println("<td colspan=\"2\"><font class=\"error\">Pole jest wymagane!</p></td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             }%>
                             <td><b>email*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
                             </tr> <tr>

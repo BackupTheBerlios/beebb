@@ -1,0 +1,72 @@
+/*
+ * Messages.java
+ *
+ * Created on 24 marzec 2005, 21:52
+ */
+
+package pl.ltd.bee;
+
+/**
+ * Klasa odpowiada za dostarczenie wszystkich komunikatow kierowanych do uzytkownika forum
+ * W pozniejszym etapie mozna zaimplementowac wyciaganie komunikatow we wskazanym jezyku z pliku XML
+ * @author wilk
+ */
+public class Messages {
+    
+    /** Creates a new instance of Messages */
+    public Messages() {
+    }
+    
+    /**
+     * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
+     * @return String z komunikatem o braku polaczenia z baza danych
+     */
+    public static String errorDataBaseConnection(){
+        return "<p class=\"error\">B³±d po³±czenia z baz± danych!</p>";}
+ 
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze uzytkownik nie moze zostac stworzony
+     * @return String z komunikatem o tym ze uzytkownik nie moze zostac stworzony
+     */
+    public static String errorUserCreate(){
+        return "<p class=\"error\">Nie mo¿na dodaæ u¿ytkownika - skontaktuj siê z administratorem forum</p>";}
+
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze podany uzytkownik juz istnieje
+     * @param nick String z nazwa uzytkownika
+     * @return String z komunikatem o tym ze podany uzytkownik juz istnieje
+     */
+    public static String errorUserExists(String nick){
+        return "<p class=\"error\">U¿ytkownik " + nick + " ju¿ istnieje!</p>";}
+
+    
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze pole jest wymagane
+     * @return String z komunikatem o tym ze pole jest wymagane
+     */
+    public static String errorFieldNeeded(){
+        return "<p class=\"error\">Pole jest wymagane!</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze pole jest wymagane
+     * @param field String z nazwa pola
+     * @return String z komunikatem o tym ze pole jest wymagane
+     */
+    public static String errorFieldNeeded(String field){
+        return "<p class=\"error\">Pole '" + field + "'jest wymagane!</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze haslo jest za krotkie
+     * @param length liczba wyznaczajaca minimalna dlugosc hasla
+     * @return String z komunikatem o tym ze haslo jest za krotkie
+     */
+    public static String errorPassToShort(int length){
+            return "<p class=\"error\">Has³o musi mieæ przynajmniej " + length + " znaków</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze hasla nie sa identyczne
+     * @return String z komunikatem o tym ze hasla nie sa identyczne
+     */
+    public static String errorPassNotMatch(){
+            return "<font class=\"error\">Has³a siê nie zgadzaj±</p>";}
+}
