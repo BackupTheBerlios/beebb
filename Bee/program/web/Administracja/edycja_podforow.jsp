@@ -21,10 +21,24 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
-
+      <% Enumeration fl = request.getParameterNames();
+        if (fl.hasMoreElements()) { 
+           String f = (String) fl.nextElement();
+           if( (f.compareTo("usun_kat")==0)||(f.compareTo("usun_pod")==0) )
+           {   %>
+        <script LANGUAGE="JavaScript">
+        <!--
+           function Info()
+                    {if (!confirm("Czy na 100% sie zastanowiles co chcesz zrobic"))
+                    history.go(-1);return " "}
+          document.writeln(Info())
+        <!--End-->
+       </script>
+       <%} } %>
     </head>
     
-    <body>    
+    <body> 
+      
       <% if (!db_con.isConnected()) {
             try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
@@ -96,7 +110,7 @@
                </td> 
                <td><form action="./edycja_podforow.jsp" method="post">
                      <input type="hidden" name="usun_kat" value="<%= k.getID() %>"/>
-                     <input align="center" size="15"  type="submit" value="USUN"/>
+                     <input  align="center" size="15"  type="submit" value="USUN"/>
                    </form> 
                </td> 
                 <td><form action="./podfora_form.jsp" method="post">
