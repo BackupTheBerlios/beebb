@@ -6,9 +6,7 @@
         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
         <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
         
-        <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
-        <jsp:useBean id="pf" scope="request" class="pl.ltd.bee.Podforum" />
-        <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
+  
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -58,8 +56,8 @@
              if ( db_con.czyKategoria(nazwa) ) out.print(Messages.errorNameKat());
                 else
                 {
-                 if (db_con.insertKategoria(nazwa,opis) ) {
-                  out.print(Messages.AddKat());
+                 if (db_con.insertKategoria(nazwa,opis,"Zagorzelców") ) {
+                  out.print(Messages.addKat());
                   nazwa="";
                   opis="";
                 }
@@ -71,7 +69,7 @@
        if(field.compareTo("usun_kat")==0 )
            {
              String nr=request.getParameter("usun_kat");
-             if ( db_con.usunKategorie(nr)) out.print(Messages.RemoveKat());
+             if ( db_con.usunKategorie(nr)) out.print(Messages.removeKat());
                 else out.print(Messages.errorRemoveKat());
          
              
@@ -80,7 +78,7 @@
         if (field.compareTo("usun_pod")==0 )
            {
              String nr=request.getParameter("usun_pod");
-             if ( db_con.usunPodforum(nr)) out.print(Messages.RemovePodforum());
+             if ( db_con.usunPodforum(nr)) out.print(Messages.removePodforum());
                 else  out.print(Messages.errorRemovePodforum());
            }
         }
@@ -91,25 +89,7 @@
         }
       %>
       
-        <p align="center"> 
-      <% if ( k.getWiad().compareTo("ok") == 0 ) { %>
-            <font color="blue"> Kategoria została zmieniona </font>
-       <% } if ( k.getWiad().compareTo("ok") != 0 ) { %>
-            <font color="red"> <%= k.getWiad() %> </font>  
-       <% } %>
-        </p> 
-       
-        <p align="center"> 
-      <% if ( p.getWiad().compareTo("ok") == 0 ) { %>
-            <font color="blue"> Podforum zostało zmienione </font>
-       <% } else  {%>   
-            <font color="red"> <%= p.getWiad() %> </font>  
-       <% } %>
-        </p> 
-       
-     
-     
-        <br/>
+   <br/>
      <% ArrayList lista=db_con.getKategorie(); %>  
         <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
             <caption> <font size="5" style="bold">TABELA KATEGORII </font> </caption>

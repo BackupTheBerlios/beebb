@@ -1,4 +1,4 @@
-<%@page contentType="text/html"%>
+ <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
@@ -15,8 +15,11 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
-        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-        <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
+
+         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+         <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
+         <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
+
          
         <% if (!db_con.isConnected()) {
             try {
@@ -32,55 +35,71 @@
        Enumeration fff = request.getParameterNames();
        if (fff.hasMoreElements()) {
            String pom = (String) fff.nextElement();
-          if((pom.compareTo("id_pod")==0)||(pom.compareTo("opis")==0)||(pom.compareTo("tytul")==0)||(pom.compareTo("id_kat")==0) )
-           {
-            String id_pod= (String) request.getParameter("id_pod");
-            String tytul= (String) request.getParameter("tytul");
-            String opis= (String) request.getParameter("opis");
-            String id_kat= (String) request.getParameter("id_kat");
+          if((pom.compareTo("id_pod")==0)||(pom.compareTo("opis")==0)||(pom.compareTo("tytul")==0)||(pom.compareTo("id_kat")==0) ) {  
+            p.setNazwa( (String) request.getParameter("tytul") );
+            p.setOpis( (String) request.getParameter("opis") );
+            p.setID( (String) request.getParameter("id_pod") );
+            p.setIdKat( (String) request.getParameter("id_kat") );
+           }
         
-            p.setNazwa(tytul);
-            p.setOpis(opis);
-            p.setID(id_pod);
-            p.setIdKat(id_kat);
+     
+      if((pom.compareTo("id_pod_pom")==0)||(pom.compareTo("opis_pom")==0)||(pom.compareTo("tytul_pom")==0)||(pom.compareTo("id_kat_pom")==0) ) { 
+      
+         p.setNazwa( (String) request.getParameter("tytul_pom") );
+         p.setOpis( (String) request.getParameter("opis_pom") );
+         p.setID( (String) request.getParameter("id_pod_pom") );
+         p.setIdKat( (String) request.getParameter("id_kat_pom") );
+         boolean ok=true;
+        if( (p.getTytul()).compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum()); 
+         else {
+            String id_kat=db_con.dajIdKategorii( (String) request.getParameter("kategoria_pom"));
+            if(id_kat.compareTo( String.valueOf(p.getIdKat()) )!=0)   
+              if ( db_con.czyPodforum(id_kat, p.getTytul()) ) { ok=false; wiad.add(Messages.errorNamePodforum()); } 
+             
+             if(ok) { 
+                if ( db_con.updatePodforum(String.valueOf(p.getID()), id_kat, p.getTytul(), p.getOpis()) )
+                    wiad.add(Messages.changePod());
+                   else wiad.add(Messages.errorChangePod()); %>
+                   <jsp:forward page="./edycja_podforow.jsp"/>
+                <%
+                }
+             }
            }
         }
-       %>
-       
-        <p align="center"> 
-      <% if ( p.getWiad().compareTo("ok") == 0 ) { %>
-            <font color="blue"> Podforum zostało zmienione </font>
-       <% } else  {%>   
-            <font color="red"> <%= p.getWiad() %> </font>  
-       <% } %>
-        </p> 
-       
+      
+   %>
+          
+      <% for(int i=0; i<wiad.size(); i++) {
+          out.print((String) wiad.get(i));
+        }
+        %>
+
             
         <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
         <br/>
      
-        <form action="./edycja_pod_zmien.jsp" method="post">
-            <table align="center" cellpadding="2" cellspacing="1" border="0">
-                <caption> Edycja Podforum </caption>
-                <tr>  <th> Tytul </th> <th> Opis </th> <th> Wybierz kategorie: </th></tr>
-                <tr> 
-                    <td> <input size="40" type="text" name="nazwa" value="<%=p.getTytul()%>"/> </td>
-                    <td> <input size="40" type="text" name="opis" value="<%=p.getOpis() %>"/>  </td> 
-      
-                    <td>  <select name="kategoria" > <% ArrayList tytuly=db_con.getTytulyKategorii();
-                                                       for (int i=0; i<tytuly.size(); i++) { %>
-                        <option><%= tytuly.get(i) %></option>
+    <form action="./edycja_pod.jsp" method="post">
+      <table align="center" cellpadding="2" cellspacing="1" border="0">
+       <caption> Edycja Podforum </caption>
+       <tr>  <th> Tytul </th> <th> Opis </th> <th> Wybierz kategorie: </th></tr>
+       <tr> 
+           <td> <input size="40" type="text" name="tytul_pom" value="<%=p.getTytul()%>"/> </td>
+           <td> <input size="40" type="text" name="opis_pom" value="<%=p.getOpis() %>"/>  </td> 
+
+           <td>  <select name="kategoria_pom" > <% ArrayList tytuly=db_con.getTytulyKategorii();
+                                                    for (int i=0; i<tytuly.size(); i++) { %>
+                                                        <option><%= tytuly.get(i) %></option>
                                                       <%  } %>      
                     </select>
                     </td>
-           
-                    <input type="hidden" name="id_pod" value="<%=p.getID()%>"/>
-                    <input type="hidden" name="id_kat" value="<%=p.getIdKat()%>"/>
-                    <tr>
-                    <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td> <td> </td> </tr>
-                </tr>
-            </table>
-        </form>
+        <input type="hidden" name="id_pod_pom" value="<%=p.getID()%>"/>
+        <input type="hidden" name="id_kat_pom" value="<%=p.getIdKat()%>"/>
+       <tr>
+         <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td> <td> </td> </tr>
+       </tr>
+      </table>
+    </form>
+
      
     </body>
 </html>

@@ -15,51 +15,76 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
-        <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
+         <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
+         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+         <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
+
          
-     <% 
+           <% if (!db_con.isConnected()) {
+            try {
+                db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+                db_con.setTablePrefix(Config.DATABASE_PREFIX);
+                } catch (Exception e) {
+                   out.print("Blad polaczenia z baza!");
+                }
+            } %>
+         
+     <% String napis="";
        Enumeration f = request.getParameterNames();
         if (f.hasMoreElements()) {
-           String napis = (String) f.nextElement();
-           if(napis.compareTo("id_kat")==0 ||(napis.compareTo("tytul")==0)||(napis.compareTo("opis")==0))
-           {
-            String id_kat= (String) request.getParameter("id_kat");
-            String tytul= (String) request.getParameter("tytul");
-            String opis= (String) request.getParameter("opis");
-        
-            k.setNazwa(tytul);
-            k.setOpis(opis);
-            k.setID(id_kat);
+           napis = (String) f.nextElement();
+           if( (napis.compareTo("id_kat")==0) ||(napis.compareTo("tytul")==0)||(napis.compareTo("opis")==0)) {
+               
+              k.setNazwa((String) request.getParameter("tytul"));
+              k.setOpis((String) request.getParameter("opis"));
+              k.setID((String) request.getParameter("id_kat"));
            }
+        
+       if((napis.compareTo("id_kat_pom")==0) ||(napis.compareTo("tytul_pom")==0)||(napis.compareTo("opis_pom")==0)) {     
+           
+             k.setID((String) request.getParameter("id_kat_pom"));
+             k.setNazwa((String) request.getParameter("tytul_pom"));
+             k.setOpis((String) request.getParameter("opis_pom"));
+
+       
+        if( (k.getNazwa()).compareTo("")== 0 ) wiad.add(Messages.errorFieldNameKat()); 
+          else
+            if ( db_con.czyKategoriaInna(k.getNazwa(), k.getID() ) ) wiad.add(Messages.errorNameKat()); 
+             else
+             {
+               if (db_con.updateKategoria(k.getID(), k.getNazwa(), k.getOpis()) ) wiad.add(Messages.changeKat());
+                    else wiad.add(Messages.errorChangeKat()); %>
+                <jsp:forward page="./edycja_podforow.jsp"/>
+             <%  
+             }
+            } 
+      
+       } 
+ 
+          for(int i=0; i<wiad.size(); i++) {
+          out.print((String) wiad.get(i));
         }
-       %>
-       
-        <p align="center"> 
-      <% if ( k.getWiad().compareTo("ok") == 0 ) { %>
-            <font color="blue"> Kategoria została zmieniona </font>
-       <% } else  {%>   
-            <font color="red"> <%= k.getWiad() %> </font>  
-       <% } %>
-        </p> 
-       
+      %>
+      
             
         <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
         <br/>
      
-        <form action="./edycja_kat_zmien.jsp" method="post">
-            <table align="center" cellpadding="2" cellspacing="1" border="0">
-                <caption> Edycja Kategorii </caption>
-                <tr>  <th> Tytul </th> <th> Opis </th> </tr>
-                <tr> 
-                    <td> <input size="40" type="text" name="nazwa" value="<%=k.getNazwa()%>"/> </td>
-                    <td> <input size="40" type="text" name="opis" value="<%=k.getOpis() %>"/>  </td> 
-                </tr>
-                <input type="hidden" name="id_kat" value="<%=k.getID()%>"/>
-                <tr>
-                    <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td>
-                </tr>
-            </table>
-        </form>
+    <form action="./edycja_kat.jsp" method="post">
+      <table align="center" cellpadding="2" cellspacing="1" border="0">
+       <caption> Edycja Kategorii </caption>
+       <tr>  <th> Tytul </th> <th> Opis </th> </tr>
+       <tr> 
+           <td> <input size="40" type="text" name="tytul_pom" value="<%=k.getNazwa()%>"/> </td>
+           <td> <input size="40" type="text" name="opis_pom" value="<%=k.getOpis() %>"/>  </td> 
+      </tr>
+            <input type="hidden" name="id_kat_pom" value="<%=k.getID()%>"/>
+       <tr>
+         <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td>
+       </tr>
+      </table>
+    </form>
+
      
     </body>
 </html>
