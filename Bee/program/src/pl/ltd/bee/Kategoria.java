@@ -24,6 +24,9 @@ public class Kategoria {
         this.Tytul=Tytul;
     }
     
+    /** Zwraca identyfikator forum
+     * @return zwraca long bedacy identyfikatorem kategorii w bazie
+     */
     public long getID() {
         return ID;
     }

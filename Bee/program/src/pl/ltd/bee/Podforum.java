@@ -8,7 +8,7 @@ package pl.ltd.bee;
 
 /**
  *
- * @author pawel
+ * @author pawelb
  */
 public class Podforum {
     
@@ -24,6 +24,9 @@ public class Podforum {
         this.Tytul=Tytul;
     }
     
+    /** Zwraca identyfikator forum
+     * @return zwraca long bedacy identyfikatorem podforum w bazie
+     */
     public long getID() {
         return ID;
     }

@@ -32,10 +32,16 @@ public class Watek {
         this.Data=Data;
     }
     
+    /** Zwraca identyfikator forum
+     * @return zwraca String bedacy temetem watki
+     */
     public String getTemat() {
         return Temat;
     }
     
+    /** Zwraca identyfikator forum
+     * @return zwraca long bedacy identyfikatorem watku w bazie
+     */
     public long getID() {
         return ID;
     }

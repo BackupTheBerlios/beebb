@@ -17,12 +17,18 @@ public class Forum {
     private String Nazwa;
     private long ID;
     
-    /** Creates a new instance of Forum */
-    public Forum(String Forum_ID, String Nazwa) {
-        this.ID=Long.decode(Forum_ID).longValue();
+    /** Tworzy nowa instancje klasy Forum 
+     @param ID identyfikator forum w bazie
+     @param Nazwa nazwa forum
+     */
+    public Forum(String ID, String Nazwa) {
+        this.ID=Long.decode(ID).longValue();
         this.Nazwa=Nazwa;
     }
     
+    /** Zwraca identyfikator forum
+     @return zwraca long bedacy identyfikatorem forum w bazie
+     */
     public long getID() {
         return ID;
     }
