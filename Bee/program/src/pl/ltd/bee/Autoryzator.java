@@ -8,11 +8,12 @@ package pl.ltd.bee;
 
 /**
  *
- * @author pawel
+ * @author pawelb
  */
 public class Autoryzator {
     
     User uzytkownik;
+    String login = "Guest";
     boolean zalogowany;
     
     /** Creates a new instance of Autoryzator */
@@ -20,21 +21,35 @@ public class Autoryzator {
         zalogowany=false;
     }
     
-    public User zaloguj(String uzytkownik, String haslo) {
-        if(uzytkownik.compareTo("Guest")==0)
+    public User zaloguj(String login, String haslo,DataBase db) {
+        uzytkownik = db.getUser(login);
+        if (uzytkownik==null) {
             zalogowany=false;
-        else
-            zalogowany=true;
+            return null;
+        }
         
+        
+        if(login.compareTo("Guest")==0) {
+            zalogowany=false;
+            this.login=login;
+            return uzytkownik;
+        }
+        
+        zalogowany=true;
+        if (uzytkownik.checkPasswd(haslo)) {
+            this.login=login;
+            return uzytkownik;
+        }
         return null;
-    } 
+        
+    }
     
     public boolean zalogowany() {
         return zalogowany;
     }
     
     public String user() {
-        return "user";
+        return login;
     }
 }
 

@@ -1,8 +1,6 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page language="java" import="pl.ltd.bee.*"%>
-
 <html>
     <head><title>ADD user</title></head>
     <body>
@@ -15,9 +13,7 @@
             } catch (Exception e) {
                 out.print("Blad polaczenia z baza!");
             }
-        } %>
-        
-            <%
+        } 
             //Straszny kawałek kodu, ale nie mam innego pomysłu
             boolean ok = true;
             String nickname=request.getParameter("user");
@@ -79,31 +75,21 @@
             <b>haslo jeszcze raz*:</b>  <input type="password" size="20" name="haslo2"><br>
             imie:  <input type="text" size="30" name="imie" value="<%out.print(imie);%>"><br>
             nazwisko:  <input type="text" size="30" name="nazwisko" value="<%out.print(nazwisko);%>"><br>
-            
             <%
             if (email==null) {
-                ok=false;
-                email="";
+                ok=false; email="";
             } else {
                 if (email.compareTo("")==0) { ok=false;
                     out.println("<font color=\"red\">Pole jest wymagane!<br></font>"); }
-                    
-            }
-            
-            %>
+            }%>
             <b>email*:</b>  <input type="text" size="20" name="email" value="<%out.print(email);%>"><br>
             gg:  <input type="text" size="10" name="gg" value="<%out.print(gg);%>"><br>
             jabber:  <input type="text" size="20" name="jabber" value="<%out.print(jabber);%>"><br>
-            
             <input type="submit" name="submit" value="submit"/>
             <BR><BR>
             * - pola wymagane
         </form>
         <% }%>
         <br><br>
-        <%-- 
-        //if(!db_con.insertUser("pawel","sd","sd","ss","234","pawelB@ddd","dupa"))
-        //out.println("Dupa Blada<BR>");
-        --%>
     </body>
 </html>

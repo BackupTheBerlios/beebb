@@ -291,7 +291,7 @@ public class DataBase {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),"imie","nazwisko","email","gg","jabber",(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
  
     
@@ -304,8 +304,7 @@ public class DataBase {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" like \"" + login + "\"");
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return new User();
-                //UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),"imie","nazwisko","email","gg","jabber",(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
     /**

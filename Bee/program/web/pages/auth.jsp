@@ -1,10 +1,12 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="pl.ltd.bee.*"%>
 <html>
     <head><title>Authorization page</title></head>
     <body>
-        <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" /> 
+        <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
+        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
         <% Enumeration flds = request.getParameterNames();
         if (!flds.hasMoreElements()) { %>
         <form method="POST" action="auth.jsp">
@@ -18,7 +20,7 @@
         <% } else { 
             String field = (String) flds.nextElement(); 
             if (field.compareTo("logout")==0) {
-                auth.zaloguj("Guest","");
+                auth.zaloguj("Guest","",db_con);
                 response.sendRedirect("../index.jsp");
             }
             else {
@@ -29,8 +31,9 @@
                     haslo=request.getParameter("haslo");
                     if (uzytkownik!=null && haslo!=null)
                     {
-                        auth.zaloguj(uzytkownik,haslo);
-                        response.sendRedirect("../index.jsp");
+                        User u = auth.zaloguj(uzytkownik,haslo,db_con);
+                        if (u!=null)
+                            response.sendRedirect("../index.jsp");
                     } 
                     
                     out.println("Bledny user lub haslo<br><a href=\"auth.jsp\">powrot</a><br>");

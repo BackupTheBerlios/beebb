@@ -10,9 +10,12 @@ package pl.ltd.bee;
  *
  * @author pawelb
  */
-public class User {
+public abstract class User {
     
     /** Creates a new instance of User */
     public User() {}
     
+    public boolean checkPasswd(String passwd) { 
+        return false;
+    };
 }
