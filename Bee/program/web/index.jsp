@@ -7,13 +7,25 @@
 <html>
     <head><title>Bee Forum</title></head>
     <body>
+
+    <A href="Administracja\index.htm" target=main>Panel Administratora</A>
+    
+    <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
+    <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+        <%
+
         <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
  
        <%
+
         if (!db_con.isConnected()) {
             try {
+
+            db_con.connect("localhost","Bee","root","sopi");
+
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+
             db_con.setTablePrefix("Bee");
             } catch (Exception e) {
                 out.print("Blad polaczenia z baza!");
