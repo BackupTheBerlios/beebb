@@ -504,5 +504,51 @@ public class DataBase {
             else return false;
     }
     
+     /**
+     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii
+     * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
+     * @return ArrayList obiektow Podforum
+     */
+    public ArrayList  getPodforaKategoriiAll(String ID) {
+        ArrayList wynik = new ArrayList();
+        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE ID_Podforum=ID and ID_Kategoria= " + ID + " and Aktywne='T' ORDER BY TYTUL ");
+        for(int i=0;i<podfora.size();i++) {
+            Hashtable podforum = (Hashtable)podfora.get(i);
+            wynik.add(new Podforum((String)podforum.get("ID"),(String)podforum.get("TYTUL"),(String)podforum.get("OPIS")));
+        }
+        return wynik;
+    }
+    
+    /**
+     * Metoda zwaraca liste obiektow Kategoria 
+     * @return ArrayList obiektow Kategoria
+     */
+    public ArrayList getKategorie() {
+        ArrayList wynik = new ArrayList();
+        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE Aktywna='T' ORDER BY TYTUL");
+        for(int i=0;i<kategorie.size();i++) {
+            Hashtable kategoria = (Hashtable)kategorie.get(i);
+            wynik.add(new Kategoria(this , (String) kategoria.get("ID"), (String) kategoria.get("TYTUL"), (String) kategoria.get("OPIS") ));
+        }
+        return wynik;
+    }
+   /**
+    * Metoda zmienia pole aktywna na N
+    * @param String id kategorii
+    *@return boolean true jezeli update sie powiodl dalse wpp.
+    */
+    public boolean usunKategorie(String id){
+       return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
+    }
+    
+   /**
+    * Metoda zmienia pole aktywna na N
+    * @param String id podforum
+    *@return boolean true jezeli update sie powiodl dalse wpp.
+    */
+    public boolean usunPodforum(String id){
+       return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywna='N' WHERE ID="+id);
+    }
+    
 }
 
