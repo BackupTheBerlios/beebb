@@ -22,6 +22,8 @@ CREATE TABLE `Bee_True_False` (
   PRIMARY KEY (`Var`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wartosciami "T" lub "N". Sztuczny CHECK.';
 
+INSERT INTO `Bee_True_False`(`Var`) VALUES('T');
+INSERT INTO `Bee_True_False`(`Var`) VALUES('N');
 
 --
 -- Table structure for table `Bee_Forum`
