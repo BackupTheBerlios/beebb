@@ -7,16 +7,16 @@
      <jsp:useBean id="pf" scope="request" class="pl.ltd.bee.Podforum" />
 
      <%
-       String tytul=request.getParameter("nazwa");
-       String opis=request.getParameter("opis");
-       String kategoria=request.getParameter("kategoria");
+       String tytul=request.getParameter("nazwa0");
+       String opis=request.getParameter("opis0");
+       String id_kat=request.getParameter("id_kat0");
        
        pf.setNazwa(tytul);
        pf.setOpis(opis);
       
        
       if( tytul.compareTo("")== 0 ) { pf.setWiad("Nalezy podac nazwe podforum"); %>
-      <jsp:forward page="./podfora_form.jsp"/>
+      <jsp:forward page="./edycja_podforow.jsp"/>
       <% }
        
          if (!db_con.isConnected()) {
@@ -25,11 +25,10 @@
                 db_con.setTablePrefix(Config.DATABASE_PREFIX);
                 } catch (Exception e) {
                    pf.setWiad("Blad polaczenia z baza!");
-                   %><jsp:forward page="./podfora_form.jsp"/> <%
+                   %><jsp:forward page="./edycja_podforow.jsp"/> <%
                 }
             }
-         String id_kat=db_con.dajIdKategorii(kategoria);
-         pf.setWiad(id_kat);
+    
          if ( db_con.czyPodforum(id_kat, tytul) ) pf.setWiad("Kategoria o podanej nazwie juz istnieje");
              else
             {
@@ -40,5 +39,6 @@
               }
                else pf.setWiad("Dodanie Podforum nie powiodla sie");
             }
+       
        %>
-          <jsp:forward page="./podfora_form.jsp"/>
+          <jsp:forward page="./edycja_podforow.jsp"/>
