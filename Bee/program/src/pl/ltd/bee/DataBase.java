@@ -628,8 +628,8 @@ public class DataBase {
     
     /**
      * Metoda usuwa klucz do zapomnianego has�a
-     * @param klucz email uzytkownika
-     * @return T lub N w zale�no�ci czy udalo sie usunac
+     * @param email email uzytkownika
+     * @return T lub N w zaleśności czy udalo sie usunac
      */
     public boolean usunZapomnianeHaslo(String email){
         return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_EMAIL + "='" + email + "'");
