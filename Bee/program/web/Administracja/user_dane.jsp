@@ -14,9 +14,9 @@
         <title>BeeBB :: Dane usera</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
          <%! 
-          String dajDana(String param)
+            String dajDana(String param)
             {
-            if (param.compareTo("null") == 0) return "Brak danych";
+            if ((param == null)||(param.compareTo("null")==0)||(param.compareTo("")==0)) return "brak";
               return param;
             }
            boolean dajUpr(String param)
@@ -25,23 +25,24 @@
              return false;
            }
          %>
-    </head>
+    </head
     <body>
-        <font size="6">DANE USERA    </font>
-        <A href="uprawnienia.jsp" target="prawa">   Powrot   </A>
-        <table align="center" border="1">
+     <a href="uprawnienia.jsp" target="prawa">   Powrot   </a>
+        <table name="tabuser" style="" align="center" cellpadding="2" cellspacing="1" border="1">
+          <th colspan="2">DANE USERA </th>
           <tr> <td>LOGIN</td> <td><%= dajDana(request.getParameter("login")) %> </td> </tr>
           <tr> <td>IMIE</td> <td><%= dajDana(request.getParameter("imie")) %> </td> </tr>
           <tr> <td>NAZWISKO</td> <td><%= dajDana(request.getParameter("nazwisko")) %> </td> </tr>
           <tr> <td>EMAIL</td> <td><%= dajDana(request.getParameter("email")) %> </td> </tr>
           <tr> <td>GG</td> <td><%= dajDana(request.getParameter("gg")) %> </td> </tr>
           <tr> <td>JABBER</td> <td><%= dajDana(request.getParameter("jabber")) %> </td> </tr>
+          <tr> <td>OSTATNI LOGIN</td> <td><%= dajDana(request.getParameter("lastlog")) %> </td> </tr>
         </table>
         <br>
-        <form action="zmiana_upr.jsp" method="post" target="prawa">
+        <form action="uprawnienia.jsp" method="post" target="prawa">
             
         <table align="center">
-         <tr> <td> UPRAWNIENIA </td> </tr>
+         <tr> <th> UPRAWNIENIA </th> </tr>
            <tr> <td> <input type="checkbox" name="czy_admin" 
                       <%= dajUpr(request.getParameter("czy_admin")) ? "checked" : "" %>>Administrator</input> </td> </tr>
             <tr> <td> <input type="checkbox" name="czy_moderator" 
@@ -49,12 +50,6 @@
            <tr> <td><input type="checkbox" name="czy_aktywny" 
                       <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>>Aktywny</input> </td> </tr>
              <tr> <td>  <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
-                        <input type="hidden" name="login" value="<%=dajDana(request.getParameter("login"))%>">
-                        <input type="hidden" name="imie" value="<%=dajDana(request.getParameter("imie"))%>">
-                        <input type="hidden" name="nazwisko" value="<%=dajDana(request.getParameter("nazwisko"))%>">
-                        <input type="hidden" name="email" value="<%=dajDana(request.getParameter("email"))%>">
-                        <input type="hidden" name="gg" value="<%=dajDana(request.getParameter("gg"))%>">
-                        <input type="hidden" name="jabber" value="<%=dajDana(request.getParameter("jabber"))%>">
                         <input type="submit" value="Zmien uprawnienia"></td> </tr>
         </table>
          

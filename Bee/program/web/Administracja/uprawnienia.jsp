@@ -16,24 +16,53 @@
     </head>
     <body>
        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-       <%! ArrayList u; %>
+       <%! ArrayList u;
+           String dajDana(String param)
+            {
+            if ((param == null)||(param.compareTo("null")==0)||(param.compareTo("")==0)) return "brak";
+              return param;
+            }
+           String takNie(String param)
+            {
+            if ((param == null)||(param.compareTo("null")==0)||(param.compareTo("")==0)) return "brak";
+              if (param.compareTo("T")==0) return "TAK";
+               else return "NIE";
+            }
+             String dajTN(String param)
+            {
+              if (param==null) return "N";
+              return "T";
+            }
+           
+        %>
         <% 
-            if (!db_con.isConnected()) {
+         if (!db_con.isConnected()) {
             try {
-                db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-                db_con.setTablePrefix(Config.DATABASE_PREFIX);
-                } catch (Exception e) {
-                   out.print("Blad polaczenia z baza!");
-                }
-            } 
-            u=db_con.getUsers(); %>
+            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+            db_con.setTablePrefix(Config.DATABASE_PREFIX);
+            } catch (Exception e) {
+                out.print(Messages.errorDataBaseConnection());
+                out.print(e);
+            } }%>
+            
+   <% Enumeration params = request.getParameterNames();
+      if (params.hasMoreElements()) {
+           String field = (String) params.nextElement();
+           
+        if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_moderator")==0)|| (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
+         if( db_con.zmienUpr(request.getParameter("id"),dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_moderator")), dajTN(request.getParameter("czy_aktywny"))))
+              out.print(Messages.changeUpr()); 
+            else out.print(Messages.errorChangeUpr());
+         }
+        }   
+            u=db_con.getUsers();  %>
     <head><title>Uprawnienia</title></head>
     <body>
-     <font size="6"> Edycja uprawnien </font>
-     <table border="1" align="center">
-      <th>Login</th>
-      <th>Imie</th>
-      <th>Nazwisko</th>
+
+     <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
+      <th>Nr.</th> <th>Login</th> <th>Imie</th> <th>Nazwisko</th> <th>Email</th> <th>Nr. GG</th> 
+      <th>Jabber</th> <th>Ostatni login </th> <th>Aktywny</th> <th>Administrator</th>
+      <th>Moderator</th> <th>Edycja</th>
      <% for(int i=0; i<u.size(); i++) 
         { Hashtable pom=(Hashtable) u.get(i);
           
@@ -44,13 +73,15 @@
           String email=(String) pom.get("EMAIL");
           String gg=(String) pom.get("GG");
           String jabber=(String) pom.get("JABBER");
+          String lastlog=(String) pom.get("OSTATNIELOGOWANIE");
           String czy_admin=(String) pom.get("ADMIN");
           String czy_moderator=(String) pom.get("MODERATOR");
           String czy_aktywny=(String) pom.get("AKTYWNY");
-         %><tr> <td> <%=login%> </td>
-                <td> <%=imie%> </td>
-                <td> <%=nazwisko%> </td>
-                <td> <form action="user_dane.jsp" method="post" target="prawa">
+         %><tr> <td><%=i+1%>. </td><td> <%=dajDana(login)%> </td><td> <%=dajDana(imie)%> </td> <td> <%=dajDana(nazwisko)%> </td>
+                <td> <%=dajDana(email)%> </td><td> <%=dajDana(gg)%> </td> <td> <%=dajDana(jabber)%> </td> <td><%=dajDana(lastlog) %> </td>
+                <td align="center"> <%=takNie(czy_aktywny)%> </td> <td align="center"> <%=takNie(czy_admin)%> </td>
+                <td align="center"> <%=takNie(czy_moderator)%> </td> 
+                <td align="center"> <form action="user_dane.jsp" method="post" target="prawa">
                         <input type="hidden" name="id" value="<%=id%>">
                         <input type="hidden" name="login" value="<%=login%>">
                         <input type="hidden" name="imie" value="<%=imie %>">
@@ -58,10 +89,11 @@
                         <input type="hidden" name="email" value="<%=email%>">
                         <input type="hidden" name="gg" value="<%=gg%>">
                         <input type="hidden" name="jabber" value="<%=jabber%>">
+                        <input type="hidden" name="lastlog" value="<%=lastlog%>">
                         <input type="hidden" name="czy_admin" value="<%=czy_admin%>">
                         <input type="hidden" name="czy_moderator" value="<%=czy_moderator%>">
                         <input type="hidden" name="czy_aktywny" value="<%=czy_aktywny%>">
-                        <input type="submit" value="Edytuj">
+                        <input size="40" type="submit" value="Edytuj">
                      </form>
                 </td>
            </tr> <%       
