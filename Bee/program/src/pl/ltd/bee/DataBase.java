@@ -84,6 +84,17 @@ public class DataBase {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
+    public DataBase(String host, String user, String pass)
+    {
+        this.connect(host, user, pass);
+    }
+    
+    /**
+     * Metoda powoduje przylaczenie do bazy o podanych parametrach
+     * @param host Adres serwera bazy danych
+     * @param user Nazwa uzytkownika bazy danych
+     * @param pass Haslo uzytkownika bazy danych
+     */
     public void connect(String host, String user, String pass)
     {
         baza = new ConnectorDB(host,user,pass);
@@ -124,6 +135,7 @@ public class DataBase {
      */
     public Watek getWatek(int ID){
         baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
+//        System.err.println("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
