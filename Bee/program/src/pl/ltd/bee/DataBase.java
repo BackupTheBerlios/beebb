@@ -230,11 +230,11 @@ public class DataBase {
      * Metoda zwaraca objekt User o podanym identyfikatorze
      * @param ID Identyfikator szukanego uzytkownika
      */
-    public UserGen getUser(int ID){
+    public UserFactory getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return new UserGen((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return new UserFactory((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
 }
