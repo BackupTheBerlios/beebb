@@ -7,7 +7,7 @@
 package pl.ltd.bee;
 
 
-import java.util.*;
+import java.io.OutputStream;
 /**
  *
  * @author pawelb
@@ -45,4 +45,11 @@ public class Watek {
     public long getID() {
         return ID;
     }
+    
+    public String printJSP() {
+        //outs.write("Temat: " + Temat);
+        return "<h2>" + Temat + "</h2>Utworzony dnia: " + Data + "<br>" +
+                "<br><br> Tutaj bêdzie lista wypowiedzi :)";
+    }
+    
 }

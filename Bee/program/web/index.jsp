@@ -6,24 +6,32 @@
 <html>
     <head><title>JSP Page</title></head>
     <body>
-
-        <jsp:useBean id="db_con" class="pl.ltd.bee.DataBase" scope="application"/>
-        
+    <%! pl.ltd.bee.DataBase db_con = null; %>
+    
         <%
-        db_con.connect("wilk.waw.pl","Bee","pawelb","asd");
-        db_con.setTablePrefix("Bee");
+        if (db_con == null) {
+            db_con = new pl.ltd.bee.DataBase();
+            db_con.connect("wilk.waw.pl","Bee","pawelb","asd");
+            db_con.setTablePrefix("Bee");
+        }
   
         Enumeration flds = request.getParameterNames();
         if (!flds.hasMoreElements()) {
-            String redirectURL = "pages/forum.jsp";
-            response.sendRedirect(redirectURL);
+           out.print("Nic");
         } else {
             String field = (String) flds.nextElement();
             String redirectURL;
             
             if (field.compareTo("wid") == 0) {
-                redirectURL = "pages/watek.jsp?" + field + "=" + request.getParameter(field);
-                response.sendRedirect(redirectURL); }
+                
+                pl.ltd.bee.Watek w = db_con.getWatek(Integer.decode(request.getParameter(field)).intValue());
+                if (w!=null) {
+                    out.print(w.printJSP());
+                } else {
+                    out.println("Brak polaczenia z baza!/Brak takiego watku!<br>");
+                }
+                
+            }      
         }
     %>
     </body>
