@@ -14,8 +14,8 @@ import java.util.*;
  */
 public class Watek {
     
-    private long ID;
-    private int ID_Autor;
+    private String ID;
+    private String ID_Autor;
     private String Temat;
     private String Data;
     
@@ -25,11 +25,14 @@ public class Watek {
      *@param Temat - temat watku
      *@param Data - data watku
      */
-    public Watek(long ID, int ID_Autor, String Temat, String Data)  {
+    public Watek(String ID, String ID_Autor, String Temat, String Data)  {
         this.ID=ID;
         this.ID_Autor=ID_Autor;
         this.Temat=Temat;
         this.Data=Data;
     }
     
+    public String getTemat() {
+        return Temat;
+    }
 }
