@@ -51,6 +51,7 @@ CREATE TABLE `Bee_Users` (
   `Email` varchar(100) NOT NULL default '',
   `GG` varchar(10) NOT NULL default '',
   `Jabber` varchar(100) NOT NULL default '',
+  `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Aktywny` char(1) NOT NULL default 'N',
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
@@ -69,6 +70,8 @@ DROP TABLE IF EXISTS `Bee_Kategorie`;
 CREATE TABLE `Bee_Kategorie` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
+  `Opis` varchar(200) NOT NULL default '',
+  `Aktywna` char(1) NOT NULL default 'Y',
   PRIMARY KEY  (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela kategorii';
 
@@ -80,6 +83,8 @@ DROP TABLE IF EXISTS `Bee_Podfora`;
 CREATE TABLE `Bee_Podfora` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
+  `Opis` varchar(200) NOT NULL default '',
+  `Aktywna` char(1) NOT NULL default 'Y',
   PRIMARY KEY  (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela podfor';
 
