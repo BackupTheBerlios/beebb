@@ -45,6 +45,7 @@ public class ConnectorDB {
     public ArrayList query(String q) {
         ArrayList pom=new ArrayList();
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(Host,User,Pass);
             Statement select = con.createStatement();
             ResultSet result = select.executeQuery(q);
