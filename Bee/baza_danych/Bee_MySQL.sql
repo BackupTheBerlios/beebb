@@ -35,7 +35,7 @@ CREATE TABLE `Bee_Users` (
   `Haslo` varchar(100) NOT NULL default '',
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
-  PRIMARY KEY  (`ID`)
+  PRIMARY KEY  (`ID`),
   CHECK ((`Admin` = 'T') OR (`Admin` = 'N')),
   CHECK ((`Moderator` = 'T') OR (`Moderator` = 'N'))
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
