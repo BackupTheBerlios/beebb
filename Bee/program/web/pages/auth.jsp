@@ -29,7 +29,6 @@
         try {
          %>
         <br><br>
-        <form method="post" action="auth.jsp">
         <table align="center" border="0">
             <tr>
             <td>
@@ -61,17 +60,18 @@
                 out.println(Messages.errorBadUserOrPass());
          }
         %> 
-                <table align="center" cellpadding="2" cellspacing="1" border="0">
-                    <tr>
-                    <th colspan="2">Zaloguj się</th>
-                    </tr> <tr>
-                        <td>Użytkownik:</td><td><input type="text" size="20" name="user"/></td>
-                    </tr> <tr>
-                    <td>Hasło:</td><td><input type="password" size="20" name="haslo"/></td>
-                    </tr> <tr>        
-                        <td><a href="forgetPasswd.jsp">Zapomniałem hasło</a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
-                    </tr>
-                </table>
+                <form method="post" action="auth.jsp">
+                    <table align="center" cellpadding="2" cellspacing="1" border="0">
+                        <tr>
+                        <th colspan="2">Zaloguj się</th>
+                        </tr> <tr>
+                            <td>Użytkownik:</td><td><input type="text" size="20" name="user"/></td>
+                        </tr> <tr>
+                        <td>Hasło:</td><td><input type="password" size="20" name="haslo"/></td>
+                        </tr> <tr>        
+                            <td><a href="forgetPasswd.jsp">Zapomniałem hasło</a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
+                        </tr>
+                    </table>
                 </form>
                 <br>
                 <p>Nie masz jeszcze konta? <a href="addUser.jsp">Zarejestruj się</a></p>
