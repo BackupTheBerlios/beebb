@@ -8,8 +8,8 @@
         <% Enumeration flds = request.getParameterNames();
         if (!db_con.isConnected()) {
         try {
-            db_con.connect("localhost","Bee","pawel",".l");
-            db_con.setTablePrefix("Bee");
+            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+            db_con.setTablePrefix(Config.DATABASE_PREFIX);
         } catch (Exception e) {
             out.print("Blad polaczenia z baza!");
         } }
