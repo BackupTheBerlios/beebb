@@ -2,6 +2,9 @@
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
+
+ <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+ <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -13,10 +16,44 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Dodawanie podforow</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
+        
+         <script type="text/javascript" LANGUAGE="JavaScript">
+         
+           function next(param) {
+                      document.getElementById(param+1).style.visibility='visible'; 
+               }
+               
+            window.onload = function() {
+                                for (var i=1; i<5; i++) {
+                                    document.getElementById(i).style.visibility='hidden';
+                                }
+                             }
+                             
+            function zlicz() {
+                  var licz=0;
+                  for (var i=0; i<5; i++) {
+                        if ( document.getElementById(i).style.visibility == 'visible')
+                         {
+                          licz=licz+1;
+                          }
+                      }
+                  return licz;    
+                 }
+ 
+            function dodaj()
+                {
+                   var f = document.getElementById('form');
+                   var y = f.appendChild(document.createElement('input'));
+                   y.type='hidden';
+                   y.name='licz';
+                   y.value=zlicz()+1;
+                }
+           </script>
+        
     </head>
     <body>
-        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-        <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
+        
+         
      <% if (!db_con.isConnected()) {
             try {
                 db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
@@ -29,6 +66,7 @@
             
     <% Enumeration pom = request.getParameterNames();
       String tytul="",opis="", id_kat="";
+      int licz=1;
     if (pom.hasMoreElements()) {
            String field = (String) pom.nextElement();
       if( (field.compareTo("id")==0) || (field.compareTo("tytul")==0) ||(field.compareTo("opis")==0) ) {     
@@ -37,11 +75,13 @@
        id_kat=request.getParameter("id");
       } 
        else {
-         String id_k=request.getParameter("id_kat");  
-         for(int j=0; j<5; j++) {  
+         String id_k=request.getParameter("id_kat"); 
+          String l=request.getParameter("licz");
+          licz=(int) Integer.decode(l).intValue();
+         for(int j=0; j<licz; j++) {  
             String t=request.getParameter("tytul"+j);
             String o=request.getParameter("opis"+j);
-                 
+            
             if( t.compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum());
               else
                 if ( db_con.czyPodforum(id_k, t) ) wiad.add(Messages.errorNamePodforum());
@@ -60,21 +100,21 @@
        <p align="center">Kategoria: <%=tytul%> </p>
        <p align="center">Opis: <%=opis%> </p>
        <br/>
-     
-    <form action="./podfora_form.jsp" method="post">
+        <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
+       <br/>
+    <form id="form" onsubmit="dodaj();"  action="./podfora_form.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="0">
        <caption> Dodawanie Podforów </caption>
        <tr> <th> Next </th> <th> Tytul </th> <th> Opis </th> </tr>
-       <%for(int i=0;i<5;i++) { %>       
-      <tr> <td> <input type="button" name="plusik" value="+"/>  </td> 
+       <%for(int i=0; i<5; i++) { %>       
+      <tr id="<%=i%>"> <td> <input type="button" name="p<%=i%>" value="+" onclick="next(<%=i%>);"/>  </td> 
            <td> <input size="40" type="text" name="tytul<%=i%>" value=""/> </td>
            <td> <input size="40" type="text" name="opis<%=i%>" value=""/>  </td> 
       </tr>
        <%}%>
       </table>
          <input type="hidden" name="id_kat" value="<%=id_kat%>"/>
-        <p align="center"> <input size="25" type="submit" size="30" value="Dodaj"/> </p>
+        <p  align="center"> <input size="40" type="submit" value="Dodaj"/> </p>
      </form>
-     
     </body>
 </html>
