@@ -16,10 +16,12 @@ public class Autoryzator {
     String login = "Guest";
     boolean zalogowany;
     
+    
     /** Creates a new instance of Autoryzator */
     public Autoryzator() {
         zalogowany=false;
     }
+    
     
     public User zaloguj(String login, String haslo,DataBase db) {
         uzytkownik = db.getUser(login);
@@ -27,7 +29,6 @@ public class Autoryzator {
             zalogowany=false;
             return null;
         }
-        
         
         if(login.compareTo("Guest")==0) {
             zalogowany=false;

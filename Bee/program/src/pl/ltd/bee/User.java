@@ -17,5 +17,5 @@ public abstract class User {
     
     public boolean checkPasswd(String passwd) { 
         return false;
-    };
+    }
 }

@@ -6,7 +6,7 @@
 
 package pl.ltd.bee;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,21 +15,26 @@ import java.util.*;
 public class Forum {
     
     private String Nazwa;
-    private long ID;
+    private ArrayList Kategorie;
+    private DataBase db;
     
     /** Tworzy nowa instancje klasy Forum 
      @param ID identyfikator forum w bazie
-     @param Nazwa nazwa forum
+     @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
      */
-    public Forum(String ID, String Nazwa) {
-        this.ID=Long.decode(ID).longValue();
+    public Forum(String Nazwa, ArrayList Kategorie,DataBase db) {
         this.Nazwa=Nazwa;
+        this.Kategorie=Kategorie;
+        this.db=db;
     }
     
-    /** Zwraca identyfikator forum
-     @return zwraca long bedacy identyfikatorem forum w bazie
-     */
-    public long getID() {
-        return ID;
-    }
+    public String printJSP() {
+        String s = "<h2>Forum: " + Nazwa + "</h2><br>";
+        for(int i=0;i<Kategorie.size();i++) {
+            Kategoria k = ((Kategoria)db.getKategoria(((Integer)Kategorie.get(i)).intValue()));
+            s+= k.printJSP();
+        }
+       
+        return s;
+    } 
 }

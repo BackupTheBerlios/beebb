@@ -31,4 +31,8 @@ public class Podforum {
         return ID;
     }
     
+    public String printJSP() {
+        String s = "|<BR>|---- Podforum:   <a href=\"index.jsp?pid=" + ID + "\">" + Tytul + "</a><BR>";
+        return s;
+    }
 }
