@@ -58,9 +58,9 @@ public class Config {
      * ale teraz skupia w jednym miejscu konfiguracje.
      * Te zmienne nie powinny byc static, bo kazda z instancji Config dba tylko o swoje zmienne
      */
-    public static String HOST = "127.0.0.1";
-    public static String USER = "pawel";
-    public static String PASSWORD = ".l";
+    public static String HOST = "wilk.waw.pl";
+    public static String USER = "bee";
+    public static String PASSWORD = "bee";
     public static String DATABASE = "Bee";
     public static String DATABASE_PREFIX = "Bee";
     
