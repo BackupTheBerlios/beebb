@@ -7,7 +7,11 @@
         <jsp:useBean id="db_con" class="pl.ltd.bee.DataBase" scope="application"/>
     <%
        pl.ltd.bee.Watek w = db_con.getWatek(1);
-       out.println("Temat: " + w.getTemat());
+       if (w!=null) {
+            out.println("Temat: " + w.getTemat());
+       } else {
+            out.println("Brak polaczenia z baza!/Brak takiego watku!<br>");
+       }
     %>
 
     </body>
