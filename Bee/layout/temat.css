@@ -55,8 +55,12 @@ th	{
 	color: darkred;	
 	}	
 	
-.tdTytulWatek a:visited{
+.tdTytulWatek a:link{
 	color: darkred;	
+	}	
+
+.tdTytulWatek a:visited{
+	color: firebrick;	
 	}	
 	
 .aTopLink:visited{
