@@ -34,8 +34,8 @@ function funOnResize(ile_znakow)
 	//No to teraz poprawa zewnetrznej ramki, to juz nie sa przelewki :D
 	if (top != window) //zabezpieczenie jesli nie jestesmy potomkiem
 	{
-		top.document.getElementById('frameTresc').height = document.getElementById('tableWatek').clientHeight +50;
-		top.document.getElementById('cellTresc').height = document.getElementById('tableWatek').clientHeight +60;
+		top.document.getElementById('frameTresc').height = document.getElementById('tableWatek').offsetHeight +50;
+		top.document.getElementById('cellTresc').height = document.getElementById('tableWatek').offsetHeight +60;
 	}
 	
 }

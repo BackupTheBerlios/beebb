@@ -5,10 +5,7 @@ function resizeMain()
 		//poprawienie gornej ramki
 		if (top.frames[0].location.pathname.indexOf("naglowek.html",0) != -1)
 		{
-			alert(top.document.getElementById('frameHead').document);
-			//alert(top.frames[0].clientHeight);//document.getElementById('cellMenu').clientHeight);
-			//alert(top.document.getElementById('frameHead').getElementById('cellMenu'));
+			top.document.getElementById('frameHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight +30;
+			top.document.getElementById('cellHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight +40;
 		}
-		//alert(window.frames['frameHead']);
-		//top.document.getElementById('frameHead').height = ;
 }
