@@ -17,18 +17,18 @@ public class DataBase {
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
-    static final String BEE_USERS = "Bee_Users";
-
-    static final String BEE_WATKI = "Bee_Watki";
-    static final String BEE_WYPOWIEDZI = "Bee_Wypowiedzi";
-    static final String BEE_PODFORA = "Bee_Podfora";
-    static final String BEE_KATEGORIE = "Bee_Kategorie";
-    static final String BEE_FORUM = "Bee_Forum";
-
-    static final String BEE_WATKI_WYPOWIEDZI = "Bee_Watki_Wypowiedzi";
-    static final String BEE_PODFORA_WATKI = "Bee_Podfora_Watki";
-    static final String BEE_KATEGORIE_PODFORA = "Bee_Kategorie_Podfora";
-    static final String BEE_MODERATORZY = "Bee_Moderatorzy";
+    static String BEE_USERS = "Users";
+    
+    static String BEE_WATKI = "Watki";
+    static String BEE_WYPOWIEDZI = "Wypowiedzi";
+    static String BEE_PODFORA = "Podfora";
+    static String BEE_KATEGORIE = "Kategorie";
+    static String BEE_FORUM = "Forum";
+    
+    static String BEE_WATKI_WYPOWIEDZI = "Watki_Wypowiedzi";
+    static String BEE_PODFORA_WATKI = "Podfora_Watki";
+    static String BEE_KATEGORIE_PODFORA = "Kategorie_Podfora";
+    static String BEE_MODERATORZY = "Moderatorzy";
     
     /**
      * Stala reprezentujaca nazwe pola w tabeli w bazie danych
@@ -42,10 +42,10 @@ public class DataBase {
     static final String WYPOWIEDZ_ID_AUTORA = "ID_Autora";
     static final String WYPOWIEDZ_DATA = "Data";
     static final String WYPOWIEDZ_TEKST = "Tekst";
-
+    
     static final String PODFORUM_ID = "ID";
     static final String PODFORUM_TYTUL = "Tytul";
-
+    
     static final String KATEGORIA_ID = "ID";
     static final String KATEGORIA_TYTUL = "Tytul";
     
@@ -54,7 +54,7 @@ public class DataBase {
     
     static final String PODFORA_WATKI_ID_PODFORUM = "ID_Podforum";
     static final String PODFORA_WATKI_ID_WATKU = "ID_Watku";
-    
+    // static ConnectorDB baza = new ConnectorDB();
     static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_Watku";
     static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_Wypowiedzi";
     
@@ -63,18 +63,35 @@ public class DataBase {
     static final String USER_HASLO = "Haslo";
     static final String USER_ADMIN = "Admin";
     static final String USER_MODERATOR = "Moderator";
-
-    static ConnectorDB baza = new ConnectorDB();
+    
+  //  static ConnectorDB baza = new ConnectorDB();
+    
     
     /** Creates a new instance of DataBase */
     public DataBase() {
     }
     
     /**
+     * Metoda ustawia prefix tabel w bazie danych
+     * @param pref - string reprezentujacy prefix
+     */
+    public void setTablePrefix(String pref) {
+        BEE_USERS = pref + "_" + BEE_USERS;
+        BEE_WATKI = pref + "_" + BEE_WATKI;
+        BEE_WYPOWIEDZI = pref + "_" + BEE_WYPOWIEDZI;
+        BEE_PODFORA = pref + "_" + BEE_PODFORA;
+        BEE_KATEGORIE = pref + "_" + BEE_KATEGORIE;
+        BEE_FORUM = pref + "_" + BEE_FORUM;
+        BEE_WATKI_WYPOWIEDZI = pref + "_" + BEE_WATKI_WYPOWIEDZI;
+        BEE_PODFORA_WYPOWIEDZI = pref + "_" + BEE_PODFORA_WYPOWIEDZI;
+        BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA;
+        BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY;
+    }
+    
+    /**
      * Metoda dostarcza pierwszy element (wiersz) z zadanego zapytania.
      */
-    private Hashtable getObject(String query)
-    {
+    private Hashtable getObject(String query) {
         ArrayList lista = baza.query(query);
         if (lista.size() > 0)
             return (Hashtable)lista.get(0);
@@ -86,12 +103,13 @@ public class DataBase {
      * @param ID Identyfikator szukanego watku
      */
     public Watek getWatek(int ID){
+        // baza.query("SELECT * FROM " + Bee_Watki + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
         return new Watek(watek.get(WATEK_ID),watek.get(WATEK_ID_AUTORA),watek.get(WATEK_TEMAT),watek.get(WATEK_DATA));
     }
-
+    
     /**
      * Metoda zwaraca objekt Wypowiedz o podanym identyfikatorze
      * @param ID Identyfikator szukanej wypowiedzi
@@ -102,7 +120,7 @@ public class DataBase {
         if (wypowiedz == null) return null;
         return new Wypowiedz(wypowiedz.get(WYPOWIEDZ_ID),wypowiedz.get(WYPOWIEDZ_ID_AUTORA),wypowiedz.get(WYPOWIEDZ_DATA),wypowiedz.get(WYPOWIEDZ_TEKST));
     }
-
+    
     /**
      * Metoda zwaraca objekt Podforum o podanym identyfikatorze
      * @param ID Identyfikator szukanego podforum
@@ -113,7 +131,7 @@ public class DataBase {
         if (podforum == null) return null;
         return new Podforum(podforum.get(PODFORUM_ID),podforum.get(PODFORUM_TYTUL));
     }
-
+    
     /**
      * Metoda zwaraca objekt Kategoria o podanym identyfikatorze
      * @param ID Identyfikator szukanej Kategorii
@@ -130,52 +148,46 @@ public class DataBase {
      * @param kat Kategoria w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getPodforaKategorii(Kategoria kat)
-    {
+    public ArrayList getPodforaKategorii(Kategoria kat) {
         ArrayList wynik = new ArrayList();
         ArrayList podfora = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + "WHERE " + WATKI_WYPOWIEDZI_ID_KATEGORII + "=" + kat.getID());
-        for(int i=0;i<podfora.size();i++)
-            {
-                Hashtable podforum = (Hashtable)podfora.get(i);
-                Integer id = Integer.parseInt(podforum.get(WATKI_WYPOWIEDZI_ID_PODFORUM));
-                wynik.add(new Integer(id));
-            }   
+        for(int i=0;i<podfora.size();i++) {
+            Hashtable podforum = (Hashtable)podfora.get(i);
+            Integer id = Integer.parseInt(podforum.get(WATKI_WYPOWIEDZI_ID_PODFORUM));
+            wynik.add(new Integer(id));
+        }
         return wynik;
     }
-
+    
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Watkow w podanym Podforum
      * @param pod Podforum w ramach ktorego interesuja nas watki
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getWatkiPodforum(Podforum pod)
-    {
+    public ArrayList getWatkiPodforum(Podforum pod) {
         ArrayList wynik = new ArrayList();
         ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI + "WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + pod.getID());
-        for(int i=0;i<watki.size();i++)
-            {
-                Hashtable watek = (Hashtable)watki.get(i);
-                Integer id = Integer.parseInt(watek.get(PODFORA_WATKI_ID_WATKU));
-                wynik.add(new Integer(id));
-            }   
+        for(int i=0;i<watki.size();i++) {
+            Hashtable watek = (Hashtable)watki.get(i);
+            Integer id = Integer.parseInt(watek.get(PODFORA_WATKI_ID_WATKU));
+            wynik.add(new Integer(id));
+        }
         return wynik;
     }
-
+    
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku
      * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getWypowiedziWatku(Watek wat)
-    {
+    public ArrayList getWypowiedziWatku(Watek wat) {
         ArrayList wynik = new ArrayList();
         ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + "WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + wat.getID());
-        for(int i=0;i<wypowiedzi.size();i++)
-            {
-                Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
-                Integer id = Integer.parseInt(wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
-                wynik.add(new Integer(id));
-            }   
+        for(int i=0;i<wypowiedzi.size();i++) {
+            Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
+            Integer id = Integer.parseInt(wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
+            wynik.add(new Integer(id));
+        }
         return wynik;
     }
     
