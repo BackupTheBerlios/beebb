@@ -209,6 +209,90 @@ public class Messages {
      */
     public static String errorEmailExists(){
         return "<p class=\"error\">UÅ¼ytkownik ma juÅ¼ konto w serwisie.</p>";}
-
+    
+    
+    /**
+     * Metoda dostarcza komunikat o istniej¹cej ju¿ nazwie kategorii
+     * @return String z komunikatem 
+     */
+    public static String errorNameKat(){
+        return "<p align=\"center\" class=\"error\">Kategoria o podanej nazwie ju¿ istnieje.</p>";}
+    
+     /**
+     * Metoda dostarcza komunikat o tym, ¿e nale¿y podaæ nazwie kategorii
+     * @return String z komunikatem 
+     */
+    public static String errorFieldNameKat(){
+        return "<p align=\"center\" class=\"error\"> Nalezy podac nazwe kategorii.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e dodanie kategorii nie powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String errorAddKat(){
+        return "<p  align=\"center\" class=\"error\"> Dodanie kategorii nie powiod³o siê.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e dodanie kategorii powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String AddKat(){
+        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a dodana.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e usuniecie kategorii powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String RemoveKat(){
+        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a usuniêta.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e usuniecie podforum powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String RemovePodforum(){
+        return "<p align=\"center\" class=\"info\" > Podforum zosta³o usuniête.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, usuniecie kategorii nie powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String errorRemoveKat(){
+        return "<p  align=\"center\" class=\"error\"> Usuniêcie kategorii nie powiod³o siê.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, usuniecie podforum nie powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String errorRemovePodforum(){
+        return "<p  align=\"center\" class=\"error\"> Usuniêcie podforum nie powiod³o siê.</p>";}
+    
+     /**
+     * Metoda dostarcza komunikat o tym, ¿e nie zosta³a podana nazwa podforum
+     * @return String z komunikatem 
+     */
+    public static String errorFieldNamePodforum(){
+        return "<p align=\"center\" class=\"error\"> Nie zosta³a podana nazwa podforum.</p>";}
+    
+     /**
+     * Metoda dostarcza komunikat o tym, ¿e podforum o podanej nazwie juz istnieje.
+     * @return String z komunikatem 
+     */
+    public static String errorNamePodforum(){
+        return "<p align=\"center\" class=\"error\">Podforum o podanej nazwie juz istnieje.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e dodanie podforum nie powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String errorAddPodforum(){
+        return "<p  align=\"center\" class=\"error\"> Dodanie podforum nie powiod³o siê.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e dodanie podforum powiod³o sie
+     * @return String z komunikatem 
+     */
+    public static String AddPodforum(){
+        return "<p align=\"center\" class=\"info\">Podforum zosta³a dodane.</p>";}
 
 }

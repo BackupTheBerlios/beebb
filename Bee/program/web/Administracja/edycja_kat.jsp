@@ -11,7 +11,7 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB :: Dodawanie podforow</title>
+        <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
@@ -21,7 +21,7 @@
        Enumeration f = request.getParameterNames();
         if (f.hasMoreElements()) {
            String napis = (String) f.nextElement();
-           if(napis.compareTo("id_kat")==0 ||(pom.compareTo("tytul")==0)||(pom.compareTo("opis")==0))
+           if(napis.compareTo("id_kat")==0 ||(napis.compareTo("tytul")==0)||(napis.compareTo("opis")==0))
            {
             String id_kat= (String) request.getParameter("id_kat");
             String tytul= (String) request.getParameter("tytul");

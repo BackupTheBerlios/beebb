@@ -463,7 +463,7 @@ public class DataBase {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
             if (kat==null) return false;
             
-            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelcï¿½w'");
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelców'");
             if (forum==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
@@ -613,7 +613,8 @@ public class DataBase {
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
     public boolean usunKategorie(String id){
-        return  (baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ") && baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id));
+       baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum "); 
+       return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
     }
     
     
