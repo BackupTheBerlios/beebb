@@ -1,16 +1,14 @@
 package pl.ltd.bee;
 
-import javax.servlet.http.*;
 import java.util.*;
 import java.sql.*;
 import java.lang.*;
-
-
 
 public class ConnectorDB {
     
     
     public ConnectorDB() {}
+    
     //zwraca liste wierszy ktore zwieraja hashtable klucz:nazwa kolumny wartosc: wartosc w kolumnie
     public ArrayList query(String q)
     {
