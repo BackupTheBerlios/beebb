@@ -199,7 +199,7 @@ public class DataBase {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return new User(user.get(USER_ID),user.get(USER_LOGIN),user.get(USER_HASLO),user.get(USER_ADMIN),user.get(USER_MODERATOR));
+        return new UserGen(user.get(USER_ID),user.get(USER_LOGIN),user.get(USER_HASLO),user.get(USER_ADMIN),user.get(USER_MODERATOR));
     }
     
 }
