@@ -135,7 +135,6 @@ public class DataBase {
      */
     public Watek getWatek(int ID){
         baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
-//        System.err.println("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
