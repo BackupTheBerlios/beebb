@@ -13,19 +13,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 --
--- Table structure for table `Bee_True_False`
---
-
-DROP TABLE IF EXISTS `Bee_True_False`;
-CREATE TABLE `Bee_True_False` (
-  `Var` char(1) NOT NULL,
-  PRIMARY KEY (`Var`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wartosciami "T" lub "N". Sztuczny CHECK.';
-
-INSERT INTO `Bee_True_False`(`Var`) VALUES('T');
-INSERT INTO `Bee_True_False`(`Var`) VALUES('N');
-
---
 -- Table structure for table `Bee_Forum`
 --
 
@@ -52,13 +39,10 @@ CREATE TABLE `Bee_Users` (
   `GG` varchar(10) NOT NULL default '',
   `Jabber` varchar(100) NOT NULL default '',
   `OstatnieLogowanie` datetime NOT NULL default '0000-00-00 00:00:00',
-  `Aktywny` char(1) NOT NULL default 'N',
-  `Admin` char(1) NOT NULL default 'N',
-  `Moderator` char(1) NOT NULL default 'N',
-  PRIMARY KEY  (`ID`),
-  CONSTRAINT `Bee_Users_ibfk_1` FOREIGN KEY (`Aktywny`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `Bee_Users_ibfk_2` FOREIGN KEY (`Admin`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `Bee_Users_ibfk_3` FOREIGN KEY (`Moderator`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
+  `Aktywny` enum('T','N') NOT NULL default 'N',
+  `Admin` enum('T','N') NOT NULL default 'N',
+  `Moderator` enum('T','N') NOT NULL default 'N',
+  PRIMARY KEY  (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
 
 
@@ -71,9 +55,8 @@ CREATE TABLE `Bee_Kategorie` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
-  `Aktywna` char(1) NOT NULL default 'T',
-  PRIMARY KEY  (`ID`),
-  CONSTRAINT `Bee_Kategorie_ibfk_1` FOREIGN KEY (`Aktywna`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
+  `Aktywna` enum('T','N') NOT NULL default 'T',
+  PRIMARY KEY  (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela kategorii';
 
 --
@@ -85,9 +68,8 @@ CREATE TABLE `Bee_Podfora` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
-  `Aktywne` char(1) NOT NULL default 'T',
-  PRIMARY KEY  (`ID`),
-  CONSTRAINT `Bee_Podfora_ibfk_1` FOREIGN KEY (`Aktywne`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
+  `Aktywne` enum('T','N') NOT NULL default 'T',
+  PRIMARY KEY  (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela podfor';
 
 
