@@ -4,6 +4,14 @@
 */
 
 
+function UpperResize()
+{
+	ramki = frames;
+	//if (frames[1].page
+	if (frames[1].location.pathname.indexOf("watek.html",0) != -1 )
+		alert("Witaj");
+}
+
 function funOnResize(ile_znakow)
 {
 	//	ile_znakow = [691,691,691,691,691,691,691,691,691,691,691];
