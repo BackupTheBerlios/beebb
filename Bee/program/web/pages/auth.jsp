@@ -63,7 +63,7 @@
         %> 
                 <table align="center" cellpadding="2" cellspacing="1" border="0">
                     <tr>
-                    <th colspan="2">Zaloguj sie</th>
+                    <th colspan="2">Zaloguj się</th>
                     </tr> <tr>
                         <td>Użytkownik:</td><td><input type="text" size="20" name="user"/></td>
                     </tr> <tr>
