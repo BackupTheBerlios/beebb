@@ -30,14 +30,14 @@ public class Messages {
      */
     public static String errorDataBaseConnection(){
         return "<p class=\"error\">B³±d po³±czenia z baz± danych!</p>";}
- 
+    
     /**
      * Metoda dostarcza komunikat bledu informujacy ze uzytkownik nie moze zostac stworzony
      * @return String z komunikatem o tym ze uzytkownik nie moze zostac stworzony
      */
     public static String errorUserCreate(){
         return "<p class=\"error\">Nie mo¿na dodaæ u¿ytkownika - skontaktuj siê z administratorem forum</p>";}
-
+    
     /**
      * Metoda dostarcza komunikat bledu informujacy ze podany uzytkownik juz istnieje
      * @param nick String z nazwa uzytkownika
@@ -45,7 +45,7 @@ public class Messages {
      */
     public static String errorUserExists(String nick){
         return "<p class=\"error\">U¿ytkownik " + nick + " ju¿ istnieje!</p>";}
-
+    
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze pole jest wymagane
@@ -68,14 +68,14 @@ public class Messages {
      * @return String z komunikatem o tym ze haslo jest za krotkie
      */
     public static String errorPassToShort(int length){
-            return "<p class=\"error\">Has³o musi mieæ przynajmniej " + length + " znaków</p>";}
+        return "<p class=\"error\">Has³o musi mieæ przynajmniej " + length + " znaków</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze hasla nie sa identyczne
      * @return String z komunikatem o tym ze hasla nie sa identyczne
      */
     public static String errorPassNotMatch(){
-            return "<font class=\"error\">Has³a siê nie zgadzaj±</p>";}
+        return "<font class=\"error\">Has³a siê nie zgadzaj±</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze bledzie logowania
@@ -104,7 +104,7 @@ public class Messages {
      */
     public static String errorCategoryNotExists(){
         return "<p class=\"error\">Brak takiej kategorii!</p>";    }
-
+    
     /**
      * Metoda dostarcza komunikat o nie istnieniu podforum
      * @return String z komunikatem o nie istnieniu podforum
@@ -126,4 +126,10 @@ public class Messages {
     public static String errorXMLWrite(){
         return "<p class=\"error\">B³±d zapisu pliku konfiguracyjnego.</p>";}
     
+    /**
+     * Metoda dostarcza komunikat o bledzie klucza nowego uzytkownika
+     * @return String z komunikatem o bledzie klucza nowego uzytkownika
+     */
+    public static String errorKeyNewUser(){
+        return "<p class=\"error\">B³êdny klucz.</p>";}
 }

@@ -39,7 +39,7 @@ public class RegisteredUser extends User {
         this.gg=gg;
         this.jabber=jabber;
         if (aktywny.compareTo("T")==0)
-        this.aktywny=true; else this.aktywny=false;
+            this.aktywny=true; else this.aktywny=false;
     }
     
     /** Sprawdza czy podane has³o (plain) zgadza siê
@@ -49,5 +49,14 @@ public class RegisteredUser extends User {
     public boolean checkPasswd(String passwd) {
         return Crypto.matches(haslo, passwd);
     }
+    
+    
+    /** metoda sprawdza czy uzytkownik jest aktywny
+     * @return T lub N w zaleznosci czy user jest aktywny czy nie
+     */
+    public boolean aktywny() {
+        return aktywny;
+    }
+    
     
 }

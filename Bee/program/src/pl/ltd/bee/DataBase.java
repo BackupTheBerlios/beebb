@@ -134,6 +134,9 @@ public class DataBase {
     static final String FORGET_PASSWD_KLUCZ = "KLUCZ";
     static final String FORGET_PASSWD_EMAIL = "EMAIL";
     
+    static final String NEW_USER_KLUCZ = "KLUCZ";
+    static final String NEW_USER_LOGIN = "LOGIN";
+    
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     boolean connected = false;
     ConnectorDB baza = new ConnectorDB("localhost","Bee","bee","bee");
@@ -378,6 +381,30 @@ public class DataBase {
     
     
     /**
+     * Metoda zwaraca nazwe uzytkownika o danym kluczu w tabeli nowych kont
+     * @param klucz losowy klucz zwiazany z uzytkownikiem
+     * @return Zwraca nazwe uzytkownika badz null w razie bledu.
+     */
+    public String getLoginNewUser(String klucz){
+        Hashtable user = getObject("SELECT * FROM " + BEE_NEW_USER + " WHERE "+ NEW_USER_KLUCZ +"='" + klucz + "'");
+        if (user == null) return null;
+        return (String)user.get(NEW_USER_LOGIN);
+    }
+    
+    
+    /**
+     * Metoda zwaraca email uzytkownika o danym kluczu w tabeli zapomnianych hasel
+     * @param klucz losowy klucz zwiazany z uzytkownikiem
+     * @return Zwraca email uzytkownika badz null w razie bledu.
+     */
+    public String getLoginForgetPasswd(String klucz){
+        Hashtable user = getObject("SELECT * FROM " + BEE_FORGET_PASSWD + " WHERE "+ FORGET_PASSWD_KLUCZ +"=" + klucz);
+        if (user == null) return null;
+        return (String)user.get(FORGET_PASSWD_EMAIL);
+    }
+    
+    
+    /**
      * Metoda umieszcza uzytkownika w bazie danych
      * @param nick nick uzytkownika
      * @param imie imie uzytkownika
@@ -398,7 +425,7 @@ public class DataBase {
      * @return T lub N w zaleznosci czy update sie powiodl
      */
     public boolean setAktywnyUser(String nick){
-        return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='T' WHERE " + USER_LOGIN + "=" + nick );
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='T' WHERE " + USER_LOGIN + "='" + nick + "'");
     }
     
     /**
@@ -553,6 +580,7 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
      * Metoda zwaraca liste obiektow Kategoria
      * @return ArrayList obiektow Kategoria
@@ -566,25 +594,25 @@ public class DataBase {
         }
         return wynik;
     }
-
-   /**
-    * Metoda zmienia pole aktywna na N, a takze wszystjie podfora w niej sie zawierajace
-    * @param String id kategorii
-     *@return boolean true jezeli update sie powiodl dalse wpp.
-    */
-    public boolean usunKategorie(String id){
-     baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ");
-       return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
-     
-  }
+    
     
     /**
-    * Metoda zmienia pole aktywna na N
-    * @param String id podforum
-     *@return boolean true jezeli update sie powiodl dalse wpp.
-    */
+     * Metoda zmienia pole aktywna na N, a takze wszystjie podfora w niej sie zawierajace
+     * @param String id kategorii
+     * @return boolean true jezeli update sie powiodl dalse wpp.
+     **/
+    public boolean usunKategorie(String id){
+        return  (baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ") && baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id));
+    }
+
+    
+    /**
+     * Metoda zmienia pole aktywna na N
+     * @param String id podforum
+     * @return boolean true jezeli update sie powiodl dalse wpp.
+     **/
     public boolean usunPodforum(String id){
-      return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywne='N' WHERE ID="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywne='N' WHERE ID="+id);
     }
     
 }

@@ -22,4 +22,11 @@ public abstract class User {
     public boolean checkPasswd(String passwd) {
         return false;
     }
+    
+    /** metoda sprawdza czy uzytkownik jest aktywny
+     * @return poniewa¿ jest to abstrakcyjna klasa zwraca zawsze false
+     */
+    public boolean aktywny() {
+        return false;
+    }
 }

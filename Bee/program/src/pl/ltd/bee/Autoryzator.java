@@ -37,7 +37,7 @@ public class Autoryzator {
         if (uzytkownik==null) return null;
         zalogowany=true;
         
-        if (uzytkownik.checkPasswd(haslo)) {
+        if (uzytkownik.checkPasswd(haslo) && uzytkownik.aktywny()) {
             this.login=login;
             this.uzytkownik = uzytkownik;
             return uzytkownik;

@@ -70,12 +70,13 @@
                             out.print(Messages.errorDataBaseConnection());
                         else {
                             out.println("Email z linkiem aktywacyjnym został wysłany.<BR><br><a href=../index.jsp>powrot</a><br>"); 
-                            SendMail.send(email,Config.REG_MAIL_SUBJECT,"Witaj "+ nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser?id=" + numer);
+                            SendMail.send(email,Config.REG_MAIL_SUBJECT,"Witaj "+ nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
                             out.println(Messages.errorUserCreate());
-                        out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
+                        else
+                            out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
                     }
                 }
             } else {
