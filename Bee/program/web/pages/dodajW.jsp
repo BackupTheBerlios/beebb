@@ -32,15 +32,24 @@
         /* Validacja za pomocą JS */
         
         String watek=request.getParameter("w");
-            if (watek!=null) {
-            //wypowiedź
-            }
+        String podforum=request.getParameter("p");
+            if (watek==null && podforum==null) {
+                out.print(Messages.formError());
+            } else {
+            String text=request.getParameter("text");
+            if (watek!=null && text!=null) {
+                out.print("dodaje wypowiedz");
+            } else
+                if (podforum!=null && text!=null) {
+                out.print("dodaje watek");
+                }
+                else {
         %>
-                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek);%>">
+                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                                 <th colspan="2">
-                                    Dodaj <%if (watek!=null) out.print("wypowiedź"); else out.print("wątek"); %> 
+                                    <%out.print(Messages.add()); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>
@@ -55,7 +64,8 @@
                             </tr>
                         </table>
                     </form>
-                    
+                 
+   <% } }%>
                 </td>
             </tr>
         </table>
