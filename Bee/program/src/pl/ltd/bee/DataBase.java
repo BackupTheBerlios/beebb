@@ -284,7 +284,7 @@ public class DataBase {
      */
     public ArrayList getTytulyKategorii() {
         ArrayList wynik = new ArrayList();
-        ArrayList kategorie = baza.query("SELECT Tytul FROM "+ BEE_KATEGORIE +" ORDER BY Tytul");
+        ArrayList kategorie = baza.query("SELECT Tytul FROM "+ BEE_KATEGORIE +" WHERE Aktywna='T' ORDER BY Tytul");
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
             String tytul = (String)kategoria.get("TYTUL");
@@ -458,12 +458,12 @@ public class DataBase {
      * @param opis kategorii
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertKategoria(String tytul, String opis) {
+    public boolean insertKategoria(String tytul, String opis, String podforum) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')")) {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
             if (kat==null) return false;
             
-            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelc�w'");
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = '"+podforum+"'");
             if (forum==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
@@ -662,7 +662,7 @@ public class DataBase {
      * @param id kategorii
      * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
      */
-    public boolean czyKategoriaInna(String tytul, String id){
+    public boolean czyKategoriaInna(String tytul, int id){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "' and ID<>"+id);
         if (kategoria==null) return false;
         return true;
@@ -675,7 +675,7 @@ public class DataBase {
      * @param String opis kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      */
-    public boolean updateKategoria(String id, String tytul, String opis ){
+    public boolean updateKategoria(int id, String tytul, String opis ){
         return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Tytul='"+tytul+"' , Opis='"+opis+"' WHERE ID="+id);
         
     }

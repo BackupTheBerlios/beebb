@@ -19,14 +19,12 @@ public class Podforum {
     private String Opis;
     private ArrayList Watki;
     private DataBase db;
-    
-    private String Wiad;
     private int id_kat;
     
     /** Konstruktor bezargumentowy */
     public Podforum() {}
     
-    /** Tworzy instancj� podforum bez watkow
+    /** Tworzy instancje podforum bez watkow
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
      * @param Opis opis podforum
@@ -38,7 +36,7 @@ public class Podforum {
     }
     
     
-    /** Tworzy instancj� podforum
+    /** Tworzy instancje podforum
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
      * @param Opis opis podforum
@@ -83,14 +81,6 @@ public class Podforum {
         return Opis;
     }
     
-    /** Metoda zwraca wiad podforum
-     * @return String z wiad podforum
-     */
-    public String getWiad(){
-        if(Wiad==null) return "";
-        return Wiad;
-    }
-    
     /** Ustawia opis podforum
      * @param op String ustawianego opisu
      */
@@ -104,14 +94,7 @@ public class Podforum {
     public void setNazwa(String naz) {
         this.Tytul=naz;
     }
-    
-    /** Ustawia wiad kategorii
-     * @param w String ustawianego opisu
-     */
-    public void setWiad(String w) {
-        this.Wiad=w;
-    }
-    
+       
     /** Ustawia id podforum
      * @param id String ustawianego opisu
      */

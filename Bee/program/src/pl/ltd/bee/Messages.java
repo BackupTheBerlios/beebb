@@ -246,25 +246,57 @@ public class Messages {
         return "<p  align=\"center\" class=\"error\"> Dodanie kategorii nie powiodï¿½o siï¿½.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ï¿½e dodanie kategorii powiodï¿½o sie
-     * @return String z komunikatem
+     * Metoda dostarcza komunikat o tym, ¿e zmiana kategorii nie powiod³a sie
+     * @return String z komunikatem 
      */
-    public static String AddKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zostaï¿½a dodana.</p>";}
+    public static String errorChangeKat(){
+        return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiod³a siê.</p>";}
+    
+     /**
+     * Metoda dostarcza komunikat o tym, ¿e zmiana podforum nie powiod³a sie
+     * @return String z komunikatem 
+     */
+    public static String errorChangePod(){
+        return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiod³a siê.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e dodanie kategorii powiod³o sie
+     * @return String z komunikatem 
+     */
+
+    public static String addKat(){
+        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a dodana.</p>";}
+
+     /**
+     * Metoda dostarcza komunikat o tym, ¿e zmiana podforum powiod³a sie
+     * @return String z komunikatem 
+     */
+    public static String changePod(){
+        return "<p align=\"center\" class=\"info\"> Podforum zosta³o zmienione.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, ï¿½e usuniecie kategorii powiodï¿½o sie
      * @return String z komunikatem
      */
-    public static String RemoveKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zostaï¿½a usuniï¿½ta.</p>";}
+
+    public static String removeKat(){
+        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a usuniêta.</p>";}
+
     
     /**
-     * Metoda dostarcza komunikat o tym, ï¿½e usuniecie podforum powiodï¿½o sie
-     * @return String z komunikatem
+     * Metoda dostarcza komunikat o tym, ¿e zmiana kategorii powiod³a sie
+     * @return String z komunikatem 
      */
-    public static String RemovePodforum(){
-        return "<p align=\"center\" class=\"info\" > Podforum zostaï¿½o usuniï¿½te.</p>";}
+    public static String changeKat(){
+        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a zmieniona.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ¿e usuniecie podforum powiod³o sie
+     * @return String z komunikatem 
+     */
+
+    public static String removePodforum(){
+        return "<p align=\"center\" class=\"info\" > Podforum zosta³o usuniête.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, usuniecie kategorii nie powiodï¿½o sie
@@ -312,7 +344,9 @@ public class Messages {
      * Metoda dostarcza komunikat o blï¿½dzie wywolania formularza
      * @return String z komunikatem
      */
+
     public static String formError(){
         return "<p align=\"center\" class=\"info\">BlÄ…d formularza.</p>";}
     
+
 }

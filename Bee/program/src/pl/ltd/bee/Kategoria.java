@@ -20,8 +20,6 @@ public class Kategoria {
     private ArrayList Podfora;
     private DataBase db;
     
-    private String Wiad;
-
     
     /** Konstruktor bezargumentowy
      */
@@ -59,7 +57,7 @@ public class Kategoria {
     /** Zwraca identyfikator forum
      * @return zwraca long bedacy identyfikatorem kategorii w bazie
      */
-    public long getID() {
+    public int getID() {
         return ID;
     }
      /** Zwraca nazwe kategori
@@ -71,7 +69,7 @@ public class Kategoria {
     }
     
 
-    /** Zwraca opis kategori
+    /** Zwraca opis kategorii
      * @return zwraca string bedacy opisem kategori
      */
     public String getOpis() {
@@ -79,7 +77,7 @@ public class Kategoria {
         return Opis;
     }
     
-    /** Ustawia id kategori
+    /** Ustawia id kategorii
      * @param id String ustawianego id
      */
     public void setID(String id) {
@@ -93,35 +91,21 @@ public class Kategoria {
         this.Opis=op;
     }
     
-    /** Ustawia opis kategori
+    /** Ustawia opis kategorii
      * @param op String ustawianej nazwy
      */
     public void setNazwa(String naz) {
         this.Tytul=naz;
     }
-     /** Zwraca opis kategori
-     * @return zwraca string bedacy wiadomoscia (Wykorzystuje w dodawaniu kategori 
-     */
-    public String getWiad() {
-        if (Wiad==null) return "";
-        return Wiad;
-    }
-    
-     
+   
      /** Zwraca liste podforow
      * @return zwraca ArralList bedacy lista podforow
      */
     public ArrayList getPodfora() {
         return Podfora;
     }
-    
-    /** Ustawia opis kategori
-     * @param w String ustawianego opisu
-     */
-    public void setWiad(String w) {
-        this.Wiad=w;
-    }
-    
+   
+  
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
      * @param strona strumien wyjsciowy
