@@ -12,7 +12,7 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB :: Nowy użytkownik</title>
+        <title>BeeBB :: <%out.print(Messages.newUser());%></title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
     </head>
     <body>
@@ -66,14 +66,14 @@
                         if(!db_con.wstawNewUser(nickname,numer))
                             out.print(Messages.errorDataBaseConnection());
                         else {
-                            out.println("Email z linkiem aktywacyjnym został wysłany.<BR><br><a href=../index.jsp>powrot</a><br>"); 
-                            SendMail.send(email,Config.REG_MAIL_SUBJECT,"Witaj "+ nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
+                            out.println(Messages.messageActivEmailSend()+"<BR><br><a href=../index.jsp>" + Messages.back() + "</a><br>"); 
+                            SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
                             out.println(Messages.errorUserCreate());
                         else
-                            out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
+                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<BR><br><a href=../index.jsp>" +Messages.back()+"</a><br>"); 
                     }
                 }
             } else {
@@ -82,7 +82,7 @@
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                             <th colspan="2">
-                                Dodaj użytkownika 
+                                <%out.print(Messages.addUser());%>
                             </th>
                             </tr> <tr>
             <%
@@ -95,15 +95,15 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                                <td><b>Nick*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
+                                <td><b><%out.print(Messages.nick());%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
                             </tr> <tr>
-                            <td><b>Haslo*:</b></td><td><input type="password" size="25" name="haslo1"></td>
+                            <td><b><%out.print(Messages.password());%>*:</b></td><td><input type="password" size="25" name="haslo1"></td>
                             </tr> <tr>
-                                <td><b>Haslo (jeszcze raz)*:</b></td><td><input type="password" size="25" name="haslo2"></td>
+                                <td><b><%out.print(Messages.password());%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="haslo2"></td>
                             </tr> <tr>
-                            <td>Imie:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
+                            <td><%out.print(Messages.name());%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
                             </tr> <tr>
-                                <td>Nazwisko:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"></td>
+                                <td><%out.print(Messages.subname());%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"></td>
                             </tr> <tr>
             <%
             if (email==null) {
@@ -120,10 +120,10 @@
                             </tr> <tr>
                             <td>Jabber:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"></td>
                             </tr> <tr>
-                                <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
+                                <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.send());%>"/></td>
                             </tr>
                         </table>
-                        * - pola wymagane
+                        * - <%out.print(Messages.fieldsObligatory());%>
                     </form>
         <% }%>
                 </td>

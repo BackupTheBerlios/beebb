@@ -17,12 +17,74 @@ public class Messages {
     public Messages() {
     }
     
-    /**
-     * Metoda dostarcza lacznika "lub"
-     * @return String z lacznikiem "lub"
-     */
+    
+//_______________________________________________________________________________________________    
+//                              Metody zwracajace slowa
+//_______________________________________________________________________________________________    
+    /** Metoda dostarcza lacznika "lub" */
     public static String or(){
-        return "<p class=\"info\">lub</p>";}
+        return "lub";}
+    
+    /** Metoda dostarcza fraze nowy uzytkownik */
+    public static String newUser(){
+        return "Nowy u¿ytkownik";}
+    
+    /** Metoda dostarcza slowa "powrot" */
+    public static String back(){
+        return "Powrot";}
+
+    /** Metoda dostarcza slowo "witaj" */
+    public static String welcome(){
+        return "Witaj";}
+    
+    /** Metoda dostarcza slowo "uzytkownik" */
+    public static String user(){
+        return "Uzytkownik";}
+    
+    /** Metoda dostarcza fraze "zostal dodany" */
+    public static String hasBeenAdded(){
+        return "zostal dodany";}
+    
+    /** Metoda dostarcza fraze "dodaj uzytkownika" */
+    public static String addUser(){
+        return "Dodaj u¿ytkownika";}
+    
+    /** Metoda dostarcza slowo "nick" */
+    public static String nick(){
+        return "Nick";}
+    
+    /** Metoda dostarcza slowo "haslo" */
+    public static String password(){
+        return "Haslo";}
+    
+    /** Metoda dostarcza fraze "jeszcze raz" */
+    public static String oneMoreTime(){
+        return "jeszcze raz";}
+    
+    /** Metoda dostarcza slowo "imie" */
+    public static String name(){
+        return "Imie";}
+    
+    /** Metoda dostarcza slowo "nazwisko" */
+    public static String subname(){
+        return "Nazwisko";}
+    
+    /** Metoda dostarcza fraze "pola wymagane" */
+    public static String fieldsObligatory(){
+        return "pola wymagane";}
+    
+    /** Metoda dostarcza slowo "wyslij" */
+    public static String send(){
+        return "Wy¶lij";}
+    
+//_______________________________________________________________________________________________    
+//                              Metody zwracajace komunikaty
+//_______________________________________________________________________________________________
+    
+    
+    /** Metoda dostarcza komunikat o wyslaniu emaila aktywacyjnego */
+    public static String messageActivEmailSend(){
+        return "<p class=\"info\">Email z linkiem aktywacyjnym zosta³ wys³any.</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
