@@ -1,0 +1,86 @@
+body {
+	background-color: darkgoldenrod; 
+/*	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;*/
+}
+
+font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
+/* a:link,a:active,a:visited { color : #006699; } */
+/* a:hover		{ text-decoration: underline; color : #DD6900; } */
+hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+
+
+th	{
+	color: yellow; font-size: 11px; font-weight : bold;
+	background-color: yellow; height: 30px;
+	background-image: url(./images/yellow.png);
+	background-repeat: repeat-x;	
+	border: 1px black solid;
+}
+
+.tdForumHeader	{ background-color: orange; border: 2px black solid; }
+
+.tdAutorBox, .tdWypowiedzBox { background-color: gold; border: 2px black solid; }
+
+.tdTytulKategorii { 
+	background-color:  gold;
+	height : 15;
+	background-repeat: repeat-x; 
+	border: 1px black solid; 
+	}
+
+.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost{
+	border: 1px black solid;
+	background-color: goldenrod;
+	}
+
+.tdTytulKategorii a:visited{
+	color: black;	
+}	
+
+.tdTytulKategorii a:link{
+	color: #2f2929;
+}
+
+.tdTytulPodforum a:visited , .tdAutor a:visited , .tdLastPost a:visited{
+	color: firebrick;	
+	}	
+
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link{
+	color: darkred;	
+	}	
+	
+.tdTytulWatek a:link{
+	color: darkred;	
+	}	
+
+.tdTytulWatek a:visited{
+	color: firebrick;	
+	}	
+	
+.aTopLink:visited{
+	color: black;
+	}
+	
+.aTopLink:link{	
+	color:#2f2929;
+	}
+	
+.tdPictureWatek , .tdTytulWatek , .tdAutor{
+	border: 1px black solid;
+	background-color: goldenrod;
+	}
+
+.tdWypowiedz , .tdWypowiedzBox , .trWypowiedz , .tdAutorBox{
+	background-color:khaki;
+	}
+	
+.bodyWypowiedz{
+	background-color: khaki;
+	}
+	
