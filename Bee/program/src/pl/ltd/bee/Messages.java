@@ -246,33 +246,48 @@ public class Messages {
         return "<p  align=\"center\" class=\"error\"> Dodanie kategorii nie powiodï¿½o siï¿½.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ¿e zmiana kategorii nie powiod³a sie
+     * Metoda dostarcza komunikat o tym, ï¿½e zmiana kategorii nie powiodï¿½a sie
      * @return String z komunikatem 
      */
     public static String errorChangeKat(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiod³a siê.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiodï¿½a siï¿½.</p>";}
     
      /**
-     * Metoda dostarcza komunikat o tym, ¿e zmiana podforum nie powiod³a sie
+     * Metoda dostarcza komunikat o tym, ï¿½e zmiana podforum nie powiodï¿½a sie
      * @return String z komunikatem 
      */
     public static String errorChangePod(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiod³a siê.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiodï¿½a siï¿½.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ¿e dodanie kategorii powiod³o sie
+     * Metoda dostarcza komunikat o tym, ï¿½e zmiana uprawnien nie powiodï¿½a sie
+     * @return String z komunikatem 
+     */
+    public static String errorChangeUpr(){
+        return "<p  align=\"center\" class=\"error\"> Zmiana uprawnien nie powiodï¿½a siï¿½.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ï¿½e dodanie kategorii powiodï¿½o sie
      * @return String z komunikatem 
      */
 
     public static String addKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a dodana.</p>";}
+        return "<p align=\"center\" class=\"info\"> Kategoria zostaï¿½a dodana.</p>";}
+    
+     /**
+     * Metoda dostarcza komunikat o tym, ï¿½e zmiana uprawnien powiodï¿½a sie
+     * @return String z komunikatem 
+     */
+
+    public static String changeUpr(){
+        return "<p align=\"center\" class=\"info\"> Uprawnienia zostaï¿½y zmienione.</p>";}
 
      /**
-     * Metoda dostarcza komunikat o tym, ¿e zmiana podforum powiod³a sie
+     * Metoda dostarcza komunikat o tym, ï¿½e zmiana podforum powiodï¿½a sie
      * @return String z komunikatem 
      */
     public static String changePod(){
-        return "<p align=\"center\" class=\"info\"> Podforum zosta³o zmienione.</p>";}
+        return "<p align=\"center\" class=\"info\"> Podforum zostaï¿½o zmienione.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, ï¿½e usuniecie kategorii powiodï¿½o sie
@@ -280,23 +295,23 @@ public class Messages {
      */
 
     public static String removeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a usuniêta.</p>";}
+        return "<p align=\"center\" class=\"info\"> Kategoria zostaï¿½a usuniï¿½ta.</p>";}
 
     
     /**
-     * Metoda dostarcza komunikat o tym, ¿e zmiana kategorii powiod³a sie
+     * Metoda dostarcza komunikat o tym, ï¿½e zmiana kategorii powiodï¿½a sie
      * @return String z komunikatem 
      */
     public static String changeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zosta³a zmieniona.</p>";}
+        return "<p align=\"center\" class=\"info\"> Kategoria zostaï¿½a zmieniona.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ¿e usuniecie podforum powiod³o sie
+     * Metoda dostarcza komunikat o tym, ï¿½e usuniecie podforum powiodï¿½o sie
      * @return String z komunikatem 
      */
 
     public static String removePodforum(){
-        return "<p align=\"center\" class=\"info\" > Podforum zosta³o usuniête.</p>";}
+        return "<p align=\"center\" class=\"info\" > Podforum zostaï¿½o usuniï¿½te.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, usuniecie kategorii nie powiodï¿½o sie
@@ -309,6 +324,7 @@ public class Messages {
      * Metoda dostarcza komunikat o tym, usuniecie podforum nie powiodï¿½o sie
      * @return String z komunikatem
      */
+    
     public static String errorRemovePodforum(){
         return "<p  align=\"center\" class=\"error\"> Usuniï¿½cie podforum nie powiodï¿½o siï¿½.</p>";}
     
@@ -316,6 +332,7 @@ public class Messages {
      * Metoda dostarcza komunikat o tym, ï¿½e nie zostaï¿½a podana nazwa podforum
      * @return String z komunikatem
      */
+    
     public static String errorFieldNamePodforum(){
         return "<p align=\"center\" class=\"error\"> Nie zostaï¿½a podana nazwa podforum.</p>";}
     
