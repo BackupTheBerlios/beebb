@@ -604,7 +604,7 @@ public class DataBase {
     public boolean usunKategorie(String id){
         return  (baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ") && baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id));
     }
-
+    
     
     /**
      * Metoda zmienia pole aktywna na N
@@ -613,6 +613,24 @@ public class DataBase {
      **/
     public boolean usunPodforum(String id){
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywne='N' WHERE ID="+id);
+    }
+    
+    /**
+     * Metoda usuwa klucz do zapomnianego has³a
+     * @param klucz losowo wygenerowany klucz
+     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     */
+    public boolean usunZapomnianeHaslo(String klucz){
+        return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_KLUCZ + "='" + klucz + "'");
+    }
+    
+    /**
+     * Metoda usuwa klucz do nowego uzytkownika
+     * @param klucz losowo wygenerowany klucz
+     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     */
+    public boolean usunKluczNewUser(String klucz){
+        return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");
     }
     
 }
