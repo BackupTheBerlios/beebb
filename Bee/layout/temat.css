@@ -22,3 +22,6 @@ th	{
 }
 
 .tdForumHeader	{ background-color: gold; border: 2px black solid; }
+
+.tdAutorBox, .tdWypowiedzBox { background-color: gold; border: 2px black solid; }
+
