@@ -132,4 +132,11 @@ public class Messages {
      */
     public static String errorKeyNewUser(){
         return "<p class=\"error\">B³êdny klucz.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o bledzie zmiany hasla
+     * @return String z komunikatem o bledzie zmiany hasla
+     */
+    public static String errorChangePasswd(){
+        return "<p class=\"error\">Nie mo¿na zmieniæ has³a, skontaktuj siê z administratorem forum.</p>";}
 }

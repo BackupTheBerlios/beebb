@@ -397,8 +397,8 @@ public class DataBase {
      * @param klucz losowy klucz zwiazany z uzytkownikiem
      * @return Zwraca email uzytkownika badz null w razie bledu.
      */
-    public String getLoginForgetPasswd(String klucz){
-        Hashtable user = getObject("SELECT * FROM " + BEE_FORGET_PASSWD + " WHERE "+ FORGET_PASSWD_KLUCZ +"=" + klucz);
+    public String getEmailForgetPasswd(String klucz){
+        Hashtable user = getObject("SELECT * FROM " + BEE_FORGET_PASSWD + " WHERE "+ FORGET_PASSWD_KLUCZ +"='" + klucz + "'");
         if (user == null) return null;
         return (String)user.get(FORGET_PASSWD_EMAIL);
     }
@@ -617,12 +617,24 @@ public class DataBase {
     
     /**
      * Metoda usuwa klucz do zapomnianego has³a
-     * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     * @param klucz email uzytkownika
+     * @return T lub N w zale¿no¶ci czy udalo sie usunac
      */
-    public boolean usunZapomnianeHaslo(String klucz){
-        return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_KLUCZ + "='" + klucz + "'");
+    public boolean usunZapomnianeHaslo(String email){
+        return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_EMAIL + "='" + email + "'");
     }
+    
+    
+    /**
+     * Metoda zmienia haslo uzytkownikowi
+     * @param email email uzytkownika
+     * @param haslo nowe haslo podane w plain txt
+     * @return T lub N w zale¿no¶ci czy update siê powiód³
+     */
+    public boolean zmienHasloByEmail(String email, String haslo){
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_HASLO + "='" + Crypto.crypt(haslo) + "'"  + " WHERE " + USER_EMAIL  + "='" + email + "'");
+    }
+    
     
     /**
      * Metoda usuwa klucz do nowego uzytkownika
