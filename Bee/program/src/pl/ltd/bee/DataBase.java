@@ -39,7 +39,7 @@ Hastable.put("Watek_"+id,to co zwrocil SELECT);
  * (na sam koniec implementacji) przy insertach dodaæ schemat tabeli po jej nazwie
  **/
 
-public class java {
+public class DataBase {
     
     /**
      * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
@@ -140,7 +140,7 @@ public class java {
     
     
     /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza Bee:bee@localhost. */
-    public java() {
+    public DataBase() {
     }
     
     /**
@@ -150,7 +150,7 @@ public class java {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public java(String host, String Db,String user, String pass) {
+    public DataBase(String host, String Db,String user, String pass) {
         this.connect(host, Db, user, pass);
     }
     
@@ -573,9 +573,9 @@ public class java {
      *@return boolean true jezeli update sie powiodl dalse wpp.
     */
     public boolean usunKategorie(String id){
-     if( baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ") )
+     baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ");
        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
-     return false;
+     
   }
     
     /**
@@ -584,7 +584,7 @@ public class java {
      *@return boolean true jezeli update sie powiodl dalse wpp.
     */
     public boolean usunPodforum(String id){
-      return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywna='N' WHERE ID="+id);
+      return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywne='N' WHERE ID="+id);
     }
     
 }
