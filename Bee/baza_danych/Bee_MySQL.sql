@@ -71,8 +71,9 @@ CREATE TABLE `Bee_Kategorie` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
-  `Aktywna` char(1) NOT NULL default 'Y',
-  PRIMARY KEY  (`ID`)
+  `Aktywna` char(1) NOT NULL default 'T',
+  PRIMARY KEY  (`ID`),
+  CONSTRAINT `Bee_Kategorie_ibfk_1` FOREIGN KEY (`Aktywna`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela kategorii';
 
 --
@@ -84,8 +85,9 @@ CREATE TABLE `Bee_Podfora` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
-  `Aktywna` char(1) NOT NULL default 'Y',
-  PRIMARY KEY  (`ID`)
+  `Aktywne` char(1) NOT NULL default 'T',
+  PRIMARY KEY  (`ID`),
+  CONSTRAINT `Bee_Podfora_ibfk_1` FOREIGN KEY (`Aktywne`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela podfor';
 
 
