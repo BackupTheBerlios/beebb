@@ -12,8 +12,13 @@ package pl.ltd.bee;
  */
 public abstract class User {
     
+    /** abstrakcyjny konstruktor abstrakcyjnej klasy */
     public User() {};
  
+    /** metoda sprawdza haslo
+     * @param passwd haslo w plain tekst
+     * @return poniewa¿ jest to abstrakcyjna klasa zwraca zawsze false
+     */
     public boolean checkPasswd(String passwd) {
         return false;
     }

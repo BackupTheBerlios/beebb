@@ -27,29 +27,34 @@ public class Autoryzator {
      * @param haslo haslo uzytkownika w plain tekst
      * @param db obiekt typu Database do wyciagania uzytkownika
      */
-    public User zaloguj(String login, String haslo,DataBase db) {
-        uzytkownik = db.getUser(login);
+    public User zaloguj(String login, String haslo,User uzytkownik) {
         zalogowany=false;
-        if (uzytkownik==null) return null;
-        
-        if(login.compareTo("Guest")==0) {
+        if(login.compareTo(Config.GUEST)==0) {
             this.login=login;
             return uzytkownik;
         }
         
+        if (uzytkownik==null) return null;
         zalogowany=true;
+        
         if (uzytkownik.checkPasswd(haslo)) {
             this.login=login;
+            this.uzytkownik = uzytkownik;
             return uzytkownik;
         }
         return null;
-        
     }
     
+    /** metoda sprawdza czy uzytkownik jest zalogowany
+     * @return T lub N w zaleznosci czy jest zalogowany czy nie
+     */
     public boolean zalogowany() {
         return zalogowany;
     }
     
+    /** metoda zwraca nazwe uzytkownika aktualnie zalogowanego
+     * @return String reprezentujacy nazwe aktualnie zalogowanego uzytkownika
+     */
     public String user() {
         return login;
     }

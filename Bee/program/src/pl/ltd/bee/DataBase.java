@@ -34,6 +34,9 @@ Hastable.put("Watek_"+id,to co zwrocil SELECT);
 (13:18:01) Wilk:  tylko jak bys mogl moze wkleic te rozmowe do DataBase, albo do /teksty
 (13:18:02) Wilk:  ok ?
 (13:18:23) pawelb:  ok
+ 
+ * TODO:
+ * (na sam koniec implementacji) przy insertach dodaæ schemat tabeli po jej nazwie
  **/
 
 public class DataBase {
