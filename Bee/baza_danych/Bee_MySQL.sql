@@ -142,15 +142,15 @@ CREATE TABLE `Bee_Watki_Wypowiedzi` (
 -- Table structure for table `Bee_Podfora_Wypowiedzi`
 --
 
-DROP TABLE IF EXISTS `Bee_Podfora_Wypowiedzi`;
-CREATE TABLE `Bee_Podfora_Wypowiedzi` (
+DROP TABLE IF EXISTS `Bee_Podfora_Watki`;
+CREATE TABLE `Bee_Podfora_Watki` (
   `ID_Podfora` int(10) unsigned NOT NULL default '0',
-  `ID_Wypowiedzi` int(10) unsigned NOT NULL default '0',
+  `ID_Watku` int(10) unsigned NOT NULL default '0',
   KEY `id_pod` (`ID_Podfora`),
-  KEY `id_wyp` (`ID_Wypowiedzi`),
-  CONSTRAINT `Bee_Podfora_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_Podfora`) REFERENCES `Bee_Podfora` (`ID`) ON UPDATE CASCADE,
-  CONSTRAINT `Bee_Podfora_Wypowiedzi_ibfk_2` FOREIGN KEY (`ID_Wypowiedzi`) REFERENCES `Bee_Wypowiedzi` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Podfora i Wypowiedzi';
+  KEY `id_wat` (`ID_Watku`),
+  CONSTRAINT `Bee_Podfora_Watki_ibfk_1` FOREIGN KEY (`ID_Podfora`) REFERENCES `Bee_Podfora` (`ID`) ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Podfora_Watki_ibfk_2` FOREIGN KEY (`ID_Watku`) REFERENCES `Bee_Watki` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Podfora i Watki';
 
 
 
