@@ -70,7 +70,7 @@ public class DataBase {
     
     static final String FORUM_KATEGORIE_ID_FORUM = "ID_Forum";
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_Kategoria";
-    
+    //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     static ConnectorDB baza = new ConnectorDB("localhost","bee","bee");
     
     
