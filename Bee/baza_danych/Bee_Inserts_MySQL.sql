@@ -19,7 +19,7 @@
 
 /*!40000 ALTER TABLE `Bee_Forum` DISABLE KEYS */;
 LOCK TABLES `Bee_Forum` WRITE;
-INSERT INTO `Bee_Forum` VALUES (1,'Zagorzelców');
+INSERT INTO `Bee_Forum`(Id,Nazwa) VALUES (0,'Zagorzelców');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Forum` ENABLE KEYS */;
 
@@ -96,7 +96,7 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Users` DISABLE KEYS */;
 LOCK TABLES `Bee_Users` WRITE;
-INSERT INTO `Bee_Users` VALUES (1,'piwo','e734dc5328d5a555de5f06c7c9459667','N','T'),(2,'paliwo','588ae983298ee2a03b6a37532c9f86ef','T','N');
+INSERT INTO `Bee_Users` VALUES (1,'piwo','e734dc5328d5a555de5f06c7c9459667','Zenek','Burak','burak@blaszak.pl','56789','zen@jab.pl','T','N','T'),(2,'paliwo','588ae983298ee2a03b6a37532c9f86ef','Olek','Puszka','puszkin@warka.pl','34567','denko@tyskie.pl','T','T','N');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Users` ENABLE KEYS */;
 
