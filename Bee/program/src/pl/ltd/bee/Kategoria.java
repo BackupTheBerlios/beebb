@@ -10,19 +10,29 @@ import java.util.ArrayList;
 
 /**
  *
- * @author pawelb
+ * @author pawelb i sopi
  */
 public class Kategoria {
     
     private int ID;
     private String Tytul;
+    private String Opis;
     private ArrayList Podfora;
     private DataBase db;
+    
+    private String Wiad;
+    
+    /** Konstruktor bezargumentowy
+     */
+    public Kategoria()
+    { }
+    
     
     /** Tworzy nowa instancje klasy Kategoria
      * @param ID identyfikator kategorii w bazie danych
      * @param Tytul nazwa kategorii
      */
+
     public Kategoria(String ID, String Tytul,DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
@@ -35,6 +45,49 @@ public class Kategoria {
      */
     public long getID() {
         return ID;
+    }
+     /** Zwraca nazwe kategori
+     * @return string bedacy nazwa kategori
+     */
+    public String getNazwa() {
+        if (Tytul==null) return "";
+        return Tytul;
+    }
+    
+    /** Zwraca opis kategori
+     * @return zwraca string bedacy opisem kategori
+     */
+    public String getOpis() {
+        if (Opis==null) return "";
+        return Opis;
+    }
+    
+    /** Ustawia opis kategori
+     * @param op String ustawianego opisu
+     */
+    public void setOpis(String op) {
+        this.Opis=op;
+    }
+    
+    /** Ustawia opis kategori
+     * @param op String ustawianej nazwy
+     */
+    public void setNazwa(String naz) {
+        this.Tytul=naz;
+    }
+     /** Zwraca opis kategori
+     * @return zwraca string bedacy wiadomoscia (Wykorzystuje w dodawaniu kategori 
+     */
+    public String getWiad() {
+        if (Wiad==null) return "";
+        return Wiad;
+    }
+    
+    /** Ustawia opis kategori
+     * @param w String ustawianego opisu
+     */
+    public void setWiad(String w) {
+        this.Wiad=w;
     }
     
     /** Wypisuje obiekt Kategoria w postaci strony jsp
@@ -75,3 +128,4 @@ public class Kategoria {
     }
     
 }
+
