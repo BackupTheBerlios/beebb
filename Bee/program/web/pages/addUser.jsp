@@ -44,7 +44,7 @@
             
             
             if (ok) {
-                if(!db_con.insertUser(nickname,imie,nazwisko,email,gg,jabber,haslo1))
+                if(!db_con.insertUser(nickname,haslo1,imie,nazwisko,email,gg,jabber))
                 out.println("Dupa Blada<BR>");
                 else {
                     out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
