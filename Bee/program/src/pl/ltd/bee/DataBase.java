@@ -83,7 +83,7 @@ public class DataBase {
         BEE_KATEGORIE = pref + "_" + BEE_KATEGORIE;
         BEE_FORUM = pref + "_" + BEE_FORUM;
         BEE_WATKI_WYPOWIEDZI = pref + "_" + BEE_WATKI_WYPOWIEDZI;
-        BEE_PODFORA_WYPOWIEDZI = pref + "_" + BEE_PODFORA_WYPOWIEDZI;
+        BEE_PODFORA_WATKI = pref + "_" + BEE_PODFORA_WATKI;
         BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA;
         BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY;
     }
