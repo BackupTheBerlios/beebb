@@ -46,11 +46,18 @@ CREATE TABLE `Bee_Users` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Login` varchar(40) NOT NULL default '',
   `Haslo` varchar(100) NOT NULL default '',
+  `Imie` varchar(50) NOT NULL default '',
+  `Nazwisko` varchar(100) NOT NULL default '',
+  `Email` varchar(100) NOT NULL default '',
+  `GG` varchar(10) NOT NULL default '',
+  `Jabber` varchar(100) NOT NULL default '',
+  `Aktywny` char(1) NOT NULL default 'N',
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
   PRIMARY KEY  (`ID`),
-  CONSTRAINT `Bee_Users_ibfk_1` FOREIGN KEY (`Admin`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `Bee_Users_ibfk_2` FOREIGN KEY (`Moderator`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `Bee_Users_ibfk_1` FOREIGN KEY (`Aktywny`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Users_ibfk_2` FOREIGN KEY (`Admin`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Users_ibfk_3` FOREIGN KEY (`Moderator`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
 
 
