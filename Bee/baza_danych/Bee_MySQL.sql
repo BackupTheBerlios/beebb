@@ -18,7 +18,9 @@
 
 DROP TABLE IF EXISTS `Bee_Forum`;
 CREATE TABLE `Bee_Forum` (
-  `Nazwa` varchar(100) NOT NULL default ''
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `Nazwa` varchar(100) NOT NULL default '',
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z konfiguracja forum';
 
 
@@ -28,12 +30,14 @@ CREATE TABLE `Bee_Forum` (
 
 DROP TABLE IF EXISTS `Bee_Users`;
 CREATE TABLE `Bee_Users` (
-  `ID` int(11) unsigned NOT NULL auto_increment,
+  `ID` int(10) unsigned NOT NULL auto_increment,
   `Login` varchar(40) NOT NULL default '',
   `Haslo` varchar(100) NOT NULL default '',
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
   PRIMARY KEY  (`ID`)
+  CHECK (`Admin` = 'T') OR (`Admin` = 'N'),
+  CHECK (`Moderator` = 'T') OR (`Moderator` = 'N')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
 
 
@@ -67,8 +71,8 @@ CREATE TABLE `Bee_Podfora` (
 
 DROP TABLE IF EXISTS `Bee_Watki`;
 CREATE TABLE `Bee_Watki` (
-  `ID` int(11) unsigned NOT NULL auto_increment,
-  `ID_autora` int(11) unsigned NOT NULL default '0',
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `ID_autora` int(10) unsigned NOT NULL default '0',
   `Temat` varchar(100) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`ID`),
@@ -92,6 +96,22 @@ CREATE TABLE `Bee_Wypowiedzi` (
   CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_Autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wypowiedziami';
 
+--
+-- Table structure for table `Bee_Forum_Kategorie`
+--
+
+DROP TABLE IF EXISTS `Bee_Forum_Kategorie`;
+CREATE TABLE `Bee_Forum_Kategorie` (
+  `ID_Forum` int(10) unsigned NOT NULL default '0',
+  `ID_Kategoria` int(10) unsigned NOT NULL default '0',
+  KEY `id_for` (`ID_Forum`),
+  KEY `id_kat` (`ID_Kategoria`),
+  CONSTRAINT `Bee_Forum_Kategorie_ibfk_2` FOREIGN KEY (`ID_Forum`) REFERENCES `Bee_Forum` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Forum_Kategorie_ibfk_1` FOREIGN KEY (`ID_Kategoria`) REFERENCES `Bee_Kategorie` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Lista Kategorii danego Forum';
+
+
+
 
 --
 -- Table structure for table `Bee_Kategorie_Podfora`
@@ -104,7 +124,7 @@ CREATE TABLE `Bee_Kategorie_Podfora` (
   KEY `id_kat` (`ID_Kategoria`),
   KEY `id_pod` (`ID_Podforum`),
   CONSTRAINT `Bee_Kategorie_Podfora_ibfk_2` FOREIGN KEY (`ID_Podforum`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `Bee_Kategorie_Podfora_ibfk_1` FOREIGN KEY (`ID_Kategoria`) REFERENCES `Bee_Kategorie` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `Bee_Kategorie_Podfora_ibfk_1` FOREIGN KEY (`ID_Kategoria`) REFERENCES `Bee_Kategorie` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Kategorii i Podfor';
 
 
@@ -133,7 +153,7 @@ CREATE TABLE `Bee_Watki_Wypowiedzi` (
   `ID_Wypowiedzi` int(10) unsigned NOT NULL default '0',
   KEY `id` (`ID_Watku`),
   KEY `id_wyp` (`ID_Wypowiedzi`),
-  CONSTRAINT `Bee_Watki_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_Watku`) REFERENCES `Bee_Watki` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Watki_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_Watku`) REFERENCES `Bee_Watki` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `Bee_Watki_Wypowiedzi_ibfk_2` FOREIGN KEY (`ID_Wypowiedzi`) REFERENCES `Bee_Wypowiedzi` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Watki i Wypowiedzi';
 
@@ -148,7 +168,7 @@ CREATE TABLE `Bee_Podfora_Watki` (
   `ID_Watku` int(10) unsigned NOT NULL default '0',
   KEY `id_pod` (`ID_Podfora`),
   KEY `id_wat` (`ID_Watku`),
-  CONSTRAINT `Bee_Podfora_Watki_ibfk_1` FOREIGN KEY (`ID_Podfora`) REFERENCES `Bee_Podfora` (`ID`) ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Podfora_Watki_ibfk_1` FOREIGN KEY (`ID_Podfora`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `Bee_Podfora_Watki_ibfk_2` FOREIGN KEY (`ID_Watku`) REFERENCES `Bee_Watki` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Podfora i Watki';
 
