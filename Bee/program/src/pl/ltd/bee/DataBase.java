@@ -71,11 +71,22 @@ public class DataBase {
     static final String FORUM_KATEGORIE_ID_FORUM = "ID_Forum";
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_Kategoria";
     
-    static ConnectorDB baza = new ConnectorDB();
+    static ConnectorDB baza = new ConnectorDB("localhost","bee","bee");
     
     
-    /** Creates a new instance of DataBase */
+    /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza bee:bee@localhost. */
     public DataBase() {
+    }
+    
+    /**
+     * Konstruktor
+     * @param host Adres serwera bazy danych
+     * @param user Nazwa uzytkownika bazy danych
+     * @param pass Haslo uzytkownika bazy danych
+     */
+    public DataBase(String host, String user, String pass)
+    {
+        baza = new ConnectorDB(host,user,pass);
     }
     
     /**
