@@ -24,26 +24,83 @@ UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Forum` ENABLE KEYS */;
 
 --
+-- Dumping data for table `Bee_Users`
+--
+
+
+/*!40000 ALTER TABLE `Bee_Users` DISABLE KEYS */;
+LOCK TABLES `Bee_Users` WRITE;
+INSERT INTO `Bee_Users`(`ID`,`Login`,`Haslo`,`Imie`,`Nazwisko`,`Email`,`GG`,`Jabber`,`OstatnieLogowanie`,`Aktywny`,`Admin`,`Moderator`) VALUES
+(1,'piwo','e734dc5328d5a555de5f06c7c9459667','Zenek','Burak','burak@blaszak.pl','56789','zen@jab.pl',Now(),'T','N','T'),
+(2,'paliwo','588ae983298ee2a03b6a37532c9f86ef','Olek','Puszka','puszkin@warka.pl','34567','denko@tyskie.pl',Now(),'T','T','N');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Bee_Users` ENABLE KEYS */;
+
+--
+-- Dumping data for table `Bee_Kategorie`
+--
+
+/*!40000 ALTER TABLE `Bee_Kategorie` DISABLE KEYS */;
+LOCK TABLES `Bee_Kategorie` WRITE;
+INSERT INTO `Bee_Kategorie`(`ID`,`Tytul`,`Opis`,`Aktywna`) VALUES
+ (1,'Piwosze','Forum piwopijow','T'),
+ (2,'Winiarnie','Miejsca gdzie mozna nabyc winka','T');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Bee_Kategorie` ENABLE KEYS */;
+
+
+--
+-- Dumping data for table `Bee_Podfora`
+--
+
+/*!40000 ALTER TABLE `Bee_Podfora` DISABLE KEYS */;
+LOCK TABLES `Bee_Podfora` WRITE;
+INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`Aktywne`) VALUES
+(1,'Tyskie','Dobre piwko','T'),
+(2,'Warka','Tez dobre piwko','T'),
+(3,'Lech','Rowniez dobre piwko','T');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Bee_Podfora` ENABLE KEYS */;
+
+
+--
+-- Dumping data for table `Bee_Watki`
+--
+
+/*!40000 ALTER TABLE `Bee_Watki` DISABLE KEYS */;
+LOCK TABLES `Bee_Watki` WRITE;
+INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Temat`,`Data`) VALUES
+ (1,1,'Piwko','2005-03-09 20:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Bee_Watki` ENABLE KEYS */;
+
+
+--
+-- Dumping data for table `Bee_Wypowiedzi`
+--
+
+/*!40000 ALTER TABLE `Bee_Wypowiedzi` DISABLE KEYS */;
+LOCK TABLES `Bee_Wypowiedzi` WRITE;
+INSERT INTO `Bee_Wypowiedzi`(`ID`,`ID_autora`,`Data`,`Tekst`) VALUES
+ (1,1,'2005-03-09 20:00:00','Piwo to moje paliwo.');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Bee_Wypowiedzi` ENABLE KEYS */;
+
+
+
+--
 -- Dumping data for table `Bee_Forum_Kategorie`
 --
 
 
 /*!40000 ALTER TABLE `Bee_Forum_Kategorie` DISABLE KEYS */;
 LOCK TABLES `Bee_Forum_Kategorie` WRITE;
-INSERT INTO `Bee_Forum_Kategorie` VALUES (1,1),(1,2);
+INSERT INTO `Bee_Forum_Kategorie`(`ID_Forum`,`ID_Kategoria`) VALUES
+ (1,1),
+ (1,2);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Forum_Kategorie` ENABLE KEYS */;
 
---
--- Dumping data for table `Bee_Kategorie`
---
-
-
-/*!40000 ALTER TABLE `Bee_Kategorie` DISABLE KEYS */;
-LOCK TABLES `Bee_Kategorie` WRITE;
-INSERT INTO `Bee_Kategorie` VALUES (1,'Piwosze'),(2,'Winiarnie');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `Bee_Kategorie` ENABLE KEYS */;
 
 --
 -- Dumping data for table `Bee_Kategorie_Podfora`
@@ -52,7 +109,10 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Kategorie_Podfora` DISABLE KEYS */;
 LOCK TABLES `Bee_Kategorie_Podfora` WRITE;
-INSERT INTO `Bee_Kategorie_Podfora` VALUES (1,1),(1,2),(1,3);
+INSERT INTO `Bee_Kategorie_Podfora`(`ID_Kategoria`,`ID_Podforum`) VALUES
+ (1,1),
+ (1,2),
+ (1,3);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Kategorie_Podfora` ENABLE KEYS */;
 
@@ -63,53 +123,10 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Moderatorzy` DISABLE KEYS */;
 LOCK TABLES `Bee_Moderatorzy` WRITE;
-INSERT INTO `Bee_Moderatorzy` VALUES (1,1);
+INSERT INTO `Bee_Moderatorzy`(`ID_Podforum`,`ID_User`) VALUES
+ (1,1);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Moderatorzy` ENABLE KEYS */;
-
---
--- Dumping data for table `Bee_Podfora`
---
-
-
-/*!40000 ALTER TABLE `Bee_Podfora` DISABLE KEYS */;
-LOCK TABLES `Bee_Podfora` WRITE;
-INSERT INTO `Bee_Podfora` VALUES (1,'Tyskie'),(2,'Warka'),(3,'Lech');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `Bee_Podfora` ENABLE KEYS */;
-
---
--- Dumping data for table `Bee_Podfora_Watki`
---
-
-
-/*!40000 ALTER TABLE `Bee_Podfora_Watki` DISABLE KEYS */;
-LOCK TABLES `Bee_Podfora_Watki` WRITE;
-INSERT INTO `Bee_Podfora_Watki` VALUES (1,1);
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `Bee_Podfora_Watki` ENABLE KEYS */;
-
---
--- Dumping data for table `Bee_Users`
---
-
-
-/*!40000 ALTER TABLE `Bee_Users` DISABLE KEYS */;
-LOCK TABLES `Bee_Users` WRITE;
-INSERT INTO `Bee_Users` VALUES (1,'piwo','e734dc5328d5a555de5f06c7c9459667','Zenek','Burak','burak@blaszak.pl','56789','zen@jab.pl','T','N','T'),(2,'paliwo','588ae983298ee2a03b6a37532c9f86ef','Olek','Puszka','puszkin@warka.pl','34567','denko@tyskie.pl','T','T','N');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `Bee_Users` ENABLE KEYS */;
-
---
--- Dumping data for table `Bee_Watki`
---
-
-
-/*!40000 ALTER TABLE `Bee_Watki` DISABLE KEYS */;
-LOCK TABLES `Bee_Watki` WRITE;
-INSERT INTO `Bee_Watki` VALUES (1,1,'Piwko','2005-03-09 20:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `Bee_Watki` ENABLE KEYS */;
 
 --
 -- Dumping data for table `Bee_Watki_Wypowiedzi`
@@ -118,20 +135,24 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Watki_Wypowiedzi` DISABLE KEYS */;
 LOCK TABLES `Bee_Watki_Wypowiedzi` WRITE;
-INSERT INTO `Bee_Watki_Wypowiedzi` VALUES (1,1);
+INSERT INTO `Bee_Watki_Wypowiedzi`(`ID_Watku`,`ID_Wypowiedzi`) VALUES
+ (1,1);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Watki_Wypowiedzi` ENABLE KEYS */;
 
+
 --
--- Dumping data for table `Bee_Wypowiedzi`
+-- Dumping data for table `Bee_Podfora_Watki`
 --
 
 
-/*!40000 ALTER TABLE `Bee_Wypowiedzi` DISABLE KEYS */;
-LOCK TABLES `Bee_Wypowiedzi` WRITE;
-INSERT INTO `Bee_Wypowiedzi` VALUES (1,1,'2005-03-09 20:00:00','Piwo to moje paliwo.');
+/*!40000 ALTER TABLE `Bee_Podfora_Watki` DISABLE KEYS */;
+LOCK TABLES `Bee_Podfora_Watki` WRITE;
+INSERT INTO `Bee_Podfora_Watki`(`ID_Podfora`,`ID_Watku`) VALUES
+ (1,1);
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `Bee_Wypowiedzi` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Bee_Podfora_Watki` ENABLE KEYS */;
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

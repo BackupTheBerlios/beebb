@@ -51,7 +51,7 @@ CREATE TABLE `Bee_Users` (
   `Email` varchar(100) NOT NULL default '',
   `GG` varchar(10) NOT NULL default '',
   `Jabber` varchar(100) NOT NULL default '',
-  `Data` datetime NOT NULL default '0000-00-00 00:00:00',
+  `OstatnieLogowanie` datetime NOT NULL default '0000-00-00 00:00:00',
   `Aktywny` char(1) NOT NULL default 'N',
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
@@ -115,12 +115,12 @@ CREATE TABLE `Bee_Watki` (
 DROP TABLE IF EXISTS `Bee_Wypowiedzi`;
 CREATE TABLE `Bee_Wypowiedzi` (
   `ID` int(10) unsigned NOT NULL auto_increment,
-  `ID_Autora` int(10) unsigned NOT NULL default '0',
+  `ID_autora` int(10) unsigned NOT NULL default '0',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Tekst` text NOT NULL,
   PRIMARY KEY  (`ID`),
-  UNIQUE KEY `Autor_FK` (`ID_Autora`),
-  CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_Autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
+  UNIQUE KEY `Autor_FK` (`ID_autora`),
+  CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wypowiedziami';
 
 --
