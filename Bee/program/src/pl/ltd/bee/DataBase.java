@@ -15,28 +15,28 @@ import java.util.*;
  */
 
 /*
-(13:10:55) Wilk:  "wymyslilem" jak latwo mozemy buforowac zapytania z bazy danych
-(13:12:21) Wilk:  wystarczy miec w DataBase static lub nie zmienna np HashTable i po kazdym zapytaniu wrzucac obiekty: put("Objekt_ID",Object)
-(13:12:27) Wilk:  final-> ok
-(13:12:33) Wilk:  wiec np:
-(13:13:44) Wilk:  getWatek(id)
+(13:10:55) Wilk: "wymyslilem" jak latwo mozemy buforowac zapytania z bazy danych
+(13:12:21) Wilk: wystarczy miec w DataBase static lub nie zmienna np HashTable i po kazdym zapytaniu wrzucac obiekty: put("Objekt_ID",Object)
+(13:12:27) Wilk: final-> ok
+(13:12:33) Wilk: wiec np:
+(13:13:44) Wilk: getWatek(id)
 if ( jest object w hashtable("Watek_"+id)) to go zwroc
 SELECT
 Hastable.put("Watek_"+id,to co zwrocil SELECT);
-(13:14:12) Wilk:  oczywiscie to powinno byc troszke madrzejsze, to znaczy to powinna byc HashTable z LRU
-(13:14:47) Wilk:  i o zalozonym rozmiarze .. np 100 objektow
-(13:15:25) pawelb:  brzmi sensownie
-(13:15:52) Wilk:  mozna tez zrobic oddzielne bufory dla kazdego z objektow wtedy mozna wiecej stoic, np 10 miejsc na Kategorie ale juz 100 miejsc na Watki a 300 na wypowiedzi
-(13:16:22) pawelb:  spoko, tylko mo¿e narazie siê wstrzymamy z implementacj±
-(13:16:36) pawelb:  bo musze troche przerobiæ DataBase
-(13:16:59) Wilk:  wtedy oczywiscie jest wiecej zmiennych, ale nie ma "Object_"+id tylko wystarczy sam id
-(13:17:36) Wilk:  nie no implementacje nie teraz, to oczywiste
-(13:18:01) Wilk:  tylko jak bys mogl moze wkleic te rozmowe do DataBase, albo do /teksty
-(13:18:02) Wilk:  ok ?
-(13:18:23) pawelb:  ok
+(13:14:12) Wilk: oczywiscie to powinno byc troszke madrzejsze, to znaczy to powinna byc HashTable z LRU
+(13:14:47) Wilk: i o zalozonym rozmiarze .. np 100 objektow
+(13:15:25) pawelb: brzmi sensownie
+(13:15:52) Wilk: mozna tez zrobic oddzielne bufory dla kazdego z objektow wtedy mozna wiecej stoic, np 10 miejsc na Kategorie ale juz 100 miejsc na Watki a 300 na wypowiedzi
+(13:16:22) pawelb: spoko, tylko moï¿½e narazie siï¿½ wstrzymamy z implementacjï¿½
+(13:16:36) pawelb: bo musze troche przerobiï¿½ DataBase
+(13:16:59) Wilk: wtedy oczywiscie jest wiecej zmiennych, ale nie ma "Object_"+id tylko wystarczy sam id
+(13:17:36) Wilk: nie no implementacje nie teraz, to oczywiste
+(13:18:01) Wilk: tylko jak bys mogl moze wkleic te rozmowe do DataBase, albo do /teksty
+(13:18:02) Wilk: ok ?
+(13:18:23) pawelb: ï¿½ok
  
  * TODO:
- * (na sam koniec implementacji) przy insertach dodaæ schemat tabeli po jej nazwie
+ * (na sam koniec implementacji) przy insertach dodaï¿½ schemat tabeli po jej nazwie
  **/
 
 public class DataBase {
@@ -463,7 +463,7 @@ public class DataBase {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
             if (kat==null) return false;
             
-            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelców'");
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelcï¿½w'");
             if (forum==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
@@ -524,19 +524,19 @@ public class DataBase {
     }
     
     /**
-     * Metoda wstawia klucz do zapomnianego has³a
+     * Metoda wstawia klucz do zapomnianego hasï¿½a
      * @param email adres mailowy uzytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     * @return T lub N w zaleï¿½noï¿½ci czy insert siï¿½ powiï¿½dï¿½
      */
     public boolean wstawZapomnianeHaslo(String email, String klucz){
         return baza.dmlQuery("INSERT INTO " + BEE_FORGET_PASSWD + " VALUES ('"+ klucz +"', '"+ email + "')");
     }
     
     /**
-     * Metoda sprawdza czy istnieje klucz do zapomnianego has³a w bazie danych
+     * Metoda sprawdza czy istnieje klucz do zapomnianego hasï¿½a w bazie danych
      * @param klucz losowo wygenerowany klucz
-     * @return N lub T w zale¿no¶ci czy jest czy nie (T gdy klucza nie ma)
+     * @return N lub T w zaleï¿½noï¿½ci czy jest czy nie (T gdy klucza nie ma)
      */
     public boolean sprawdzKluczZapomnianeHaslo(String klucz){
         if(getObject("SELECT " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
@@ -548,7 +548,7 @@ public class DataBase {
      * Metoda wstawia klucz do tabeli z nowymi uzytkownikami
      * @param login login uzytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     * @return T lub N w zaleï¿½noï¿½ci czy insert siï¿½ powiï¿½dï¿½
      */
     public boolean wstawNewUser(String login, String klucz){
         return baza.dmlQuery("INSERT INTO " + BEE_NEW_USER + " VALUES ('"+ klucz +"', '"+ login + "')");
@@ -558,7 +558,7 @@ public class DataBase {
     /**
      * Metoda sprawdza czy istnieje klucz do aktywacji konta nowego uzytkownika w bazie danych
      * @param klucz losowo wygenerowany klucz
-     * @return N lub T w zale¿no¶ci czy jest czy nie (T gdy klucza nie ma)
+     * @return N lub T w zaleï¿½noï¿½ci czy jest czy nie (T gdy klucza nie ma)
      */
     public boolean sprawdzKluczNewUser(String klucz){
         if(getObject("SELECT " + BEE_NEW_USER + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
@@ -616,9 +616,9 @@ public class DataBase {
     }
     
     /**
-     * Metoda usuwa klucz do zapomnianego has³a
+     * Metoda usuwa klucz do zapomnianego hasï¿½a
      * @param klucz email uzytkownika
-     * @return T lub N w zale¿no¶ci czy udalo sie usunac
+     * @return T lub N w zaleï¿½noï¿½ci czy udalo sie usunac
      */
     public boolean usunZapomnianeHaslo(String email){
         return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_EMAIL + "='" + email + "'");
@@ -629,7 +629,7 @@ public class DataBase {
      * Metoda zmienia haslo uzytkownikowi
      * @param email email uzytkownika
      * @param haslo nowe haslo podane w plain txt
-     * @return T lub N w zale¿no¶ci czy update siê powiód³
+     * @return T lub N w zaleï¿½noï¿½ci czy update siï¿½ powiï¿½dï¿½
      */
     public boolean zmienHasloByEmail(String email, String haslo){
         return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_HASLO + "='" + Crypto.crypt(haslo) + "'"  + " WHERE " + USER_EMAIL  + "='" + email + "'");
@@ -639,7 +639,7 @@ public class DataBase {
     /**
      * Metoda usuwa klucz do nowego uzytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     * @return T lub N w zaleï¿½noï¿½ci czy insert siï¿½ powiï¿½dï¿½
      */
     public boolean usunKluczNewUser(String klucz){
         return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");

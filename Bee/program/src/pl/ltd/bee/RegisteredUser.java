@@ -42,7 +42,7 @@ public class RegisteredUser extends User {
             this.aktywny=true; else this.aktywny=false;
     }
     
-    /** Sprawdza czy podane has³o (plain) zgadza siê
+    /** Sprawdza czy podane hasÅ‚o (plain) zgadza siÄ™
      * @param passwd haslo w plain txt
      * @return T lub F w zaleznosci czy haslo sie zgadza
      */

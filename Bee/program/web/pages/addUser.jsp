@@ -37,7 +37,7 @@
             } else { ok=false; }
             String haslo1=request.getParameter("haslo1");
             String haslo2=request.getParameter("haslo2");
-            if (haslo1!=null && haslo2!=null) ok=false;
+            if (haslo1==null || haslo2==null) ok=false;
             String email=request.getParameter("email");
             if (email==null) ok=false;
             else

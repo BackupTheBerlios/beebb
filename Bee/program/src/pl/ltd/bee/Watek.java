@@ -44,7 +44,7 @@ public class Watek {
     }
     
     /** Zwraca identyfikator forum
-     * @return zwraca nliczbe bedac± identyfikatorem watku w bazie
+     * @return zwraca nliczbe bedacï¿½ identyfikatorem watku w bazie
      */
     public int getID() {
         return ID;
@@ -74,7 +74,7 @@ public class Watek {
     
     
     /**
-     * Metoda wypisuje na stronie glown± tabele i jej naglowki
+     * Metoda wypisuje na stronie glownÄ… tabele i jej naglowki
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
@@ -103,7 +103,7 @@ public class Watek {
         strona.println("<table id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th class=\"thTopLCorner\" width=\"15%\" height=\"25\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
-        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Wiadomo¶æ&nbsp;</th>");
+        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Wiadomoï¿½ï¿½&nbsp;</th>");
         strona.println("</tr>");
     }
     
@@ -122,7 +122,7 @@ public class Watek {
     }
     
     /**
-     * Metoda powoduje wypisanie w±tku na przekazany strumien
+     * Metoda powoduje wypisanie wï¿½tku na przekazany strumien
      * @param strona strumien wyjsciowy
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {

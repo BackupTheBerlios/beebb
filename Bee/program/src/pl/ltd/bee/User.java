@@ -17,14 +17,14 @@ public abstract class User {
  
     /** Metoda sprawdza haslo
      * @param passwd haslo w plain tekst
-     * @return poniewaø jest to abstrakcyjna klasa zwraca zawsze false
+     * @return poniewa≈º jest to abstrakcyjna klasa zwraca zawsze false
      */
     public boolean checkPasswd(String passwd) {
         return false;
     }
     
     /** Metoda sprawdza czy uzytkownik jest aktywny
-     * @return poniewaø jest to abstrakcyjna klasa zwraca zawsze false
+     * @return poniewa≈º jest to abstrakcyjna klasa zwraca zawsze false
      */
     public boolean aktywny() {
         return false;

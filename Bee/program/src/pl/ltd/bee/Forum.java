@@ -43,7 +43,7 @@ public class Forum {
     }
     
      /**
-      * Metoda wypisuje na stronie glown± tabele i jej naglowki
+      * Metoda wypisuje na stronie glownÄ… tabele i jej naglowki
       * @param strona strumien wyjsciowy
       */
      public static void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException

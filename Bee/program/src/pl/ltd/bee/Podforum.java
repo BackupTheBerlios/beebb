@@ -25,7 +25,7 @@ public class Podforum {
     /** Konstruktor bezargumentowy */
     public Podforum() {}
     
-    /** Tworzy instancjê podforum bez watkow
+    /** Tworzy instancjï¿½ podforum bez watkow
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
      * @param Opis opis podforum
@@ -37,7 +37,7 @@ public class Podforum {
     }
     
     
-    /** Tworzy instancjê podforum
+    /** Tworzy instancjï¿½ podforum
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
      * @param Opis opis podforum
@@ -142,7 +142,7 @@ public class Podforum {
         strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Tematy&nbsp;</th>");
         strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Odpowiedzi&nbsp;</th>");
         strona.println("<th width=\"80\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
-        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Wy¶wietleñ&nbsp;</th>");
+        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;WyÅ›wietle&nbsp;</th>");
         strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Ostatni post&nbsp;</th>");
         strona.println("</tr>");
     }
