@@ -181,7 +181,6 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target name="-do-compile" depends="init, deps-jar, -pre-pre-compile, -pre-compile">
-        <webproject:javac xmlns:webproject="http://www.netbeans.org/ns/web-project/1"/>
         <copy todir="${build.classes.dir}">
             <fileset excludes="${build.classes.excludes}" dir="${src.dir}"/>
         </copy>
