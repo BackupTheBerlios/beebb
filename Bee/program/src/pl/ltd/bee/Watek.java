@@ -20,10 +20,10 @@ public class Watek {
     private String Data;
     
     /** Creates a new instance of Watek
-     *@param ID - id watku
-     *@param ID_Autor - id autora watku
-     *@param Temat - temat watku
-     *@param Data - data watku
+     *@param ID id watku
+     *@param ID_Autor id autora watku
+     *@param Temat temat watku
+     *@param Data data watku
      */
     public Watek(String ID, String ID_Autor, String Temat, String Data)  {
         this.ID=Long.decode(ID).longValue();
