@@ -18,6 +18,13 @@ public class Messages {
     }
     
     /**
+     * Metoda dostarcza lacznika "lub"
+     * @return String z lacznikiem "lub"
+     */
+    public static String or(){
+        return "<p class=\"info\">lub</p>";}
+    
+    /**
      * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
      * @return String z komunikatem o braku polaczenia z baza danych
      */
@@ -83,4 +90,26 @@ public class Messages {
      */
     public static String errorUnknown(){
         return "<p class=\"error\">Blad! skontaktuj sie z administratorem strony!<p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o nie istnieniu watku
+     * @return String z komunikatem o nie istnieniu watku
+     */
+    public static String errorThreadNotExists(){
+        return "<p class=\"error\">Brak takiego watku!</p>";    }
+    
+    /**
+     * Metoda dostarcza komunikat o nie istnieniu kategorii
+     * @return String z komunikatem o nie istnieniu kategorii
+     */
+    public static String errorCategoryNotExists(){
+        return "<p class=\"error\">Brak takiej kategorii!</p>";    }
+
+    /**
+     * Metoda dostarcza komunikat o nie istnieniu podforum
+     * @return String z komunikatem o nie istnieniu podforum
+     */
+    public static String errorSubForumNotExists(){
+        return "<p class=\"error\">Brak takiego podforum!</p>";    }
+    
 }

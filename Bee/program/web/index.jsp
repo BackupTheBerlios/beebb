@@ -13,7 +13,7 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB.com :: Content</title>
+        <title>BeeBB :: Content</title>
         <link rel="stylesheet" href="./styles/temat.css" type="text/css"/>
     </head>
     <body>
@@ -30,7 +30,7 @@
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
-                out.print("Blad polaczenia z baza!");
+                out.print(Messages.errorDataBaseConnection());
                 out.print(e);
             }
         }
@@ -51,7 +51,7 @@
                     f.printJSP(out);
                     Forum.printMainTableCloseJSP(out);
                 } else {
-                    out.println("Brak polaczenia z baza!<br>");
+                    out.println(Messages.errorDataBaseConnection()+"<br>");
                 }
         } else {
             String field = (String) flds.nextElement();
@@ -62,7 +62,7 @@
                 if (w!=null)
                     out.print(w.printJSP());
                 else 
-                    out.println("Brak polaczenia z baza!/Brak takiego watku!<br>");
+                    out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorThreadNotExists()+"<br>");
             } else {
                 if (field.compareTo("kid") == 0) {
                 pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
@@ -74,7 +74,7 @@
                       Forum.printMainTableCloseJSP(out);
                       }
                      else 
-                        out.println("Brak polaczenia z baza!/Brak takiej kategorii!<br>");
+                        out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorCategoryNotExists()+"<br>");
                 } else {
                     if (field.compareTo("pid") == 0) {
                         pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
@@ -83,7 +83,7 @@
                             p.printJSP(out);
                         }
                         else
-                            out.println("Brak polaczenia z baza!/Brak takiego podforum!<br>");
+                            out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorSubForumNotExists()+"<br>");
                         }
 
                 }
