@@ -8,6 +8,10 @@ import java.lang.*;
  * Klasa implementujaca placzenie z baza danych i wykonywanie zapytan SQL.
  */
 public class ConnectorDB {
+    /**
+     * Wyjatek na wewnetrzne potrzeby klasy ConnectDB rzucany przez metode connect(). 
+     */
+    class ConnectionException extends Exception{};
     
     private String Host;
     private String User;
@@ -40,6 +44,22 @@ public class ConnectorDB {
     }
     
     /**
+     * Metoda tworzaca polaczenie z baza danych
+     * @return Objekt klasy Connection bedacy uchwytem do polaczenia z baza.
+     */
+    private Connection connect() throws ConnectionException
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            return DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase,User,Pass);
+        }
+        catch (Exception e){
+            throw (ConnectionException)((new ConnectionException()).initCause(e));
+        }
+    }
+    
+    /**
      * Metoda wykonuje przekazane zapytanie i zwraca liste wierszy ktore zwieraja hashtable:
      * klucz:nazwa kolumny       wartosc: wartosc w kolumnie
      * Klucze i wartosci sa typu String
@@ -49,8 +69,7 @@ public class ConnectorDB {
     public ArrayList query(String q) {
         ArrayList pom=new ArrayList();
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase,User,Pass);
+            Connection con = this.connect();
             Statement select = con.createStatement();        
             ResultSet result = select.executeQuery(q);
             ResultSetMetaData rsmd = result.getMetaData();
@@ -78,7 +97,7 @@ public class ConnectorDB {
      **/
     public boolean dmlQuery(String q) {
         try{
-            Connection con = DriverManager.getConnection(Host,User,Pass);
+            Connection con = this.connect();
             Statement select = con.createStatement();
             int wynik = select.executeUpdate(q);
             con.close();
