@@ -47,7 +47,7 @@ CREATE TABLE `Bee_Users` (
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
   PRIMARY KEY  (`ID`),
-  CONSTRAINT `Bee_Users_ibfk_1` FOREIGN KEY (`Admin`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `Bee_Users_ibfk_1` FOREIGN KEY (`Admin`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `Bee_Users_ibfk_2` FOREIGN KEY (`Moderator`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
 
