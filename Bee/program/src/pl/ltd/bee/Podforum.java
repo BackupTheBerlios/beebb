@@ -44,23 +44,41 @@ public class Podforum {
         return Tytul;
     }
     
-    /** Wypisuje obiekt PodForum w postaci strony jsp
-     *
-     */
-    public String printJSPHeader() {
-        String s = "|<BR>|---- Podforum:   <a href=\"index.jsp?pid=" + ID + "\">" + Tytul + "</a><BR>";
-        return s;
-    }
     
-    /** Wypisuje obiekt PodForum w postaci strony jsp
-     *
+    /**
+     * Metoda wypisuje na strone glowna liste watkow
+     * @param strona strumien wyjsciowy
      */
-    public String printJSP() {
-        String s = "Podforum:   <a href=\"index.jsp?pid=" + ID + "\">" + Tytul + "</a><BR>";
+    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        printMainTableJSP(strona);
         for(int i=0;i<Watki.size();i++) {
             Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
-            s+= w.printJSPHeader();
+            w.printJSPHeader(strona);
         }
-        return s;
+        printMainTableCloseJSP(strona);
+    }
+    
+    
+    /**
+     * Metoda wypisuje na strone glowna tabele z watkami
+     * @param strona strumien wyjsciowy
+     */
+    private void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("<table width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
+        strona.println("<tr>");
+        strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Tematy&nbsp;</th>");
+        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Odpowiedzi&nbsp;</th>");
+        strona.println("<th width=\"80\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
+        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Wy¶wietleñ&nbsp;</th>");
+        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Ostatni post&nbsp;</th>");
+        strona.println("</tr>");
+    }
+    
+    /**
+     * Metoda wypisuje na stronie zamkniecie tabeli
+     * @param strona strumien wyjsciowy
+     */
+    private void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("</table>");
     }
 }

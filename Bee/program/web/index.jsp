@@ -78,8 +78,10 @@
                 } else {
                     if (field.compareTo("pid") == 0) {
                         pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
-                        if (p!=null)
-                            out.print(p.printJSP());
+                        if (p!=null) {
+                            
+                            p.printJSP(out);
+                        }
                         else
                             out.println("Brak polaczenia z baza!/Brak takiego podforum!<br>");
                         }
