@@ -46,7 +46,7 @@ public class DataBase {
     
     static final String PODFORUM_ID = "ID";
     static final String PODFORUM_TYTUL = "Tytul";
-
+    
     static final String FORUM_ID = "ID";
     static final String FORUM_NAZWA = "Nazwa";
     
@@ -58,7 +58,7 @@ public class DataBase {
     
     static final String PODFORA_WATKI_ID_PODFORUM = "ID_Podforum";
     static final String PODFORA_WATKI_ID_WATKU = "ID_Watku";
-
+    
     static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_Watku";
     static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_Wypowiedzi";
     
@@ -139,7 +139,7 @@ public class DataBase {
         if (podforum == null) return null;
         return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL));
     }
-
+    
     /**
      * Metoda zwaraca objekt Forum o podanym identyfikatorze
      * @param ID Identyfikator szukanego Forum
@@ -150,7 +150,7 @@ public class DataBase {
         if (forum == null) return null;
         return new Forum((String)forum.get(FORUM_ID),(String)forum.get(FORUM_NAZWA));
     }
-  
+    
     /**
      * Metoda zwaraca objekt Kategoria o podanym identyfikatorze
      * @param ID Identyfikator szukanej Kategorii
@@ -230,11 +230,11 @@ public class DataBase {
      * Metoda zwaraca objekt User o podanym identyfikatorze
      * @param ID Identyfikator szukanego uzytkownika
      */
-    public UserFactory getUser(int ID){
+    public User getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return new UserFactory((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
 }

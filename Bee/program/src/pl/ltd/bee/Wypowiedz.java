@@ -12,14 +12,22 @@ package pl.ltd.bee;
  */
 public class Wypowiedz {
     
-    /** Tworzy instancje klasy Wypowiedz 
-     @param ID identyfikator autora
-     @param ID_Autora identyfikator autora w bazie
-     @param Data data wypowiedzi
-     @param Tekst tresc wypowiedzi
+    private long ID;
+    private long ID_Autora;
+    private String Data;
+    private String Tekst;
+    
+    /** Tworzy instancje klasy Wypowiedz
+     * @param ID identyfikator autora
+     * @param ID_Autora identyfikator autora w bazie
+     * @param Data data wypowiedzi
+     * @param Tekst tresc wypowiedzi
      */
     public Wypowiedz(String ID,String ID_Autora,String Data, String Tekst) {
-        //narazie nic
+        this.ID=Long.decode(ID).longValue();
+        this.ID_Autora=Long.decode(ID_Autora).longValue();
+        this.Data=Data;
+        this.Tekst=Tekst;
     }
     
 }

@@ -35,4 +35,8 @@ public class Watek {
     public String getTemat() {
         return Temat;
     }
+    
+    public long getID() {
+        return ID;
+    }
 }

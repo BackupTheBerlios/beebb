@@ -12,12 +12,20 @@ package pl.ltd.bee;
  */
 public class Podforum {
     
+    private long ID;
+    private String Tytul;
+    
     /** Tworzy instancjê podforum
-     @param ID identyfikator podforum w bazie danych
-     @param Tytul tytul podforum
+     * @param ID identyfikator podforum w bazie danych
+     * @param Tytul tytul podforum
      */
     public Podforum(String ID, String Tytul) {
-        //TODO
+        this.ID=Long.decode(ID).longValue();
+        this.Tytul=Tytul;
+    }
+    
+    public long getID() {
+        return ID;
     }
     
 }
