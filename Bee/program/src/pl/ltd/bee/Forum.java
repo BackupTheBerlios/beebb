@@ -15,9 +15,11 @@ import java.util.*;
 public class Forum {
     
     private String Nazwa;
+    private long ID;
     
     /** Creates a new instance of Forum */
-    public Forum(String Nazwa) {
+    public Forum(String Forum_ID, String Nazwa) {
+        this.ID=Long.decode(Forum_ID).longValue();
         this.Nazwa=Nazwa;
     }
     

@@ -9,7 +9,7 @@ package pl.ltd.bee;
 import java.util.*;
 
 /**
- * Klasa wyższy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
+ * Klasa wy??szy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
  * @author wilk
  */
 public class DataBase {
@@ -25,6 +25,7 @@ public class DataBase {
     static String BEE_KATEGORIE = "Kategorie";
     static String BEE_FORUM = "Forum";
     
+    static String BEE_FORUM_KATEGORIE = "Forum_Kategorie";
     static String BEE_WATKI_WYPOWIEDZI = "Watki_Wypowiedzi";
     static String BEE_PODFORA_WATKI = "Podfora_Watki";
     static String BEE_KATEGORIE_PODFORA = "Kategorie_Podfora";
@@ -45,6 +46,9 @@ public class DataBase {
     
     static final String PODFORUM_ID = "ID";
     static final String PODFORUM_TYTUL = "Tytul";
+
+    static final String FORUM_ID = "ID";
+    static final String FORUM_NAZWA = "Nazwa";
     
     static final String KATEGORIA_ID = "ID";
     static final String KATEGORIA_TYTUL = "Tytul";
@@ -54,7 +58,7 @@ public class DataBase {
     
     static final String PODFORA_WATKI_ID_PODFORUM = "ID_Podforum";
     static final String PODFORA_WATKI_ID_WATKU = "ID_Watku";
-    // static ConnectorDB baza = new ConnectorDB();
+
     static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_Watku";
     static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_Wypowiedzi";
     
@@ -64,7 +68,10 @@ public class DataBase {
     static final String USER_ADMIN = "Admin";
     static final String USER_MODERATOR = "Moderator";
     
-  //  static ConnectorDB baza = new ConnectorDB();
+    static final String FORUM_KATEGORIE_ID_FORUM = "ID_Forum";
+    static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_Kategoria";
+    
+    static ConnectorDB baza = new ConnectorDB();
     
     
     /** Creates a new instance of DataBase */
@@ -82,6 +89,7 @@ public class DataBase {
         BEE_PODFORA = pref + "_" + BEE_PODFORA;
         BEE_KATEGORIE = pref + "_" + BEE_KATEGORIE;
         BEE_FORUM = pref + "_" + BEE_FORUM;
+        BEE_FORUM_KATEGORIE = pref + "_" + BEE_FORUM_KATEGORIE;
         BEE_WATKI_WYPOWIEDZI = pref + "_" + BEE_WATKI_WYPOWIEDZI;
         BEE_PODFORA_WATKI = pref + "_" + BEE_PODFORA_WATKI;
         BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA;
@@ -107,7 +115,7 @@ public class DataBase {
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
-        return new Watek(watek.get(WATEK_ID),watek.get(WATEK_ID_AUTORA),watek.get(WATEK_TEMAT),watek.get(WATEK_DATA));
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA));
     }
     
     /**
@@ -118,7 +126,7 @@ public class DataBase {
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Date i Tekst
         if (wypowiedz == null) return null;
-        return new Wypowiedz(wypowiedz.get(WYPOWIEDZ_ID),wypowiedz.get(WYPOWIEDZ_ID_AUTORA),wypowiedz.get(WYPOWIEDZ_DATA),wypowiedz.get(WYPOWIEDZ_TEKST));
+        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST));
     }
     
     /**
@@ -129,18 +137,45 @@ public class DataBase {
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (podforum == null) return null;
-        return new Podforum(podforum.get(PODFORUM_ID),podforum.get(PODFORUM_TYTUL));
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL));
     }
-    
+
+    /**
+     * Metoda zwaraca objekt Forum o podanym identyfikatorze
+     * @param ID Identyfikator szukanego Forum
+     */
+    public Forum getForum(int ID){
+        Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE " + FORUM_ID +"=" + ID);
+        //zakladam ze mam konstruktor ktory bierze ID i Tytul
+        if (forum == null) return null;
+        return new Forum((String)forum.get(FORUM_ID),(String)forum.get(FORUM_NAZWA));
+    }
+  
     /**
      * Metoda zwaraca objekt Kategoria o podanym identyfikatorze
      * @param ID Identyfikator szukanej Kategorii
      */
-    public Kategoria getKategorie(int ID){
+    public Kategoria getKategoria(int ID){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (kategoria == null) return null;
-        return new Kategoria(kategoria.get(KATEGORIA_ID),kategoria.get(KATEGORIA_TYTUL));
+        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL));
+    }
+    
+    /**
+     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Kategorii w podanym Forum
+     * @param forum Forum w ramach ktorego interesuja nas Kategorie
+     * @return ArrayList obiektow Integer
+     */
+    public ArrayList getKategorieForum(Forum forum) {
+        ArrayList wynik = new ArrayList();
+        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_FORUM_KATEGORIE + "WHERE " + FORUM_KATEGORIE_ID_FORUM + "=" + forum.getID());
+        for(int i=0;i<kategorie.size();i++) {
+            Hashtable kategoria = (Hashtable)kategorie.get(i);
+            int id = Integer.parseInt((String)kategoria.get(FORUM_KATEGORIE_ID_KATEGORIA));
+            wynik.add(new Integer(id));
+        }
+        return wynik;
     }
     
     /**
@@ -153,7 +188,7 @@ public class DataBase {
         ArrayList podfora = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + "WHERE " + WATKI_WYPOWIEDZI_ID_KATEGORII + "=" + kat.getID());
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
-            Integer id = Integer.parseInt(podforum.get(WATKI_WYPOWIEDZI_ID_PODFORUM));
+            int id = Integer.parseInt((String)podforum.get(WATKI_WYPOWIEDZI_ID_PODFORUM));
             wynik.add(new Integer(id));
         }
         return wynik;
@@ -169,7 +204,7 @@ public class DataBase {
         ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI + "WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + pod.getID());
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
-            Integer id = Integer.parseInt(watek.get(PODFORA_WATKI_ID_WATKU));
+            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
             wynik.add(new Integer(id));
         }
         return wynik;
@@ -185,7 +220,7 @@ public class DataBase {
         ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + "WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + wat.getID());
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
-            Integer id = Integer.parseInt(wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
+            int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
             wynik.add(new Integer(id));
         }
         return wynik;
@@ -195,11 +230,11 @@ public class DataBase {
      * Metoda zwaraca objekt User o podanym identyfikatorze
      * @param ID Identyfikator szukanego uzytkownika
      */
-    public User getUser(int ID){
+    public UserGen getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return new UserGen(user.get(USER_ID),user.get(USER_LOGIN),user.get(USER_HASLO),user.get(USER_ADMIN),user.get(USER_MODERATOR));
+        return new UserGen((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
 }
