@@ -16,6 +16,7 @@
     </head>
     <body>
         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+        <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
      <% if (!db_con.isConnected()) {
             try {
                 db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
@@ -25,24 +26,53 @@
                 }
             } %>
       
+            
+    <% Enumeration pom = request.getParameterNames();
+      String tytul="",opis="", id_kat="";
+    if (pom.hasMoreElements()) {
+           String field = (String) pom.nextElement();
+      if( (field.compareTo("id")==0) || (field.compareTo("tytul")==0) ||(field.compareTo("opis")==0) ) {     
+       tytul=request.getParameter("tytul");
+       opis=request.getParameter("opis");
+       id_kat=request.getParameter("id");
+      } 
+       else {
+         String id_k=request.getParameter("id_kat");  
+         for(int j=0; j<5; j++) {  
+            String t=request.getParameter("tytul"+j);
+            String o=request.getParameter("opis"+j);
+                 
+            if( t.compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum());
+              else
+                if ( db_con.czyPodforum(id_k, t) ) wiad.add(Messages.errorNamePodforum());
+                  else 
+                    if (db_con.insertPodforum(id_k, t, o) ) wiad.add(Messages.AddPodforum());
+                      else wiad.add(Messages.errorAddPodforum());
+                  
+            }%>
+              <jsp:forward page="./edycja_podforow.jsp"/>
+            <%
+        }     
+    }
+       %>
+            
        <br/> 
-       <p align="center">Kategoria: <%=request.getParameter("tytul")%> </p>
-       <p align="center">Opis: <%=request.getParameter("opis")%> </p>
+       <p align="center">Kategoria: <%=tytul%> </p>
+       <p align="center">Opis: <%=opis%> </p>
        <br/>
      
-    <form action="./podfora_dodaj.jsp" method="post">
+    <form action="./podfora_form.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="0">
        <caption> Dodawanie Podforów </caption>
        <tr> <th> Next </th> <th> Tytul </th> <th> Opis </th> </tr>
-       <%// for(int i=0;i<5;i++) { %>       
+       <%for(int i=0;i<5;i++) { %>       
       <tr> <td> <input type="button" name="plusik" value="+"/>  </td> 
-           <td> <input size="40" type="text" name="nazwa" value=""/> </td>
-           <td> <input size="40" type="text" name="opis" value=""/>  </td> 
+           <td> <input size="40" type="text" name="tytul<%=i%>" value=""/> </td>
+           <td> <input size="40" type="text" name="opis<%=i%>" value=""/>  </td> 
       </tr>
-        <input type="hidden" name="id_kat" value="<%=request.getParameter("id")%>"/>
-       <% //}%>
+       <%}%>
       </table>
-         
+         <input type="hidden" name="id_kat" value="<%=id_kat%>"/>
         <p align="center"> <input size="25" type="submit" size="30" value="Dodaj"/> </p>
      </form>
      
