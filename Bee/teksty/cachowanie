@@ -1,0 +1,59 @@
+
+Pomocne przy budowaniu serwisow wpolpracujacych z proxy
+
+1) Dla kazdego zasobu oddzielny i jeden URL
+
+2) Obrazki lub inne el rzadko zmieniane powinny miec odlegle punkty spr aktualnosci
+
+3) zasoby regularnie uaktualniane powinny miec odpowiednio ustawione expires
+    np: jesli mamy na forum strone ze statystykami z jednego dnia to nie ma sensu odswiezac jej za kazdym razem.
+
+4) Jesli zasob sie zmienil to trzeba zmienic jego nazwe
+    Trzeba uwazac, bo ta strona z odwolaniem do zasobu musi byc czesto odswierzana
+    
+5) Nie zmieniaj niepotrzebnie plikow
+
+6) uzywaj cookies tylko gdy trzeba
+
+7) minimalizuj korzystanie z ssl'a 
+
+8) przy projektowaniu podziel serwis na 
+    - materialy najczesciej uzywane
+    - materialy o duzej wielkosci (obrazki, muzyka itp)
+    
+Jak sa obslugiwane ciasteczka
+    - przekazywanie COOKIE bez zmiany 
+    - przekazywanie setcookie
+    - honorowane sa: expires, cache-control
+    
+ZALECENIA:
+
+- dobrze jest zapamieywac (w proxy) strone ktora zaczyna sesje 
+	- zwykle to jest strona ktora wyglada tak samo w przypadku wszystkich uzytkownikow
+
+SETCOOKIE dla pojedynczego uzytkownika nie powinno byc zapamietywanie, ale dla wielu tak
+np: mozna sobie wyobrazic ze ciasteczko bedzie przekazywac styl wyswietlania wtedy wielu userow ma takie samo
+
+jak sie zabezpieczac prze zapamietywaniem setcookie ?
+pisze sie CACHE-CONTROL: nocache="SetCookie"
+
+%%
+trzeba sie zabezpieczyc przed zapamietywaniem prywatnych dokumentow, wtedy sie pisze:
+cache-control: private	
+
+Jesli sie chce wymusic rewalidacje, to:
+    cache-control: must-revalidate, max-page=0
+    
+wymuszenie revalidacji (proxy)
+    cache-control: proxy-revalidate, max-page=0
+    
+mozna tez:
+    cache-control: max-age=0
+
+- nie mozna dopuscic aby posrednik HTTP/1.0 zapamietywal cookies, bo jak zapamieta to zrobi masakre
+
+squid zapamietuje set-cookie, ale odfiltrowuje je
+    nie obsluguje set-cookie2
+    
+www.minot.net/cacheability/
+
