@@ -193,6 +193,16 @@ CREATE TABLE `Bee_Forget_Passwd` (
   PRIMARY KEY (`Klucz`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z kluczami do zapomnianych hasel';
 
+--
+-- Tabela z kluczami do odblokowania konta nowego uzytkownika 
+--
+
+DROP TABLE IF EXISTS `Bee_New_User`;
+CREATE TABLE `Bee_New_User` (
+  `Klucz` varchar(20) NOT NULL default '',
+  `Login` varchar(100) NOT NULL default '',
+  PRIMARY KEY (`Klucz`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z kluczami do odblokowania konta nowego uzytkownika';
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
