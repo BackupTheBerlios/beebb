@@ -23,4 +23,7 @@ public class Forum {
         this.Nazwa=Nazwa;
     }
     
+    public long getID() {
+        return ID;
+    }
 }
