@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE element_glowny SYSTEM "config.dtd">
+<!DOCTYPE bee_configuration SYSTEM "config.dtd">
+<bee_configuration>
+<general>
+<url_forum>http://127.0.0.1:8080</url_forum>
+</general>
+<host>wilk.waw.pl</host>
+<user>bee</user>
+<password>bee</password>
+<database_name>Bee</database_name>
+<tables_prefix>Bee</tables_prefix>
+<database>
+</database>
+
+<behave>
+<guest_account>Guest</guest_account>
+<minimum_pass_length>5</minimum_pass_length>
+<new_user_mail_auth>true</new_user_mail_auth>
+</behave>
+
+<mailing>
+<smtp_server>127.0.0.1</smtp_server>
+<mail_from>bee@localhost</mail_from>
+<registration_subject>[BEE] Rejestracja</registration_subject>
+<registration_body>Właśnie założyłeś konto na forum Bee, poniżej znajduje się link w który należy kliknąć aby aktywować konto:
+</registration_body>
+<forget_subject>[BEE] Zapomniane hasło</forget_subject>
+<forget_body>Poniżej link do zmiany zapomnianego hasła:
+</forget_body>
+</mailing>
+</bee_configuration>
