@@ -60,6 +60,8 @@ public class DataBase {
     
     static final String BEE_FORGET_PASSWD_BASE = "Forget_Passwd";
     
+    static final String BEE_NEW_USER_BASE = "New_User";
+    
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
@@ -78,6 +80,9 @@ public class DataBase {
     static String BEE_MODERATORZY = "Moderatorzy";
     
     static String BEE_FORGET_PASSWD = "Forget_Passwd";
+    
+    static String BEE_NEW_USER = "New_User";
+    
     /**
      * Stala reprezentujaca nazwe pola w tabeli w bazie danych
      */
@@ -185,6 +190,7 @@ public class DataBase {
         BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA_BASE;
         BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY_BASE;
         BEE_FORGET_PASSWD = pref + "_" + BEE_FORGET_PASSWD_BASE;
+        BEE_NEW_USER = pref + "_" + BEE_NEW_USER_BASE;
     }
     
     /**
@@ -382,15 +388,23 @@ public class DataBase {
      * @param haslo niezakodowane haslo
      * @return zwraca czy insert sie powidl
      */
-    
     public boolean insertUser(String nick, String haslo, String imie, String nazwisko, String email, String gg, String jabber, String OstatnieLogowanie){
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','T','N','N')");
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','N','N','N')");
+    }
+    
+    
+    /** Ustawia uzytkownika jako aktywnego
+     * @param nick login uzytkownika
+     * @return T lub N w zaleznosci czy update sie powiodl
+     */
+    public boolean setAktywnyUser(String nick){
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='T' WHERE " + USER_LOGIN + "=" + nick );
     }
     
     /**
-     *     * Metoda zwaraca liste Userow z bazy
-     *     * @return ArrayList obiektow Hashatable
-     *     */
+     * Metoda zwaraca liste Userow z bazy
+     * @return ArrayList obiektow Hashatable
+     */
     public ArrayList getUsers() {
         ArrayList wynik = new ArrayList();
         wynik= baza.query("SELECT * FROM "+ BEE_USERS);
@@ -398,18 +412,16 @@ public class DataBase {
     }
     
     /**
-     *     * Metoda zmienia uprawnienia w bazie danych
-     *     * @param id id uzytkownika w bazie danych
-     *     * @param admin napis T lub N
-     *     * @param moderator napis T lub N
-     *     * @param aktywny napis T lub N
-     *    
-     *     */
+     * Metoda zmienia uprawnienia w bazie danych
+     * @param id id uzytkownika w bazie danych
+     * @param admin napis T lub N
+     * @param moderator napis T lub N
+     * @param aktywny napis T lub N
+     */
     public boolean zmienUpr(String id, String admin, String moderator, String aktywny){
         if ( moderator.compareTo("N")==0 )
             baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE ID_User="+id);
         return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
-        
     }
     
     
@@ -501,10 +513,32 @@ public class DataBase {
      */
     public boolean sprawdzKluczZapomnianeHaslo(String klucz){
         if(getObject("SELECT " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
-            else return false;
+        else return false;
     }
     
-     /**
+    
+    /**
+     * Metoda wstawia klucz do tabeli z nowymi uzytkownikami
+     * @param login login uzytkownika
+     * @param klucz losowo wygenerowany klucz
+     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     */
+    public boolean wstawNewUser(String login, String klucz){
+        return baza.dmlQuery("INSERT INTO " + BEE_NEW_USER + " VALUES ('"+ klucz +"', '"+ login + "')");
+    }
+    
+    
+    /**
+     * Metoda sprawdza czy istnieje klucz do aktywacji konta nowego uzytkownika w bazie danych
+     * @param klucz losowo wygenerowany klucz
+     * @return N lub T w zale¿no¶ci czy jest czy nie (T gdy klucza nie ma)
+     */
+    public boolean sprawdzKluczNewUser(String klucz){
+        if(getObject("SELECT " + BEE_NEW_USER + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
+        else return false;
+    }
+    
+    /**
      * Metoda zwaraca liste obiektow Podforum w podanej Kategorii
      * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Podforum
@@ -520,7 +554,7 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste obiektow Kategoria 
+     * Metoda zwaraca liste obiektow Kategoria
      * @return ArrayList obiektow Kategoria
      */
     public ArrayList getKategorie() {
@@ -532,22 +566,22 @@ public class DataBase {
         }
         return wynik;
     }
-   /**
+    /**
     * Metoda zmienia pole aktywna na N
     * @param String id kategorii
-    *@return boolean true jezeli update sie powiodl dalse wpp.
+     *@return boolean true jezeli update sie powiodl dalse wpp.
     */
     public boolean usunKategorie(String id){
-       return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
     }
     
-   /**
+    /**
     * Metoda zmienia pole aktywna na N
     * @param String id podforum
-    *@return boolean true jezeli update sie powiodl dalse wpp.
+     *@return boolean true jezeli update sie powiodl dalse wpp.
     */
     public boolean usunPodforum(String id){
-       return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywna='N' WHERE ID="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywna='N' WHERE ID="+id);
     }
     
 }

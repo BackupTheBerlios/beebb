@@ -1,6 +1,7 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.lang.*"%>
 <%@ page import="pl.ltd.bee.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,9 +62,19 @@
                 out.println(Messages.errorUserCreate());
                 else {
                     if (Config.NEW_USER_MAIL_AUTH) {
-                        out.println("Email z linkiem aktywacyjnym został wysłany.<BR><br><a href=../index.jsp>powrot</a><br>"); 
-                        SendMail.send(email,Config.REG_MAIL_SUBJECT,"Witaj "+ nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/reg/?id=12345677890");
+                       Random r = new Random();
+                       String numer = Long.toHexString(r.nextLong());
+                        while (!db_con.sprawdzKluczNewUser(numer))        
+                            numer = Long.toHexString(r.nextLong());
+                        if(!db_con.wstawNewUser(nickname,numer))
+                            out.print(Messages.errorDataBaseConnection());
+                        else {
+                            out.println("Email z linkiem aktywacyjnym został wysłany.<BR><br><a href=../index.jsp>powrot</a><br>"); 
+                            SendMail.send(email,Config.REG_MAIL_SUBJECT,"Witaj "+ nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser?id=" + numer);
+                        }
                     } else {
+                        if(!db_con.setAktywnyUser(nickname))
+                            out.println(Messages.errorUserCreate());
                         out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
                     }
                 }
