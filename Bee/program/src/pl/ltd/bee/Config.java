@@ -15,17 +15,21 @@ public class Config {
      * Zmienne ktore pozniej stana sie pewnie metodami,
      * ale teraz skupia w jednym miejscu konfiguracje.
      */
+
     public static String HOST = "192.168.3.174";//"wilk.waw.pl";
     public static String USER = "bee";
     public static String PASSWORD = "bee";
     public static String DATABASE = "Bee";
     public static String DATABASE_PREFIX = "Bee";
-    
+
     /** Adres www forum */
     public static String URL_FORUM = "http://127.0.0.1:8080";
     
     /** nazwa uzytkownika ktorego bedziemy traktowac jako goscia */
     public static String GUEST = "Guest";
+    
+    /** minimalna d³ugo¶æ has³a wpisanego przez u¿ytkownika */
+    public static int MIN_PASSWD = 5;
     
     /** stale potrzebne do wysylania poczty do uzytkownikow */
     public static String SMTP_SERVER = "127.0.0.1";
