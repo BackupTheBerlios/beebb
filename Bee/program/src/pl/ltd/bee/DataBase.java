@@ -89,6 +89,7 @@ public class DataBase {
     static final String FORUM_KATEGORIE_ID_FORUM = "ID_FORUM";
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_KATEGORIA";
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
+    boolean connected = false;
     ConnectorDB baza = new ConnectorDB("localhost","bee","bee","bee");
     
     
@@ -108,6 +109,13 @@ public class DataBase {
         this.connect(host, Db, user, pass);
     }
     
+    /** 
+     * metoda sprawdzajaca czy obiekt polaczyl sie z baza - a dokladniej czy dostal base,usera i haslo
+     */
+    public boolean isConnected() {
+        return connected;
+    }
+    
     /**
      * Metoda powoduje przylaczenie do bazy o podanych parametrach
      * @param host Adres serwera bazy danych
@@ -118,6 +126,7 @@ public class DataBase {
     public void connect(String host, String Db, String user, String pass)
     {
         baza = new ConnectorDB(host,Db,user,pass);
+        connected=true;
     }
     
     /**
@@ -285,6 +294,20 @@ public class DataBase {
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
  
+    
+    /**
+     * Metoda zwaraca objekt User o podanym identyfikatorze
+     * @param login Identyfikator (login) szukanego uzytkownika
+     * @return Zwraca obiekt User badz null w razie bledu.
+     */
+    public User getUser(String login){
+        Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" like \"" + login + "\"");
+        //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
+        if (user == null) return null;
+        return new User();
+                //UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+    }
+    
     /**
      * Metoda umieszcza uzytkownika w bazie danych
      * @param nick nick uzytkownika

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*"%>
+<%@ page language="java" import="java.lang.*"%>
 <%@ page language="java" import="pl.ltd.bee.*"%>
 <%@ page errorPage="true"%>
 <%@ page contentType="text/html"%>
@@ -6,11 +7,10 @@
 <html>
     <head><title>JSP Page</title></head>
     <body>
-    <%! pl.ltd.bee.DataBase db_con = null; %>
-    <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" /> 
+    <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
+    <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
         <%
-        if (db_con == null) {
-            db_con = new pl.ltd.bee.DataBase();
+        if (!db_con.isConnected()) {
             try {
             db_con.connect("localhost","Bee","pawel",".l");
             db_con.setTablePrefix("Bee");
@@ -25,6 +25,7 @@
             out.print("Zalogowany: " + auth.user() + " [ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
     
         out.print("<BR><BR><BR>");
+        
         Enumeration flds = request.getParameterNames();
         if (!flds.hasMoreElements()) {
            out.print("Nic");

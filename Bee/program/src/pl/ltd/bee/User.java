@@ -8,9 +8,9 @@ package pl.ltd.bee;
 
 /**
  *
- * @author pawel
+ * @author pawelb
  */
-public abstract class User {
+public class User {
     
     /** Creates a new instance of User */
     public User() {}
