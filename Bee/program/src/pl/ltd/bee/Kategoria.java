@@ -27,6 +27,21 @@ public class Kategoria {
     public Kategoria()
     { }
     
+     /** Tworzy instancje klasy Kategoria zawierajaca w Podfora
+     * obiekty klasy Podforum
+     * @param db obiekt klasy DataBase
+     * @param ID identyfikator kategorii w bazie danych
+     * @param Tytul nazwa kategorii
+     * @param Opis Opis kategorii
+     */
+
+    public Kategoria(DataBase db,String ID, String Tytul, String Opis) {
+        this.ID=Integer.decode(ID).intValue();
+        this.Tytul=Tytul;
+        this.Opis=Opis;
+        this.db=db;
+        this.Podfora=db.getPodforaKategoriiAll(ID);
+      }
     
     /** Tworzy nowa instancje klasy Kategoria
      * @param ID identyfikator kategorii w bazie danych
@@ -81,6 +96,14 @@ public class Kategoria {
     public String getWiad() {
         if (Wiad==null) return "";
         return Wiad;
+    }
+    
+     
+     /** Zwraca liste podforow
+     * @return zwraca ArralList bedacy lista podforow
+     */
+    public ArrayList getPodfora() {
+        return Podfora;
     }
     
     /** Ustawia opis kategori
