@@ -4,29 +4,29 @@
 
 <!-- sekcja glowna -->
 <!ELEMENT general (url_forum)>
-<!ELEMENT url_forum #PCDATA>
+<!ELEMENT url_forum (#PCDATA)>
 
 <!-- sekcja bazy danych -->
 <!ELEMENT database (host,user,password,database_name,tables_prefix)>
-<!ELEMENT host #PCDATA>
-<!ELEMENT user #PCDATA>
-<!ELEMENT password #PCDATA>
-<!ELEMENT database_name #PCDATA>
-<!ELEMENT tables_prefix #PCDATA>
+<!ELEMENT host (#PCDATA)>
+<!ELEMENT user (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+<!ELEMENT database_name (#PCDATA)>
+<!ELEMENT tables_prefix (#PCDATA)>
 
 <!-- sekcja zachowania sie forum -->
 <!ELEMENT behave (guest_account,minimum_pass_length,new_user_mail_auth)>
-<!ELEMENT guest_account #PCDATA>
-<!ELEMENT minimum_pass_length #PCDATA>
-<!ELEMENT new_user_mail_auth #PCDATA>
+<!ELEMENT guest_account (#PCDATA)>
+<!ELEMENT minimum_pass_length (#PCDATA)>
+<!ELEMENT new_user_mail_auth (#PCDATA)>
 
 <!-- sekcja konfiguracji poczty -->
 <!ELEMENT mailing (smtp_server,mail_from,registration_subject,registration_body,forget_subject,forget_body)>
-<!ELEMENT smtp_server #PCDATA>
-<!ELEMENT mail_from #PCDATA>
-<!ELEMENT registration_subject #PCDATA>
-<!ELEMENT registration_body #PCDATA>
-<!ELEMENT forget_subject #PCDATA>
-<!ELEMENT forget_body #PCDATA>
+<!ELEMENT smtp_server (#PCDATA)>
+<!ELEMENT mail_from (#PCDATA)>
+<!ELEMENT registration_subject (#PCDATA)>
+<!ELEMENT registration_body (#PCDATA)>
+<!ELEMENT forget_subject (#PCDATA)>
+<!ELEMENT forget_body (#PCDATA)>
 
 

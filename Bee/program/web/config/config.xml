@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE bee_configuration SYSTEM "config.dtd">
-<bee_configuration>
+<bee_configuration version="1.0">
 <general>
 <url_forum>http://127.0.0.1:8080</url_forum>
 </general>
+<database>
 <host>wilk.waw.pl</host>
 <user>bee</user>
 <password>bee</password>
 <database_name>Bee</database_name>
 <tables_prefix>Bee</tables_prefix>
-<database>
 </database>
 
 <behave>

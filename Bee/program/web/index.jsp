@@ -18,12 +18,20 @@
     </head>
     <body>
 
-   
-        <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
-        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
- 
-       <%
+    <a href="./Administracja/index.htm" target="main">Panel Administratora</A>
+    
+    <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
+    <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+    <jsp:useBean id="konfiguracja" scope="session" class="pl.ltd.bee.Config" />
 
+       <%
+       try{
+           konfiguracja.readConfig(application);
+       }
+       catch(Exception e) {
+           out.println(e);
+       }
+       
         if (!db_con.isConnected()) {
             try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
