@@ -339,7 +339,7 @@ public class DataBase {
      * @return zwraca czy insert sie powidl
      */
     public boolean insertUser(String nick, String imie, String nazwisko, String email, String gg, String jabber, String haslo){
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + UnixCrypt.crypt(haslo) + "\",'N','N')");
+       return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + UnixCrypt.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"' ,'N','N','T')");
     }
     
     /**
@@ -360,8 +360,10 @@ public class DataBase {
     * @param aktywny napis T lub N
     
     */
-    public boolean zmienUpr(int id, String admin, String moderator, String aktywny){
-        return true;
+    public boolean zmienUpr(String id, String admin, String moderator, String aktywny){
+        if ( moderator.compareTo("N")==0 )
+           baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE ID_User="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
     }
     
     
