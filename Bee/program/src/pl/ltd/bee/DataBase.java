@@ -71,7 +71,7 @@ public class DataBase {
     static final String FORUM_KATEGORIE_ID_FORUM = "ID_Forum";
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_Kategoria";
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
-    static ConnectorDB baza = new ConnectorDB("localhost","bee","bee");
+    ConnectorDB baza = new ConnectorDB("localhost","bee","bee");
     
     
     /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza bee:bee@localhost. */
@@ -84,7 +84,7 @@ public class DataBase {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public DataBase(String host, String user, String pass)
+    public void connect(String host, String user, String pass)
     {
         baza = new ConnectorDB(host,user,pass);
     }
@@ -123,7 +123,7 @@ public class DataBase {
      * @return Zwraca obiekt Watek badz null w razie bledu.
      */
     public Watek getWatek(int ID){
-        // baza.query("SELECT * FROM " + Bee_Watki + " WHERE ID=" + ID);
+        baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
