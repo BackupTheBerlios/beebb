@@ -19,7 +19,7 @@ public class RegisteredUser extends User {
     private String email;
     private String gg;
     private String jabber;
-    
+    private boolean aktywny;
     /** Tworzy obiekt RegisteredUser
      * @param ID identyfikator uzytkownika
      * @param haslo zakodowane haslo uzytkownika
@@ -29,7 +29,7 @@ public class RegisteredUser extends User {
      * @param gg numer gadu-gadu
      * @param jabber adres jabbera
      */
-    public RegisteredUser(int ID, String login, String haslo, String imie, String nazwisko, String email, String gg, String jabber) {
+    public RegisteredUser(int ID, String login, String haslo, String imie, String nazwisko, String email, String gg, String jabber,String aktywny) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
@@ -38,6 +38,8 @@ public class RegisteredUser extends User {
         this.email=email;
         this.gg=gg;
         this.jabber=jabber;
+        if (aktywny.compareTo("T")==0)
+        this.aktywny=true; else this.aktywny=false;
     }
     
     /** Sprawdza czy podane has³o (plain) zgadza siê

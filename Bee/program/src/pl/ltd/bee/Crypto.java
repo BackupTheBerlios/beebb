@@ -14,14 +14,14 @@ import pl.aislib.util.crypt.UnixCrypt;
  */
 public class Crypto {
     
-   
+    
     /** Szyfruje haslo
      * @param haslo haslo w plain tekst
      * @return zakodowane haslo
      */
     public static String crypt(String haslo) {
         return UnixCrypt.crypt(haslo);
-    } 
+    }
     
     
     /** Sprawdza czy zakodowane haslo (1 arg) jest takie same jak haslo w plain tekst (2 arg)
@@ -32,6 +32,6 @@ public class Crypto {
     public static boolean matches(String zakodhaslo, String plainhaslo) {
         return UnixCrypt.matches(zakodhaslo, plainhaslo);
     }
-        
+    
     
 }

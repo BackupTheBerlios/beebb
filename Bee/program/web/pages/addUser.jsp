@@ -44,10 +44,13 @@
             
             
             if (ok) {
-                if(!db_con.insertUser(nickname,haslo1,imie,nazwisko,email,gg,jabber))
+                if(!db_con.insertUser(nickname,haslo1,imie,nazwisko,email,gg,jabber,"1970-01-01 00:00:00"))
                 out.println("Dupa Blada<BR>");
                 else {
                     out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
+                    if (Config.NEW_USER_MAIL_AUTH) {
+                        
+                    }
                 }
             } else {
         %>

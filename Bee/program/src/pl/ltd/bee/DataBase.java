@@ -108,6 +108,12 @@ public class DataBase {
     static final String USER_ID = "ID";
     static final String USER_LOGIN = "LOGIN";
     static final String USER_HASLO = "HASLO";
+    static final String USER_IMIE = "IMIE";
+    static final String USER_NAZWISKO = "NAZWISKO";
+    static final String USER_EMAIL = "EMAIL";
+    static final String USER_GG = "GG";
+    static final String USER_JABBER = "JABBER";
+    static final String USER_AKTYWNY = "AKTYWNY";
     static final String USER_ADMIN = "ADMIN";
     static final String USER_MODERATOR = "MODERATOR";
     
@@ -325,7 +331,7 @@ public class DataBase {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
-        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),"imie","nazwisko","email","gg","jabber",(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
     
@@ -335,10 +341,9 @@ public class DataBase {
      * @return Zwraca obiekt User badz null w razie bledu.
      */
     public User getUser(String login) {
-        Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" like \"" + login + "\"");
-        //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
+        Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "'");
         if (user == null) return null;
-        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),"imie","nazwisko","email","gg","jabber",(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
     /**
@@ -353,8 +358,8 @@ public class DataBase {
      * @return zwraca czy insert sie powidl
      */
 
-    public boolean insertUser(String nick, String imie, String nazwisko, String email, String gg, String jabber, String haslo){
-       return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"' ,'N','N','T')");
+    public boolean insertUser(String nick, String haslo, String imie, String nazwisko, String email, String gg, String jabber, String OstatnieLogowanie){
+       return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','T','N','N')");
     }
     
     /**

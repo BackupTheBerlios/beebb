@@ -25,15 +25,15 @@ public class UserFactory {
      * @param User_Moderator czy uzytkownik jedt moderatorem
      * @return zwraca obiekt klasy dziedziczacej po User reprezentujacy danego uzytkownika
      */
-    public static User getUser(String User_ID, String User_Login, String User_Haslo,String User_Imie,String User_Nazwisko, String User_Email, String User_gg, String User_Jabber , String User_Admin, String User_Moderator) {
+    public static User getUser(String User_ID, String User_Login, String User_Haslo,String User_Imie,String User_Nazwisko, String User_Email, String User_gg, String User_Jabber, String User_Aktywny, String User_Admin, String User_Moderator) {
         int userID = Integer.decode(User_ID).intValue();
         if (User_Admin.compareTo("T")==0) {
-            return null;
+            
         }
         if (User_Moderator.compareTo("T")==0) {
             
         }
-        return new RegisteredUser(userID,User_Login,User_Haslo,User_Imie,User_Nazwisko,User_Email,User_gg,User_Jabber);
+        return new RegisteredUser(userID,User_Login,User_Haslo,User_Imie,User_Nazwisko,User_Email,User_gg,User_Jabber,User_Aktywny);
     }
     
 }
