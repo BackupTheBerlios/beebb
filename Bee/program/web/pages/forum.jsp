@@ -1,11 +1,8 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <html>
-    <head><title>JSP Page</title></head>
+    <head><title>Forum main page</title></head>
     <body>
-
-        <%-- <jsp:useBean id="beanInstanceName" scope="session" class="beanPackage.BeanClassName" /> --%>
-        <%-- <jsp:getProperty name="beanInstanceName"  property="propertyName" /> --%>
         forum<br>
     </body>
 </html>
