@@ -21,6 +21,7 @@ public class Kategoria {
     private DataBase db;
     
     private String Wiad;
+
     
     /** Konstruktor bezargumentowy
      */
@@ -69,12 +70,20 @@ public class Kategoria {
         return Tytul;
     }
     
+
     /** Zwraca opis kategori
      * @return zwraca string bedacy opisem kategori
      */
     public String getOpis() {
         if (Opis==null) return "";
         return Opis;
+    }
+    
+    /** Ustawia id kategori
+     * @param id String ustawianego id
+     */
+    public void setID(String id) {
+        this.ID=Integer.decode(id).intValue();
     }
     
     /** Ustawia opis kategori

@@ -21,6 +21,7 @@ public class Podforum {
     private DataBase db;
     
     private String Wiad;
+    private int id_kat;
     
     /** Konstruktor bezargumentowy */
     public Podforum() {}
@@ -56,6 +57,14 @@ public class Podforum {
     public long getID() {
         return ID;
     }
+    
+     /** Zwraca identyfikator kat
+     * @return zwraca long bedacy identyfikatorem podforum w bazie
+     */
+    public int getIdKat() {
+        return id_kat;
+    }
+    
     
     /** Metoda zwraca tytul podforum
      * @return String z tytulem podforum
@@ -101,6 +110,21 @@ public class Podforum {
      */
     public void setWiad(String w) {
         this.Wiad=w;
+    }
+    
+    /** Ustawia id podforum
+     * @param id String ustawianego opisu
+     */
+    public void setID(String id) {
+        this.ID=Integer.decode(id).intValue();
+    }
+    
+       
+    /** Ustawia id kat
+     * @param id String ustawianego id_kat
+     */
+    public void setIdKat(String id) {
+        this.id_kat=Integer.decode(id).intValue();
     }
     
     

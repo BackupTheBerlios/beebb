@@ -34,13 +34,13 @@
       <table align="center" cellpadding="2" cellspacing="1" border="0">
        <caption> Dodawanie Podforów </caption>
        <tr> <th> Next </th> <th> Tytul </th> <th> Opis </th> </tr>
-       <% for(int i=0;i<5;i++) { %>       
+       <%// for(int i=0;i<5;i++) { %>       
       <tr> <td> <input type="button" name="plusik" value="+"/>  </td> 
-           <td> <input size="40" type="text" name="nazwa<%=i%>" value=""/> </td>
-           <td> <input size="40" type="text" name="opis<%=i%>" value=""/>  </td> 
+           <td> <input size="40" type="text" name="nazwa" value=""/> </td>
+           <td> <input size="40" type="text" name="opis" value=""/>  </td> 
       </tr>
-        <input type="hidden" name="id_kat<%=i%>" value="<%=request.getParameter("id")%>"/>
-       <% }%>
+        <input type="hidden" name="id_kat" value="<%=request.getParameter("id")%>"/>
+       <% //}%>
       </table>
          
         <p align="center"> <input size="25" type="submit" size="30" value="Dodaj"/> </p>

@@ -1,10 +1,19 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
-<%@ page language="java" import="java.util.*"%>
-<%@ page language="java" import="java.lang.*"%>
-<%@ page language="java" import="pl.ltd.bee.*"%>
-<html>
-       <%! 
+<%@ page import="java.util.*"%>
+<%@ page import="pl.ltd.bee.*"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Style-Type" content="text/css"/>
+        <meta name="Copyright" content="BeeBB Group &copy; 2005" />
+        <meta name="Author" content="BeeBB Group" />
+        <meta name="description" content="??" />
+        <meta name="keywords" content="??" />
+        <title>BeeBB :: Dane usera</title>
+        <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
+         <%! 
           String dajDana(String param)
             {
             if (param.compareTo("null") == 0) return "Brak danych";
@@ -16,8 +25,7 @@
              return false;
            }
          %>
-  
-    <head><title>Dane Usera</title></head>
+    </head>
     <body>
         <font size="6">DANE USERA    </font>
         <A href="uprawnienia.jsp" target="prawa">   Powrot   </A>

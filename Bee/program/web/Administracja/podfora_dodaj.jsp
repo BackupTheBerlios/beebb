@@ -7,9 +7,9 @@
      <jsp:useBean id="pf" scope="request" class="pl.ltd.bee.Podforum" />
 
      <%
-       String tytul=request.getParameter("nazwa0");
-       String opis=request.getParameter("opis0");
-       String id_kat=request.getParameter("id_kat0");
+       String tytul=request.getParameter("nazwa");
+       String opis=request.getParameter("opis");
+       String id_kat=request.getParameter("id_kat");
        
        pf.setNazwa(tytul);
        pf.setOpis(opis);

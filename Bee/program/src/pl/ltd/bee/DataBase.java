@@ -655,6 +655,42 @@ public class DataBase {
     public boolean usunKluczNewUser(String klucz){
         return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");
     }
+      /**
+     * Metoda sprawdz czy kategoria o podanym tytult juz istnieje i czy ma inny id
+     * @param tytul tytul kategorii
+     * @param id kategorii
+     * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
+     */
+    public boolean czyKategoriaInna(String tytul, String id){
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "' and ID<>"+id);
+        if (kategoria==null) return false;
+        return true;
+    }
+    
+   /**
+    * Metoda zmienia tytul i opis kategorii
+    * @param String id kategorii
+    * @param String tytul kategorii
+    * @param String opis kategorii
+    * @return boolean true jezeli update sie powiodl dalse wpp.
+    */
+    public boolean updateKategoria(String id, String tytul, String opis ){
+      return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Tytul='"+tytul+"' , Opis='"+opis+"' WHERE ID="+id);
+   
+    }
+    
+  /**
+    * Metoda zmienia tytul i opis podforum
+    * @param String id kategorii
+    * @param String tytul kategorii
+    * @param String opis kategorii
+    * @return boolean true jezeli update sie powiodl dalse wpp.
+    */
+    public boolean updatePodforum(String id, String id_kat, String tytul, String opis ){
+        baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET ID_Kategoria="+id_kat+" WHERE ID_Podforum="+id);
+      return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Tytul='"+tytul+"' , Opis='"+opis+"' WHERE ID="+id);
+    }
+    
     
 }
 
