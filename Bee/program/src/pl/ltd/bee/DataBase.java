@@ -13,7 +13,24 @@ import java.util.*;
  * @author wilk
  */
 public class DataBase {
+
+   /**
+     * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
+     */
+    static final String BEE_USERS_BASE = "Users";
     
+    static final String BEE_WATKI_BASE = "Watki";
+    static final String BEE_WYPOWIEDZI_BASE = "Wypowiedzi";
+    static final String BEE_PODFORA_BASE = "Podfora";
+    static final String BEE_KATEGORIE_BASE = "Kategorie";
+    static final String BEE_FORUM_BASE = "Forum";
+    
+    static final String BEE_FORUM_KATEGORIE_BASE = "Forum_Kategorie";
+    static final String BEE_WATKI_WYPOWIEDZI_BASE = "Watki_Wypowiedzi";
+    static final String BEE_PODFORA_WATKI_BASE = "Podfora_Watki";
+    static final String BEE_KATEGORIE_PODFORA_BASE = "Kategorie_Podfora";
+    static final String BEE_MODERATORZY_BASE = "Moderatorzy";
+
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
@@ -107,17 +124,17 @@ public class DataBase {
      * @param pref - string reprezentujacy prefix
      */
     public void setTablePrefix(String pref) {
-        BEE_USERS = pref + "_" + BEE_USERS;
-        BEE_WATKI = pref + "_" + BEE_WATKI;
-        BEE_WYPOWIEDZI = pref + "_" + BEE_WYPOWIEDZI;
-        BEE_PODFORA = pref + "_" + BEE_PODFORA;
-        BEE_KATEGORIE = pref + "_" + BEE_KATEGORIE;
-        BEE_FORUM = pref + "_" + BEE_FORUM;
-        BEE_FORUM_KATEGORIE = pref + "_" + BEE_FORUM_KATEGORIE;
-        BEE_WATKI_WYPOWIEDZI = pref + "_" + BEE_WATKI_WYPOWIEDZI;
-        BEE_PODFORA_WATKI = pref + "_" + BEE_PODFORA_WATKI;
-        BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA;
-        BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY;
+        BEE_USERS = pref + "_" + BEE_USERS_BASE;
+        BEE_WATKI = pref + "_" + BEE_WATKI_BASE;
+        BEE_WYPOWIEDZI = pref + "_" + BEE_WYPOWIEDZI_BASE;
+        BEE_PODFORA = pref + "_" + BEE_PODFORA_BASE;
+        BEE_KATEGORIE = pref + "_" + BEE_KATEGORIE_BASE;
+        BEE_FORUM = pref + "_" + BEE_FORUM_BASE;
+        BEE_FORUM_KATEGORIE = pref + "_" + BEE_FORUM_KATEGORIE_BASE;
+        BEE_WATKI_WYPOWIEDZI = pref + "_" + BEE_WATKI_WYPOWIEDZI_BASE;
+        BEE_PODFORA_WATKI = pref + "_" + BEE_PODFORA_WATKI_BASE;
+        BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA_BASE;
+        BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY_BASE;
     }
     
     /**
