@@ -4,14 +4,6 @@
 */
 
 
-function UpperResize()
-{
-	ramki = frames;
-	//if (frames[1].page
-	if (frames[1].location.pathname.indexOf("watek.html",0) != -1 )
-		alert("Witaj");
-}
-
 function funOnResize(ile_znakow)
 {
 	//	ile_znakow = [691,691,691,691,691,691,691,691,691,691,691];
@@ -29,11 +21,21 @@ function funOnResize(ile_znakow)
 				k++;
 			}
 		}
+	wysokosc_wszystkich = 0;		
 	for(i=0;i<ramki.length;i++)
 		{
 			dlugosc = ile_znakow[i] * textWidth;
 			miesci_sie = (wypowiedzi[i].offsetWidth  / textWidth) * 10;
 			ile_wierszy = (dlugosc / miesci_sie) + 1;
 			wypowiedzi[i].height = ile_wierszy * textHeight;
+			wysokosc_wszystkich += wypowiedzi[i].height; 
 		}
+		
+	//No to teraz poprawa zewnetrznej ramki, to juz nie sa przelewki :D
+	if (top != window) //zabezpieczenie jesli nie jestesmy potomkiem
+	{
+		top.document.getElementById('frameTresc').height = document.getElementById('tableWatek').clientHeight +50;
+		top.document.getElementById('cellTresc').height = document.getElementById('tableWatek').clientHeight +60;
+	}
+	
 }
