@@ -125,6 +125,10 @@ public class DataBase {
     
     static final String FORUM_KATEGORIE_ID_FORUM = "ID_FORUM";
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_KATEGORIA";
+    
+    static final String FORGET_PASSWD_KLUCZ = "KLUCZ";
+    static final String FORGET_PASSWD_EMAIL = "EMAIL";
+    
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     boolean connected = false;
     ConnectorDB baza = new ConnectorDB("localhost","Bee","bee","bee");
@@ -487,7 +491,17 @@ public class DataBase {
      * @return T lub N w zale¿no¶ci czy insert siê powiód³
      */
     public boolean wstawZapomnianeHaslo(String email, String klucz){
-        return baza.dmlQuery("INSERT INTO  Bee_Forget_Passwd VALUES ('"+ klucz +"', '"+ email + "')");
+        return baza.dmlQuery("INSERT INTO " + BEE_FORGET_PASSWD + " VALUES ('"+ klucz +"', '"+ email + "')");
+    }
+    
+    /**
+     * Metoda sprawdza czy istnieje klucz do zapomnianego has³a w bazie danych
+     * @param klucz losowo wygenerowany klucz
+     * @return N lub T w zale¿no¶ci czy jest czy nie (T gdy klucza nie ma)
+     */
+    public boolean sprawdzKluczZapomnianeHaslo(String klucz){
+        if(getObject("SELECT " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
+            else return false;
     }
     
 }

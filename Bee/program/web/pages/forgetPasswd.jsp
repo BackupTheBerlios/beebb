@@ -35,10 +35,14 @@
             String uzytkownik=request.getParameter("user");
             String email=request.getParameter("email");
             if (uzytkownik!=null && email!=null) {
-                Random r = new Random();
-                String numer = Long.toHexString(r.nextLong());
                 
                 if (db_con.getUser(uzytkownik,email)!=null) {
+                    Random r = new Random();
+
+                    String numer = Long.toHexString(r.nextLong());
+                    while (!db_con.sprawdzKluczZapomnianeHaslo(numer))        
+                        numer = Long.toHexString(r.nextLong());
+    
                     if (!db_con.wstawZapomnianeHaslo(email,numer)) 
                         out.print(Messages.errorDataBaseConnection());
                     else
