@@ -8,8 +8,10 @@
         <jsp:useBean id="lista" scope="page" class="java.util.ArrayList" />
         <jsp:useBean id="lista2" scope="page" class="java.util.ArrayList" />
         <jsp:useBean id="kat" scope="request" class="pl.ltd.bee.Kategoria" />
-        <jsp:useBean id="k" scope="page" class="pl.ltd.bee.Kategoria" />
+        <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
+        <jsp:useBean id="kkk" scope="page" class="pl.ltd.bee.Kategoria" />
         <jsp:useBean id="pf" scope="request" class="pl.ltd.bee.Podforum" />
+        <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -21,20 +23,15 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
-      <% Enumeration fl = request.getParameterNames();
-        if (fl.hasMoreElements()) { 
-           String f = (String) fl.nextElement();
-           if( (f.compareTo("usun_kat")==0)||(f.compareTo("usun_pod")==0) )
-           {   %>
+
         <script LANGUAGE="JavaScript">
         <!--
            function Info()
-                    {if (!confirm("Czy na 100% sie zastanowiles co chcesz zrobic"))
+                    {if (!confirm("Czy na 100% sie zastanowiles co chcesz zrobic?"))
                     history.go(-1);return " "}
-          document.writeln(Info())
+       
         <!--End-->
        </script>
-       <%} } %>
     </head>
     
     <body> 
@@ -49,9 +46,9 @@
             }
         } %>
       <br/>
-      <% Enumeration flds = request.getParameterNames();
-        if (flds.hasMoreElements()) {
-           String field = (String) flds.nextElement();
+      <% Enumeration pom = request.getParameterNames();
+        if (pom.hasMoreElements()) {
+           String field = (String) pom.nextElement();
            if(field.compareTo("usun_kat")==0 )
            {
              String nr=request.getParameter("usun_kat");
@@ -77,7 +74,15 @@
            }
         }
       %> 
-    
+      
+     <p align="center"> 
+      <% if ( k.getWiad().compareTo("ok") == 0 ) { %>
+       <font color="blue"> Kategoria została zmieniona </font>
+       <% } if ( k.getWiad().compareTo("ok") != 0 ) { %>
+       <font color="red"> <%= kat.getWiad() %> </font>  
+       <% } %>
+     </p> 
+     
      <p align="center"> 
       <% if ( kat.getWiad().compareTo("ok") == 0 ) { %>
        <font color="blue"> Kategoria została dodana </font>
@@ -94,46 +99,61 @@
        <% } %>
      </p> 
      
+      <p align="center"> 
+      <% if ( p.getWiad().compareTo("ok") == 0 ) { %>
+       <font color="blue"> Podforum zostało zmienione </font>
+       <% } else  {%>   
+       <font color="red"> <%= p.getWiad() %> </font>  
+       <% } %>
+     </p> 
+       
+     
+     
        <br/>
      <% lista=db_con.getKategorie(); %>  
       <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
        <caption> <font size="5" style="bold">TABELA KATEGORII </font> </caption>
        <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th> <th>Edycja</th> <th>Usun</th> <th>Dodaj</th> </tr>
        <% for(int i=0; i<lista.size(); i++)
-            { k=(Kategoria) lista.get(i);
-              lista2 = k.getPodfora();  
-         %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= i+1 %>  </td> <td> <%=k.getNazwa() %> </td> <td><%=k.getOpis() %> </td> 
-               <td><form action="" method="post">
-                     <input type="hidden" value="<%= k.getID() %>"/>
+            { kkk=(Kategoria) lista.get(i);
+              lista2 = kkk.getPodfora();  
+         %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
+               <td><form action="./edycja_kat.jsp" method="post">
+                     <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
+                     <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
+                     <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
                      <input align="center" size="15"  type="submit" value="EDYTUJ"/>
                    </form> 
                </td> 
                <td><form action="./edycja_podforow.jsp" method="post">
-                     <input type="hidden" name="usun_kat" value="<%= k.getID() %>"/>
+                     <input type="hidden" name="usun_kat" value="<%= kkk.getID() %>"/>
                      <input  align="center" size="15"  type="submit" value="USUN"/>
                    </form> 
                </td> 
                 <td><form action="./podfora_form.jsp" method="post">
-                     <input name="id" type="hidden" value="<%= k.getID() %>"/>
-                     <input name="tytul" type="hidden" value="<%= k.getNazwa() %>"/>
-                     <input name="opis" type="hidden" value="<%= k.getOpis() %>"/>
+                     <input name="id" type="hidden" value="<%= kkk.getID() %>"/>
+                     <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
+                     <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
                      <input align="center" size="15"  type="submit" value="DODAJ"/>
                    </form> 
                 </td>
           </tr>
-          <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> Podfora kategorii: <%=k.getNazwa() %> </td></tr>
+          <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> Podfora kategorii: <%=kkk.getNazwa() %> </td></tr>
          <%     
           for(int j=0; j<lista2.size(); j++)
             { podf =(Podforum) lista2.get(j);
-         %><tr  style="" bgcolor="goldenrod"> <td> </td><td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
-                <td><form action="" method="post">
-                     <input type="hidden" value="<%= podf.getID() %>"/>
-                     <input align="center" size="15"  type="submit" value="EDYTUJ"/>
+         %><tr bgcolor="goldenrod"> <td> </td><td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
+                <td><form action="./edycja_pod.jsp" method="post">
+                     <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
+                     <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
+                     <input name="tytul"  type="hidden"  value="<%= podf.getTytul() %>"/>
+                     <input name="opis"   type="hidden"  value="<%= podf.getOpis() %>"/>
+                     <input align="center" size="20"  type="submit" value="EDYTUJ"/>
                    </form> 
                 </td> 
                 <td><form  action="./edycja_podforow.jsp" method="post">
                      <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
-                     <input align="center" size="15"  type="submit" value="USUN"/>
+                     <input align="center" size="20"  type="submit" value="USUN"/>
                    </form> 
                 </td> 
                 <td></td>
