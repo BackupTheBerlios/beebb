@@ -58,9 +58,9 @@ public class Config {
      * ale teraz skupia w jednym miejscu konfiguracje.
      * Te zmienne nie powinny byc static, bo kazda z instancji Config dba tylko o swoje zmienne
      */
-    public static String HOST = "wilk.waw.pl";
-    public static String USER = "bee";
-    public static String PASSWORD = "bee";
+    public static String HOST = "127.0.0.1";
+    public static String USER = "pawel";
+    public static String PASSWORD = ".l";
     public static String DATABASE = "Bee";
     public static String DATABASE_PREFIX = "Bee";
     
@@ -70,7 +70,7 @@ public class Config {
     /** nazwa uzytkownika ktorego bedziemy traktowac jako goscia */
     public static String GUEST = "Guest";
     
-    /** minimalna d³ugo¶æ has³a wpisanego przez u¿ytkownika */
+    /** minimalna dï¿½ugoï¿½ï¿½ hasï¿½a wpisanego przez uï¿½ytkownika */
     public static int MIN_PASSWD = 5;
     
     /** stale potrzebne do wysylania poczty do uzytkownikow */
@@ -80,11 +80,11 @@ public class Config {
     /** rejestracja uzytkownika */
     public static boolean NEW_USER_MAIL_AUTH = true;
     public static String REG_MAIL_SUBJECT = "[BEE] Rejestracja";
-    public static String REG_MAIL_BODY = "W³a¶nie za³o¿y³e¶ konto na forum Bee, poni¿ej znajduje siê link w który nale¿y klikn±æ aby aktywowaæ konto: \n";
+    public static String REG_MAIL_BODY = "WÅ‚aÅ›nie zaÅ‚oÅ¼yÅ‚eÅ› konto na forum Bee, poniÅ¼ej znajduje siÄ™ link w ktÃ³ry naleÅ¼y kliknÄ…Ä‡ aby aktywowaÄ‡ konto: \n";
 
     /** zapomniane haslo */
-    public static String FORGET_MAIL_SUBJECT = "[BEE] Zapomniane has³o";
-    public static String FORGET_MAIL_BODY = "Poni¿ej link do zmiany zapomnianego has³a: \n";
+    public static String FORGET_MAIL_SUBJECT = "[BEE] Zapomniane hasÅ‚o";
+    public static String FORGET_MAIL_BODY = "PoniÅ¼ej link do zmiany zapomnianego hasÅ‚a: \n";
 
     /**    
      * Klasa odpowiedzialna za przetworzenie dokumnetu XML

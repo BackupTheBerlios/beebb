@@ -29,14 +29,14 @@ public class Messages {
      * @return String z komunikatem o braku polaczenia z baza danych
      */
     public static String errorDataBaseConnection(){
-        return "<p class=\"error\">B³±d po³±czenia z baz± danych!</p>";}
+        return "<p class=\"error\">BÅ‚Ä…d poÅ‚Ä…czenia z bazÄ… danych!</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze uzytkownik nie moze zostac stworzony
      * @return String z komunikatem o tym ze uzytkownik nie moze zostac stworzony
      */
     public static String errorUserCreate(){
-        return "<p class=\"error\">Nie mo¿na dodaæ u¿ytkownika - skontaktuj siê z administratorem forum</p>";}
+        return "<p class=\"error\">Nie moÅ¼na dodaÄ‡ uÅ¼ytkownika - skontaktuj siÄ™ z administratorem forum</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze podany uzytkownik juz istnieje
@@ -44,7 +44,7 @@ public class Messages {
      * @return String z komunikatem o tym ze podany uzytkownik juz istnieje
      */
     public static String errorUserExists(String nick){
-        return "<p class=\"error\">U¿ytkownik " + nick + " ju¿ istnieje!</p>";}
+        return "<p class=\"error\">UÅ¼ytkownik " + nick + " juÅ¼ istnieje!</p>";}
     
     
     /**
@@ -68,21 +68,21 @@ public class Messages {
      * @return String z komunikatem o tym ze haslo jest za krotkie
      */
     public static String errorPassToShort(int length){
-        return "<p class=\"error\">Has³o musi mieæ przynajmniej " + length + " znaków</p>";}
+        return "<p class=\"error\">HasÅ‚o musi mieÄ‡ przynajmniej " + length + " znakÃ³w</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze hasla nie sa identyczne
      * @return String z komunikatem o tym ze hasla nie sa identyczne
      */
     public static String errorPassNotMatch(){
-        return "<font class=\"error\">Has³a siê nie zgadzaj±</p>";}
+        return "<font class=\"error\">HasÅ‚a siÄ™ nie zgadzajÄ…</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze bledzie logowania
      * @return String z komunikatem o bledzie logowania
      */
     public static String errorBadUserOrPass(){
-        return "<p class=\"error\">B³êdny u¿ytkownik lub has³o!</p>";}
+        return "<p class=\"error\">BÅ‚Ä™dny uÅ¼ytkownik lub hasÅ‚o!</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu nieokreslonego
@@ -96,7 +96,7 @@ public class Messages {
      * @return String z komunikatem o nie istnieniu watku
      */
     public static String errorThreadNotExists(){
-        return "<p class=\"error\">Brak takiego watku!</p>";    }
+        return "<p class=\"error\">Brak takiego wÄ…tku!</p>";    }
     
     /**
      * Metoda dostarcza komunikat o nie istnieniu kategorii
@@ -117,26 +117,26 @@ public class Messages {
      * @return String z komunikatem o bledzie odczytu pliku konfiguracyjnego
      */
     public static String errorXMLRead(){
-        return "<p class=\"error\">B³±d odczytu pliku konfiguracyjnego.</p>";}
+        return "<p class=\"error\">BÅ‚Ä…d odczytu pliku konfiguracyjnego.</p>";}
     
     /**
      * Metoda dostarcza komunikat o bledzie zapisu pliku konfiguracyjnego
      * @return String z komunikatem o bledzie zapisu pliku konfiguracyjnego
      */
     public static String errorXMLWrite(){
-        return "<p class=\"error\">B³±d zapisu pliku konfiguracyjnego.</p>";}
+        return "<p class=\"error\">BÅ‚Ä…d zapisu pliku konfiguracyjnego.</p>";}
     
     /**
      * Metoda dostarcza komunikat o bledzie klucza nowego uzytkownika
      * @return String z komunikatem o bledzie klucza nowego uzytkownika
      */
     public static String errorKeyNewUser(){
-        return "<p class=\"error\">B³êdny klucz.</p>";}
+        return "<p class=\"error\">BÅ‚Ä™dny klucz.</p>";}
     
     /**
      * Metoda dostarcza komunikat o bledzie zmiany hasla
      * @return String z komunikatem o bledzie zmiany hasla
      */
     public static String errorChangePasswd(){
-        return "<p class=\"error\">Nie mo¿na zmieniæ has³a, skontaktuj siê z administratorem forum.</p>";}
+        return "<p class=\"error\">Nie moÅ¼na zmieniÄ‡ hasÅ‚a, skontaktuj siÄ™ z administratorem forum.</p>";}
 }
