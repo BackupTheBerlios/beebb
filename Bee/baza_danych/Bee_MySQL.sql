@@ -13,6 +13,17 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 --
+-- Table structure for table `Bee_True_False`
+--
+
+DROP TABLE IF EXISTS `Bee_True_False`;
+CREATE TABLE `Bee_True_False` (
+  `Var` char(1) NOT NULL,
+  PRIMARY KEY (`Var`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wartosciami "T" lub "N". Sztuczny CHECK.';
+
+
+--
 -- Table structure for table `Bee_Forum`
 --
 
@@ -36,8 +47,8 @@ CREATE TABLE `Bee_Users` (
   `Admin` char(1) NOT NULL default 'N',
   `Moderator` char(1) NOT NULL default 'N',
   PRIMARY KEY  (`ID`),
-  CHECK ((`Admin` = 'T') OR (`Admin` = 'N')),
-  CHECK ((`Moderator` = 'T') OR (`Moderator` = 'N'))
+  CONSTRAINT `Bee_Users_ibfk_1` FOREIGN KEY (`Admin`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `Bee_Users_ibfk_2` FOREIGN KEY (`Moderator`) REFERENCES `Bee_True_False` (`Var`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
 
 
