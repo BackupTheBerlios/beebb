@@ -7,6 +7,7 @@
 package pl.ltd.bee;
 
 import java.util.*;
+import pl.aislib.util.crypt.UnixCrypt;
 
 /**
  * Klasa wyzszy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
@@ -283,5 +284,21 @@ public class DataBase {
         if (user == null) return null;
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
+ 
+    /**
+     * Metoda umieszcza uzytkownika w bazie danych
+     * @param nick nick uzytkownika
+     * @param imie imie uzytkownika
+     * @param nazwisko nazwisko uzytkownika
+     * @param email adres emailowy uzytkownika
+     * @param gg numer gadugadu
+     * @param jabber adres konta jabbera uzytkownika
+     * @param haslo niezakodowane haslo
+     * @return zwraca czy insert sie powidl
+     */
+    public boolean insertUser(String nick, String imie, String nazwisko, String email, String gg, String jabber, String haslo){
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + UnixCrypt.crypt(haslo) + "\",'N','N')");
+    }
+    
     
 }
