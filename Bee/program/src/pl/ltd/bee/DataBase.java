@@ -9,7 +9,7 @@ package pl.ltd.bee;
 import java.util.*;
 
 /**
- * Klasa wy??szy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
+ * Klasa wyzszy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
  * @author wilk
  */
 public class DataBase {
@@ -35,43 +35,43 @@ public class DataBase {
      * Stala reprezentujaca nazwe pola w tabeli w bazie danych
      */
     static final String WATEK_ID = "ID";
-    static final String WATEK_ID_AUTORA = "ID_Autora";
-    static final String WATEK_TEMAT = "Temat";
-    static final String WATEK_DATA = "Data";
+    static final String WATEK_ID_AUTORA = "ID_AUTORA";
+    static final String WATEK_TEMAT = "TEMAT";
+    static final String WATEK_DATA = "DATA";
     
     static final String WYPOWIEDZ_ID = "ID";
-    static final String WYPOWIEDZ_ID_AUTORA = "ID_Autora";
-    static final String WYPOWIEDZ_DATA = "Data";
-    static final String WYPOWIEDZ_TEKST = "Tekst";
+    static final String WYPOWIEDZ_ID_AUTORA = "ID_AUTORA";
+    static final String WYPOWIEDZ_DATA = "DATA";
+    static final String WYPOWIEDZ_TEKST = "TEKST";
     
     static final String PODFORUM_ID = "ID";
-    static final String PODFORUM_TYTUL = "Tytul";
+    static final String PODFORUM_TYTUL = "TYTUL";
     
     static final String FORUM_ID = "ID";
-    static final String FORUM_NAZWA = "Nazwa";
+    static final String FORUM_NAZWA = "NAZWA";
     
     static final String KATEGORIA_ID = "ID";
-    static final String KATEGORIA_TYTUL = "Tytul";
+    static final String KATEGORIA_TYTUL = "TYTUL";
     
-    static final String WATKI_WYPOWIEDZI_ID_KATEGORII = "ID_Kategoria";
-    static final String WATKI_WYPOWIEDZI_ID_PODFORUM = "ID_Podforum";
+    static final String WATKI_WYPOWIEDZI_ID_KATEGORII = "ID_KATEGORIA";
+    static final String WATKI_WYPOWIEDZI_ID_PODFORUM = "ID_PODFORUM";
     
-    static final String PODFORA_WATKI_ID_PODFORUM = "ID_Podforum";
-    static final String PODFORA_WATKI_ID_WATKU = "ID_Watku";
+    static final String PODFORA_WATKI_ID_PODFORUM = "ID_PODFORUM";
+    static final String PODFORA_WATKI_ID_WATKU = "ID_WATKU";
     
-    static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_Watku";
-    static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_Wypowiedzi";
+    static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_WATKU";
+    static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_WYPOWIEDZI";
     
     static final String USER_ID = "ID";
-    static final String USER_LOGIN = "Login";
-    static final String USER_HASLO = "Haslo";
-    static final String USER_ADMIN = "Admin";
-    static final String USER_MODERATOR = "Moderator";
+    static final String USER_LOGIN = "LOGIN";
+    static final String USER_HASLO = "HASLO";
+    static final String USER_ADMIN = "ADMIN";
+    static final String USER_MODERATOR = "MODERATOR";
     
-    static final String FORUM_KATEGORIE_ID_FORUM = "ID_Forum";
-    static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_Kategoria";
+    static final String FORUM_KATEGORIE_ID_FORUM = "ID_FORUM";
+    static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_KATEGORIA";
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
-    ConnectorDB baza = new ConnectorDB("localhost","bee","bee");
+    ConnectorDB baza = new ConnectorDB("localhost","bee","bee","bee");
     
     
     /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza bee:bee@localhost. */
@@ -81,23 +81,25 @@ public class DataBase {
     /**
      * Konstruktor
      * @param host Adres serwera bazy danych
+     * @param Db nazwa bazy danych
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public DataBase(String host, String user, String pass)
+    public DataBase(String host, String Db,String user, String pass)
     {
-        this.connect(host, user, pass);
+        this.connect(host, Db, user, pass);
     }
     
     /**
      * Metoda powoduje przylaczenie do bazy o podanych parametrach
      * @param host Adres serwera bazy danych
+     * @param Db nazwa bazy danych
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public void connect(String host, String user, String pass)
+    public void connect(String host, String Db, String user, String pass)
     {
-        baza = new ConnectorDB(host,user,pass);
+        baza = new ConnectorDB(host,Db,user,pass);
     }
     
     /**
@@ -119,7 +121,7 @@ public class DataBase {
     }
     
     /**
-     * Metoda dostarcza pierwszy element (wiersz) z zadanego zapytania.
+     * Metoda dostarcza tylko pierwszy element (wiersz) z zadanego zapytania.
      */
     private Hashtable getObject(String query) {
         ArrayList lista = baza.query(query);
@@ -133,13 +135,12 @@ public class DataBase {
      * @param ID Identyfikator szukanego watku
      * @return Zwraca obiekt Watek badz null w razie bledu.
      */
-    public Hashtable getWatek(int ID){
-        //baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
+    public Watek getWatek(int ID){
+        //return baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
-        return watek;
- //        if (watek == null) return null;
-//        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA));
+        if (watek == null) return null;
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA));
     }
     
     /**

@@ -10,7 +10,7 @@
         <jsp:useBean id="db_con" class="pl.ltd.bee.DataBase" scope="application"/>
         
         <%
-        db_con.connect("jdbc:mysql://localhost/Bee:3306","wilk","wilk");
+        db_con.connect("wilk.waw.pl","Bee","pawelb","asd");
         db_con.setTablePrefix("Bee");
   
         Enumeration flds = request.getParameterNames();

@@ -7,10 +7,12 @@
 
         <% 
             int id = 1;
-            pl.ltd.bee.DataBase baza = new pl.ltd.bee.DataBase("jdbc:mysql:///Bee","wilk","wilk");
+            pl.ltd.bee.DataBase baza = new pl.ltd.bee.DataBase("wilk.waw.pl","Bee","pawelb","asd");
 //            pl.ltd.bee.Watek watek = baza.getWatek(id);
-           Hashtable watek = baza.getWatek(id);
+           //Hashtable watek = baza.getWatek(id);
+            Object watek = baza.getWatek(id);
             out.println(watek);
+            //out.println(Long.parseLong((String)watek));
             //out.println(watek.getTemat());
         %>
     </body>

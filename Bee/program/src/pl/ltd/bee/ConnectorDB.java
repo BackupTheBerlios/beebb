@@ -12,25 +12,29 @@ public class ConnectorDB {
     private String Host;
     private String User;
     private String Pass;
+    private String DataBase;
     
     /**
      * Konstruktor
      * @param Host adres serwera bazy danych
+     * @param Db nazwa bazy danych
      * @param User nazwa uzytkownika bazy danych
      * @param Pass haslo uzytkownika bazy danych
      */
-    public ConnectorDB(String Host, String User, String Pass) {
-        setParameters(Host,User,Pass);
+    public ConnectorDB(String Host, String Db, String User, String Pass) {
+        setParameters(Host,Db,User,Pass);
     }
     
     /**
      * Metoda ustawia parametry polaczenia z baza danych
      * @param Host adres serwera bazy danych
+     * @param Db nazwa bazy danych
      * @param User nazwa uzytkownika bazy danych
      * @param Pass haslo uzytkownika bazy danych
      */
-    public void setParameters(String Host, String User, String Pass) {
+    public void setParameters(String Host, String Db, String User, String Pass) {
         this.Host=Host;
+        this.DataBase=Db;
         this.User=User;
         this.Pass=Pass;
     }
@@ -46,28 +50,24 @@ public class ConnectorDB {
         ArrayList pom=new ArrayList();
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/Bee","wilk","wilk");
+            Connection con = DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase,User,Pass);
             Statement select = con.createStatement();        
             ResultSet result = select.executeQuery(q);
             ResultSetMetaData rsmd = result.getMetaData();
             
-            Hashtable row1=new Hashtable();
-            row1.put("QUERY",q);
-            pom.add(row1);
             int licz = rsmd.getColumnCount();            
             while(result.next()) {
                 Hashtable row=new Hashtable();
-                for(int i=0;i<licz;i++) {
-                    row.put(rsmd.getColumnName(i),result.getString(i));
+                for(int i=1;i<=licz;i++) {
+                    row.put(rsmd.getColumnName(i).toUpperCase(),result.getString(i));                    
                 }
                 pom.add(row);
             }            
             con.close();
         } catch( Exception e ) { 
-            Hashtable row2=new Hashtable();
+/*            Hashtable row2=new Hashtable();
             row2.put("EXCEPTION",e);
-            pom.add(row2);
-                //e.printStackTrace(); 
+            pom.add(row2);*/
         }
         return pom;
     }
