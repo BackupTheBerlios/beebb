@@ -7,7 +7,7 @@
 package pl.ltd.bee;
 
 import java.util.*;
-import pl.aislib.util.crypt.UnixCrypt;
+
 
 /**
  * Klasa wyzszy interfejs do bazy danych. Dostarcza metody do uzyskania danych zawartych na forach.
@@ -97,7 +97,7 @@ public class DataBase {
     static final String WATKI_WYPOWIEDZI_ID_KATEGORII = "ID_KATEGORIA";
     static final String WATKI_WYPOWIEDZI_ID_PODFORUM = "ID_PODFORUM";
     
-    static final String PODFORA_WATKI_ID_PODFORUM = "ID_PODFORUM";
+    static final String PODFORA_WATKI_ID_PODFORUM = "ID_PODFORA";
     static final String PODFORA_WATKI_ID_WATKU = "ID_WATKU";
     
     static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_WATKU";
@@ -188,7 +188,7 @@ public class DataBase {
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA));
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
     }
     
     /**
@@ -198,9 +198,8 @@ public class DataBase {
      */
     public Wypowiedz getWypowiedz(int ID){
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
-        //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Date i Tekst
         if (wypowiedz == null) return null;
-        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST));
+        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST),this);
     }
     
     /**
@@ -210,11 +209,8 @@ public class DataBase {
      */
     public Podforum getPodforum(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
-        //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (podforum == null) return null;
-        
-        //zrobic arraylist z lista watkow
-        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL));
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),this);
     }
     
     /**
@@ -224,7 +220,7 @@ public class DataBase {
     public Forum getForum(){
         Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM);
         if (forum == null) return null;
-        return new Forum((String)forum.get(FORUM_NAZWA),this.getKategorieForum(),this);
+        return new Forum((String)forum.get(FORUM_NAZWA),this);
     }
     
     /**
@@ -236,7 +232,7 @@ public class DataBase {
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (kategoria == null) return null;
-        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),this.getPodforaKategorii(ID),this);
+        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),this);
     }
     
     /**
@@ -272,12 +268,13 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Watkow w podanym Podforum
-     * @param pod Podforum w ramach ktorego interesuja nas watki
+     * @param ID Podforum w ramach ktorego interesuja nas watki
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getWatkiPodforum(Podforum pod) {
+    public ArrayList getWatkiPodforum(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + pod.getID());
+        ArrayList watki = baza.query("SELECT " + PODFORA_WATKI_ID_WATKU + " FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID);
+        //ArrayList watki = baza.query("select "+ PODFORA_WATKI_ID_WATKU + " FROM "+ BEE_PODFORA_WATKI + " where ID_Podfora = " + ID);
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
             int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
@@ -291,9 +288,9 @@ public class DataBase {
      * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getWypowiedziWatku(Watek wat) {
+    public ArrayList getWypowiedziWatku(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + wat.getID());
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID);
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
@@ -338,8 +335,9 @@ public class DataBase {
      * @param haslo niezakodowane haslo
      * @return zwraca czy insert sie powidl
      */
+
     public boolean insertUser(String nick, String imie, String nazwisko, String email, String gg, String jabber, String haslo){
-       return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + UnixCrypt.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"' ,'N','N','T')");
+       return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"' ,'N','N','T')");
     }
     
     /**
