@@ -112,6 +112,18 @@ public class Messages {
     public static String errorSubForumNotExists(){
         return "<p class=\"error\">Brak takiego podforum!</p>";    }
     
+    /**
+     * Metoda dostarcza komunikat o bledzie odczytu pliku konfiguracyjnego
+     * @return String z komunikatem o bledzie odczytu pliku konfiguracyjnego
+     */
     public static String errorXMLRead(){
         return "<p class=\"error\">B³±d odczytu pliku konfiguracyjnego.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o bledzie zapisu pliku konfiguracyjnego
+     * @return String z komunikatem o bledzie zapisu pliku konfiguracyjnego
+     */
+    public static String errorXMLWrite(){
+        return "<p class=\"error\">B³±d zapisu pliku konfiguracyjnego.</p>";}
+    
 }
