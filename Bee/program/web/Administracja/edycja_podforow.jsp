@@ -24,13 +24,11 @@
         <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
 
-        <script LANGUAGE="JavaScript">
-        <!--
+        <script type="text/javascript" LANGUAGE="JavaScript">
            function Info()
-                    {if (!confirm("Czy na 100% sie zastanowiles co chcesz zrobic?"))
-                    history.go(-1);return " "}
-       
-        <!--End-->
+                    {
+                    return confirm('Czy na 100% sie zastanowiles co chcesz zrobic?');
+                    }
        </script>
     </head>
     
@@ -125,7 +123,7 @@
                      <input align="center" size="15"  type="submit" value="EDYTUJ"/>
                    </form> 
                </td> 
-               <td><form action="./edycja_podforow.jsp" method="post">
+               <td><form action="./edycja_podforow.jsp" method="post" onsubmit="return Info();">
                      <input type="hidden" name="usun_kat" value="<%= kkk.getID() %>"/>
                      <input  align="center" size="15"  type="submit" value="USUN"/>
                    </form> 
@@ -151,7 +149,7 @@
                      <input align="center" size="20"  type="submit" value="EDYTUJ"/>
                    </form> 
                 </td> 
-                <td><form  action="./edycja_podforow.jsp" method="post">
+                <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="return Info();">
                      <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
                      <input align="center" size="20"  type="submit" value="USUN"/>
                    </form> 
