@@ -49,5 +49,29 @@ public class Kategoria {
         s+="<HR><BR>";
         return s;
     }
+
+    /**
+     * Metoda powoduje wypisanie forum na przekazany strumien
+     * @param strona strumien wyjsciowy
+     */
+    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException
+    {
+        strona.println("<tr>");
+        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\"><a href=\"index.jsp?kid="+ this.ID +"\" class=\"aTytulKategorii\">" + Tytul + "</a></span></td>");
+        strona.println("</tr>");
+        ArrayList podfora = db.getPodforaKategorii(this.ID);
+        for(int i=0;i<podfora.size();i++)
+        {
+            Podforum p = db.getPodforum(((Integer)podfora.get(i)).intValue());
+            strona.println("<tr>");
+            strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./images/category2.gif\" width=\"24\" height=\"24\"/></td>");
+            strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <a href=\"index.jsp?pid=" + p.getID() + "\" class=\"aTytulPodforum\">"+ p.getTytul() +"</a><br/></span><span class=\"opisPodforum\">Opis co zawiera<br/>");
+            strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">17</span></td>");
+            strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">109</span></td>");
+            strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\"> <span class=\"lastPost\">Czw Mar 17, 2005 3:29 am<br /><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
+            strona.println("</tr>");
+        }
+
+    }
     
 }

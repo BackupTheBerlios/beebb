@@ -37,6 +37,13 @@ public class Podforum {
         return ID;
     }
     
+    /** Metoda zwraca tytul podforum
+     * @return String z tytulem podforum
+     */
+    public String getTytul(){
+        return Tytul;
+    }
+    
     /** Wypisuje obiekt PodForum w postaci strony jsp
      *
      */
