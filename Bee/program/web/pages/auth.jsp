@@ -23,7 +23,7 @@
         db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
         db_con.setTablePrefix(Config.DATABASE_PREFIX);
         } catch (Exception e) {
-        out.print("Blad polaczenia z baza!");
+        out.print(Messages.errorDataBaseConnection());
         } }
         Enumeration flds = request.getParameterNames();
         try {
@@ -58,7 +58,7 @@
                         }
                     }    
             }
-                out.println("<p class=\"error\">Błędny użytkownik lub hasło!</p>");
+                out.println(Messages.errorBadUserOrPass());
          }
         %> 
                 <table align="center" cellpadding="2" cellspacing="1" border="0">
@@ -81,7 +81,7 @@
      <%
        }
        catch (Exception e) {
-          out.println("<p class=\"error\">Blad! skontaktuj sie z administratorem strony!<p>");
+          out.println(Messages.errorUnknown());
        }
      %>
     </body>

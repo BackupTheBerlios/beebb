@@ -69,4 +69,18 @@ public class Messages {
      */
     public static String errorPassNotMatch(){
             return "<font class=\"error\">Has³a siê nie zgadzaj±</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat bledu informujacy ze bledzie logowania
+     * @return String z komunikatem o bledzie logowania
+     */
+    public static String errorBadUserOrPass(){
+        return "<p class=\"error\">B³êdny u¿ytkownik lub has³o!</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat bledu nieokreslonego
+     * @return String z komunikatem o bledzie nieokreslonym
+     */
+    public static String errorUnknown(){
+        return "<p class=\"error\">Blad! skontaktuj sie z administratorem strony!<p>";}
 }
