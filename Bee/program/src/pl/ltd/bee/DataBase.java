@@ -58,6 +58,8 @@ public class DataBase {
     static final String BEE_KATEGORIE_PODFORA_BASE = "Kategorie_Podfora";
     static final String BEE_MODERATORZY_BASE = "Moderatorzy";
     
+    static final String BEE_FORGET_PASSWD_BASE = "Forget_Passwd";
+    
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
@@ -75,6 +77,7 @@ public class DataBase {
     static String BEE_KATEGORIE_PODFORA = "Kategorie_Podfora";
     static String BEE_MODERATORZY = "Moderatorzy";
     
+    static String BEE_FORGET_PASSWD = "Forget_Passwd";
     /**
      * Stala reprezentujaca nazwe pola w tabeli w bazie danych
      */
@@ -177,6 +180,7 @@ public class DataBase {
         BEE_PODFORA_WATKI = pref + "_" + BEE_PODFORA_WATKI_BASE;
         BEE_KATEGORIE_PODFORA = pref + "_" + BEE_KATEGORIE_PODFORA_BASE;
         BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY_BASE;
+        BEE_FORGET_PASSWD = pref + "_" + BEE_FORGET_PASSWD_BASE;
     }
     
     /**
@@ -349,6 +353,20 @@ public class DataBase {
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
+    
+    /**
+     * Metoda zwaraca objekt User o podanym emailu i loginie
+     * @param login Identyfikator (login) szukanego uzytkownika
+     * @param email adres email szukanego uzytkownika
+     * @return Zwraca obiekt User badz null w razie bledu.
+     */
+    public User getUser(String login, String email) {
+        Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "' and " + USER_EMAIL +" = '" + email + "'");
+        if (user == null) return null;
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+    }
+    
+    
     /**
      * Metoda umieszcza uzytkownika w bazie danych
      * @param nick nick uzytkownika
@@ -360,37 +378,37 @@ public class DataBase {
      * @param haslo niezakodowane haslo
      * @return zwraca czy insert sie powidl
      */
-
+    
     public boolean insertUser(String nick, String haslo, String imie, String nazwisko, String email, String gg, String jabber, String OstatnieLogowanie){
-       return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','T','N','N')");
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','T','N','N')");
     }
     
     /**
-    * Metoda zwaraca liste Userow z bazy
-    * @return ArrayList obiektow Hashatable
-    */
-     public ArrayList getUsers() {
+     *     * Metoda zwaraca liste Userow z bazy
+     *     * @return ArrayList obiektow Hashatable
+     *     */
+    public ArrayList getUsers() {
         ArrayList wynik = new ArrayList();
         wynik= baza.query("SELECT * FROM "+ BEE_USERS);
         return wynik;
-       }
-
-    /**
-    * Metoda zmienia uprawnienia w bazie danych
-    * @param id id uzytkownika w bazie danych
-    * @param admin napis T lub N
-    * @param moderator napis T lub N
-    * @param aktywny napis T lub N
-    
-    */
-    public boolean zmienUpr(String id, String admin, String moderator, String aktywny){
-        if ( moderator.compareTo("N")==0 ) 
-           baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE ID_User="+id);
-         return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
-    
     }
     
-       
+    /**
+     *     * Metoda zmienia uprawnienia w bazie danych
+     *     * @param id id uzytkownika w bazie danych
+     *     * @param admin napis T lub N
+     *     * @param moderator napis T lub N
+     *     * @param aktywny napis T lub N
+     *    
+     *     */
+    public boolean zmienUpr(String id, String admin, String moderator, String aktywny){
+        if ( moderator.compareTo("N")==0 )
+            baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE ID_User="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
+        
+    }
+    
+    
     /**
      * Metoda umieszcza kategorie w bazie danych
      * @param nazwa nazwa kategorii
@@ -398,20 +416,19 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(String tytul, String opis) {
-       if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')"))
-       {
-        Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
-        if (kat==null) return false;
-        
-        Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelcw'");
-        if (forum==null) return false;
-       
-        return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
-       }
-       return false;
+        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')")) {
+            Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
+            if (kat==null) return false;
+            
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelcw'");
+            if (forum==null) return false;
+            
+            return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
+        }
+        return false;
     }
     
-     /**
+    /**
      * Metoda umieszcza podforum w bazie danych
      * @param id_kat id kategorii do ktorej dodawane jest podforum
      * @param tytul tytul podforum
@@ -419,49 +436,59 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(String id_kat, String tytul, String opis) {
-       if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')"))
-       {
-        Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE Tytul = '"+tytul+"'");
-        if (pf==null) return false;
-       
-        return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get("ID")+")");
-       }
-       return false;
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')")) {
+            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE Tytul = '"+tytul+"'");
+            if (pf==null) return false;
+            
+            return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get("ID")+")");
+        }
+        return false;
     }
     
- 
-     /**
+    
+    /**
      * Metoda sprawdz czy kategoria o podantm tytult juz istnieje
      * @param tytul tytul kategorii
      * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
      */
     public boolean czyKategoria(String tytul){
-      Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
-      if (kategoria==null) return false;
-      return true;
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
+        if (kategoria==null) return false;
+        return true;
     }
     
-      /**
+    /**
      * Metoda sprawdz czy podforum o podanym tytule juz istnieje
      * @param id_kat id kategorii
      * @param tytul tytul podforum
      * @return zwraca true jezeli podforum o podanym tytule juz istnieje
      */
     public boolean czyPodforum(String id_kat, String tytul){
-      Hashtable kategoria = getObject("SELECT * FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE ID=ID_Podforum and ID_Kategoria="+id_kat+" and Tytul = '" +tytul+ "'");
-      if (kategoria==null) return false;
-      return true;
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE ID=ID_Podforum and ID_Kategoria="+id_kat+" and Tytul = '" +tytul+ "'");
+        if (kategoria==null) return false;
+        return true;
     }
     
-     /**
+    /**
      * Metoda zwraca id kategorii
      * @param tytul tytul kategorii
      * @return String numer kategorii
      */
     public String dajIdKategorii(String tytul){
-      Hashtable kategoria = getObject("SELECT ID FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
-      if (kategoria==null) return null;
-      return  (String) kategoria.get("ID");
+        Hashtable kategoria = getObject("SELECT ID FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
+        if (kategoria==null) return null;
+        return  (String) kategoria.get("ID");
     }
+    
+    /**
+     * Metoda wstawia klucz do zapomnianego has³a
+     * @param email adres mailowy uzytkownika
+     * @param klucz losowo wygenerowany klucz
+     * @return T lub N w zale¿no¶ci czy insert siê powiód³
+     */
+    public boolean wstawZapomnianeHaslo(String email, String klucz){
+        return baza.dmlQuery("INSERT INTO  Bee_Forget_Passwd VALUES ('"+ klucz +"', '"+ email + "')");
+    }
+    
 }
 

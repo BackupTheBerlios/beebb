@@ -15,13 +15,13 @@ public class Config {
      * Zmienne ktore pozniej stana sie pewnie metodami,
      * ale teraz skupia w jednym miejscu konfiguracje.
      */
-
-    public static String HOST = "192.168.3.174";//"wilk.waw.pl";
+   
+    public static String HOST = "wilk.waw.pl";
     public static String USER = "bee";
     public static String PASSWORD = "bee";
     public static String DATABASE = "Bee";
     public static String DATABASE_PREFIX = "Bee";
-
+    
     /** Adres www forum */
     public static String URL_FORUM = "http://127.0.0.1:8080";
     
@@ -39,5 +39,9 @@ public class Config {
     public static boolean NEW_USER_MAIL_AUTH = true;
     public static String REG_MAIL_SUBJECT = "[BEE] Rejestracja";
     public static String REG_MAIL_BODY = "W³a¶nie za³o¿y³e¶ konto na forum Bee, poni¿ej znajduje siê link w który nale¿y klikn±æ aby aktywowaæ konto: \n";
+    
+    /** zapomniane haslo */
+    public static String FORGET_MAIL_SUBJECT = "[BEE] Zapomniane has³o";
+    public static String FORGET_MAIL_BODY = "Poni¿ej link do zmiany zapomnianego has³a: \n";
     
 }
