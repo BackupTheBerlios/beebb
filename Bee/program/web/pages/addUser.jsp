@@ -1,6 +1,7 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="pl.ltd.bee.*"%>
 <html>
     <head><title>ADD user</title></head>
     <body>
