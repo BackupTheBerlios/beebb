@@ -6,19 +6,36 @@ import java.lang.*;
 
 public class ConnectorDB {
     
+    private String HOST;
+    private String USER;
+    private String PASS;
     
     public ConnectorDB() {}
-    
-    //zwraca liste wierszy ktore zwieraja hashtable klucz:nazwa kolumny wartosc: wartosc w kolumnie
+
+    public ConnectorDB(String Host, String User, String Pass)
+     {
+        this.HOST=Host;
+        this.USER=User;
+        this.PASS=Pass;
+     }
+    public void setParamaters(String Host, String User, String Pass)
+    {
+        this.HOST=Host;
+        this.USER=User;
+        this.PASS=Pass;
+    }
+    /**Metoda zwraca liste wierszy ktore zwieraja hashtable: 
+     * klucz:nazwa kolumny       wartosc: wartosc w kolumnie
+     **/
     public ArrayList query(String q)
     {
        ArrayList pom=new ArrayList();
        Hashtable row;
        Connection con=null;
-       int licz,i,j=0;
+       int licz,i;
      
       try {
-        con = DriverManager.getConnection("jdbc:odbc:bee","sopi","sopi");
+        con = DriverManager.getConnection(HOST,USER,PASS);
         Statement select = con.createStatement();
         ResultSet result = select.executeQuery(q);
         ResultSetMetaData rsmd = result.getMetaData();
@@ -40,14 +57,13 @@ public class ConnectorDB {
        return pom;
       }
      
-    //metoda wykonuje Insert, Update lub Delete
-   
+    /**metoda wykonuje Insert, Update lub Delete **/
     public boolean dmlQuery(String q)
     {
       Connection con=null;
       int wynik=0;
      try{
-         con = DriverManager.getConnection("jdbc:odbc:bee","sopi","sopi");
+         con = DriverManager.getConnection(HOST,USER,PASS);
          Statement select = con.createStatement();
          wynik = select.executeUpdate(q);
       
