@@ -87,6 +87,8 @@ public class DataBase {
     
     static final String PODFORUM_ID = "ID";
     static final String PODFORUM_TYTUL = "TYTUL";
+    static final String PODFORUM_OPIS = "OPIS";
+    static final String PODFORUM_AKTYWNE = "AKTYWNE";
     
     static final String FORUM_ID = "ID";
     static final String FORUM_NAZWA = "NAZWA";
@@ -210,7 +212,7 @@ public class DataBase {
     public Podforum getPodforum(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
         if (podforum == null) return null;
-        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),this);
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),this);
     }
     
     /**

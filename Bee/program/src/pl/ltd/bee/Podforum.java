@@ -16,18 +16,21 @@ public class Podforum {
     
     private int ID;
     private String Tytul;
+    private String Opis;
     private ArrayList Watki;
     private DataBase db;
     
     /** Tworzy instancjê podforum
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
+     * @param Opis opis podforum
      */
-    public Podforum(String ID, String Tytul,DataBase db) {
+    public Podforum(String ID, String Tytul,String Opis,DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         this.Watki=db.getWatkiPodforum(this.ID);
         this.db=db;
+        this.Opis = Opis;
     }
     
     /** Zwraca identyfikator forum
@@ -44,6 +47,13 @@ public class Podforum {
         return Tytul;
     }
     
+    /**
+     * Metoda zwraca opis podforum
+     * @return String z opisem podforum
+     */
+    public String getOpis(){
+        return Opis;
+    }
     
     /**
      * Metoda wypisuje na strone glowna liste watkow

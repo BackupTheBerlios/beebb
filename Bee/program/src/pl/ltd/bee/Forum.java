@@ -27,19 +27,7 @@ public class Forum {
         this.Kategorie=db.getKategorieForum();
         this.db=db;
     }
-    
-    /** Wypisuje obiekt Forum w postaci strony jsp
-     * 
-     */
-    public String printJSP() {
-        String s = "<h2>Forum: " + Nazwa + "</h2><br>";
-        for(int i=0;i<Kategorie.size();i++) {
-            Kategoria k = ((Kategoria)db.getKategoria(((Integer)Kategorie.get(i)).intValue()));
-            s+= k.printJSP();
-        }
-        return s;
-    } 
-    
+        
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
      * @param strona strumien wyjsciowy
