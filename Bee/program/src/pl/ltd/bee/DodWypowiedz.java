@@ -8,13 +8,14 @@ package pl.ltd.bee;
 
 /**
  *
- * @author pawel
+ * @author pawelb
  */
 public class DodWypowiedz extends Dodawanie {
     
     /** Creates a new instance of DodWypowiedz */
     public DodWypowiedz() {
     }
+    
     
     public String wyswietl(long UserID, long ForumID) {
         String s = "narazie nic";

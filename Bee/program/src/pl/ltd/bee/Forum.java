@@ -19,8 +19,8 @@ public class Forum {
     private DataBase db;
     
     /** Tworzy nowa instancje klasy Forum 
-     @param ID identyfikator forum w bazie
-     @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
+     * @param ID identyfikator forum w bazie
+     * @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
      */
     public Forum(String Nazwa, ArrayList Kategorie,DataBase db) {
         this.Nazwa=Nazwa;
@@ -28,13 +28,15 @@ public class Forum {
         this.db=db;
     }
     
+    /** Wypisuje obiekt Forum w postaci strony jsp
+     * 
+     */
     public String printJSP() {
         String s = "<h2>Forum: " + Nazwa + "</h2><br>";
         for(int i=0;i<Kategorie.size();i++) {
             Kategoria k = ((Kategoria)db.getKategoria(((Integer)Kategorie.get(i)).intValue()));
             s+= k.printJSP();
         }
-       
         return s;
     } 
 }

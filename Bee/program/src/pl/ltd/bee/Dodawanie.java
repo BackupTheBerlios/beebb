@@ -11,7 +11,6 @@ package pl.ltd.bee;
  * @author pawelb
  */
 public abstract class Dodawanie {
-    
-  
+
     
 }

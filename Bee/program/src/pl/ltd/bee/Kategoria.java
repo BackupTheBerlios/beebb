@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author pawel
+ * @author pawelb
  */
 public class Kategoria {
     
@@ -37,6 +37,9 @@ public class Kategoria {
         return ID;
     }
     
+    /** Wypisuje obiekt Kategoria w postaci strony jsp
+     *
+     */
     public String printJSP() {
         String s = "<HR><BR>Kategoria:   <a href=\"index.jsp?kid=" + ID + "\">" + Tytul + "</a><BR>";
         for(int i=0;i<Podfora.size();i++) {

@@ -12,7 +12,7 @@ package pl.ltd.bee;
  */
 public class UserFactory {
     
-    
+    /** Tworzy nowa instancje UserFactory */
     public UserFactory() {
     }
     

@@ -10,7 +10,7 @@ import pl.aislib.util.crypt.UnixCrypt;
 
 /**
  *
- * @author pawel
+ * @author pawelb
  */
 public class RegisteredUser extends User {
     private long ID;
@@ -34,6 +34,10 @@ public class RegisteredUser extends User {
         this.jabber=jabber;
     }
     
+    /** Sprawdza czy podane has³o (plain) zgadza siê
+     * @param passwd haslo w plain txt
+     * @return T lub F w zaleznosci czy haslo sie zgadza
+     */
     public boolean checkPasswd(String passwd) {
         return UnixCrypt.matches(haslo, passwd);
     }

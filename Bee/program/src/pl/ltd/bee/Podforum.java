@@ -31,6 +31,9 @@ public class Podforum {
         return ID;
     }
     
+    /** Wypisuje obiekt PodForum w postaci strony jsp
+     *
+     */
     public String printJSP() {
         String s = "|<BR>|---- Podforum:   <a href=\"index.jsp?pid=" + ID + "\">" + Tytul + "</a><BR>";
         return s;
