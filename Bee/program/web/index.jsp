@@ -18,7 +18,7 @@
     </head>
     <body>
 
-    <A href="./Administracja/index.htm" target=main>Panel Administratora</A>
+    <a href="./Administracja/index.htm" target="main">Panel Administratora</A>
     
     <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
     <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
