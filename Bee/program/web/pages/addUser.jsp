@@ -20,7 +20,6 @@
         <table align="center" border="0">
             <tr>
                 <td> 
-                                
         <% Enumeration flds = request.getParameterNames();
         if (!db_con.isConnected()) {
         try {
@@ -29,7 +28,6 @@
         } catch (Exception e) {
             out.print(Messages.errorDataBaseConnection());
         } }
-            //Straszny kawałek kodu, ale nie mam innego pomysłu
             boolean ok = true;
             String nickname=request.getParameter("user");
             if (nickname!=null) {
@@ -62,9 +60,11 @@
                 if(!db_con.insertUser(nickname,haslo1,imie,nazwisko,email,gg,jabber,"1970-01-01 00:00:00"))
                 out.println(Messages.errorUserCreate());
                 else {
-                    out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
                     if (Config.NEW_USER_MAIL_AUTH) {
+                        out.println("Email z linkiem aktywacyjnym został wysłany.<BR><br><a href=../index.jsp>powrot</a><br>"); 
                         SendMail.send(email,Config.REG_MAIL_SUBJECT,"Witaj "+ nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/reg/?id=12345677890");
+                    } else {
+                        out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
                     }
                 }
             } else {
@@ -86,16 +86,14 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                                <td><b>nickname*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
+                                <td><b>Nick*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
                             </tr> <tr>
             <% 
             if (haslo1!=null && haslo2!=null) {
                 if (haslo1.length() < Config.MIN_PASSWD) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorPassToShort(Config.MIN_PASSWD) + "</td></tr><tr>"); }
-                
                 if (haslo1.compareTo(haslo2)!=0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorPassNotMatch() + "</td></tr><tr>"); }
-                
             } else { ok=false; } %>
                             <td><b>Haslo*:</b></td><td><input type="password" size="25" name="haslo1"></td>
                             </tr> <tr>
@@ -112,11 +110,11 @@
                 if (email.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             }%>
-                            <td><b>email*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
+                            <td><b>E-mail*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
                             </tr> <tr>
-                                <td>gg:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"></td>
+                                <td>Gadu-Gadu:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"></td>
                             </tr> <tr>
-                            <td>jabber:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"></td>
+                            <td>Jabber:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
                             </tr>
@@ -124,7 +122,6 @@
                         * - pola wymagane
                     </form>
         <% }%>
-        
                 </td>
             </tr>
         </table>
