@@ -11,6 +11,7 @@
 <title>BeeBB :: Index</title>
 <link rel="stylesheet" href="./temat.css" type="text/css"/>
 <script type="text/javascript" src="./iframe_resize.js"></script>
+<script type="text/javascript" src="./skrypt.js"></script>
 
 <!--<FRAMESET ROWS="150,*" BORDER="0">
 <FRAME SRC="naglowek.html" SCROLLING="no" NAME="Naglowek">
@@ -25,7 +26,7 @@
 	Mozna tez wyliczyc na podstawie dlugosci i wielkosci czcionki wysokosc iframki.
 -->
 
-<body onLoad="funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))" onResize="funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))">
+<body onLoad="resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))" onResize="resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))">
 <table id="tableWatek" width="100%" cellpadding="2" cellspacing="1" border="0">
   <tr>
 	<th class="thTopLCorner" width="15%" height="25" nowrap="nowrap">&nbsp;Autor&nbsp;</th>
