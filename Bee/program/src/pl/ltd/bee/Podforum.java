@@ -104,14 +104,28 @@ public class Podforum {
         }
         printMainTableCloseJSP(strona);
     }
-    
+
+    /**
+     * Metoda wypisuje wiersz w tabeli kategorii z opisem podforum
+     * @param strona strumien wyjsciowy
+     */
+    public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException 
+    {
+            strona.println("<tr>");
+            strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./images/category2.gif\" width=\"24\" height=\"24\"/></td>");
+            strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <a href=\"index.jsp?pid=" + this.getID() + "\" class=\"aTytulPodforum\">"+ this.getTytul() +"</a><br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
+            strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">17</span></td>");
+            strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">109</span></td>");
+            strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\"> <span class=\"lastPost\">Czw Mar 17, 2005 3:29 am<br /><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
+            strona.println("</tr>");
+    }
     
     /**
      * Metoda wypisuje na strone glowna tabele z watkami
      * @param strona strumien wyjsciowy
      */
-    private void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
-        strona.println("<table width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
+    public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Tematy&nbsp;</th>");
         strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Odpowiedzi&nbsp;</th>");
@@ -125,7 +139,7 @@ public class Podforum {
      * Metoda wypisuje na stronie zamkniecie tabeli
      * @param strona strumien wyjsciowy
      */
-    private void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("</table>");
     }
 }
