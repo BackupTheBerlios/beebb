@@ -1,0 +1,24 @@
+body {
+	background-color: gold;
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+}
+
+font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
+a:link,a:active,a:visited { color : #006699; }
+a:hover		{ text-decoration: underline; color : #DD6900; }
+hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+
+
+th	{
+	color: yellow; font-size: 11px; font-weight : bold;
+	background-color: yellow; height: 25px;
+	background-image: url(./images/yellow.png);
+}
+
+.tdForumHeader	{ background-color: gold; border: 2px black solid; }
