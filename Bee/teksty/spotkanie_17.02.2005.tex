@@ -1,0 +1,80 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[T1]{fontenc}
+\RequirePackage{times}
+\usepackage[latin2]{inputenc}
+\usepackage[polish]{babel}
+\RequirePackage{comment}
+
+\RequirePackage{a4wide}
+\RequirePackage{longtable}
+\RequirePackage{multicol}
+\RequirePackage{url}
+%\usepackage[dvips]{color,graphicx} 
+%\usepackage{graphicx}
+
+\author{Marcin Pruszczy\'nski}
+\title{Zapis ze spotkania z dnia 17.02.2005}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Podstawowe definicje}
+\textbf{Wypowied\'z} -- ci"ag znak"ow opatrzony autorem i dat"a. \\
+\textbf{W"atek} -- lista wypowiedzi. Opatrzony jest tematem, autorem i dat"a powstania. W"atek mo\.ze by"c te\.z nazywany \underline{Tematem}, jednak trzymajmy si"e nazwy w"atek. \\
+\textbf{Podforum} -- to zbi"or w"atk"ow. Posiada tytu"l.\\
+\textbf{Kategoria} -- to lista podfor"ow. Posiada tytu"l.\\
+\textbf{Forum} -- to lista kategorii. Posiada nazw"e.\\
+\textbf{Go"c"s} -- niezalogowany u\.zytkownik. Pos"luguje si"e tymczasowym nickiem.\\
+\textbf{U\.zytkownik (zwyk"ly)} -- zalogowany u\.zytkownik posiadaj"acy nick, dane osobowe, preferencje itp.\\
+\textbf{Moderator} -- zalogowany u\.zytkownik zwyk"ly posiadaj"acy uprawnienia do podforum: usuwanie wypowiedzi lub ca"lego w"atku, blokowanie/zamykanie w"atku, banowanie u\.zytkownika, edytowanie wypowiedzi.\\
+\textbf{Administrator} -- u\.zytkownika zwyk"ly zalogowany posiadaj"acy najwy\.zszy poziom uprawnie"n. Backup bazy, konfiguracja ca"lego forum.\\
+
+\section{Kilka pomys"l"ow a raczej ustale"n}
+\begin{itemize}
+\item podstrony forum musz"a przekazywa"c sobie informacje za pomoc"a GET (dobre cache'owanie oraz mo\.zliwo"s"c wczytania po odno"sniku URL konkretnego w"atku)
+\item ka\.zdemu u\.zytkownikowi zapisywana bdzie data ostatniej aktywnosci, a wi"ec ostatnie odwo"lanie HTTP. Dzi"eki temu mo\.zliwe b"edzie zaznaczenie wypowiedzi kt"ore pojawi"ly si"e na forum podczas jego nieobecno"sci.
+\end{itemize}
+
+
+\section{Kilka pomys"l"ow}
+
+\begin{itemize}
+\item b"ed"ac w danym w"atku doda"c mo\.zliwo"s"c przej"scia do nast"epnego w"atku bez potrzeby cofania si"e poziom w g"or"e
+\item personalizacja emotikonek
+\item lista os"ob kt"orych wypowiedzi nas interesuj"a
+\item statystyki nowych wiadomo"sci (liczbowo): wszystkich i tylko interesuj"acych nas os"ob
+\item lista nowych w"atk"ow (b"edzie prosto uzyska"c je"sli b"edziemy mieli bardzo og"olny silnik wy"swietlania w"atk"ow.
+\item mo\.zliwo"s"c konfiguracji na poziomie podforum: nowe w"atki mog"a tworzy"c tylko zarejestrowani u\.zytkownicy ale dopisywa"c wypowiedzi do ju\.z istniej"acych mog"a wszyscy
+\item Prawa id"a od do"lu np.: je"sli moderator zbanuje u\.zytkownika to nie jest wa\.zne, \.ze posiada on do danego podforum prawo zapisu (''w'') 
+\item backup bazy b"edzie polega"l na zrzuceniu do XML
+\end{itemize}
+
+\section{Schemat bazy danych}
+
+\textbf{Tab\_{}Watki}\\
+sch(ID\_{}Watku,ID\_{}autor,Temat,Data)\\
+\textbf{Tab\_{}Wypowiedzi}\\
+sch(ID\_{}Wypowiedzi,ID\_{}autor,Data,Tekst)\\
+\textbf{Tab\_{}Watki\_{}Wypowiedzi}\\
+sch(ID\_{}Watek,ID\_{}Wypowiedz)\\
+\textbf{Tab\_{}Podfora}\\
+sch(ID\_{}Podforum,Tytul)\\
+\textbf{Tab\_{}Podforum\_{}Watki}\\
+sch(ID\_{}Podforum,ID\_{}watek)\\
+\textbf{Tab\_{}Kategorie}\\
+sch(ID\_{}Kategorii,Tytul)\\
+\textbf{Tab\_{}Kategoria\_{}Podforum}\\
+sch(Id\_{}Kategoria,ID\_{}Podforum)\\
+\textbf{Tab\_{}Forum}\\
+sch(Nazwa, \ldots)\\
+\\
+\textbf{Tab\_{}User}\\
+sch(ID\_{}User,Login,Haslo,Admin,Moderator,DU\.ZO INNYCH)\\
+gdzie has"lo jest hash'em np md5, Admin to boolean Tak/Nie, a Moderator to liczba podform dla kt"orych u\.zytkownik jest moderatorem. Dzi"eki takiemu podej"sciu "latwo jest kontrolowa"c ten parametr nawet je"sli u\.zytkownik jest moderatorem kilku podfor.\\
+\textbf{Tab\_{}Moderatorzy}\\
+sch(ID\_{}Podforum,ID\_{}User)\\
+
+
+
+\end{document}
