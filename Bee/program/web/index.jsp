@@ -9,7 +9,8 @@
     <body>
         <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-        <%
+ 
+       <%
         if (!db_con.isConnected()) {
             try {
             db_con.connect("localhost","Bee","pawel",".l");
@@ -39,31 +40,28 @@
             String redirectURL;
             
             if (field.compareTo("wid") == 0) {
-                
                 pl.ltd.bee.Watek w = db_con.getWatek(Integer.decode(request.getParameter(field)).intValue());
-                if (w!=null) {
+                if (w!=null)
                     out.print(w.printJSP());
-                } else {
+                else 
                     out.println("Brak polaczenia z baza!/Brak takiego watku!<br>");
-                }
-            } else
+            } else {
                 if (field.compareTo("kid") == 0) {
                 pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
-                if (k!=null) {
+                if (k!=null) 
                     out.print(k.printJSP());
-                } else {
+                 else 
                     out.println("Brak polaczenia z baza!/Brak takiej kategorii!<br>");
-                }
-            } else {
-             if (field.compareTo("pid") == 0) {
-                pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
-                if (p!=null) {
-                    out.print(p.printJSP());
                 } else {
-                    out.println("Brak polaczenia z baza!/Brak takiego podforum!<br>");
-                }
-            }
+                    if (field.compareTo("pid") == 0) {
+                        pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
+                        if (p!=null)
+                            out.print(p.printJSP());
+                        else
+                            out.println("Brak polaczenia z baza!/Brak takiego podforum!<br>");
+                        }
 
+                }
             }
         }
     %>

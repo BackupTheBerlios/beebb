@@ -6,20 +6,18 @@
     <body>
         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
         <% Enumeration flds = request.getParameterNames();
-            if (!db_con.isConnected()) {
-            try {
+        if (!db_con.isConnected()) {
+        try {
             db_con.connect("localhost","Bee","pawel",".l");
             db_con.setTablePrefix("Bee");
-            } catch (Exception e) {
-                out.print("Blad polaczenia z baza!");
-            }
-        } 
+        } catch (Exception e) {
+            out.print("Blad polaczenia z baza!");
+        } }
             //Straszny kawałek kodu, ale nie mam innego pomysłu
             boolean ok = true;
             String nickname=request.getParameter("user");
             if (nickname!=null) {
                 if (db_con.getUser(nickname)!=null) ok=false;
-                
                 if (nickname.compareTo("")==0) ok=false;
             } else { ok=false; }
             String haslo1=request.getParameter("haslo1");
@@ -42,11 +40,14 @@
             String jabber = request.getParameter("jabber");
             if (jabber==null) jabber="";
             
+            
+            
             if (ok) {
                 if(!db_con.insertUser(nickname,imie,nazwisko,email,gg,jabber,haslo1))
-                    out.println("Dupa Blada<BR>");
-                else
-                    out.println("Uzytkownik: " + nickname + " zostal dodany<BR>"); 
+                out.println("Dupa Blada<BR>");
+                else {
+                    out.println("Uzytkownik: " + nickname + " zostal dodany<BR><br><a href=../index.jsp>powrot</a><br>"); 
+                }
             } else {
         %>
         <form method="POST" action="addUser.jsp">
@@ -68,7 +69,7 @@
                     out.println("<font color=\"red\">Haslo musi miec przynajmniej 5 znakow<br></font>"); }
                 
                 if (haslo1.compareTo(haslo2)!=0) { ok=false;
-                    out.println("<font color=\"red\">Hasla s ie nie zgadzaja<br></font>"); }
+                    out.println("<font color=\"red\">Hasla sie nie zgadzaja<br></font>"); }
                 
             } else { ok=false; } %>
             <b>haslo*:</b>  <input type="password" size="20" name="haslo1"><br>

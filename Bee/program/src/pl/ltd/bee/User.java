@@ -13,7 +13,7 @@ package pl.ltd.bee;
 public abstract class User {
     
     /** Creates a new instance of User */
-    public User() {}
+    public User() {};
     
     public boolean checkPasswd(String passwd) { 
         return false;

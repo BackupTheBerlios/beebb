@@ -113,10 +113,10 @@ public class DataBase {
     static final String FORUM_KATEGORIE_ID_KATEGORIA = "ID_KATEGORIA";
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     boolean connected = false;
-    ConnectorDB baza = new ConnectorDB("localhost","bee","bee","bee");
+    ConnectorDB baza = new ConnectorDB("localhost","Bee","bee","bee");
     
     
-    /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza bee:bee@localhost. */
+    /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza Bee:bee@localhost. */
     public DataBase() {
     }
     
@@ -155,7 +155,7 @@ public class DataBase {
      * @param pref - string reprezentujacy prefix
      */
     public void setTablePrefix(String pref) {
-        BEE_USERS = pref + "_" + BEE_USERS;
+        BEE_USERS = pref + "_" + BEE_USERS_BASE;
         BEE_WATKI = pref + "_" + BEE_WATKI_BASE;
         BEE_WYPOWIEDZI = pref + "_" + BEE_WYPOWIEDZI_BASE;
         BEE_PODFORA = pref + "_" + BEE_PODFORA_BASE;
@@ -320,7 +320,7 @@ public class DataBase {
      * @param login Identyfikator (login) szukanego uzytkownika
      * @return Zwraca obiekt User badz null w razie bledu.
      */
-    public User getUser(String login){
+    public User getUser(String login) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" like \"" + login + "\"");
         //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
