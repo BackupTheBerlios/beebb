@@ -26,7 +26,7 @@ public class UserFactory {
      * @return zwraca obiekt klasy dziedziczacej po User reprezentujacy danego uzytkownika
      */
     public static User getUser(String User_ID, String User_Login, String User_Haslo,String User_Imie,String User_Nazwisko, String User_Email, String User_gg, String User_Jabber , String User_Admin, String User_Moderator) {
-        long userID = Long.decode(User_ID).longValue();
+        int userID = Integer.decode(User_ID).intValue();
         if (User_Admin.compareTo("T")==0) {
             return null;
         }
