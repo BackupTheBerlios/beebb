@@ -253,6 +253,21 @@ public class DataBase {
     }
     
     /**
+     * Metoda zwaraca liste obiektow String bedacych tytulami Kategorii w podanym Forum
+     * @return ArrayList obiektow String
+     */
+    public ArrayList getTytulyKategorii() {
+        ArrayList wynik = new ArrayList();
+        ArrayList kategorie = baza.query("SELECT Tytul FROM "+ BEE_KATEGORIE +" ORDER BY Tytul");
+        for(int i=0;i<kategorie.size();i++) {
+            Hashtable kategoria = (Hashtable)kategorie.get(i);
+            String tytul = (String)kategoria.get("TYTUL");
+            wynik.add(tytul);
+        }
+        return wynik;
+    }
+    
+    /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami podfor w podanej Kategorii
      * @param kat Kategoria w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Integer
@@ -361,9 +376,10 @@ public class DataBase {
     
     */
     public boolean zmienUpr(String id, String admin, String moderator, String aktywny){
-        if ( moderator.compareTo("N")==0 )
+        if ( moderator.compareTo("N")==0 ) 
            baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE ID_User="+id);
-        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
+         return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
+    
     }
     
        
@@ -371,10 +387,38 @@ public class DataBase {
      * Metoda umieszcza kategorie w bazie danych
      * @param nazwa nazwa kategorii
      * @param opis kategorii
-     * @return zwraca czy insert sie powiodl
+     * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(String tytul, String opis) {
-       return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"')");
+       if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')"))
+       {
+        Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
+        if (kat==null) return false;
+        
+        Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelcw'");
+        if (forum==null) return false;
+       
+        return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
+       }
+       return false;
+    }
+    
+     /**
+     * Metoda umieszcza podforum w bazie danych
+     * @param id_kat id kategorii do ktorej dodawane jest podforum
+     * @param tytul tytul podforum
+     * @param opis podforum
+     * @return zwraca true jezeli insert sie powiodl
+     */
+    public boolean insertPodforum(String id_kat, String tytul, String opis) {
+       if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')"))
+       {
+        Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE Tytul = '"+tytul+"'");
+        if (pf==null) return false;
+       
+        return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get("ID")+")");
+       }
+       return false;
     }
     
  
@@ -388,4 +432,28 @@ public class DataBase {
       if (kategoria==null) return false;
       return true;
     }
+    
+      /**
+     * Metoda sprawdz czy podforum o podanym tytule juz istnieje
+     * @param id_kat id kategorii
+     * @param tytul tytul podforum
+     * @return zwraca true jezeli podforum o podanym tytule juz istnieje
+     */
+    public boolean czyPodforum(String id_kat, String tytul){
+      Hashtable kategoria = getObject("SELECT * FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE ID=ID_Podforum and ID_Kategoria="+id_kat+" and Tytul = '" +tytul+ "'");
+      if (kategoria==null) return false;
+      return true;
+    }
+    
+     /**
+     * Metoda zwraca id kategorii
+     * @param tytul tytul kategorii
+     * @return String numer kategorii
+     */
+    public String dajIdKategorii(String tytul){
+      Hashtable kategoria = getObject("SELECT ID FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
+      if (kategoria==null) return null;
+      return  (String) kategoria.get("ID");
+    }
 }
+

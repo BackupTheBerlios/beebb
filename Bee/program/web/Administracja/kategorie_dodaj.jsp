@@ -30,7 +30,11 @@
             if ( db_con.czyKategoria(nazwa) ) kat.setWiad("Kategoria o podanej nazwie juz istnieje");
              else
              {
-               if (db_con.insertKategoria(nazwa,opis) ) kat.setWiad("ok");
+               if (db_con.insertKategoria(nazwa,opis) ) {
+                    kat.setWiad("ok");
+                    kat.setNazwa("");
+                    kat.setOpis("");
+               }
                else kat.setWiad("Dodanie Kategorii nie powiodla sie");
              }
        %>

@@ -20,6 +20,11 @@ public class Podforum {
     private ArrayList Watki;
     private DataBase db;
     
+    private String Wiad;
+    
+    /** Konstruktor bezargumentowy */
+    public Podforum() {}
+    
     /** Tworzy instancjê podforum
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
@@ -44,16 +49,48 @@ public class Podforum {
      * @return String z tytulem podforum
      */
     public String getTytul(){
+        if(Tytul==null) return "";
         return Tytul;
     }
     
-    /**
-     * Metoda zwraca opis podforum
+
+    /** Metoda zwraca opis podforum
      * @return String z opisem podforum
      */
     public String getOpis(){
+        if(Opis==null) return "";
         return Opis;
     }
+    
+    /** Metoda zwraca wiad podforum
+     * @return String z wiad podforum
+     */
+    public String getWiad(){
+        if(Wiad==null) return "";
+        return Wiad;
+    }
+    
+    /** Ustawia opis podforum
+     * @param op String ustawianego opisu
+     */
+    public void setOpis(String op) {
+        this.Opis=op;
+    }
+    
+    /** Ustawia nazwe podforum
+     * @param op String ustawianej nazwy
+     */
+    public void setNazwa(String naz) {
+        this.Tytul=naz;
+    }
+    
+    /** Ustawia wiad kategorii
+     * @param w String ustawianego opisu
+     */
+    public void setWiad(String w) {
+        this.Wiad=w;
+    }
+    
     
     /**
      * Metoda wypisuje na strone glowna liste watkow
