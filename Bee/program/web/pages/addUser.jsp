@@ -37,10 +37,7 @@
             } else { ok=false; }
             String haslo1=request.getParameter("haslo1");
             String haslo2=request.getParameter("haslo2");
-            if (haslo1!=null && haslo2!=null) {
-                if (haslo1.length() < 5)ok=false;
-                if (haslo1.compareTo(haslo2)!=0) ok=false;
-            } else ok=false;
+            if (haslo1!=null && haslo2!=null) ok=false;
             String email=request.getParameter("email");
             if (email==null) ok=false;
             else
@@ -100,13 +97,6 @@
             } else { ok=false; nickname=""; } %>    
                                 <td><b>Nick*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
                             </tr> <tr>
-            <% 
-            if (haslo1!=null && haslo2!=null) {
-                if (haslo1.length() < Config.MIN_PASSWD) { ok=false;
-                    out.println("<td colspan=\"2\">" + Messages.errorPassToShort(Config.MIN_PASSWD) + "</td></tr><tr>"); }
-                if (haslo1.compareTo(haslo2)!=0) { ok=false;
-                    out.println("<td colspan=\"2\">" + Messages.errorPassNotMatch() + "</td></tr><tr>"); }
-            } else { ok=false; } %>
                             <td><b>Haslo*:</b></td><td><input type="password" size="25" name="haslo1"></td>
                             </tr> <tr>
                                 <td><b>Haslo (jeszcze raz)*:</b></td><td><input type="password" size="25" name="haslo2"></td>
