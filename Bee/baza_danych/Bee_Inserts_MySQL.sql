@@ -32,7 +32,9 @@ UNLOCK TABLES;
 LOCK TABLES `Bee_Users` WRITE;
 INSERT INTO `Bee_Users`(`ID`,`Login`,`Haslo`,`Imie`,`Nazwisko`,`Email`,`GG`,`Jabber`,`OstatnieLogowanie`,`Aktywny`,`Admin`,`Moderator`) VALUES
 (1,'piwo','e734dc5328d5a555de5f06c7c9459667','Zenek','Burak','burak@blaszak.pl','56789','zen@jab.pl',Now(),'T','N','T'),
-(2,'paliwo','588ae983298ee2a03b6a37532c9f86ef','Olek','Puszka','puszkin@warka.pl','34567','denko@tyskie.pl',Now(),'T','T','N');
+(2,'paliwo','588ae983298ee2a03b6a37532c9f86ef','Olek','Puszka','puszkin@warka.pl','34567','denko@tyskie.pl',Now(),'T','T','N'),
+(3,'pawelb','Hqgi7gS8D6tBE','','','pawelb@pld-linux.org','','','1970-01-01 00:00:00','T','N','N'),
+(4,'wilk','yIFz/FsHJVxBA','','','wilk@pl','',':p','1970-01-01 00:00:00','T','N','N');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Users` ENABLE KEYS */;
 
@@ -58,10 +60,10 @@ LOCK TABLES `Bee_Podfora` WRITE;
 INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`Aktywne`) VALUES
 (1,'Tyskie','Dobre piwko','T'),
 (2,'Warka','Tez dobre piwko','T'),
-(3,'Lech','Rowniez dobre piwko','T');
+(3,'Lech','Rowniez dobre piwko','T'),
+(4,'Carlsberg','Probably the Best Beer in the World','T');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Podfora` ENABLE KEYS */;
-
 
 --
 -- Dumping data for table `Bee_Watki`
@@ -112,7 +114,8 @@ LOCK TABLES `Bee_Kategorie_Podfora` WRITE;
 INSERT INTO `Bee_Kategorie_Podfora`(`ID_Kategoria`,`ID_Podforum`) VALUES
  (1,1),
  (1,2),
- (1,3);
+ (1,3),
+ (1,4);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Kategorie_Podfora` ENABLE KEYS */;
 
@@ -160,4 +163,8 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
 
