@@ -39,7 +39,7 @@ Hastable.put("Watek_"+id,to co zwrocil SELECT);
  * (na sam koniec implementacji) przy insertach dodaæ schemat tabeli po jej nazwie
  **/
 
-public class DataBase {
+public class java {
     
     /**
      * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
@@ -140,7 +140,7 @@ public class DataBase {
     
     
     /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza Bee:bee@localhost. */
-    public DataBase() {
+    public java() {
     }
     
     /**
@@ -150,7 +150,7 @@ public class DataBase {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public DataBase(String host, String Db,String user, String pass) {
+    public java(String host, String Db,String user, String pass) {
         this.connect(host, Db, user, pass);
     }
     
@@ -436,7 +436,7 @@ public class DataBase {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
             if (kat==null) return false;
             
-            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelcw'");
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = 'Zagorzelców'");
             if (forum==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
@@ -566,14 +566,17 @@ public class DataBase {
         }
         return wynik;
     }
-    /**
-    * Metoda zmienia pole aktywna na N
+
+   /**
+    * Metoda zmienia pole aktywna na N, a takze wszystjie podfora w niej sie zawierajace
     * @param String id kategorii
      *@return boolean true jezeli update sie powiodl dalse wpp.
     */
     public boolean usunKategorie(String id){
-        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
-    }
+     if( baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ") )
+       return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
+     return false;
+  }
     
     /**
     * Metoda zmienia pole aktywna na N
@@ -581,7 +584,7 @@ public class DataBase {
      *@return boolean true jezeli update sie powiodl dalse wpp.
     */
     public boolean usunPodforum(String id){
-        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywna='N' WHERE ID="+id);
+      return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywna='N' WHERE ID="+id);
     }
     
 }
