@@ -12,10 +12,11 @@ package pl.ltd.bee;
  */
 public class Wypowiedz {
     
-    private long ID;
-    private long ID_Autora;
+    private int ID;
+    private int ID_Autora;
     private String Data;
     private String Tekst;
+    private DataBase db;
     
     /** Tworzy instancje klasy Wypowiedz
      * @param ID identyfikator autora
@@ -23,11 +24,16 @@ public class Wypowiedz {
      * @param Data data wypowiedzi
      * @param Tekst tresc wypowiedzi
      */
-    public Wypowiedz(String ID,String ID_Autora,String Data, String Tekst) {
-        this.ID=Long.decode(ID).longValue();
-        this.ID_Autora=Long.decode(ID_Autora).longValue();
+    public Wypowiedz(String ID,String ID_Autora,String Data, String Tekst,DataBase db) {
+        this.ID=Integer.decode(ID).intValue();
+        this.ID_Autora=Integer.decode(ID_Autora).intValue();
         this.Data=Data;
         this.Tekst=Tekst;
+        this.db=db;
+    }
+    
+    public String printJSP() {
+        return "Wiadomosc:<BR> napisana dnia: " +Data + "<BR>" + Tekst + "<BR>";
     }
     
 }

@@ -22,9 +22,9 @@ public class Forum {
      * @param ID identyfikator forum w bazie
      * @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
      */
-    public Forum(String Nazwa, ArrayList Kategorie,DataBase db) {
+    public Forum(String Nazwa, DataBase db) {
         this.Nazwa=Nazwa;
-        this.Kategorie=Kategorie;
+        this.Kategorie=db.getKategorieForum();
         this.db=db;
     }
     

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Kategoria {
     
-    private long ID;
+    private int ID;
     private String Tytul;
     private ArrayList Podfora;
     private DataBase db;
@@ -23,10 +23,10 @@ public class Kategoria {
      * @param ID identyfikator kategorii w bazie danych
      * @param Tytul nazwa kategorii
      */
-    public Kategoria(String ID, String Tytul,ArrayList Podfora,DataBase db) {
-        this.ID=Long.decode(ID).longValue();
+    public Kategoria(String ID, String Tytul,DataBase db) {
+        this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
-        this.Podfora=Podfora;
+        this.Podfora=db.getPodforaKategorii(this.ID);
         this.db=db;
     }
     
@@ -44,7 +44,7 @@ public class Kategoria {
         String s = "<HR><BR>Kategoria:   <a href=\"index.jsp?kid=" + ID + "\">" + Tytul + "</a><BR>";
         for(int i=0;i<Podfora.size();i++) {
             Podforum p = ((Podforum)db.getPodforum(((Integer)Podfora.get(i)).intValue()));
-            s+= p.printJSP();
+            s+= p.printJSPHeader();
         }
         s+="<HR><BR>";
         return s;
