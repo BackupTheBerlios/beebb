@@ -22,16 +22,17 @@ public class Autoryzator {
         zalogowany=false;
     }
     
-    
+    /** Zalogowuje uzytkownika
+     * @param login nazwa uzytwkownika
+     * @param haslo haslo uzytkownika w plain tekst
+     * @param db obiekt typu Database do wyciagania uzytkownika
+     */
     public User zaloguj(String login, String haslo,DataBase db) {
         uzytkownik = db.getUser(login);
-        if (uzytkownik==null) {
-            zalogowany=false;
-            return null;
-        }
+        zalogowany=false;
+        if (uzytkownik==null) return null;
         
         if(login.compareTo("Guest")==0) {
-            zalogowany=false;
             this.login=login;
             return uzytkownik;
         }
