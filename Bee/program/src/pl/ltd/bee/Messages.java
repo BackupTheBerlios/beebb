@@ -139,4 +139,14 @@ public class Messages {
      */
     public static String errorChangePasswd(){
         return "<p class=\"error\">Nie można zmienić hasła, skontaktuj się z administratorem forum.</p>";}
+
+    
+    /**
+     * Metoda dostarcza komunikat o istniejącym juz uzytkowniku z takim emailem
+     * @return String z komunikatem o istniejącym juz uzytkowniku z takim emailem
+     */
+    public static String errorEmailExists(){
+        return "<p class=\"error\">Użytkownik ma już konto w serwisie.</p>";}
+
+
 }

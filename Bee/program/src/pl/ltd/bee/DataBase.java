@@ -548,7 +548,7 @@ public class DataBase {
      * Metoda wstawia klucz do tabeli z nowymi uzytkownikami
      * @param login login uzytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale�no�ci czy insert si� powi�d�
+     * @return T lub N w zależności czy insert się powiódł
      */
     public boolean wstawNewUser(String login, String klucz){
         return baza.dmlQuery("INSERT INTO " + BEE_NEW_USER + " VALUES ('"+ klucz +"', '"+ login + "')");
@@ -558,10 +558,21 @@ public class DataBase {
     /**
      * Metoda sprawdza czy istnieje klucz do aktywacji konta nowego uzytkownika w bazie danych
      * @param klucz losowo wygenerowany klucz
-     * @return N lub T w zale�no�ci czy jest czy nie (T gdy klucza nie ma)
+     * @return N lub T w zależności czy jest czy nie (T gdy klucza nie ma)
      */
     public boolean sprawdzKluczNewUser(String klucz){
-        if(getObject("SELECT " + BEE_NEW_USER + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
+        if(getObject("SELECT * FROM " + BEE_NEW_USER + " WHERE " + FORGET_PASSWD_KLUCZ +  " = '" + klucz + "'") == null)  return true;
+        else return false;
+    }
+    
+    
+    /**
+     * Metoda sprawdza czy istnieje juz user z takim emailem
+     * @param email email uzytkownika
+     * @return N lub T w zalezności czy jest czy nie (T gdy emaila nie ma)
+     */
+    public boolean sprawdzEmail(String email){
+        if(getObject("SELECT * FROM " + BEE_USERS + " WHERE " + USER_EMAIL +  "='" + email + "'") == null)  return true;
         else return false;
     }
     

@@ -41,7 +41,7 @@
             String email=request.getParameter("email");
             if (email==null) ok=false;
             else
-                if (email.compareTo("")==0) ok=false;
+                if (email.compareTo("")==0 || !db_con.sprawdzEmail(email)) ok=false;
                 
             String nazwisko = request.getParameter("nazwisko");
             if (nazwisko==null) nazwisko="";
@@ -111,6 +111,8 @@
             } else {
                 if (email.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
+                 if (!db_con.sprawdzEmail(email)) { ok=false;
+                    out.println("<td colspan=\"2\">" + Messages.errorEmailExists() + "</td></tr><tr>"); }
             }%>
                             <td><b>E-mail*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
                             </tr> <tr>
