@@ -22,6 +22,7 @@
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();
+        
         if (!db_con.isConnected()) {
         try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
@@ -38,10 +39,28 @@
             } else {
             String text=request.getParameter("text");
             if (watek!=null && text!=null) {
-                out.print("dodaje wypowiedz");
+                
+                out.print("<br><br>");
+                String eol = System.getProperty("line.separator");
+                text=text.replaceAll("\n","<br>");
+                out.print(Messages.addMessage());
+                
+                String ID_Usera; 
+                String Nazwa_Usera="";
+                
+                if (auth.zalogowany()) {
+                    ID_Usera = String.valueOf(auth.getUser().getID());
+                } else {
+                    String autor=request.getParameter("autor");
+                    if (autor==null) Nazwa_Usera=Config.GUEST; else Nazwa_Usera=autor;
+                    ID_Usera = "1";
+                }
+                if (!db_con.insertWypowiedz(watek,ID_Usera,text,db_con.getDate())) 
+                    out.print(Messages.errorDataBaseConnection());
+                out.println("<br><br><a href=\"../\">" + Messages.back() + "</a>");
             } else
                 if (podforum!=null && text!=null) {
-                out.print("dodaje watek");
+                out.print(Messages.addThread());
                 }
                 else {
         %>

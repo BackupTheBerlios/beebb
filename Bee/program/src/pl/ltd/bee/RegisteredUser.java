@@ -58,5 +58,10 @@ public class RegisteredUser extends User {
         return aktywny;
     }
     
-    
+        /** Metoda zwraca ID użytkownika
+     * @return Integer reprezentujacy uzytkownika
+     */
+    public int getID() {
+        return ID;
+    }
 }

@@ -12,8 +12,8 @@ package pl.ltd.bee;
  */
 public class Autoryzator {
     
-    User uzytkownik;
-    String login = "Guest";
+    private User uzytkownik;
+    private String login = "Guest";
     boolean zalogowany;
     
     
@@ -52,11 +52,19 @@ public class Autoryzator {
         return zalogowany;
     }
     
-    /** metoda zwraca nazwe uzytkownika aktualnie zalogowanego
-     * @return String reprezentujacy nazwe aktualnie zalogowanego uzytkownika
+    /** Metoda zwraca nazwe uzytkownika aktualnie zalogowanego
+     * @return String reprezentujacy nazwe aktualnie zalogowanego użytkownika
      */
     public String user() {
         return login;
     }
+    
+    /** Metoda zwraca zalogowanego uzytkownika
+     * @return User reprezentujacy zalogowanego użytkownika
+     */
+    public User getUser() {
+        return uzytkownik;
+    }
+     
 }
 

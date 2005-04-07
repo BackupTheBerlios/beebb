@@ -97,7 +97,7 @@ public class Messages {
     
     /** Metoda dostarcza komunikat o wyslaniu emaila aktywacyjnego */
     public static String messageActivEmailSend(){
-        return "<p class=\"info\">Email z linkiem aktywacyjnym zosta� wys�any.</p>";}
+        return "<p class=\"info\">Email z linkiem aktywacyjnym został wysłany.</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
@@ -365,5 +365,22 @@ public class Messages {
     public static String formError(){
         return "<p align=\"center\" class=\"info\">Bląd formularza.</p>";}
     
+        
+    /**
+     * Metoda dostarcza komunikat o poprawnym dodaniu wypowiedzi
+     * @return String z komunikatem
+     */
 
+    public static String addMessage(){
+        return "Dodano Wypowiedź";}
+
+    
+    /**
+     * Metoda dostarcza komunikat o poprawnym dodaniu wątka
+     * @return String z komunikatem
+     */
+
+    public static String addThread(){
+        return "Dodano Wątek";}
+    
 }

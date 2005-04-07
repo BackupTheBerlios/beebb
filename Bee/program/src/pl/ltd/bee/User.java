@@ -29,4 +29,13 @@ public abstract class User {
     public boolean aktywny() {
         return false;
     }
+    
+    
+    /** Metoda zwraca ID użytkownika
+     * @return Integer reprezentujacy uzytkownika
+     */
+    public int getID() {
+        return 0;
+    }
+    
 }

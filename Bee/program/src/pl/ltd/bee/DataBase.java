@@ -490,6 +490,24 @@ public class DataBase {
     
     
     /**
+     * Metoda umieszcza wypowiedź w bazie
+     * @param id_wat id wątku, w którym dodajemy wypowiedź
+     * @param id_autora identyfikator autora wypowiedzi
+     * @param tekst treść wypowiedzi
+     * @param data data wypowiedzi
+     * @return zwraca true jezeli insert sie powiodl
+     */
+    public boolean insertWypowiedz(String id_wat, String id_autora, String tekst, String data) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + " , '" + data + "' , \"" + tekst + "\")")) {
+            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_TEKST + "='" + tekst +"' AND " + WYPOWIEDZ_DATA + " = '" + data + "'");
+            if (wid==null) return false;
+            return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get("ID") + ")");
+        }
+        return false;
+    }
+    
+    
+    /**
      * Metoda sprawdz czy kategoria o podanym tytule juz istnieje
      * @param tytul tytul kategorii
      * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
@@ -690,6 +708,28 @@ public class DataBase {
     public boolean updatePodforum(String id, String id_kat, String tytul, String opis ){
         baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET ID_Kategoria="+id_kat+" WHERE ID_Podforum="+id);
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Tytul='"+tytul+"' , Opis='"+opis+"' WHERE ID="+id);
+    }
+    
+    
+    /** Metoda zwraca aktualną datę dla wybranej bazy danych
+     * @return String reprezentujacy date dla aktualnej bazy danych
+     */
+    public String getDate() {
+        return "1970-01-01 00:00:00";
+    }
+    
+    
+    /** Metoda zwraca datę dla wybranej bazy danych
+     * @param year String reprezentujacy rok
+     * @param mounth String reprezentujacy miesiac
+     * @param day String reprezentujacy dzień
+     * @param hour String reprezentujacy godzine
+     * @param min String reprezentujacy minute
+     * @param sec String reprezentujacy sekunde
+     * @return String reprezentujacy date dla aktualnej bazy danych
+     */
+    public String getDate(String year,String mounth,String day,String hour,String min,String sec) {
+        return year + "-" + mounth + "-" + day + " :"+ hour + ":" + min + ":" + sec;
     }
     
     
