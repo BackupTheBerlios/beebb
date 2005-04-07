@@ -15,8 +15,9 @@
 <!ELEMENT tables_prefix (#PCDATA)>
 
 <!-- sekcja zachowania sie forum -->
-<!ELEMENT behave (guest_account,minimum_pass_length,new_user_mail_auth)>
+<!ELEMENT behave (guest_account,log_in_max_age,minimum_pass_length,new_user_mail_auth)>
 <!ELEMENT guest_account (#PCDATA)>
+<!ELEMENT log_in_max_age (#PCDATA)>
 <!ELEMENT minimum_pass_length (#PCDATA)>
 <!ELEMENT new_user_mail_auth (#PCDATA)>
 

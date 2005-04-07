@@ -48,6 +48,7 @@ public class Config {
     private final static String TAG_DATABASE_NAME="database_name";
     private final static String TAG_TABLES_PREFIX="tables_prefix";
     private final static String TAG_GUEST_ACCOUNT="guest_account";
+    private final static String TAG_LOG_IN_MAX_AGE="log_in_max_age";
     private final static String TAG_MINIMUM_PASS_LENGTH="minimum_pass_length";
     private final static String TAG_NEW_USER_MAIL_AUTH="new_user_mail_auth";
     private final static String TAG_SMTP_SERVER="smtp_server";
@@ -118,6 +119,7 @@ public class Config {
             if ( tag.compareTo(Config.TAG_FORGET_SUBJECT) ==0)  Config.this.FORGET_MAIL_SUBJECT = wynik;
             if ( tag.compareTo(Config.TAG_GUEST_ACCOUNT) ==0)   Config.this.GUEST = wynik;
             if ( tag.compareTo(Config.TAG_HOST) == 0)           Config.this.HOST = wynik;
+            if ( tag.compareTo(Config.TAG_LOG_IN_MAX_AGE) == 0) Config.this.LOG_IN_MAX_AGE = Integer.parseInt(wynik);
             if ( tag.compareTo(Config.TAG_MAIL_FROM) ==0)       Config.this.MAIL_FROM = wynik;
             if ( tag.compareTo(Config.TAG_MINIMUM_PASS_LENGTH) ==0) Config.this.MIN_PASSWD = Integer.parseInt(wynik);
             if ( tag.compareTo(Config.TAG_NEW_USER_MAIL_AUTH) ==0) Config.this.NEW_USER_MAIL_AUTH = Boolean.valueOf(wynik).booleanValue();
@@ -176,6 +178,7 @@ public class Config {
            if (parent.getNodeName().compareTo(TAG_FORGET_SUBJECT) == 0) node.setNodeValue(FORGET_MAIL_SUBJECT);
            if (parent.getNodeName().compareTo(TAG_GUEST_ACCOUNT) == 0) node.setNodeValue(GUEST);
            if (parent.getNodeName().compareTo(TAG_HOST) == 0) node.setNodeValue(HOST);
+           if (parent.getNodeName().compareTo(TAG_LOG_IN_MAX_AGE) == 0) node.setNodeValue(Integer.toString(LOG_IN_MAX_AGE));
            if (parent.getNodeName().compareTo(TAG_MAIL_FROM) == 0) node.setNodeValue(MAIL_FROM);
            if (parent.getNodeName().compareTo(TAG_MINIMUM_PASS_LENGTH) == 0) node.setNodeValue(Integer.toString(MIN_PASSWD));
            if (parent.getNodeName().compareTo(TAG_NEW_USER_MAIL_AUTH) == 0) node.setNodeValue(Boolean.toString(NEW_USER_MAIL_AUTH));
@@ -195,7 +198,7 @@ public class Config {
        }        
     }
     
-    /**
+    /** TODO TRZEBA PRZEPISAC
      * Metoda zapisuje drzewo DOM do pliku
      * @param node drzewo DOM
      * @param plik strumien do zapisu
