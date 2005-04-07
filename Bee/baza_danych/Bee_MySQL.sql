@@ -101,7 +101,6 @@ CREATE TABLE `Bee_Wypowiedzi` (
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Tekst` text NOT NULL,
   PRIMARY KEY  (`ID`),
-  UNIQUE KEY `Autor_FK` (`ID_autora`),
   CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wypowiedziami';
 
