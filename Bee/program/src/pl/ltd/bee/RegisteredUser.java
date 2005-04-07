@@ -64,4 +64,11 @@ public class RegisteredUser extends User {
     public int getID() {
         return ID;
     }
+    
+    /** Metoda zwraca zahashowane haslo uzytkownika
+     * @return String z reprezentacja hasla
+     **/
+    public String getHaslo(){
+        return haslo;
+    }
 }

@@ -29,6 +29,16 @@
        }
        else db_con = (DataBase)o;
        
+       Config konfiguracja;
+       Object ob = application.getAttribute(Config.APPLICATION_OBJECT_CONFIG);
+       if (ob == null)
+       {
+           Config c = new Config();
+           application.setAttribute(Config.APPLICATION_OBJECT_CONFIG,c);
+           konfiguracja = c;
+       }
+       else konfiguracja = (Config)ob;
+       
        Autoryzator auth;
        Object obj = application.getAttribute(Config.APPLICATION_OBJECT_AUTORYZACJA);
        if (obj == null)
@@ -59,7 +69,7 @@
          if (flds.hasMoreElements()) { 
             String field = (String) flds.nextElement(); 
             if (field.compareTo("logout")==0) {
-                auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
+                auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
                 response.sendRedirect("../index.jsp");
             }
             else {
@@ -71,8 +81,7 @@
                     if (uzytkownik!=null && haslo!=null)
                     {
                         try {
-                        User u = auth.zaloguj(uzytkownik,haslo,db_con.getUser(uzytkownik));
-                        
+                        User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
                         if (u!=null)
                             response.sendRedirect("../index.jsp");
                         } catch (Exception e) {

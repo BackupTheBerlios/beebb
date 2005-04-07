@@ -79,10 +79,10 @@
             pl.ltd.bee.Forum f = db_con.getForum();
                 if (f!=null) {
                 %> <a href="./Administracja/index.htm" target="main">Panel Administratora</A> <%
-                if (!auth.zalogowany()) 
+                if (!auth.zalogowany(request,db_con)) 
                         out.print("[ <a href=\"pages/auth.jsp\">Zaloguj</a> ]");
                 else
-                    out.print("Zalogowany: " + auth.user() + " [ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
+                    out.print("Zalogowany: " + auth.user(request) + " [ <a href=\"pages/auth.jsp?logout=yes\">Wyloguj</a> ]");   
                     out.print("<br><br>");
                     Forum.printMainTableJSP(out);
                     f.printJSP(out);

@@ -72,8 +72,8 @@
                 String ID_Usera; 
                 String Nazwa_Usera="";
                 
-                if (auth.zalogowany()) {
-                    ID_Usera = String.valueOf(auth.getUser().getID());
+                if (auth.zalogowany(request,db_con)) {
+                    ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
                 } else {
                     String autor=request.getParameter("autor");
                     if (autor==null) Nazwa_Usera=Config.GUEST; else Nazwa_Usera=autor;
@@ -101,7 +101,7 @@
                             </tr> <tr>
                                 <td valign="top">Treść:</td><td><textarea cols="50" rows="5" name="text"></textarea></td>
                             </tr> <tr>
-                            <td>Autor:</td><td><% if(!auth.zalogowany()){%><input type="text" size="59" name="autor"><%}else{out.print(auth.user());}%></td>
+                            <td>Autor:</td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="59" name="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
                             </tr>

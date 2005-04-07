@@ -19,23 +19,21 @@ public abstract class User {
      * @param passwd haslo w plain tekst
      * @return ponieważ jest to abstrakcyjna klasa zwraca zawsze false
      */
-    public boolean checkPasswd(String passwd) {
-        return false;
-    }
+    public abstract  boolean checkPasswd(String passwd);
     
     /** Metoda sprawdza czy uzytkownik jest aktywny
      * @return ponieważ jest to abstrakcyjna klasa zwraca zawsze false
      */
-    public boolean aktywny() {
-        return false;
-    }
+    public abstract boolean aktywny();
     
     
     /** Metoda zwraca ID użytkownika
      * @return Integer reprezentujacy uzytkownika
      */
-    public int getID() {
-        return 0;
-    }
-    
+    public abstract int getID();
+
+    /** Metoda zwraca zahashowane haslo uzytkownika
+     * @return String z reprezentacja hasla
+     **/
+    public abstract String getHaslo();    
 }

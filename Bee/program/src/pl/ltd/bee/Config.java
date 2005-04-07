@@ -75,6 +75,9 @@ public class Config {
     /** nazwa uzytkownika ktorego bedziemy traktowac jako goscia */
     public static String GUEST = "Guest";
     
+    /** czas w sekundach po jakim uzytkownik zostanie automatycznie wylogowany */
+    public static int LOG_IN_MAX_AGE = 3600;
+    
     /** minimalna d�ugo�� has�a wpisanego przez u�ytkownika */
     public static int MIN_PASSWD = 5;
     
