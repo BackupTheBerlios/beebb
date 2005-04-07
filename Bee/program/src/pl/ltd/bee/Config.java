@@ -26,6 +26,11 @@ import pl.ltd.bee.Exceptions.*;
  * @author wilk
  */
 public class Config {
+    
+    /** stale ktore sloza do umieszczenia objektow w contenerze na ktorym sie wykonuje Bee */
+    public final static String APPLICATION_OBJECT_DATABASE = "pl.ltd.bee.DataBase";
+    public final static String APPLICATION_OBJECT_CONFIG = "pl.ltd.bee.Config";
+    public final static String APPLICATION_OBJECT_AUTORYZACJA = "pl.ltd.bee.Autoryzator";
  
     private final static String FILE_NAME = "/config/config.xml"; 
     private final static String KODOWANIE = "UTF-8";

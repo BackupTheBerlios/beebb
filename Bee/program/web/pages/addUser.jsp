@@ -3,6 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.lang.*"%>
 <%@ page import="pl.ltd.bee.*"%>
+<%@ page session="false" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -16,8 +18,20 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
     </head>
     <body>
-        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-        <br><br>
+<%
+       DataBase db_con;
+       Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
+       if (o == null)
+       {
+           DataBase d = new DataBase();
+           application.setAttribute(Config.APPLICATION_OBJECT_DATABASE,d);
+           db_con = d;
+       }
+       else db_con = (DataBase)o;
+       
+%>
+    
+        <br/><br/>
         <table align="center" border="0">
             <tr>
                 <td> 

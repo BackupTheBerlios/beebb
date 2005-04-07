@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.util.*"%>
 <%@ page language="java" import="java.lang.*"%>
 <%@ page language="java" import="pl.ltd.bee.*"%>
+<%@ page session="false" %>
 <%@ page errorPage="true"%>
 <%@ page contentType="text/html"%>
 <%@ page pageEncoding="UTF-8"%>
+
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -18,9 +22,39 @@
     </head>
     <body>
     
-    <jsp:useBean id="auth" scope="session" class="pl.ltd.bee.Autoryzator" />
-    <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
-    <jsp:useBean id="konfiguracja" scope="session" class="pl.ltd.bee.Config" />
+
+<%
+       DataBase db_con;
+       Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
+       if (o == null)
+       {
+           DataBase d = new DataBase();
+           application.setAttribute(Config.APPLICATION_OBJECT_DATABASE,d);
+           db_con = d;
+       }
+       else db_con = (DataBase)o;
+       
+       Config konfiguracja;
+       Object ob = application.getAttribute(Config.APPLICATION_OBJECT_CONFIG);
+       if (ob == null)
+       {
+           Config c = new Config();
+           application.setAttribute(Config.APPLICATION_OBJECT_CONFIG,c);
+           konfiguracja = c;
+       }
+       else konfiguracja = (Config)ob;
+       
+       Autoryzator auth;
+       Object obj = application.getAttribute(Config.APPLICATION_OBJECT_AUTORYZACJA);
+       if (obj == null)
+       {
+           Autoryzator a = new Autoryzator();
+           application.setAttribute(Config.APPLICATION_OBJECT_AUTORYZACJA,a);
+           auth = a;
+       }
+       else auth = (Autoryzator)obj;
+       
+%>
 
        <%
        try{
