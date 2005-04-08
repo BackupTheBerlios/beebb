@@ -82,6 +82,7 @@ DROP TABLE IF EXISTS `Bee_Watki`;
 CREATE TABLE `Bee_Watki` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `ID_autora` int(10) unsigned NOT NULL default '0',
+  `Autor` varchar(40) NOT NULL default '',
   `Temat` varchar(100) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`ID`),
@@ -98,6 +99,7 @@ DROP TABLE IF EXISTS `Bee_Wypowiedzi`;
 CREATE TABLE `Bee_Wypowiedzi` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `ID_autora` int(10) unsigned NOT NULL default '0',
+  `Autor` varchar(40) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Tekst` text NOT NULL,
   PRIMARY KEY  (`ID`),
