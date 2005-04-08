@@ -25,8 +25,8 @@
 <body>
 <table width="100%" border="0"> 
 <tr>
-<td id="cellHead">
-	<iframe id="frameHead" width="100%" src="./pages/header.jsp" scrolling="no" frameborder="0"></iframe>
+<td id="cellHead"> <!-- Nie trzeba ustawiac src bo main.jsp ustawi w onLoad -->
+	<iframe id="frameHead" width="100%" src="" scrolling="no" frameborder="0"></iframe>
 </td>
 </tr>
 <tr>

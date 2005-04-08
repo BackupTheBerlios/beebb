@@ -53,9 +53,9 @@ public class Wypowiedz {
         strona.println("<!--<SCRIPT type=\"text/javascript\" src=\"./../js/skrypt.js\"/>-->");
         strona.println("</head>");
         strona.println("<body class=\"bodyWypowiedz\">");
-        strona.println("<table border=\"0\">");
+        strona.println("<table border=\"0\" id=\"tableWypowiedz\">");
         strona.println("<tr>");
-        strona.println("<td class=\"tdWypowiedz\">");
+        strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
         strona.println(Tekst);
         strona.println("</td>");
         strona.println("</tr>");

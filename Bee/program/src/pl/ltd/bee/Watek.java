@@ -80,35 +80,13 @@ public class Watek {
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
-/*        strona.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-        strona.println("<html>");
-        strona.println("<head>");
-        strona.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
-        strona.println("<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">");
-        strona.println("<meta name=\"Copyright\" content=\"BeeBB Group &copy; 2005\" />");
-        strona.println("<meta name=\"Author\" content=\"BeeBB Group\" />");
-        strona.println("<meta name=\"description\" content=\"??\" />");
-        strona.println("<meta name=\"keywords\" content=\"??\" />");
-        
-        strona.println("<title>BeeBB :: Index</title>");
-        strona.println("<link rel=\"stylesheet\" href=\"./../styles/temat.css\" type=\"text/css\"/>");
-        strona.println("<script type=\"text/javascript\" src=\"./../js/iframe_resize.js\"></script>");
-        strona.println("<script type=\"text/javascript\" src=\"./../js/skrypt.js\"></script>");
-        
-        strona.println("<!--<FRAMESET ROWS=\"150,*\" BORDER=\"0\">");
-        //TODO CO TO JEST ?!?!?!?!
-        strona.println("<FRAME SRC=\"naglowek.html\" SCROLLING=\"no\" NAME=\"Naglowek\">");
-        strona.println("<FRAME SRC=\"forum.html\" SCROLLING=\"auto\" NAME=\"Strona\">");
-        strona.println("</FRAMESET>");
-        strona.println("-->");
-        strona.println("</head>");
-        strona.println("<body onLoad=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\" onResize=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\">");
-         */
         Podforum p = db.getPodforumbyWatek(ID);
         Kategoria k = db.getKategoriabyPodforum(p.getID());
         Forum f = db.getForum();
-        strona.println("<div align=\"left\">>> <a href=\"./main.jsp\">"+ f.getNazwa() +"</a> > <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> > <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> > <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></div>");
+        strona.println("<table border=\"0\" id=\"textNadWatkiem\" width=\"100%\"><tr><td>");
+        strona.println("<div align=\"left\"><a href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></div>");
         strona.println("<div align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">Dodaj Wypowiedź</a></div><br>");
+        strona.println("</td></tr></table>");
         strona.println("<table id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th class=\"thTopLCorner\" width=\"15%\" height=\"25\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");

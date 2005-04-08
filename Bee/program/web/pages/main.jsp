@@ -23,7 +23,7 @@
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
 
     </head>
-    <body onLoad="resizeMain()" onResize="resizeMain()">
+    <body onLoad="reloadHeader('./header.jsp');resizeMain()" onResize="resizeMain()">    
 <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
