@@ -74,8 +74,10 @@
                 if (!db_con.insertWypowiedz(watek,ID_Usera,Nazwa_Usera,text,db_con.getDate())) 
                     out.print(Messages.errorDataBaseConnection()); else
                     out.print(Messages.addMessage());
-                out.println("<br><br><a href=\"./main.jsp\">" + Messages.back() + "</a>");
-            } else
+
+                    out.print("<center><br><br><a href=\"./main.jsp"); 
+                    if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");
+                } else
                 if (podforum!=null && text!=null) {
                 out.print(Messages.addThread());
                 }
