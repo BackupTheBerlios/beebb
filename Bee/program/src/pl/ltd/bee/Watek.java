@@ -65,7 +65,7 @@ public class Watek {
      */
     public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
-        strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
+        strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">17</span></td>");
         strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\"><a href=\"profile.html\">User 1</a></span></td>");
@@ -80,7 +80,7 @@ public class Watek {
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
-        strona.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+/*        strona.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
         strona.println("<html>");
         strona.println("<head>");
         strona.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
@@ -91,22 +91,24 @@ public class Watek {
         strona.println("<meta name=\"keywords\" content=\"??\" />");
         
         strona.println("<title>BeeBB :: Index</title>");
-        strona.println("<link rel=\"stylesheet\" href=\"./temat.css\" type=\"text/css\"/>");
-        strona.println("<script type=\"text/javascript\" src=\"./iframe_resize.js\"></script>");
-        strona.println("<script type=\"text/javascript\" src=\"./skrypt.js\"></script>");
+        strona.println("<link rel=\"stylesheet\" href=\"./../styles/temat.css\" type=\"text/css\"/>");
+        strona.println("<script type=\"text/javascript\" src=\"./../js/iframe_resize.js\"></script>");
+        strona.println("<script type=\"text/javascript\" src=\"./../js/skrypt.js\"></script>");
         
         strona.println("<!--<FRAMESET ROWS=\"150,*\" BORDER=\"0\">");
+        //TODO CO TO JEST ?!?!?!?!
         strona.println("<FRAME SRC=\"naglowek.html\" SCROLLING=\"no\" NAME=\"Naglowek\">");
         strona.println("<FRAME SRC=\"forum.html\" SCROLLING=\"auto\" NAME=\"Strona\">");
         strona.println("</FRAMESET>");
         strona.println("-->");
         strona.println("</head>");
         strona.println("<body onLoad=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\" onResize=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\">");
+         */
         Podforum p = db.getPodforumbyWatek(ID);
         Kategoria k = db.getKategoriabyPodforum(p.getID());
         Forum f = db.getForum();
-        strona.println("<div align=\"left\">>> <a href=\"index.jsp\">"+ f.getNazwa() +"</a> > <a href=\"index.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> > <a href=\"index.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> > <a href=\"index.jsp?wid=" + ID + "\">"+ Temat +"</a></div>");
-        strona.println("<div align=\"right\"><a href=\"pages/dodajW.jsp?w=" + ID + "\">Dodaj Wypowiedź</a></div><br>");
+        strona.println("<div align=\"left\">>> <a href=\"./main.jsp\">"+ f.getNazwa() +"</a> > <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> > <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> > <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></div>");
+        strona.println("<div align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">Dodaj Wypowiedź</a></div><br>");
         strona.println("<table id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th class=\"thTopLCorner\" width=\"15%\" height=\"25\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
@@ -136,22 +138,12 @@ public class Watek {
         printMainTableJSP(strona);
         for(int i=0;i<Wypowiedzi.size();i++) {
             strona.println("<tr class=\"trWypowiedz\">");
-            strona.println("<td class=\"tdAutorBox\" align=\"center\" valign=\"middle\"><img src=\"./images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
-            strona.println("<td class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
+            strona.println("<td class=\"tdAutorBox\" align=\"center\" valign=\"middle\"><img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
+            strona.println("<td class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
             strona.println("</tr>");
         }
         printMainTableCloseJSP(strona);
     }
     
-    /** to do usuniecia */
-    public String printJSP() {
-        //outs.write("Temat: " + Temat);
-        String s =  "<h2>" + Temat + "</h2>(Utworzony dnia: " + Data + ")<br><br><br>";
-        for(int i=0;i<Wypowiedzi.size();i++) {
-            Wypowiedz w = ((Wypowiedz)db.getWypowiedz(((Integer)Wypowiedzi.get(i)).intValue()));
-            s+= w.printJSP();
-        }
-        return s;
-    }
     
 }

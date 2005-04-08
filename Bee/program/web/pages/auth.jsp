@@ -70,7 +70,7 @@
             String field = (String) flds.nextElement(); 
             if (field.compareTo("logout")==0) {
                 auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
-                response.sendRedirect("../index.jsp");
+                response.sendRedirect("./main.jsp");
             }
             else {
                 String uzytkownik;
@@ -83,7 +83,7 @@
                         try {
                         User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
                         if (u!=null)
-                            response.sendRedirect("../index.jsp");
+                            response.sendRedirect("./main.jsp");
                         } catch (Exception e) {
                             out.print(e);
                         }

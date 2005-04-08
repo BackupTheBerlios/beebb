@@ -73,7 +73,7 @@
                 else
                     out.print(Messages.errorChangePasswd());
             }
-            out.println("<a href=../../index.jsp>powrot</a><br>"); 
+            out.println("<a href=./../main.jsp>powrot</a><br>"); 
         }
         %>
                 </td>

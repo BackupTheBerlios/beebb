@@ -49,8 +49,8 @@ public class Wypowiedz {
         strona.println("<meta name=\"description\" content=\"??\" />");
         strona.println("<meta name=\"keywords\" content=\"??\" />");
         strona.println("<title>BeeBB :: Index</title>");
-        strona.println("<link rel=\"stylesheet\" href=\"./temat.css\" type=\"text/css\"/>");
-        strona.println("<!--<SCRIPT type=\"text/javascript\" src=\"./skrypt.js\"/>-->");
+        strona.println("<link rel=\"stylesheet\" href=\"./../styles/temat.css\" type=\"text/css\"/>");
+        strona.println("<!--<SCRIPT type=\"text/javascript\" src=\"./../js/skrypt.js\"/>-->");
         strona.println("</head>");
         strona.println("<body class=\"bodyWypowiedz\">");
         strona.println("<table border=\"0\">");

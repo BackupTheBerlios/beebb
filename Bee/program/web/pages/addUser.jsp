@@ -80,14 +80,14 @@
                         if(!db_con.wstawNewUser(nickname,numer))
                             out.print(Messages.errorDataBaseConnection());
                         else {
-                            out.println(Messages.messageActivEmailSend()+"<BR><br><a href=../index.jsp>" + Messages.back() + "</a><br>"); 
-                            SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
+                            out.println(Messages.messageActivEmailSend()+"<BR><br><a href=./main.jsp>" + Messages.back() + "</a><br>"); 
+                            SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "./reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
                             out.println(Messages.errorUserCreate());
                         else
-                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<BR><br><a href=../index.jsp>" +Messages.back()+"</a><br>"); 
+                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<BR><br><a href=./main.jsp>" +Messages.back()+"</a><br>"); 
                     }
                 }
             } else {

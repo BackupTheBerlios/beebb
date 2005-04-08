@@ -115,7 +115,7 @@ public class Kategoria {
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //TODO te naglowki moze trzeba bedziew wywalic gdzie indziej .. ale poki co to dobre dla nich miejsce
         Forum f = db.getForum();
-        strona.println("<div align=\"left\">>> <a href=\"index.jsp\">"+ f.getNazwa() +"</a> > <a href=\"index.jsp?kid=" + ID + "\">"+ Tytul +"</a></div>");
+        strona.println("<div align=\"left\">>> <a href=\"main.jsp\">"+ f.getNazwa() +"</a> > <a href=\"main.jsp?kid=" + ID + "\">"+ Tytul +"</a></div>");
         strona.println("<table id=\"tableForum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("\t<tr>");
         strona.println("\t\t<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Forum&nbsp;</th>");
@@ -132,7 +132,7 @@ public class Kategoria {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
-        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\"><a href=\"index.jsp?kid="+ this.ID +"\" class=\"aTytulKategorii\">" + Tytul + "</a></span></td>");
+        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\"><a href=\"main.jsp?kid="+ this.ID +"\" class=\"aTytulKategorii\">" + Tytul + "</a></span></td>");
         strona.println("</tr>");
         ArrayList podfora = db.getPodforaKategorii(this.ID);
         for(int i=0;i<podfora.size();i++) {
