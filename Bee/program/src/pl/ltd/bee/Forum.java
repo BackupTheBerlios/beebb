@@ -18,7 +18,7 @@ public class Forum {
     private ArrayList Kategorie;
     private DataBase db;
     
-    /** Tworzy nowa instancje klasy Forum 
+    /** Tworzy nowa instancje klasy Forum
      * @param ID identyfikator forum w bazie
      * @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
      */
@@ -27,13 +27,21 @@ public class Forum {
         this.Kategorie=db.getKategorieForum();
         this.db=db;
     }
-        
+    
+    
+    /** Zwraca nazwe forum
+     * @return string bedacy nazwa forum
+     */
+    public String getNazwa() {
+        if (Nazwa==null) return "";
+        return Nazwa;
+    }
+    
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
      * @param strona strumien wyjsciowy
      */
-    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException
-    {
+    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //teraz wypisanie kategorii
         ArrayList kategorie = db.getKategorieForum();
         for(int i=0;i<Kategorie.size();i++) {
@@ -42,12 +50,11 @@ public class Forum {
         }
     }
     
-     /**
-      * Metoda wypisuje na stronie glowną tabele i jej naglowki
-      * @param strona strumien wyjsciowy
-      */
-     public static void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException
-     {
+    /**
+     * Metoda wypisuje na stronie glowną tabele i jej naglowki
+     * @param strona strumien wyjsciowy
+     */
+    public static void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //TODO te naglowki moze trzeba bedziew wywalic gdzie indziej .. ale poki co to dobre dla nich miejsce
         strona.println("<table id=\"tableForum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("\t<tr>");
@@ -56,14 +63,13 @@ public class Forum {
         strona.println("\t\t<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Posty&nbsp;</th>");
         strona.println("\t\t<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Ostatni Post&nbsp;</th>");
         strona.println("\t</tr>");
-     }
-     
-     /**
-      * Metoda wypisuje na stronie zamkniecie glownej tabeli
-      * @param strona strumien wyjsciowy
-      */
-     public static void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException
-     {
-         strona.println("</table>");
-     }
+    }
+    
+    /**
+     * Metoda wypisuje na stronie zamkniecie glownej tabeli
+     * @param strona strumien wyjsciowy
+     */
+    public static void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("</table>");
+    }
 }

@@ -107,14 +107,13 @@
             } 
                 if (field.compareTo("kid") == 0) {
                 pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
-                if (k!=null) 
-                {
-                      Forum.printMainTableJSP(out);
+                if (k!=null) {
+                      k.printMainTableJSP(out);
                       k.printJSP(out);
-                      Forum.printMainTableCloseJSP(out);
-                      }
-                     else 
-                        out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorCategoryNotExists()+"<br>");
+                      k.printMainTableCloseJSP(out);
+                }
+                else 
+                      out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorCategoryNotExists()+"<br>");
                 } 
                     if (field.compareTo("pid") == 0) {
                         pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());

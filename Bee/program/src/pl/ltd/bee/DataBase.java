@@ -109,8 +109,8 @@ public class DataBase {
     static final String KATEGORIA_ID = "ID";
     static final String KATEGORIA_TYTUL = "TYTUL";
     
-    static final String WATKI_WYPOWIEDZI_ID_KATEGORII = "ID_KATEGORIA";
-    static final String WATKI_WYPOWIEDZI_ID_PODFORUM = "ID_PODFORUM";
+    static final String KATEGORIE_PODFORA_ID_KATEGORII = "ID_KATEGORIA";
+    static final String KATEGORIE_PODFORA_ID_PODFORUM = "ID_PODFORUM";
     
     static final String PODFORA_WATKI_ID_PODFORUM = "ID_PODFORA";
     static final String PODFORA_WATKI_ID_WATKU = "ID_WATKU";
@@ -222,19 +222,6 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Watek w ktorym znajduje sie wypowiedz o podanym identyfikatorze
-     * @param ID Identyfikator swypowiedzi w szukanym watku
-     * @return Zwraca obiekt Watek badz null w razie bledu.
-     */
-    public Watek getWatekbyWypowiedz(int ID){
-        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_WATKU + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
-        //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
-        if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
-    }
-    
-    
-    /**
      * Metoda zwaraca objekt Wypowiedz o podanym identyfikatorze
      * @param ID Identyfikator szukanej wypowiedzi
      * @return Zwraca obiekt Wypowiedz badz null w razie bledu.
@@ -255,6 +242,32 @@ public class DataBase {
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
         if (podforum == null) return null;
         return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),this);
+    }
+    
+    
+    
+    
+    /**
+     * Metoda zwaraca objekt Podforum w ktorym znajduje sie Watek o podanym identyfikatorze
+     * @param ID Identyfikator watku w szukanym podforum
+     * @return Zwraca obiekt Podforum badz null w razie bledu.
+     */
+    public Podforum getPodforumbyWatek(int ID){
+        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_WATKU + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
+        if (podforum == null) return null;
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),this);
+    }
+    
+    
+    /**
+     * Metoda zwaraca objekt Kategoria w ktorym znajduje sie Podforum o podanym identyfikatorze
+     * @param ID Identyfikator podforum w szukanej kategorii
+     * @return Zwraca obiekt Kategoria lub null gdy nie ma.
+     */
+    public Kategoria getKategoriabyPodforum(int ID){
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID + " = (SELECT " + KATEGORIE_PODFORA_ID_KATEGORII + " FROM " + BEE_KATEGORIE_PODFORA + " WHERE " + KATEGORIE_PODFORA_ID_PODFORUM + "=" + ID + ")");
+        if (kategoria == null) return null;
+        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),this);
     }
     
     /**
@@ -317,10 +330,10 @@ public class DataBase {
      */
     public ArrayList getPodforaKategorii(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList podfora = baza.query("SELECT "+ WATKI_WYPOWIEDZI_ID_PODFORUM + " FROM "+ BEE_KATEGORIE_PODFORA + " WHERE " + WATKI_WYPOWIEDZI_ID_KATEGORII + "=" + ID);
+        ArrayList podfora = baza.query("SELECT "+ KATEGORIE_PODFORA_ID_PODFORUM + " FROM "+ BEE_KATEGORIE_PODFORA + " WHERE " + KATEGORIE_PODFORA_ID_KATEGORII + "=" + ID);
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
-            int id = Integer.parseInt((String)podforum.get(WATKI_WYPOWIEDZI_ID_PODFORUM));
+            int id = Integer.parseInt((String)podforum.get(KATEGORIE_PODFORA_ID_PODFORUM));
             wynik.add(new Integer(id));
         }
         return wynik;

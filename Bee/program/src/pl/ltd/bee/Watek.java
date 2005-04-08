@@ -102,6 +102,11 @@ public class Watek {
         strona.println("-->");
         strona.println("</head>");
         strona.println("<body onLoad=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\" onResize=\"resizeMain();funOnResize(new Array(691,691,691,691,691,691,691,691,691,691,691))\">");
+        Podforum p = db.getPodforumbyWatek(ID);
+        Kategoria k = db.getKategoriabyPodforum(p.getID());
+        Forum f = db.getForum();
+        strona.println("<div align=\"left\">>> <a href=\"index.jsp\">"+ f.getNazwa() +"</a> > <a href=\"index.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> > <a href=\"index.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> > <a href=\"index.jsp?wid=" + ID + "\">"+ Temat +"</a></div>");
+        strona.println("<div align=\"right\"><a href=\"pages/dodajW.jsp?w=" + ID + "\">Dodaj Wypowiedź</a></div><br>");
         strona.println("<table id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th class=\"thTopLCorner\" width=\"15%\" height=\"25\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");

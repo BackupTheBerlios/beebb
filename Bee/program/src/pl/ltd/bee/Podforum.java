@@ -52,7 +52,7 @@ public class Podforum {
     /** Zwraca identyfikator forum
      * @return zwraca long bedacy identyfikatorem podforum w bazie
      */
-    public long getID() {
+    public int getID() {
         return ID;
     }
     
@@ -144,6 +144,10 @@ public class Podforum {
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        Kategoria k = db.getKategoriabyPodforum(ID);
+        Forum f = db.getForum();
+        strona.println("<div align=\"left\">>> <a href=\"index.jsp\">"+ f.getNazwa() +"</a> > <a href=\"index.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> > <a href=\"index.jsp?pid=" + ID + "\">"+ Tytul +"</a></div>");
+        strona.println("<div align=\"right\"><a href=\"pages/dodajW.jsp?p=" + ID + "\">Dodaj Wątek</a></div><br>");
         strona.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Tematy&nbsp;</th>");
