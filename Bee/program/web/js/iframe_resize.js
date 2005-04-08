@@ -4,8 +4,8 @@ function resizeMain()
 		//poprawienie gornej ramki
 		if (top.frames[0].location.pathname.indexOf("header.jsp",0) != -1)
 		{
-			top.document.getElementById('frameHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight +30;
-			top.document.getElementById('cellHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight +40;
+			top.document.getElementById('frameHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight + 30;
+			top.document.getElementById('cellHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight + 40;
 		}
 		
 		//poprawianie dolnej ramki
@@ -44,5 +44,13 @@ function resizeMain()
                 		top.document.getElementById('frameTresc').height = document.getElementById('tableWatek').offsetHeight + document.getElementById('textNadWatkiem').offsetHeight + 30;
                                 top.document.getElementById('cellTresc').height = document.getElementById('tableWatek').offsetHeight + document.getElementById('textNadWatkiem').offsetHeight + 40;
                 	}
+		}
+}
+
+function resizeDodajW(){
+		if (top.frames[1].document.getElementById('tableDodajW')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableDodajW').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableDodajW').offsetHeight + 40;
 		}
 }

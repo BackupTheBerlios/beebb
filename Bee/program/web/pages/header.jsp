@@ -102,9 +102,9 @@
 			<td class="tdTopLink">
                                 <%
                                 if (!auth.zalogowany(request,db_con)) 
-                                    out.print("<a  class=\"aTopLink\" href=\"\" onClick=\"linkClick('./auth.jsp')\">[] Zaloguj</a>");
+                                    out.print("<a  class=\"aTopLink\" href=\"\" onclick=\"linkClick('./auth.jsp')\">[] Zaloguj</a>");
                                else
-                                    out.print("<a  class=\"aTopLink\" href=\"\" onClick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] Wyloguj</a>");   
+                                    out.print("<a  class=\"aTopLink\" href=\"\" onclick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] Wyloguj</a>");   
                                 %>
 			</td>
 			</tr>

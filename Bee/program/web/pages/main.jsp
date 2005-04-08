@@ -23,7 +23,7 @@
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
 
     </head>
-    <body onLoad="reloadHeader('./header.jsp');resizeMain()" onResize="resizeMain()">    
+    <body onload="reloadHeader('./header.jsp');resizeMain()" onresize="resizeMain()">    
 <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
@@ -76,7 +76,6 @@
         if (!flds.hasMoreElements()) {
             pl.ltd.bee.Forum f = db_con.getForum();
                 if (f!=null) {
-                    out.print("<br><br>");
                     Forum.printMainTableJSP(out);
                     f.printJSP(out);
                     Forum.printMainTableCloseJSP(out);

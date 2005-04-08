@@ -15,8 +15,9 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Dodaj</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
+        <script type="text/javascript" src="./../js/iframe_resize.js"></script>
     </head>
-    <body>
+    <body onLoad="resizeDodajW()" onresize="resizeDodajW()">
     <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
@@ -38,8 +39,7 @@
        }
        else auth = (Autoryzator)obj;
 %>
-        <br/><br/>
-        <table align="center" border="0">
+        <table align="center" border="0" id="tableDodajW">
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();
