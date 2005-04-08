@@ -53,10 +53,7 @@
            auth = a;
        }
        else auth = (Autoryzator)obj;
-       
-%>
 
-       <%
        try{
            konfiguracja.readConfig(application);
        }
@@ -93,7 +90,6 @@
         } else {
             String field = (String) flds.nextElement();
             String redirectURL;
-
            if (field.compareTo("wpid") == 0) {
                 pl.ltd.bee.Wypowiedz wp = db_con.getWypowiedz(Integer.decode(request.getParameter(field)).intValue());
                 if (wp!=null) {
@@ -113,7 +109,6 @@
                 pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
                 if (k!=null) 
                 {
-                    //out.print(k.printJSP());
                       Forum.printMainTableJSP(out);
                       k.printJSP(out);
                       Forum.printMainTableCloseJSP(out);
@@ -124,14 +119,10 @@
                     if (field.compareTo("pid") == 0) {
                         pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
                         if (p!=null) {
-                            
                             p.printJSP(out);
                         }
                         else
                             out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorSubForumNotExists()+"<br>");
-                       
-
-               
             }
         }
     %>

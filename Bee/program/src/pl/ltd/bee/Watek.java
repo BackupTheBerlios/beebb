@@ -16,6 +16,7 @@ public class Watek {
     
     private int ID;
     private int ID_Autor;
+    private String Autor;
     private String Temat;
     private String Data;
     private ArrayList Wypowiedzi;
@@ -27,9 +28,10 @@ public class Watek {
      *@param Temat temat watku
      *@param Data data watku
      */
-    public Watek(String ID, String ID_Autor, String Temat, String Data,DataBase db)  {
+    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data,DataBase db)  {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autor=Integer.decode(ID_Autor).intValue();
+        this.Autor=Autor;
         this.Temat=Temat;
         this.Data=Data;
         this.db=db;

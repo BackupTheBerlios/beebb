@@ -88,11 +88,13 @@ public class DataBase {
      */
     static final String WATEK_ID = "ID";
     static final String WATEK_ID_AUTORA = "ID_AUTORA";
+    static final String WATEK_AUTOR = "AUTOR";
     static final String WATEK_TEMAT = "TEMAT";
     static final String WATEK_DATA = "DATA";
     
     static final String WYPOWIEDZ_ID = "ID";
     static final String WYPOWIEDZ_ID_AUTORA = "ID_AUTORA";
+    static final String WYPOWIEDZ_AUTOR = "AUTOR";
     static final String WYPOWIEDZ_DATA = "DATA";
     static final String WYPOWIEDZ_TEKST = "TEKST";
     
@@ -212,12 +214,26 @@ public class DataBase {
      * @return Zwraca obiekt Watek badz null w razie bledu.
      */
     public Watek getWatek(int ID){
-        //return baza.query("SELECT * FROM " + BEE_WATKI + " WHERE ID=" + ID);
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
     }
+    
+    
+    /**
+     * Metoda zwaraca objekt Watek w ktorym znajduje sie wypowiedz o podanym identyfikatorze
+     * @param ID Identyfikator swypowiedzi w szukanym watku
+     * @return Zwraca obiekt Watek badz null w razie bledu.
+     */
+    public Watek getWatekbyWypowiedz(int ID){
+      // select w selekcie
+        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
+        //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
+        if (watek == null) return null;
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
+    }
+    
     
     /**
      * Metoda zwaraca objekt Wypowiedz o podanym identyfikatorze
@@ -227,8 +243,9 @@ public class DataBase {
     public Wypowiedz getWypowiedz(int ID){
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
         if (wypowiedz == null) return null;
-        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST),this);
+        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_AUTOR),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST),this);
     }
+    
     
     /**
      * Metoda zwaraca objekt Podforum o podanym identyfikatorze
@@ -293,6 +310,7 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami podfor w podanej Kategorii
      * @param kat Kategoria w ramach ktorej interesuja nas podfora
@@ -308,6 +326,7 @@ public class DataBase {
         }
         return wynik;
     }
+    
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Watkow w podanym Podforum
@@ -497,8 +516,8 @@ public class DataBase {
      * @param data data wypowiedzi
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertWypowiedz(String id_wat, String id_autora, String tekst, String data) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + " , '" + data + "' , \"" + tekst + "\")")) {
+    public boolean insertWypowiedz(String id_wat, String id_autora,String autor, String tekst, String data) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + data + "' , \"" + tekst + "\")")) {
             Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_TEKST + "='" + tekst +"' AND " + WYPOWIEDZ_DATA + " = '" + data + "'");
             if (wid==null) return false;
             return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get("ID") + ")");
@@ -645,6 +664,7 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywne='N' WHERE ID="+id);
     }
     
+    
     /**
      * Metoda usuwa klucz do zapomnianego hasła
      * @param email email uzytkownika
@@ -674,6 +694,8 @@ public class DataBase {
     public boolean usunKluczNewUser(String klucz){
         return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");
     }
+    
+    
     /**
      * Metoda sprawdz czy kategoria o podanym tytult juz istnieje i czy ma inny id
      * @param tytul tytul kategorii

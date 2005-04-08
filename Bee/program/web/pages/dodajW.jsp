@@ -17,7 +17,6 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
     </head>
     <body>
-
     <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
@@ -38,15 +37,12 @@
            auth = a;
        }
        else auth = (Autoryzator)obj;
-       
 %>
-
         <br/><br/>
         <table align="center" border="0">
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();
-        
         if (!db_con.isConnected()) {
         try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
@@ -63,24 +59,21 @@
             } else {
             String text=request.getParameter("text");
             if (watek!=null && text!=null) {
-                
                 out.print("<br><br>");
-                String eol = System.getProperty("line.separator");
+                text=text.replaceAll("\r\n","<br>");
                 text=text.replaceAll("\n","<br>");
-                out.print(Messages.addMessage());
-                
                 String ID_Usera; 
                 String Nazwa_Usera="";
-                
                 if (auth.zalogowany(request,db_con)) {
                     ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
                 } else {
                     String autor=request.getParameter("autor");
                     if (autor==null) Nazwa_Usera=Config.GUEST; else Nazwa_Usera=autor;
-                    ID_Usera = "1";
+                    ID_Usera = Config.GUEST_ID;
                 }
-                if (!db_con.insertWypowiedz(watek,ID_Usera,text,db_con.getDate())) 
-                    out.print(Messages.errorDataBaseConnection());
+                if (!db_con.insertWypowiedz(watek,ID_Usera,Nazwa_Usera,text,db_con.getDate())) 
+                    out.print(Messages.errorDataBaseConnection()); else
+                    out.print(Messages.addMessage());
                 out.println("<br><br><a href=\"../\">" + Messages.back() + "</a>");
             } else
                 if (podforum!=null && text!=null) {

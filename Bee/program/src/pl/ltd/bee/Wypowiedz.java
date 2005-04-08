@@ -14,6 +14,7 @@ public class Wypowiedz {
     
     private int ID;
     private int ID_Autora;
+    private String Autor;
     private String Data;
     private String Tekst;
     private DataBase db;
@@ -24,9 +25,10 @@ public class Wypowiedz {
      * @param Data data wypowiedzi
      * @param Tekst tresc wypowiedzi
      */
-    public Wypowiedz(String ID,String ID_Autora,String Data, String Tekst,DataBase db) {
+    public Wypowiedz(String ID,String ID_Autora,String Autor,String Data, String Tekst,DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autora=Integer.decode(ID_Autora).intValue();
+        this.Autor=Autor;
         this.Data=Data;
         this.Tekst=Tekst;
         this.db=db;
