@@ -530,7 +530,7 @@ public class DataBase {
      */
     public boolean insertWypowiedz(String id_wat, String id_autora,String autor, String tekst, String data) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + data + "' , \"" + tekst + "\")")) {
-            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_TEKST + "='" + tekst +"' AND " + WYPOWIEDZ_DATA + " = '" + data + "'");
+            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + id_autora +" AND " + WYPOWIEDZ_DATA + " = '" + data + "'");
             if (wid==null) return false;
             return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get("ID") + ")");
         }

@@ -94,7 +94,7 @@
 				</a>
 			</td>
 			<td class="tdTopLink">
-				<a class="aTopLink" href="./Administracja/index.htm" target="_blank">[] Panel Administracyjny</a>
+				<a class="aTopLink" href="../Administracja/index.htm" target="_blank">[] Panel Administracyjny</a>
 			</td>
 			<td class="tdTopLink">
 				<a  class="aTopLink" href="" onClick="linkClick('./addUser.jsp')">[] Rejestracja</a>
