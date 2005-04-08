@@ -227,8 +227,7 @@ public class DataBase {
      * @return Zwraca obiekt Watek badz null w razie bledu.
      */
     public Watek getWatekbyWypowiedz(int ID){
-      // select w selekcie
-        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
+        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_WATKU + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
         return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
