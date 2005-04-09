@@ -2,7 +2,7 @@
 <!-- You may freely edit this file. See commented blocks below for -->
 <!-- some examples of how to customize the build. -->
 <!-- (If you delete it and reopen the project it will be recreated.) -->
-<project xmlns:web="http://www.netbeans.org/ns/web-project/1" name="Bee" default="default" basedir=".">
+<project name="Bee" default="default" basedir="." xmlns:web="http://www.netbeans.org/ns/web-project/1">
     <description>Builds, tests, and runs the project Bee.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--

@@ -17,6 +17,10 @@ public class Messages {
     public Messages() {
     }
     
+    private static String wielka(String s){
+        return Character.toUpperCase(s.charAt(0)) + s.substring(1);
+    }
+    
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace slowa
@@ -89,6 +93,19 @@ public class Messages {
     public static String message(){
         return "wypowiedź";}
     
+    /** Metoda dostarcza slowo "wypowiedź"
+        @param duza czy slowo powinno byc z wielkiej litery*/
+    public static String message(boolean duza){
+        return duza? wielka("wypowiedź") : "wypowiedź";}
+
+    /** Metoda dostarcza slowo "autor" 
+        @param duza czy slowo powinno byc z wielkiej litery*/
+    public static String author(boolean duza){
+        return duza? wielka("Autor") : "Autor";}
+    
+    /** Metoda dostarcza slowo "autor" */
+    public static String author(){
+        return "Autor";}
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty

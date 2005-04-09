@@ -83,14 +83,15 @@ public class Watek {
         Podforum p = db.getPodforumbyWatek(ID);
         Kategoria k = db.getKategoriabyPodforum(p.getID());
         Forum f = db.getForum();
-        strona.println("<table border=\"0\" id=\"textNadWatkiem\" width=\"100%\"><tr><td>");
-        strona.println("<div align=\"left\"><a href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></div>");
-        strona.println("<div align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">Dodaj Wypowiedź</a></div><br>");
-        strona.println("</td></tr></table>");
-        strona.println("<table id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
+        strona.println("<table border=\"0\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
+        strona.println("<td align=\"left\"><a href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
+        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.add() +" "+ Messages.message() + "</a></td>");
+        strona.println("</tr></table>");
+        strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
-        strona.println("<th class=\"thTopLCorner\" width=\"15%\" height=\"25\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
-        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Wiadomo��&nbsp;</th>");
+        strona.println("<th class=\"thTopLCorner\" width=\"100%\" height=\"25\" nowrap=\"nowrap\">" +
+                        "<table class=\"tableTitleWatek\" border=\"0\" width=\"100%\"><tr><td align=\"center\"  width=\"15%\">&nbsp;" + Messages.author() + "&nbsp;</td><td align=\"center\">&nbsp;" + Messages.message(true) + "&nbsp;</td></tr></table>"+
+                        "</th>");
         strona.println("</tr>");
     }
     
@@ -100,9 +101,6 @@ public class Watek {
      * @param strona strumien wyjsciowy
      */
     public void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
-        strona.println("</table>");
-        strona.println("<table width=\"0%\" cellpadding=\"2\" cellspacing=\"1\" border=\"1\" style=\"visibility:hidden\">");
-        strona.println("<tr class=\"noExists\"><td width=\"0\" height=\"0\" id=\"przyklad\"><div id=\"napis\">A</div></td></tr>");
         strona.println("</table>");
         strona.println("</body>");
         strona.println("</html>");
@@ -116,8 +114,7 @@ public class Watek {
         printMainTableJSP(strona);
         for(int i=0;i<Wypowiedzi.size();i++) {
             strona.println("<tr class=\"trWypowiedz\">");
-            strona.println("<td class=\"tdAutorBox\" align=\"center\" valign=\"middle\"><img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
-            strona.println("<td class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
+            strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
             strona.println("</tr>");
         }
         printMainTableCloseJSP(strona);
