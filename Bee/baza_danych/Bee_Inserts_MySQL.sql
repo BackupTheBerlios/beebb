@@ -60,7 +60,7 @@ LOCK TABLES `Bee_Podfora` WRITE;
 INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`Aktywne`) VALUES
 (1,'Tyskie','Dobre piwko','T'),
 (2,'Warka','Tez dobre piwko','T'),
-(3,'Lech','Rowniez dobre piwko','T'),
+(3,'Lech','Rownież dobre piwko','T'),
 (4,'Carlsberg','Probably the Best Beer in the World','T');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Podfora` ENABLE KEYS */;

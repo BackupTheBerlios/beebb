@@ -21,7 +21,7 @@ CREATE TABLE `Bee_Forum` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Nazwa` varchar(100) NOT NULL default '',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z konfiguracja forum';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z konfiguracja forum';
 
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `Bee_Users` (
   `Admin` enum('T','N') NOT NULL default 'N',
   `Moderator` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z uzytkownikami';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z uzytkownikami';
 
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `Bee_Kategorie` (
   `Opis` varchar(200) NOT NULL default '',
   `Aktywna` enum('T','N') NOT NULL default 'T',
   PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela kategorii';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela kategorii';
 
 --
 -- Table structure for table `Bee_Podfora`
@@ -70,7 +70,7 @@ CREATE TABLE `Bee_Podfora` (
   `Opis` varchar(200) NOT NULL default '',
   `Aktywne` enum('T','N') NOT NULL default 'T',
   PRIMARY KEY  (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela podfor';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela podfor';
 
 
 
@@ -88,7 +88,7 @@ CREATE TABLE `Bee_Watki` (
   PRIMARY KEY  (`ID`),
   KEY `id_aut` (`ID_autora`),
   CONSTRAINT `Bee_Watki_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z watkami';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z watkami';
 
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `Bee_Wypowiedzi` (
   `Tekst` text NOT NULL,
   PRIMARY KEY  (`ID`),
   CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z wypowiedziami';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z wypowiedziami';
 
 --
 -- Table structure for table `Bee_Forum_Kategorie`
@@ -118,7 +118,7 @@ CREATE TABLE `Bee_Forum_Kategorie` (
   KEY `id_kat` (`ID_Kategoria`),
   CONSTRAINT `Bee_Forum_Kategorie_ibfk_2` FOREIGN KEY (`ID_Forum`) REFERENCES `Bee_Forum` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `Bee_Forum_Kategorie_ibfk_1` FOREIGN KEY (`ID_Kategoria`) REFERENCES `Bee_Kategorie` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Lista Kategorii danego Forum';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Lista Kategorii danego Forum';
 
 
 
@@ -135,7 +135,7 @@ CREATE TABLE `Bee_Kategorie_Podfora` (
   KEY `id_pod` (`ID_Podforum`),
   CONSTRAINT `Bee_Kategorie_Podfora_ibfk_2` FOREIGN KEY (`ID_Podforum`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Bee_Kategorie_Podfora_ibfk_1` FOREIGN KEY (`ID_Kategoria`) REFERENCES `Bee_Kategorie` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Kategorii i Podfor';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Wiele do wielu Kategorii i Podfor';
 
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `Bee_Moderatorzy` (
   KEY `id_use` (`ID_User`),
   CONSTRAINT `Bee_Moderatorzy_ibfk_2` FOREIGN KEY (`ID_User`) REFERENCES `Bee_Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Bee_Moderatorzy_ibfk_1` FOREIGN KEY (`ID_Podforum`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela moderatorow';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela moderatorow';
 
 
 --
@@ -165,7 +165,7 @@ CREATE TABLE `Bee_Watki_Wypowiedzi` (
   KEY `id_wyp` (`ID_Wypowiedzi`),
   CONSTRAINT `Bee_Watki_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_Watku`) REFERENCES `Bee_Watki` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `Bee_Watki_Wypowiedzi_ibfk_2` FOREIGN KEY (`ID_Wypowiedzi`) REFERENCES `Bee_Wypowiedzi` (`ID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Watki i Wypowiedzi';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Wiele do wielu Watki i Wypowiedzi';
 
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `Bee_Podfora_Watki` (
   KEY `id_wat` (`ID_Watku`),
   CONSTRAINT `Bee_Podfora_Watki_ibfk_1` FOREIGN KEY (`ID_Podfora`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `Bee_Podfora_Watki_ibfk_2` FOREIGN KEY (`ID_Watku`) REFERENCES `Bee_Watki` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Wiele do wielu Podfora i Watki';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Wiele do wielu Podfora i Watki';
 
 
 --
@@ -192,7 +192,7 @@ CREATE TABLE `Bee_Forget_Passwd` (
   `Klucz` varchar(20) NOT NULL default '',
   `Email` varchar(100) NOT NULL default '',
   PRIMARY KEY (`Klucz`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z kluczami do zapomnianych hasel';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z kluczami do zapomnianych hasel';
 
 --
 -- Tabela z kluczami do odblokowania konta nowego uzytkownika 
@@ -203,7 +203,7 @@ CREATE TABLE `Bee_New_User` (
   `Klucz` varchar(20) NOT NULL default '',
   `Login` varchar(100) NOT NULL default '',
   PRIMARY KEY (`Klucz`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2 COMMENT='Tabela z kluczami do odblokowania konta nowego uzytkownika';
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z kluczami do odblokowania konta nowego uzytkownika';
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
