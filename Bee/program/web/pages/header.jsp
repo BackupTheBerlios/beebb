@@ -52,6 +52,17 @@
            auth = a;
        }
        else auth = (Autoryzator)obj;
+       
+        if (!db_con.isConnected()) {
+            try {
+            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+            db_con.setTablePrefix(Config.DATABASE_PREFIX);
+            } catch (Exception e) {
+                out.print(Messages.errorDataBaseConnection());
+                out.print(e);
+            }
+        }
+        
 %>    
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0">
 <tr>
@@ -63,7 +74,12 @@
 		<tr>
 			<td class="tdForumHeader" bgcolor="white" align="center">
 			<span class="forumTitle">
-				Przykładowy wygład forum Bee. W tym miejscu bedzie mozna wpisac co tylko sobie czlowiek zapragnie. W szczegolnosci bedzie mozna napisac cos co nie ma sensu i bedzie bardzo dlugie, a nawet jesli bedzie krotkie to nadal bedzie rownie dobrym kawalkiem tekstu.
+                                <% 
+                                    Forum f = db_con.getForum();
+                                    if (f != null)
+                                        out.println(f.getNazwa());
+                                    else out.println(Messages.errorUnknown());
+                                   %>
 			</span>
 			</td>
 		</tr>		
