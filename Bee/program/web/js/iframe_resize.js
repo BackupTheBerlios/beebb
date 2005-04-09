@@ -36,7 +36,7 @@ function resizeMain()
             		}
                         for(f=0;f<frames.length;f++)
                         {
-                            wypowiedzi[f].offsetHeight = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
+                            wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
                         }
                     	//No to teraz poprawa zewnetrznej ramki   
                     	if (top != window) //zabezpieczenie jesli nie jestesmy potomkiem
