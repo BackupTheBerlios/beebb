@@ -31,11 +31,11 @@ public class Messages {
     
     /** Metoda dostarcza fraze nowy uzytkownik */
     public static String newUser(){
-        return "Nowy u�ytkownik";}
+        return "Nowy użytkownik";}
     
     /** Metoda dostarcza slowa "powrot" */
     public static String back(){
-        return "Powrot";}
+        return "Powrót";}
     
     /** Metoda dostarcza slowo "witaj" */
     public static String welcome(){
@@ -43,11 +43,11 @@ public class Messages {
     
     /** Metoda dostarcza slowo "uzytkownik" */
     public static String user(){
-        return "Uzytkownik";}
+        return "Użytkownik";}
     
     /** Metoda dostarcza fraze "zostal dodany" */
     public static String hasBeenAdded(){
-        return "zostal dodany";}
+        return "został dodany";}
     
     /** Metoda dostarcza fraze "dodaj uzytkownika" */
     public static String addUser(){
@@ -59,7 +59,7 @@ public class Messages {
     
     /** Metoda dostarcza slowo "haslo" */
     public static String password(){
-        return "Haslo";}
+        return "Hasło";}
     
     /** Metoda dostarcza fraze "jeszcze raz" */
     public static String oneMoreTime(){
@@ -67,7 +67,7 @@ public class Messages {
     
     /** Metoda dostarcza slowo "imie" */
     public static String name(){
-        return "Imie";}
+        return "Imię";}
     
     /** Metoda dostarcza slowo "nazwisko" */
     public static String subname(){
@@ -85,15 +85,15 @@ public class Messages {
     public static String add(){
         return "Dodaj";}
     
-    /** Metoda dostarcza slowo "wątek" */
+    /** Metoda dostarcza slowo "wÄtek" */
     public static String thread(){
         return "wątek";}
     
-    /** Metoda dostarcza slowo "wypowiedź" */
+    /** Metoda dostarcza slowo "wypowiedĹş" */
     public static String message(){
         return "wypowiedź";}
     
-    /** Metoda dostarcza slowo "wypowiedź"
+    /** Metoda dostarcza slowo "wypowiedĹş"
         @param duza czy slowo powinno byc z wielkiej litery*/
     public static String message(boolean duza){
         return duza? wielka("wypowiedź") : "wypowiedź";}
@@ -181,7 +181,7 @@ public class Messages {
      * @return String z komunikatem o bledzie nieokreslonym
      */
     public static String errorUnknown(){
-        return "<p class=\"error\">Blad! skontaktuj sie z administratorem strony!<p>";}
+        return "<p class=\"error\">Błąd! skontaktuj się z administratorem strony!<p>";}
     
     /**
      * Metoda dostarcza komunikat o nie istnieniu watku
@@ -234,153 +234,153 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o istniejącym juz uzytkowniku z takim emailem
-     * @return String z komunikatem o istniejącym juz uzytkowniku z takim emailem
+     * Metoda dostarcza komunikat o istniejacym juz uzytkowniku z takim emailem
+     * @return String z komunikatem o istniejaym juz uzytkowniku z takim emailem
      */
     public static String errorEmailExists(){
         return "<p class=\"error\">Użytkownik ma już konto w serwisie.</p>";}
     
     
     /**
-     * Metoda dostarcza komunikat o istniej�cej ju� nazwie kategorii
+     * Metoda dostarcza komunikat o istniejacej juz nazwie kategorii
      * @return String z komunikatem
      */
     public static String errorNameKat(){
         return "<p align=\"center\" class=\"error\">Kategoria o podanej nazwie już istnieje.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e nale�y poda� nazwie kategorii
+     * Metoda dostarcza komunikat o tym, ďż˝e naleďż˝y podaďż˝ nazwie kategorii
      * @return String z komunikatem
      */
     public static String errorFieldNameKat(){
-        return "<p align=\"center\" class=\"error\"> Nalezy podac nazwe kategorii.</p>";}
+        return "<p align=\"center\" class=\"error\"> Należy podać nazwę kategorii.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e dodanie kategorii nie powiod�o sie
+     * Metoda dostarcza komunikat o tym, ďż˝e dodanie kategorii nie powiodďż˝o sie
      * @return String z komunikatem
      */
     public static String errorAddKat(){
-        return "<p  align=\"center\" class=\"error\"> Dodanie kategorii nie powiod�o si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Dodanie kategorii nie powiodło się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e zmiana kategorii nie powiod�a sie
+     * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii nie powiodďż˝a sie
      * @return String z komunikatem 
      */
     public static String errorChangeKat(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiod�a si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiodła się.</p>";}
     
      /**
-     * Metoda dostarcza komunikat o tym, �e zmiana podforum nie powiod�a sie
+     * Metoda dostarcza komunikat o tym, ďż˝e zmiana podforum nie powiodďż˝a sie
      * @return String z komunikatem 
      */
     public static String errorChangePod(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiod�a si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiodła się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e zmiana uprawnien nie powiod�a sie
+     * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien nie powiodďż˝a sie
      * @return String z komunikatem 
      */
     public static String errorChangeUpr(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana uprawnien nie powiod�a si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Zmiana uprawnien nie powiodła się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e dodanie kategorii powiod�o sie
+     * Metoda dostarcza komunikat o tym, ďż˝e dodanie kategorii powiodďż˝o sie
      * @return String z komunikatem 
      */
 
     public static String addKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zosta�a dodana.</p>";}
+        return "<p align=\"center\" class=\"info\"> Kategoria została dodana.</p>";}
     
      /**
-     * Metoda dostarcza komunikat o tym, �e zmiana uprawnien powiod�a sie
+     * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien powiodďż˝a sie
      * @return String z komunikatem 
      */
 
     public static String changeUpr(){
-        return "<p align=\"center\" class=\"info\"> Uprawnienia zosta�y zmienione.</p>";}
+        return "<p align=\"center\" class=\"info\"> Uprawnienia zostały zmienione.</p>";}
 
      /**
-     * Metoda dostarcza komunikat o tym, �e zmiana podforum powiod�a sie
+     * Metoda dostarcza komunikat o tym, ďż˝e zmiana podforum powiodďż˝a sie
      * @return String z komunikatem 
      */
     public static String changePod(){
-        return "<p align=\"center\" class=\"info\"> Podforum zosta�o zmienione.</p>";}
+        return "<p align=\"center\" class=\"info\"> Podforum zostało zmienione.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e usuniecie kategorii powiod�o sie
+     * Metoda dostarcza komunikat o tym, ďż˝e usuniecie kategorii powiodďż˝o sie
      * @return String z komunikatem
      */
 
     public static String removeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zosta�a usuni�ta.</p>";}
+        return "<p align=\"center\" class=\"info\"> Kategoria została usunięta.</p>";}
 
     
     /**
-     * Metoda dostarcza komunikat o tym, �e zmiana kategorii powiod�a sie
+     * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii powiodďż˝a sie
      * @return String z komunikatem 
      */
     public static String changeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria zosta�a zmieniona.</p>";}
+        return "<p align=\"center\" class=\"info\"> Kategoria została zmieniona.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e usuniecie podforum powiod�o sie
+     * Metoda dostarcza komunikat o tym, ďż˝e usuniecie podforum powiodďż˝o sie
      * @return String z komunikatem 
      */
 
     public static String removePodforum(){
-        return "<p align=\"center\" class=\"info\" > Podforum zosta�o usuni�te.</p>";}
+        return "<p align=\"center\" class=\"info\" > Podforum zostało usunięte.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, usuniecie kategorii nie powiod�o sie
+     * Metoda dostarcza komunikat o tym, usuniecie kategorii nie powiodďż˝o sie
      * @return String z komunikatem
      */
     public static String errorRemoveKat(){
-        return "<p  align=\"center\" class=\"error\"> Usuni�cie kategorii nie powiod�o si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Usunięcie kategorii nie powiodło się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, usuniecie podforum nie powiod�o sie
+     * Metoda dostarcza komunikat o tym, usuniecie podforum nie powiodďż˝o sie
      * @return String z komunikatem
      */
     
     public static String errorRemovePodforum(){
-        return "<p  align=\"center\" class=\"error\"> Usuni�cie podforum nie powiod�o si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Usunięcie podforum nie powiodło się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e nie zosta�a podana nazwa podforum
+     * Metoda dostarcza komunikat o tym, ďż˝e nie zostaďż˝a podana nazwa podforum
      * @return String z komunikatem
      */
     
     public static String errorFieldNamePodforum(){
-        return "<p align=\"center\" class=\"error\"> Nie zosta�a podana nazwa podforum.</p>";}
+        return "<p align=\"center\" class=\"error\"> Nie została podana nazwa podforum.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e podforum o podanej nazwie juz istnieje.
+     * Metoda dostarcza komunikat o tym, ďż˝e podforum o podanej nazwie juz istnieje.
      * @return String z komunikatem
      */
     public static String errorNamePodforum(){
-        return "<p align=\"center\" class=\"error\">Podforum o podanej nazwie juz istnieje.</p>";}
+        return "<p align=\"center\" class=\"error\">Podforum o podanej nazwie już istnieje.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e dodanie podforum nie powiod�o sie
+     * Metoda dostarcza komunikat o tym, ďż˝e dodanie podforum nie powiodďż˝o sie
      * @return String z komunikatem
      */
     public static String errorAddPodforum(){
-        return "<p  align=\"center\" class=\"error\"> Dodanie podforum nie powiod�o si�.</p>";}
+        return "<p  align=\"center\" class=\"error\"> Dodanie podforum nie powiodło się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, �e dodanie podforum powiodło sie
+     * Metoda dostarcza komunikat o tym, ďż˝e dodanie podforum powiodĹo sie
      * @return String z komunikatem
      */
     public static String addPodforum(){
         return "<p align=\"center\" class=\"info\">Podforum zostało dodane.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o bl�dzie wywolania formularza
+     * Metoda dostarcza komunikat o blďż˝dzie wywolania formularza
      * @return String z komunikatem
      */
 
     public static String formError(){
-        return "<p align=\"center\" class=\"info\">Bląd formularza.</p>";}
+        return "<p align=\"center\" class=\"info\">Błąd formularza.</p>";}
     
         
     /**
@@ -393,7 +393,7 @@ public class Messages {
 
     
     /**
-     * Metoda dostarcza komunikat o poprawnym dodaniu wątka
+     * Metoda dostarcza komunikat o poprawnym dodaniu wÄtka
      * @return String z komunikatem
      */
 
