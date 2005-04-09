@@ -39,7 +39,7 @@ CREATE TABLE `Bee_Users` (
   `GG` varchar(10) NOT NULL default '',
   `Jabber` varchar(100) NOT NULL default '',
   `OstatnieLogowanie` datetime NOT NULL default '0000-00-00 00:00:00',
-  `Aktywny` enum('T','N') NOT NULL default 'N',
+  `Aktywny` enum('T','N') NOT NULL default 'T',
   `Admin` enum('T','N') NOT NULL default 'N',
   `Moderator` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`)
