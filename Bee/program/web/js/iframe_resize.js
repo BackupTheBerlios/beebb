@@ -34,7 +34,6 @@ function resizeMain()
                                 	k++;
             			}
             		}
-                        alert(frames[0].document.getElementById('tableWypowiedz').offsetHeight);
                         for(f=0;f<frames.length;f++)
                         {
                             wypowiedzi[f].offsetHeight = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
