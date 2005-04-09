@@ -23,9 +23,15 @@ th	{
 	border: 1px black solid;
 }
 
+.tableTitleWatek{
+	color: yellow; 
+        font-size: 11px; 
+        font-weight : bold;
+        }        
+
 .tdForumHeader	{ background-color: orange; border: 2px black solid; }
 
-.tdAutorBox, .tdWypowiedzBox { background-color: gold; border: 2px black solid; }
+/*.tdWypowiedzBox { background-color: gold; border: 2px black solid; } */
 
 .tdTytulKategorii { 
 	background-color:  gold;
@@ -76,14 +82,31 @@ th	{
 	background-color: goldenrod;
 	}
 
-.tdWypowiedz , .tdWypowiedzBox , .trWypowiedz , .tdAutorBox{
-	background-color:khaki;
-	}
-	
-.bodyWypowiedz{
+.trWypowiedz {
 	background-color: khaki;
 	}
+
+.tdWypowiedzBox{
+        background-color: darkgoldenrod;
+        }
 	
+.bodyWypowiedz{
+	background-color: darkgoldenrod;
+        margin: 0pt;
+	}
+
+.tdAutorBox, .tdWypowiedz{ 
+        background-color: khaki;
+        border: 1px black solid; 
+        }
+
+
+
+.tableWypowiedz{
+/*        border-spacing: 0pt;
+        border-collapse: collapse;*/
+        }
+
 .error{	
 	color: red;
 	}

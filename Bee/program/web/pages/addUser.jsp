@@ -16,8 +16,9 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: <%out.print(Messages.newUser());%></title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
+        <script type="text/javascript" src="./../js/iframe_resize.js"></script>
     </head>
-    <body>
+    <body onload="resizeAddUser()" onresize="resizeAddUser()">
 <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
@@ -31,8 +32,7 @@
        
 %>
     
-        <br/><br/>
-        <table align="center" border="0">
+        <table id="tableAddUser" align="center" border="0">
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();

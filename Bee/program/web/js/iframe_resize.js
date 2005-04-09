@@ -36,7 +36,7 @@ function resizeMain()
             		}
                         for(f=0;f<frames.length;f++)
                         {
-                            wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight+20;
+                            wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
                         }
                     	//No to teraz poprawa zewnetrznej ramki   
                     	if (top != window) //zabezpieczenie jesli nie jestesmy potomkiem
@@ -52,5 +52,14 @@ function resizeDodajW(){
 		{
 			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableDodajW').offsetHeight + 30;
 			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableDodajW').offsetHeight + 40;
+		}
+}
+
+
+function resizeAddUser(){
+		if (top.frames[1].document.getElementById('tableAddUser')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableAddUser').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableAddUser').offsetHeight + 40;
 		}
 }
