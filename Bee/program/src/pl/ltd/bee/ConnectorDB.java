@@ -52,7 +52,7 @@ public class ConnectorDB {
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            return DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase,User,Pass);
+            return DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase + "?useUnicode=true&characterEncoding=UTF-8",User,Pass);
         }
         catch (Exception e){
             throw (ConnectionException)((new ConnectionException()).initCause(e));

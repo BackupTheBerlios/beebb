@@ -1,4 +1,4 @@
-<%@page contentType="text/html"%>
+<%@page contentType="text/html;"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
@@ -51,6 +51,13 @@
             out.print(Messages.errorDataBaseConnection());
         } }
         /* Validacja za pomocą JS */
+/*
+ To powinno dzialac :
+        if (request.getCharacterEncoding() == null)
+               request.setCharacterEncoding("UTF-8");
+ ale nie dziala, za to dziala to:
+      autor = new String(autor.getBytes("8859_1"),"UTF-8");
+*/
         
         String watek=request.getParameter("w");
         String podforum=request.getParameter("p");
@@ -59,16 +66,22 @@
             } else {
             String text=request.getParameter("text");
             if (watek!=null && text!=null) {
-                out.print("<br><br>");
-                text=text.replaceAll("\r\n","<br>");
-                text=text.replaceAll("\n","<br>");
+                text = new String(text.getBytes("8859_1"),"UTF-8");
+                out.print("<br/><br/>");
+                text=text.replaceAll("\r\n","<br/>");
+                text=text.replaceAll("\n","<br/>");
                 String ID_Usera; 
                 String Nazwa_Usera="";
                 if (auth.zalogowany(request,db_con)) {
                     ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
                 } else {
                     String autor=request.getParameter("autor");
-                    if (autor==null) Nazwa_Usera=Config.GUEST; else Nazwa_Usera=autor;
+                    if (autor==null) Nazwa_Usera=Config.GUEST; 
+                            else 
+                                {
+                                    autor = new String(autor.getBytes("8859_1"),"UTF-8");
+                                    Nazwa_Usera=autor;
+                                }
                     ID_Usera = Config.GUEST_ID;
                 }
                 if (!db_con.insertWypowiedz(watek,ID_Usera,Nazwa_Usera,text,db_con.getDate())) 
