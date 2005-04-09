@@ -59,7 +59,7 @@
                     if (!db_con.wstawZapomnianeHaslo(email,numer)) 
                         out.print(Messages.errorDataBaseConnection());
                     else
-                        SendMail.send(email,Config.FORGET_MAIL_SUBJECT,"Witaj "+ uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "./reg/forget.jsp?id=" + numer);
+                        SendMail.send(email,Config.FORGET_MAIL_SUBJECT,"Witaj "+ uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + numer);
                 }
                 out.println("Email z kluczem powinien zostać wysłany<br><center><a href=\"./main.jsp\">powrot</a></center>");
             } else {
