@@ -56,7 +56,7 @@
             } else 
                 out.print(Messages.errorKeyNewUser());
             
-        } else out.println("<a href=./../main.jsp>powrot</a><br>"); 
+        } else out.println("<a href=./../../index.jsp>powrot</a><br>"); 
         %>
                 </td>
             </tr>

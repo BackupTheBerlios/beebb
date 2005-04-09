@@ -81,7 +81,7 @@
                             out.print(Messages.errorDataBaseConnection());
                         else {
                             out.println(Messages.messageActivEmailSend()+"<BR><br><a href=./main.jsp>" + Messages.back() + "</a><br>"); 
-                            SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "./reg/newUser.jsp?id=" + numer);
+                            SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
