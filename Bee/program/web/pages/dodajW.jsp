@@ -104,12 +104,12 @@
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>
-                            <td>Tytuł:</td><td><input type="text" size="59" name="title"></td>
+                            <td>Tytuł:</td><td><input type="text" size="50" name="title"></td>
                             <% } %>
                             </tr> <tr>
                                 <td valign="top">Treść:</td><td><textarea cols="50" rows="5" name="text"></textarea></td>
                             </tr> <tr>
-                            <td>Autor:</td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="59" name="autor"><%}else{out.print(auth.user(request));}%></td>
+                            <td>Autor:</td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
                             </tr>

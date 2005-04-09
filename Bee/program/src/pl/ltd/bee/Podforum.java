@@ -146,10 +146,10 @@ public class Podforum {
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         Kategoria k = db.getKategoriabyPodforum(ID);
         Forum f = db.getForum();
-        strona.println("<table border=\"0\" id=\"textNadPodforum\" width=\"100%\"><tr><td>");
-        strona.println("<div align=\"left\"><a href=\"main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"main.jsp?pid=" + ID + "\">"+ Tytul +"</a></div>");
-        strona.println("<div align=\"right\"><a href=\"./dodajW.jsp?p=" + ID + "\">Dodaj Wątek</a></div><br/>");
-        strona.println("</td></tr></table>");
+        strona.println("<table border=\"0\" id=\"textNadPodforum\" width=\"100%\"><tr>");
+        strona.println("<td align=\"left\"><a href=\"main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"main.jsp?pid=" + ID + "\">"+ Tytul +"</a></td>");
+        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?p=" + ID + "\">Dodaj Wątek</a></td>");
+        strona.println("</tr></table>");
         strona.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Tematy&nbsp;</th>");
