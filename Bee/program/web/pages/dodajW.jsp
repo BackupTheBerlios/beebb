@@ -88,8 +88,8 @@
                     out.print(Messages.addMessage());
                 } else
                 if (podforum!=null && text!=null) {
-                    String title=request.getParameter("text");
-                    title = new String(text.getBytes("8859_1"),"UTF-8");
+                    String title=request.getParameter("title");
+                    title = new String(title.getBytes("8859_1"),"UTF-8");
                     Podforum pf = db_con.getPodforum(Integer.decode(podforum).intValue());
                     Watek wt;
                     String prywatne=DataBase.NIE;
@@ -111,7 +111,7 @@
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                                 <th colspan="2">
-                                    <%out.print(Messages.add()); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
+                                    <%out.print(Messages.add()+" "); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>

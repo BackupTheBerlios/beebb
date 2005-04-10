@@ -263,7 +263,7 @@ public class DataBase {
      * @return Zwraca obiekt Podforum badz null w razie bledu.
      */
     public Podforum getPodforumbyWatek(int ID){
-        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_WATKU + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
+        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_PODFORUM + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
         if (podforum == null) return null;
         return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),this);
     }
