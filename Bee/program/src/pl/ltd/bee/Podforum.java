@@ -17,7 +17,8 @@ public class Podforum {
     private int ID;
     private String Tytul;
     private String Opis;
-    private ArrayList Watki;
+    private boolean Aktywne;
+    private boolean Prywatne;
     private DataBase db;
     private int id_kat;
     
@@ -29,22 +30,31 @@ public class Podforum {
      * @param Tytul tytul podforum
      * @param Opis opis podforum
      */
-    public Podforum(String ID, String Tytul, String Opis) {
+/*    
+    public Podforum(String ID, String Tytul, String Opis,String Aktywne, String Prywatne) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         this.Opis = Opis;
+        this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
+        this.Prywatne=Prywatne.compareTo(DataBase.TAK) == 0;
     }
-    
+*/    
     
     /** Tworzy instancje podforum
      * @param ID identyfikator podforum w bazie danych
      * @param Tytul tytul podforum
      * @param Opis opis podforum
+     * @param Aktywne okresla czy podforum jest aktywne
+     * @param Prywatne okresla czy podforum jest prywatne
+     * @param db Obiekt DataBase
      */
-    public Podforum(String ID, String Tytul,String Opis,DataBase db) {
+    public Podforum(String ID, String Tytul,String Opis, String Aktywne, String Prywatne, DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
-        this.Watki=db.getWatkiPodforum(this.ID);
+        if (Aktywne != null) this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
+            else this.Aktywne = false;
+        if (Prywatne != null) this.Prywatne=Prywatne.compareTo(DataBase.TAK) == 0;
+            else this.Prywatne = false;
         this.db=db;
         this.Opis = Opis;
     }
@@ -117,6 +127,7 @@ public class Podforum {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         printMainTableJSP(strona);
+        ArrayList Watki=db.getWatkiPodforum(this.ID);
         for(int i=0;i<Watki.size();i++) {
             Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
             w.printJSPHeader(strona);

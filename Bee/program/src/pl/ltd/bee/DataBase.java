@@ -41,6 +41,9 @@ Hastable.put("Watek_"+id,to co zwrocil SELECT);
 
 public class DataBase {
     
+    static final String TAK = "T";
+    static final String NIE = "N";
+    
     /**
      * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
      */
@@ -91,23 +94,30 @@ public class DataBase {
     static final String WATEK_AUTOR = "AUTOR";
     static final String WATEK_TEMAT = "TEMAT";
     static final String WATEK_DATA = "DATA";
+    static final String WATEK_PRYWATNY = "PRYWATNY";
     
     static final String WYPOWIEDZ_ID = "ID";
     static final String WYPOWIEDZ_ID_AUTORA = "ID_AUTORA";
     static final String WYPOWIEDZ_AUTOR = "AUTOR";
     static final String WYPOWIEDZ_DATA = "DATA";
     static final String WYPOWIEDZ_TEKST = "TEKST";
+    static final String WYPOWIEDZ_PRYWATNA = "PRYWATNA";
     
     static final String PODFORUM_ID = "ID";
     static final String PODFORUM_TYTUL = "TYTUL";
     static final String PODFORUM_OPIS = "OPIS";
     static final String PODFORUM_AKTYWNE = "AKTYWNE";
+    static final String PODFORUM_PRYWATNE = "PRYWATNE";
     
     static final String FORUM_ID = "ID";
     static final String FORUM_NAZWA = "NAZWA";
+    static final String FORUM_OPIS = "OPIS";
     
     static final String KATEGORIA_ID = "ID";
     static final String KATEGORIA_TYTUL = "TYTUL";
+    static final String KATEGORIA_OPIS = "OPIS";
+    static final String KATEGORIA_AKTYWNA = "AKTYWNA";
+    static final String KATEGORIA_PRYWATNA = "PRYWATNA";
     
     static final String KATEGORIE_PODFORA_ID_KATEGORII = "ID_KATEGORIA";
     static final String KATEGORIE_PODFORA_ID_PODFORUM = "ID_PODFORUM";
@@ -217,7 +227,7 @@ public class DataBase {
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),this);
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),this);
     }
     
     
@@ -229,7 +239,7 @@ public class DataBase {
     public Wypowiedz getWypowiedz(int ID){
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
         if (wypowiedz == null) return null;
-        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_AUTOR),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST),this);
+        return new Wypowiedz((String)wypowiedz.get(WYPOWIEDZ_ID),(String)wypowiedz.get(WYPOWIEDZ_ID_AUTORA),(String)wypowiedz.get(WYPOWIEDZ_AUTOR),(String)wypowiedz.get(WYPOWIEDZ_DATA),(String)wypowiedz.get(WYPOWIEDZ_TEKST),(String)wypowiedz.get(WYPOWIEDZ_PRYWATNA),this);
     }
     
     
@@ -241,7 +251,7 @@ public class DataBase {
     public Podforum getPodforum(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
         if (podforum == null) return null;
-        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),this);
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),this);
     }
     
     
@@ -255,7 +265,7 @@ public class DataBase {
     public Podforum getPodforumbyWatek(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_WATKU + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
         if (podforum == null) return null;
-        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),this);
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),this);
     }
     
     
@@ -267,7 +277,7 @@ public class DataBase {
     public Kategoria getKategoriabyPodforum(int ID){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID + " = (SELECT " + KATEGORIE_PODFORA_ID_KATEGORII + " FROM " + BEE_KATEGORIE_PODFORA + " WHERE " + KATEGORIE_PODFORA_ID_PODFORUM + "=" + ID + ")");
         if (kategoria == null) return null;
-        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),this);
+        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),(String)kategoria.get(KATEGORIA_OPIS),(String)kategoria.get(KATEGORIA_AKTYWNA),(String)kategoria.get(KATEGORIA_PRYWATNA),this);
     }
     
     /**
@@ -277,7 +287,7 @@ public class DataBase {
     public Forum getForum(){
         Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM);
         if (forum == null) return null;
-        return new Forum((String)forum.get(FORUM_NAZWA),this);
+        return new Forum((String)forum.get(FORUM_NAZWA),(String)forum.get(FORUM_OPIS),this);
     }
     
     /**
@@ -289,7 +299,7 @@ public class DataBase {
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (kategoria == null) return null;
-        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),this);
+        return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),(String)kategoria.get(KATEGORIA_OPIS),(String)kategoria.get(KATEGORIA_AKTYWNA),(String)kategoria.get(KATEGORIA_PRYWATNA),this);
     }
     
     /**
@@ -635,7 +645,7 @@ public class DataBase {
         ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE ID_Podforum=ID and ID_Kategoria= " + ID + " and Aktywne='T' ORDER BY TYTUL ");
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
-            wynik.add(new Podforum((String)podforum.get("ID"),(String)podforum.get("TYTUL"),(String)podforum.get("OPIS")));
+            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),this));
         }
         return wynik;
     }
@@ -647,10 +657,10 @@ public class DataBase {
      */
     public ArrayList getKategorie() {
         ArrayList wynik = new ArrayList();
-        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE Aktywna='T' ORDER BY TYTUL");
+        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE Aktywna='" + TAK +"' ORDER BY " + KATEGORIA_TYTUL);
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
-            wynik.add(new Kategoria(this , (String) kategoria.get("ID"), (String) kategoria.get("TYTUL"), (String) kategoria.get("OPIS") ));
+            wynik.add(new Kategoria((String) kategoria.get(KATEGORIA_ID), (String) kategoria.get(KATEGORIA_TYTUL), (String) kategoria.get(KATEGORIA_OPIS), (String) kategoria.get(KATEGORIA_AKTYWNA), (String) kategoria.get(KATEGORIA_PRYWATNA),this ));
         }
         return wynik;
     }

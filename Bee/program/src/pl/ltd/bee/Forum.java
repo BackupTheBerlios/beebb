@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Forum {
     
     private String Nazwa;
+    private String Opis;
     private ArrayList Kategorie;
     private DataBase db;
     
@@ -22,8 +23,9 @@ public class Forum {
      * @param ID identyfikator forum w bazie
      * @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
      */
-    public Forum(String Nazwa, DataBase db) {
+    public Forum(String Nazwa, String Opis, DataBase db) {
         this.Nazwa=Nazwa;
+        this.Opis=Opis;
         this.Kategorie=db.getKategorieForum();
         this.db=db;
     }
@@ -35,6 +37,13 @@ public class Forum {
     public String getNazwa() {
         if (Nazwa==null) return "";
         return Nazwa;
+    }
+    
+    /** Zwraca opis forum
+     * @return string bedacy opisem forum badz null jesli nie istnieje
+     */
+    public String getOpis() {
+        return Opis;
     }
     
     /**

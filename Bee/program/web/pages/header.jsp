@@ -76,8 +76,11 @@
 			<span class="forumTitle">
                                 <% 
                                     Forum f = db_con.getForum();
-                                    if (f != null)
-                                        out.println(f.getNazwa());
+                                    if (f != null){
+                                        String opis = f.getOpis();
+                                        if (opis != null) out.println(opis);
+                                           else out.println("Forum " + f.getNazwa());
+                                    }
                                     else out.println(Messages.errorUnknown());
                                    %>
 			</span>

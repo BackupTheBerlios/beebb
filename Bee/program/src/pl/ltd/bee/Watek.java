@@ -19,7 +19,7 @@ public class Watek {
     private String Autor;
     private String Temat;
     private String Data;
-    private ArrayList Wypowiedzi;
+    private boolean Prywatny;
     private DataBase db;
     
     /** Creates a new instance of Watek
@@ -27,15 +27,19 @@ public class Watek {
      *@param ID_Autor id autora watku
      *@param Temat temat watku
      *@param Data data watku
+     *@param Aktywnyokresla czy watek jest aktywny
+     *@param Prywatny okresla czy watek jest prywatny
+     *@param db Obiekt DataBase
      */
-    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data,DataBase db)  {
+    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String Prywatny , DataBase db)  {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autor=Integer.decode(ID_Autor).intValue();
         this.Autor=Autor;
         this.Temat=Temat;
         this.Data=Data;
+        if (Prywatny != null) this.Prywatny=Prywatny.compareTo(DataBase.TAK) == 0;
+            else this.Prywatny = false;
         this.db=db;
-        Wypowiedzi=db.getWypowiedziWatku(this.ID);
     }
     
     /** Zwraca identyfikator forum
@@ -112,6 +116,7 @@ public class Watek {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         printMainTableJSP(strona);
+        ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID);
         for(int i=0;i<Wypowiedzi.size();i++) {
             strona.println("<tr class=\"trWypowiedz\">");
             strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");

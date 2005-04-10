@@ -17,6 +17,7 @@ public class Wypowiedz {
     private String Autor;
     private String Data;
     private String Tekst;
+    private boolean Prywatna;
     private DataBase db;
     
     /** Tworzy instancje klasy Wypowiedz
@@ -24,13 +25,18 @@ public class Wypowiedz {
      * @param ID_Autora identyfikator autora w bazie
      * @param Data data wypowiedzi
      * @param Tekst tresc wypowiedzi
+     * @param Aktywna okresla czy wypowiedz jest aktywna
+     * @param Prywatna okresla czy wypowiedz jest prywatna
+     * @param db Obiekt DataBase
      */
-    public Wypowiedz(String ID,String ID_Autora,String Autor,String Data, String Tekst,DataBase db) {
+    public Wypowiedz(String ID,String ID_Autora,String Autor,String Data, String Tekst, String Prywatna, DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autora=Integer.decode(ID_Autora).intValue();
         this.Autor=Autor;
         this.Data=Data;
         this.Tekst=Tekst;
+        if (Prywatna != null) this.Prywatna = Prywatna.compareTo(DataBase.TAK) == 0;
+            else this.Prywatna = false;
         this.db=db;
     }
     

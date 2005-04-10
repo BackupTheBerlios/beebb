@@ -17,7 +17,8 @@ public class Kategoria {
     private int ID;
     private String Tytul;
     private String Opis;
-    private ArrayList Podfora;
+    private boolean Aktywna;
+    private boolean Prywatna;
     private DataBase db;
     
     
@@ -28,18 +29,21 @@ public class Kategoria {
     
     /** Tworzy instancje klasy Kategoria zawierajaca w Podfora
      * obiekty klasy Podforum
-     * @param db obiekt klasy DataBase
      * @param ID identyfikator kategorii w bazie danych
      * @param Tytul nazwa kategorii
      * @param Opis Opis kategorii
+     * @param Aktywna okresla czy kategoria jest aktywna
+     * @param Prywatna okresla czy kategoria jest prywatna
+     * @param db obiekt klasy DataBase
      */
     
-    public Kategoria(DataBase db,String ID, String Tytul, String Opis) {
+    public Kategoria(String ID, String Tytul, String Opis, String Aktywna, String Prywatna,DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         this.Opis=Opis;
+        this.Aktywna=Aktywna.compareTo(DataBase.TAK) == 0;
+        this.Prywatna=Prywatna.compareTo(DataBase.TAK) == 0;
         this.db=db;
-        this.Podfora=db.getPodforaKategoriiAll(ID);
     }
     
     /** Tworzy nowa instancje klasy Kategoria
@@ -47,12 +51,13 @@ public class Kategoria {
      * @param Tytul nazwa kategorii
      */
     
-    public Kategoria(String ID, String Tytul,DataBase db) {
+/*    public Kategoria(String ID, String Tytul,DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         this.Podfora=db.getPodforaKategorii(this.ID);
         this.db=db;
     }
+  */
     
     /** Zwraca identyfikator forum
      * @return zwraca long bedacy identyfikatorem kategorii w bazie
@@ -104,7 +109,7 @@ public class Kategoria {
      * @return zwraca ArralList bedacy lista podforow
      */
     public ArrayList getPodfora() {
-        return Podfora;
+        return db.getPodforaKategoriiAll(Integer.toString(ID));
     }
     
     
@@ -130,7 +135,7 @@ public class Kategoria {
     
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
-     * @param strona strumien wyjsciowy
+     * @param shtrona strumien wyjsciowy
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
