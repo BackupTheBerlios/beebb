@@ -1,3 +1,5 @@
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -6,11 +8,12 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB :: Administrator main</title>
+        <title>BeeBB :: Administrator title</title>
+        <link rel="stylesheet" href="./../styles/temat.css" type="text/css"/>
     </head>
-  
-<frameset border="2" frameSpacing="0" rows="84,*" frameBorder="yes" cols="*">
-	<frame name="spis" marginWidth="3" marginHeight="3"src="./naglowek.html" scrolling="no" >
-	<frame name="tresc" marginWidth="10" marginHeight="10" src="./glowna.jsp">
-</frameset>
+    <body>
+        <font size="4"> PANEL ADMINA  </font>
+        <br> </br>
+        <a href="../index.jsp" target="lewa">Strona główna forum</a>
+    </body>
 </html>
