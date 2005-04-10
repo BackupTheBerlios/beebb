@@ -38,7 +38,7 @@ public class RegisteredUser extends User {
         this.email=email;
         this.gg=gg;
         this.jabber=jabber;
-        if (aktywny.compareTo("T")==0)
+        if (aktywny.compareTo(DataBase.TAK)==0)
             this.aktywny=true; else this.aktywny=false;
     }
     
