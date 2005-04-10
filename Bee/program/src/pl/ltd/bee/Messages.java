@@ -105,7 +105,7 @@ public class Messages {
     /** Metoda dostarcza slowo "autor"
      * @param duza czy slowo powinno byc z wielkiej litery*/
     public static String author(boolean duza){
-        return duza? wielka("Autor") : "Autor";}
+        return duza? wielka("autor") : "autor";}
     
     /** Metoda dostarcza slowo "autor" */
     public static String author(){
