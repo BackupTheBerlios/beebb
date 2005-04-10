@@ -79,7 +79,15 @@ public class Watek {
         strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">17</span></td>");
-        strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\"><a href=\"profile.jsp?uid=" + this.ID_Autor + "\"> " + this.Autor + "</a></span></td>");
+        strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
+        if (Config.GUEST_ID.compareTo( String.valueOf(this.ID_Autor))==0)
+            strona.println("~" + this.Autor);
+        else
+        {
+            User u = db.getUser(this.ID_Autor);
+            strona.println("<a href=\"profile.jsp?uid=" + this.ID_Autor + "\"> " + u.getLogin() + "</a>");
+        }
+        strona.println("</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">109</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + Data + "<br/><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
