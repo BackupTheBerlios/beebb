@@ -89,17 +89,21 @@ public class Messages {
     public static String thread(){
         return "wątek";}
     
-    /** Metoda dostarcza slowo "wypowiedĹş" */
+    /** Metoda dostarcza slowo "Tytuł" */
+    public static String title(){
+        return "Tytul";}
+    
+    /** Metoda dostarcza slowo "wypowiedź" */
     public static String message(){
         return "wypowiedź";}
     
     /** Metoda dostarcza slowo "wypowiedĹş"
-        @param duza czy slowo powinno byc z wielkiej litery*/
+     * @param duza czy slowo powinno byc z wielkiej litery*/
     public static String message(boolean duza){
         return duza? wielka("wypowiedź") : "wypowiedź";}
-
-    /** Metoda dostarcza slowo "autor" 
-        @param duza czy slowo powinno byc z wielkiej litery*/
+    
+    /** Metoda dostarcza slowo "autor"
+     * @param duza czy slowo powinno byc z wielkiej litery*/
     public static String author(boolean duza){
         return duza? wielka("Autor") : "Autor";}
     
@@ -264,44 +268,44 @@ public class Messages {
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii nie powiodďż˝a sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
     public static String errorChangeKat(){
         return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiodła się.</p>";}
     
-     /**
+    /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana podforum nie powiodďż˝a sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
     public static String errorChangePod(){
         return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiodła się.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien nie powiodďż˝a sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
     public static String errorChangeUpr(){
         return "<p  align=\"center\" class=\"error\"> Zmiana uprawnien nie powiodła się.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e dodanie kategorii powiodďż˝o sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
-
+    
     public static String addKat(){
         return "<p align=\"center\" class=\"info\"> Kategoria została dodana.</p>";}
     
-     /**
+    /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien powiodďż˝a sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
-
+    
     public static String changeUpr(){
         return "<p align=\"center\" class=\"info\"> Uprawnienia zostały zmienione.</p>";}
-
-     /**
+    
+    /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana podforum powiodďż˝a sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
     public static String changePod(){
         return "<p align=\"center\" class=\"info\"> Podforum zostało zmienione.</p>";}
@@ -310,23 +314,23 @@ public class Messages {
      * Metoda dostarcza komunikat o tym, ďż˝e usuniecie kategorii powiodďż˝o sie
      * @return String z komunikatem
      */
-
+    
     public static String removeKat(){
         return "<p align=\"center\" class=\"info\"> Kategoria została usunięta.</p>";}
-
+    
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii powiodďż˝a sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
     public static String changeKat(){
         return "<p align=\"center\" class=\"info\"> Kategoria została zmieniona.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e usuniecie podforum powiodďż˝o sie
-     * @return String z komunikatem 
+     * @return String z komunikatem
      */
-
+    
     public static String removePodforum(){
         return "<p align=\"center\" class=\"info\" > Podforum zostało usunięte.</p>";}
     
@@ -378,25 +382,25 @@ public class Messages {
      * Metoda dostarcza komunikat o blďż˝dzie wywolania formularza
      * @return String z komunikatem
      */
-
+    
     public static String formError(){
         return "<p align=\"center\" class=\"info\">Błąd formularza.</p>";}
     
-        
+    
     /**
      * Metoda dostarcza komunikat o poprawnym dodaniu wypowiedzi
      * @return String z komunikatem
      */
-
+    
     public static String addMessage(){
         return "Dodano Wypowiedź";}
-
+    
     
     /**
      * Metoda dostarcza komunikat o poprawnym dodaniu wÄtka
      * @return String z komunikatem
      */
-
+    
     public static String addThread(){
         return "Dodano Wątek";}
     
