@@ -63,3 +63,11 @@ function resizeAddUser(){
 			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableAddUser').offsetHeight + 40;
 		}
 }
+
+function resizeProfile(){
+		if (top.frames[1].document.getElementById('mainTableProfile')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('mainTableProfile').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('mainTableProfile').offsetHeight + 40;
+		}
+}

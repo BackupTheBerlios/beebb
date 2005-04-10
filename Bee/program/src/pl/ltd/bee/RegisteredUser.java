@@ -71,4 +71,47 @@ public class RegisteredUser extends User {
     public String getHaslo(){
         return haslo;
     }
+    
+        /** Metoda zwraca login uzytkownika
+     * @return String z nazwa Login
+     **/
+    public String getLogin(){
+        return this.login;
+    }
+    
+    /** Metoda zwraca e-mail uzytkownika
+     * @return String z e-mailem
+     **/
+    public String getEmail(){
+        return this.email;
+    }
+    
+    /** Metoda zwraca imie uzytkownika
+     * @return String z imieniem
+     **/
+    public String getImie(){
+        return this.imie;
+    }
+    
+    /** Metoda zwraca nazwisko uzytkownika
+     * @return String z nazwiskiem
+     **/
+    public String getNazwisko(){
+        return this.nazwisko;
+    }
+    
+    /** Metoda zwraca numer GG uzytkownika
+     * @return String z numerem GG
+     **/
+    public String getGG(){
+        return this.gg;
+    }
+    
+    /** Metoda zwraca konto jabber uzytkownika
+     * @return String z kontem jabber
+     **/
+    public String getJabber(){
+        return this.jabber;
+    }
+
 }

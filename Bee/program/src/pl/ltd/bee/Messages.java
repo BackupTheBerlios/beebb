@@ -73,6 +73,13 @@ public class Messages {
     public static String subname(){
         return "Nazwisko";}
     
+    /** Metoda dostarcza slowo "e-mail" */
+    public static String email(boolean duza){
+        return duza? wielka("e-mail") : "e-mail";}
+    
+    public static String number(boolean duza){
+        return duza? wielka("numer") : "numer";}
+    
     /** Metoda dostarcza fraze "pola wymagane" */
     public static String fieldsObligatory(){
         return "pola wymagane";}
@@ -369,8 +376,11 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorAddPodforum(){
-        return "<p  align=\"center\" class=\"error\"> Dodanie podforum nie powiodło się.</p>";}
+        return "<p  align=\"center\" class=\"error\">Dodanie podforum nie powiodło się.</p>";}
     
+    public static String errorNotLoggedIn(){
+        return "<p align=\"center\" class=\"error\">Proszę się zalogować.</p>";}
+
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e dodanie podforum powiodĹo sie
      * @return String z komunikatem

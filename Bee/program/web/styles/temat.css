@@ -40,48 +40,27 @@ th	{
 	border: 1px black solid; 
 	}
 
-.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost{
+.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost, .tdPictureWatek , .tdTytulWatek , .tdAutor{
 	border: 1px black solid;
 	background-color: goldenrod;
 	}
 
-.tdTytulKategorii a:visited{
+.tdTytulKategorii a:visited, .aTopLink:visited{
 	color: black;	
 }	
 
-.tdTytulKategorii a:link{
+.tdTytulKategorii a:link, .aTopLink:link{
 	color: #2f2929;
 }
 
-.tdTytulPodforum a:visited , .tdAutor a:visited , .tdLastPost a:visited{
+.tdTytulPodforum a:visited , .tdAutor a:visited , .tdLastPost a:visited, .tdTytulWatek a:visited, .linkAutor a:visited{
 	color: firebrick;	
 	}	
 
-.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link{
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor a:link{
 	color: darkred;	
 	}	
 	
-.tdTytulWatek a:link{
-	color: darkred;	
-	}	
-
-.tdTytulWatek a:visited{
-	color: firebrick;	
-	}	
-	
-.aTopLink:visited{
-	color: black;
-	}
-	
-.aTopLink:link{	
-	color:#2f2929;
-	}
-	
-.tdPictureWatek , .tdTytulWatek , .tdAutor{
-	border: 1px black solid;
-	background-color: goldenrod;
-	}
-
 .trWypowiedz {
 	background-color: khaki;
 	}
@@ -95,16 +74,15 @@ th	{
         margin: 0pt;
 	}
 
-.tdAutorBox, .tdWypowiedz{ 
+.tdAutorBox, .tdWypowiedz, .tdProfileField{ 
         background-color: khaki;
         border: 1px black solid; 
         }
 
-
-
-.tableWypowiedz{
-/*        border-spacing: 0pt;
-        border-collapse: collapse;*/
+.wypowiedzData{
+        font-size: 8px;
+        color: firebrick;
+        font-weight : normal;
         }
 
 .error{	

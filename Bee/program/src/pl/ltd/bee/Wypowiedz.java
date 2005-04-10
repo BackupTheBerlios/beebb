@@ -48,7 +48,10 @@ public class Wypowiedz {
         //strona.println("<body class=\"bodyWypowiedz\">");
         strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">");
         strona.println("<tr>");
-        strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"15%\" align=\"center\" valign=\"middle\"><img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
+        strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
+        strona.println("<span class=\"linkAutor\"><a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + this.Autor + "</a></span><br/>");
+        strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
+        strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
         strona.println(Tekst);
         strona.println("</td>");

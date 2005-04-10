@@ -36,4 +36,36 @@ public abstract class User {
      * @return String z reprezentacja hasla
      **/
     public abstract String getHaslo();    
+    
+    /** Metoda zwraca login uzytkownika
+     * @return String z nazwa Login
+     **/
+    public abstract String getLogin();
+    
+    /** Metoda zwraca e-mail uzytkownika
+     * @return String z e-mailem
+     **/
+    public abstract String getEmail();
+    
+    /** Metoda zwraca imie uzytkownika
+     * @return String z imieniem
+     **/
+    public abstract String getImie();
+    
+    /** Metoda zwraca nazwisko uzytkownika
+     * @return String z nazwiskiem
+     **/
+    public abstract String getNazwisko();
+    
+    /** Metoda zwraca numer GG uzytkownika
+     * @return String z numerem GG
+     **/
+    public abstract String getGG();
+    
+    /** Metoda zwraca konto jabber uzytkownika
+     * @return String z kontem jabber
+     **/
+    public abstract String getJabber();
+    
+    
 }
