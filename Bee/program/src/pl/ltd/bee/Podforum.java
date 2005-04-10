@@ -121,6 +121,13 @@ public class Podforum {
     }
     
     
+    /** Zwraca czy podforum jest prywatne
+     * @return true w przypadku gdy podforum jest prywatne, wpp false
+     */
+    public boolean czyPrywatne() {
+        return Prywatne;
+    }
+    
     /**
      * Metoda wypisuje na strone glowna liste watkow
      * @param strona strumien wyjsciowy

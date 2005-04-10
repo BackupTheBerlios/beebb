@@ -38,7 +38,7 @@ public class Watek {
         this.Temat=Temat;
         this.Data=Data;
         if (Prywatny != null) this.Prywatny=Prywatny.compareTo(DataBase.TAK) == 0;
-            else this.Prywatny = false;
+        else this.Prywatny = false;
         this.db=db;
     }
     
@@ -54,6 +54,13 @@ public class Watek {
      */
     public int getID() {
         return ID;
+    }
+    
+    /** Zwraca czy watek jest prywatny
+     * @return true w przypadku gdy watek jest prywatny, wpp false
+     */
+    public boolean czyPrywatny() {
+        return Prywatny;
     }
     
     /** to do usuniecia */
@@ -85,17 +92,19 @@ public class Watek {
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         Podforum p = db.getPodforumbyWatek(ID);
-        Kategoria k = db.getKategoriabyPodforum(p.getID());
+        Kategoria k = null;
+        if (p!=null) k = db.getKategoriabyPodforum(p.getID());
         Forum f = db.getForum();
         strona.println("<table border=\"0\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
+        if (p!=null && k!=null && f!=null)
         strona.println("<td align=\"left\"><a href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
         strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.add() +" "+ Messages.message() + "</a></td>");
         strona.println("</tr></table>");
         strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th class=\"thTopLCorner\" width=\"100%\" height=\"25\" nowrap=\"nowrap\">" +
-                        "<table class=\"tableTitleWatek\" border=\"0\" width=\"100%\"><tr><td align=\"center\"  width=\"15%\">&nbsp;" + Messages.author() + "&nbsp;</td><td align=\"center\">&nbsp;" + Messages.message(true) + "&nbsp;</td></tr></table>"+
-                        "</th>");
+                "<table class=\"tableTitleWatek\" border=\"0\" width=\"100%\"><tr><td align=\"center\"  width=\"15%\">&nbsp;" + Messages.author() + "&nbsp;</td><td align=\"center\">&nbsp;" + Messages.message(true) + "&nbsp;</td></tr></table>"+
+                "</th>");
         strona.println("</tr>");
     }
     

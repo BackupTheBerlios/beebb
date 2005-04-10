@@ -65,34 +65,45 @@
                 out.print(Messages.formError());
             } else {
             String text=request.getParameter("text");
-            if (watek!=null && text!=null) {
-                text = new String(text.getBytes("8859_1"),"UTF-8");
-                out.print("<br/><br/>");
-                text=text.replaceAll("\r\n","<br/>");
-                text=text.replaceAll("\n","<br/>");
-                String ID_Usera; 
-                String Nazwa_Usera="";
-                if (auth.zalogowany(request,db_con)) {
-                    ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
-                } else {
-                    String autor=request.getParameter("autor");
-                    if (autor==null) Nazwa_Usera=Config.GUEST; 
-                            else 
-                                {
-                                    autor = new String(autor.getBytes("8859_1"),"UTF-8");
-                                    Nazwa_Usera=autor;
-                                }
-                    ID_Usera = Config.GUEST_ID;
+            String ID_Usera = Config.GUEST_ID;; 
+            String Nazwa_Usera= Config.GUEST;
+            if (text!=null) {
+            text = new String(text.getBytes("8859_1"),"UTF-8");
+            out.print("<br/><br/>");
+            text=text.replaceAll("\r\n","<br/>");
+            text=text.replaceAll("\n","<br/>");
+
+            if (auth.zalogowany(request,db_con)) {
+                ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
+            } else {
+                String autor=request.getParameter("autor");
+                if (autor!=null) {
+                      autor = new String(autor.getBytes("8859_1"),"UTF-8");
+                      Nazwa_Usera=autor;
                 }
-                if (!db_con.insertWypowiedz(watek,ID_Usera,Nazwa_Usera,text,db_con.getDate())) 
+            }
+            if (watek!=null) {
+               if (!db_con.insertWypowiedz(watek,ID_Usera,Nazwa_Usera,text,db_con.getDate(),DataBase.NIE)) 
                     out.print(Messages.errorDataBaseConnection()); else
                     out.print(Messages.addMessage());
-
-                    out.print("<center><br><br><a href=\"./main.jsp"); 
-                    if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");
                 } else
                 if (podforum!=null && text!=null) {
-                out.print(Messages.addThread());
+                    String title=request.getParameter("text");
+                    title = new String(text.getBytes("8859_1"),"UTF-8");
+                    Podforum pf = db_con.getPodforum(Integer.decode(podforum).intValue());
+                    Watek wt;
+                    String prywatne=DataBase.NIE;
+                    if(pf.czyPrywatne()) prywatne=DataBase.TAK;
+                    wt = db_con.insertWatek(podforum,ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne);
+                    
+                    if (wt!=null) { 
+                        if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),ID_Usera,Nazwa_Usera,text,db_con.getDate(),prywatne))
+                            out.print(Messages.errorDataBaseConnection());
+                        else out.print(Messages.addThread()); 
+                    } else out.print(Messages.errorDataBaseConnection());
+                  }
+                    out.print("<center><br><br><a href=\"./main.jsp"); 
+                    if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");
                 }
                 else {
         %>
@@ -104,12 +115,12 @@
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>
-                            <td>Tytuł:</td><td><input type="text" size="50" name="title"></td>
+                            <td><%out.print(Messages.title() + ":");%></td><td><input type="text" size="50" name="title"></td>
                             <% } %>
                             </tr> <tr>
                                 <td valign="top">Treść:</td><td><textarea cols="50" rows="5" name="text"></textarea></td>
                             </tr> <tr>
-                            <td>Autor:</td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
+                            <td><%out.print(Messages.author() + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
                             </tr>

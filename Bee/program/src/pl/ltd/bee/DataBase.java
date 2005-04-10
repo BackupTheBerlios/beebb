@@ -41,8 +41,8 @@ Hastable.put("Watek_"+id,to co zwrocil SELECT);
 
 public class DataBase {
     
-    static final String TAK = "T";
-    static final String NIE = "N";
+    public static final String TAK = "T";
+    public static final String NIE = "N";
     
     /**
      * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
@@ -538,14 +538,35 @@ public class DataBase {
      * @param data data wypowiedzi
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertWypowiedz(String id_wat, String id_autora,String autor, String tekst, String data) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + data + "' , \"" + tekst + "\")")) {
+    public boolean insertWypowiedz(String id_wat, String id_autora,String autor, String tekst, String data, String prywatna) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + data + "' , \"" + tekst + "\",'" + prywatna + "')")) {
             Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + id_autora + " AND " + WYPOWIEDZ_TEKST + "='" + tekst + "' AND " + WYPOWIEDZ_DATA + " = '" + data + "'");
             if (wid==null) return false;
-            return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get("ID") + ")");
+            return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get(WYPOWIEDZ_ID) + ")");
         }
         return false;
     }
+    
+    
+    /**
+     * Metoda umieszcza wątek w bazie
+     * @param id_podforum id podforum w którym lezy wątek
+     * @param id_autora id autora wątku
+     * @param autor opcjonalnie nickname autora wątku
+     * @param  tytul tytul wątku
+     * @param data data utworzenia wątku
+     * @return zwraca obiekt Watek jeżeli insert się powiódł, wpp zwraca null
+     */
+    public Watek insertWatek(String id_podforum, String id_autora,String autor, String temat, String data,String prywatne) {
+        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + temat + "' , '" + data + "','" + prywatne + "')")) {
+            Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + id_autora + " AND " + WATEK_DATA + " = '" + data + "' AND " + WATEK_TEMAT + " = '" + temat + "'");
+            if (watek==null) return null;
+            if (!baza.dmlQuery("INSERT INTO " + BEE_PODFORA_WATKI + " VALUES (" + id_podforum + "," + watek.get(WATEK_ID) + ")")) return null;
+            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),prywatne,(String)watek.get(WATEK_DATA),this);
+        }
+        return null;
+    }
+    
     
     
     /**
