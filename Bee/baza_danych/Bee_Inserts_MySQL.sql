@@ -19,7 +19,7 @@
 
 /*!40000 ALTER TABLE `Bee_Forum` DISABLE KEYS */;
 LOCK TABLES `Bee_Forum` WRITE;
-INSERT INTO `Bee_Forum`(Id,Nazwa) VALUES (0,'Zagorzelców');
+INSERT INTO `Bee_Forum`(Id,Nazwa,Opis) VALUES (0,'Zagorzelców','Forum testowe');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Forum` ENABLE KEYS */;
 

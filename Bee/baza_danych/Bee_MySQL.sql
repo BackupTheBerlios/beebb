@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS `Bee_Forum`;
 CREATE TABLE `Bee_Forum` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Nazwa` varchar(100) NOT NULL default '',
+  `Opis` varchar(255),
   PRIMARY KEY (`ID`)
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z konfiguracja forum';
 
@@ -39,7 +40,7 @@ CREATE TABLE `Bee_Users` (
   `GG` varchar(10) NOT NULL default '',
   `Jabber` varchar(100) NOT NULL default '',
   `OstatnieLogowanie` datetime NOT NULL default '0000-00-00 00:00:00',
-  `Aktywny` enum('T','N') NOT NULL default 'T',
+  `Aktywny` enum('T','N') NOT NULL default 'N',
   `Admin` enum('T','N') NOT NULL default 'N',
   `Moderator` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`)
@@ -56,6 +57,7 @@ CREATE TABLE `Bee_Kategorie` (
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
   `Aktywna` enum('T','N') NOT NULL default 'T',
+  `Prywatna` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`)
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela kategorii';
 
@@ -69,6 +71,7 @@ CREATE TABLE `Bee_Podfora` (
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
   `Aktywne` enum('T','N') NOT NULL default 'T',
+  `Prywatne` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`)
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela podfor';
 
@@ -85,6 +88,7 @@ CREATE TABLE `Bee_Watki` (
   `Autor` varchar(40) NOT NULL default '',
   `Temat` varchar(100) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
+  `Prywatny` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`),
   KEY `id_aut` (`ID_autora`),
   CONSTRAINT `Bee_Watki_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
@@ -102,6 +106,7 @@ CREATE TABLE `Bee_Wypowiedzi` (
   `Autor` varchar(40) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Tekst` text NOT NULL,
+  `Prywatny` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`),
   CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z wypowiedziami';
