@@ -20,6 +20,8 @@ public class RegisteredUser extends User {
     private String gg;
     private String jabber;
     private boolean aktywny;
+    
+    
     /** Tworzy obiekt RegisteredUser
      * @param ID identyfikator uzytkownika
      * @param haslo zakodowane haslo uzytkownika
@@ -42,6 +44,7 @@ public class RegisteredUser extends User {
             this.aktywny=true; else this.aktywny=false;
     }
     
+    
     /** Sprawdza czy podane hasło (plain) zgadza się
      * @param passwd haslo w plain txt
      * @return T lub F w zaleznosci czy haslo sie zgadza
@@ -58,12 +61,14 @@ public class RegisteredUser extends User {
         return aktywny;
     }
     
-        /** Metoda zwraca ID użytkownika
+    
+    /** Metoda zwraca ID użytkownika
      * @return Integer reprezentujacy uzytkownika
      */
     public int getID() {
         return ID;
     }
+    
     
     /** Metoda zwraca zahashowane haslo uzytkownika
      * @return String z reprezentacja hasla
@@ -72,12 +77,14 @@ public class RegisteredUser extends User {
         return haslo;
     }
     
-        /** Metoda zwraca login uzytkownika
+    
+    /** Metoda zwraca login uzytkownika
      * @return String z nazwa Login
      **/
     public String getLogin(){
         return this.login;
     }
+    
     
     /** Metoda zwraca e-mail uzytkownika
      * @return String z e-mailem
@@ -86,12 +93,14 @@ public class RegisteredUser extends User {
         return this.email;
     }
     
+    
     /** Metoda zwraca imie uzytkownika
      * @return String z imieniem
      **/
     public String getImie(){
         return this.imie;
     }
+    
     
     /** Metoda zwraca nazwisko uzytkownika
      * @return String z nazwiskiem
@@ -100,6 +109,7 @@ public class RegisteredUser extends User {
         return this.nazwisko;
     }
     
+    
     /** Metoda zwraca numer GG uzytkownika
      * @return String z numerem GG
      **/
@@ -107,11 +117,12 @@ public class RegisteredUser extends User {
         return this.gg;
     }
     
+    
     /** Metoda zwraca konto jabber uzytkownika
      * @return String z kontem jabber
      **/
     public String getJabber(){
         return this.jabber;
     }
-
+    
 }
