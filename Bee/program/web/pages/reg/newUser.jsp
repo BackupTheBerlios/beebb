@@ -52,7 +52,7 @@
                     out.println(Messages.errorUserCreate()); 
                  else {
                     db_con.usunKluczNewUser(klucz);
-                    out.println("Uzytkownik " + nick + " zostal dodany<BR><br><a href=./../main.jsp>powrot</a><br>"); 
+                    out.println("Uzytkownik " + nick + " zostal dodany<BR><br><a href=./../../index.jsp>powrot</a><br>"); 
                  }
             } else 
                 out.print(Messages.errorKeyNewUser());
