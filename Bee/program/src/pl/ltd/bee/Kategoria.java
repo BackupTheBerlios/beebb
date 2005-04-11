@@ -46,18 +46,6 @@ public class Kategoria {
         this.db=db;
     }
     
-    /** Tworzy nowa instancje klasy Kategoria
-     * @param ID identyfikator kategorii w bazie danych
-     * @param Tytul nazwa kategorii
-     */
-    
-/*    public Kategoria(String ID, String Tytul,DataBase db) {
-        this.ID=Integer.decode(ID).intValue();
-        this.Tytul=Tytul;
-        this.Podfora=db.getPodforaKategorii(this.ID);
-        this.db=db;
-    }
-  */
     
     /** Zwraca identyfikator forum
      * @return zwraca long bedacy identyfikatorem kategorii w bazie

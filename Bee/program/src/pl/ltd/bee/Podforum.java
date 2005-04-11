@@ -25,20 +25,6 @@ public class Podforum {
     /** Konstruktor bezargumentowy */
     public Podforum() {}
     
-    /** Tworzy instancje podforum bez watkow
-     * @param ID identyfikator podforum w bazie danych
-     * @param Tytul tytul podforum
-     * @param Opis opis podforum
-     */
-/*    
-    public Podforum(String ID, String Tytul, String Opis,String Aktywne, String Prywatne) {
-        this.ID=Integer.decode(ID).intValue();
-        this.Tytul=Tytul;
-        this.Opis = Opis;
-        this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
-        this.Prywatne=Prywatne.compareTo(DataBase.TAK) == 0;
-    }
-*/    
     
     /** Tworzy instancje podforum
      * @param ID identyfikator podforum w bazie danych
