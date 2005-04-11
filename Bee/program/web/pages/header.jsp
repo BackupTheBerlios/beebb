@@ -90,40 +90,40 @@
 		<td id="cellMenu" align="center">
 			<table id="tableMenu" border="0" width="600"> 
 			<tr>
-			<td class="tdTopLink"><a class="aTopLink" href="">
+			<td class="tdTopLink"><span class="aTopLink">
 				[] FAQ
-				</a>
+				</span>
 			</td>
-			<td class="tdTopLink"><a class="aTopLink" href="">
+			<td class="tdTopLink"><span class="aTopLink">
 				[] Szukaj
-				</a>
+				</span>
 			</td>
-			<td class="tdTopLink"><a class="aTopLink" href="">
+			<td class="tdTopLink"><span class="aTopLink">
 				[] Użytkownicy
-				</a>
+				</span>
 			</td>
-			<td class="tdTopLink"><a class="aTopLink" href="">
+			<td class="tdTopLink"><span class="aTopLink">
 				[] Grupy
-				</a>
+				</span>
 			</td>
 			</tr>
 			<tr>
-			<td class="tdTopLink"><a class="aTopLink" href="">
+			<td class="tdTopLink"><span class="aTopLink">
 				[] Profil
-				</a>
+				</span>
 			</td>
 			<td class="tdTopLink">
-				<a class="aTopLink" href="../Administracja/index.htm" target="_blank">[] Panel Administracyjny</a>
+				<span class="aTopLink" onclick="top.open('../Administracja/index.htm','Bee')" target="_blank">[] Panel Administracyjny</span>
 			</td>
 			<td class="tdTopLink">
-				<a  class="aTopLink" href="" onClick="linkClick('./addUser.jsp')">[] Rejestracja</a>
+				<span  class="aTopLink" onClick="linkClick('./addUser.jsp')">[] Rejestracja</span>
 			</td>
 			<td class="tdTopLink">
                                 <%
                                 if (!auth.zalogowany(request,db_con)) 
-                                    out.print("<a  class=\"aTopLink\" href=\"\" onclick=\"linkClick('./auth.jsp')\">[] Zaloguj</a>");
+                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp')\">[] Zaloguj</span>");
                                else
-                                    out.print("<a  class=\"aTopLink\" href=\"\" onclick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] Wyloguj</a>");   
+                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] Wyloguj</span>");   
                                 %>
 			</td>
 			</tr>

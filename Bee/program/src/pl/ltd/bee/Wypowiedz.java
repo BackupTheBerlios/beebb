@@ -49,7 +49,13 @@ public class Wypowiedz {
         strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">");
         strona.println("<tr>");
         strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
-        strona.println("<span class=\"linkAutor\"><a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + this.Autor + "</a></span><br/>");
+        if (Config.GUEST_ID.compareTo( String.valueOf(this.ID_Autora))==0)
+                strona.println("<span class=\"linkAutor\">~" + this.Autor + "</span><br/>");
+        else
+        {
+            User u = db.getUser(this.ID_Autora);
+            strona.println("<span class=\"linkAutor\"><a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\">" + u.getLogin() + "</a></span><br/>");
+        }
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
         strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");

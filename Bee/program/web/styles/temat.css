@@ -49,6 +49,12 @@ th	{
 	color: black;	
 }	
 
+.aTopLink {
+        text-decoration: underline;
+        color: #2f2929;
+        cursor: pointer;
+        }
+
 .tdTytulKategorii a:link, .aTopLink:link{
 	color: #2f2929;
 }
@@ -57,7 +63,7 @@ th	{
 	color: firebrick;	
 	}	
 
-.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor a:link{
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link{
 	color: darkred;	
 	}	
 	
