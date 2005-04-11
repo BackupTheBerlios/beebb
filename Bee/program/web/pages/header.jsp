@@ -79,7 +79,7 @@
                                     if (f != null){
                                         String opis = f.getOpis();
                                         if (opis != null) out.println(opis);
-                                           else out.println("Forum " + f.getNazwa());
+                                           else out.println(f.getNazwa());
                                     }
                                     else out.println(Messages.errorUnknown());
                                    %>
@@ -91,39 +91,39 @@
 			<table id="tableMenu" border="0" width="600"> 
 			<tr>
 			<td class="tdTopLink"><span class="aTopLink">
-				[] FAQ
+				[] <%out.print(Messages.wielka(Messages.help()));%>
 				</span>
 			</td>
 			<td class="tdTopLink"><span class="aTopLink">
-				[] Szukaj
+				[] <%out.print(Messages.wielka(Messages.search()));%>
 				</span>
 			</td>
 			<td class="tdTopLink"><span class="aTopLink">
-				[] Użytkownicy
+				[] <%out.print(Messages.wielka(Messages.users()));%>
 				</span>
 			</td>
 			<td class="tdTopLink"><span class="aTopLink">
-				[] Grupy
+				[] <%out.print(Messages.wielka(Messages.groups()));%>
 				</span>
 			</td>
 			</tr>
 			<tr>
 			<td class="tdTopLink"><span class="aTopLink">
-				[] Profil
+				[] <%out.print(Messages.wielka(Messages.profile()));%>
 				</span>
 			</td>
 			<td class="tdTopLink">
-				<span class="aTopLink" onclick="top.open('../Administracja/index.htm','Bee')" target="_blank">[] Panel Administracyjny</span>
+				<span class="aTopLink" onclick="top.open('../Administracja/index.htm','Bee')" target="_blank">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
 			</td>
 			<td class="tdTopLink">
-				<span  class="aTopLink" onClick="linkClick('./addUser.jsp')">[] Rejestracja</span>
+				<span  class="aTopLink" onClick="linkClick('./addUser.jsp')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
 			</td>
 			<td class="tdTopLink">
                                 <%
                                 if (!auth.zalogowany(request,db_con)) 
-                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp')\">[] Zaloguj</span>");
+                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp')\">[] " + Messages.wielka(Messages.logIn()) +"</span>");
                                else
-                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] Wyloguj</span>");   
+                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] " + Messages.wielka(Messages.logOut()) + "</span>");   
                                 %>
 			</td>
 			</tr>

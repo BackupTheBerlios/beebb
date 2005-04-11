@@ -118,14 +118,46 @@ public class Messages {
     public static String message(boolean duza){
         return duza? wielka("wypowiedź") : "wypowiedź";}
     
-    /** Metoda dostarcza slowo "autor"
-     * @param duza czy slowo powinno byc z wielkiej litery*/
-    public static String author(boolean duza){
-        return duza? wielka("autor") : "autor";}
-    
     /** Metoda dostarcza slowo "autor" */
     public static String author(){
-        return "Autor";}
+        return "autor";}
+    
+    /** Metoda dostarcza slowo "pomoc" */
+    public static String help(){
+        return "pomoc";}
+
+    /** Metoda dostarcza slowo "szukaj" */
+    public static String search(){
+        return "szukaj";}
+
+    /** Metoda dostarcza slowo "uzytkownicy" */
+    public static String users(){
+        return "użytkownicy";}
+    
+    /** Metoda dostarcza slowo "grupy" */
+    public static String groups(){
+        return "grupy";}
+
+    /** Metoda dostarcza slowo "profil" */
+    public static String profile(){
+        return "profil";}
+    
+    /** Metoda dostarcza fraze "panel administracyjny" */
+    public static String adminPanel(){
+        return "panel administracyjny";}
+    
+    /** Metoda dostarcza slowo "rejestracja" */
+    public static String registration(){
+        return "rejestracja";}
+    
+    /** Metoda dostarcza fraze "zaloguj" */
+    public static String logIn(){
+        return "zaloguj";}
+    
+    /** Metoda dostarcza fraze "wyloguj" */
+    public static String logOut(){
+        return "wyloguj";}
+    
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
