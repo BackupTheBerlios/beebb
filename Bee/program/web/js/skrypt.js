@@ -1,5 +1,6 @@
 function reloadHeader(url){
 		if (top.frames[0].location)
+                if (top.frames[0].location.pathname.indexOf('header.jsp',0) != -1)
                            top.frames[0].location.href = url;
 }
 

@@ -2,7 +2,8 @@
 function resizeMain()
 {
 		//poprawienie gornej ramki
-		if (top.frames[0].location.pathname.indexOf("header.jsp",0) != -1)
+		//if (top.frames[0].location.pathname.indexOf("header.jsp",0) != -1)
+                if (top.frames[0].document.getElementById('tableHeader'))
 		{
 			top.document.getElementById('frameHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight + 30;
 			top.document.getElementById('cellHead').height = top.frames[0].document.getElementById('tableHeader').offsetHeight + 40;
