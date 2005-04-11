@@ -311,30 +311,38 @@ public class Messages {
         return "<p align=\"center\" class=\"info\"> Uprawnienia zostały zmienione.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e zmiana podforum powiodďż˝a sie
+     * Metoda dostarcza komunikat o tym, że zmiana podforum powiodła sie
      * @return String z komunikatem
      */
     public static String changePod(){
         return "<p align=\"center\" class=\"info\"> Podforum zostało zmienione.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e usuniecie kategorii powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że usuniecie kategorii powiodło sie
      * @return String z komunikatem
      */
     
     public static String removeKat(){
         return "<p align=\"center\" class=\"info\"> Kategoria została usunięta.</p>";}
     
-    
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii powiodďż˝a sie
+     * Metoda dostarcza komunikat o tym, że aktywacja kategorii powiodła sie
      * @return String z komunikatem
      */
+    
+    public static String activeKat(){
+        return "<p align=\"center\" class=\"info\"> Kategoria została aktywowana.</p>";}
+    
+    
+    /**
+     * Metoda dostarcza komunikat o tym, że zmiana kategorii powiodła się.
+     * @return String z komunikatem 
+      */
     public static String changeKat(){
         return "<p align=\"center\" class=\"info\"> Kategoria została zmieniona.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e usuniecie podforum powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że usuniecie podforum powiodło się.
      * @return String z komunikatem
      */
     
@@ -342,11 +350,26 @@ public class Messages {
         return "<p align=\"center\" class=\"info\" > Podforum zostało usunięte.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, usuniecie kategorii nie powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że aktywacja podforum powiodła się.
+     * @return String z komunikatem
+     */
+    
+    public static String activePodforum(){
+        return "<p align=\"center\" class=\"info\" > Podforum zostało aktywowane.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, usunięcie kategorii nie powiodło się
      * @return String z komunikatem
      */
     public static String errorRemoveKat(){
         return "<p  align=\"center\" class=\"error\"> Usunięcie kategorii nie powiodło się.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, że aktywacja kategorii nie powiodła się
+     * @return String z komunikatem
+     */
+    public static String errorActiveKat(){
+        return "<p  align=\"center\" class=\"error\"> Aktywacja kategorii nie powiodła się.</p>";}
     
     /**
      * Metoda dostarcza komunikat o tym, usuniecie podforum nie powiodďż˝o sie
@@ -357,7 +380,7 @@ public class Messages {
         return "<p  align=\"center\" class=\"error\"> Usunięcie podforum nie powiodło się.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e nie zostaďż˝a podana nazwa podforum
+     * Metoda dostarcza komunikat o tym, że nie została podana nazwa podforum
      * @return String z komunikatem
      */
     
@@ -365,14 +388,22 @@ public class Messages {
         return "<p align=\"center\" class=\"error\"> Nie została podana nazwa podforum.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e podforum o podanej nazwie juz istnieje.
+     * Metoda dostarcza komunikat o tym, że aktwacja podforum nie powiodło się
+     * @return String z komunikatem
+     */
+    
+    public static String errorActivePodforum(){
+        return "<p align=\"center\" class=\"error\"> Aktywacja podforum nie powiodła się.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, że podforum o podanej nazwie juz istnieje.
      * @return String z komunikatem
      */
     public static String errorNamePodforum(){
         return "<p align=\"center\" class=\"error\">Podforum o podanej nazwie już istnieje.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e dodanie podforum nie powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że dodanie podforum nie powiodło się.
      * @return String z komunikatem
      */
     public static String errorAddPodforum(){

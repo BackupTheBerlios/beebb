@@ -500,7 +500,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(String tytul, String opis, String podforum) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T', 'N')")) {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
             if (kat==null) return false;
             
@@ -520,7 +520,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(String id_kat, String tytul, String opis) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T', 'N')")) {
             Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE Tytul = '"+tytul+"'");
             if (pf==null) return false;
             
@@ -657,13 +657,15 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii
+     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne badż nie w
+     * zalezności od parametru aktywne
+     * @param aktywne String 'T' lub 'N'
      * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Podforum
      */
-    public ArrayList  getPodforaKategoriiAll(String ID) {
+    public ArrayList  getPodforaKategoriiAll(String ID, String aktywne) {
         ArrayList wynik = new ArrayList();
-        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE ID_Podforum=ID and ID_Kategoria= " + ID + " and Aktywne='T' ORDER BY TYTUL ");
+        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + ID + " and "+PODFORUM_AKTYWNE+"= '"+aktywne+"'");
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
             wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),this));
@@ -673,12 +675,13 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Kategoria
+     * Metoda zwaraca liste obiektow Kategoria, które są aktywne.
+     * @param aktywne String 'T' lub 'N'
      * @return ArrayList obiektow Kategoria
      */
-    public ArrayList getKategorie() {
+    public ArrayList getKategorie(String aktywna) {
         ArrayList wynik = new ArrayList();
-        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE Aktywna='" + TAK +"' ORDER BY " + KATEGORIA_TYTUL);
+        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE "+KATEGORIA_AKTYWNA+"='"+aktywna+"' ");
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
             wynik.add(new Kategoria((String) kategoria.get(KATEGORIA_ID), (String) kategoria.get(KATEGORIA_TYTUL), (String) kategoria.get(KATEGORIA_OPIS), (String) kategoria.get(KATEGORIA_AKTYWNA), (String) kategoria.get(KATEGORIA_PRYWATNA),this ));
@@ -686,25 +689,40 @@ public class DataBase {
         return wynik;
     }
     
+     /**
+     * Metoda zwaraca liste wszystkich obiektow Kategoria.
+     * @return ArrayList obiektow Kategoria
+     */
+    public ArrayList getKategorieAll() {
+        ArrayList wynik = new ArrayList();
+        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE);
+        for(int i=0;i<kategorie.size();i++) {
+            Hashtable kategoria = (Hashtable)kategorie.get(i);
+            wynik.add(new Kategoria((String) kategoria.get(KATEGORIA_ID), (String) kategoria.get(KATEGORIA_TYTUL), (String) kategoria.get(KATEGORIA_OPIS), (String) kategoria.get(KATEGORIA_AKTYWNA), (String) kategoria.get(KATEGORIA_PRYWATNA),this ));
+        }
+        return wynik;
+    }
     
     /**
-     * Metoda zmienia pole aktywna na N, a takze wszystjie podfora w niej sie zawierajace
+     * Metoda zmienia pole aktywna , a takze wszystjie podfora w niej sie zawierajace
+     * @param String aktywne 'T' lub 'N'
      * @param String id kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
-    public boolean usunKategorie(String id){
-        baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET Aktywne='N' WHERE ID_Kategoria="+id+" and ID=ID_Podforum ");
-        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Aktywna='N' WHERE ID="+id);
+    public boolean zmienKategorie(String id, String aktywne){
+        baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET "+PODFORUM_AKTYWNE+"='"+aktywne+"' WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + id);
+        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_AKTYWNA+"='"+aktywne+"' WHERE "+KATEGORIA_ID+"="+id);
     }
     
     
     /**
-     * Metoda zmienia pole aktywna na N
+     * Metoda zmienia pole aktywna na podane w parametrze aktywne
+     * @param String aktywne 'T' lub 'N'
      * @param String id podforum
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
-    public boolean usunPodforum(String id){
-        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Aktywne='N' WHERE ID="+id);
+    public boolean zmienPodforum(String id, String aktywne){
+        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_AKTYWNE+"='"+aktywne+"' WHERE "+PODFORUM_ID+"="+id);
     }
     
     

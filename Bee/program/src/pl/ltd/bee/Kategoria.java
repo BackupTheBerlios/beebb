@@ -91,6 +91,13 @@ public class Kategoria {
         this.ID=Integer.decode(id).intValue();
     }
     
+     /** Zwraca  pole aktywna
+     * @return boolean
+     */
+    public boolean getAktywna() {
+        return Aktywna;
+    }
+    
     /** Ustawia opis kategori
      * @param op String ustawianego opisu
      */
@@ -106,10 +113,11 @@ public class Kategoria {
     }
     
     /** Zwraca liste podforow
+     * @param String 'T' lub 'N'  
      * @return zwraca ArralList bedacy lista podforow
      */
-    public ArrayList getPodfora() {
-        return db.getPodforaKategoriiAll(Integer.toString(ID));
+    public ArrayList getPodfora(String aktywne) {
+        return db.getPodforaKategoriiAll(Integer.toString(ID),aktywne);
     }
     
     
