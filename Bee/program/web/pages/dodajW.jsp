@@ -122,7 +122,7 @@
                             </tr> <tr>
                             <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
-                                <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
+                                <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                             </tr>
                         </table>
                     </form>
