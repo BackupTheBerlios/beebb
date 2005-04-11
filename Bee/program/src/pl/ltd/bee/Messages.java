@@ -21,7 +21,6 @@ public class Messages {
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
     
-    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace slowa
     //_______________________________________________________________________________________________
@@ -31,19 +30,19 @@ public class Messages {
     
     /** Metoda dostarcza fraze nowy uzytkownik */
     public static String newUser(){
-        return "Nowy użytkownik";}
+        return "nowy użytkownik";}
     
     /** Metoda dostarcza slowa "powrot" */
     public static String back(){
-        return "Powrót";}
+        return "powrót";}
     
     /** Metoda dostarcza slowo "witaj" */
     public static String welcome(){
-        return "Witaj";}
+        return "witaj";}
     
     /** Metoda dostarcza slowo "uzytkownik" */
     public static String user(){
-        return "Użytkownik";}
+        return "użytkownik";}
     
     /** Metoda dostarcza fraze "zostal dodany" */
     public static String hasBeenAdded(){
@@ -51,15 +50,15 @@ public class Messages {
     
     /** Metoda dostarcza fraze "dodaj uzytkownika" */
     public static String addUser(){
-        return "Dodaj użytkownika";}
+        return "dodaj użytkownika";}
     
     /** Metoda dostarcza slowo "nick" */
     public static String nick(){
-        return "Nick";}
+        return "nick";}
     
     /** Metoda dostarcza slowo "haslo" */
     public static String password(){
-        return "Hasło";}
+        return "hasło";}
     
     /** Metoda dostarcza fraze "jeszcze raz" */
     public static String oneMoreTime(){
@@ -67,11 +66,11 @@ public class Messages {
     
     /** Metoda dostarcza slowo "imie" */
     public static String name(){
-        return "Imię";}
+        return "imię";}
     
     /** Metoda dostarcza slowo "nazwisko" */
     public static String subname(){
-        return "Nazwisko";}
+        return "nazwisko";}
     
     /** Metoda dostarcza slowo "e-mail" */
     public static String email(){
@@ -95,32 +94,31 @@ public class Messages {
     
     /** Metoda dostarcza slowo "wyslij" */
     public static String send(){
-        return "Wyślij";}
+        return "wyślij";}
     
     /** Metoda dostarcza slowo "dodaj" */
     public static String add(){
-        return "Dodaj";}
+        return "dodaj";}
     
-    /** Metoda dostarcza slowo "wÄtek" */
+    /** Metoda dostarcza slowo "wątek" */
     public static String thread(){
         return "wątek";}
     
     /** Metoda dostarcza slowo "Tytuł" */
     public static String title(){
-        return "Tytul";}
+        return "tytuł";}
     
     /** Metoda dostarcza slowo "wypowiedź" */
     public static String message(){
         return "wypowiedź";}
-    
-    /** Metoda dostarcza slowo "wypowiedĹş"
-     * @param duza czy slowo powinno byc z wielkiej litery*/
-    public static String message(boolean duza){
-        return duza? wielka("wypowiedź") : "wypowiedź";}
-    
+
     /** Metoda dostarcza slowo "autor" */
     public static String author(){
         return "autor";}
+    
+    /** Metoda dostarcza slowo "treść" */
+    public static String tresc(){
+        return "treść";}
     
     /** Metoda dostarcza slowo "pomoc" */
     public static String help(){

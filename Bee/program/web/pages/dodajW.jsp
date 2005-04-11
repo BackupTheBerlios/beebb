@@ -111,16 +111,16 @@
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                                 <th colspan="2">
-                                    <%out.print(Messages.add()+" "); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
+                                    <%out.print(Messages.wielka(Messages.add())+" "); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>
-                            <td><%out.print(Messages.title() + ":");%></td><td><input type="text" size="50" name="title"></td>
+                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" name="title"></td>
                             <% } %>
                             </tr> <tr>
-                                <td valign="top">Treść:</td><td><textarea cols="50" rows="5" name="text"></textarea></td>
+                                <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td><td><textarea cols="50" rows="5" name="text"></textarea></td>
                             </tr> <tr>
-                            <td><%out.print(Messages.author() + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
+                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="Wyślij"/></td>
                             </tr>

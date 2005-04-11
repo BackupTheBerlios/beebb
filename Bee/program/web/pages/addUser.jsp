@@ -109,15 +109,15 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                                <td><b><%out.print(Messages.nick());%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
+                                <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
                             </tr> <tr>
-                            <td><b><%out.print(Messages.password());%>*:</b></td><td><input type="password" size="25" name="haslo1"></td>
+                            <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="haslo1"></td>
                             </tr> <tr>
-                                <td><b><%out.print(Messages.password());%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="haslo2"></td>
+                                <td><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="haslo2"></td>
                             </tr> <tr>
-                            <td><%out.print(Messages.name());%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
+                            <td><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
                             </tr> <tr>
-                                <td><%out.print(Messages.subname());%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"></td>
+                                <td><%out.print(Messages.wielka(Messages.subname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"></td>
                             </tr> <tr>
             <%
             if (email==null) {
