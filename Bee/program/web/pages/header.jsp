@@ -64,7 +64,7 @@
         }
         
 %>    
-<table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0">
+<table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
 	<td width="20%" align="top">
 		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top"/>

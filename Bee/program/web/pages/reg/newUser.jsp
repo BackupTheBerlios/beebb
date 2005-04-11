@@ -15,8 +15,9 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Nowy użytkownik</title>
         <link rel="stylesheet" href="../../styles/temat.css" type="text/css"/>
+        <script type="text/javascript" src="./../../js/iframe_resize.js"></script>
     </head>
-    <body>
+    <body onload="resizeNewUser()" onresize="resizeNewUser()">
 <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
@@ -30,10 +31,10 @@
        
 %>
     
-        <br><br>
-        <table align="center" border="0">
+        <table align="center" border="0" id="tableNewUser"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
                 <td> 
+        <br/><br/>
         <% Enumeration flds = request.getParameterNames();
         if (!db_con.isConnected()) {
         try {

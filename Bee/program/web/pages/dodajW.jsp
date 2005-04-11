@@ -39,7 +39,7 @@
        }
        else auth = (Autoryzator)obj;
 %>
-        <table align="center" border="0" id="tableDodajW">
+        <table align="center" border="0" id="tableDodajW"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();

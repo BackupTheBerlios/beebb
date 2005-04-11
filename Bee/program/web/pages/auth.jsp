@@ -15,8 +15,9 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Autoryzacja</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
+        <script type="text/javascript" src="./../js/iframe_resize.js"></script>
     </head>
-    <body>
+    <body onload="resizeAuth()" onresize="resizeAuth()">
     
 <%
        DataBase db_con;
@@ -50,6 +51,8 @@
        else auth = (Autoryzator)obj;
        
 %>
+<table width="100%" border="0" id="tableAuth"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
+<tr><td>
         <% 
         if (!db_con.isConnected()) {
         try {
@@ -61,7 +64,7 @@
         Enumeration flds = request.getParameterNames();
         try {
          %>
-        <br><br>
+        <br/><br/>
         <table align="center" border="0">
             <tr>
             <td>

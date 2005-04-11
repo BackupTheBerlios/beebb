@@ -23,7 +23,7 @@
 
     </head>
 <body onload="resizeProfile()" onresize="resizeProfile()">    
-<table border="0" id="mainTableProfile" width="100%">
+<table border="0" id="mainTableProfile" width="100%"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr><td>
 <%
        DataBase db_con;

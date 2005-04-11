@@ -16,8 +16,9 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Zapomniane hasło</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
+        <script type="text/javascript" src="./../js/iframe_resize.js"></script>
     </head>
-    <body>
+    <body onload="resizeForgetPass()" onresize="resizeForgetPass()">
 <%
        DataBase db_con;
        Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
@@ -30,10 +31,10 @@
        else db_con = (DataBase)o;
        
 %>
-        <br/><br/>
-        <table align="center" border="0">
+        <table align="center" border="0" id="tableForgetPass"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
             <td>
+        <br/><br/>
         <% 
         if (!db_con.isConnected()) {
             try {

@@ -32,7 +32,7 @@
        
 %>
     
-        <table id="tableAddUser" align="center" border="0">
+        <table id="tableAddUser" align="center" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();

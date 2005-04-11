@@ -71,3 +71,36 @@ function resizeProfile(){
 			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('mainTableProfile').offsetHeight + 40;
 		}
 }
+
+
+function resizeAuth(){
+		if (top.frames[1].document.getElementById('tableAuth')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableAuth').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableAuth').offsetHeight + 40;
+		}
+}
+
+function resizeForgetPass(){
+		if (top.frames[1].document.getElementById('tableForgetPass')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableForgetPass').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableForgetPass').offsetHeight + 40;
+		}
+}
+
+function resizeForget(){
+		if (top.frames[1].document.getElementById('tableForget')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableForget').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableForget').offsetHeight + 40;
+		}
+}
+
+function resizeNewUser(){
+		if (top.frames[1].document.getElementById('tableNewUser')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableNewUser').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableNewUser').offsetHeight + 40;
+		}
+}
