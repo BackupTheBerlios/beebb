@@ -255,8 +255,6 @@ public class DataBase {
     }
     
     
-    
-    
     /**
      * Metoda zwaraca objekt Podforum w ktorym znajduje sie Watek o podanym identyfikatorze
      * @param ID Identyfikator watku w szukanym podforum
@@ -300,7 +298,6 @@ public class DataBase {
      */
     public Kategoria getKategoria(int ID){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
-        //zakladam ze mam konstruktor ktory bierze ID i Tytul
         if (kategoria == null) return null;
         return new Kategoria((String)kategoria.get(KATEGORIA_ID),(String)kategoria.get(KATEGORIA_TYTUL),(String)kategoria.get(KATEGORIA_OPIS),(String)kategoria.get(KATEGORIA_AKTYWNA),(String)kategoria.get(KATEGORIA_PRYWATNA),this);
     }
@@ -328,7 +325,7 @@ public class DataBase {
      */
     public ArrayList getTytulyKategorii() {
         ArrayList wynik = new ArrayList();
-        ArrayList kategorie = baza.query("SELECT Tytul FROM "+ BEE_KATEGORIE +" WHERE Aktywna='T' ORDER BY Tytul");
+        ArrayList kategorie = baza.query("SELECT Tytul FROM "+ BEE_KATEGORIE +" WHERE Aktywna='" + TAK + "' ORDER BY Tytul");
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
             String tytul = (String)kategoria.get("TYTUL");
@@ -363,7 +360,6 @@ public class DataBase {
     public ArrayList getWatkiPodforum(int ID) {
         ArrayList wynik = new ArrayList();
         ArrayList watki = baza.query("SELECT " + PODFORA_WATKI_ID_WATKU + " FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID);
-        //ArrayList watki = baza.query("select "+ PODFORA_WATKI_ID_WATKU + " FROM "+ BEE_PODFORA_WATKI + " where ID_Podfora = " + ID);
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
             int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
@@ -397,7 +393,6 @@ public class DataBase {
      */
     public User getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
-        //zakladam ze mam konstruktor ktory bierze ID, Login, Haslo, Admin, Moderator
         if (user == null) return null;
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
@@ -464,7 +459,7 @@ public class DataBase {
      * @return zwraca czy insert sie powidl
      */
     public boolean insertUser(String nick, String haslo, String imie, String nazwisko, String email, String gg, String jabber, String OstatnieLogowanie){
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','N','N','N')");
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','" + NIE + "','" + NIE + "','" + NIE + "')");
     }
     
     
@@ -473,7 +468,7 @@ public class DataBase {
      * @return T lub N w zaleznosci czy update sie powiodl
      */
     public boolean setAktywnyUser(String nick){
-        return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='T' WHERE " + USER_LOGIN + "='" + nick + "'");
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='" + TAK + "' WHERE " + USER_LOGIN + "='" + nick + "'");
     }
     
     
@@ -509,7 +504,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(String tytul, String opis, String podforum) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T', 'N')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', '" + TAK + "', '" + NIE + "')")) {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
             if (kat==null) return false;
             
@@ -530,7 +525,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(String id_kat, String tytul, String opis) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', 'T', 'N')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', '" + TAK + "', '" + NIE + "')")) {
             Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE Tytul = '"+tytul+"'");
             if (pf==null) return false;
             
