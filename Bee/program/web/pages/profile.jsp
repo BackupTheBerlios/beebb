@@ -89,8 +89,8 @@
                 <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td></tr>
                 <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getImie());%></td></tr>
                 <tr><th><% out.print(Messages.subname());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getNazwisko());%></td></tr>
-                <tr><th><% out.print(Messages.email(true));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getEmail());%></td></tr>
-                <tr><th><% out.print(Messages.number(true)+" Gadu-Gadu");%></th><td class="tdProfileField">&nbsp;<% out.print(user.getGG());%></td></tr>
+                <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getEmail());%></td></tr>
+                <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getGG());%></td></tr>
                 <tr><th><% out.print("Jabber");%></th><td class="tdProfileField">&nbsp;<% out.print(user.getJabber());%></td></tr>
                 </table>
                 <%

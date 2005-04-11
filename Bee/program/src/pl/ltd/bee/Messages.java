@@ -17,7 +17,7 @@ public class Messages {
     public Messages() {
     }
     
-    private static String wielka(String s){
+    public static String wielka(String s){
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
     
@@ -74,11 +74,20 @@ public class Messages {
         return "Nazwisko";}
     
     /** Metoda dostarcza slowo "e-mail" */
-    public static String email(boolean duza){
-        return duza? wielka("e-mail") : "e-mail";}
+    public static String email(){
+        return "e-mail";}
     
-    public static String number(boolean duza){
-        return duza? wielka("numer") : "numer";}
+    /** Metoda dostarcza słowo "numer" */
+    public static String number(){
+        return "numer";}
+    
+    /** Metoda dostarcza slowo "gadu-gadu" */
+    public static String gg(){
+        return "gadu-gadu";}
+    
+    /** Metoda dostarcza slowo "jabber" */
+    public static String jabber(){
+        return "jabber";}
     
     /** Metoda dostarcza fraze "pola wymagane" */
     public static String fieldsObligatory(){
@@ -336,8 +345,8 @@ public class Messages {
     
     /**
      * Metoda dostarcza komunikat o tym, że zmiana kategorii powiodła się.
-     * @return String z komunikatem 
-      */
+     * @return String z komunikatem
+     */
     public static String changeKat(){
         return "<p align=\"center\" class=\"info\"> Kategoria została zmieniona.</p>";}
     
@@ -411,7 +420,7 @@ public class Messages {
     
     public static String errorNotLoggedIn(){
         return "<p align=\"center\" class=\"error\">Proszę się zalogować.</p>";}
-
+    
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e dodanie podforum powiodĹo sie
      * @return String z komunikatem

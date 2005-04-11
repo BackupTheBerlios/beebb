@@ -128,11 +128,11 @@
                  if (!db_con.sprawdzEmail(email)) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorEmailExists() + "</td></tr><tr>"); }
             }%>
-                            <td><b>E-mail*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
+                            <td><b><%out.print(Messages.wielka(Messages.email()));%>:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
                             </tr> <tr>
-                                <td>Gadu-Gadu:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"></td>
+                                <td><%out.print(Messages.wielka(Messages.gg()));%>:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"></td>
                             </tr> <tr>
-                            <td>Jabber:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"></td>
+                            <td><%out.print(Messages.wielka(Messages.jabber()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.send());%>"/></td>
                             </tr>
