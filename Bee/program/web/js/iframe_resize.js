@@ -35,9 +35,13 @@ function resizeMain()
                                 	k++;
             			}
             		}
+                        var opera = navigator.userAgent.toLowerCase().indexOf("opera",0) != -1;
                         for(f=0;f<frames.length;f++)
                         {
-                            wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
+                            if (!opera)
+                                wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
+                            else
+                                wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight + 25;
                         }
                     	//No to teraz poprawa zewnetrznej ramki   
                     	if (top != window) //zabezpieczenie jesli nie jestesmy potomkiem
