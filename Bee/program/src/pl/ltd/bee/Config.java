@@ -48,6 +48,7 @@ public class Config {
     private final static String TAG_DATABASE_NAME="database_name";
     private final static String TAG_TABLES_PREFIX="tables_prefix";
     private final static String TAG_GUEST_ACCOUNT="guest_account";
+    private final static String TAG_GUEST_ID="guest_id";
     private final static String TAG_LOG_IN_MAX_AGE="log_in_max_age";
     private final static String TAG_MINIMUM_PASS_LENGTH="minimum_pass_length";
     private final static String TAG_NEW_USER_MAIL_AUTH="new_user_mail_auth";
@@ -75,7 +76,7 @@ public class Config {
     
     /** nazwa uzytkownika ktorego bedziemy traktowac jako goscia */
     public static String GUEST = "Guest";
-    public static String GUEST_ID = "1";
+    public static int GUEST_ID = 1;
     
     /** czas w sekundach po jakim uzytkownik zostanie automatycznie wylogowany */
     public static int LOG_IN_MAX_AGE = 3600;
@@ -119,6 +120,7 @@ public class Config {
             if ( tag.compareTo(Config.TAG_FORGET_BODY) ==0)     Config.this.FORGET_MAIL_BODY = wynik;
             if ( tag.compareTo(Config.TAG_FORGET_SUBJECT) ==0)  Config.this.FORGET_MAIL_SUBJECT = wynik;
             if ( tag.compareTo(Config.TAG_GUEST_ACCOUNT) ==0)   Config.this.GUEST = wynik;
+            if ( tag.compareTo(Config.TAG_GUEST_ID) ==0)        Config.this.GUEST_ID = Integer.parseInt(wynik);
             if ( tag.compareTo(Config.TAG_HOST) == 0)           Config.this.HOST = wynik;
             if ( tag.compareTo(Config.TAG_LOG_IN_MAX_AGE) == 0) Config.this.LOG_IN_MAX_AGE = Integer.parseInt(wynik);
             if ( tag.compareTo(Config.TAG_MAIL_FROM) ==0)       Config.this.MAIL_FROM = wynik;
@@ -178,6 +180,7 @@ public class Config {
            if (parent.getNodeName().compareTo(TAG_FORGET_BODY) == 0) node.setNodeValue(FORGET_MAIL_BODY);
            if (parent.getNodeName().compareTo(TAG_FORGET_SUBJECT) == 0) node.setNodeValue(FORGET_MAIL_SUBJECT);
            if (parent.getNodeName().compareTo(TAG_GUEST_ACCOUNT) == 0) node.setNodeValue(GUEST);
+           if (parent.getNodeName().compareTo(TAG_GUEST_ID) == 0) node.setNodeValue(Integer.toString(GUEST_ID));
            if (parent.getNodeName().compareTo(TAG_HOST) == 0) node.setNodeValue(HOST);
            if (parent.getNodeName().compareTo(TAG_LOG_IN_MAX_AGE) == 0) node.setNodeValue(Integer.toString(LOG_IN_MAX_AGE));
            if (parent.getNodeName().compareTo(TAG_MAIL_FROM) == 0) node.setNodeValue(MAIL_FROM);
@@ -294,6 +297,12 @@ public class Config {
      */
     public void setGuestAccount(String guest){
         GUEST = guest;}
+
+    /** Metoda ustawia numer konta gosc
+     * @param id numer konta gosc
+     */
+    public void setGuestId(int id){
+        GUEST_ID = id;}
 
     /** Metoda ustawia dlugosc minimalna dlugosc hasla
      * @param len minimalna dlugosc hasla
