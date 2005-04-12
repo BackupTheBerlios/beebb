@@ -152,15 +152,15 @@ public class Podforum {
         Forum f = db.getForum();
         strona.println("<table border=\"0\" id=\"textNadPodforum\" width=\"100%\"><tr>");
         strona.println("<td align=\"left\"><a href=\"main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"main.jsp?pid=" + ID + "\">"+ Tytul +"</a></td>");
-        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?p=" + ID + "\">Dodaj Wątek</a></td>");
+        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?p=" + ID + "\">" + Messages.wielka(Messages.add())+ " " + Messages.thread() + "</a></td>");
         strona.println("</tr></table>");
         strona.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");
-        strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;Tematy&nbsp;</th>");
-        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Odpowiedzi&nbsp;</th>");
-        strona.println("<th width=\"80\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Autor&nbsp;</th>");
-        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;Wyświetle&nbsp;</th>");
-        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;Ostatni post&nbsp;</th>");
+        strona.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.themes()) + "&nbsp;</th>");
+        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.answers()) + "&nbsp;</th>");
+        strona.println("<th width=\"80\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.author()) + "&nbsp;</th>");
+        strona.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.showed()) + "&nbsp;</th>");
+        strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.lastPost()) + "&nbsp;</th>");
         strona.println("</tr>");
     }
     

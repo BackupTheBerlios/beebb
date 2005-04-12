@@ -156,6 +156,22 @@ public class Messages {
     public static String logOut(){
         return "wyloguj";}
     
+    /** Metoda dostarcza slowo "tematy" */
+    public static String themes(){
+        return "tematy";}
+    
+    /** Metoda dostarcza slowo "odpowiedzi" */
+    public static String answers(){
+        return "odpowiedzi";}
+    
+    /** Metoda dostarcza slowo "wyswietlen" */
+    public static String showed(){
+        return "wyświetleń";}
+    
+    /** Metoda dostarcza fraze "ostatnia wypowiedz" */
+    public static String lastPost(){
+        return "ostatnia wypowiedź";}
+
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty

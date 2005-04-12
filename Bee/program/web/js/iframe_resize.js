@@ -12,8 +12,8 @@ function resizeMain()
 		//poprawianie dolnej ramki
 		if (top.frames[1].document.getElementById('tableForum')) //zabezpieczenie by nie wyszlo zero		
 		{
-			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableForum').offsetHeight +30;
-			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableForum').offsetHeight +40;
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableForum').offsetHeight + top.frames[1].document.getElementById('textNadForum').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableForum').offsetHeight + top.frames[1].document.getElementById('textNadForum').offsetHeight + 40;
 		}
 		
 		if (top.frames[1].document.getElementById('tablePodforum')) //zabezpieczenie by nie wyszlo zero		
