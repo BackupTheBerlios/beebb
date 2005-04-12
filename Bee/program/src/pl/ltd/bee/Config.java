@@ -351,6 +351,12 @@ public class Config {
      */
     public void setForgetBody(String body){
         FORGET_MAIL_BODY = body;}
+    
+     /** Metoda ustawia czas wygasania sesji
+     * @param body String z zawartoscia listu
+     */
+    public void setLogInMaxAge(int p){
+        LOG_IN_MAX_AGE = p;}
        
     /**
      * Konstruktor
