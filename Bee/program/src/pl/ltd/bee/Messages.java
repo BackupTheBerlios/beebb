@@ -468,11 +468,39 @@ public class Messages {
         return "<p align=\"center\" class=\"error\">Proszę się zalogować.</p>";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e dodanie podforum powiodĹo sie
+     * Metoda dostarcza komunikat o tym, że dodanie podforum powiodło sie
      * @return String z komunikatem
      */
     public static String addPodforum(){
         return "<p align=\"center\" class=\"info\">Podforum zostało dodane.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij głównej powiodła sie
+     * @return String z komunikatem
+     */
+    public static String changeConfigMain(){
+        return "<p align=\"center\" class=\"info\">Konfiguracja główna została zmieniona.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij bazy danych powiodła sie
+     * @return String z komunikatem
+     */
+    public static String changeConfigDb(){
+        return "<p align=\"center\" class=\"info\">Konfiguracja bazy danych została zmieniona.</p>";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij zachowania forum powiodła sie
+     * @return String z komunikatem
+     */
+    public static String changeConfigBehave(){
+        return "<p align=\"center\" class=\"info\">Konfiguracja zachowania forum została zmieniona.</p>";}
+    
+     /**
+     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij mailingu powiodła sie
+     * @return String z komunikatem
+     */
+    public static String changeConfigMail(){
+        return "<p align=\"center\" class=\"info\">Konfiguracja mailingu została zmieniona.</p>";}
     
     /**
      * Metoda dostarcza komunikat o blďż˝dzie wywolania formularza
