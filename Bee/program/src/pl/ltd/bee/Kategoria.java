@@ -105,7 +105,7 @@ public class Kategoria {
      * @return zwraca ArralList bedacy lista podforow
      */
     public ArrayList getPodfora(String aktywne) {
-        return db.getPodforaKategoriiAll(Integer.toString(ID),aktywne);
+        return db.getPodforaKategoriiAll(this.ID, aktywne);
     }
     
     
