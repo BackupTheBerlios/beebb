@@ -325,10 +325,10 @@ public class DataBase {
      */
     public ArrayList getTytulyKategorii() {
         ArrayList wynik = new ArrayList();
-        ArrayList kategorie = baza.query("SELECT Tytul FROM "+ BEE_KATEGORIE +" WHERE Aktywna='" + TAK + "' ORDER BY Tytul");
+        ArrayList kategorie = baza.query("SELECT "+KATEGORIA_TYTUL+" FROM "+ BEE_KATEGORIE +" WHERE "+KATEGORIA_AKTYWNA+"='" + TAK + "'");
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
-            String tytul = (String)kategoria.get("TYTUL");
+            String tytul = (String)kategoria.get(KATEGORIA_TYTUL);
             wynik.add(tytul);
         }
         return wynik;
@@ -503,12 +503,12 @@ public class DataBase {
      * @param opis kategorii
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertKategoria(String tytul, String opis, String podforum) {
+    public boolean insertKategoria(String tytul, String opis, String nazwaforum) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', '" + TAK + "', '" + NIE + "')")) {
-            Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '"+tytul+"'");
+            Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '"+tytul+"'");
             if (kat==null) return false;
             
-            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE Nazwa = '"+podforum+"'");
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE "+FORUM_NAZWA+" = '"+nazwaforum+"'");
             if (forum==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
@@ -524,9 +524,9 @@ public class DataBase {
      * @param opis podforum
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertPodforum(String id_kat, String tytul, String opis) {
+    public boolean insertPodforum(int id_kat, String tytul, String opis) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', '" + TAK + "', '" + NIE + "')")) {
-            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE Tytul = '"+tytul+"'");
+            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+tytul+"'");
             if (pf==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get("ID")+")");
@@ -579,7 +579,7 @@ public class DataBase {
      * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
      */
     public boolean czyKategoria(String tytul){
-        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '"+tytul+"'");
         if (kategoria==null) return false;
         return true;
     }
@@ -587,12 +587,12 @@ public class DataBase {
     
     /**
      * Metoda sprawdz czy podforum o podanym tytule juz istnieje
-     * @param id_kat id kategorii
-     * @param tytul tytul podforum
+     * @param int id_kat id kategorii
+     * @param String tytul tytuł podforum
      * @return zwraca true jezeli podforum o podanym tytule juz istnieje
      */
-    public boolean czyPodforum(String id_kat, String tytul){
-        Hashtable kategoria = getObject("SELECT * FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE ID=ID_Podforum and ID_Kategoria="+id_kat+" and Tytul = '" +tytul+ "'");
+    public boolean czyPodforum(int id_kat, String tytul){
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" and "+PODFORUM_TYTUL+" = '" +tytul+ "'");
         if (kategoria==null) return false;
         return true;
     }
@@ -601,12 +601,12 @@ public class DataBase {
     /**
      * Metoda zwraca id kategorii
      * @param tytul tytul kategorii
-     * @return String numer kategorii
+     * @return int numer kategorii
      */
-    public String dajIdKategorii(String tytul){
-        Hashtable kategoria = getObject("SELECT ID FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "'");
-        if (kategoria==null) return null;
-        return  (String) kategoria.get("ID");
+    public int dajIdKategorii(String tytul){
+        Hashtable kategoria = getObject("SELECT "+KATEGORIA_ID+" FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '" +tytul+ "'");
+        if (kategoria==null) return 0;
+        return  Integer.decode((String) kategoria.get(KATEGORIA_ID)).intValue();
     }
     
     
@@ -703,7 +703,7 @@ public class DataBase {
      * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Podforum
      */
-    public ArrayList  getPodforaKategoriiAll(String ID, String aktywne) {
+    public ArrayList  getPodforaKategoriiAll(int ID, String aktywne) {
         ArrayList wynik = new ArrayList();
         ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + ID + " and "+PODFORUM_AKTYWNE+"= '"+aktywne+"'");
         for(int i=0;i<podfora.size();i++) {
@@ -775,7 +775,7 @@ public class DataBase {
      * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
      */
     public boolean czyKategoriaInna(String tytul, int id){
-        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE Tytul = '" +tytul+ "' and ID<>"+id);
+        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '" +tytul+ "' and "+KATEGORIA_ID+"<>"+id);
         if (kategoria==null) return false;
         return true;
     }
@@ -788,21 +788,22 @@ public class DataBase {
      * @return boolean true jezeli update sie powiodl dalse wpp.
      */
     public boolean updateKategoria(int id, String tytul, String opis ){
-        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET Tytul='"+tytul+"' , Opis='"+opis+"' WHERE ID="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_TYTUL+"='"+tytul+"' , "+KATEGORIA_OPIS+"='"+opis+"' WHERE "+KATEGORIA_ID+"="+id);
         
     }
     
     
     /**
-     * Metoda zmienia tytul i opis podforum
-     * @param String id kategorii
+     * Metoda zmienia tytul i opis podforum, oraz zmienia kategorie podforum na id_kat
+     * @param int id podforum
+     * @param int id_kat kategorii
      * @param String tytul kategorii
      * @param String opis kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      */
-    public boolean updatePodforum(String id, String id_kat, String tytul, String opis ){
-        baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET ID_Kategoria="+id_kat+" WHERE ID_Podforum="+id);
-        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET Tytul='"+tytul+"' , Opis='"+opis+"' WHERE ID="+id);
+    public boolean updatePodforum(int id, int id_kat, String tytul, String opis ){
+     return  ( baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" WHERE "+KATEGORIE_PODFORA_ID_PODFORUM+"="+id)
+            &&  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_TYTUL+"='"+tytul+"' , "+PODFORUM_OPIS+"='"+opis+"' WHERE "+PODFORUM_ID+"="+id));
     }
     
     
