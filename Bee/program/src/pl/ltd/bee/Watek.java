@@ -80,7 +80,7 @@ public class Watek {
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">17</span></td>");
         strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
-        if (Config.GUEST_ID.compareTo( String.valueOf(this.ID_Autor))==0)
+        if (Config.GUEST_ID == this.ID_Autor)
             strona.println("~" + this.Autor);
         else
         {
@@ -106,7 +106,7 @@ public class Watek {
         strona.println("<table border=\"0\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
         if (p!=null && k!=null && f!=null)
         strona.println("<td align=\"left\"><a href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
-        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.add() +" "+ Messages.message() + "</a></td>");
+        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.wielka(Messages.add()) +" "+ Messages.message() + "</a></td>");
         strona.println("</tr></table>");
         strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");

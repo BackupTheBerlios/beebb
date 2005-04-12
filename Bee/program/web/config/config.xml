@@ -5,15 +5,16 @@
 <url_forum>http://127.0.0.1:8080</url_forum>
 </general>
 <database>
-<host>localhost</host>
-<user>Bee</user>
-<password>Bee</password>
+<host>192.168.3.174</host>
+<user>bee</user>
+<password>bee</password>
 <database_name>Bee</database_name>
 <tables_prefix>Bee</tables_prefix>
 </database>
 
 <behave>
 <guest_account>Guest</guest_account>
+<guest_id>1</guest_id>
 <log_in_max_age>3600</log_in_max_age>
 <minimum_pass_length>5</minimum_pass_length>
 <new_user_mail_auth>true</new_user_mail_auth>

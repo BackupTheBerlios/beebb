@@ -50,7 +50,7 @@ public class Wypowiedz {
         strona.println("<tr>");
         strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
         strona.println("<span class=\"linkAutor\">");
-        if (Config.GUEST_ID.compareTo( String.valueOf(this.ID_Autora))==0)
+        if (Config.GUEST_ID == this.ID_Autora)
             strona.println("~" + this.Autor);
         else
         {
