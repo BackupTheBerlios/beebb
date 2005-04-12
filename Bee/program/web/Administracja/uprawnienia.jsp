@@ -81,7 +81,7 @@
                 <td> <%=dajDana(email)%> </td><td> <%=dajDana(gg)%> </td> <td> <%=dajDana(jabber)%> </td> <td><%=dajDana(lastlog) %> </td>
                 <td align="center"> <%=takNie(czy_aktywny)%> </td> <td align="center"> <%=takNie(czy_admin)%> </td>
                 <td align="center"> <%=takNie(czy_moderator)%> </td> 
-                <td align="center"> <form action="user_dane.jsp" method="post" target="prawa">
+                <td align="center"> <form action="user_dane.jsp" method="post" target="tresc">
                         <input type="hidden" name="id" value="<%=id%>">
                         <input type="hidden" name="login" value="<%=login%>">
                         <input type="hidden" name="imie" value="<%=imie %>">

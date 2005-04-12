@@ -33,6 +33,7 @@
          
      <% 
        Enumeration fff = request.getParameterNames();
+       int id_kat=0;
        if (fff.hasMoreElements()) {
            String pom = (String) fff.nextElement();
           if((pom.compareTo("id_pod")==0)||(pom.compareTo("opis")==0)||(pom.compareTo("tytul")==0)||(pom.compareTo("id_kat")==0) ) {  
@@ -52,12 +53,12 @@
          boolean ok=true;
         if( (p.getTytul()).compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum()); 
          else {
-            String id_kat=db_con.dajIdKategorii( (String) request.getParameter("kategoria_pom"));
-            if(id_kat.compareTo( String.valueOf(p.getIdKat()) )!=0)   
+            id_kat=db_con.dajIdKategorii( (String) request.getParameter("kategoria_pom"));
+            if( id_kat!=(p.getIdKat()) )   
               if ( db_con.czyPodforum(id_kat, p.getTytul()) ) { ok=false; wiad.add(Messages.errorNamePodforum()); } 
              
              if(ok) { 
-                if ( db_con.updatePodforum(String.valueOf(p.getID()), id_kat, p.getTytul(), p.getOpis()) )
+                if ( db_con.updatePodforum(p.getID(), id_kat, p.getTytul(), p.getOpis()) )
                     wiad.add(Messages.changePod());
                    else wiad.add(Messages.errorChangePod()); %>
                    <jsp:forward page="./edycja_podforow.jsp"/>
@@ -68,7 +69,6 @@
         }
       
    %>
-          
       <% for(int i=0; i<wiad.size(); i++) {
           out.print((String) wiad.get(i));
         }

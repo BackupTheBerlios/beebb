@@ -84,9 +84,9 @@
             
             if( t.compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum());
               else
-                if ( db_con.czyPodforum(id_k, t) ) wiad.add(Messages.errorNamePodforum());
+                if ( db_con.czyPodforum(Integer.decode(id_k).intValue(), t) ) wiad.add(Messages.errorNamePodforum());
                   else 
-                    if (db_con.insertPodforum(id_k, t, o) ) wiad.add(Messages.addPodforum());
+                    if (db_con.insertPodforum(Integer.decode(id_k).intValue(), t, o) ) wiad.add(Messages.addPodforum());
                       else wiad.add(Messages.errorAddPodforum());
                   
             }%>

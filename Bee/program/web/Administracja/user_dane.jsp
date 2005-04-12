@@ -39,7 +39,7 @@
           <tr> <td>OSTATNI LOGIN</td> <td><%= dajDana(request.getParameter("lastlog")) %> </td> </tr>
         </table>
         <br>
-        <form action="uprawnienia.jsp" method="post" target="prawa">
+        <form action="uprawnienia.jsp" method="post" target="tresc">
             
         <table align="center">
          <tr> <th> UPRAWNIENIA </th> </tr>
