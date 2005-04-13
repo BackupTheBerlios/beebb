@@ -103,10 +103,10 @@ public class Watek {
         Kategoria k = null;
         if (p!=null) k = db.getKategoriabyPodforum(p.getID());
         Forum f = db.getForum();
-        strona.println("<table border=\"0\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
+        strona.println("<table border=\"0\" class=\"tableTextNadWatkiem\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
         if (p!=null && k!=null && f!=null)
-        strona.println("<td align=\"left\"><a href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
-        strona.println("<td align=\"right\"><a href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.wielka(Messages.add()) +" "+ Messages.message() + "</a></td>");
+        strona.println("<td class=\"tdPath\" align=\"left\"><a class=\"aPath\" href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
+        strona.println("<td class=\"tdTopAction\" align=\"right\"><a class=\"aTopAction\" href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.wielka(Messages.add()) +" "+ Messages.message() + "</a></td>");
         strona.println("</tr></table>");
         strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");

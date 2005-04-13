@@ -33,6 +33,7 @@ th	{
 
 /*.tdWypowiedzBox { background-color: gold; border: 2px black solid; } */
 
+
 .tdTytulKategorii { 
 	background-color:  gold;
 	height : 15;
@@ -86,10 +87,24 @@ th	{
         }
 
 .wypowiedzData{
-        font-size: 8px;
+        font-size: 8pt;
         color: firebrick;
         font-weight : normal;
         }
+
+.tdPath a:link, .tdPath a:visited{
+        color: brown;
+        font-size: 10pt;
+}
+
+.tdTopAction a:link, .tdTopAction a:visited{
+        color: darkred;
+        font-size: 10pt;
+}
+
+.tableTextNadForum, .tableTextNadPodforum, .tableTextNadWatkiem{
+}
+
 
 .error{	
 	color: red;
