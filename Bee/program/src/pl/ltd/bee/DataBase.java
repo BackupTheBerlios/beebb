@@ -7,6 +7,7 @@
 package pl.ltd.bee;
 
 import java.util.*;
+import pl.ltd.bee.Exceptions.*;
 
 
 /**
@@ -150,12 +151,12 @@ public class DataBase {
     static final String NEW_USER_LOGIN = "LOGIN";
     
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
-    boolean connected = false;
-    ConnectorDB baza = new ConnectorDB("localhost","Bee","bee","bee");
+    ConnectorDB baza;
     
     
     /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza Bee:bee@localhost. */
     public DataBase() {
+        baza = new ConnectorDB(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
     }
     
     /**
@@ -166,14 +167,14 @@ public class DataBase {
      * @param pass Haslo uzytkownika bazy danych
      */
     public DataBase(String host, String Db,String user, String pass) {
-        this.connect(host, Db, user, pass);
+        baza = new ConnectorDB(host,Db,user,pass);
     }
     
     /**
      * metoda sprawdzajaca czy obiekt polaczyl sie z baza - a dokladniej czy dostal base,usera i haslo
      */
     public boolean isConnected() {
-        return connected;
+        return baza.isConnected();
     }
     
     /**
@@ -183,9 +184,8 @@ public class DataBase {
      * @param user Nazwa uzytkownika bazy danych
      * @param pass Haslo uzytkownika bazy danych
      */
-    public void connect(String host, String Db, String user, String pass) {
-        baza = new ConnectorDB(host,Db,user,pass);
-        connected=true;
+    public void connect(String host, String Db, String user, String pass) throws BeeConnectionException{
+        baza.connect();
     }
     
     /**

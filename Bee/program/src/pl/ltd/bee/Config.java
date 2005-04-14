@@ -71,6 +71,14 @@ public class Config {
     public static String DATABASE = "Bee";
     public static String DATABASE_PREFIX = "Bee";
     
+    /** Ustala czy polaczenie z baza ma byc kompresowane */
+    //TODO DODAC TO DO XML'a oraz SET
+    public static boolean USE_COMPRESSION = false;
+    
+    /** Ustala czy polaczenie z baza ma byc szyfrowane */
+    //TODO DODAC TO DO XML'a oraz SET
+    public static boolean USE_SSL = false;
+    
     /** Adres www forum */
     public static String URL_FORUM = "http://127.0.0.1:8080";
     

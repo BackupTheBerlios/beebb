@@ -52,7 +52,7 @@
            auth = a;
        }
        else auth = (Autoryzator)obj;
-       
+  
         if (!db_con.isConnected()) {
             try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
@@ -62,8 +62,8 @@
                 out.print(e);
             }
         }
-        
-%>    
+%>
+   
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
 	<td width="20%" align="top">

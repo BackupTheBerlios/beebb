@@ -3,20 +3,18 @@ package pl.ltd.bee;
 import java.util.*;
 import java.sql.*;
 import java.lang.*;
+import pl.ltd.bee.Exceptions.*;
 
 /**
  * Klasa implementujaca placzenie z baza danych i wykonywanie zapytan SQL.
  */
 public class ConnectorDB {
-    /**
-     * Wyjatek na wewnetrzne potrzeby klasy ConnectDB rzucany przez metode connect(). 
-     */
-    class ConnectionException extends Exception{};
-    
+
     private String Host;
     private String User;
     private String Pass;
     private String DataBase;
+    private Connection con;
     
     /**
      * Konstruktor
@@ -43,19 +41,39 @@ public class ConnectorDB {
         this.Pass=Pass;
     }
     
+    /** Metoda zwraca odpowiedz na pytanie czy obiekt ma aktywne polaczenie z baza danych
+     * @return True jesli polaczenie z baza danych jest aktywne i False w p.p.
+     */
+    public boolean isConnected(){//TODO to podobno jest zle, bo isClosed zwraca falszywe odpowiedzi. trzeba zrobic "SELECT 1;"
+        if (con == null) return false;
+        try{
+            return !(con.isClosed());
+        }catch (SQLException e) {return false;}
+    }
+    
+    
     /**
      * Metoda tworzaca polaczenie z baza danych
      * @return Objekt klasy Connection bedacy uchwytem do polaczenia z baza.
      */
-    private Connection connect() throws ConnectionException
+    public Connection connect() throws BeeConnectionException
     {
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            return DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase + "?useUnicode=true&characterEncoding=UTF-8",User,Pass);
+            Properties ustawienia = new Properties();
+            ustawienia.setProperty("user",User);
+            ustawienia.setProperty("password",Pass);
+            ustawienia.setProperty("useCompression",Config.USE_COMPRESSION? "true":"false");
+            ustawienia.setProperty("useSSL",Config.USE_SSL?"true":"false");
+            ustawienia.setProperty("useUnicode","true");
+            ustawienia.setProperty("characterEncoding","UTF-8");
+            //TODO JAK JUZ BEDZIE DZIALAC TO DODAC CACHING !!!
+            con = DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase,ustawienia);
+            return con;
         }
         catch (Exception e){
-            throw (ConnectionException)((new ConnectionException()).initCause(e));
+            throw (BeeConnectionException)(new BeeConnectionException(Messages.errorDataBaseConnection())).initCause(e);
         }
     }
     
@@ -69,7 +87,7 @@ public class ConnectorDB {
     public ArrayList query(String q) {
         ArrayList pom=new ArrayList();
         try {
-            Connection con = this.connect();
+            //connect();
             Statement select = con.createStatement();        
             ResultSet result = select.executeQuery(q);
             ResultSetMetaData rsmd = result.getMetaData();
@@ -82,11 +100,9 @@ public class ConnectorDB {
                 }
                 pom.add(row);
             }            
-            con.close();
+            //con.close();
         } catch( Exception e ) { 
-/*            Hashtable row2=new Hashtable();
-            row2.put("EXCEPTION",e);
-            pom.add(row2);*/
+            //if ("08S01".equals(e.getSQLState()) || "41000".equals(e.getSQLState())) //to oznacza ze trzeba zrobic reconnect
         }
         return pom;
     }
@@ -97,12 +113,14 @@ public class ConnectorDB {
      **/
     public boolean dmlQuery(String q) {
         try{
-            Connection con = this.connect();
+            //connect();
             Statement select = con.createStatement();
             int wynik = select.executeUpdate(q);
-            con.close();
+            //con.close();
             return (wynik!=0);
-        } catch( Exception e ) { e.printStackTrace(); }
+        } catch( Exception e ) { 
+            //if ("08S01".equals(e.getSQLState()) || "41000".equals(e.getSQLState())) //to oznacza ze trzeba zrobic reconnect
+        }
         return false;
     }
 
