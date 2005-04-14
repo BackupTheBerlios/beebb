@@ -68,7 +68,19 @@ public class ConnectorDB {
             ustawienia.setProperty("useSSL",Config.USE_SSL?"true":"false");
             ustawienia.setProperty("useUnicode","true");
             ustawienia.setProperty("characterEncoding","UTF-8");
-            //TODO JAK JUZ BEDZIE DZIALAC TO DODAC CACHING !!!
+            //jakas proba cache'owania na poziomie drivera
+            //Should the driver cache ResultSetMetaData for Statements and PreparedStatements? (Req. JDK-1.4+, true/false, default 'false')
+            ustawienia.setProperty("cacheResultSetMetadata","true");
+            //Should the driver cache the parsing stage of PreparedStatements?
+            ustawienia.setProperty("cachePrepStmts","true");
+            //Should the driver cache the parsing stage of CallableStatements
+            ustawienia.setProperty("cacheCallableStmts","true");
+            //If prepared statement caching is enabled, what's the largest SQL the driver will cache the parsing for?
+            ustawienia.setProperty("prepStmtCacheSqlLimit","512");//TODO Czy taka stala dodac do Config'a ... To chyba juz nie jest stala dla admina ... chociaz, moze niech ma
+            //If prepared statement caching is enabled, how many prepared statements should be cached?
+            ustawienia.setProperty("prepStmtCacheSize","50");
+            //The number of queries to cacheResultSetMetadata for if cacheResultSetMetaData is set to 'true' (default 50)
+            ustawienia.setProperty("metadataCacheSize","100");
             con = DriverManager.getConnection("jdbc:mysql://"+ Host +"/" + DataBase,ustawienia);
             return con;
         }
