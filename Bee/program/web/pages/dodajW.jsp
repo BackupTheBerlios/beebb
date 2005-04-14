@@ -65,7 +65,7 @@
                 out.print(Messages.formError());
             } else {
             String text=request.getParameter("text");
-            String ID_Usera = Config.GUEST_ID;; 
+            String ID_Usera = new String().valueOf(Config.GUEST_ID); 
             String Nazwa_Usera= Config.GUEST;
             if (text!=null) {
             text = new String(text.getBytes("8859_1"),"UTF-8");
