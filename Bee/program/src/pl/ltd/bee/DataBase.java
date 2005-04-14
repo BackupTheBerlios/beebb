@@ -409,20 +409,7 @@ public class DataBase {
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
-    
-    /**
-     * Metoda zwaraca objekt User o podanym emailu i loginie
-     * @param login Identyfikator (login) szukanego uzytkownika
-     * @param email adres email szukanego uzytkownika
-     * @return Zwraca obiekt User badz null w razie bledu.
-     */
-    public User getUser(String login, String email) {
-        Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "' and " + USER_EMAIL +" = '" + email + "'");
-        if (user == null) return null;
-        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
-    }
-    
-    
+   
     /**
      * Metoda zwaraca nazwe uzytkownika o danym kluczu w tabeli nowych kont
      * @param klucz losowy klucz zwiazany z uzytkownikiem

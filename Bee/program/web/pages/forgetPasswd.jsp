@@ -50,7 +50,7 @@
             String email=request.getParameter("email");
             if (uzytkownik!=null && email!=null) {
                 
-                if (db_con.getUser(uzytkownik,email)!=null) {
+                if (db_con.getUser(uzytkownik)!=null) {
                     Random r = new Random();
 
                     String numer = Long.toHexString(r.nextLong());
