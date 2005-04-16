@@ -522,14 +522,14 @@ public class DataBase {
     /**
      * Metoda umieszcza wypowiedź w bazie
      * @param id_wat id wątku, w którym dodajemy wypowiedź
-     * @param id_autora identyfikator autora wypowiedzi
-     * @param tekst treść wypowiedzi
-     * @param data data wypowiedzi
+     * @param w obiekt Wypowiedź (bez ważnego id) ktory należy wstawić do bazy
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertWypowiedz(String id_wat, String id_autora,String autor, String tekst, String data, String prywatna) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + data + "' , \"" + tekst + "\",'" + prywatna + "')")) {
-            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + id_autora + " AND " + WYPOWIEDZ_TEKST + "='" + tekst + "' AND " + WYPOWIEDZ_DATA + " = '" + data + "'");
+    public boolean insertWypowiedz(String id_wat, Wypowiedz w) {
+        String prywatna;
+        if (w.czyPrywatna()) prywatna=DataBase.TAK; else prywatna=DataBase.NIE;
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getData() + "' , \"" + w.getTekst() + "\",'" + prywatna + "')")) {
+            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + w.getTekst() + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
             if (wid==null) return false;
             return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get(WYPOWIEDZ_ID) + ")");
         }

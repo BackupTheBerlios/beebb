@@ -83,7 +83,12 @@
                 }
             }
             if (watek!=null) {
-               if (!db_con.insertWypowiedz(watek,ID_Usera,Nazwa_Usera,text,db_con.getDate(),DataBase.NIE)) 
+               Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
+               String prywatna=DataBase.NIE;
+               if(wt.czyPrywatny()) prywatna=DataBase.TAK;
+                
+                Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatna,db_con);
+               if (!db_con.insertWypowiedz(watek,wp)) 
                     out.print(Messages.errorDataBaseConnection()); else
                     out.print(Messages.addMessage());
                 } else
@@ -98,7 +103,8 @@
                     wt = db_con.insertWatek(podforum,wt);
                     
                     if (wt!=null) { 
-                        if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),ID_Usera,Nazwa_Usera,text,db_con.getDate(),prywatne))
+                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,db_con);
+                        if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
                             out.print(Messages.errorDataBaseConnection());
                         else out.print(Messages.addThread()); 
                     } else out.print(Messages.errorDataBaseConnection());

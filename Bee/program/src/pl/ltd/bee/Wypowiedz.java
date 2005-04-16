@@ -25,7 +25,6 @@ public class Wypowiedz {
      * @param ID_Autora identyfikator autora w bazie
      * @param Data data wypowiedzi
      * @param Tekst tresc wypowiedzi
-     * @param Aktywna okresla czy wypowiedz jest aktywna
      * @param Prywatna okresla czy wypowiedz jest prywatna
      * @param db Obiekt DataBase
      */
@@ -36,9 +35,48 @@ public class Wypowiedz {
         this.Data=Data;
         this.Tekst=Tekst;
         if (Prywatna != null) this.Prywatna = Prywatna.compareTo(DataBase.TAK) == 0;
-            else this.Prywatna = false;
+        else this.Prywatna = false;
         this.db=db;
     }
+    
+    /** Zwraca identyfikator autora wypowiedzi
+     * @return zwraca liczbe bedacą identyfikatorem autora wypowiedzi
+     */
+    public int getIDAutora() {
+        return ID_Autora;
+    }
+    
+    /** Zwraca tymczasową ksywkę autora wypowiedzi (tylko w przypadku gościa!!)
+     * @return zwraca string bedacy tymczasową ksywką autora wypowiedzi
+     */
+    public String getAutor() {
+        return Autor;
+    }
+    
+    
+    /** Zwraca date utworzenia wypowiedzi
+     * @return zwraca string bedacy datą utworzenia wypowiedzi
+     */
+    public String getData() {
+        return Data;
+    }
+    
+    
+    /** Zwraca treść wypowiedzi
+     * @return zwraca string będący treścią wypowiedzi
+     */
+    public String getTekst() {
+        return Tekst;
+    }
+    
+    
+    /** Zwraca czy wypowiedź jest prywatna
+     * @return true w przypadku gdy wypowiedź jest prywatna, wpp false
+     */
+    public boolean czyPrywatna() {
+        return Prywatna;
+    }
+    
     
     /**
      * Metoda wypisuje tresc wiadomosci
@@ -52,11 +90,10 @@ public class Wypowiedz {
         strona.println("<span class=\"linkAutor\">");
         if (Config.GUEST_ID == this.ID_Autora)
             strona.println("~" + this.Autor);
-        else
-        {
+        else {
             User u = db.getUser(this.ID_Autora);
             strona.println("<a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + u.getLogin() + "</a>");
-        }        
+        }
         strona.println("</span><br/>");
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
         strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
