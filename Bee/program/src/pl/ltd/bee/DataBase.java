@@ -151,6 +151,9 @@ public class DataBase {
     static final String NEW_USER_KLUCZ = "KLUCZ";
     static final String NEW_USER_LOGIN = "LOGIN";
     
+    static final String MODERATORZY_ID_PODFORUM = "ID_PODFORUM";
+    static final String MODERATORZY_ID_USER = "ID_USER";
+    
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     ConnectorDB baza;
     
@@ -457,27 +460,36 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste Userow z bazy
-     * @return ArrayList obiektow Hashatable
+     * Metoda zwaraca liste wszystkich obiektow tabeli Users z bazy
+     * @return ArrayList obiektow RegisteredUsers
      */
     public ArrayList getUsers() {
         ArrayList wynik = new ArrayList();
-        wynik= baza.query("SELECT * FROM "+ BEE_USERS);
+        ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS);
+        for(int i=0; i<users.size(); i++) {
+             Hashtable user = (Hashtable)users.get(i);
+             wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String) user.get(USER_LOGIN), (String) user.get(USER_HASLO), (String) user.get(USER_IMIE), (String) user.get(USER_NAZWISKO), (String) user.get(USER_EMAIL), (String) user.get(USER_GG), (String) user.get(USER_JABBER), (String) user.get(USER_LASTLOG), (String) user.get(USER_AKTYWNY) , (String) user.get(USER_ADMIN), (String) user.get(USER_MODERATOR)));
+        }
         return wynik;
     }
     
     
     /**
-     * Metoda zmienia uprawnienia w bazie danych
-     * @param id id uzytkownika w bazie danych
-     * @param admin napis T lub N
-     * @param moderator napis T lub N
-     * @param aktywny napis T lub N
+     * Metoda ustawia pola uprawnien Usera, jezeli moderator jest false, to
+     * usuwa wszystkie wiersze z taveli bee_moderatorzy z podanym id 
+     * @param id int id uzytkownika w bazie danych
+     * @param admin boolean T lub F
+     * @param moderator boolena  T lub F
+     * @param aktywny boolena T lub F
      */
-    public boolean zmienUpr(String id, String admin, String moderator, String aktywny){
-        if ( moderator.compareTo("N")==0 )
-            baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE ID_User="+id);
-        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET Admin='"+admin+"' , Moderator='"+moderator+"' , Aktywny='"+aktywny+"' WHERE ID="+id);
+    public boolean zmienUpr(int id, boolean czy_admin, boolean czy_moderator, boolean czy_aktywny){
+        String admin,moderator,aktywny;
+        if(czy_admin) admin=TAK; else admin=NIE;
+        if(czy_aktywny) aktywny=TAK; else aktywny=NIE;
+        if ( czy_moderator ) {
+            baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE "+MODERATORZY_ID_USER+"="+id);
+            moderator=TAK; } else moderator=NIE;
+        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET "+USER_ADMIN+"='"+admin+"' , "+USER_MODERATOR+"='"+moderator+"' , "+USER_AKTYWNY+"='"+aktywny+"' WHERE "+USER_ID+"="+id);
     }
     
     
