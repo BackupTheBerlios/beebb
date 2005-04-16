@@ -28,10 +28,10 @@
               if (param.compareTo("T")==0) return "TAK";
                else return "NIE";
             }
-             String dajTN(String param)
+             boolean dajTN(String param)
             {
-              if (param==null) return "N";
-              return "T";
+              if (param==null) return false;
+              return true;
             }
            
         %>
@@ -50,14 +50,8 @@
            String field = (String) params.nextElement();
            
         if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_moderator")==0)|| (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
-             int tmp_id = Integer.decode(request.getParameter("id")).intValue();
-             boolean bool_if_adm = false;
-             if(dajTN(request.getParameter("czy_admin")).compareTo(DataBase.TAK)==0) bool_if_adm=true;
-             boolean bool_if_mod = false;
-             if(dajTN(request.getParameter("czy_moderator")).compareTo(DataBase.TAK)==0) bool_if_mod=true;
-             boolean bool_if_akt = false;
-             if(dajTN(request.getParameter("czy_aktywny")).compareTo(DataBase.TAK)==0) bool_if_akt=true;
-         if( db_con.zmienUpr(tmp_id,bool_if_adm,bool_if_mod, bool_if_akt))
+           if( db_con.zmienUpr(Integer.decode(request.getParameter("id")).intValue(), dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_moderator")), dajTN(request.getParameter("czy_aktywny"))))
+
               out.print(Messages.changeUpr()); 
             else out.print(Messages.errorChangeUpr());
          }
@@ -70,20 +64,22 @@
       <th>Nr.</th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> <th>Nazwisko</th> <th>Email</th> <th>Nr. GG</th> 
       <th>Jabber</th> <th>Ostatni login </th> <th>Aktywny</th> <th>Administrator</th>
       <th>Moderator</th> <th>Edycja</th>
-     <% for(int i=0; i<u.size(); i++) 
-        { Hashtable pom=(Hashtable) u.get(i);
+     <% String czy_admin="", czy_moderator="", czy_aktywny="";
+        for(int i=0; i<u.size(); i++) 
+        { User pom=(User) u.get(i);
           
-          String id=(String) pom.get("ID");
-          String login=(String) pom.get("LOGIN");
-          String imie=(String) pom.get("IMIE");
-          String nazwisko=(String) pom.get("NAZWISKO");
-          String email=(String) pom.get("EMAIL");
-          String gg=(String) pom.get("GG");
-          String jabber=(String) pom.get("JABBER");
-          String lastlog=(String) pom.get("OSTATNIELOGOWANIE");
-          String czy_admin=(String) pom.get("ADMIN");
-          String czy_moderator=(String) pom.get("MODERATOR");
-          String czy_aktywny=(String) pom.get("AKTYWNY");
+          int id= pom.getID();
+          String login=pom.getLogin();
+          String imie=pom.getImie();
+          String nazwisko=pom.getNazwisko();
+          String email=pom.getEmail();
+          String gg=pom.getGG();
+          String jabber=pom.getJabber();
+          String lastlog=pom.getLastLog();
+          if( pom.aktywny() ) czy_aktywny=DataBase.TAK; else czy_aktywny=DataBase.NIE; 
+          if( pom.admin() ) czy_admin=DataBase.TAK; else czy_admin=DataBase.NIE; 
+          if( pom.moderator() ) czy_moderator=DataBase.TAK; else czy_moderator=DataBase.NIE; 
+    
          %><tr> <td><%=i+1%>. </td><td> <%=dajDana(login)%> </td><td> <%=dajDana(imie)%> </td> <td> <%=dajDana(nazwisko)%> </td>
                 <td> <%=dajDana(email)%> </td><td> <%=dajDana(gg)%> </td> <td> <%=dajDana(jabber)%> </td> <td><%=dajDana(lastlog) %> </td>
                 <td align="center"> <%=takNie(czy_aktywny)%> </td> <td align="center"> <%=takNie(czy_admin)%> </td>
