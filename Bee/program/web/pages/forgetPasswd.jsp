@@ -53,16 +53,16 @@
                 if (db_con.getUser(uzytkownik)!=null) {
                     Random r = new Random();
 
-                    String numer = Long.toHexString(r.nextLong());
-                    while (!db_con.sprawdzKluczZapomnianeHaslo(numer))        
-                        numer = Long.toHexString(r.nextLong());
+                    String number = Long.toHexString(r.nextLong());
+                    while (!db_con.sprawdzKluczZapomnianeHaslo(number))        
+                        number = Long.toHexString(r.nextLong());
     
-                    if (!db_con.wstawZapomnianeHaslo(email,numer)) 
+                    if (!db_con.wstawZapomnianeHaslo(email,number)) 
                         out.print(Messages.errorDataBaseConnection());
                     else
-                        SendMail.send(email,Config.FORGET_MAIL_SUBJECT,"Witaj "+ uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + numer);
+                        SendMail.send(email,Config.FORGET_MAIL_SUBJECT,"Witaj "+ uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + number);
                 }
-                out.println("Email z kluczem powinien zostać wysłany<br/><center><a href=\"./main.jsp\">powrot</a></center>");
+                out.println(Messages.messageForgetPasswdEmailSend() +  "<center><a href=\"main.jsp\">" + Messages.back() + " </a></center>");
             } else {
                 response.sendRedirect("forgetPasswd.jsp");
             }
@@ -75,11 +75,11 @@
                         <tr>
                         <th colspan="2">Zapomniane hasło:</th>
                         </tr> <tr>
-                            <td>Nick:</td><td><input type="text" size="20" name="user"/></td>
+                            <td><% out.println(Messages.wielka(Messages.nick())); %>:</td><td><input type="text" size="20" name="user"/></td>
                         </tr> <tr>
-                        <td>E-mail:</td><td><input type="text" size="20" name="email"/></td>
+                        <td><% out.println(Messages.wielka(Messages.email())); %>:</td><td><input type="text" size="20" name="email"/></td>
                         </tr> <tr>        
-                            <td align="right" colspan="2"><input type="submit" name="submit" value="Wyślij"/></td>
+                            <td align="right" colspan="2"><input type="submit" name="submit" value="<% out.println(Messages.wielka(Messages.send())); %>"/></td>
                         </tr>
                     </table>
                 </form>

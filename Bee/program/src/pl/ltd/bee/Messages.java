@@ -182,6 +182,12 @@ public class Messages {
     public static String messageActivEmailSend(){
         return "<p class=\"info\">Email z linkiem aktywacyjnym został wysłany.</p>";}
     
+    
+    /** Metoda dostarcza komunikat o wyslaniu emaila z kluczem do zapomnianego hasła*/
+    public static String messageForgetPasswdEmailSend(){
+        return "<p class=\"info\">Email z kluczem został wysłany.</p>";}
+    
+    
     /**
      * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
      * @return String z komunikatem o braku polaczenia z baza danych
