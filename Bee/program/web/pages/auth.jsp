@@ -73,7 +73,7 @@
             String field = (String) flds.nextElement(); 
             if (field.compareTo("logout")==0) {
                 auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
-                response.sendRedirect("./main.jsp");
+                response.sendRedirect("main.jsp");
             }
             else {
                 String uzytkownik;
@@ -86,7 +86,7 @@
                         try {
                         User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
                         if (u!=null)
-                            response.sendRedirect("./main.jsp");
+                            response.sendRedirect("main.jsp");
                         } catch (Exception e) {
                             out.print(e);
                         }
@@ -98,18 +98,18 @@
                 <form method="post" action="auth.jsp">
                     <table align="center" cellpadding="2" cellspacing="1" border="0">
                         <tr>
-                        <th colspan="2">Zaloguj się</th>
+                        <th colspan="2"><%out.println(Messages.logInYourself());%></th>
                         </tr> <tr>
-                            <td>Użytkownik:</td><td><input type="text" size="20" name="user"/></td>
+                            <td><%out.println(Messages.wielka(Messages.user()));%>:</td><td><input type="text" size="20" name="user"/></td>
                         </tr> <tr>
-                        <td>Hasło:</td><td><input type="password" size="20" name="haslo"/></td>
+                        <td><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo"/></td>
                         </tr> <tr>        
-                            <td><a href="forgetPasswd.jsp">Zapomniałem hasło</a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
+                            <td><a href="forgetPasswd.jsp"><%out.println(Messages.iForgetPasswd());%> </a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
                         </tr>
                     </table>
                 </form>
                 <br>
-                <p>Nie masz jeszcze konta? <a href="addUser.jsp">Zarejestruj się</a></p>
+                <p><%out.println(Messages.doNotHaveAccount());%> <a href="addUser.jsp"><%out.println(Messages.registerYourself());%></a></p>
             </td>
             </td>
         </table>

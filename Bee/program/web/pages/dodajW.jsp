@@ -127,7 +127,7 @@
                         </table>
                     </form>
                     <br><br>
-                    <center><a href="./main.jsp<% if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); %>"><%out.print(Messages.back());%></a></center>
+                    <center><a href="main.jsp<% if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); %>"><%out.print(Messages.back());%></a></center>
    <% } }%>
                 </td>
             </tr>

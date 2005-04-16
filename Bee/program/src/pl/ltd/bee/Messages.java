@@ -199,14 +199,42 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String newPassword(){
-        return "<p class=\"info\">Nowe hasło</p>";}
+        return "Nowe hasło";}
     
     
     /** Metoda dostarcza komunikat "Zapomniane hasło"
      * @return String z komunikatem
      */
     public static String forgetPasswd(){
-        return "<p class=\"info\">Zapomniane hasło</p>";}
+        return "Zapomniane hasło";}
+    
+    
+    /** Metoda dostarcza komunikat "Zaloguj się"
+     * @return String z komunikatem
+     */
+    public static String logInYourself(){
+        return "<p class=\"info\">Zaloguj się</p>";}
+    
+    
+    /** Metoda dostarcza komunikat "Zarejestruj się"
+     * @return String z komunikatem
+     */
+    public static String registerYourself(){
+        return "Zarejestruj się";}
+    
+    
+    /** Metoda dostarcza komunikat "Nie masz jeszcze konta?"
+     * @return String z komunikatem
+     */
+    public static String doNotHaveAccount(){
+        return "Nie masz jeszcze konta?";}
+    
+    
+    /** Metoda dostarcza komunikat "Zapomniałem hasło"
+     * @return String z komunikatem
+     */
+    public static String iForgetPasswd(){
+        return "<p class=\"info\">Zapomniałem hasło</p>";}
     
     
     /** Metoda dostarcza komunikat "Hasło zmieniono"
