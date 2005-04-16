@@ -53,7 +53,7 @@
     
             if( nazwa.compareTo("")== 0 ) out.print(Messages.errorFieldNameKat());
                 else  {
-             if ( db_con.czyKategoria(nazwa) ) out.print(Messages.errorNameKat());
+             if ( db_con.dajIdKategorii(nazwa)!=0 ) out.print(Messages.errorNameKat());
                 else
                 {
                  if (db_con.insertKategoria(nazwa,opis,"Zagorzelców") ) {
@@ -69,13 +69,13 @@
        if(field.compareTo("usun_kat")==0 )
            {
              String nr=request.getParameter("usun_kat");
-             if ( db_con.zmienKategorie(nr,"N")) out.print(Messages.removeKat());
+             if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr), false)) out.print(Messages.removeKat());
                 else out.print(Messages.errorRemoveKat());
            }
         if (field.compareTo("usun_pod")==0 )
            {
              String nr=request.getParameter("usun_pod");
-             if ( db_con.zmienPodforum(nr,"N")) out.print(Messages.removePodforum());
+             if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr), false)) out.print(Messages.removePodforum());
                 else  out.print(Messages.errorRemovePodforum());
            }
         }
@@ -87,13 +87,13 @@
       %>
       
    <br/>
-     <% ArrayList lista=db_con.getKategorie("T"); %>  
+     <% ArrayList lista=db_con.getKategorie(true); %>  
         <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
             <caption> <font size="5" style="bold">TABELA KATEGORII </font> </caption>
             <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th> <th>Edycja</th> <th>Usun</th> <th>Dodaj</th> </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
-              ArrayList lista2 = kkk.getPodfora("T");  
+              ArrayList lista2 = kkk.getPodfora(true);  
          %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
              <td><form action="./edycja_kat.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>

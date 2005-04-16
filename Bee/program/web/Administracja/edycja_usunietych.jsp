@@ -46,13 +46,13 @@
       if(field.compareTo("akt_kat")==0 )
            {
              String nr=request.getParameter("akt_kat");
-             if ( db_con.zmienKategorie(nr,"T")) out.print(Messages.activeKat());
+             if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr),true)) out.print(Messages.activeKat());
                 else out.print(Messages.errorActiveKat());
            }
         if (field.compareTo("akt_pod")==0 )
            {
              String nr=request.getParameter("akt_pod");
-             if ( db_con.zmienPodforum(nr,"T")) out.print(Messages.activePodforum());
+             if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr),true)) out.print(Messages.activePodforum());
                 else  out.print(Messages.errorActivePodforum());
            }
         }
@@ -66,7 +66,7 @@
             <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th>  <th>Aktywacja</th>  </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
-              ArrayList lista2 = kkk.getPodfora("N");
+              ArrayList lista2 = kkk.getPodfora(false);
            if ( (lista2.size() > 0)||(!kkk.getAktywna()) ) {  
                licz++;
          %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= licz %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 

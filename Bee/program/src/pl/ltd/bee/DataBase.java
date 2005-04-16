@@ -494,9 +494,11 @@ public class DataBase {
     
     
     /**
-     * Metoda umieszcza kategorie w bazie danych
+     * Metoda umieszcza kategorie w bazie danych, 
+     * ustawia sandardowo pola aktywna na T i prywatna na N
      * @param nazwa nazwa kategorii
      * @param opis kategorii
+     * @param nazwaforum
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(String tytul, String opis, String nazwaforum) {
@@ -507,14 +509,15 @@ public class DataBase {
             Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE "+FORUM_NAZWA+" = '"+nazwaforum+"'");
             if (forum==null) return false;
             
-            return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get("ID")+", "+kat.get("ID")+")");
+            return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get(FORUM_ID)+", "+kat.get(KATEGORIA_ID)+")");
         }
         return false;
     }
     
     
     /**
-     * Metoda umieszcza podforum w bazie danych
+     * Metoda umieszcza podforum w bazie danych,
+     * ustawia sandardowo pola aktywne na T i prywatne na N
      * @param id_kat id kategorii do ktorej dodawane jest podforum
      * @param tytul tytul podforum
      * @param opis podforum
@@ -525,7 +528,7 @@ public class DataBase {
             Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+tytul+"'");
             if (pf==null) return false;
             
-            return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get("ID")+")");
+            return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get(PODFORUM_ID)+")");
         }
         return false;
     }
@@ -566,19 +569,7 @@ public class DataBase {
         }
         return null;
     }
-    
-    
-    /**
-     * Metoda sprawdz czy kategoria o podanym tytule juz istnieje
-     * @param tytul tytul kategorii
-     * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
-     */
-    public boolean czyKategoria(String tytul){
-        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '"+tytul+"'");
-        if (kategoria==null) return false;
-        return true;
-    }
-    
+      
     
     /**
      * Metoda sprawdz czy podforum o podanym tytule juz istnieje
@@ -594,7 +585,7 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca id kategorii
+     * Metoda zwraca id kategorii, jezeli jej nie ma to 0
      * @param tytul tytul kategorii
      * @return int numer kategorii
      */
@@ -694,12 +685,14 @@ public class DataBase {
     /**
      * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne badż nie w
      * zalezności od parametru aktywne
-     * @param aktywne String 'T' lub 'N'
+     * @param aktywne boolena T lub F
      * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Podforum
      */
-    public ArrayList  getPodforaKategoriiAll(int ID, String aktywne) {
+    public ArrayList  getPodforaKategoriiAll(int ID, boolean czy_aktywne) {
         ArrayList wynik = new ArrayList();
+        String aktywne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
         ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + ID + " and "+PODFORUM_AKTYWNE+"= '"+aktywne+"'");
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
@@ -710,12 +703,14 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Kategoria, które są aktywne.
-     * @param aktywne String 'T' lub 'N'
+     * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
+     * @param aktywne boolean T lub F
      * @return ArrayList obiektow Kategoria
      */
-    public ArrayList getKategorie(String aktywna) {
+    public ArrayList getKategorie(boolean czy_aktywna) {
         ArrayList wynik = new ArrayList();
+        String aktywna;
+        if(czy_aktywna) aktywna=TAK; else aktywna=NIE;
         ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE "+KATEGORIA_AKTYWNA+"='"+aktywna+"' ");
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
@@ -742,11 +737,13 @@ public class DataBase {
     
     /**
      * Metoda zmienia pole aktywna , a takze wszystjie podfora w niej sie zawierajace
-     * @param String aktywne 'T' lub 'N'
-     * @param String id kategorii
+     * @param boolean aktywne T lub F
+     * @param int id kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
-    public boolean zmienKategorie(String id, String aktywne){
+    public boolean zmienAktywnoscKategorii(int id, boolean czy_aktywne){
+        String aktywne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
         baza.dmlQuery("UPDATE "+BEE_PODFORA+" ,"+BEE_KATEGORIE_PODFORA+" SET "+PODFORUM_AKTYWNE+"='"+aktywne+"' WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + id);
         return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_AKTYWNA+"='"+aktywne+"' WHERE "+KATEGORIA_ID+"="+id);
     }
@@ -758,7 +755,9 @@ public class DataBase {
      * @param String id podforum
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
-    public boolean zmienPodforum(String id, String aktywne){
+    public boolean zmienAktywnoscPodforum(int id, boolean czy_aktywne){
+        String aktywne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_AKTYWNE+"='"+aktywne+"' WHERE "+PODFORUM_ID+"="+id);
     }
     

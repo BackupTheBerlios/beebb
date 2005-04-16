@@ -101,10 +101,10 @@ public class Kategoria {
     }
     
     /** Zwraca liste podforow
-     * @param String 'T' lub 'N'  
+     * @param boolena T lub F  
      * @return zwraca ArralList bedacy lista podforow
      */
-    public ArrayList getPodfora(String aktywne) {
+    public ArrayList getPodfora(boolean aktywne) {
         return db.getPodforaKategoriiAll(this.ID, aktywne);
     }
     
