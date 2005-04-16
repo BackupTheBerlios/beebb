@@ -410,7 +410,7 @@ public class DataBase {
         return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
-   
+    
     /**
      * Metoda zwaraca nazwe uzytkownika o danym kluczu w tabeli nowych kont
      * @param klucz losowy klucz zwiazany z uzytkownikiem
@@ -437,13 +437,7 @@ public class DataBase {
     
     /**
      * Metoda umieszcza uzytkownika w bazie danych
-     * @param nick nick uzytkownika
-     * @param imie imie uzytkownika
-     * @param nazwisko nazwisko uzytkownika
-     * @param email adres emailowy uzytkownika
-     * @param gg numer gadugadu
-     * @param jabber adres konta jabbera uzytkownika
-     * @param haslo niezakodowane haslo
+     * @param u obiekt User (bez waznego id) reprezentujący dodawaneg użytkownika
      * @return zwraca czy insert sie powidl
      */
     public boolean insertUser(User u){
@@ -546,18 +540,17 @@ public class DataBase {
     /**
      * Metoda umieszcza wątek w bazie
      * @param id_podforum id podforum w którym lezy wątek
-     * @param id_autora id autora wątku
-     * @param autor opcjonalnie nickname autora wątku
-     * @param  tytul tytul wątku
-     * @param data data utworzenia wątku
+     * @param w obiekt Watek (bez ważnego id) ktory należy wstawić do bazy
      * @return zwraca obiekt Watek jeżeli insert się powiódł, wpp zwraca null
      */
-    public Watek insertWatek(String id_podforum, String id_autora,String autor, String temat, String data,String prywatne) {
-        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES (0, " + id_autora + ", '" + autor + "' , '" + temat + "' , '" + data + "','" + prywatne + "')")) {
-            Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + id_autora + " AND " + WATEK_DATA + " = '" + data + "' AND " + WATEK_TEMAT + " = '" + temat + "'");
+    public Watek insertWatek(String id_podforum, Watek w) {
+        String prywatny;
+        if (w.czyPrywatny()) prywatny=DataBase.TAK; else prywatny=DataBase.NIE;
+        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES (0, " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , '" + w.getData() + "','" + prywatny + "')")) {
+            Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WATEK_DATA + " = '" + w.getData() + "' AND " + WATEK_TEMAT + " = '" + w.getTemat() + "'");
             if (watek==null) return null;
             if (!baza.dmlQuery("INSERT INTO " + BEE_PODFORA_WATKI + " VALUES (" + id_podforum + "," + watek.get(WATEK_ID) + ")")) return null;
-            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),prywatne,(String)watek.get(WATEK_DATA),this);
+            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),prywatny,(String)watek.get(WATEK_DATA),this);
         }
         return null;
     }
@@ -614,7 +607,7 @@ public class DataBase {
     /**
      * Metoda sprawdza czy istnieje klucz do zapomnianego hasła w bazie danych
      * @param klucz losowo wygenerowany klucz
-     * @return N lub T w zale�no�ci czy jest czy nie (T gdy klucza nie ma)
+     * @return N lub T w zależności czy jest czy nie (T gdy klucza nie ma)
      */
     public boolean sprawdzKluczZapomnianeHaslo(String klucz){
         if(getObject("SELECT " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_KLUCZ +  " = " + klucz) == null)  return true;
@@ -628,7 +621,7 @@ public class DataBase {
      * @param klucz losowo wygenerowany klucz
      * @return T lub N w zależności czy insert się powiódł
      */
-    public boolean wstawNewUser(String login, String klucz){
+    public boolean insertNewUser(String login, String klucz){
         return baza.dmlQuery("INSERT INTO " + BEE_NEW_USER + " VALUES ('"+ klucz +"', '"+ login + "')");
     }
     
@@ -792,8 +785,8 @@ public class DataBase {
      * @return boolean true jezeli update sie powiodl dalse wpp.
      */
     public boolean updatePodforum(int id, int id_kat, String tytul, String opis ){
-     return  ( baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" WHERE "+KATEGORIE_PODFORA_ID_PODFORUM+"="+id)
-            &&  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_TYTUL+"='"+tytul+"' , "+PODFORUM_OPIS+"='"+opis+"' WHERE "+PODFORUM_ID+"="+id));
+        return  ( baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" WHERE "+KATEGORIE_PODFORA_ID_PODFORUM+"="+id)
+        &&  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_TYTUL+"='"+tytul+"' , "+PODFORUM_OPIS+"='"+opis+"' WHERE "+PODFORUM_ID+"="+id));
     }
     
     

@@ -94,7 +94,8 @@
                     Watek wt;
                     String prywatne=DataBase.NIE;
                     if(pf.czyPrywatne()) prywatne=DataBase.TAK;
-                    wt = db_con.insertWatek(podforum,ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne);
+                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,db_con);
+                    wt = db_con.insertWatek(podforum,wt);
                     
                     if (wt!=null) { 
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),ID_Usera,Nazwa_Usera,text,db_con.getDate(),prywatne))

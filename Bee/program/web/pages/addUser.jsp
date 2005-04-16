@@ -78,7 +78,7 @@
                        String numer = Long.toHexString(r.nextLong());
                         while (!db_con.sprawdzKluczNewUser(numer))        
                             numer = Long.toHexString(r.nextLong());
-                        if(!db_con.wstawNewUser(nickname,numer))
+                        if(!db_con.insertNewUser(nickname,numer))
                             out.print(Messages.errorDataBaseConnection());
                         else {
                             out.println(Messages.messageActivEmailSend()+"<BR><br><a href=./main.jsp>" + Messages.back() + "</a><br>"); 

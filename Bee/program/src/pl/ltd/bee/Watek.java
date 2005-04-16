@@ -50,10 +50,32 @@ public class Watek {
     }
     
     /** Zwraca identyfikator forum
-     * @return zwraca nliczbe bedac� identyfikatorem watku w bazie
+     * @return zwraca liczbe bedacą identyfikatorem watku w bazie
      */
     public int getID() {
         return ID;
+    }
+    
+    
+    /** Zwraca identyfikator autora wątku
+     * @return zwraca liczbe bedacą identyfikatorem autora wątku
+     */
+    public int getIDAutora() {
+        return ID_Autor;
+    }
+    
+    /** Zwraca tymczasową ksywkę autora wątku (tylko w przypadku gościa!!)
+     * @return zwraca string bedacy tymczasową ksywką autora wątku
+     */
+    public String getAutor() {
+        return Autor;
+    }
+    
+    /** Zwraca date utworzenia wątku
+     * @return zwraca string bedacy datą utworzenia wątku
+     */
+    public String getData() {
+        return Data;
     }
     
     /** Zwraca czy watek jest prywatny
@@ -82,8 +104,7 @@ public class Watek {
         strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
         if (Config.GUEST_ID == this.ID_Autor)
             strona.println("~" + this.Autor);
-        else
-        {
+        else {
             User u = db.getUser(this.ID_Autor);
             strona.println("<a href=\"profile.jsp?uid=" + this.ID_Autor + "\"> " + u.getLogin() + "</a>");
         }
@@ -105,7 +126,7 @@ public class Watek {
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadWatkiem\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
         if (p!=null && k!=null && f!=null)
-        strona.println("<td class=\"tdPath\" align=\"left\"><a class=\"aPath\" href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
+            strona.println("<td class=\"tdPath\" align=\"left\"><a class=\"aPath\" href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
         strona.println("<td class=\"tdTopAction\" align=\"right\"><a class=\"aTopAction\" href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.wielka(Messages.add()) +" "+ Messages.message() + "</a></td>");
         strona.println("</tr></table>");
         strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
