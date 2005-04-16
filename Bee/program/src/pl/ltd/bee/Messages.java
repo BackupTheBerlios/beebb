@@ -148,6 +148,10 @@ public class Messages {
     public static String registration(){
         return "rejestracja";}
     
+    /** Metoda dostarcza fraze "login" */
+    public static String login(){
+        return "login";}
+    
     /** Metoda dostarcza fraze "zaloguj" */
     public static String logIn(){
         return "zaloguj";}

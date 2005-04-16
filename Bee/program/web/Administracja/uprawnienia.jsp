@@ -50,7 +50,14 @@
            String field = (String) params.nextElement();
            
         if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_moderator")==0)|| (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
-         if( db_con.zmienUpr(request.getParameter("id"),dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_moderator")), dajTN(request.getParameter("czy_aktywny"))))
+             int tmp_id = Integer.decode(request.getParameter("id")).intValue();
+             boolean bool_if_adm = false;
+             if(dajTN(request.getParameter("czy_admin")).compareTo(DataBase.TAK)==0) bool_if_adm=true;
+             boolean bool_if_mod = false;
+             if(dajTN(request.getParameter("czy_moderator")).compareTo(DataBase.TAK)==0) bool_if_mod=true;
+             boolean bool_if_akt = false;
+             if(dajTN(request.getParameter("czy_aktywny")).compareTo(DataBase.TAK)==0) bool_if_akt=true;
+         if( db_con.zmienUpr(tmp_id,bool_if_adm,bool_if_mod, bool_if_akt))
               out.print(Messages.changeUpr()); 
             else out.print(Messages.errorChangeUpr());
          }
@@ -60,7 +67,7 @@
     <body>
 
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
-      <th>Nr.</th> <th>Login</th> <th>Imie</th> <th>Nazwisko</th> <th>Email</th> <th>Nr. GG</th> 
+      <th>Nr.</th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> <th>Nazwisko</th> <th>Email</th> <th>Nr. GG</th> 
       <th>Jabber</th> <th>Ostatni login </th> <th>Aktywny</th> <th>Administrator</th>
       <th>Moderator</th> <th>Edycja</th>
      <% for(int i=0; i<u.size(); i++) 
