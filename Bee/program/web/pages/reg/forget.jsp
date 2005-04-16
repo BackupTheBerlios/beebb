@@ -51,13 +51,13 @@
                     <form method="post" action="forget.jsp">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
-                            <th colspan="2">Nowe hasło:</th>
+                            <th colspan="2"><%out.println(Messages.newPassword());%>:</th>
                             </tr> <tr>
-                                <td>Hasło:</td><td><input type="password" size="20" name="haslo1"/></td>
+                                <td><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo1"/></td>
                             </tr> <tr>
-                            <td>Hasło (jeszcze raz):</td><td><input type="password" size="20" name="haslo2"/></td>
+                            <td><%out.println(Messages.wielka(Messages.password()) + " (" + Messages.oneMoreTime()+ ")");%>:</td><td><input type="password" size="20" name="haslo2"/></td>
                             </tr> <tr>        
-                                <td align="right" colspan="2"><input type="hidden" size="20" name="email" value="<%out.print(email);%>"/><input type="submit" name="submit" value="OK"/></td>
+                                <td align="right" colspan="2"><input type="hidden" size="20" name="email" value="<%out.print(email);%>"/><input type="submit" name="submit" value="<%out.println(Messages.wielka(Messages.ok()));%>"/></td>
                             </tr>
                         </table>
                     </form>
@@ -70,11 +70,11 @@
             if (haslo!=null && email!=null) {
                 if(db_con.zmienHasloByEmail(email,haslo)) {
                     db_con.usunZapomnianeHaslo(email);
-                    out.print("Hasło zmieniono<br>"); }
+                    out.print(Messages.passwordChanged() + "<br>"); }
                 else
                     out.print(Messages.errorChangePasswd());
             }
-            out.println("<a href=./../main.jsp>powrot</a><br>"); 
+            out.println("<a href=./../main.jsp>" + Messages.back() + "</a><br>"); 
         }
         %>
                 </td>
