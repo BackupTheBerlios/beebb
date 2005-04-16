@@ -52,12 +52,12 @@
                     out.println(Messages.errorUserCreate()); 
                  else {
                     db_con.usunKluczNewUser(klucz);
-                    out.println("Uzytkownik " + nick + " zostal dodany<br/><br/><a href=./../../index.jsp>" + Messages.back() + "</a><br>"); 
+                    out.println(Messages.wielka(Messages.user()) + " " + nick + " " + Messages.hasBeenAdded() + "<br/><br/><a href=\"../../index.jsp\">" + Messages.back() + "</a><br/>"); 
                  }
             } else 
                 out.print(Messages.errorKeyNewUser());
             
-        } else out.println("<a href=./../../index.jsp>" + Messages.back() + "</a><br/>"); 
+        } else out.println("<a href=\"../../index.jsp\">" + Messages.back() + "</a><br/>"); 
         %>
                 </td>
             </tr>
