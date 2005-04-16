@@ -43,12 +43,13 @@
             
         <table align="center">
          <tr> <th> UPRAWNIENIA </th> </tr>
+            <tr> <td><input type="checkbox" name="czy_aktywny" 
+                      <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>>Aktywny</input> </td> </tr>
            <tr> <td> <input type="checkbox" name="czy_admin" 
                       <%= dajUpr(request.getParameter("czy_admin")) ? "checked" : "" %>>Administrator</input> </td> </tr>
             <tr> <td> <input type="checkbox" name="czy_moderator" 
                       <%= dajUpr(request.getParameter("czy_moderator")) ? "checked" : "" %>>Moderator</input> </td> </tr>
-           <tr> <td><input type="checkbox" name="czy_aktywny" 
-                      <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>>Aktywny</input> </td> </tr>
+          
              <tr> <td>  <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                         <input type="submit" value="Zmien uprawnienia"></td> </tr>
         </table>
