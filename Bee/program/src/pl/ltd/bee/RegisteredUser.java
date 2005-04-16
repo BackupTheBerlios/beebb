@@ -19,6 +19,7 @@ public class RegisteredUser extends User {
     private String email;
     private String gg;
     private String jabber;
+    private String lastlog;
     private boolean aktywny;
     
     
@@ -30,8 +31,10 @@ public class RegisteredUser extends User {
      * @param email email uzytkownika
      * @param gg numer gadu-gadu
      * @param jabber adres jabbera
+     * @param lastlog ostatnie logowanie
+     * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
      */
-    public RegisteredUser(int ID, String login, String haslo, String imie, String nazwisko, String email, String gg, String jabber,String aktywny) {
+    public RegisteredUser(int ID, String login, String haslo, String imie, String nazwisko, String email, String gg, String jabber,String lastlog,String aktywny) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
@@ -40,6 +43,7 @@ public class RegisteredUser extends User {
         this.email=email;
         this.gg=gg;
         this.jabber=jabber;
+        this.lastlog=lastlog;
         if (aktywny.compareTo(DataBase.TAK)==0)
             this.aktywny=true; else this.aktywny=false;
     }
@@ -123,6 +127,14 @@ public class RegisteredUser extends User {
      **/
     public String getJabber(){
         return this.jabber;
+    }
+    
+    
+    /** Metoda zwraca date ostatniego zalogowania uzytkownika
+     * @return String z datą ostatniego zalogowania
+     **/
+    public String getLastLog(){
+        return this.lastlog;
     }
     
 }

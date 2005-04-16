@@ -88,7 +88,7 @@
            if (field.compareTo("wpid") == 0) {
                 pl.ltd.bee.Wypowiedz wp = db_con.getWypowiedz(Integer.decode(request.getParameter(field)).intValue());
                 if (wp!=null) {
-                    out.println("<body class=\"bodyWypowiedz\" >");
+                    out.println("<body style=\"mrgin:0pt;\" class=\"bodyWypowiedz\" >");
                     wp.printJSP(out);
                 }
                 else 

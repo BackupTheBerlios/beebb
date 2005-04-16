@@ -69,7 +69,8 @@
             
             
             if (ok) {
-                if(!db_con.insertUser(nickname,haslo1,imie,nazwisko,email,gg,jabber,"1970-01-01 00:00:00"))
+                User u = new RegisteredUser(0,nickname,Crypto.crypt(haslo1),imie,nazwisko,email,gg,jabber,DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE);
+                if(!db_con.insertUser(u))
                 out.println(Messages.errorUserCreate());
                 else {
                     if (Config.NEW_USER_MAIL_AUTH) {

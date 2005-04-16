@@ -137,6 +137,7 @@ public class DataBase {
     static final String USER_EMAIL = "EMAIL";
     static final String USER_GG = "GG";
     static final String USER_JABBER = "JABBER";
+    static final String USER_LASTLOG = "OSTATNIELOGOWANIE";
     static final String USER_AKTYWNY = "AKTYWNY";
     static final String USER_ADMIN = "ADMIN";
     static final String USER_MODERATOR = "MODERATOR";
@@ -394,7 +395,7 @@ public class DataBase {
     public User getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         if (user == null) return null;
-        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
     
@@ -406,7 +407,7 @@ public class DataBase {
     public User getUser(String login) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "'");
         if (user == null) return null;
-        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return UserFactory.getUser((String)user.get(USER_ID),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
    
@@ -445,8 +446,10 @@ public class DataBase {
      * @param haslo niezakodowane haslo
      * @return zwraca czy insert sie powidl
      */
-    public boolean insertUser(String nick, String haslo, String imie, String nazwisko, String email, String gg, String jabber, String OstatnieLogowanie){
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + nick + "\",\"" + Crypto.crypt(haslo) + "\" ,'"+imie+"' ,'"+nazwisko+"' ,'"+email+"' ,'"+gg+"' ,'"+jabber+"','" + OstatnieLogowanie + "','" + NIE + "','" + NIE + "','" + NIE + "')");
+    public boolean insertUser(User u){
+        String aktywny;
+        if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + u.getLogin() + "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() + "' ,'" + u.getEmail() + "' ,'" + u.getGG() + "' ,'" + u.getJabber() + "','" + u.getLastLog() + "','" + aktywny + "','" + NIE + "','" + NIE + "')");
     }
     
     
@@ -797,7 +800,7 @@ public class DataBase {
     /** Metoda zwraca aktualną datę dla wybranej bazy danych
      * @return String reprezentujacy date dla aktualnej bazy danych
      */
-    public String getDate() {
+    public static String getDate() {
         return "1970-01-01 00:00:00";
     }
     
@@ -811,7 +814,7 @@ public class DataBase {
      * @param sec String reprezentujacy sekunde
      * @return String reprezentujacy date dla aktualnej bazy danych
      */
-    public String getDate(String year,String mounth,String day,String hour,String min,String sec) {
+    public static String getDate(String year,String mounth,String day,String hour,String min,String sec) {
         return year + "-" + mounth + "-" + day + " :"+ hour + ":" + min + ":" + sec;
     }
     
