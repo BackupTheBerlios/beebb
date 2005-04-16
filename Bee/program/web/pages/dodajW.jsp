@@ -109,7 +109,7 @@
                         else out.print(Messages.addThread()); 
                     } else out.print(Messages.errorDataBaseConnection());
                   }
-                    out.print("<center><br><br><a href=\"./main.jsp"); 
+                    out.print("<center><br/><br/><a href=\"./main.jsp"); 
                     if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");
                 }
                 else {
