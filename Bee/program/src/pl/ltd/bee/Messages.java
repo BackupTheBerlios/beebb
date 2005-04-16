@@ -111,7 +111,7 @@ public class Messages {
     /** Metoda dostarcza slowo "wypowiedź" */
     public static String message(){
         return "wypowiedź";}
-
+    
     /** Metoda dostarcza slowo "autor" */
     public static String author(){
         return "autor";}
@@ -123,11 +123,11 @@ public class Messages {
     /** Metoda dostarcza slowo "pomoc" */
     public static String help(){
         return "pomoc";}
-
+    
     /** Metoda dostarcza slowo "szukaj" */
     public static String search(){
         return "szukaj";}
-
+    
     /** Metoda dostarcza slowo "uzytkownicy" */
     public static String users(){
         return "użytkownicy";}
@@ -135,7 +135,7 @@ public class Messages {
     /** Metoda dostarcza slowo "grupy" */
     public static String groups(){
         return "grupy";}
-
+    
     /** Metoda dostarcza slowo "profil" */
     public static String profile(){
         return "profil";}
@@ -171,8 +171,8 @@ public class Messages {
     /** Metoda dostarcza fraze "ostatnia wypowiedz" */
     public static String lastPost(){
         return "ostatnia wypowiedź";}
-
-
+    
+    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
@@ -187,6 +187,10 @@ public class Messages {
     public static String messageForgetPasswdEmailSend(){
         return "<p class=\"info\">Email z kluczem został wysłany.</p>";}
     
+    
+    /** Metoda dostarcza komunikat "Zapomniane hasło"*/
+    public static String forgetPasswd(){
+        return "<p class=\"info\">Zapomniane hasło</p>";}
     
     /**
      * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
@@ -501,7 +505,7 @@ public class Messages {
     public static String changeConfigBehave(){
         return "<p align=\"center\" class=\"info\">Konfiguracja zachowania forum została zmieniona.</p>";}
     
-     /**
+    /**
      * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij mailingu powiodła sie
      * @return String z komunikatem
      */

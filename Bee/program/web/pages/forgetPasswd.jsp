@@ -60,7 +60,7 @@
                     if (!db_con.wstawZapomnianeHaslo(email,number)) 
                         out.print(Messages.errorDataBaseConnection());
                     else
-                        SendMail.send(email,Config.FORGET_MAIL_SUBJECT,"Witaj "+ uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + number);
+                        SendMail.send(email,Config.FORGET_MAIL_SUBJECT,Messages.wielka(Messages.welcome()) + uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + number);
                 }
                 out.println(Messages.messageForgetPasswdEmailSend() +  "<center><a href=\"main.jsp\">" + Messages.back() + " </a></center>");
             } else {
@@ -73,7 +73,7 @@
                 <form method="post" action="forgetPasswd.jsp">
                     <table align="center" cellpadding="2" cellspacing="1" border="0">
                         <tr>
-                        <th colspan="2">Zapomniane hasło:</th>
+                        <th colspan="2"><%out.println(Messages.forgetPasswd());%>:</th>
                         </tr> <tr>
                             <td><% out.println(Messages.wielka(Messages.nick())); %>:</td><td><input type="text" size="20" name="user"/></td>
                         </tr> <tr>
