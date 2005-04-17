@@ -59,6 +59,10 @@ public class Config {
     private final static String TAG_FORGET_SUBJECT="forget_subject";
     private final static String TAG_FORGET_BODY="forget_body";
     
+    /** Zmienna informuje czy konfig zostal odczytany */
+    private static boolean read = false;
+    /** Zmienna informuje czy konfig jest "brudny". Jesli !read to ta zmienna jest true */
+    private static boolean modified = true;
     
     /**
      * Zmienne ktore pozniej stana sie pewnie metodami,
@@ -154,6 +158,7 @@ public class Config {
      * @param app context serwletu na ktorym sie wykonujemy
      */
     public void readConfig(javax.servlet.ServletContext app) throws BeeException{
+        if ((read) && (!modified)) return;//TODO uznaje ze jesli jest odczytany a zmodyfikowany to znaczy ze odczyt jest wymuszany wiec pomijam zmiany
         String fileName = app.getRealPath(FILE_NAME);
        	System.setProperty("org.xml.sax.driver","org.apache.crimson.parser.XMLReaderImpl");
         try {
@@ -254,6 +259,7 @@ public class Config {
      * @param app context serwletu na ktorym sie wykonujemy
      */
     public void saveConfig(javax.servlet.ServletContext app) throws BeeException{
+        if (!modified) return;//zakladam, ze zmienna jest poprawna boolean Config mozna zmienic tylko przez set*
         try
         {
             Document xml = wczytajXML(app.getRealPath(FILE_NAME));
@@ -273,102 +279,119 @@ public class Config {
      * @param url adres forum
      */
     public void setUrlForum(String url){
+        modified = true;
         URL_FORUM = url;}
 
     /** Metoda ustawia adres bazy danych
      * @param host adres bazy danych
      */
     public void setHost(String host){
+        modified = true;
         HOST = host;}
 
     /** Metoda ustawia nazwe uzytkownika bazy danych
      * @param user nazwa uzytkownika
      */
     public void setUser(String user){
+        modified = true;
         USER = user;}
 
     /** Metoda ustawia haslo uzytkownika do bazy danych
      * @param pass haslo uzytkownika
      */
     public void setPassword(String pass){
+        modified = true;
         PASSWORD = pass;}
 
     /** Metoda ustawia nazwe bazy danych
      * @param name nazwa bazy danych
      */
     public void setDatabaseName(String name){
+        modified = true;
         DATABASE = name;}
 
     /** Metoda ustawia prefix tabel z bazie danych
      * @param prefix prefix tabel
      */
     public void setTablesPrefix(String prefix){
+        modified = true;
         DATABASE_PREFIX = prefix;}
 
     /** Metoda ustawia nazwe konta gosc
      * @param guest nazwa konta gosc
      */
     public void setGuestAccount(String guest){
+        modified = true;
         GUEST = guest;}
 
     /** Metoda ustawia numer konta gosc
      * @param id numer konta gosc
      */
     public void setGuestId(int id){
+        modified = true;
         GUEST_ID = id;}
 
     /** Metoda ustawia dlugosc minimalna dlugosc hasla
      * @param len minimalna dlugosc hasla
      */
     public void setMinimumPassLength(int len){
+        modified = true;
         MIN_PASSWD = len;}
     
     /** Metoda ustawia parametr potwierdzania rejestracji uzytkownika
      * @param makeIt nowa wartosc parametru
      */
     public void setNewUserMailAuth(boolean makeIt){
+        modified = true;
         NEW_USER_MAIL_AUTH = makeIt;}
 
     /** Metoda ustawia adres serwera SMTP
      * @param server adres serwera SMTP
      */
     public void setSmtpServer(String server){
+        modified = true;
         SMTP_SERVER = server;}
 
     /** Metoda ustawia wartosc pola FROM
      * @param from zawartosc pola
      */
     public void setMailFrom(String from){
+        modified = true;
         MAIL_FROM = from;}
 
     /** Metoda ustawia temat listu rejestracyjnego
      * @param subject String z tematem
      */
     public void setRegistrationSubject(String subject){
+        modified = true;
         REG_MAIL_SUBJECT = subject;}
 
     /** Metoda ustawia zawartosc listu rejestracyjnego
      * @param body String z zawartoscia
      */
     public void setRegistrationBody(String body){
+        modified = true;
         REG_MAIL_BODY = body;}
 
     /** Metoda ustawia temat listu przypominajacego haslo
      * @param subject String z tytulem
      */
     public void setForgetSubject(String subject){
+        modified = true;
         FORGET_MAIL_SUBJECT = subject;}
 
     /** Metoda ustawia zawartosc listu przypominajacego haslo
      * @param body String z zawartoscia listu
      */
     public void setForgetBody(String body){
+        modified = true;
         FORGET_MAIL_BODY = body;}
     
      /** Metoda ustawia czas wygasania sesji
      * @param body String z zawartoscia listu
      */
     public void setLogInMaxAge(int p){
+        modified = true;
         LOG_IN_MAX_AGE = p;}
        
     /**
