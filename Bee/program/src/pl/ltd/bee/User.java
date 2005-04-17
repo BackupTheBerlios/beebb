@@ -30,15 +30,20 @@ public class User {
     private boolean moderator;
     
     
-    /** Tworzy obiekt RegisteredUser
+    /** Tworzy obiekt User
      * @param ID identyfikator uzytkownika
      * @param haslo zakodowane haslo uzytkownika
      * @pram imie imie uzytkownika
      * @pram nazwisko nazwisko uzytkownika
+     * @pram imieNazwiskoPrywatne czy uznawać imie i nazwisko za prywatne
      * @param email email uzytkownika
+     * @param emailPrywatny czy uznawac email za prywatny
      * @param gg numer gadu-gadu
+     * @param ggPrywatne czy uznawac numer gg za prywatny
      * @param jabber adres jabbera
+     * @param jabberPrywatny czy uznawac jid za prywatny
      * @param lastlog ostatnie logowanie
+     * @param currentlog data bierzacego logowania
      * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
      */
     public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator) {
@@ -84,6 +89,7 @@ public class User {
     public boolean aktywny() {
         return aktywny;
     }
+    
     
     /** metoda sprawdza czy uzytkownik jest administratorem
      * @return T lub N w zaleznosci czy user jest administratorem czy nie
@@ -157,11 +163,11 @@ public class User {
     }
     
     
-    /** Metoda zwraca e-mail uzytkownika
-     * @return String z e-mailem
+    /** Metoda ustawia haslo uzytkownika
+     * @param haslo String z zakodowanym hasłem użytkownika
      **/
-    public String getEmail(){
-        return this.email;
+    public void setHaslo(String haslo){
+        this.haslo=haslo;
     }
     
     
@@ -173,11 +179,43 @@ public class User {
     }
     
     
+    /** Metoda ustawia Imie uzytkownika
+     * @param imie String z Imieniem użytkownika
+     **/
+    public void setImie(String imie){
+        this.imie=imie;
+    }
+    
+    
     /** Metoda zwraca nazwisko uzytkownika
      * @return String z nazwiskiem
      **/
     public String getNazwisko(){
         return this.nazwisko;
+    }
+    
+    
+    /** Metoda ustawia Nazwisko uzytkownika
+     * @param nazwisko String z Nazwiskiem użytkownika
+     **/
+    public void setNazwisko(String nazwisko){
+        this.nazwisko=nazwisko;
+    }
+    
+    
+    /** Metoda zwraca e-mail uzytkownika
+     * @return String z e-mailem
+     **/
+    public String getEmail(){
+        return this.email;
+    }
+    
+    
+    /** Metoda ustawia email uzytkownika
+     * @param email String z emailem użytkownika
+     **/
+    public void setEmail(String email){
+        this.email=email;
     }
     
     
@@ -189,11 +227,27 @@ public class User {
     }
     
     
+    /** Metoda ustawia numer GG uzytkownika
+     * @param gg String z numerem GG
+     **/
+    public void setGG(String gg){
+        this.gg=gg;
+    }
+    
+    
     /** Metoda zwraca konto jabber uzytkownika
      * @return String z kontem jabber
      **/
     public String getJabber(){
         return this.jabber;
+    }
+    
+    
+    /** Metoda ustawia jid uzytkownika
+     * @param jabber String z jid
+     **/
+    public void setJabber(String jabber){
+        this.jabber=jabber;
     }
     
     
@@ -210,6 +264,15 @@ public class User {
      **/
     public String getCurrentLog(){
         return this.currentlog;
+    }
+    
+    
+    /** Metoda ustawia bierzace logowanie
+     * @param currentLog data zalogowania
+     */
+    public void setCurrentLog(String currentLog) {
+        this.lastlog=this.currentlog;
+        this.currentlog=currentLog;
     }
     
 }
