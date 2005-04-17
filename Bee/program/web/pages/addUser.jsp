@@ -19,30 +19,12 @@
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
     </head>
     <body onload="resizeAddUser()" onresize="resizeAddUser()">
-<%
-       DataBase db_con;
-       Object o = application.getAttribute(Config.APPLICATION_OBJECT_DATABASE);
-       if (o == null)
-       {
-           DataBase d = new DataBase();
-           application.setAttribute(Config.APPLICATION_OBJECT_DATABASE,d);
-           db_con = d;
-       }
-       else db_con = (DataBase)o;
-       
-%>
+<%@ include file="servletObjects.jsp" %>
     
         <table id="tableAddUser" align="center" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
                 <td> 
         <% Enumeration flds = request.getParameterNames();
-        if (!db_con.isConnected()) {
-        try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-        } catch (Exception e) {
-            out.print(Messages.errorDataBaseConnection());
-        } }
             boolean ok = true;
             String nickname=request.getParameter("user");
             if (nickname!=null) {

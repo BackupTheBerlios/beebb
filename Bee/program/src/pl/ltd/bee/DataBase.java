@@ -194,6 +194,7 @@ public class DataBase {
      * @param pass Haslo uzytkownika bazy danych
      */
     public void connect(String host, String Db, String user, String pass) throws BeeConnectionException{
+        baza.setParameters(host, Db, user, pass);
         baza.connect();
     }
     

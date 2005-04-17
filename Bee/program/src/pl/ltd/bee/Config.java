@@ -65,10 +65,10 @@ public class Config {
      * ale teraz skupia w jednym miejscu konfiguracje.
      * Te zmienne nie powinny byc static, bo kazda z instancji Config dba tylko o swoje zmienne
      */
-    public static String HOST = "wilk.waw.pl";
-    public static String USER = "bee";
-    public static String PASSWORD = "bee";
-    public static String DATABASE = "Bee";
+    public static String HOST = "";//"wilk.waw.pl";
+    public static String USER = "";//"bee";
+    public static String PASSWORD = "";//"bee";
+    public static String DATABASE = "";//"Bee";
     public static String DATABASE_PREFIX = "Bee";
     
     /** Ustala czy polaczenie z baza ma byc kompresowane */
@@ -111,6 +111,11 @@ public class Config {
     private class MyHandler extends DefaultHandler {
         
         private String tag;
+        private Config config;
+        
+        public MyHandler(Config conf){
+            config = conf;
+        }
                 
         public void startElement(String uri,String localName,String qName,Attributes attributes)
         {
@@ -124,23 +129,23 @@ public class Config {
         
         public void characters(char[] ch, int start, int length) {
             String wynik = new String(ch,start,length);
-            if ( tag.compareTo(Config.TAG_DATABASE_NAME) == 0)  Config.this.DATABASE = wynik;
-            if ( tag.compareTo(Config.TAG_FORGET_BODY) ==0)     Config.this.FORGET_MAIL_BODY = wynik;
-            if ( tag.compareTo(Config.TAG_FORGET_SUBJECT) ==0)  Config.this.FORGET_MAIL_SUBJECT = wynik;
-            if ( tag.compareTo(Config.TAG_GUEST_ACCOUNT) ==0)   Config.this.GUEST = wynik;
-            if ( tag.compareTo(Config.TAG_GUEST_ID) ==0)        Config.this.GUEST_ID = Integer.parseInt(wynik);
-            if ( tag.compareTo(Config.TAG_HOST) == 0)           Config.this.HOST = wynik;
-            if ( tag.compareTo(Config.TAG_LOG_IN_MAX_AGE) == 0) Config.this.LOG_IN_MAX_AGE = Integer.parseInt(wynik);
-            if ( tag.compareTo(Config.TAG_MAIL_FROM) ==0)       Config.this.MAIL_FROM = wynik;
-            if ( tag.compareTo(Config.TAG_MINIMUM_PASS_LENGTH) ==0) Config.this.MIN_PASSWD = Integer.parseInt(wynik);
-            if ( tag.compareTo(Config.TAG_NEW_USER_MAIL_AUTH) ==0) Config.this.NEW_USER_MAIL_AUTH = Boolean.valueOf(wynik).booleanValue();
-            if ( tag.compareTo(Config.TAG_PASSWORD) == 0)       Config.this.PASSWORD = wynik;
-            if ( tag.compareTo(Config.TAG_REGISTRATION_BODY) == 0) Config.this.REG_MAIL_BODY = wynik;
-            if ( tag.compareTo(Config.TAG_REGISTRATION_SUBJECT) == 0) Config.this.REG_MAIL_SUBJECT = wynik;
-            if ( tag.compareTo(Config.TAG_SMTP_SERVER) == 0)    Config.this.SMTP_SERVER = wynik;
-            if ( tag.compareTo(Config.TAG_TABLES_PREFIX) ==0)   Config.this.DATABASE_PREFIX = wynik;
-            if ( tag.compareTo(Config.TAG_URL_FORUM) == 0)      Config.this.URL_FORUM = wynik;
-            if ( tag.compareTo(Config.TAG_USER) == 0)           Config.this.USER = wynik;
+            if ( tag.compareTo(Config.TAG_DATABASE_NAME) == 0)  config.DATABASE = wynik;
+            if ( tag.compareTo(Config.TAG_FORGET_BODY) ==0)     config.FORGET_MAIL_BODY = wynik;
+            if ( tag.compareTo(Config.TAG_FORGET_SUBJECT) ==0)  config.FORGET_MAIL_SUBJECT = wynik;
+            if ( tag.compareTo(Config.TAG_GUEST_ACCOUNT) ==0)   config.GUEST = wynik;
+            if ( tag.compareTo(Config.TAG_GUEST_ID) ==0)        config.GUEST_ID = Integer.parseInt(wynik);
+            if ( tag.compareTo(Config.TAG_HOST) == 0)           config.HOST = wynik;
+            if ( tag.compareTo(Config.TAG_LOG_IN_MAX_AGE) == 0) config.LOG_IN_MAX_AGE = Integer.parseInt(wynik);
+            if ( tag.compareTo(Config.TAG_MAIL_FROM) ==0)       config.MAIL_FROM = wynik;
+            if ( tag.compareTo(Config.TAG_MINIMUM_PASS_LENGTH) ==0) config.MIN_PASSWD = Integer.parseInt(wynik);
+            if ( tag.compareTo(Config.TAG_NEW_USER_MAIL_AUTH) ==0) config.NEW_USER_MAIL_AUTH = Boolean.valueOf(wynik).booleanValue();
+            if ( tag.compareTo(Config.TAG_PASSWORD) == 0)       config.PASSWORD = wynik;
+            if ( tag.compareTo(Config.TAG_REGISTRATION_BODY) == 0) config.REG_MAIL_BODY = wynik;
+            if ( tag.compareTo(Config.TAG_REGISTRATION_SUBJECT) == 0) config.REG_MAIL_SUBJECT = wynik;
+            if ( tag.compareTo(Config.TAG_SMTP_SERVER) == 0)    config.SMTP_SERVER = wynik;
+            if ( tag.compareTo(Config.TAG_TABLES_PREFIX) ==0)   config.DATABASE_PREFIX = wynik;
+            if ( tag.compareTo(Config.TAG_URL_FORUM) == 0)      config.URL_FORUM = wynik;
+            if ( tag.compareTo(Config.TAG_USER) == 0)           config.USER = wynik;
         }
     }    
     
@@ -153,7 +158,7 @@ public class Config {
        	System.setProperty("org.xml.sax.driver","org.apache.crimson.parser.XMLReaderImpl");
         try {
             XMLReader reader = XMLReaderFactory.createXMLReader();
-            ContentHandler handler = new MyHandler();
+            ContentHandler handler = new MyHandler(this);
             reader.setContentHandler(handler);
             reader.parse(fileName);
         }
@@ -371,6 +376,10 @@ public class Config {
      */
     public Config(){// throws BeeException{
         //this.readConfig();
+    }
+    
+    public Config(javax.servlet.ServletContext app) throws BeeException{
+        this.readConfig(app);
     }
 
 }
