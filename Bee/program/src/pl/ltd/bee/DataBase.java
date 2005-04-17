@@ -134,10 +134,15 @@ public class DataBase {
     static final String USER_HASLO = "HASLO";
     static final String USER_IMIE = "IMIE";
     static final String USER_NAZWISKO = "NAZWISKO";
+    static final String USER_IMIE_NAZWISKO_PRYWATNE = "IMIENAZWISKOPRYWATNE";
     static final String USER_EMAIL = "EMAIL";
+    static final String USER_EMAIL_PRYWATNY = "EMAILPRYWATNY";
     static final String USER_GG = "GG";
+    static final String USER_GG_PRYWATNE = "GGPRYWATNE";
     static final String USER_JABBER = "JABBER";
+    static final String USER_JABBER_PRYWATNY = "JABBERPRYWATNY";
     static final String USER_LASTLOG = "OSTATNIELOGOWANIE";
+    static final String USER_CURRENTLOG = "BIERZACELOGOWANIE";
     static final String USER_AKTYWNY = "AKTYWNY";
     static final String USER_ADMIN = "ADMIN";
     static final String USER_MODERATOR = "MODERATOR";
@@ -398,7 +403,7 @@ public class DataBase {
     public User getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         if (user == null) return null;
-        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
     
@@ -410,7 +415,8 @@ public class DataBase {
     public User getUser(String login) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "'");
         if (user == null) return null;
-        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        //return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
     }
     
     
@@ -446,7 +452,19 @@ public class DataBase {
     public boolean insertUser(User u){
         String aktywny;
         if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + u.getLogin() + "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() + "' ,'" + u.getEmail() + "' ,'" + u.getGG() + "' ,'" + u.getJabber() + "','" + u.getLastLog() + "','" + aktywny + "','" + NIE + "','" + NIE + "')");
+        String moderator;
+        if(u.moderator()) moderator=TAK; else moderator=NIE;
+        String admin;
+        if(u.admin()) admin=TAK; else admin=NIE;
+        String showName;
+        if(u.ifShowName()) showName=NIE; else showName=TAK;
+        String showEmail;
+        if(u.ifShowEmail()) showEmail=NIE; else showEmail=TAK;
+        String showGG;
+        if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
+        String showJabber;
+        if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + u.getLogin() + "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() + "' ,'" + showName + "' ,'" + u.getEmail()  + "' ,'" + showEmail + "' ,'" + u.getGG() + "' ,'" + showGG + "' ,'" + u.getJabber() + "' ,'" +  showJabber +  "','" + u.getLastLog() + "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
     }
     
     
@@ -467,8 +485,8 @@ public class DataBase {
         ArrayList wynik = new ArrayList();
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS);
         for(int i=0; i<users.size(); i++) {
-             Hashtable user = (Hashtable)users.get(i);
-             wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String) user.get(USER_LOGIN), (String) user.get(USER_HASLO), (String) user.get(USER_IMIE), (String) user.get(USER_NAZWISKO), (String) user.get(USER_EMAIL), (String) user.get(USER_GG), (String) user.get(USER_JABBER), (String) user.get(USER_LASTLOG), (String) user.get(USER_AKTYWNY) , (String) user.get(USER_ADMIN), (String) user.get(USER_MODERATOR)));
+            Hashtable user = (Hashtable)users.get(i);
+            wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR)));
         }
         return wynik;
     }
@@ -476,7 +494,7 @@ public class DataBase {
     
     /**
      * Metoda ustawia pola uprawnien Usera, jezeli moderator jest false, to
-     * usuwa wszystkie wiersze z taveli bee_moderatorzy z podanym id 
+     * usuwa wszystkie wiersze z taveli bee_moderatorzy z podanym id
      * @param id int id uzytkownika w bazie danych
      * @param admin boolean T lub F
      * @param moderator boolena  T lub F
@@ -494,7 +512,7 @@ public class DataBase {
     
     
     /**
-     * Metoda umieszcza kategorie w bazie danych, 
+     * Metoda umieszcza kategorie w bazie danych,
      * ustawia sandardowo pola aktywna na T i prywatna na N
      * @param nazwa nazwa kategorii
      * @param opis kategorii
@@ -569,7 +587,7 @@ public class DataBase {
         }
         return null;
     }
-      
+    
     
     /**
      * Metoda sprawdz czy podforum o podanym tytule juz istnieje

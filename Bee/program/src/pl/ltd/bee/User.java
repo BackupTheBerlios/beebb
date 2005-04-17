@@ -20,10 +20,15 @@ public class User {
     private String gg;
     private String jabber;
     private String lastlog;
+    private String currentlog;
+    private boolean imieNazwiskoPrywatne;
+    private boolean emailPrywatny;
+    private boolean ggPrywatne;
+    private boolean jabberPrywatny;
     private boolean aktywny;
     private boolean admin;
     private boolean moderator;
-  
+    
     
     /** Tworzy obiekt RegisteredUser
      * @param ID identyfikator uzytkownika
@@ -36,7 +41,7 @@ public class User {
      * @param lastlog ostatnie logowanie
      * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
      */
-    public User(int ID, String login, String haslo, String imie, String nazwisko, String email, String gg, String jabber,String lastlog,String aktywny,String admin,String moderator) {
+    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
@@ -46,6 +51,15 @@ public class User {
         this.gg=gg;
         this.jabber=jabber;
         this.lastlog=lastlog;
+        this.currentlog=currentlog;
+        if (imieNazwiskoPrywatne.compareTo(DataBase.TAK)==0)
+            this.imieNazwiskoPrywatne=true; else this.imieNazwiskoPrywatne=false;
+        if (emailPrywatny.compareTo(DataBase.TAK)==0)
+            this.emailPrywatny=true; else this.emailPrywatny=false;
+        if (ggPrywatne.compareTo(DataBase.TAK)==0)
+            this.ggPrywatne=true; else this.ggPrywatne=false;
+        if (jabberPrywatny.compareTo(DataBase.TAK)==0)
+            this.jabberPrywatny=true; else this.jabberPrywatny=false;
         if (aktywny.compareTo(DataBase.TAK)==0)
             this.aktywny=true; else this.aktywny=false;
         if (admin.compareTo(DataBase.TAK)==0)
@@ -78,11 +92,44 @@ public class User {
         return admin;
     }
     
+    
     /** metoda sprawdza czy uzytkownik jest moderatorem
      * @return T lub N w zaleznosci czy user jest moderatorem czy nie
      */
     public boolean moderator() {
         return moderator;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie Imienia i nazwiska
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowName() {
+        return !imieNazwiskoPrywatne;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie emaila
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowEmail() {
+        return !emailPrywatny;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie numeru gg
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowGG() {
+        return !ggPrywatne;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie jid
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowJabber() {
+        return !jabberPrywatny;
     }
     
     
@@ -155,6 +202,14 @@ public class User {
      **/
     public String getLastLog(){
         return this.lastlog;
+    }
+    
+    
+    /** Metoda zwraca date bierzącego zalogowania uzytkownika
+     * @return String z datą bierzącego zalogowania
+     **/
+    public String getCurrentLog(){
+        return this.currentlog;
     }
     
 }

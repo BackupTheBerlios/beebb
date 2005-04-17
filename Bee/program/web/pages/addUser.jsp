@@ -69,7 +69,7 @@
             
             
             if (ok) {
-                User u = new User(0,nickname,Crypto.crypt(haslo1),imie,nazwisko,email,gg,jabber,DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE);
+                User u = new User(0,nickname,Crypto.crypt(haslo1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE);
                 if(!db_con.insertUser(u))
                 out.println(Messages.errorUserCreate());
                 else {
