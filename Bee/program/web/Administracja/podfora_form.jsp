@@ -81,12 +81,12 @@
          for(int j=0; j<licz; j++) {  
             String t=request.getParameter("tytul"+j);
             String o=request.getParameter("opis"+j);
-            
+            Podforum podforum= new Podforum("0",t,o,db_con.TAK,db_con.NIE,db_con);
             if( t.compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum());
               else
                 if ( db_con.czyPodforum(Integer.decode(id_k).intValue(), t) ) wiad.add(Messages.errorNamePodforum());
                   else 
-                    if (db_con.insertPodforum(Integer.decode(id_k).intValue(), t, o) ) wiad.add(Messages.addPodforum());
+                    if (db_con.insertPodforum(Integer.decode(id_k).intValue(), podforum) ) wiad.add(Messages.addPodforum());
                       else wiad.add(Messages.errorAddPodforum());
                   
             }%>

@@ -515,17 +515,16 @@ public class DataBase {
     /**
      * Metoda umieszcza kategorie w bazie danych,
      * ustawia sandardowo pola aktywna na T i prywatna na N
-     * @param nazwa nazwa kategorii
-     * @param opis kategorii
-     * @param nazwaforum
+     * @param int id_forum
+     * @param Kategoria wstawiana kategoria
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertKategoria(String tytul, String opis, String nazwaforum) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+tytul+"' ,'"+opis+"', '" + TAK + "', '" + NIE + "')")) {
-            Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '"+tytul+"'");
+    public boolean insertKategoria(int id_forum, Kategoria k) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+k.getNazwa()+"' ,'"+k.getOpis()+"', '" + TAK + "', '" + NIE + "')")) {
+            Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '"+k.getNazwa()+"'");
             if (kat==null) return false;
             
-            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE "+FORUM_NAZWA+" = '"+nazwaforum+"'");
+            Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM + " WHERE "+FORUM_ID+" = "+id_forum);
             if (forum==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_FORUM_KATEGORIE + " VALUES ("+forum.get(FORUM_ID)+", "+kat.get(KATEGORIA_ID)+")");
@@ -538,13 +537,12 @@ public class DataBase {
      * Metoda umieszcza podforum w bazie danych,
      * ustawia sandardowo pola aktywne na T i prywatne na N
      * @param id_kat id kategorii do ktorej dodawane jest podforum
-     * @param tytul tytul podforum
-     * @param opis podforum
+     * @param Podforum obiekt Podforum
      * @return zwraca true jezeli insert sie powiodl
      */
-    public boolean insertPodforum(int id_kat, String tytul, String opis) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+tytul+"' ,'"+opis+"', '" + TAK + "', '" + NIE + "')")) {
-            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+tytul+"'");
+    public boolean insertPodforum(int id_kat, Podforum p) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+p.getTytul()+"' ,'"+p.getOpis()+"', '" + TAK + "', '" + NIE + "')")) {
+            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
             if (pf==null) return false;
             
             return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get(PODFORUM_ID)+")");

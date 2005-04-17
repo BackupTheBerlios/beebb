@@ -55,8 +55,8 @@
                 else  {
              if ( db_con.dajIdKategorii(nazwa)!=0 ) out.print(Messages.errorNameKat());
                 else
-                {
-                 if (db_con.insertKategoria(nazwa,opis,"Zagorzelców") ) {
+                { Kategoria k= new Kategoria("0",nazwa,opis,db_con.TAK,db_con.NIE,db_con);
+                 if (db_con.insertKategoria(0,k) ) {
                   out.print(Messages.addKat());
                   nazwa="";
                   opis="";
