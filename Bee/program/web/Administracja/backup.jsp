@@ -28,29 +28,47 @@
                 }
             } 
            
-        
+             String napis="";
             Enumeration f = request.getParameterNames();
              if (f.hasMoreElements()) {
-                   String napis = (String) f.nextElement();
-             if( napis.compareTo("zrob_backup")==0 ) {
+                  napis = (String) f.nextElement();
+               if( napis.compareTo("zrob_backup")==0 ) {
                    Backup pom=new Backup(db_con);
                    pom.zrobBackup(application); %> 
-                <a href="./backup.xml"> Pobierz plik z backupem. </a> 
+               <p align="center"> <a href="./backup.xml"> Pobierz plik z backupem. </a> </p>
                <%           
+              } 
+               if( (napis.compareTo("plik")==0)||(napis.compareTo("odtworz")==0)) {
+             
+                 out.print((String) request.getParameter("plik"));
+                
               }  
+                  
              }
            %>
          
 
-     <form action="./backup.jsp" method="post">
-        
-         <input type="hidden" name="zrob_backup"/> 
-         <input size="40" type="submit" value="Zrób Backup"/> 
-     
+     <form  action="./backup.jsp" method="post">
+       <table align="center" cellpadding="2" cellspacing="1" border="1">
+          <tr>  <th colspan="1"> Backup </th>  </tr>
+          <tr> <td> <input type="hidden" name="zrob_backup"/> 
+                    <input size="40" type="submit" value="Zrób Backup"/>
+          </td> </tr>
+        </table>
      </form>
+  
+   <br/>
+     <form  action="./backup.jsp" method="post">
+      <table align="center" cellpadding="2" cellspacing="1" border="1">
+       <tr>  <th colspan="2"> Wybierz plik </th>  </tr>
+       <tr> 
+           <td> <input size="70" type="file" name="plik" />  </td> 
+           <td> 
+               <input type="submit" value="Odtwórz Baze Danych"/> </td>
+       </tr>
+      </table>
+    </form>
 
-     
-
-     
+         
     </body>
 </html>
