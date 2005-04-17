@@ -166,6 +166,8 @@ public class Config {
             ContentHandler handler = new MyHandler(this);
             reader.setContentHandler(handler);
             reader.parse(fileName);
+            read = true;
+            modified = false;
         }
         catch (Exception e) {
             BeeIOException nowy = new BeeIOException(Messages.errorXMLRead());
@@ -267,6 +269,8 @@ public class Config {
             OutputStreamWriter plik = new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(app.getRealPath(FILE_NAME), false)), KODOWANIE);
             zapiszXML(xml,plik);
             plik.close();
+            read = true; // bo skoro zapisalem to jest tez przeczytany
+            modified = false;//nie jest zmodyfikowany wzgledem XML'a
         }
         catch(Exception e)
         {
