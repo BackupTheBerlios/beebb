@@ -213,6 +213,13 @@ public class Messages {
         return "Zapomniane hasło";}
     
     
+    /** Metoda dostarcza komunikat "Ostatnio zalogowany"
+     * @return String z komunikatem
+     */
+    public static String lastLogged(){
+        return "Ostatnio zalogowany";}
+    
+    
     /** Metoda dostarcza komunikat "Zaloguj się"
      * @return String z komunikatem
      */
