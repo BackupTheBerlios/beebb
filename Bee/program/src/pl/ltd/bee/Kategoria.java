@@ -86,6 +86,13 @@ public class Kategoria {
         return Aktywna;
     }
     
+    /** Zwraca  pole prywatna
+     * @return boolean
+     */
+    public boolean getPrywatna() {
+        return Prywatna;
+    }
+    
     /** Ustawia opis kategori
      * @param op String ustawianego opisu
      */

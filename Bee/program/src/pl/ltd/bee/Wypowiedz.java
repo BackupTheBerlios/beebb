@@ -39,6 +39,14 @@ public class Wypowiedz {
         this.db=db;
     }
     
+     /** Zwraca identyfikator wypowiedzi
+     * @return zwraca liczbe bedacą identyfikatorem wypowiedzi w bazie
+     */
+    public int getID() {
+        return ID;
+    }
+    
+    
     /** Zwraca identyfikator autora wypowiedzi
      * @return zwraca liczbe bedacą identyfikatorem autora wypowiedzi
      */

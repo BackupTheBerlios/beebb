@@ -46,6 +46,13 @@ public class Forum {
         return Opis;
     }
     
+    /** Zwraca liste identyfikatorow kategorii
+     * @return ArrayList 
+     */
+    public ArrayList getKategorie() {
+        return Kategorie;
+    }
+    
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
      * @param strona strumien wyjsciowy

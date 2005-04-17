@@ -77,6 +77,15 @@ public class Podforum {
         return Opis;
     }
     
+        
+     /** Zwraca  pole aktywne
+     * @return boolean
+     */
+    public boolean getAktywne() {
+        return Aktywne;
+    }
+   
+    
     /** Ustawia opis podforum
      * @param op String ustawianego opisu
      */
