@@ -17,6 +17,7 @@
         <title>BeeBB :: Zapomniane hasło</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
+        <script type="text/javascript" src="./../js/forms.js"></script>
     </head>
     <body onload="resizeForgetPass()" onresize="resizeForgetPass()">
 <%@ include file="servletObjects.jsp" %>
@@ -51,14 +52,14 @@
         else
         {
          %>
-                <form method="post" action="forgetPasswd.jsp">
+                <form method="post" action="forgetPasswd.jsp" onsubmit="return submitForgetPasswd('<% out.print(Messages.wielka(Messages.errorFieldNeeded()));%>')">
                     <table align="center" cellpadding="2" cellspacing="1" border="0">
                         <tr>
                         <th colspan="2"><%out.println(Messages.forgetPasswd());%>:</th>
                         </tr> <tr>
-                            <td><% out.println(Messages.wielka(Messages.nick())); %>:</td><td><input type="text" size="20" name="user"/></td>
+                            <td><% out.println(Messages.wielka(Messages.nick())); %>:</td><td><input type="text" size="20" name="user" id="user"/></td>
                         </tr> <tr>
-                        <td><% out.println(Messages.wielka(Messages.email())); %>:</td><td><input type="text" size="20" name="email"/></td>
+                        <td><% out.println(Messages.wielka(Messages.email())); %>:</td><td><input type="text" size="20" name="email" id="email"/></td>
                         </tr> <tr>        
                             <td align="right" colspan="2"><input type="submit" name="submit" value="<% out.println(Messages.wielka(Messages.send())); %>"/></td>
                         </tr>

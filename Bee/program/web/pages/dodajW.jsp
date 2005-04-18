@@ -16,6 +16,7 @@
         <title>BeeBB :: Dodaj</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
+        <script type="text/javascript" src="./../js/forms.js"></script>
     </head>
     <body onLoad="resizeDodajW()" onresize="resizeDodajW()">
 <%@ include file="servletObjects.jsp" %>
@@ -87,7 +88,7 @@
                 }
                 else {
         %>
-                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>">
+                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                                 <th colspan="2">
@@ -95,12 +96,12 @@
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>
-                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" name="title"></td>
+                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" name="title" id="title"></td>
                             <% } %>
                             </tr> <tr>
-                                <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td><td><textarea cols="50" rows="5" name="text"></textarea></td>
+                                <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td><td><textarea cols="50" rows="5" name="text" id="text"></textarea></td>
                             </tr> <tr>
-                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor"><%}else{out.print(auth.user(request));}%></td>
+                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor" id="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                             </tr>
