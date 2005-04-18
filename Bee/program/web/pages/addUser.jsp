@@ -54,7 +54,7 @@
             if (ok) {
                 User u = new User(0,nickname,Crypto.crypt(haslo1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE);
                 if(!db_con.insertUser(u))
-                out.println(Messages.errorUserCreate());
+                out.println(Messages.makeError(Messages.errorUserCreate()));
                 else {
                     if (Config.NEW_USER_MAIL_AUTH) {
                        Random r = new Random();
@@ -62,14 +62,14 @@
                         while (!db_con.sprawdzKluczNewUser(numer))        
                             numer = Long.toHexString(r.nextLong());
                         if(!db_con.insertNewUser(nickname,numer))
-                            out.print(Messages.errorDataBaseConnection());
+                            out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                         else {
-                            out.println(Messages.messageActivEmailSend()+"<BR><br><a href=./main.jsp>" + Messages.back() + "</a><br>"); 
+                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<BR><br><a href=./main.jsp>" + Messages.back() + "</a><br>"); 
                             SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
-                            out.println(Messages.errorUserCreate());
+                            out.println(Messages.makeError(Messages.errorUserCreate()));
                         else
                             out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<BR><br><a href=./main.jsp>" +Messages.back()+"</a><br>"); 
                     }
@@ -80,18 +80,18 @@
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                             <th colspan="2">
-                                <%out.print(Messages.addUser());%>
+                                <%out.print(Messages.wielka(Messages.addUser()));%>
                             </th>
                             </tr> <tr>
             <%
             ok = true;
             if (nickname!=null) {
                 if (db_con.getUser(nickname)!=null) {
-                    out.println("<td colspan=\"2\">"+ Messages.errorUserExists(nickname) +"</td></tr><tr>");
+                    out.println("<td colspan=\"2\">"+ Messages.makeError(Messages.errorUserExists(nickname)) +"</td></tr><tr>");
                     ok=false;
                 }
                 if (nickname.compareTo("")==0) { ok=false;
-                    out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorFieldNeeded()) + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
                                 <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"></td>
                             </tr> <tr>
@@ -108,9 +108,9 @@
                 ok=false; email="";
             } else {
                 if (email.compareTo("")==0) { ok=false;
-                    out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorFieldNeeded()) + "</td></tr><tr>"); }
                  if (!db_con.sprawdzEmail(email)) { ok=false;
-                    out.println("<td colspan=\"2\">" + Messages.errorEmailExists() + "</td></tr><tr>"); }
+                    out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorEmailExists()) + "</td></tr><tr>"); }
             }%>
                             <td><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"></td>
                             </tr> <tr>
@@ -118,7 +118,7 @@
                             </tr> <tr>
                             <td><%out.print(Messages.wielka(Messages.jabber()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"></td>
                             </tr> <tr>
-                                <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.send());%>"/></td>
+                                <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                             </tr>
                         </table>
                         * - <%out.print(Messages.fieldsObligatory());%>

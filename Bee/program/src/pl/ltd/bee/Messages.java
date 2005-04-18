@@ -30,7 +30,7 @@ public class Messages {
      * @return Zwraca podany komunikat zawarty w znacznikach xhtml
      */
     public static String makeError(String s){
-        return "<p class=\"error\">"+s+"<.p>";
+        return "<p class=\"error\">"+s+"</p>";
     }
     
     /** Metoda zamienia podany napis na komunikat informacyjny
@@ -38,7 +38,7 @@ public class Messages {
      * @return Zwraca podany komunikat zawarty w znacznikach xhtml
      */
     public static String makeInfo(String s){
-        return "<p class=\"info\">"+s+"<.p>";
+        return "<p class=\"info\">"+s+"</p>";
     }
     
     
