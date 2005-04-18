@@ -17,6 +17,7 @@
         <title>BeeBB :: <%out.print(Messages.newUser());%></title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
+        <script type="text/javascript" src="./../js/forms.js"></script>
     </head>
     <body onload="resizeAddUser()" onresize="resizeAddUser()">
 <%@ include file="servletObjects.jsp" %>
@@ -75,7 +76,7 @@
                 }
             } else {
         %>
-                    <form method="POST" action="addUser.jsp">
+                    <form method="POST" action="addUser.jsp" onsubmit="return submitAddUser(this,<% out.print(Config.MIN_PASSWD + ",'" + Messages.wielka(Messages.errorFieldNeeded())+"','"+Messages.wielka(Messages.errorPassNotMatch()) + "','" + Messages.wielka(Messages.errorPassToShort(Config.MIN_PASSWD))); %>')">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <tr>
                             <th colspan="2">
@@ -92,11 +93,11 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorFieldNeeded() + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                                <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>"></td>
+                                <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"></td>
                             </tr> <tr>
-                            <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="haslo1"></td>
+                            <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="haslo1" id="haslo1"></td>
                             </tr> <tr>
-                                <td><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="haslo2"></td>
+                                <td><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="haslo2" id="haslo2"></td>
                             </tr> <tr>
                             <td><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
                             </tr> <tr>
@@ -111,7 +112,7 @@
                  if (!db_con.sprawdzEmail(email)) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.errorEmailExists() + "</td></tr><tr>"); }
             }%>
-                            <td><b><%out.print(Messages.wielka(Messages.email()));%>:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>"></td>
+                            <td><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"></td>
                             </tr> <tr>
                                 <td><%out.print(Messages.wielka(Messages.gg()));%>:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"></td>
                             </tr> <tr>

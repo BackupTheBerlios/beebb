@@ -17,9 +17,31 @@ public class Messages {
     public Messages() {
     }
     
+    /** Metoda zmienia pierwsza litere na wilka przekazanego napisu
+     * @param s Napis do przerobki
+     * @return Zwraca podany parametr ale z pierwsza litera zamieniona na wielka
+     */
     public static String wielka(String s){
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
+    
+    /** Metoda zamienia podany napis na komunikat o bledzie
+     * @param s Komunikat
+     * @return Zwraca podany komunikat zawarty w znacznikach xhtml
+     */
+    public static String makeError(String s){
+        return "<p class=\"error\">"+s+"<.p>";
+    }
+    
+    /** Metoda zamienia podany napis na komunikat informacyjny
+     * @param s Komunikat
+     * @return Zwraca podany komunikat zawarty w znacznikach xhtml
+     */
+    public static String makeInfo(String s){
+        return "<p class=\"info\">"+s+"<.p>";
+    }
+    
+    
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace slowa
@@ -189,14 +211,14 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String messageActivEmailSend(){
-        return "<p class=\"info\">Email z linkiem aktywacyjnym został wysłany.</p>";}
+        return "Email z linkiem aktywacyjnym został wysłany.";}
     
     
     /** Metoda dostarcza komunikat o wyslaniu emaila z kluczem do zapomnianego hasła
      * @return String z komunikatem
      */
     public static String messageForgetPasswdEmailSend(){
-        return "<p class=\"info\">Email z kluczem został wysłany.</p>";}
+        return "Email z kluczem został wysłany.";}
     
     
     /** Metoda dostarcza komunikat "Nowe hasło".
@@ -224,7 +246,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String logInYourself(){
-        return "<p class=\"info\">Zaloguj się</p>";}
+        return "Zaloguj się";}
     
     
     /** Metoda dostarcza komunikat "Zarejestruj się"
@@ -245,14 +267,14 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String iForgetPasswd(){
-        return "<p class=\"info\">Zapomniałem hasło</p>";}
+        return "Zapomniałem hasło";}
     
     
     /** Metoda dostarcza komunikat "Hasło zmieniono"
      * @return String z komunikatem
      */
     public static String passwordChanged(){
-        return "<p class=\"info\">Hasło zmieniono</p>";}
+        return "Hasło zmieniono";}
     
     
     /**
@@ -260,7 +282,7 @@ public class Messages {
      * @return String z komunikatem o braku polaczenia z baza danych
      */
     public static String errorDataBaseConnection(){
-        return "<p class=\"error\">Błąd połączenia z bazą danych!</p>";}
+        return "Błąd połączenia z bazą danych!";}
     
     
     /**
@@ -268,7 +290,7 @@ public class Messages {
      * @return String z komunikatem o tym ze uzytkownik nie moze zostac stworzony
      */
     public static String errorUserCreate(){
-        return "<p class=\"error\">Nie można dodać użytkownika - skontaktuj się z administratorem forum</p>";}
+        return "Nie można dodać użytkownika - skontaktuj się z administratorem forum";}
     
     
     /**
@@ -277,7 +299,7 @@ public class Messages {
      * @return String z komunikatem o tym ze podany uzytkownik juz istnieje
      */
     public static String errorUserExists(String nick){
-        return "<p class=\"error\">Użytkownik " + nick + " już istnieje!</p>";}
+        return "Użytkownik " + nick + " już istnieje!";}
     
     
     /**
@@ -285,7 +307,7 @@ public class Messages {
      * @return String z komunikatem o tym ze pole jest wymagane
      */
     public static String errorFieldNeeded(){
-        return "<p class=\"error\">Pole jest wymagane!</p>";}
+        return "Pole jest wymagane!";}
     
     
     /**
@@ -294,7 +316,7 @@ public class Messages {
      * @return String z komunikatem o tym ze pole jest wymagane
      */
     public static String errorFieldNeeded(String field){
-        return "<p class=\"error\">Pole '" + field + "'jest wymagane!</p>";}
+        return "Pole '" + field + "'jest wymagane!";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze haslo jest za krotkie
@@ -302,7 +324,7 @@ public class Messages {
      * @return String z komunikatem o tym ze haslo jest za krotkie
      */
     public static String errorPassToShort(int length){
-        return "<p class=\"error\">Hasło musi mieć przynajmniej " + length + " znaków</p>";}
+        return "Hasło musi mieć przynajmniej " + length + " znaków";}
     
     
     /**
@@ -310,15 +332,14 @@ public class Messages {
      * @return String z komunikatem o tym ze hasla nie sa identyczne
      */
     public static String errorPassNotMatch(){
-        return "<font class=\"error\">Hasła się nie zgadzają</p>";}
-    
+        return "Hasła się nie zgadzają";}
     
     /**
      * Metoda dostarcza komunikat bledu informujacy ze bledzie logowania
      * @return String z komunikatem o bledzie logowania
      */
     public static String errorBadUserOrPass(){
-        return "<p class=\"error\">Błędny użytkownik lub hasło!</p>";}
+        return "Błędny użytkownik lub hasło!";}
     
     
     /**
@@ -326,7 +347,7 @@ public class Messages {
      * @return String z komunikatem o bledzie nieokreslonym
      */
     public static String errorUnknown(){
-        return "<p class=\"error\">Błąd! skontaktuj się z administratorem strony!<p>";}
+        return "Błąd! skontaktuj się z administratorem strony!";}
     
     
     /**
@@ -334,7 +355,7 @@ public class Messages {
      * @return String z komunikatem o nie istnieniu watku
      */
     public static String errorThreadNotExists(){
-        return "<p class=\"error\">Brak takiego wątku!</p>";    }
+        return "Brak takiego wątku!";    }
     
     
     /**
@@ -342,7 +363,7 @@ public class Messages {
      * @return String z komunikatem o nie istnieniu kategorii
      */
     public static String errorCategoryNotExists(){
-        return "<p class=\"error\">Brak takiej kategorii!</p>";    }
+        return "Brak takiej kategorii!";    }
     
     
     /**
@@ -350,7 +371,7 @@ public class Messages {
      * @return String z komunikatem o nie istnieniu podforum
      */
     public static String errorSubForumNotExists(){
-        return "<p class=\"error\">Brak takiego podforum!</p>";    }
+        return "Brak takiego podforum!";    }
     
     
     /**
@@ -358,7 +379,7 @@ public class Messages {
      * @return String z komunikatem o bledzie odczytu pliku konfiguracyjnego
      */
     public static String errorXMLRead(){
-        return "<p class=\"error\">Błąd odczytu pliku konfiguracyjnego.</p>";}
+        return "Błąd odczytu pliku konfiguracyjnego.";}
     
     
     /**
@@ -366,7 +387,7 @@ public class Messages {
      * @return String z komunikatem o bledzie zapisu pliku konfiguracyjnego
      */
     public static String errorXMLWrite(){
-        return "<p class=\"error\">Błąd zapisu pliku konfiguracyjnego.</p>";}
+        return "Błąd zapisu pliku konfiguracyjnego.";}
     
     
     /**
@@ -374,7 +395,7 @@ public class Messages {
      * @return String z komunikatem o bledzie klucza nowego uzytkownika
      */
     public static String errorKeyNewUser(){
-        return "<p class=\"error\">Błędny klucz.</p>";}
+        return "Błędny klucz.";}
     
     
     /**
@@ -382,7 +403,7 @@ public class Messages {
      * @return String z komunikatem o bledzie zmiany hasla
      */
     public static String errorChangePasswd(){
-        return "<p class=\"error\">Nie można zmienić hasła, skontaktuj się z administratorem forum.</p>";}
+        return "Nie można zmienić hasła, skontaktuj się z administratorem forum.";}
     
     
     /**
@@ -390,7 +411,7 @@ public class Messages {
      * @return String z komunikatem o istniejaym juz uzytkowniku z takim emailem
      */
     public static String errorEmailExists(){
-        return "<p class=\"error\">Użytkownik ma już konto w serwisie.</p>";}
+        return "Użytkownik ma już konto w serwisie.";}
     
     
     /**
@@ -398,7 +419,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorNameKat(){
-        return "<p align=\"center\" class=\"error\">Kategoria o podanej nazwie już istnieje.</p>";}
+        return "Kategoria o podanej nazwie już istnieje.";}
     
     
     /**
@@ -406,7 +427,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorFieldNameKat(){
-        return "<p align=\"center\" class=\"error\"> Należy podać nazwę kategorii.</p>";}
+        return "Należy podać nazwę kategorii.";}
     
     
     /**
@@ -414,7 +435,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorAddKat(){
-        return "<p  align=\"center\" class=\"error\"> Dodanie kategorii nie powiodło się.</p>";}
+        return "Dodanie kategorii nie powiodło się.";}
     
     
     /**
@@ -422,7 +443,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorChangeKat(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana kategorii nie powiodła się.</p>";}
+        return "Zmiana kategorii nie powiodła się.";}
     
     
     /**
@@ -430,7 +451,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorChangePod(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana podforum nie powiodła się.</p>";}
+        return "Zmiana podforum nie powiodła się.";}
     
     
     /**
@@ -438,7 +459,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorChangeUpr(){
-        return "<p  align=\"center\" class=\"error\"> Zmiana uprawnien nie powiodła się.</p>";}
+        return "Zmiana uprawnien nie powiodła się.";}
     
     
     /**
@@ -446,7 +467,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String addKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria została dodana.</p>";}
+        return "Kategoria została dodana.";}
     
     
     /**
@@ -454,7 +475,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String changeUpr(){
-        return "<p align=\"center\" class=\"info\"> Uprawnienia zostały zmienione.</p>";}
+        return "Uprawnienia zostały zmienione.";}
     
     
     /**
@@ -462,7 +483,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String changePod(){
-        return "<p align=\"center\" class=\"info\"> Podforum zostało zmienione.</p>";}
+        return "Podforum zostało zmienione.";}
     
     
     /**
@@ -470,7 +491,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String removeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria została usunięta.</p>";}
+        return "Kategoria została usunięta.";}
     
     
     /**
@@ -478,7 +499,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String activeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria została aktywowana.</p>";}
+        return "Kategoria została aktywowana.";}
     
     
     /**
@@ -486,7 +507,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String changeKat(){
-        return "<p align=\"center\" class=\"info\"> Kategoria została zmieniona.</p>";}
+        return "Kategoria została zmieniona.";}
     
     
     /**
@@ -494,7 +515,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String removePodforum(){
-        return "<p align=\"center\" class=\"info\" > Podforum zostało usunięte.</p>";}
+        return "Podforum zostało usunięte.";}
     
     
     /**
@@ -502,7 +523,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String activePodforum(){
-        return "<p align=\"center\" class=\"info\" > Podforum zostało aktywowane.</p>";}
+        return "Podforum zostało aktywowane.";}
     
     
     /**
@@ -510,7 +531,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorRemoveKat(){
-        return "<p  align=\"center\" class=\"error\"> Usunięcie kategorii nie powiodło się.</p>";}
+        return "Usunięcie kategorii nie powiodło się.";}
     
     
     /**
@@ -518,7 +539,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorActiveKat(){
-        return "<p  align=\"center\" class=\"error\"> Aktywacja kategorii nie powiodła się.</p>";}
+        return "Aktywacja kategorii nie powiodła się.";}
     
     
     /**
@@ -527,7 +548,7 @@ public class Messages {
      */
     
     public static String errorRemovePodforum(){
-        return "<p  align=\"center\" class=\"error\"> Usunięcie podforum nie powiodło się.</p>";}
+        return "Usunięcie podforum nie powiodło się.";}
     
     
     /**
@@ -536,7 +557,7 @@ public class Messages {
      */
     
     public static String errorFieldNamePodforum(){
-        return "<p align=\"center\" class=\"error\"> Nie została podana nazwa podforum.</p>";}
+        return "Nie została podana nazwa podforum.";}
     
     
     /**
@@ -545,7 +566,7 @@ public class Messages {
      */
     
     public static String errorActivePodforum(){
-        return "<p align=\"center\" class=\"error\"> Aktywacja podforum nie powiodła się.</p>";}
+        return "Aktywacja podforum nie powiodła się.";}
     
     
     /**
@@ -553,7 +574,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorNamePodforum(){
-        return "<p align=\"center\" class=\"error\">Podforum o podanej nazwie już istnieje.</p>";}
+        return "Podforum o podanej nazwie już istnieje.";}
     
     
     /**
@@ -561,7 +582,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorAddPodforum(){
-        return "<p  align=\"center\" class=\"error\">Dodanie podforum nie powiodło się.</p>";}
+        return "Dodanie podforum nie powiodło się.";}
     
     
     /**
@@ -569,7 +590,7 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String errorNotLoggedIn(){
-        return "<p align=\"center\" class=\"error\">Proszę się zalogować.</p>";}
+        return "Proszę się zalogować.";}
     
     
     /**
@@ -577,35 +598,35 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String addPodforum(){
-        return "<p align=\"center\" class=\"info\">Podforum zostało dodane.</p>";}
+        return "Podforum zostało dodane.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij głównej powiodła sie
      * @return String z komunikatem
      */
     public static String changeConfigMain(){
-        return "<p align=\"center\" class=\"info\">Konfiguracja główna została zmieniona.</p>";}
+        return "Konfiguracja główna została zmieniona.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij bazy danych powiodła sie
      * @return String z komunikatem
      */
     public static String changeConfigDb(){
-        return "<p align=\"center\" class=\"info\">Konfiguracja bazy danych została zmieniona.</p>";}
+        return "Konfiguracja bazy danych została zmieniona.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij zachowania forum powiodła sie
      * @return String z komunikatem
      */
     public static String changeConfigBehave(){
-        return "<p align=\"center\" class=\"info\">Konfiguracja zachowania forum została zmieniona.</p>";}
+        return "Konfiguracja zachowania forum została zmieniona.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij mailingu powiodła sie
      * @return String z komunikatem
      */
     public static String changeConfigMail(){
-        return "<p align=\"center\" class=\"info\">Konfiguracja mailingu została zmieniona.</p>";}
+        return "Konfiguracja mailingu została zmieniona.";}
     
     /**
      * Metoda dostarcza komunikat o blďż˝dzie wywolania formularza
@@ -613,7 +634,7 @@ public class Messages {
      */
     
     public static String formError(){
-        return "<p align=\"center\" class=\"info\">Błąd formularza.</p>";}
+        return "Błąd formularza.";}
     
     
     /**
