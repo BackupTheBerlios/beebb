@@ -38,10 +38,6 @@
             if (uid == null) out.println(Messages.errorUnknown());
             else
             {   
-                User usr = auth.getUser(request,db_con);
-                if (uid.compareTo(new String().valueOf(Config.GUEST_ID)) !=0 && usr!=null && (new String().valueOf(usr.getID())).compareTo(uid) == 0 ) {
-                    out.println("To ty :-)<br/> i tu będzie jakiś ficzer do edycji");
-                } else {
                 User user = db_con.getUser(Integer.parseInt(uid));
                 %>
                 <table align="center" class="tableProfile" border="0">
@@ -59,7 +55,6 @@
                 <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLastLog());%></td></tr>
                 </table>
                 <%
-                }        
             }
     %>
     </td></tr>
