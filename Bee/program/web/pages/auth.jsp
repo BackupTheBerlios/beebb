@@ -73,7 +73,7 @@
                 <br>
                 <p><%out.println(Messages.doNotHaveAccount());%> <a href="addUser.jsp"><%out.println(Messages.registerYourself());%></a></p>
             </td>
-            </td>
+            </tr>
         </table>
      <%
        }
