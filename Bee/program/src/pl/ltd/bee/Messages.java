@@ -198,6 +198,14 @@ public class Messages {
     public static String lastPost(){
         return "ostatnia wypowiedź";}
     
+    /** Metoda dostarcza fraze "ukryj" */
+    public static String hide(){
+        return "ukryj";}
+    
+    /** Metoda dostarcza fraze "stare" */
+    public static String old(){
+        return "stare";}
+    
     /** Metoda dostarcza fraze "ok" */
     public static String ok(){
         return "ok";}
@@ -219,6 +227,20 @@ public class Messages {
      */
     public static String messageForgetPasswdEmailSend(){
         return "Email z kluczem został wysłany.";}
+    
+    
+    /** Metoda dostarcza komunikat "Czy prywatne?".
+     * @return String z komunikatem
+     */
+    public static String ifPrivate(){
+        return "Czy prywatne?";}
+    
+    
+    /** Metoda dostarcza komunikat "Nie pokazuj mojego imienia i nazwiska".
+     * @return String z komunikatem
+     */
+    public static String ifShowName(){
+        return "Nie pokazuj mojego imienia i nazwiska";}
     
     
     /** Metoda dostarcza komunikat "Nowe hasło".
