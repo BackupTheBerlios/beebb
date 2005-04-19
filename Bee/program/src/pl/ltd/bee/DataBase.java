@@ -839,5 +839,23 @@ public class DataBase {
         return year + "-" + mounth + "-" + day + " :"+ hour + ":" + min + ":" + sec;
     }
     
+    /**
+     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami uzytkownikow,
+     * ktorzy sa moderatorami w danym podforum
+     * @param int id podforum
+     * @return ArrayList obiektow Integer
+     */
+    public ArrayList getIdModeratorzyPodforum(int id_podforum) {
+        ArrayList wynik = new ArrayList();
+        ArrayList users_id = baza.query("SELECT " + MODERATORZY_ID_USER + " FROM "+ BEE_MODERATORZY+" WHERE "+MODERATORZY_ID_PODFORUM+"="+id_podforum);
+        for(int i=0;i<users_id.size();i++) {
+            Hashtable user = (Hashtable)users_id.get(i);
+            int id = Integer.parseInt((String)user.get(MODERATORZY_ID_USER));
+            wynik.add(new Integer(id));
+        }
+        return wynik;
+    }
+    
+    
 }
 
