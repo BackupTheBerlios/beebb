@@ -85,7 +85,9 @@ public class Backup {
                   plik.write("        <opis>"+p.getOpis()+"</opis> \n" );
                   plik.write("        <aktywne>"+p.getAktywne()+"</aktywne> \n" );
                   plik.write("        <prywatne>"+p.czyPrywatne()+"</prywatne> \n" );
+                  zapiszModeratorzy(p.getID());
                   zapiszWatki(p.getID());
+                  
                   plik.write("      </podforum> \n" );
             }  
             plik.write("     </podfora> \n" );
@@ -120,6 +122,19 @@ public class Backup {
      }
      
     private void zapiszForgetPasswd() throws Exception {
+    
+     }
+    
+     private void zapiszModeratorzy(int id_podforum) throws Exception {
+         
+            plik.write("\n       <moderatorzy> \n" );
+            ArrayList users_id=db_con.getIdModeratorzyPodforum(id_podforum);
+            for(int i=0;i<users_id.size();i++) {
+                   plik.write("         <id_user>"+ ((Integer)users_id.get(i)).intValue()+"</id_user> \n" );
+               
+                
+            }  
+            plik.write("      </moderatorzy> \n" );
     
      }
     
