@@ -1,0 +1,82 @@
+<!-- Element glowny -->
+<!ELEMENT backup (forum,users)>
+
+<!-- Forum -->
+<!ELEMENT forum (nazwa, opis,kategorie)>
+<!ELEMENT nazwa (#PCDATA)>
+
+<!--Kategorie -->
+<!ELEMENT kategorie(kategoria*)>
+<!ELEMENT kategoria(id,tytul,opis,aktywna,prywatna,podfora)>
+
+<!--Podfora -->
+<!ELEMENT podfora(podforum*)>
+<!ELEMENT podforum (id,tytul,opis,aktywna,prywatna,moderatorzy,watki)>
+<!--Moderatorzy podforum -->
+<!ELEMENT moderatorzy(id_user*)>
+
+<!-- Watki -->
+<!ELEMENT watki(watek*)>
+<!ELEMENT watek(id,id_autora,autor,temat,data,prywatna,wypowiedzi)>
+
+<!-- Wypowiedzi -->
+<!ELEMENT wtpowiedzi(wypowiedz*)>
+<!ELEMENT wypowiedz (id,id_autora,autor,data,tekst,prywatna)>
+
+<!-- Users -->
+<!ELEMENT users (user)*>
+<!ELEMENT user (id,login, haslo, imie, nazwisko,imie_nazwisko_prywatne, email, email_prywatne, gg, gg_prywatne, jabber, jabber_prywatne, ostatnielogowanie, aktywny, admin, moderator)>
+<!ELEMENT login (#PCDATA)>
+<!ELEMENT haslo (#PCDATA)>
+<!ELEMENT imie (#PCDATA)>
+<!ELEMENT nazwisko (#PCDATA)>
+<!ELEMENT imie_nazwisko_prywatne (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT email_prywatne (#PCDATA)>
+<!ELEMENT gg (#PCDATA)>
+<!ELEMENT gg_prywatne (#PCDATA)>
+<!ELEMENT jabber (#PCDATA)>
+<!ELEMENT jabber_prywatne (#PCDATA)>
+<!ELEMENT ostatnielogowanie (#PCDATA)>
+<!ELEMENT aktywny (#PCDATA)>
+<!ELEMENT admin (#PCDATA)>
+<!ELEMENT moderator (#PCDATA)>
+
+
+<!-- elementy wspolne i nietylko -->
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT tytul (#PCDATA)>
+<!ELEMENT opis (#PCDATA)>
+<!ELEMENT aktywna (#PCDATA)>
+<!ELEMENT prywatna (#PCDATA)>
+
+<!ELEMENT id_autora (#PCDATA)>
+<!ELEMENT temat (#PCDATA)>
+<!ELEMENT data  (#PCDATA)>
+<!ELEMENT autor (#PCDATA)>
+<!ELEMENT tekst (#PCDATA)>
+
+<!--Forget_passwd -->
+<!ELEMENT forget_passwd(klucz,email)*>
+<!ELEMENT klucz (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+
+<!--Groups -->
+<!ELEMENT groups(group)*>
+<!ELEMENT group(id,nazwa,users_group)>
+<!ELEMENT user_group(id_user)*>
+
+<!--New_user -->
+<!ELEMENT new_user(klucz,login)*>
+<!ELEMENT login (#PCDATA)>
+
+<!--Privilages -->
+<!ELEMENT priviliges(privilige)*>
+<!ELEMENT privilage(id_group, id_kategoria, id_podforum, id_watek, czytanie, pisanie)*>
+<!ELEMENT id_group (#PCDATA)>
+<!ELEMENT id_kategoria (#PCDATA)>
+<!ELEMENT id_podforum  (#PCDATA)>
+<!ELEMENT id_watek (#PCDATA)>
+<!ELEMENT czytanie (#PCDATA)>
+<!ELEMENT pisanie (#PCDATA)>
+
