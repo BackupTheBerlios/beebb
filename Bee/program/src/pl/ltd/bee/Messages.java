@@ -294,6 +294,114 @@ public class Messages {
     public static String rozwin(){
         return "rozwiń";}
     
+  /** Metoda dostarcza fraze "pobierz plik z backupem" */
+    public static String getBackyupFile(){
+        return "pobierz plik z backupem";}
+    
+  /** Metoda dostarcza fraze "zrób backup" */
+    public static String doBackup(){
+        return "zrób backup";}
+    
+  /** Metoda dostarcza fraze "wybierz plik" */
+    public static String chooseFile(){
+        return "wybierz plik";}
+    
+  /** Metoda dostarcza fraze "odtwórz bazę danych" */
+    public static String recreateDB(){
+        return "odtwórz bazę danych";}
+    
+  /** Metoda dostarcza fraze "aktywuj" */
+    public static String activation(){
+        return "aktywuj";}
+    
+  /** Metoda dostarcza fraze "konfiguracja forum" */
+    public static String forumConfiguration(){
+        return "konfiguracja forum";}
+    
+  /** Metoda dostarcza fraze "główne" */
+    public static String main(){
+        return "główne";}
+    
+  /** Metoda dostarcza fraze "baza danych" */
+    public static String db(){
+        return "baza danych";}
+    
+  /** Metoda dostarcza fraze "zachowanie" */
+    public static String behave(){
+        return "zachowanie";}
+    
+  /** Metoda dostarcza fraze "wiadomości" */
+    public static String mailing(){
+        return "wiadomości";}
+    
+  /** Metoda dostarcza fraze "tak" */
+    public static String yes(){
+        return "tak";}
+        
+  /** Metoda dostarcza fraze "nie" */
+    public static String no(){
+        return "nie";}
+    
+  /** Metoda dostarcza fraze "url forum" */
+    public static String urlForum(){
+        return "url forum";}
+   
+  /** Metoda dostarcza fraze "host" */
+    public static String host(){
+        return "host";}
+  
+  /** Metoda dostarcza fraze "nazwa bazy danych" */
+    public static String dbName(){
+        return "nazwa bazy danych";}
+    
+   /** Metoda dostarcza fraze "prefix tabel" */
+    public static String tablePrefix(){
+        return "prefix tabel";}
+    
+   /** Metoda dostarcza fraze "konto gościa" */
+    public static String guestAccount(){
+        return "konto gościa";}
+   
+   /** Metoda dostarcza fraze "identyfikator gościa" */
+    public static String guestId(){
+        return "identyfikator gościa";}
+    
+   /** Metoda dostarcza fraze "maksymalny czas trwania sesji" */
+    public static String maxSession(){
+        return "maksymalny czas trwania sesji";}
+    
+  /** Metoda dostarcza fraze "minimalna długość hasła" */
+    public static String minPassLength(){
+        return "minimalna długośc hasła";}
+    
+  /** Metoda dostarcza fraze "Wysyłanie maila w celach autentykacji" */
+    public static String newUserMail(){
+        return "wysyłanie maila w celach autentykacji";}
+    
+  /** Metoda dostarcza fraze "SMTP server" */
+    public static String smtpServer(){
+        return "smtp server";}
+   
+     /** Metoda dostarcza fraze "adres pocztowy nadawcy" */
+    public static String mailFrom(){
+        return "adres poczty nadawcy";}
+    
+   /** Metoda dostarcza fraze "temat rejestracji" */
+    public static String registrationTopic(){
+        return "temat rejestracji";}
+    
+     /** Metoda dostarcza fraze "wiadomość po rejestracji" */
+    public static String registrationMessage(){
+        return "wiadomość po rejestracji";}
+    
+    /** Metoda dostarcza fraze "temat sekcji zapomniane" */
+    public static String forgetTopic(){
+        return "temat sekcji zapomniane";}
+    
+     /** Metoda dostarcza fraze "wiadomość sekcji zapomniane" */
+    public static String forgetMessage(){
+        return "wiadomość sekcji zapomniane";}
+    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
@@ -310,6 +418,18 @@ public class Messages {
      */
     public static String isRemovePod(){
         return "Czy napewno chcesz usunąć podforum?";}
+    
+     /** Metoda dostarcza komunikat z zapytaniem 
+     * @return String z komunikatem
+     */
+    public static String isActiveKat(){
+        return "Czy napewno chcesz uaktywnić kategorie?";}
+    
+    /** Metoda dostarcza komunikat z zapytaniem 
+     * @return String z komunikatem
+     */
+    public static String isActivePod(){
+        return "Czy napewno chcesz uaktywnić podforum?";}
     
     /** Metoda dostarcza komunikat o wyslaniu emaila aktywacyjnego
      * @return String z komunikatem
