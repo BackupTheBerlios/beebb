@@ -69,7 +69,10 @@
 			</tr>
 			<tr>
 			<td class="tdTopLink"><span class="aTopLink">
-				[] <%out.print(Messages.wielka(Messages.profile()));%>
+                                <%out.print("[] <span  class=\"aTopLink\"");
+                                if (auth.zalogowany(request,db_con)) 
+                                    out.print("[] onclick=\"linkClick('./editProfile.jsp')\"");   
+                                out.print(">" +Messages.wielka(Messages.profile()) + "</span>");%>
 				</span>
 			</td>
 			<td class="tdTopLink">
