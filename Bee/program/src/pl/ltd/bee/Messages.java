@@ -210,6 +210,55 @@ public class Messages {
     public static String ok(){
         return "ok";}
     
+   /** Metoda dostarcza fraze "strona główna" */
+    public static String mainPage(){
+        return "strona główna";}
+    
+   /** Metoda dostarcza fraze "uprawnienia" */
+    public static String priviliges(){
+        return "uprawnienia";}
+    
+     /** Metoda dostarcza fraze "edycja" */
+    public static String edition(){
+        return "edycja";}
+    
+   /** Metoda dostarcza fraze "konfiguracja" */
+    public static String configuration(){
+        return "konfiguracja";}
+    
+   /** Metoda dostarcza fraze "usunięte" */
+    public static String removed(){
+        return "usunięte";}
+    
+   /** Metoda dostarcza fraze "backup" */
+    public static String backup(){
+        return "backup";}
+    
+  /** Metoda dostarcza fraze "nr." */
+    public static String nr(){
+        return "nr.";}
+      
+  /** Metoda dostarcza fraze "administrator" */
+    public static String admin(){
+        return "administrator";}
+    
+   /** Metoda dostarcza fraze "moderator" */
+    public static String moderator(){
+        return "moderator";}
+    
+  /** Metoda dostarcza fraze "aktywny" */
+    public static String active(){
+        return "aktywny";}
+    
+  /** Metoda dostarcza fraze "Zmień uprawnienia" */
+    public static String changePriviliges(){
+        return "Zmień uprawnienia";}
+    
+ /** Metoda dostarcza fraze "Dane użytkownika" */
+    public static String userData(){
+        return "Dane użytkownika";}
+    
+    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
