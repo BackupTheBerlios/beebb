@@ -35,7 +35,7 @@
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
-                out.print(Messages.errorDataBaseConnection());
+                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 out.print(e);
             }
         } %>
@@ -51,17 +51,17 @@
            nazwa=request.getParameter("nazwa_kat");
            opis=request.getParameter("opis_kat");
     
-            if( nazwa.compareTo("")== 0 ) out.print(Messages.errorFieldNameKat());
+            if( nazwa.compareTo("")== 0 ) out.print(Messages.makeError(Messages.errorFieldNameKat()));
                 else  {
-             if ( db_con.dajIdKategorii(nazwa)!=0 ) out.print(Messages.errorNameKat());
+             if ( db_con.dajIdKategorii(nazwa)!=0 ) out.print(Messages.makeError(Messages.errorNameKat()));
                 else
                 { Kategoria k= new Kategoria("0",nazwa,opis,db_con.TAK,db_con.NIE,db_con);
                  if (db_con.insertKategoria(0,k) ) {
-                  out.print(Messages.addKat());
+                  out.print(Messages.makeInfo(Messages.addKat()));
                   nazwa="";
                   opis="";
                 }
-                  else out.print(Messages.errorAddKat());
+                  else out.print(Messages.makeError(Messages.errorAddKat()));
                }
             }
         }
@@ -69,14 +69,14 @@
        if(field.compareTo("usun_kat")==0 )
            {
              String nr=request.getParameter("usun_kat");
-             if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr), false)) out.print(Messages.removeKat());
-                else out.print(Messages.errorRemoveKat());
+             if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr), false)) out.print(Messages.makeInfo(Messages.removeKat()));
+                else out.print(Messages.makeError(Messages.errorRemoveKat()));
            }
         if (field.compareTo("usun_pod")==0 )
            {
              String nr=request.getParameter("usun_pod");
-             if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr), false)) out.print(Messages.removePodforum());
-                else  out.print(Messages.errorRemovePodforum());
+             if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr), false)) out.print(Messages.makeInfo(Messages.removePodforum()));
+                else  out.print(Messages.makeError(Messages.errorRemovePodforum()));
            }
         }
       %> 
@@ -89,8 +89,10 @@
    <br/>
      <% ArrayList lista=db_con.getKategorie(true); %>  
         <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
-            <caption> <font size="5" style="bold">TABELA KATEGORII </font> </caption>
-            <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th> <th>Edycja</th> <th>Usun</th> <th>Dodaj</th> </tr>
+            <caption> <font size="5" style="bold"></font> </caption>
+            <tr> <th><%out.println(Messages.wielka(Messages.rozwin())); %></th> <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
+                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> 
+                 <th><%out.println(Messages.wielka(Messages.add())); %></th> </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(true);  
@@ -99,23 +101,23 @@
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
                  <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
-                 <input align="center" size="15"  type="submit" value="EDYTUJ"/>
+                 <input align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>"/>
              </form> 
              </td> 
-             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="return Info('Czy napewno chcesz usunąc kategorie?');">
+             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
                  <input type="hidden" name="usun_kat" value="<%= kkk.getID() %>"/>
-                 <input  align="center" size="15"  type="submit" value="USUŃ"/>
+                 <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
              </form> 
              </td> 
              <td><form action="./podfora_form.jsp" method="post">
                  <input name="id" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
                  <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
-                 <input align="center" size="15"  type="submit" value="DODAJ"/>
+                 <input align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.add())); %>"/>
              </form> 
              </td>
          </tr>
-            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> Podfora kategorii: <%=kkk.getNazwa() %> </td></tr>
+            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
@@ -125,12 +127,12 @@
                  <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
                  <input name="tytul"  type="hidden"  value="<%= podf.getTytul() %>"/>
                  <input name="opis"   type="hidden"  value="<%= podf.getOpis() %>"/>
-                 <input align="center" size="20"  type="submit" value="EDYTUJ"/>
+                 <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>"/>
              </form> 
              </td> 
-             <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="return Info('Czy napewno chcesz usunąć podforum?');">
+             <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemovePod())+"');" %>">
                  <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
-                 <input align="center" size="20"  type="submit" value="USUŃ"/>
+                 <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
              </form> 
              </td> 
              <td></td>
@@ -142,10 +144,10 @@
         <br/> <br/>
         <form action="./edycja_podforow.jsp" method="post">
             <table align="center" cellpadding="2" cellspacing="1" border="1">
-                <caption> <font size="5" style="bold">DODAWANIE KATEGORII </font> </caption>
-                <tr> <td>NAZWA: </td>  <td> <input  size="50" type="text" name="nazwa_kat" value="<%=nazwa%>"/> </td> </tr>
-                <tr> <td>OPIS:  </td>  <td> <input  size="50" type="text" name="opis_kat" value="<%=opis%>"/>  </td>  </tr>
-                <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="DODAJ"/> </td> </tr>
+                <caption> <font size="5" style="bold"> <%out.println(Messages.wielka(Messages.addingKat())); %> </font> </caption>
+                <tr> <td><%out.println(Messages.wielka(Messages.title())); %>: </td>  <td> <input  size="50" type="text" name="nazwa_kat" value="<%=nazwa%>"/> </td> </tr>
+                <tr> <td><%out.println(Messages.wielka(Messages.describe())); %>:  </td>  <td> <input  size="50" type="text" name="opis_kat" value="<%=opis%>"/>  </td>  </tr>
+                <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.add())); %>"/> </td> </tr>
             </table>       
         </form>
    

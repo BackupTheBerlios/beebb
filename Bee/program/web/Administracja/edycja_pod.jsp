@@ -26,7 +26,7 @@
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
-                out.print(Messages.errorDataBaseConnection());
+                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 out.print(e);
             }
         } %>
@@ -51,16 +51,16 @@
          p.setID( (String) request.getParameter("id_pod_pom") );
          p.setIdKat( (String) request.getParameter("id_kat_pom") );
          boolean ok=true;
-        if( (p.getTytul()).compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum()); 
+        if( (p.getTytul()).compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNamePodforum())); 
          else {
             id_kat=db_con.dajIdKategorii( (String) request.getParameter("kategoria_pom"));
             if( id_kat!=(p.getIdKat()) )   
-              if ( db_con.czyPodforum(id_kat, p.getTytul()) ) { ok=false; wiad.add(Messages.errorNamePodforum()); } 
+              if ( db_con.czyPodforum(id_kat, p.getTytul()) ) { ok=false; wiad.add(Messages.makeError(Messages.errorNamePodforum())); } 
              
              if(ok) { 
                 if ( db_con.updatePodforum(p.getID(), id_kat, p.getTytul(), p.getOpis()) )
-                    wiad.add(Messages.changePod());
-                   else wiad.add(Messages.errorChangePod()); %>
+                    wiad.add(Messages.makeInfo(Messages.changePod()));
+                   else wiad.add(Messages.makeError(Messages.errorChangePod())); %>
                    <jsp:forward page="./edycja_podforow.jsp"/>
                 <%
                 }
@@ -75,13 +75,14 @@
         %>
 
             
-        <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
+        <p align="center"> <a href="./edycja_podforow.jsp"><%out.println(Messages.wielka(Messages.back())); %></a>  </p>
         <br/>
      
     <form action="./edycja_pod.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="0">
-       <caption> Edycja Podforum </caption>
-       <tr>  <th> Tytul </th> <th> Opis </th> <th> Wybierz kategorie: </th></tr>
+       <caption> <%out.println(Messages.wielka(Messages.editionPod())); %> </caption>
+       <tr>  <th> <%out.println(Messages.wielka(Messages.title())); %> </th> <th> <%out.println(Messages.wielka(Messages.describe())); %></th> 
+             <th> <%out.println(Messages.wielka(Messages.chooseKat())); %> : </th></tr>
        <tr> 
            <td> <input size="40" type="text" name="tytul_pom" value="<%=p.getTytul()%>"/> </td>
            <td> <input size="40" type="text" name="opis_pom" value="<%=p.getOpis() %>"/>  </td> 
@@ -95,7 +96,7 @@
         <input type="hidden" name="id_pod_pom" value="<%=p.getID()%>"/>
         <input type="hidden" name="id_kat_pom" value="<%=p.getIdKat()%>"/>
        <tr>
-         <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td> <td> </td> </tr>
+         <td> </td> <td><input size="40" type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/> </td> <td> </td> </tr>
        </tr>
       </table>
     </form>

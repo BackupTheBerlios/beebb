@@ -41,7 +41,7 @@
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
-                out.print(Messages.errorDataBaseConnection());
+                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 out.print(e);
             } }%>
             
@@ -52,8 +52,8 @@
         if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_moderator")==0)|| (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
            if( db_con.zmienUpr(Integer.decode(request.getParameter("id")).intValue(), dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_moderator")), dajTN(request.getParameter("czy_aktywny"))))
 
-              out.print(Messages.changeUpr()); 
-            else out.print(Messages.errorChangeUpr());
+              out.print(Messages.makeInfo(Messages.changeUpr())); 
+            else out.print(Messages.makeError(Messages.errorChangeUpr()));
          }
         }   
             u=db_con.getUsers();  %>

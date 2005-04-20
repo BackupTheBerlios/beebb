@@ -25,7 +25,7 @@
                 db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
                 db_con.setTablePrefix(Config.DATABASE_PREFIX);
                 } catch (Exception e) {
-                   out.print("Blad polaczenia z baza!");
+                     out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 }
             } %>
          
@@ -47,13 +47,13 @@
              k.setOpis((String) request.getParameter("opis_pom"));
 
        
-        if( (k.getNazwa()).compareTo("")== 0 ) wiad.add(Messages.errorFieldNameKat()); 
+        if( (k.getNazwa()).compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNameKat())); 
           else
-            if ( db_con.czyKategoriaInna(k.getNazwa(), k.getID() ) ) wiad.add(Messages.errorNameKat()); 
+            if ( db_con.czyKategoriaInna(k.getNazwa(), k.getID() ) ) wiad.add(Messages.makeError(Messages.errorNameKat())); 
              else
              {
-               if (db_con.updateKategoria(k.getID(), k.getNazwa(), k.getOpis()) ) wiad.add(Messages.changeKat());
-                    else wiad.add(Messages.errorChangeKat()); %>
+               if (db_con.updateKategoria(k.getID(), k.getNazwa(), k.getOpis()) ) wiad.add(Messages.makeInfo(Messages.changeKat()));
+                    else wiad.add(Messages.makeError(Messages.errorChangeKat())); %>
                 <jsp:forward page="./edycja_podforow.jsp"/>
              <%  
              }
@@ -67,20 +67,20 @@
       %>
       
             
-        <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
+        <p align="center"> <a href="./edycja_podforow.jsp"><%out.println(Messages.wielka(Messages.back())); %> </a>  </p>
         <br/>
      
     <form action="./edycja_kat.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="0">
-       <caption> Edycja Kategorii </caption>
-       <tr>  <th> Tytul </th> <th> Opis </th> </tr>
+       <caption> <%out.println(Messages.wielka(Messages.editionKat())); %> </caption>
+       <tr>  <th> <%out.println(Messages.wielka(Messages.title())); %> </th> <th> <%out.println(Messages.wielka(Messages.describe())); %> </th> </tr>
        <tr> 
            <td> <input size="40" type="text" name="tytul_pom" value="<%=k.getNazwa()%>"/> </td>
            <td> <input size="40" type="text" name="opis_pom" value="<%=k.getOpis() %>"/>  </td> 
       </tr>
             <input type="hidden" name="id_kat_pom" value="<%=k.getID()%>"/>
        <tr>
-         <td> </td> <td><input size="40" type="submit" value="   Zmien   "/> </td>
+         <td> </td> <td><input size="40" type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/> </td>
        </tr>
       </table>
     </form>
