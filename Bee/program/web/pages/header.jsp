@@ -73,7 +73,7 @@
 				</span>
 			</td>
 			<td class="tdTopLink">
-				<span class="aTopLink" onclick="top.open('../Administracja/index.htm','Bee')" target="_blank">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
+				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp','Bee')" target="_blank">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
 			</td>
 			<td class="tdTopLink">
 				<span  class="aTopLink" onClick="linkClick('./addUser.jsp')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
