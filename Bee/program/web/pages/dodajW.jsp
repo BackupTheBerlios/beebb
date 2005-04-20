@@ -13,7 +13,7 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB :: Dodaj</title>
+        <title>BeeBB :: <% out.print(Messages.wielka(Messages.add()));%></title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
         <script type="text/javascript" src="./../js/forms.js"></script>
