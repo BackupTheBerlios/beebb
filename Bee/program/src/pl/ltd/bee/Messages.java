@@ -258,11 +258,58 @@ public class Messages {
     public static String userData(){
         return "Dane użytkownika";}
     
+ /** Metoda dostarcza fraze "opis" */
+    public static String describe(){
+        return "opis";}
+    
+ /** Metoda dostarcza fraze "usuń" */
+    public static String remove(){
+        return "usuń";}
+    
+  /** Metoda dostarcza fraze "podfora kategorii" */
+    public static String podKat(){
+        return "podfora kategorii";}
+    
+ /** Metoda dostarcza fraze "dodawanie kategorii" */
+    public static String addingKat(){
+        return "dodawanie kategorii";}
+    
+ /** Metoda dostarcza fraze "zmień" */
+    public static String change(){
+        return "zmień";}
+    
+ /** Metoda dostarcza fraze "edycja kategorii" */
+    public static String editionKat(){
+        return "edycja kategorii";}
+    
+ /** Metoda dostarcza fraze "edycja podforum" */
+    public static String editionPod(){
+        return "edycja podforum";}
+    
+ /** Metoda dostarcza fraze "wybierz kategorie" */
+    public static String chooseKat(){
+        return "wybierz kategorie";}
+    
+ /** Metoda dostarcza fraze "rozwiń" */
+    public static String rozwin(){
+        return "rozwiń";}
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
     
+    
+    /** Metoda dostarcza komunikat z zapytaniem 
+     * @return String z komunikatem
+     */
+    public static String isRemoveKat(){
+        return "Czy napewno chcesz usunąć kategorie?";}
+    
+    /** Metoda dostarcza komunikat z zapytaniem 
+     * @return String z komunikatem
+     */
+    public static String isRemovePod(){
+        return "Czy napewno chcesz usunąć podforum?";}
     
     /** Metoda dostarcza komunikat o wyslaniu emaila aktywacyjnego
      * @return String z komunikatem
