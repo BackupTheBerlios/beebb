@@ -257,6 +257,27 @@ public class Messages {
         return "Zapomniane hasło";}
     
     
+    /** Metoda dostarcza komunikat "Hasła się nie zgadzają"
+     * @return String z komunikatem
+     */
+    public static String passwordNotMatch(){
+        return "Hasła się nie zgadzają";}
+    
+    
+    /** Metoda dostarcza komunikat "Stare hasło się nie zgadza"
+     * @return String z komunikatem
+     */
+    public static String oldPasswordNotMatch(){
+        return "Stare hasło się nie zgadza";}
+    
+    
+    /** Metoda dostarcza komunikat "Hasło powinno mieć przynajmniej Config.MIN_PASSWD znaków"
+     * @return String z komunikatem
+     */
+    public static String passwordTooShort(){
+        return "Hasło powinno mieć przynajmniej " + new String().valueOf(Config.MIN_PASSWD) +" znaków";}
+    
+    
     /** Metoda dostarcza komunikat "Ostatnio zalogowany"
      * @return String z komunikatem
      */
@@ -654,7 +675,6 @@ public class Messages {
      * Metoda dostarcza komunikat o blďż˝dzie wywolania formularza
      * @return String z komunikatem
      */
-    
     public static String formError(){
         return "Błąd formularza.";}
     
@@ -663,17 +683,23 @@ public class Messages {
      * Metoda dostarcza komunikat o poprawnym dodaniu wypowiedzi
      * @return String z komunikatem
      */
-    
-    public static String addMessage(){
+    public static String addedMessage(){
         return "Dodano Wypowiedź";}
     
     
     /**
-     * Metoda dostarcza komunikat o poprawnym dodaniu wÄtka
+     * Metoda dostarcza komunikat o poprawnym dodaniu wątka
      * @return String z komunikatem
      */
-    
-    public static String addThread(){
+    public static String addedThread(){
         return "Dodano Wątek";}
+    
+    
+    /**
+     * Metoda dostarcza komunikat "Edycja Profilu"
+     * @return String z komunikatem
+     */
+    public static String editProfile(){
+        return "Edycja Profilu";}
     
 }

@@ -469,6 +469,30 @@ public class DataBase {
     }
     
     
+    /**
+     * Metoda aktualizuje uzytkownika w bazie danych
+     * @param u obiekt User reprezentujący użytkownika
+     * @return zwraca czy update sie powidl
+     */
+    public boolean updateUser(User u){
+        String aktywny;
+        if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
+        String moderator;
+        if(u.moderator()) moderator=TAK; else moderator=NIE;
+        String admin;
+        if(u.admin()) admin=TAK; else admin=NIE;
+        String showName;
+        if(u.ifShowName()) showName=NIE; else showName=TAK;
+        String showEmail;
+        if(u.ifShowEmail()) showEmail=NIE; else showEmail=TAK;
+        String showGG;
+        if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
+        String showJabber;
+        if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + " = '" + u.getHaslo() + "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
+    }
+    
+    
     /** Ustawia uzytkownika jako aktywnego
      * @param nick login uzytkownika
      * @return T lub N w zaleznosci czy update sie powiodl

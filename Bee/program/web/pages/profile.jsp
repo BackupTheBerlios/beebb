@@ -22,10 +22,10 @@
         <script type="text/javascript" src="./../js/iframe_resize.js"></script>
 
     </head>
-<body onload="resizeProfile()" onresize="resizeProfile()">    
-<table border="0" id="mainTableProfile" width="100%"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
-<tr><td>
-<%@ include file="servletObjects.jsp" %>
+    <body onload="resizeProfile()" onresize="resizeProfile()">    
+        <table border="0" id="mainTableProfile" width="100%"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
+            <tr><td>
+                <%@ include file="servletObjects.jsp" %>
 <%
 //       User user = auth.getUser(requestdb_con);
 //       if (user == null)
@@ -41,23 +41,23 @@
                 User user = db_con.getUser(Integer.parseInt(uid));
                 %>
                 <table align="center" class="tableProfile" border="0">
-                <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td></tr>
+                    <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td></tr>
                 <% if(user.ifShowName()) { %>
-                <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getImie());%></td></tr>
-                <tr><th><% out.print(Messages.subname());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getNazwisko());%></td></tr>
+                    <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getImie());%>"</td></tr>
+                    <tr><th><% out.print(Messages.subname());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getNazwisko());%></td></tr>
                 <% }  if(user.ifShowEmail()) {%>
-                <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getEmail());%></td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getEmail());%></td></tr>
                 <% } if(user.ifShowGG()) {%>
-                <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getGG());%></td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getGG());%></td></tr>
                 <% } if(user.ifShowJabber()) {%>
-                <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getJabber());%></td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getJabber());%></td></tr>
                 <% } %>
-                <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLastLog());%></td></tr>
+                    <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLastLog());%></td></tr>
                 </table>
                 <%
             }
     %>
-    </td></tr>
-    </table>
+            </td></tr>
+        </table>
     </body>
 </html>

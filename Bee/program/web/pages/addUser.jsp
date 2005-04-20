@@ -32,9 +32,9 @@
                 if (db_con.getUser(nickname)!=null) ok=false;
                 if (nickname.compareTo("")==0) ok=false;
             } else { ok=false; }
-            String haslo1=request.getParameter("haslo1");
-            String haslo2=request.getParameter("haslo2");
-            if (haslo1==null || haslo2==null) ok=false;
+            String passwd1=request.getParameter("passwd1");
+            String passwd2=request.getParameter("passwd2");
+            if (passwd1==null || passwd2==null || (passwd1.compareTo(passwd2)!=0)) ok=false;
             String email=request.getParameter("email");
             if (email==null) ok=false;
             else
@@ -52,7 +52,7 @@
             
             
             if (ok) {
-                User u = new User(0,nickname,Crypto.crypt(haslo1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE);
+                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE);
                 if(!db_con.insertUser(u))
                 out.println(Messages.makeError(Messages.errorUserCreate()));
                 else {
@@ -95,9 +95,14 @@
             } else { ok=false; nickname=""; } %>    
                                 <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"></td>
                             </tr> <tr>
-                            <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="haslo1" id="haslo1"></td>
+        <%  if (passwd1.compareTo(passwd2)!=0) { ok=false;
+                    out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordNotMatch()) + "</td></tr><tr>"); }
+        else if (passwd1.length() < Config.MIN_PASSWD) { ok=false;
+            out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordTooShort()) + "</td></tr><tr>"); }
+        %>
+                            <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"></td>
                             </tr> <tr>
-                                <td><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="haslo2" id="haslo2"></td>
+                                <td><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="passwd2" id="passwd2"></td>
                             </tr> <tr>
                             <td><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
                             </tr> <tr>

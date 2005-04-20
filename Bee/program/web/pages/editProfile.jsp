@@ -21,12 +21,15 @@
     
         <%@ include file="servletObjects.jsp" %>
         <table width="100%" border="0" id="tableAuth"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
-            <tr><td>
+            <tr><td align="center">
                 
     <%
                 User user = auth.getUser(request,db_con);
                 if (user!=null) {
-    %>
+                String chd=request.getParameter("chd");
+                if (chd!=null) { out.print("ziew"); }
+%>
+    
                 <form method="POST" action="editProfile.jsp">
                 <table align="center" class="tableProfile" border="0">
                     <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td><td></td></tr>
@@ -35,16 +38,39 @@
                     <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField"><input type="text" name="email" size="35" value="<% out.print(user.getEmail());%>"></td><td class="tdProfileField"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
                     <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField"><input type="text" name="gg" size="35" value="<% out.print(user.getGG());%>"></td><td class="tdProfileField"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
                     <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField"><input type="text" name="jabber" size="35" value="<% out.print(user.getJabber());%>"></td><td class="tdProfileField"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                    <tr><td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
+                    <tr><td colspan="2" align="right"><input type="hidden" name="chd" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
                 </table>
                 </form>
-                <br/><br/>
+                <br/>
+                <%
+                String psw=request.getParameter("psw");
+                if (psw!=null) { 
+                    String oldpasswd = request.getParameter("oldpasswd");
+                    String passwd1 = request.getParameter("passwd1");
+                    String passwd2 = request.getParameter("passwd2");
+                    
+                    if (oldpasswd!= null) {
+                        if (passwd1!=null && passwd2!=null && passwd1.compareTo(passwd2)==0) {
+                            if (passwd1.length() < Config.MIN_PASSWD) out.print(Messages.makeError(Messages.passwordTooShort())); else
+                            if (Crypto.matches(user.getHaslo(),oldpasswd)) {
+                                user.setHaslo(Crypto.crypt(passwd2));
+                                if(!db_con.updateUser(user)) {
+                                    out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                                    auth.zaloguj(user.getLogin(),user.getHaslo(),db_con,konfiguracja,response);
+                                }
+                                else out.print(Messages.makeError(Messages.passwordChanged()));
+                            } else out.print(Messages.makeError(Messages.oldPasswordNotMatch()));
+                        } else out.print(Messages.makeError(Messages.passwordNotMatch()));
+                    } else out.print(Messages.makeError(Messages.oldPasswordNotMatch()));
+                    
+                }
+                %>
                 <form method="POST" action="editProfile.jsp">
                 <table align="center" class="tableProfile" border="0">
                     <tr><th><% out.print(Messages.wielka(Messages.old()) + " " + Messages.password());%></th><td class="tdProfileField"><input type="password" name="oldpasswd" size="35"></td></tr>
                     <tr><th><% out.print(Messages.wielka(Messages.password()));%></th><td class="tdProfileField"><input type="password" name="passwd1" size="35"></td></tr>
                     <tr><th><% out.print(Messages.wielka(Messages.password()) + " " + Messages.oneMoreTime()); %></th><td class="tdProfileField"><input type="password" name="passwd2" size="35"></td></tr>
-                    <tr><td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
+                    <tr><td colspan="2" align="right"><input type="hidden" name="psw" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
                 </table>
                 </form>
                 <br/>
@@ -52,6 +78,7 @@
      <%
                 } else {
                     out.println(Messages.makeError(Messages.errorNotLoggedIn()));
+                    out.println();
                 }
       %>
             </td>

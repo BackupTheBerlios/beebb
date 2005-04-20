@@ -64,7 +64,7 @@
                 Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatna,db_con);
                if (!db_con.insertWypowiedz(watek,wp)) 
                     out.print(Messages.errorDataBaseConnection()); else
-                    out.print(Messages.addMessage());
+                    out.print(Messages.addedMessage());
                 } else
                 if (podforum!=null && text!=null) {
                     String title=request.getParameter("title");
@@ -80,7 +80,7 @@
                         Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,db_con);
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
                             out.print(Messages.errorDataBaseConnection());
-                        else out.print(Messages.addThread()); 
+                        else out.print(Messages.addedThread()); 
                     } else out.print(Messages.errorDataBaseConnection());
                   }
                     out.print("<center><br/><br/><a href=\"./main.jsp"); 
