@@ -275,4 +275,36 @@ public class User {
         this.currentlog=currentLog;
     }
     
+    
+    /** Metoda ustawia prywatność Imienia i Nazwiska
+     * @param czyPrywatne T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setImieNazwiskoPrywatne(boolean czyPrywatne){
+        this.imieNazwiskoPrywatne=czyPrywatne;
+    }
+    
+    
+    /** Metoda ustawia prywatność Emaila
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setEmailPrywatny(boolean czyPrywatny){
+        this.emailPrywatny=czyPrywatny;
+    }
+    
+    
+    /** Metoda ustawia prywatność numeru gadu-gadu
+     * @param czyPrywatne T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setGGPrywatne(boolean czyPrywatne){
+        this.ggPrywatne=czyPrywatne;
+    }
+    
+    
+    /** Metoda ustawia prywatność jid
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setJabberPrywatny(boolean czyPrywatny){
+        this.jabberPrywatny=czyPrywatny;
+    }
+        
 }

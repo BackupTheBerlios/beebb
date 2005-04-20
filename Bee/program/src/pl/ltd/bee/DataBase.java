@@ -465,14 +465,14 @@ public class DataBase {
         if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
         String showJabber;
         if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (0,\"" + u.getLogin() + "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() + "' ,'" + showName + "' ,'" + u.getEmail()  + "' ,'" + showEmail + "' ,'" + u.getGG() + "' ,'" + showGG + "' ,'" + u.getJabber() + "' ,'" +  showJabber +  "','" + u.getLastLog() + "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (" + u.getID() + ",\"" + u.getLogin() + "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() + "' ,'" + showName + "' ,'" + u.getEmail()  + "' ,'" + showEmail + "' ,'" + u.getGG() + "' ,'" + showGG + "' ,'" + u.getJabber() + "' ,'" +  showJabber +  "','" + u.getLastLog() + "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
     }
     
     
     /**
      * Metoda aktualizuje uzytkownika w bazie danych
      * @param u obiekt User reprezentujący użytkownika
-     * @return zwraca czy update sie powidl
+     * @return zwraca czy update sie powiódl
      */
     public boolean updateUser(User u){
         String aktywny;
@@ -489,13 +489,13 @@ public class DataBase {
         if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
         String showJabber;
         if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
-        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + " = '" + u.getHaslo() + "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() + "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() + "'," + USER_EMAIL_PRYWATNY + "='" + showEmail + "'," + USER_GG + "='" + u.getGG() + "'," + USER_GG_PRYWATNE + "='" + showGG + "'," + USER_JABBER + "='" + u.getJabber() + "',"  + USER_JABBER_PRYWATNY + "='" + showJabber + "'," + USER_AKTYWNY + "='" + aktywny + "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + "'," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
     }
     
     
     /** Ustawia uzytkownika jako aktywnego
      * @param nick login uzytkownika
-     * @return T lub N w zaleznosci czy update sie powiodl
+     * @return T lub N w zaleznosci czy update sie powiódl
      */
     public boolean setAktywnyUser(String nick){
         return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='" + TAK + "' WHERE " + USER_LOGIN + "='" + nick + "'");

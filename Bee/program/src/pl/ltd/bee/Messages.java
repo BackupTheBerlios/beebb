@@ -702,4 +702,11 @@ public class Messages {
     public static String editProfile(){
         return "Edycja Profilu";}
     
+    
+    /**
+     * Metoda dostarcza komunikat "Dane zaktualizowano"
+     * @return String z komunikatem
+     */
+    public static String updated(){
+        return "Dane zaktualizowano";}
 }

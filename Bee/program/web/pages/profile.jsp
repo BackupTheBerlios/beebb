@@ -43,7 +43,7 @@
                 <table align="center" class="tableProfile" border="0">
                     <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td></tr>
                 <% if(user.ifShowName()) { %>
-                    <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getImie());%>"</td></tr>
+                    <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getImie());%></td></tr>
                     <tr><th><% out.print(Messages.subname());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getNazwisko());%></td></tr>
                 <% }  if(user.ifShowEmail()) {%>
                     <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getEmail());%></td></tr>
