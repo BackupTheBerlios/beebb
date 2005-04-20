@@ -61,9 +61,10 @@
     <body>
 
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
-      <th>Nr.</th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> <th>Nazwisko</th> <th>Email</th> <th>Nr. GG</th> 
-      <th>Jabber</th> <th>Ostatni login </th> <th>Aktywny</th> <th>Administrator</th>
-      <th>Moderator</th> <th>Edycja</th>
+      <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> 
+      <th><%out.println(Messages.wielka(Messages.subname())); %></th> <th><%out.println(Messages.wielka(Messages.email())); %></th> <th><%out.println(Messages.wielka(Messages.gg())); %></th> 
+      <th><%out.println(Messages.wielka(Messages.jabber())); %></th> <th><%out.println(Messages.wielka(Messages.lastLogged())); %> </th> <th><%out.println(Messages.wielka(Messages.active())); %></th> 
+      <th><%out.println(Messages.wielka(Messages.admin())); %></th><th><%out.println(Messages.wielka(Messages.moderator())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th>
      <% String czy_admin="", czy_moderator="", czy_aktywny="";
         for(int i=0; i<u.size(); i++) 
         { User pom=(User) u.get(i);
@@ -96,7 +97,7 @@
                         <input type="hidden" name="czy_admin" value="<%=czy_admin%>">
                         <input type="hidden" name="czy_moderator" value="<%=czy_moderator%>">
                         <input type="hidden" name="czy_aktywny" value="<%=czy_aktywny%>">
-                        <input size="40" type="submit" value="Edytuj">
+                        <input size="40" type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>">
                      </form>
                 </td>
            </tr> <%       

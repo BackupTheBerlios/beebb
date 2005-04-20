@@ -27,31 +27,31 @@
          %>
     </head
     <body>
-     <a href="uprawnienia.jsp" target="prawa">   Powrot   </a>
+     <a href="uprawnienia.jsp" target="tresc"><%out.print(Messages.wielka(Messages.back()));%></a>
         <table name="tabuser" style="" align="center" cellpadding="2" cellspacing="1" border="1">
-          <th colspan="2">DANE USERA </th>
-          <tr> <td>LOGIN</td> <td><%= dajDana(request.getParameter("login")) %> </td> </tr>
-          <tr> <td>IMIE</td> <td><%= dajDana(request.getParameter("imie")) %> </td> </tr>
-          <tr> <td>NAZWISKO</td> <td><%= dajDana(request.getParameter("nazwisko")) %> </td> </tr>
-          <tr> <td>EMAIL</td> <td><%= dajDana(request.getParameter("email")) %> </td> </tr>
-          <tr> <td>GG</td> <td><%= dajDana(request.getParameter("gg")) %> </td> </tr>
-          <tr> <td>JABBER</td> <td><%= dajDana(request.getParameter("jabber")) %> </td> </tr>
-          <tr> <td>OSTATNI LOGIN</td> <td><%= dajDana(request.getParameter("lastlog")) %> </td> </tr>
+          <th colspan="2">  <%out.print(Messages.wielka(Messages.userData()));%></th>
+          <tr> <td><%out.print(Messages.wielka(Messages.login()));%></td> <td><%= dajDana(request.getParameter("login")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.name()));%></td> <td><%= dajDana(request.getParameter("imie")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.subname()));%></td> <td><%= dajDana(request.getParameter("nazwisko")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.email()));%></td> <td><%= dajDana(request.getParameter("email")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.gg()));%></td> <td><%= dajDana(request.getParameter("gg")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.jabber()));%></td> <td><%= dajDana(request.getParameter("jabber")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.lastLogged()));%></td> <td><%= dajDana(request.getParameter("lastlog")) %> </td> </tr>
         </table>
         <br>
         <form action="uprawnienia.jsp" method="post" target="tresc">
             
         <table align="center">
-         <tr> <th> UPRAWNIENIA </th> </tr>
+         <tr> <th> <%out.print(Messages.wielka(Messages.priviliges()));%> </th> </tr>
             <tr> <td><input type="checkbox" name="czy_aktywny" 
-                      <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>>Aktywny</input> </td> </tr>
+                      <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>><%out.print(Messages.wielka(Messages.active()));%></input> </td> </tr>
            <tr> <td> <input type="checkbox" name="czy_admin" 
-                      <%= dajUpr(request.getParameter("czy_admin")) ? "checked" : "" %>>Administrator</input> </td> </tr>
+                      <%= dajUpr(request.getParameter("czy_admin")) ? "checked" : "" %>><%out.print(Messages.wielka(Messages.admin()));%></input> </td> </tr>
             <tr> <td> <input type="checkbox" name="czy_moderator" 
-                      <%= dajUpr(request.getParameter("czy_moderator")) ? "checked" : "" %>>Moderator</input> </td> </tr>
+                      <%= dajUpr(request.getParameter("czy_moderator")) ? "checked" : "" %>><%out.print(Messages.wielka(Messages.moderator()));%></input> </td> </tr>
           
              <tr> <td>  <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
-                        <input type="submit" value="Zmien uprawnienia"></td> </tr>
+                        <input type="submit" value="<%out.print(Messages.wielka(Messages.changePriviliges()));%>"></td> </tr>
         </table>
          
         </form>

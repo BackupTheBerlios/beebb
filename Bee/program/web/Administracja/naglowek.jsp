@@ -1,3 +1,10 @@
+<%@ page language="java" import="java.util.*"%>
+<%@ page language="java" import="java.lang.*"%>
+<%@ page language="java" import="pl.ltd.bee.*"%>
+<%@ page session="false" %>
+<%@ page errorPage="true"%>
+<%@ page contentType="text/html"%>
+<%@ page pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +30,7 @@
 	<tr>
 	  <td class="tdForumHeader" bgcolor="white" align="center">
 	    <span class="forumTitle">
-               PANEL ADMINISTRACYJNY
+               <%out.print(Messages.wielka(Messages.adminPanel()));%>
 	    </span>
 	  </td>
 	 </tr>		
@@ -32,24 +39,24 @@
 	     <table id="tableMenu" border="0" width="600"> 
 		<tr>
 		  <td class="tdTopLink"> <a class="aTopLink" href="./glowna.jsp" target="tresc">
-                       [] Strona G?ówna</a>
+                       [] <%out.print(Messages.wielka(Messages.mainPage()));%></a>
 		   </td>
 		  <td class="tdTopLink"> <a class="aTopLink" href="./uprawnienia.jsp" target="tresc">
-		       [] Uprawnienia </a>
+		       [] <%out.print(Messages.wielka(Messages.priviliges()));%>    </a>
 		   </td>
 		   <td class="tdTopLink"><a class="aTopLink" href="./edycja_podforow.jsp" target="tresc">
-		       [] Edycja </a>
+		       [] <%out.print(Messages.wielka(Messages.edition()));%> </a>
 		   </td>
 		   <td class="tdTopLink"><a class="aTopLink" href="./konfiguracja.jsp" target="tresc">
-		       [] Konfiguracja </a>
+		       [] <%out.print(Messages.wielka(Messages.configuration()));%> </a>
 		   </td>
 		   <td class="tdTopLink"><a class="aTopLink" href="./edycja_usunietych.jsp" target="tresc">
-		       [] Usuni?te </a>
+		       [] <%out.print(Messages.wielka(Messages.removed()));%> </a>
 		   </td>
 		  </tr>
 		<tr>
 	         <td class="tdTopLink"><a class="aTopLink" href="./backup.jsp" target="tresc">
-			[] Backup </a>
+			[] <%out.print(Messages.wielka(Messages.backup()));%> </a>
 		 </td>
 	        </tr>
 	      </table>
