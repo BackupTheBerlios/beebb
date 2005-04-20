@@ -33,7 +33,7 @@
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
-                out.print(Messages.errorDataBaseConnection());
+                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 out.print(e);
             }
         } %>
@@ -47,13 +47,13 @@
            {
              String nr=request.getParameter("akt_kat");
              if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr),true)) out.print(Messages.activeKat());
-                else out.print(Messages.errorActiveKat());
+                else out.print(Messages.makeError(Messages.errorActiveKat()));
            }
         if (field.compareTo("akt_pod")==0 )
            {
              String nr=request.getParameter("akt_pod");
-             if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr),true)) out.print(Messages.activePodforum());
-                else  out.print(Messages.errorActivePodforum());
+             if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr),true)) out.print(Messages.makeInfo(Messages.activePodforum()));
+                else  out.print(Messages.makeError(Messages.errorActivePodforum()));
            }
         }
       %> 
@@ -62,8 +62,9 @@
    <br/>
      <% ArrayList lista=db_con.getKategorieAll(); int licz=0; %>  
         <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
-            <caption> <font size="5" style="bold">TABELA NIEAKTYWNYCH KATEGORII </font> </caption>
-            <tr> <th>Rozwiń</th> <th>Nr.</th> <th>Nazwa</th> <th>Opis</th>  <th>Aktywacja</th>  </tr>
+            <caption> <font size="5" style="bold"></font> </caption>
+         <tr> <th><%out.println(Messages.wielka(Messages.rozwin())); %></th> <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
+                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.activation())); %></th> </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(false);
@@ -71,27 +72,27 @@
                licz++;
          %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= licz %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
           
-             <td><form action="./edycja_usunietych.jsp" method="post" onsubmit="return Info('Czy napewno chcesz uaktywnić kategorie?');">
+             <td><form action="./edycja_usunietych.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isActiveKat())+"');" %>">
                  <input type="hidden" name="akt_kat" value="<%= kkk.getID() %>"/>
                  <% if (kkk.getAktywna()) { %>
-                 <input disabled=""  align="center" type="submit" value="AKTYWUJ"/>
+                 <input disabled=""  align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
                  <% } else { %>
-                  <input align="center" type="submit" value="AKTYWUJ"/>
+                  <input align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
                  <% } %>
              </form> 
              </td>
          </tr>
-            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> Podfora kategorii: <%=kkk.getNazwa() %> </td></tr>
+            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center">  <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
          %><tr bgcolor="goldenrod"> <td> </td><td><%= licz %>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
-             <td><form  action="./edycja_usunietych.jsp" method="post" onsubmit="return Info('Czy napewno chcesz uaktywnić podforum?');">
+             <td><form  action="./edycja_usunietych.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isActivePod())+"');" %>">
                  <input type="hidden" name="akt_pod" value="<%= podf.getID() %>"/>
                  <% if (!kkk.getAktywna()) { %>
-                 <input disabled=""  align="center" type="submit" value="AKTYWUJ"/>
+                 <input disabled=""  align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
                  <% } else { %>
-                  <input align="center" type="submit" value="AKTYWUJ"/>
+                  <input align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
                  <% } %>
              </form> 
              </td> 

@@ -11,7 +11,7 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB :: Edycja Kategorii</title>
+        <title>BeeBB :: Backup </title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
@@ -24,7 +24,8 @@
                 db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
                 db_con.setTablePrefix(Config.DATABASE_PREFIX);
                 } catch (Exception e) {
-                   out.print("Blad polaczenia z baza!");
+                   out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                out.print(e);
                 }
             } 
            
@@ -50,9 +51,9 @@
 
      <form  action="./backup.jsp" method="post">
        <table align="center" cellpadding="2" cellspacing="1" border="1">
-          <tr>  <th colspan="1"> Backup </th>  </tr>
+          <tr>  <th colspan="1"> <%out.println(Messages.wielka(Messages.backup())); %> </th>  </tr>
           <tr> <td> <input type="hidden" name="zrob_backup"/> 
-                    <input size="40" type="submit" value="Zrób Backup"/>
+                    <input size="40" type="submit" value="<%out.println(Messages.wielka(Messages.doBackup())); %>"/>
           </td> </tr>
         </table>
      </form>
@@ -60,11 +61,11 @@
    <br/>
      <form  action="./backup.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="1">
-       <tr>  <th colspan="2"> Wybierz plik </th>  </tr>
+       <tr>  <th colspan="2"> <%out.println(Messages.wielka(Messages.chooseFile())); %> </th>  </tr>
        <tr> 
            <td> <input size="70" type="file" name="plik" />  </td> 
            <td> 
-               <input type="submit" value="Odtwórz Baze Danych"/> </td>
+               <input type="submit" value="<%out.println(Messages.wielka(Messages.recreateDB())); %>"/> </td>
        </tr>
       </table>
     </form>

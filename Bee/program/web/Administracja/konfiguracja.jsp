@@ -33,7 +33,7 @@
               conf.setUrlForum(request.getParameter("url_forum"));
              try{
                     conf.saveConfig(application);
-                    out.print(Messages.changeConfigMain());
+                    out.print(Messages.makeInfo(Messages.changeConfigMain()));
                 } catch(Exception e) {
                     out.println(e);
                 }
@@ -44,7 +44,7 @@
                String h2=request.getParameter("haslo2");
               if((h1.compareTo("")==0)||(h2.compareTo("")==0)||(h1.compareTo(h2)!=0))
               {
-                  out.print(Messages.errorPassNotMatch());
+                  out.print(Messages.makeError(Messages.errorPassNotMatch()));
                   conf.setPassword("");
               }else
                {  conf.setPassword(h1);
@@ -54,7 +54,7 @@
                   conf.setTablesPrefix(request.getParameter("prefix_tabel"));
                 try{
                     conf.saveConfig(application);
-                    out.print(Messages.changeConfigDb());
+                    out.print(Messages.makeInfo(Messages.changeConfigDb()));
                    } catch(Exception e) {
                     out.println(e);
                    }
@@ -73,7 +73,7 @@
                 
                 try{
                     conf.saveConfig(application);
-                    out.print(Messages.changeConfigBehave());
+                    out.print(Messages.makeInfo(Messages.changeConfigBehave()));
                  } catch(Exception e) {
                     out.println(e);
                  }
@@ -91,7 +91,7 @@
           
                 try{
                     conf.saveConfig(application);
-                    out.print(Messages.changeConfigMail());
+                    out.print(Messages.makeInfo(Messages.changeConfigMail()));
                  } catch(Exception e) {
                     out.println(e);
                  }
@@ -102,43 +102,43 @@
      
     
  <table align="center" cellpadding="2" cellspacing="1" border="1">
-   <caption> <font size="5" style="bold">KONFIGURACJA FORUM </font> </caption>
+   <caption> <font size="5" style="bold"> <%out.print(Messages.wielka(Messages.forumConfiguration())); %> </font> </caption>
        
-   <tr>  <th colspan="2"> Glowne </th> </tr>
+   <tr>  <th colspan="2">  <%out.print(Messages.wielka(Messages.main())); %> </th> </tr>
    <form action="./konfiguracja.jsp" method="post">
-        <tr> <td align="center"> URL Forum </td> <td> <input size="100" type="text" name="url_forum" value="<%=conf.URL_FORUM%>"/>  </td> </tr>
-        <tr> <td colspan="2" align="center"> <input type="submit" value="Zmień"/> </td> </tr>
+        <tr> <td align="center"> <%out.print(Messages.wielka(Messages.urlForum())); %> </td> <td> <input size="100" type="text" name="url_forum" value="<%=conf.URL_FORUM%>"/>  </td> </tr>
+        <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.print(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form>
-   <tr>  <th colspan="2"> Baza Danych </th> </tr>
+   <tr>  <th colspan="2">  <%out.print(Messages.wielka(Messages.db())); %> </th> </tr>
    <form action="./konfiguracja.jsp" method="post">
-       <tr> <td align="center"> Host </td><td> <input size="100" type="text" name="host" value="<%=conf.HOST%>"/>  </td> </tr>
-       <tr> <td align="center"> User </td> <td> <input size="100" type="text" name="user" value="<%=conf.USER%>"/>  </td> </tr>
-       <tr>  <td align="center"> Haslo </td> <td> <input size="100" type="password" name="haslo" value="<%=conf.PASSWORD%>"/>  </td> </tr>
-       <tr>  <td align="center"> Haslo powtorz </td> <td> <input  size="100"type="password" name="haslo2" value="<%=conf.PASSWORD%>"/>  </td> </tr>
-       <tr>  <td align="center"> Nazwa bazy danych </td> <td> <input size="100" type="text" name="bd_nazwa" value="<%=conf.DATABASE%>"/>  </td> </tr>
-       <tr> <td align="center"> Prefix tabel </td> <td> <input size="100" type="text" name="prefix_tabel" value="<%=conf.DATABASE_PREFIX%>"/>  </td> </tr>
-       <tr> <td colspan="2" align="center"> <input type="submit" value="Zmien"/> </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.host())); %> </td><td> <input size="100" type="text" name="host" value="<%=conf.HOST%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.user())); %> </td> <td> <input size="100" type="text" name="user" value="<%=conf.USER%>"/>  </td> </tr>
+       <tr>  <td align="center"> <%out.print(Messages.wielka(Messages.password())); %> </td> <td> <input size="100" type="password" name="haslo" value="<%=conf.PASSWORD%>"/>  </td> </tr>
+       <tr>  <td align="center"> <%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>) </td> <td> <input  size="100"type="password" name="haslo2" value="<%=conf.PASSWORD%>"/>  </td> </tr>
+       <tr>  <td align="center">  <%out.print(Messages.wielka(Messages.dbName())); %> </td> <td> <input size="100" type="text" name="bd_nazwa" value="<%=conf.DATABASE%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.tablePrefix())); %>  </td> <td> <input size="100" type="text" name="prefix_tabel" value="<%=conf.DATABASE_PREFIX%>"/>  </td> </tr>
+       <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.println(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form>
-   <tr>  <th colspan="2"> Zachowanie </th> </tr>
+   <tr>  <th colspan="2">  <%out.print(Messages.wielka(Messages.behave())); %> </th> </tr>
    <form action="./konfiguracja.jsp" method="post">
-       <tr> <td align="center"> Konto goscia </td> <td> <input  size="100"type="text" name="gosc" value="<%=conf.GUEST%>"/>  </td> </tr>
-        <tr> <td align="center"> Id goscia </td> <td> <input  size="100"type="text" name="gosc_id" value="<%=conf.GUEST_ID%>"/>  </td> </tr>
-       <tr> <td align="center"> Max czas sesji </td> <td> <input size="100" type="text" name="log_in_max_age" value="<%=conf.LOG_IN_MAX_AGE%>"/>  </td> </tr>
-       <tr> <td align="center"> Minimalna dludosc hasla </td> <td> <input  size="100"type="text" name="minimum_pass_length" value="<%=conf.MIN_PASSWD%>"/>  </td> </tr>
-       <tr> <td align="center"> Czy autentykowac </td><td> TAK<input type="radio" name="new_user_mail_auth" value="tak" <%if (conf.NEW_USER_MAIL_AUTH){ %>checked="" <%}%>/>  
-                                                             NIE<input type="radio" name="new_user_mail_auth" value="nie" <%if (!conf.NEW_USER_MAIL_AUTH){ %>checked="" <%}%> />   </td> </tr>
-       <tr> <td colspan="2" align="center"> <input type="submit" value="Zmien"/> </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.guestAccount())); %>  </td> <td> <input  size="100"type="text" name="gosc" value="<%=conf.GUEST%>"/>  </td> </tr>
+        <tr> <td align="center"> <%out.print(Messages.wielka(Messages.guestId())); %>  </td> <td> <input  size="100"type="text" name="gosc_id" value="<%=conf.GUEST_ID%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.maxSession())); %>  </td> <td> <input size="100" type="text" name="log_in_max_age" value="<%=conf.LOG_IN_MAX_AGE%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.minPassLength())); %>  </td> <td> <input  size="100"type="text" name="minimum_pass_length" value="<%=conf.MIN_PASSWD%>"/>  </td> </tr>
+       <tr> <td align="center">  <%out.print(Messages.wielka(Messages.newUserMail())); %> </td><td> <%out.print(Messages.wielka(Messages.yes())); %> <input type="radio" name="new_user_mail_auth" value="tak" <%if (conf.NEW_USER_MAIL_AUTH){ %>checked="" <%}%>/>  
+                                                            <%out.print(Messages.wielka(Messages.no())); %>  <input type="radio" name="new_user_mail_auth" value="nie" <%if (!conf.NEW_USER_MAIL_AUTH){ %>checked="" <%}%> />   </td> </tr>
+       <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.println(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form> 
  
-   <tr>  <th colspan="2"> Mailing </th> </tr>
+   <tr>  <th colspan="2">  <%out.print(Messages.wielka(Messages.mailing())); %> </th> </tr>
    <form action="./konfiguracja.jsp" method="post">
-       <tr> <td align="center"> SMTP server </td> <td> <input size="100" type="text" name="smtp" value="<%=conf.SMTP_SERVER%>"/>  </td> </tr>
-       <tr> <td align="center"> Mail from </td> <td> <input size="100" type="text" name="mail" value="<%=conf.MAIL_FROM%>"/>  </td> </tr>
-       <tr> <td align="center"> Rejestracja temat </td> <td> <input size="100"  type="text" name="r_temat" value="<%=conf.REG_MAIL_SUBJECT%>"/>  </td> </tr>
-       <tr> <td align="center"> Rejestracja zawartosci </td><td> <input size="100" type="text" name="r_zawart" value="<%=conf.REG_MAIL_BODY%>"/>  </td> </tr>
-       <tr> <td align="center"> Zapomniany temat </td> <td> <input size="100" type="text" name="z_temat" value="<%=conf.FORGET_MAIL_SUBJECT%>"/>  </td> </tr>
-       <tr> <td align="center"> Zapomniana zawartosc </td><td> <input size="100" type="textarea" name="z_zawart" value="<%=conf.FORGET_MAIL_BODY%>"/>  </td> </tr>
-       <tr> <td colspan="2" align="center"> <input type="submit" value="Zmien"/> </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.smtpServer())); %> </td> <td> <input size="100" type="text" name="smtp" value="<%=conf.SMTP_SERVER%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.mailFrom())); %> </td> <td> <input size="100" type="text" name="mail" value="<%=conf.MAIL_FROM%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.registrationTopic())); %></td> <td> <input size="100"  type="text" name="r_temat" value="<%=conf.REG_MAIL_SUBJECT%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.registrationMessage())); %></td><td> <input size="100" type="text" name="r_zawart" value="<%=conf.REG_MAIL_BODY%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.forgetTopic())); %></td> <td> <input size="100" type="text" name="z_temat" value="<%=conf.FORGET_MAIL_SUBJECT%>"/>  </td> </tr>
+       <tr> <td align="center"> <%out.print(Messages.wielka(Messages.forgetMessage())); %></td><td> <input size="100" type="textarea" name="z_zawart" value="<%=conf.FORGET_MAIL_BODY%>"/>  </td> </tr>
+       <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.println(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form> 
        
  </table>
