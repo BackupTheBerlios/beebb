@@ -32,9 +32,9 @@
  ale nie dziala, za to dziala to:
       autor = new String(autor.getBytes("8859_1"),"UTF-8");
 */
-        
-        String watek=request.getParameter("w");
-        String podforum=request.getParameter("p");
+
+            String watek=request.getParameter("w");
+            String podforum=request.getParameter("p");
             if (watek==null && podforum==null) {
                 out.print(Messages.formError());
             } else {

@@ -91,7 +91,7 @@ public class Messages {
         return "imię";}
     
     /** Metoda dostarcza slowo "nazwisko" */
-    public static String subname(){
+    public static String surename(){
         return "nazwisko";}
     
     /** Metoda dostarcza slowo "e-mail" */
