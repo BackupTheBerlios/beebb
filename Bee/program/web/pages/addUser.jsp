@@ -95,10 +95,12 @@
             } else { ok=false; nickname=""; } %>    
                                 <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"></td>
                             </tr> <tr>
-        <%  if (passwd1.compareTo(passwd2)!=0) { ok=false;
+        <%if(passwd1!=null && passwd2!=null) {
+            if (passwd1.compareTo(passwd2)!=0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordNotMatch()) + "</td></tr><tr>"); }
-        else if (passwd1.length() < Config.MIN_PASSWD) { ok=false;
-            out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordTooShort()) + "</td></tr><tr>"); }
+            if (passwd1.length() < Config.MIN_PASSWD) { ok=false;
+                out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordTooShort()) + "</td></tr><tr>"); }
+        }
         %>
                             <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"></td>
                             </tr> <tr>
