@@ -39,7 +39,7 @@ function resizeMain()
                         for(f=0;f<frames.length;f++)
                         {
                             if (!opera)
-                                wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight;
+                                wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight + 10;
                             else
                                 wypowiedzi[f].height = frames[f].document.getElementById('tableWypowiedz').offsetHeight + 25;
                         }

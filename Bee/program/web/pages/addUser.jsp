@@ -108,7 +108,7 @@
                             </tr> <tr>
                             <td><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"></td>
                             </tr> <tr>
-                                <td><%out.print(Messages.wielka(Messages.surename()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"></td>
+                                <td><%out.print(Messages.wielka(Messages.surname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"></td>
                             </tr> <tr>
             <%
             if (email==null) {

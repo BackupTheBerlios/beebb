@@ -62,7 +62,7 @@
 
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
       <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> 
-      <th><%out.println(Messages.wielka(Messages.subname())); %></th> <th><%out.println(Messages.wielka(Messages.email())); %></th> <th><%out.println(Messages.wielka(Messages.gg())); %></th> 
+      <th><%out.println(Messages.wielka(Messages.surname())); %></th> <th><%out.println(Messages.wielka(Messages.email())); %></th> <th><%out.println(Messages.wielka(Messages.gg())); %></th> 
       <th><%out.println(Messages.wielka(Messages.jabber())); %></th> <th><%out.println(Messages.wielka(Messages.lastLogged())); %> </th> <th><%out.println(Messages.wielka(Messages.active())); %></th> 
       <th><%out.println(Messages.wielka(Messages.admin())); %></th><th><%out.println(Messages.wielka(Messages.moderator())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th>
      <% String czy_admin="", czy_moderator="", czy_aktywny="";

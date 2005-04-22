@@ -32,7 +32,7 @@
           <th colspan="2">  <%out.print(Messages.wielka(Messages.userData()));%></th>
           <tr> <td><%out.print(Messages.wielka(Messages.login()));%></td> <td><%= dajDana(request.getParameter("login")) %> </td> </tr>
           <tr> <td><%out.print(Messages.wielka(Messages.name()));%></td> <td><%= dajDana(request.getParameter("imie")) %> </td> </tr>
-          <tr> <td><%out.print(Messages.wielka(Messages.subname()));%></td> <td><%= dajDana(request.getParameter("nazwisko")) %> </td> </tr>
+          <tr> <td><%out.print(Messages.wielka(Messages.surname()));%></td> <td><%= dajDana(request.getParameter("nazwisko")) %> </td> </tr>
           <tr> <td><%out.print(Messages.wielka(Messages.email()));%></td> <td><%= dajDana(request.getParameter("email")) %> </td> </tr>
           <tr> <td><%out.print(Messages.wielka(Messages.gg()));%></td> <td><%= dajDana(request.getParameter("gg")) %> </td> </tr>
           <tr> <td><%out.print(Messages.wielka(Messages.jabber()));%></td> <td><%= dajDana(request.getParameter("jabber")) %> </td> </tr>
