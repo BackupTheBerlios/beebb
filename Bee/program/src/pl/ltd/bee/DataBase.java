@@ -975,6 +975,7 @@ public class DataBase {
      * @return True jesli operacja powiodla sie
      */
     public boolean moveWatek(int id_watku,int id_from,int id_to){
+        if (id_from == id_to) return true;
         if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+id_watku+")"))
             if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+id_watku+")")) return true;
             else return false;
