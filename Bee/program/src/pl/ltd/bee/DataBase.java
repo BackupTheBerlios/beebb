@@ -950,5 +950,24 @@ public class DataBase {
     }
     
     
+    /** Metoda dostarcza podfora moderowane przez wskazanego uzytkownika
+     * @param user_id identyfikator uzytkownika
+     * @return ArrayList obiektow podforum
+     */
+    public ArrayList getModerowanePodfora(int user_id){
+        ArrayList id_podfor = baza.query("SELECT " + MODERATORZY_ID_PODFORUM + " FROM "+ BEE_MODERATORZY+" WHERE "+MODERATORZY_ID_USER+"="+user_id);
+        if (id_podfor == null) return null;
+        ArrayList wynik = new ArrayList();
+        for(int i=0;i<id_podfor.size();i++) {
+            Hashtable podforum = (Hashtable)id_podfor.get(i);
+            int id = Integer.parseInt((String)podforum.get(MODERATORZY_ID_PODFORUM));
+            Podforum p = getPodforum(id);
+            if (p != null)
+                wynik.add(p);
+        }
+        return wynik;
+        
+    }
+    
 }
 
