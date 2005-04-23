@@ -117,3 +117,12 @@ function resizeSearch(){
 			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableSearch').offsetHeight + 40;
 		}
 }
+
+function tableMorderating(){
+		if (top.frames[1].document.getElementById('tableMorderating')) //zabezpieczenie by nie wyszlo zero		
+		{
+			top.document.getElementById('frameTresc').height = top.frames[1].document.getElementById('tableMorderating').offsetHeight + 30;
+			top.document.getElementById('cellTresc').height = top.frames[1].document.getElementById('tableMorderating').offsetHeight + 40;
+		}
+}
+

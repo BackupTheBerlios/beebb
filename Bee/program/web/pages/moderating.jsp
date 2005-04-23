@@ -23,8 +23,8 @@
 
     </head>
 <%@ include file="servletObjects.jsp" %>
-<body>
-<table width="100%" border="0" id="tableWypowiedz">
+<body onload="tableMorderating()" onresize="tableMorderating()">
+<table width="100%" border="0" id="tableMorderating">
 <tr><td>
 
 <%
@@ -170,6 +170,8 @@
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
+                
+             out.println("<br/><a href=\"./main.jsp?wid="+wat.getID()+"\">"+Messages.wielka(Messages.back())+"</a>");
             }
             else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
         }
