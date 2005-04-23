@@ -81,7 +81,7 @@ th	{
         margin: 0pt;
 	}
 
-.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch{ 
+.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer{ 
         background-color: khaki;
         border: 1px black solid; 
         }

@@ -28,6 +28,7 @@ public class User {
     private boolean aktywny;
     private boolean admin;
     private boolean moderator;
+    private DataBase db;
     
     
     /** Tworzy obiekt User
@@ -45,8 +46,9 @@ public class User {
      * @param lastlog ostatnie logowanie
      * @param currentlog data bierzacego logowania
      * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
+     * @param db objekt bazy danych
      */
-    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator) {
+    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator,DataBase _db) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
@@ -71,6 +73,7 @@ public class User {
             this.admin=true; else this.admin=false;
         if (moderator.compareTo(DataBase.TAK)==0)
             this.moderator=true; else this.moderator=false;
+        this.db = _db;
     }
     
     
@@ -104,6 +107,14 @@ public class User {
      */
     public boolean moderator() {
         return moderator;
+    }
+    
+    /** Metoda sprawdza czy uzytkownik jest moderatorem podanego podforum
+     * @param id_podforum Podforum o ktorego moderowanie pytamy
+     * @return T lub N w zaleznosci czy user jest moderatorem czy nie
+     */
+    public boolean moderator(int id_podforum){
+            return this.db.isModerator(this.ID, id_podforum);
     }
     
     

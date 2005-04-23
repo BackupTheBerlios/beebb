@@ -570,6 +570,13 @@ public class Messages {
     
     
     /**
+     * Metoda dostarcza komunikat bledu niewystarczajacych uprawnien
+     * @return String z komunikatem o braku wystarczajacych uprawnien
+     */
+    public static String errorPermissionDenied(){
+        return "Nie wystarczające uprawnienia";}
+    
+    /**
      * Metoda dostarcza komunikat bledu informujacy ze pole jest wymagane
      * @param field String z nazwa pola
      * @return String z komunikatem o tym ze pole jest wymagane
@@ -924,5 +931,12 @@ public class Messages {
      * @return String z komunikatem
      */
     public static String updated(){
+        return "Dane zaktualizowano";}
+	
+     /**
+     * Metoda dostarcza komunikat "Operacja powiodla sie"
+     * @return Komunikat o poprawnym przebiegu operacji
+     */
+    public static String actionDone(){
         return "Dane zaktualizowano";}
 }
