@@ -270,6 +270,23 @@ CREATE TABLE `Bee_Privilages` (
 
 
 
+--
+-- Tabela okreslajaca zabanowanych uzytkownikow na podforach
+--
+
+DROP TABLE IF EXISTS `Bee_Banned_Users`;
+CREATE TABLE `Bee_Banned_Users` (
+  `ID_User` int(10) unsigned NOT NULL default '0',
+  `ID_Podforum` int(10) unsigned NOT NULL default '0',
+  KEY `id_u` (`ID_User`),
+  KEY `id_p` (`ID_Podforum`),
+  CONSTRAINT `Bee_Banned_Users_ibfk_1` FOREIGN KEY (`ID_User`) REFERENCES `Bee_Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `Bee_Banned_Users_ibfk_2` FOREIGN KEY (`ID_Podforum`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela okreslajaca zabanowanych uzytkownikow na podforach';
+
+
+
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
