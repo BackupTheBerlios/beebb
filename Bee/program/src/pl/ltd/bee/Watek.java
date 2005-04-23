@@ -21,6 +21,8 @@ public class Watek {
     private String Data;
     private boolean Prywatny;
     private boolean Aktywny;
+    private boolean Zablokowany;
+    private boolean Zamkniety;
     private DataBase db;
     
     /** Creates a new instance of Watek
@@ -41,6 +43,8 @@ public class Watek {
         if (Prywatny != null) this.Prywatny=Prywatny.compareTo(DataBase.TAK) == 0;
         else this.Prywatny = false;
         this.Aktywny = true;
+        this.Zablokowany = true;
+        this.Zamkniety = false;
         this.db=db;
     }
     
@@ -94,6 +98,23 @@ public class Watek {
     public boolean czyAktywny() {
         return Aktywny;
     }
+    
+    
+    /** Zwraca czy watek jest Zablokowany
+     * @return true w przypadku gdy watek jest Zablokowany, wpp false
+     */
+    public boolean czyZablokowany() {
+        return Zablokowany;
+    }
+    
+    
+    /** Zwraca czy watek jest zamkniety
+     * @return true w przypadku gdy watek jest zamkniety, wpp false
+     */
+    public boolean czyZamkniety() {
+        return Zamkniety;
+    }
+    
     
     /** Podaje liczbe aktywnych wypowiedzi w wątku
      * @return liczba aktywnych wypowiedzi w wątku
