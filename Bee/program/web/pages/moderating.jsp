@@ -63,24 +63,70 @@
                     //kasowanie wypowiedzi jesli ma sie prawo
                     if (user.moderator(pod.getID()))
                         if (db_con.zmienAktywnoscWypowiedzi(wpid,false))
-                            out.println(Messages.makeError(Messages.wielka(Messages.actionDone())));
+                            out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
                 if (op.compareTo("ban") == 0)
                 {
                     //banowanie user'a
+                    String s_autor = request.getParameter("id_autor");
+                    if (s_autor == null) out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
+                    else
+                    {
+                        int id_autor = Integer.parseInt(s_autor);
+                        if (user.moderator(pod.getID()))
+                            if (db_con.banUser(id_autor,pod.getID(),true))
+                                out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
+                            else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
+                        else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                    }
                 }
                 if (op.compareTo("move") == 0)
                 {
                     //przesuwanie watku
+                    %>
+                        <form action="moderating.jsp" method="get">
+                            <table border="0" class="tableMovePodforum" align="center">
+                            <tr><th><%out.print(Messages.wielka(Messages.moveThread())+" ('"+ wat.getTemat() +"')");%></th></tr>
+                            <tr><td class="tdMoveTo" align="center">
+                            <select name="moveto">
+                            <%
+                                ArrayList podfora = db_con.getModerowanePodfora(user.getID());
+                                for(int i=0;i<podfora.size();i++)
+                                {
+                                    Podforum p = (Podforum)podfora.get(i);
+                                    out.println("<option value=\""+p.getID()+"\">" + p.getTytul()+" ("+ p.getOpis() +")</option>");
+                                }
+                            %>
+                            </select>
+                            <input type="hidden" name="wpid" value="<%out.print(s_wpid);%>" />
+                            <input type="hidden" name="op" value="moveto" />
+                            </td></tr>
+                            <tr><td align="center" class="tdMoveTo"><input type="submit" value="<% out.print(Messages.wielka(Messages.move()));%>"</td></tr>
+                            </table>
+                        </form>
+                    <%
                 }
+                if (op.compareTo("moveto") == 0)
+                {
+                    //przesuwanie watku na dobre
+                    String s_moveto = request.getParameter("moveto");
+                    if (s_moveto == null) out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
+                    else
+                    {
+                        int moveto = Integer.parseInt(s_moveto);
+                        if (db_con.moveWatek(wat.getID(),pod.getID(),moveto))
+                                out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
+                            else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
+                    }
+                }                
                 if (op.compareTo("block") == 0)
                 {
                     //blokowanie watku
                     if (user.moderator(pod.getID()))
                         if (db_con.blokowanieWatku(wat.getID(),true))
-                            out.println(Messages.makeError(Messages.wielka(Messages.actionDone())));
+                            out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
@@ -89,7 +135,7 @@
                     //zamkniecie watku
                     if (user.moderator(pod.getID()))
                         if (db_con.zamykanieWatku(wat.getID(),true))
-                            out.println(Messages.makeError(Messages.wielka(Messages.actionDone())));
+                            out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }

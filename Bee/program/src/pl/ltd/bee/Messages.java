@@ -41,6 +41,13 @@ public class Messages {
         return "<p class=\"info\">"+s+"</p>";
     }
     
+    /** Metoda zamienia podany napis na komunikat powiadamiajacy o powodzeniu
+     * @param s Komunikat
+     * @return Zwraca podany komunikat zawarty w znacznikach xhtml
+     */
+    public static String makeSuccess(String s){
+        return "<p class=\"success\">"+s+"</p>";
+    }
     
     
     //_______________________________________________________________________________________________
@@ -158,6 +165,10 @@ public class Messages {
     public static String groups(){
         return "grupy";}
     
+    /** Metoda dostarcza slowo "przenies" */
+    public static String move(){
+        return "przenieś";}
+    
     /** Metoda dostarcza slowo "profil" */
     public static String profile(){
         return "profil";}
@@ -252,11 +263,11 @@ public class Messages {
     
   /** Metoda dostarcza fraze "Zmień uprawnienia" */
     public static String changePriviliges(){
-        return "Zmień uprawnienia";}
+        return "zmień uprawnienia";}
     
  /** Metoda dostarcza fraze "Dane użytkownika" */
     public static String userData(){
-        return "Dane użytkownika";}
+        return "dane użytkownika";}
     
  /** Metoda dostarcza fraze "opis" */
     public static String describe(){
@@ -938,5 +949,12 @@ public class Messages {
      * @return Komunikat o poprawnym przebiegu operacji
      */
     public static String actionDone(){
-        return "Dane zaktualizowano";}
+        return "operacja powiodła się";}
+	
+     /**
+     * Metoda dostarcza komunikat "przenies watek"
+     * @return Komunikat o poprawnym przebiegu operacji
+     */
+    public static String moveThread(){
+	    return "przenieś wątek";}	
 }

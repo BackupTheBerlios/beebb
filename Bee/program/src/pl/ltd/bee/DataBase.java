@@ -965,9 +965,20 @@ public class DataBase {
             if (p != null)
                 wynik.add(p);
         }
-        return wynik;
-        
+        return wynik;        
     }
     
+    /** Metoda przenosi watek z jednego podforum do drugiego
+     * @param id_watku Identyfikator przenoszonego watku
+     * @param id_from Identyfikator podforum z ktorego usuwamy
+     * @param id_to Identyfikator podforum do ktorego przenosimy
+     * @return True jesli operacja powiodla sie
+     */
+    public boolean moveWatek(int id_watku,int id_from,int id_to){
+        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+id_watku+")"))
+            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+id_watku+")")) return true;
+            else return false;
+        else return false;
+    }
 }
 
