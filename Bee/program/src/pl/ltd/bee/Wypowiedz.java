@@ -104,8 +104,8 @@ public class Wypowiedz {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //strona.println("<body class=\"bodyWypowiedz\">");
-        strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">");
-        strona.println("<tr>");
+        strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");
+        strona.println("<tr><td><table cellpadding=\"4\" cellspacing=\"1\" width=\"100%\"><tr>");
         strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
         strona.println("<span class=\"linkAutor\">");
         if (Config.GUEST_ID == this.ID_Autora)
@@ -120,16 +120,16 @@ public class Wypowiedz {
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
         strona.println(Tekst);
         strona.println("</td>");
-        strona.println("</tr>");
-        strona.println("<tr><td colspan=\"2\" class=\"tdWypowiedzModer\">");
-        strona.println("<table width=\"100%\" border=\"0\"><tr><td align=\"left\" height=\"15\">");
-        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=edit\" class=\"aEditWypowiedz\"><img src=\"../images/edit.gif\" alt=\"Edytuj\" border=\"0\" width=\"25\"/></a>"); //TODO MESSAGES
+        strona.println("</tr></table></tr>");
+        strona.println("<tr><td class=\"tdWypowiedzModer\">");
+        strona.println("<table width=\"100%\" border=\"0\"><tr><td align=\"left\">");
+        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=edit\" class=\"aEditWypowiedz\"><img src=\"../images/edit.gif\" alt=\"Edytuj\" border=\"0\"/></a>"); //TODO MESSAGES
         strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=delete\" class=\"aDeleteWypowiedz\"><img src=\"../images/delete.gif\" alt=\"Skasuj\" border=\"0\"/></a>");
         strona.println("</td><td align=\"right\">");
-        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&id_autor="+this.ID_Autora+"&op=ban\" class=\"aAutorBanWypowiedz\"><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\" width=\"25\"/></a>");//INFO tu nie wyciagam ID_KAT boolean i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
-        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=move\" class=\"aMoveWatek\"><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\" width=\"25\"/></a>");//INFO tu nie wyciagam ID_KAT boolean i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
+        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&id_autor="+this.ID_Autora+"&op=ban\" class=\"aAutorBanWypowiedz\"><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></a>");//INFO tu nie wyciagam ID_KAT boolean i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
+        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=move\" class=\"aMoveWatek\"><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/></a>");//INFO tu nie wyciagam ID_KAT boolean i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
         strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=block\" class=\"aBlockWatek\"><img src=\"../images/lock.png\" alt=\"Zablokuj\" border=\"0\" /></a>");
-        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=close\" class=\"aCloseWatek\"><img src=\"../images/cut.gif\" alt=\"Zamknij\" border=\"0\" width=\"25\"/></a>");//INFO tu nie wyciagam ID_KAT boolean i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
+        strona.println("<a href=\"moderating.jsp?wpid="+this.ID+"&op=close\" class=\"aCloseWatek\"><img src=\"../images/cut.gif\" alt=\"Zamknij\" border=\"0\"/></a>");//INFO tu nie wyciagam ID_KAT boolean i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
         strona.println("</td></tr></table>");
         strona.println("</td></tr>");
         strona.println("</table>");
