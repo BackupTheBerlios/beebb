@@ -24,7 +24,7 @@
     </head>
 <%@ include file="servletObjects.jsp" %>
 <body>
-<table width="100%" border="0" id="tableModerating">
+<table width="100%" border="0" id="tableWypowiedz">
 <tr><td>
 
 <%
@@ -52,11 +52,42 @@
                 if ((wyp == null) || (wat == null) || (pod == null))
                 {
                     out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
-                    return;
+                    return;//TODO Jesli to dziala to na pewno nie wygeneruje poprawnego xhtml :D
                 }
                 if (op.compareTo("edit") == 0)
                 {
                     //edycja wypowiedzi
+                    if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()))
+                    {
+                    %>
+                        <form action="moderating.jsp" method="get">
+                            <table border="0" class="tableEditWypowiedz" align="center">
+                            <tr><th><%out.print(Messages.wielka(Messages.edition()));%></th></tr>
+                            <tr><td class="tdEditWypowiedz" align="center">
+                            <textarea cols="100" rows="5" name="newText"><%out.print(wyp.getTekst());%></textarea>
+                            <input type="hidden" name="wpid" value="<%out.print(s_wpid);%>" />
+                            <input type="hidden" name="op" value="edited" />
+                            </td></tr>
+                            <tr><td align="center" class="tdEditWypowiedz"><input type="submit" value="<% out.print(Messages.wielka(Messages.save()));%>"</td></tr>
+                            </table>
+                        </form>
+                    <%
+                    }
+                    else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                }
+                if(op.compareTo("edited") == 0)
+                {
+                    String text = request.getParameter("newText");
+                    if (text != null)
+                    if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()))
+                    {
+                        text = new String(text.getBytes("8859_1"),"UTF-8");
+                        if (db_con.zmienTekstWypowiedzi(wyp,wat.getID(),text))
+                            out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
+                        else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
+                    }
+                    else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                    else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
                 }
                 if(op.compareTo("delete") == 0)
                 {

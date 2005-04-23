@@ -57,6 +57,10 @@ public class Messages {
     public static String or(){
         return "lub";}
     
+    /** Metoda dostarcza lacznika "zapamiętaj" */
+    public static String save(){
+        return "zapamiętaj";}
+    
     /** Metoda dostarcza fraze nowy uzytkownik */
     public static String newUser(){
         return "nowy użytkownik";}

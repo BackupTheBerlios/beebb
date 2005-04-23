@@ -981,5 +981,22 @@ public class DataBase {
             else return false;
         else return false;
     }
+    
+    /** Metoda podmienia tekst wypowiedzi. Powoduje to wprowadzenie nowej wypoweidzi i wstawienie jej do dotychczasowego watku
+     * @param w Obiekt wypowiedz w ktorym zmieniamy tekst
+     * @param id_watku Identyfikator watku ktory jest wlascicielem zmienianej wypowiedzi
+     * @param newText Nowa zawartosc wypowiedzi
+     * @return True w przypadku poprawnej zmiany
+     */
+    public boolean zmienTekstWypowiedzi(Wypowiedz w, int id_watku, String newText){
+        if (baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0," + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getData() + "' , \"" + newText + "\",'" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
+            Hashtable wid = getObject("SELECT "+WYPOWIEDZ_ID+" FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + newText + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
+            if (wid==null) return false;
+            if (baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI+"("+WATKI_WYPOWIEDZI_ID_WATKU+","+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+") VALUES (" + id_watku + "," + wid.get(WYPOWIEDZ_ID) + ")"))
+                return baza.dmlQuery("DELETE FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+ w.getID());
+            else return false;
+        }
+        return false;
+    }
 }
 
