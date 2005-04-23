@@ -65,6 +65,7 @@ public class DataBase {
     static final String BEE_FORGET_PASSWD_BASE = "Forget_Passwd";
     
     static final String BEE_NEW_USER_BASE = "New_User";
+    static final String BEE_BANNED_USERS_BASE = "Banned_Users";
     
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
@@ -86,6 +87,7 @@ public class DataBase {
     static String BEE_FORGET_PASSWD = "Forget_Passwd";
     
     static String BEE_NEW_USER = "New_User";
+    static String BEE_BANNED_USERS = "Banned_Users";
     
     /**
      * Stala reprezentujaca nazwe pola w tabeli w bazie danych
@@ -163,6 +165,9 @@ public class DataBase {
     static final String MODERATORZY_ID_PODFORUM = "ID_PODFORUM";
     static final String MODERATORZY_ID_USER = "ID_USER";
     
+    static final String BANNED_USERS_ID_USER = "ID_USER";
+    static final String BANNED_USERS_ID_PODFORUM = "ID_PODFORUM";
+    
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     ConnectorDB baza;
     
@@ -220,6 +225,7 @@ public class DataBase {
         BEE_MODERATORZY = pref + "_" + BEE_MODERATORZY_BASE;
         BEE_FORGET_PASSWD = pref + "_" + BEE_FORGET_PASSWD_BASE;
         BEE_NEW_USER = pref + "_" + BEE_NEW_USER_BASE;
+        BEE_BANNED_USERS = pref + "_" + BEE_BANNED_USERS_BASE;
     }
     
     /**
@@ -927,6 +933,20 @@ public class DataBase {
         ArrayList users_id = baza.query("SELECT " + MODERATORZY_ID_USER + " FROM "+ BEE_MODERATORZY+" WHERE ("+MODERATORZY_ID_PODFORUM+"="+podforum_id+") AND (" +MODERATORZY_ID_USER+"="+user_id+")");
         if (users_id.size() > 0) return true;
             else return false;
+    }
+    
+    
+    /**
+     * Metoda pozwala zabanowac uzytkownika lub <i>odbanowac - to sie moze zakonczyc niepowodzeniem, bo nie bylo polaczenia z baza lub nie bylo co odbanowywac</i>
+     * @param user_id identyfikator uzytkownika
+     * @param podforum_id identyfikator podforum
+     * @param ban okresla czy nalezy zabanowac uzytkownika czy odbanowac
+     * @return True jest operacja powiodla sie False w p.p.
+     */
+    public boolean banUser(int user_id, int id_podforum, boolean ban){
+        if (ban)
+            return baza.dmlQuery("INSERT INTO "+BEE_BANNED_USERS+"("+BANNED_USERS_ID_USER+","+BANNED_USERS_ID_PODFORUM+") VALUES("+user_id+","+id_podforum+")");
+        else return baza.dmlQuery("DELETE FROM "+BEE_BANNED_USERS+" WHERE ("+BANNED_USERS_ID_USER+"="+user_id+")AND("+BANNED_USERS_ID_PODFORUM+"="+id_podforum+")");
     }
     
     
