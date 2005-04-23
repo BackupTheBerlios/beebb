@@ -558,7 +558,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(int id_forum, Kategoria k) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+k.getNazwa()+"' ,'"+k.getOpis()+"', '" + TAK + "', '" + NIE + "')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES (0, '"+k.getNazwa()+"' ,'"+k.getOpis()+"', '" + (k.czyAktywna()?TAK:NIE) + "', '" + (k.czyPrywatna()?TAK:NIE) + "')")) {
             Hashtable kat = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '"+k.getNazwa()+"'");
             if (kat==null) return false;
             
@@ -579,7 +579,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+p.getTytul()+"' ,'"+p.getOpis()+"', '" + TAK + "', '" + NIE + "')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES (0, '"+p.getTytul()+"' ,'"+p.getOpis()+"', '" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "')")) {
             Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
             if (pf==null) return false;
             
@@ -596,9 +596,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertWypowiedz(String id_wat, Wypowiedz w) {
-        String prywatna;
-        if (w.czyPrywatna()) prywatna=DataBase.TAK; else prywatna=DataBase.NIE;
-        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getData() + "' , \"" + w.getTekst() + "\",'" + prywatna + "')")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0, " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getData() + "' , \"" + w.getTekst() + "\",'" + (w.czyPrywatna()?TAK:NIE) + "')")) {
             Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + w.getTekst() + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
             if (wid==null) return false;
             return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get(WYPOWIEDZ_ID) + ")");
@@ -614,13 +612,11 @@ public class DataBase {
      * @return zwraca obiekt Watek jeżeli insert się powiódł, wpp zwraca null
      */
     public Watek insertWatek(String id_podforum, Watek w) {
-        String prywatny;
-        if (w.czyPrywatny()) prywatny=DataBase.TAK; else prywatny=DataBase.NIE;
-        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES (0, " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , '" + w.getData() + "','" + prywatny + "')")) {
+        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES (0, " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , '" + w.getData() + "','" + (w.czyPrywatny()?TAK:NIE) + "')")) {
             Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WATEK_DATA + " = '" + w.getData() + "' AND " + WATEK_TEMAT + " = '" + w.getTemat() + "'");
             if (watek==null) return null;
             if (!baza.dmlQuery("INSERT INTO " + BEE_PODFORA_WATKI + " VALUES (" + id_podforum + "," + watek.get(WATEK_ID) + ")")) return null;
-            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),prywatny,(String)watek.get(WATEK_DATA),this);
+            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(w.czyPrywatny()?TAK:NIE),(String)watek.get(WATEK_DATA),this);
         }
         return null;
     }

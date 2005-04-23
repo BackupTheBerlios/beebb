@@ -122,6 +122,14 @@ public class Podforum {
     public boolean czyPrywatne() {
         return Prywatne;
     }
+
+        
+    /** Zwraca czy podforum jest aktywne
+     * @return true w przypadku gdy podforum jest aktywne, wpp false
+     */
+    public boolean czyAktywne() {
+        return Aktywne;
+    }
     
     /**
      * Metoda wypisuje na strone glowna liste watkow

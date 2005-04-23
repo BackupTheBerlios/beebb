@@ -82,14 +82,14 @@ public class Kategoria {
      /** Zwraca  pole aktywna
      * @return boolean
      */
-    public boolean getAktywna() {
+    public boolean czyAktywna() {
         return Aktywna;
     }
     
     /** Zwraca  pole prywatna
      * @return boolean
      */
-    public boolean getPrywatna() {
+    public boolean czyPrywatna() {
         return Prywatna;
     }
     

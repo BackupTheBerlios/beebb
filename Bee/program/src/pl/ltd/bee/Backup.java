@@ -155,8 +155,8 @@ public class Backup {
                   plik.write("     <id>"+k.getID()+"</id> \n" );
                   plik.write("     <tytul>"+k.getNazwa()+"</tytul> \n" );
                   plik.write("     <opis>"+k.getOpis()+"</opis> \n" );
-                  plik.write("     <aktywna>"+k.getAktywna()+"</aktywna> \n" );
-                  plik.write("     <prywatna>"+k.getPrywatna()+"</prywatna> \n" );
+                  plik.write("     <aktywna>"+k.czyAktywna()+"</aktywna> \n" );
+                  plik.write("     <prywatna>"+k.czyPrywatna()+"</prywatna> \n" );
                   zapiszPodfora(k.getID());
                   plik.write("    </kategoria> \n" );
             }  
