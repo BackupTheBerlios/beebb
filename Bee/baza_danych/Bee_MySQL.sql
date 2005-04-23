@@ -94,6 +94,9 @@ CREATE TABLE `Bee_Watki` (
   `Temat` varchar(100) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Prywatny` enum('T','N') NOT NULL default 'N',
+  `Aktywny` enum('T','N') NOT NULL default 'T',
+  `Zablokowany` enum('T','N') NOT NULL default 'N',
+  `Zamkniety` enum('T','N') NOT NULL default 'N',
   PRIMARY KEY  (`ID`),
   KEY `id_aut` (`ID_autora`),
   CONSTRAINT `Bee_Watki_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
@@ -111,7 +114,8 @@ CREATE TABLE `Bee_Wypowiedzi` (
   `Autor` varchar(40) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
   `Tekst` text NOT NULL,
-  `Prywatny` enum('T','N') NOT NULL default 'N',
+  `Prywatna` enum('T','N') NOT NULL default 'N',
+  `Aktywna` enum('T','N') NOT NULL default 'T',
   PRIMARY KEY  (`ID`),
   CONSTRAINT `Bee_Wypowiedzi_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z wypowiedziami';
