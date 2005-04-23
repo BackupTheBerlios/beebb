@@ -53,7 +53,7 @@
     
             if( nazwa.compareTo("")== 0 ) out.print(Messages.makeError(Messages.errorFieldNameKat()));
                 else  {
-             if ( db_con.dajIdKategorii(nazwa)!=0 ) out.print(Messages.makeError(Messages.errorNameKat()));
+             if ( db_con.dajIdKategorii(nazwa)!= -1 ) out.print(Messages.makeError(Messages.errorNameKat()));
                 else
                 { Kategoria k= new Kategoria("0",nazwa,opis,db_con.TAK,db_con.NIE,db_con);
                  if (db_con.insertKategoria(0,k) ) {

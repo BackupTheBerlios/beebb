@@ -49,7 +49,8 @@
        
         if( (k.getNazwa()).compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNameKat())); 
           else
-            if ( db_con.czyKategoriaInna(k.getNazwa(), k.getID() ) ) wiad.add(Messages.makeError(Messages.errorNameKat())); 
+          {  int id_k=db_con.dajIdKategorii(k.getNazwa());
+            if ( (id_k != -1) && ( id_k != k.getID() ) ) wiad.add(Messages.makeError(Messages.errorNameKat())); 
              else
              {
                if (db_con.updateKategoria(k.getID(), k.getNazwa(), k.getOpis()) ) wiad.add(Messages.makeInfo(Messages.changeKat()));
@@ -57,7 +58,8 @@
                 <jsp:forward page="./edycja_podforow.jsp"/>
              <%  
              }
-            } 
+          } 
+         } 
       
        } 
  
