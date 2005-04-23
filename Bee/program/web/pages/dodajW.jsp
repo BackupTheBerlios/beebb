@@ -61,7 +61,7 @@
                String prywatna=DataBase.NIE;
                if(wt.czyPrywatny()) prywatna=DataBase.TAK;
                 
-                Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatna,db_con);
+                Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatna,DataBase.TAK,db_con);
                if (!db_con.insertWypowiedz(watek,wp)) 
                     out.print(Messages.errorDataBaseConnection()); else
                     out.print(Messages.addedMessage());
@@ -73,11 +73,11 @@
                     Watek wt;
                     String prywatne=DataBase.NIE;
                     if(pf.czyPrywatne()) prywatne=DataBase.TAK;
-                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,db_con);
+                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,db_con);
                     wt = db_con.insertWatek(podforum,wt);
                     
                     if (wt!=null) { 
-                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,db_con);
+                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,DataBase.TAK,db_con);
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
                             out.print(Messages.errorDataBaseConnection());
                         else out.print(Messages.addedThread()); 

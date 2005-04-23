@@ -27,9 +27,10 @@ public class Wypowiedz {
      * @param Data data wypowiedzi
      * @param Tekst tresc wypowiedzi
      * @param Prywatna okresla czy wypowiedz jest prywatna
+     * @param Aktywna okresla czy wypowiedz jest aktywna
      * @param db Obiekt DataBase
      */
-    public Wypowiedz(String ID,String ID_Autora,String Autor,String Data, String Tekst, String Prywatna, DataBase db) {
+    public Wypowiedz(String ID,String ID_Autora,String Autor,String Data, String Tekst, String Prywatna, String Aktywna, DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autora=Integer.decode(ID_Autora).intValue();
         this.Autor=Autor;
@@ -37,7 +38,8 @@ public class Wypowiedz {
         this.Tekst=Tekst;
         if (Prywatna != null) this.Prywatna = Prywatna.compareTo(DataBase.TAK) == 0;
         else this.Prywatna = false;
-        this.Aktywna = true;
+        if (Aktywna != null) this.Aktywna = Aktywna.compareTo(DataBase.TAK) == 0;
+        else this.Aktywna = false;
         this.db=db;
     }
     
