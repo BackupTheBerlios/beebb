@@ -640,13 +640,13 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca id kategorii, jezeli jej nie ma to 0
+     * Metoda zwraca id kategorii, jezeli jej nie ma to -1
      * @param tytul tytul kategorii
      * @return int numer kategorii
      */
     public int dajIdKategorii(String tytul){
         Hashtable kategoria = getObject("SELECT "+KATEGORIA_ID+" FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '" +tytul+ "'");
-        if (kategoria==null) return 0;
+        if (kategoria==null) return -1;
         return  Integer.decode((String) kategoria.get(KATEGORIA_ID)).intValue();
     }
     
@@ -854,18 +854,6 @@ public class DataBase {
      **/
     public boolean zamykanieWatku(int id, boolean czy_zamkniety){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZAMKNIETY+"='"+ (czy_zamkniety?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
-    }
-    
-    /**
-     * Metoda sprawdz czy kategoria o podanym tytult juz istnieje i czy ma inny id
-     * @param tytul tytul kategorii
-     * @param id kategorii
-     * @return zwraca true jezeli kategoria o podanym tytule juz istnieje
-     */
-    public boolean czyKategoriaInna(String tytul, int id){
-        Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '" +tytul+ "' and "+KATEGORIA_ID+"<>"+id);
-        if (kategoria==null) return false;
-        return true;
     }
     
     /**
