@@ -20,6 +20,7 @@ public class Watek {
     private String Temat;
     private String Data;
     private boolean Prywatny;
+    private boolean Aktywny;
     private DataBase db;
     
     /** Creates a new instance of Watek
@@ -39,6 +40,7 @@ public class Watek {
         this.Data=Data;
         if (Prywatny != null) this.Prywatny=Prywatny.compareTo(DataBase.TAK) == 0;
         else this.Prywatny = false;
+        this.Aktywny = true;
         this.db=db;
     }
     
@@ -85,11 +87,25 @@ public class Watek {
         return Prywatny;
     }
     
-    /** to do usuniecia */
-    public String printJSPHeader() {
-        //outs.write("Temat: " + Temat);
-        return "<a href=\"?wid="  + ID +" \">" + Temat + "</a> Utworzony dnia: " + Data + "<br>";
-        
+    
+    /** Zwraca czy watek jest aktywny
+     * @return true w przypadku gdy watek jest aktywny, wpp false
+     */
+    public boolean czyAktywny() {
+        return Aktywny;
+    }
+    
+    /** Podaje liczbe aktywnych wypowiedzi w wątku
+     * @return liczba aktywnych wypowiedzi w wątku
+     */
+    public int liczbaAktywnychWypowiedzi() {
+        int l=0;
+        ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID);
+        for(int i=0;i<Wypowiedzi.size();i++) {
+            Wypowiedz w = ((Wypowiedz)db.getWypowiedz(((Integer)Wypowiedzi.get(i)).intValue()));
+            if (w.czyAktywna()) l++;
+        }
+        return l;
     }
     
     /**
@@ -100,7 +116,7 @@ public class Watek {
         strona.println("<tr>");
         strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
-        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">17</span></td>");
+        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + (liczbaAktywnychWypowiedzi() - 1) + "</span></td>");
         strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
         if (Config.GUEST_ID == this.ID_Autor)
             strona.println("~" + this.Autor);

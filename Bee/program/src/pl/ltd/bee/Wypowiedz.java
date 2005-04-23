@@ -18,6 +18,7 @@ public class Wypowiedz {
     private String Data;
     private String Tekst;
     private boolean Prywatna;
+    private boolean Aktywna;
     private DataBase db;
     
     /** Tworzy instancje klasy Wypowiedz
@@ -36,10 +37,11 @@ public class Wypowiedz {
         this.Tekst=Tekst;
         if (Prywatna != null) this.Prywatna = Prywatna.compareTo(DataBase.TAK) == 0;
         else this.Prywatna = false;
+        this.Aktywna = true;
         this.db=db;
     }
     
-     /** Zwraca identyfikator wypowiedzi
+    /** Zwraca identyfikator wypowiedzi
      * @return zwraca liczbe bedacą identyfikatorem wypowiedzi w bazie
      */
     public int getID() {
@@ -83,6 +85,14 @@ public class Wypowiedz {
      */
     public boolean czyPrywatna() {
         return Prywatna;
+    }
+    
+    
+    /** Zwraca czy wypowiedź jest Aktywna
+     * @return true w przypadku gdy wypowiedź jest aktywna, wpp false
+     */
+    public boolean czyAktywna() {
+        return Aktywna;
     }
     
     

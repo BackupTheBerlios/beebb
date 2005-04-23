@@ -38,9 +38,9 @@ public class Podforum {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         if (Aktywne != null) this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
-            else this.Aktywne = false;
+        else this.Aktywne = false;
         if (Prywatne != null) this.Prywatne=Prywatne.compareTo(DataBase.TAK) == 0;
-            else this.Prywatne = false;
+        else this.Prywatne = false;
         this.db=db;
         this.Opis = Opis;
     }
@@ -52,7 +52,7 @@ public class Podforum {
         return ID;
     }
     
-     /** Zwraca identyfikator kat
+    /** Zwraca identyfikator kat
      * @return zwraca long bedacy identyfikatorem podforum w bazie
      */
     public int getIdKat() {
@@ -68,7 +68,7 @@ public class Podforum {
         return Tytul;
     }
     
-
+    
     /** Metoda zwraca opis podforum
      * @return String z opisem podforum
      */
@@ -77,14 +77,14 @@ public class Podforum {
         return Opis;
     }
     
-        
-     /** Zwraca  pole aktywne
+    
+    /** Zwraca  pole aktywne
      * @return boolean
      */
     public boolean getAktywne() {
         return Aktywne;
     }
-   
+    
     
     /** Ustawia opis podforum
      * @param op String ustawianego opisu
@@ -99,7 +99,7 @@ public class Podforum {
     public void setNazwa(String naz) {
         this.Tytul=naz;
     }
-       
+    
     /** Ustawia id podforum
      * @param id String ustawianego opisu
      */
@@ -107,7 +107,7 @@ public class Podforum {
         this.ID=Integer.decode(id).intValue();
     }
     
-       
+    
     /** Ustawia id kat
      * @param id String ustawianego id_kat
      */
@@ -122,14 +122,42 @@ public class Podforum {
     public boolean czyPrywatne() {
         return Prywatne;
     }
-
-        
+    
+    
     /** Zwraca czy podforum jest aktywne
      * @return true w przypadku gdy podforum jest aktywne, wpp false
      */
     public boolean czyAktywne() {
         return Aktywne;
     }
+    
+    /** Podaje liczbe aktywnych wątków w danym podforum
+     * @return liczba aktywnych wątków w danym podforum
+     */
+    public int liczbaAktywnychWatkow() {
+        int l=0;
+        ArrayList Watki=db.getWatkiPodforum(this.ID);
+        for(int i=0;i<Watki.size();i++) {
+            Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
+            if (w.czyAktywny()) l++;
+        }
+        return l;
+    }
+    
+    
+    /** Podaje liczbe aktywnych wypowiedzi w danym podforum
+     * @return liczba aktywnych wątków w danych podforum
+     */
+    public int liczbaAktywnychWypowiedzi() {
+        int l=0;
+        ArrayList Watki=db.getWatkiPodforum(this.ID);
+        for(int i=0;i<Watki.size();i++) {
+            Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
+            if (w.czyAktywny()) l+=w.liczbaAktywnychWypowiedzi();
+        }
+        return l;
+    }
+    
     
     /**
      * Metoda wypisuje na strone glowna liste watkow
@@ -144,20 +172,19 @@ public class Podforum {
         }
         printMainTableCloseJSP(strona);
     }
-
+    
     /**
      * Metoda wypisuje wiersz w tabeli kategorii z opisem podforum
      * @param strona strumien wyjsciowy
      */
-    public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException 
-    {
-            strona.println("<tr>");
-            strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\"/></td>");
-            strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <a href=\"main.jsp?pid=" + this.getID() + "\" class=\"aTytulPodforum\">"+ this.getTytul() +"</a><br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
-            strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">17</span></td>");
-            strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">109</span></td>");
-            strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\"> <span class=\"lastPost\">Czw Mar 17, 2005 3:29 am<br /><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
-            strona.println("</tr>");
+    public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        strona.println("<tr>");
+        strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\"/></td>");
+        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <a href=\"main.jsp?pid=" + this.getID() + "\" class=\"aTytulPodforum\">"+ this.getTytul() +"</a><br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
+        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">"+ liczbaAktywnychWatkow() + "</span></td>");
+        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">" + liczbaAktywnychWypowiedzi() + "</span></td>");
+        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\"> <span class=\"lastPost\">Czw Mar 17, 2005 3:29 am<br /><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
+        strona.println("</tr>");
     }
     
     /**
