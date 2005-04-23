@@ -68,13 +68,13 @@
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(false);
-           if ( (lista2.size() > 0)||(!kkk.getAktywna()) ) {  
+           if ( (lista2.size() > 0)||(!kkk.czyAktywna()) ) {  
                licz++;
          %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= licz %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
           
              <td><form action="./edycja_usunietych.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isActiveKat())+"');" %>">
                  <input type="hidden" name="akt_kat" value="<%= kkk.getID() %>"/>
-                 <% if (kkk.getAktywna()) { %>
+                 <% if (kkk.czyAktywna()) { %>
                  <input disabled=""  align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
                  <% } else { %>
                   <input align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
@@ -89,7 +89,7 @@
          %><tr bgcolor="goldenrod"> <td> </td><td><%= licz %>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
              <td><form  action="./edycja_usunietych.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isActivePod())+"');" %>">
                  <input type="hidden" name="akt_pod" value="<%= podf.getID() %>"/>
-                 <% if (!kkk.getAktywna()) { %>
+                 <% if (!kkk.czyAktywna()) { %>
                  <input disabled=""  align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
                  <% } else { %>
                   <input align="center" type="submit" value="<%out.println(Messages.wielka(Messages.activation())); %>"/>
