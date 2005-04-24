@@ -100,6 +100,7 @@ CREATE TABLE `Bee_Watki` (
   `Zablokowany` enum('T','N') NOT NULL default 'N',
   `Zamkniety` enum('T','N') NOT NULL default 'N',
   `LiczbaWypowiedzi` int(10) unsigned NOT NULL default '0',
+  `LiczbaOdwiedzin` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ID`),
   KEY `id_aut` (`ID_autora`),
   CONSTRAINT `Bee_Watki_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE

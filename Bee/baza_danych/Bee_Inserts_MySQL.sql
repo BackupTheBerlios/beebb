@@ -71,8 +71,8 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Watki` DISABLE KEYS */;
 LOCK TABLES `Bee_Watki` WRITE;
-INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Autor`,`Temat`,`Data`,`LiczbaWypowiedzi`) VALUES
- (1,1,'Guest','Piwko','2005-03-09 20:00:00',1);
+INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Autor`,`Temat`,`Data`,`LiczbaWypowiedzi`,`LiczbaOdwiedzin`) VALUES
+ (1,1,'Guest','Piwko','2005-03-09 20:00:00',1,0);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Watki` ENABLE KEYS */;
 
