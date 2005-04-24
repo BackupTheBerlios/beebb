@@ -19,7 +19,7 @@
         <script type="text/javascript" src="./../js/forms.js"></script>
     </head>
     <body onLoad="resizeDodajW()" onresize="resizeDodajW()">
-<%@ include file="servletObjects.jsp" %>
+        <%@ include file="servletObjects.jsp" %>
         <table align="center" border="0" id="tableDodajW"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
                 <td> 
@@ -32,21 +32,84 @@
  ale nie dziala, za to dziala to:
       autor = new String(autor.getBytes("8859_1"),"UTF-8");
 */
+        
+            class Dodaj {
+                
+                javax.servlet.jsp.JspWriter out;
+                DataBase db_con;
+                
+                public Dodaj(javax.servlet.jsp.JspWriter out,DataBase db_con) {
+                    this.out=out;
+                    this.db_con=db_con;
+                }
+                
+                public void dodajWypowiedz(Watek wt, String ID_Usera, String Nazwa_Usera, String text) throws Exception {
+                    if (wt!=null) { 
+                        String prywatne=DataBase.NIE;
+                        if(wt.czyPrywatny()) prywatne=DataBase.TAK;
+                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,DataBase.TAK,db_con);
+                        if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
+                            out.print(Messages.errorDataBaseConnection());
+                        else out.print(Messages.addedMessage() + "<br/>"); 
+                    } else out.print(Messages.errorDataBaseConnection());
+                  }
+                
+                
+                public Watek dodajWatek(String podforum,String ID_Usera,String Nazwa_Usera,String title) throws Exception {
+                    Podforum pf = db_con.getPodforum(Integer.decode(podforum).intValue());
+                    Watek wt;
+                    String prywatne=DataBase.NIE;
+                    if(pf.czyPrywatne()) prywatne=DataBase.TAK;
+                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0",db_con);
+                    wt = db_con.insertWatek(podforum,wt);
+                    if (wt==null) out.print(Messages.errorDataBaseConnection()); else out.print(Messages.addedThread()  + "<br/>");
+                    return wt;
+                }
+                
+                public void incrAddWatek(Watek wt) throws Exception {
+                    Podforum pf = db_con.getPodforumbyWatek(wt.getID());
+                    wt.zwiekszLiczbeAktywnychWypowiedzi();
+                    if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
+                    //tutaj zwiekszam liczbe watkow i wypowiedzi w podforum i watku
+                    
+                }
+                
+                public void incrAddWypowiedz(Watek wt) throws Exception {
+                    Podforum pf = db_con.getPodforumbyWatek(wt.getID());
+                    wt.zwiekszLiczbeAktywnychWypowiedzi();
+                    if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
 
+                    //tutaj zwiekszam liczbe wypowiedzi w podforum i watku
+                    
+                }
+                
+            }
+        
+            ////
+            Dodaj d = new Dodaj(out,db_con);
+
+            
             String watek=request.getParameter("w");
             String podforum=request.getParameter("p");
             if (watek==null && podforum==null) {
                 out.print(Messages.formError());
             } else {
-            String text=request.getParameter("text");
+            
+                
             String ID_Usera = new String().valueOf(Config.GUEST_ID); 
             String Nazwa_Usera= Config.GUEST;
+            
+            ////////////////
+            String text=request.getParameter("text");
             if (text!=null) {
             text = new String(text.getBytes("8859_1"),"UTF-8");
             out.print("<br/><br/>");
             text=text.replaceAll("\r\n","<br/>");
             text=text.replaceAll("\n","<br/>");
-
+            ////////////////
+            
+            
+            //// user ////
             if (auth.zalogowany(request,db_con)) {
                 ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
             } else {
@@ -56,33 +119,23 @@
                       Nazwa_Usera=autor;
                 }
             }
+            ////////////
+            
             if (watek!=null) {
-               Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
-               String prywatna=DataBase.NIE;
-               if(wt.czyPrywatny()) prywatna=DataBase.TAK;
-                
-                Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatna,DataBase.TAK,db_con);
-               if (!db_con.insertWypowiedz(watek,wp)) 
-                    out.print(Messages.errorDataBaseConnection()); else
-                    out.print(Messages.addedMessage());
+                Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
+                //dodaj Wypowiedz
+                d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
+                d.incrAddWypowiedz(wt);
                 } else
                 if (podforum!=null && text!=null) {
                     String title=request.getParameter("title");
                     title = new String(title.getBytes("8859_1"),"UTF-8");
-                    Podforum pf = db_con.getPodforum(Integer.decode(podforum).intValue());
-                    Watek wt;
-                    String prywatne=DataBase.NIE;
-                    if(pf.czyPrywatne()) prywatne=DataBase.TAK;
-                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,db_con);
-                    wt = db_con.insertWatek(podforum,wt);
-                    
-                    if (wt!=null) { 
-                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,DataBase.TAK,db_con);
-                        if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
-                            out.print(Messages.errorDataBaseConnection());
-                        else out.print(Messages.addedThread()); 
-                    } else out.print(Messages.errorDataBaseConnection());
-                  }
+                    //dodaj Watek
+                    Watek wt = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title);
+                    //dodaj Wypowiedz
+                    d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
+                    d.incrAddWatek(wt);
+                }
                     out.print("<center><br/><br/><a href=\"./main.jsp"); 
                     if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");
                 }

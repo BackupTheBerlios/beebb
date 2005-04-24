@@ -23,6 +23,7 @@ public class Watek {
     private boolean Aktywny;
     private boolean Zablokowany;
     private boolean Zamkniety;
+    private int LiczbaWypowiedzi;
     private DataBase db;
     
     /** Creates a new instance of Watek
@@ -34,9 +35,10 @@ public class Watek {
      * @param Aktywny okresla czy watek jest aktywny
      * @param Zablokowany okresla czy watek jest zablokowany
      * @param Zamkniety okresla czy watek jest zamknięty
+     * @param LiczbaWypowiedzi liczba aktywnych wypowiedzi w watku
      * @param db Obiekt DataBase
      */
-    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String Prywatny,String Aktywny,String Zablokowany,String Zamkniety, DataBase db)  {
+    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String Prywatny,String Aktywny,String Zablokowany,String Zamkniety, String LiczbaWypowiedzi, DataBase db)  {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autor=Integer.decode(ID_Autor).intValue();
         this.Autor=Autor;
@@ -50,6 +52,7 @@ public class Watek {
         else this.Zablokowany = false;
         if (Zamkniety != null) this.Zamkniety=Zamkniety.compareTo(DataBase.TAK) == 0;
         else this.Zamkniety = false;
+        this.LiczbaWypowiedzi=Integer.decode(LiczbaWypowiedzi).intValue();
         this.db=db;
     }
     
@@ -120,18 +123,18 @@ public class Watek {
         return Zamkniety;
     }
     
+    /** Zwieksza liczbe aktywnych wypowiedzi w wątku o 1
+     */
+    public void zwiekszLiczbeAktywnychWypowiedzi() {
+        this.LiczbaWypowiedzi++;
+    }
+    
     
     /** Podaje liczbe aktywnych wypowiedzi w wątku
      * @return liczba aktywnych wypowiedzi w wątku
      */
     public int liczbaAktywnychWypowiedzi() {
-        int l=0;
-        ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID);
-        for(int i=0;i<Wypowiedzi.size();i++) {
-            Wypowiedz w = ((Wypowiedz)db.getWypowiedz(((Integer)Wypowiedzi.get(i)).intValue()));
-            if (w.czyAktywna()) l++;
-        }
-        return l;
+        return LiczbaWypowiedzi;
     }
     
     /**
@@ -142,7 +145,9 @@ public class Watek {
         strona.println("<tr>");
         strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
-        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + (liczbaAktywnychWypowiedzi() - 1) + "</span></td>");
+        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
+        if (LiczbaWypowiedzi > 0) strona.println((LiczbaWypowiedzi-1)); else strona.println(LiczbaWypowiedzi);
+        strona.println("</span></td>");
         strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
         if (Config.GUEST_ID == this.ID_Autor)
             strona.println("~" + this.Autor);

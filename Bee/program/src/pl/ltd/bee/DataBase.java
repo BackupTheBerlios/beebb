@@ -101,7 +101,8 @@ public class DataBase {
     static final String WATEK_AKTYWNY = "AKTYWNY";
     static final String WATEK_ZAMKNIETY = "ZAMKNIETY";
     static final String WATEK_ZABLOKOWANY = "ZABLOKOWANY";
-
+    static final String WATEK_LICZBA_WYPOWIEDZI = "LICZBAWYPOWIEDZI";
+    
     static final String WYPOWIEDZ_ID = "ID";
     static final String WYPOWIEDZ_ID_AUTORA = "ID_AUTORA";
     static final String WYPOWIEDZ_AUTOR = "AUTOR";
@@ -115,6 +116,8 @@ public class DataBase {
     static final String PODFORUM_OPIS = "OPIS";
     static final String PODFORUM_AKTYWNE = "AKTYWNE";
     static final String PODFORUM_PRYWATNE = "PRYWATNE";
+    static final String PODFORUM_LICZBA_WATKOW = "LICZBAWATKOW";
+    static final String PODFORUM_LICZBA_WYPOWIEDZI = "LICZBAWYPOWIEDZI";
     
     static final String FORUM_ID = "ID";
     static final String FORUM_NAZWA = "NAZWA";
@@ -247,7 +250,7 @@ public class DataBase {
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),this);
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),this);
     }
     
     
@@ -295,7 +298,7 @@ public class DataBase {
     public Watek getWatekByWypowiedz(int ID){
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_WATKU + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),this);
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),this);
     }
     
     /**
@@ -618,15 +621,33 @@ public class DataBase {
      * @return zwraca obiekt Watek jeżeli insert się powiódł, wpp zwraca null
      */
     public Watek insertWatek(String id_podforum, Watek w) {
-        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES ("+ w.getID() + ", " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , '" + w.getData() + "','" + (w.czyPrywatny()?TAK:NIE) + "','" + (w.czyAktywny()?TAK:NIE) + "','" + (w.czyZablokowany()?TAK:NIE) + "','" + (w.czyZamkniety()?TAK:NIE) + "')")) {
+        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES ("+ w.getID() + ", " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , '" + w.getData() + "','" + (w.czyPrywatny()?TAK:NIE) + "','" + (w.czyAktywny()?TAK:NIE) + "','" + (w.czyZablokowany()?TAK:NIE) + "','" + (w.czyZamkniety()?TAK:NIE) + "'," + w.liczbaAktywnychWypowiedzi() + ")")) {
             Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WATEK_DATA + " = '" + w.getData() + "' AND " + WATEK_TEMAT + " = '" + w.getTemat() + "'");
             if (watek==null) return null;
             if (!baza.dmlQuery("INSERT INTO " + BEE_PODFORA_WATKI + " VALUES (" + id_podforum + "," + watek.get(WATEK_ID) + ")")) return null;
-            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),this);
+            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),this);
         }
         return null;
     }
     
+    
+    
+    /**
+     * Metoda aktualizuje watek w bazie danych
+     * @param u obiekt Watek reprezentujący watek
+     * @return zwraca czy update sie powiódl
+     */
+    public boolean updateWatek(Watek w){
+        String aktywny;
+        if(w.czyAktywny()) aktywny=TAK; else aktywny=NIE;
+        String prywatny;
+        if(w.czyPrywatny()) prywatny=TAK; else prywatny=NIE;
+        String zamkniety;
+        if(w.czyZamkniety()) zamkniety=TAK; else zamkniety=NIE;
+        String zablokowany;
+        if(w.czyZablokowany()) zablokowany=TAK; else zablokowany=NIE;
+        return baza.dmlQuery("UPDATE " + BEE_WATKI + " set " + WATEK_AUTOR + " = '" + w.getAutor() + "'," + WATEK_ID_AUTORA + " = '" + w.getIDAutora() + "'," + WATEK_TEMAT + "='" + w.getTemat() + "'," + WATEK_DATA + "='" + w.getData() + "'," + WATEK_LICZBA_WYPOWIEDZI + "='" + w.liczbaAktywnychWypowiedzi() + "'," +  WATEK_AKTYWNY + "='" + aktywny + "'," + WATEK_PRYWATNY + "='" + prywatny + "'," + WATEK_ZABLOKOWANY + "='" + zablokowany + "'," + WATEK_ZAMKNIETY + "='" + zamkniety +  "' where " + WATEK_ID + "="  + new String().valueOf(w.getID()) );
+    }
     
     /**
      * Metoda sprawdz czy podforum o podanym tytule juz istnieje
@@ -827,9 +848,9 @@ public class DataBase {
     public boolean zmienAktywnoscWatku(int id, boolean czy_aktywny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_AKTYWNY+"='"+ (czy_aktywny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
     }
-
+    
     /**
-     * Metoda zmienia pole aktywna na podane w parametrze 
+     * Metoda zmienia pole aktywna na podane w parametrze
      * @param id identyfikator wypowiedzi
      * @param czy_aktywna ustawiana aktywnosc
      * @return boolean True jezeli zmiana sie powiodla False w p.p.
@@ -871,6 +892,7 @@ public class DataBase {
     }
     
     
+    // DO ZMIANY !!!! metoda ma przyjmować OBIEKT!!!
     /**
      * Metoda zmienia tytul i opis podforum, oraz zmienia kategorie podforum na id_kat
      * @param int id podforum
@@ -932,7 +954,7 @@ public class DataBase {
     public boolean isModerator(int user_id, int podforum_id){
         ArrayList users_id = baza.query("SELECT " + MODERATORZY_ID_USER + " FROM "+ BEE_MODERATORZY+" WHERE ("+MODERATORZY_ID_PODFORUM+"="+podforum_id+") AND (" +MODERATORZY_ID_USER+"="+user_id+")");
         if (users_id.size() > 0) return true;
-            else return false;
+        else return false;
     }
     
     
@@ -965,7 +987,7 @@ public class DataBase {
             if (p != null)
                 wynik.add(p);
         }
-        return wynik;        
+        return wynik;
     }
     
     /** Metoda przenosi watek z jednego podforum do drugiego
