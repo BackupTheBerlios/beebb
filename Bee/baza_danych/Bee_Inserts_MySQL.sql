@@ -57,11 +57,11 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Podfora` DISABLE KEYS */;
 LOCK TABLES `Bee_Podfora` WRITE;
-INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`Aktywne`) VALUES
-(1,'Tyskie','Dobre piwko','T'),
-(2,'Warka','Tez dobre piwko','T'),
-(3,'Lech','Rownież dobre piwko','T'),
-(4,'Carlsberg','Probably the Best Beer in the World','T');
+INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`Aktywne`,`LiczbaWatkow`,`LiczbaWypowiedzi`) VALUES
+(1,'Tyskie','Dobre piwko','T',1,1),
+(2,'Warka','Tez dobre piwko','T',0,0),
+(3,'Lech','Rownież dobre piwko','T',01,0),
+(4,'Carlsberg','Probably the Best Beer in the World','T',0,0);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Podfora` ENABLE KEYS */;
 
@@ -71,8 +71,8 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Watki` DISABLE KEYS */;
 LOCK TABLES `Bee_Watki` WRITE;
-INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Autor`,`Temat`,`Data`) VALUES
- (1,1,'Guest','Piwko','2005-03-09 20:00:00');
+INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Autor`,`Temat`,`Data`,`LiczbaWypowiedzi`) VALUES
+ (1,1,'Guest','Piwko','2005-03-09 20:00:00',1);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Watki` ENABLE KEYS */;
 

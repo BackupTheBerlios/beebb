@@ -77,6 +77,8 @@ CREATE TABLE `Bee_Podfora` (
   `Opis` varchar(200) NOT NULL default '',
   `Aktywne` enum('T','N') NOT NULL default 'T',
   `Prywatne` enum('T','N') NOT NULL default 'N',
+  `LiczbaWatkow` int(10) unsigned NOT NULL default '0',
+  `LiczbaWypowiedzi` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ID`)
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela podfor';
 
@@ -97,6 +99,7 @@ CREATE TABLE `Bee_Watki` (
   `Aktywny` enum('T','N') NOT NULL default 'T',
   `Zablokowany` enum('T','N') NOT NULL default 'N',
   `Zamkniety` enum('T','N') NOT NULL default 'N',
+  `LiczbaWypowiedzi` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ID`),
   KEY `id_aut` (`ID_autora`),
   CONSTRAINT `Bee_Watki_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
