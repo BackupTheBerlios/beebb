@@ -95,6 +95,7 @@ CREATE TABLE `Bee_Watki` (
   `Autor` varchar(40) NOT NULL default '',
   `Temat` varchar(100) NOT NULL default '',
   `Data` datetime NOT NULL default '0000-00-00 00:00:00',
+  `DataOstWypowiedzi` datetime NOT NULL default '0000-00-00 00:00:00',
   `AutorOstWypowiedzi` varchar(40) NOT NULL default '',
   `Prywatny` enum('T','N') NOT NULL default 'N',
   `Aktywny` enum('T','N') NOT NULL default 'T',

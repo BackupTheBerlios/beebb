@@ -71,8 +71,8 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Watki` DISABLE KEYS */;
 LOCK TABLES `Bee_Watki` WRITE;
-INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Autor`,`Temat`,`Data`,`AutorOstWypowiedzi`,`LiczbaWypowiedzi`,`LiczbaOdwiedzin`) VALUES
- (1,1,'Guest','Piwko',NOW(),'Guest',1,0);
+INSERT INTO `Bee_Watki`(`ID`,`ID_autora`,`Autor`,`Temat`,`Data`,`DataOstWypowiedzi`,`AutorOstWypowiedzi`,`LiczbaWypowiedzi`,`LiczbaOdwiedzin`) VALUES
+ (1,1,'Guest','Piwko',NOW(),NOW(),'Guest',1,0);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Watki` ENABLE KEYS */;
 
@@ -84,7 +84,7 @@ UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Wypowiedzi` DISABLE KEYS */;
 LOCK TABLES `Bee_Wypowiedzi` WRITE;
 INSERT INTO `Bee_Wypowiedzi`(`ID`,`ID_autora`,`Autor`,`Data`,`Tekst`) VALUES
- (1,1,'Guest','2005-03-09 20:00:00','Piwo to moje paliwo.');
+ (1,1,'Guest',NOW(),'Piwo to moje paliwo.');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Wypowiedzi` ENABLE KEYS */;
 
