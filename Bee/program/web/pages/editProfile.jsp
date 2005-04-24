@@ -37,9 +37,9 @@
                     String emailPrywatny=request.getParameter("emailPrywatny");
                     String ggPrywatne=request.getParameter("ggPrywatne");
                     String jabberPrywatny=request.getParameter("jabberPrywatny");
-                    if (imie!=null) user.setImie(imie); if (nazwisko!=null) user.setNazwisko(nazwisko); 
-                    if (email!=null) user.setEmail(email); if (gg!=null) user.setGG(gg);
-                    if (jabber!=null) user.setJabber(jabber);
+                    if (imie!=null) user.setImie(new String(imie.getBytes("8859_1"),"UTF-8")); if (nazwisko!=null) user.setNazwisko(new String(nazwisko.getBytes("8859_1"),"UTF-8")); 
+                    if (email!=null) user.setEmail(new String(email.getBytes("8859_1"),"UTF-8")); if (gg!=null) user.setGG(new String(gg.getBytes("8859_1"),"UTF-8"));
+                    if (jabber!=null) user.setJabber(new String(jabber.getBytes("8859_1"),"UTF-8"));
                     if (imieNazwiskoPrywatne!=null) user.setImieNazwiskoPrywatne(true); else
                         user.setImieNazwiskoPrywatne(false);
                     if (emailPrywatny!=null) user.setEmailPrywatny(true); else
@@ -57,12 +57,12 @@
     
                 <form method="POST" action="editProfile.jsp">
                     <table align="center" class="tableProfile" border="0">
-                        <tr><th><% out.print(Messages.wielka(Messages.nick()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td><td></td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.name()));%></th><td class="tdProfileField"><input type="text" name="imie" size="35" value="<% out.print(user.getImie());%>"></td><td class="tdProfileField" rowspan="2" valign="middle"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.surname()));%></th><td class="tdProfileField"><input type="text" name="nazwisko" size="35" value="<% out.print(user.getNazwisko());%>"></td><td></td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField"><input type="text" name="email" size="35" value="<% out.print(user.getEmail());%>"></td><td class="tdProfileField"><input type="checkbox" name="emailPrywatny" <%if(!user.ifShowEmail()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField"><input type="text" name="gg" size="35" value="<% out.print(user.getGG());%>"></td><td class="tdProfileField"><input type="checkbox" name="ggPrywatne" <%if(!user.ifShowGG()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField"><input type="text" name="jabber" size="35" value="<% out.print(user.getJabber());%>"></td><td class="tdProfileField"><input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.nick()));%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getLogin().getBytes("8859_1"),"UTF-8"));%></td><td></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.name()));%></th><td class="tdProfileField"><input type="text" name="imie" size="35" value="<% out.print(new String(user.getImie().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField" rowspan="2" valign="middle"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.surname()));%></th><td class="tdProfileField"><input type="text" name="nazwisko" size="35" value="<% out.print(new String(user.getNazwisko().getBytes("8859_1"),"UTF-8"));%>"></td><td></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField"><input type="text" name="email" size="35" value="<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField"><input type="checkbox" name="emailPrywatny" <%if(!user.ifShowEmail()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField"><input type="text" name="gg" size="35" value="<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField"><input type="checkbox" name="ggPrywatne" <%if(!user.ifShowGG()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField"><input type="text" name="jabber" size="35" value="<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField"><input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
                         <tr><td colspan="2" align="right"><input type="hidden" name="chd" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
                     </table>
                 </form>

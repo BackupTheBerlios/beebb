@@ -97,6 +97,8 @@ public class DataBase {
     static final String WATEK_AUTOR = "AUTOR";
     static final String WATEK_TEMAT = "TEMAT";
     static final String WATEK_DATA = "DATA";
+    static final String WATEK_DATA_OST_WYPOWIEDZI = "DATAOSTWYPOWIEDZI";
+    static final String WATEK_AUTOR_OST_WYPOWIEDZI = "AUTOROSTWYPOWIEDZI";
     static final String WATEK_PRYWATNY = "PRYWATNY";
     static final String WATEK_AKTYWNY = "AKTYWNY";
     static final String WATEK_ZAMKNIETY = "ZAMKNIETY";
@@ -257,7 +259,7 @@ public class DataBase {
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
         //zakladam ze mam konstruktor ktory bierze ID, ID_autora, Temat i Date
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
     }
     
     
@@ -305,7 +307,7 @@ public class DataBase {
     public Watek getWatekByWypowiedz(int ID){
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_WATKU + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
         if (watek == null) return null;
-        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
+        return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
     }
     
     
@@ -569,7 +571,6 @@ public class DataBase {
     
     /**
      * Metoda umieszcza kategorie w bazie danych,
-     * ustawia sandardowo pola aktywna na T i prywatna na N
      * @param int id_forum
      * @param Kategoria wstawiana kategoria
      * @return zwraca true jezeli insert sie powiodl
@@ -590,7 +591,6 @@ public class DataBase {
     
     /**
      * Metoda umieszcza podforum w bazie danych,
-     * ustawia sandardowo pola aktywne na T i prywatne na N
      * @param id_kat id kategorii do ktorej dodawane jest podforum
      * @param Podforum obiekt Podforum
      * @return zwraca true jezeli insert sie powiodl
@@ -608,13 +608,14 @@ public class DataBase {
     
     /**
      * Metoda umieszcza wypowiedź w bazie
+     * date podajemy jak sekwencje do wyliczenia daty albo w ciapkach 'data'
      * @param id_wat id wątku, w którym dodajemy wypowiedź
      * @param w obiekt Wypowiedź (bez ważnego id) ktory należy wstawić do bazy
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertWypowiedz(String id_wat, Wypowiedz w) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES ("+ w.getID() +", " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getData() + "' , \"" + w.getTekst() + "\",'" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
-            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + w.getTekst() + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES ("+ w.getID() +", " + w.getIDAutora() + ", '" + w.getAutor() + "' ," + w.getData() + ", \"" + w.getTekst() + "\",'" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
+            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_AUTOR + "= '" + w.getAutor() + "' AND " + WYPOWIEDZ_TEKST + "='" + w.getTekst() + "'");
             if (wid==null) return false;
             return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get(WYPOWIEDZ_ID) + ")");
         }
@@ -624,16 +625,17 @@ public class DataBase {
     
     /**
      * Metoda umieszcza wątek w bazie
+     * date podajemy jak sekwencje do wyliczenia daty albo w ciapkach 'data'
      * @param id_podforum id podforum w którym lezy wątek
      * @param w obiekt Watek (bez ważnego id) ktory należy wstawić do bazy
      * @return zwraca obiekt Watek jeżeli insert się powiódł, wpp zwraca null
      */
     public Watek insertWatek(String id_podforum, Watek w) {
-        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES ("+ w.getID() + ", " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , '" + w.getData() + "','" + (w.czyPrywatny()?TAK:NIE) + "','" + (w.czyAktywny()?TAK:NIE) + "','" + (w.czyZablokowany()?TAK:NIE) + "','" + (w.czyZamkniety()?TAK:NIE) + "'," + w.liczbaAktywnychWypowiedzi() + "," + w.licznikOdwiedzin() + ")")) {
-            Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WATEK_DATA + " = '" + w.getData() + "' AND " + WATEK_TEMAT + " = '" + w.getTemat() + "'");
+        if(baza.dmlQuery("INSERT INTO " + BEE_WATKI + " VALUES ("+ w.getID() + ", " + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getTemat() + "' , " + w.getData() + "," + w.getDataOstWypowiedzi() + " ,'" + w.getAutorOstWypowiedzi() + "','" + (w.czyPrywatny()?TAK:NIE) + "','" + (w.czyAktywny()?TAK:NIE) + "','" + (w.czyZablokowany()?TAK:NIE) + "','" + (w.czyZamkniety()?TAK:NIE) + "'," + w.liczbaAktywnychWypowiedzi() + "," + w.licznikOdwiedzin() + ")")) {
+            Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE " + WATEK_ID_AUTORA + "=" + w.getIDAutora() +  " AND "  + WATEK_LICZBA_WYPOWIEDZI + "=" + w.liczbaAktywnychWypowiedzi() + " AND " + WATEK_LICZBA_ODWIEDZIN + " = " + w.licznikOdwiedzin() + " AND " + WATEK_TEMAT + " = '" + w.getTemat() + "'");
             if (watek==null) return null;
             if (!baza.dmlQuery("INSERT INTO " + BEE_PODFORA_WATKI + " VALUES (" + id_podforum + "," + watek.get(WATEK_ID) + ")")) return null;
-            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
+            return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
         }
         return null;
     }
@@ -653,7 +655,7 @@ public class DataBase {
         if(w.czyZamkniety()) zamkniety=TAK; else zamkniety=NIE;
         String zablokowany;
         if(w.czyZablokowany()) zablokowany=TAK; else zablokowany=NIE;
-        return baza.dmlQuery("UPDATE " + BEE_WATKI + " set " + WATEK_AUTOR + " = '" + w.getAutor() + "'," + WATEK_ID_AUTORA + " = '" + w.getIDAutora() + "'," + WATEK_TEMAT + "='" + w.getTemat() + "'," + WATEK_DATA + "='" + w.getData() + "'," + WATEK_LICZBA_WYPOWIEDZI + "='" + w.liczbaAktywnychWypowiedzi() + "'," +  WATEK_AKTYWNY + "='" + aktywny + "'," + WATEK_PRYWATNY + "='" + prywatny + "'," + WATEK_ZABLOKOWANY + "='" + zablokowany + "'," + WATEK_ZAMKNIETY + "='" + zamkniety + "'," + WATEK_LICZBA_ODWIEDZIN + "=" + w.licznikOdwiedzin() +  " where " + WATEK_ID + "="  + new String().valueOf(w.getID()) );
+        return baza.dmlQuery("UPDATE " + BEE_WATKI + " set " + WATEK_AUTOR + " = '" + w.getAutor() + "'," + WATEK_ID_AUTORA + " = '" + w.getIDAutora() + "'," + WATEK_DATA + " = '" + prepareDateToUpdate(w.getData())  + "'," + WATEK_TEMAT + "='" + w.getTemat() + "'," + WATEK_LICZBA_WYPOWIEDZI + "='" + w.liczbaAktywnychWypowiedzi() + "'," +  WATEK_AKTYWNY + "='" + aktywny + "'," + WATEK_PRYWATNY + "='" + prywatny + "'," + WATEK_ZABLOKOWANY + "='" + zablokowany + "'," + WATEK_ZAMKNIETY + "='" + zamkniety + "'," + WATEK_LICZBA_ODWIEDZIN + "=" + w.licznikOdwiedzin() +  " where " + WATEK_ID + "="  + new String().valueOf(w.getID()) );
     }
     
     
@@ -937,6 +939,23 @@ public class DataBase {
     }
     
     
+    /** Metoda zwraca sekwencje do wyliczenia daty lub date dla wybranej bazy danych
+     * @return String reprezentujacy date lub sekwencje do wyliczenia daty dla aktualnej bazy danych
+     */
+    public static String getDateToInsert() {
+        return "NOW()";
+    }
+    
+    
+    /** Metoda zwraca date przygotowaną do updejtu, w zależności od bazy data jest różna
+     * @param data string reprezentujacy date
+     * @return String reprezentujacy date przygotowaną do updejtu
+     */
+    public static String prepareDateToUpdate(String data) {
+        return data;
+    }    
+    
+    
     /** Metoda zwraca datę dla wybranej bazy danych
      * @param year String reprezentujacy rok
      * @param mounth String reprezentujacy miesiac
@@ -1033,7 +1052,7 @@ public class DataBase {
      * @return True w przypadku poprawnej zmiany
      */
     public boolean zmienTekstWypowiedzi(Wypowiedz w, int id_watku, String newText){
-        if (baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0," + w.getIDAutora() + ", '" + w.getAutor() + "' , '" + w.getData() + "' , \"" + newText + "\",'" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
+        if (baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0," + w.getIDAutora() + ", '" + w.getAutor() + "' , '" +  prepareDateToUpdate(w.getData()) + "' , \"" + newText + "\",'" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
             Hashtable wid = getObject("SELECT "+WYPOWIEDZ_ID+" FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + newText + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
             if (wid==null) return false;
             if (baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI+"("+WATKI_WYPOWIEDZI_ID_WATKU+","+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+") VALUES (" + id_watku + "," + wid.get(WYPOWIEDZ_ID) + ")"))

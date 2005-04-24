@@ -19,6 +19,8 @@ public class Watek {
     private String Autor;
     private String Temat;
     private String Data;
+    private String DataOstWypowiedzi;
+    private String AutorOstWypowiedzi;
     private boolean Prywatny;
     private boolean Aktywny;
     private boolean Zablokowany;
@@ -34,6 +36,8 @@ public class Watek {
      * @param ID_Autor id autora watku
      * @param Temat temat watku
      * @param Data data watku
+     * @param DataOstWypowiedzi data ostatniej wypowiedziw wątku
+     * @param AutorOstWypowiedzi autor ostatniej wypowiedziw wątku
      * @param Prywatny okresla czy watek jest prywatny
      * @param Aktywny okresla czy watek jest aktywny
      * @param Zablokowany okresla czy watek jest zablokowany
@@ -42,12 +46,14 @@ public class Watek {
      * @param LicznikOdwiedzin okresla liczbe odwiedzin watku
      * @param db Obiekt DataBase
      */
-    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String Prywatny,String Aktywny,String Zablokowany,String Zamkniety, String LiczbaWypowiedzi, String LicznikOdwiedzin, DataBase db)  {
+    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String DataOstWypowiedzi, String AutorOstWypowiedzi, String Prywatny,String Aktywny,String Zablokowany,String Zamkniety, String LiczbaWypowiedzi, String LicznikOdwiedzin, DataBase db)  {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autor=Integer.decode(ID_Autor).intValue();
         this.Autor=Autor;
         this.Temat=Temat;
         this.Data=Data;
+        this.DataOstWypowiedzi=DataOstWypowiedzi;
+        this.AutorOstWypowiedzi=AutorOstWypowiedzi;
         if (Prywatny != null) this.Prywatny=Prywatny.compareTo(DataBase.TAK) == 0;
         else this.Prywatny = false;
         if (Aktywny != null) this.Aktywny=Aktywny.compareTo(DataBase.TAK) == 0;
@@ -100,6 +106,38 @@ public class Watek {
      */
     public String getData() {
         return Data;
+    }
+    
+    
+    /** Zwraca date ostatniej wypowiedzi w watku
+     * @return zwraca string reprezentujący date ostatniej wypowiedzi w watku
+     */
+    public String getDataOstWypowiedzi() {
+        return DataOstWypowiedzi;
+    }
+    
+    
+    /** Ustawia autora ostatniej wypowiedzi w wątku
+     * @param AutorOstWypowiedzi string reprezentujący autora ostatniej wypowiedzi w wątku
+     */
+    public void getAutorOstWypowiedzi(String AutorOstWypowiedzi) {
+        this.AutorOstWypowiedzi=AutorOstWypowiedzi;
+    }
+    
+    
+    /** Ustawia date ostatniej wypowiedzi w watku
+     * @param DataOstWypowiedzi string reprezentujący date ostatniej wypowiedzi w watku
+     */
+    public void setDataOstWypowiedzi(String DataOstWypowiedzi) {
+        this.DataOstWypowiedzi=DataOstWypowiedzi;
+    }
+    
+    
+    /** Zwraca autora ostatniej wypowiedzi w wątku
+     * @return zwraca string reprezentujący autora ostatniej wypowiedzi w wątku
+     */
+    public String getAutorOstWypowiedzi() {
+        return AutorOstWypowiedzi;
     }
     
     
@@ -187,7 +225,7 @@ public class Watek {
         }
         strona.println("</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
-        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + Data + "<br/><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
+        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/><a href=\"./profile.jsp\">" + AutorOstWypowiedzi + "</a> <a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }
     

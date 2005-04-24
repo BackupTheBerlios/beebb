@@ -47,7 +47,7 @@
                     if (wt!=null) { 
                         String prywatne=DataBase.NIE;
                         if(wt.czyPrywatny()) prywatne=DataBase.TAK;
-                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDate(),text,prywatne,DataBase.TAK,db_con);
+                        Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDateToInsert(),text,prywatne,DataBase.TAK,db_con);
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
                             out.print(Messages.errorDataBaseConnection());
                         else out.print(Messages.addedMessage() + "<br/>"); 
@@ -60,7 +60,7 @@
                     Watek wt;
                     String prywatne=DataBase.NIE;
                     if(pf.czyPrywatne()) prywatne=DataBase.TAK;
-                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0","0",db_con);
+                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDateToInsert(),db_con.getDateToInsert(),Nazwa_Usera,prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0","0",db_con);
                     wt = db_con.insertWatek(podforum,wt);
                     if (wt==null) out.print(Messages.errorDataBaseConnection()); else out.print(Messages.addedThread()  + "<br/>");
                     return wt;
@@ -112,6 +112,7 @@
             //// user ////
             if (auth.zalogowany(request,db_con)) {
                 ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
+                Nazwa_Usera = String.valueOf(auth.getUser(request,db_con).getLogin());
             } else {
                 String autor=request.getParameter("autor");
                 if (autor!=null) {

@@ -41,16 +41,16 @@
                 User user = db_con.getUser(Integer.parseInt(uid));
                 %>
                 <table align="center" class="tableProfile" border="0">
-                    <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%></td></tr>
+                    <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getLogin().getBytes("8859_1"),"UTF-8"));%></td></tr>
                 <% if(user.ifShowName()) { %>
-                    <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getImie());%></td></tr>
-                    <tr><th><% out.print(Messages.surname());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getNazwisko());%></td></tr>
+                    <tr><th><% out.print(Messages.name());%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getImie().getBytes("8859_1"),"UTF-8"));%></td></tr>
+                    <tr><th><% out.print(Messages.surname());%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getNazwisko().getBytes("8859_1"),"UTF-8"));%></td></tr>
                 <% }  if(user.ifShowEmail()) {%>
-                    <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getEmail());%></td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%></td></tr>
                 <% } if(user.ifShowGG()) {%>
-                    <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getGG());%></td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%></td></tr>
                 <% } if(user.ifShowJabber()) {%>
-                    <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getJabber());%></td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%></td></tr>
                 <% } %>
                     <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLastLog());%></td></tr>
                 </table>
