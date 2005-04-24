@@ -60,7 +60,7 @@
                     Watek wt;
                     String prywatne=DataBase.NIE;
                     if(pf.czyPrywatne()) prywatne=DataBase.TAK;
-                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0",db_con);
+                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDate(),prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0","0",db_con);
                     wt = db_con.insertWatek(podforum,wt);
                     if (wt==null) out.print(Messages.errorDataBaseConnection()); else out.print(Messages.addedThread()  + "<br/>");
                     return wt;

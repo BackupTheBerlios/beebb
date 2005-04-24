@@ -24,7 +24,10 @@ public class Watek {
     private boolean Zablokowany;
     private boolean Zamkniety;
     private int LiczbaWypowiedzi;
+    private int LicznikOdwiedzin;
+    private long LicznikOdwiedzinDateLastSave;
     private DataBase db;
+    
     
     /** Creates a new instance of Watek
      * @param ID id watku
@@ -36,9 +39,10 @@ public class Watek {
      * @param Zablokowany okresla czy watek jest zablokowany
      * @param Zamkniety okresla czy watek jest zamknięty
      * @param LiczbaWypowiedzi liczba aktywnych wypowiedzi w watku
+     * @param LicznikOdwiedzin okresla liczbe odwiedzin watku
      * @param db Obiekt DataBase
      */
-    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String Prywatny,String Aktywny,String Zablokowany,String Zamkniety, String LiczbaWypowiedzi, DataBase db)  {
+    public Watek(String ID, String ID_Autor, String Autor, String Temat, String Data, String Prywatny,String Aktywny,String Zablokowany,String Zamkniety, String LiczbaWypowiedzi, String LicznikOdwiedzin, DataBase db)  {
         this.ID=Integer.decode(ID).intValue();
         this.ID_Autor=Integer.decode(ID_Autor).intValue();
         this.Autor=Autor;
@@ -53,8 +57,11 @@ public class Watek {
         if (Zamkniety != null) this.Zamkniety=Zamkniety.compareTo(DataBase.TAK) == 0;
         else this.Zamkniety = false;
         this.LiczbaWypowiedzi=Integer.decode(LiczbaWypowiedzi).intValue();
+        this.LicznikOdwiedzin=Integer.decode(LicznikOdwiedzin).intValue();
+        this.LicznikOdwiedzinDateLastSave=0;
         this.db=db;
     }
+    
     
     /** Zwraca identyfikator forum
      * @return zwraca String bedacy temetem watki
@@ -62,6 +69,7 @@ public class Watek {
     public String getTemat() {
         return Temat;
     }
+    
     
     /** Zwraca identyfikator forum
      * @return zwraca liczbe bedacą identyfikatorem watku w bazie
@@ -78,6 +86,7 @@ public class Watek {
         return ID_Autor;
     }
     
+    
     /** Zwraca tymczasową ksywkę autora wątku (tylko w przypadku gościa!!)
      * @return zwraca string bedacy tymczasową ksywką autora wątku
      */
@@ -85,12 +94,14 @@ public class Watek {
         return Autor;
     }
     
+    
     /** Zwraca date utworzenia wątku
      * @return zwraca string bedacy datą utworzenia wątku
      */
     public String getData() {
         return Data;
     }
+    
     
     /** Zwraca czy watek jest prywatny
      * @return true w przypadku gdy watek jest prywatny, wpp false
@@ -123,8 +134,8 @@ public class Watek {
         return Zamkniety;
     }
     
-    /** Zwieksza liczbe aktywnych wypowiedzi w wątku o 1
-     */
+    
+    /** Zwieksza liczbe aktywnych wypowiedzi w wątku o 1 */
     public void zwiekszLiczbeAktywnychWypowiedzi() {
         this.LiczbaWypowiedzi++;
     }
@@ -136,6 +147,25 @@ public class Watek {
     public int liczbaAktywnychWypowiedzi() {
         return LiczbaWypowiedzi;
     }
+    
+    
+    /** Podaje liczbe aktywnych wypowiedzi w wątku
+     * @return liczba aktywnych wypowiedzi w wątku
+     */
+    public int licznikOdwiedzin() {
+        return LicznikOdwiedzin;
+    }
+    
+    
+    /** Zwieksza licznik odwiedzin i zapisuje do bazy jeżeli potrzeba */
+    public void incrLicznikOdwiedzin() {
+        this.LicznikOdwiedzin++;
+        if (System.currentTimeMillis() - LicznikOdwiedzinDateLastSave > (Config.CACHE_COUNTER*1000)) {
+            LicznikOdwiedzinDateLastSave = System.currentTimeMillis();
+            db.updateWatek(this);
+        }
+    }
+    
     
     /**
      * Metoda wypisuje naglowek watku
@@ -156,7 +186,7 @@ public class Watek {
             strona.println("<a href=\"profile.jsp?uid=" + this.ID_Autor + "\"> " + u.getLogin() + "</a>");
         }
         strona.println("</span></td>");
-        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">109</span></td>");
+        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + Data + "<br/><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }
@@ -167,6 +197,7 @@ public class Watek {
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        this.incrLicznikOdwiedzin();
         Podforum p = db.getPodforumbyWatek(ID);
         Kategoria k = null;
         if (p!=null) k = db.getKategoriabyPodforum(p.getID());

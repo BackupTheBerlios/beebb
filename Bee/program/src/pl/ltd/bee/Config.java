@@ -109,6 +109,11 @@ public class Config {
     public static String FORGET_MAIL_SUBJECT = "[BEE] Zapomniane hasło";
     public static String FORGET_MAIL_BODY = "Poniżej link do zmiany zapomnianego hasła: \n";
 
+    /** cacheowanie liczby odwiedzin 
+     * co ile sekund zapisywac do bazy licznik odwiedzin
+     */
+    public static int CACHE_COUNTER = 10; 
+    
     /**    
      * Klasa odpowiedzialna za przetworzenie dokumnetu XML
      */
