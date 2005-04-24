@@ -70,17 +70,17 @@
                     Podforum pf = db_con.getPodforumbyWatek(wt.getID());
                     wt.zwiekszLiczbeAktywnychWypowiedzi();
                     if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
-                    //tutaj zwiekszam liczbe watkow i wypowiedzi w podforum i watku
-                    
+                    pf.zwiekszLiczbeAktywnychWatkow();
+                    pf.zwiekszLiczbeAktywnychWypowiedzi();
+                    if (!db_con.updatePodforum(pf)) out.print(Messages.errorDataBaseConnection());
                 }
                 
                 public void incrAddWypowiedz(Watek wt) throws Exception {
                     Podforum pf = db_con.getPodforumbyWatek(wt.getID());
                     wt.zwiekszLiczbeAktywnychWypowiedzi();
                     if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
-
-                    //tutaj zwiekszam liczbe wypowiedzi w podforum i watku
-                    
+                    pf.zwiekszLiczbeAktywnychWypowiedzi();
+                    if (!db_con.updatePodforum(pf)) out.print(Messages.errorDataBaseConnection());
                 }
                 
             }

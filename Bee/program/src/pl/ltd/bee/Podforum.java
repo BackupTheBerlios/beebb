@@ -20,6 +20,8 @@ public class Podforum {
     private boolean Aktywne;
     private boolean Prywatne;
     private DataBase db;
+    private int LiczbaWatkow;
+    private int LiczbaWypowiedzi;
     private int id_kat;
     
     /** Konstruktor bezargumentowy */
@@ -34,13 +36,15 @@ public class Podforum {
      * @param Prywatne okresla czy podforum jest prywatne
      * @param db Obiekt DataBase
      */
-    public Podforum(String ID, String Tytul,String Opis, String Aktywne, String Prywatne, DataBase db) {
+    public Podforum(String ID, String Tytul,String Opis, String Aktywne, String Prywatne,String LiczbaWatkow,String LiczbaWypowiedzi, DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         if (Aktywne != null) this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
         else this.Aktywne = false;
         if (Prywatne != null) this.Prywatne=Prywatne.compareTo(DataBase.TAK) == 0;
         else this.Prywatne = false;
+        this.LiczbaWatkow=Integer.decode(LiczbaWatkow).intValue();
+        this.LiczbaWypowiedzi=Integer.decode(LiczbaWypowiedzi).intValue();
         this.db=db;
         this.Opis = Opis;
     }
@@ -135,13 +139,7 @@ public class Podforum {
      * @return liczba aktywnych wątków w danym podforum
      */
     public int liczbaAktywnychWatkow() {
-        int l=0;
-        ArrayList Watki=db.getWatkiPodforum(this.ID);
-        for(int i=0;i<Watki.size();i++) {
-            Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
-            if (w.czyAktywny()) l++;
-        }
-        return l;
+        return this.LiczbaWatkow;
     }
     
     
@@ -149,15 +147,20 @@ public class Podforum {
      * @return liczba aktywnych wątków w danych podforum
      */
     public int liczbaAktywnychWypowiedzi() {
-        int l=0;
-        ArrayList Watki=db.getWatkiPodforum(this.ID);
-        for(int i=0;i<Watki.size();i++) {
-            Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
-            if (w.czyAktywny()) l+=w.liczbaAktywnychWypowiedzi();
-        }
-        return l;
+        return this.LiczbaWypowiedzi;
     }
     
+    /** Zwieksza liczbe aktywnych wypowiedzi w podforum o 1
+     */
+    public void zwiekszLiczbeAktywnychWypowiedzi() {
+        this.LiczbaWypowiedzi++;
+    }
+    
+    /** Zwieksza liczbe aktywnych watkow w podforum o 1
+     */
+    public void zwiekszLiczbeAktywnychWatkow() {
+        this.LiczbaWatkow++;
+    }
     
     /**
      * Metoda wypisuje na strone glowna liste watkow
