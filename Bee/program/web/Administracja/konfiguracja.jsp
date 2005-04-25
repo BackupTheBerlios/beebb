@@ -95,10 +95,22 @@
                  } catch(Exception e) {
                     out.println(e);
                  }
-               }         
+           }
+           
+            if(pom.compareTo("ustawienia")==0){
+            /*******************************************************
+                   Tu wstawić kod przeładowania bazy   
+             **********************************************************/    
+            }
       }
         
    %>
+   <p align="center">
+     <form action="./konfiguracja.jsp" method="post">
+        <input type="hidden" name="ustawienia"/> 
+        <input type="submit" value=" <%out.println(Messages.wielka(Messages.changeSettings())); %>"/> 
+     </form> 
+   </p>
      
     
  <table align="center" cellpadding="2" cellspacing="1" border="1">
