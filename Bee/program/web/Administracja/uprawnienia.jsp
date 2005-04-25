@@ -66,10 +66,21 @@
       <th><%out.println(Messages.wielka(Messages.jabber())); %></th> <th><%out.println(Messages.wielka(Messages.lastLogged())); %> </th> <th><%out.println(Messages.wielka(Messages.active())); %></th> 
       <th><%out.println(Messages.wielka(Messages.admin())); %></th><th><%out.println(Messages.wielka(Messages.moderator())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th>
      <% String czy_admin="", czy_moderator="", czy_aktywny="";
+        Config conf= new Config();
+        
+          try {
+             conf.readConfig(application);
+           }
+          catch(Exception e) {
+           out.println(e);
+         }
+        
+         int licz=1;
         for(int i=0; i<u.size(); i++) 
         { User pom=(User) u.get(i);
           
           int id= pom.getID();
+         if ( id != conf.GUEST_ID ) { 
           String login=pom.getLogin();
           String imie=pom.getImie();
           String nazwisko=pom.getNazwisko();
@@ -81,7 +92,7 @@
           if( pom.admin() ) czy_admin=DataBase.TAK; else czy_admin=DataBase.NIE; 
           if( pom.moderator() ) czy_moderator=DataBase.TAK; else czy_moderator=DataBase.NIE; 
     
-         %><tr> <td><%=i+1%>. </td><td> <%=dajDana(login)%> </td><td> <%=dajDana(imie)%> </td> <td> <%=dajDana(nazwisko)%> </td>
+         %><tr> <td><%=licz %>. </td><td> <%=dajDana(login)%> </td><td> <%=dajDana(imie)%> </td> <td> <%=dajDana(nazwisko)%> </td>
                 <td> <%=dajDana(email)%> </td><td> <%=dajDana(gg)%> </td> <td> <%=dajDana(jabber)%> </td> <td><%=dajDana(lastlog) %> </td>
                 <td align="center"> <%=takNie(czy_aktywny)%> </td> <td align="center"> <%=takNie(czy_admin)%> </td>
                 <td align="center"> <%=takNie(czy_moderator)%> </td> 
@@ -101,8 +112,8 @@
                      </form>
                 </td>
            </tr> <%       
-        }
-            %>
+         licz++;   }
+         }   %>
      </table>      
     </body>
 </html>
