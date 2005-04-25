@@ -11,6 +11,6 @@
   
 <frameset border="2" frameSpacing="0" rows="84,*" frameBorder="yes" cols="*">
 	<frame name="spis" marginWidth="3" marginHeight="3"src="./naglowek.jsp" scrolling="no" >
-	<frame name="tresc" marginWidth="10" marginHeight="10" src="./glowna.jsp">
+	<frame name="tresc" marginWidth="10" marginHeight="10" src="./konfiguracja.jsp">
 </frameset>
 </html>
