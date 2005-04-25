@@ -417,6 +417,21 @@ public class Messages {
     public static String forgetMessage(){
         return "wiadomość sekcji zapomniane";}
     
+   /** Metoda dostarcza fraze "zmień ustawienia forum" */
+    public static String changeSettings(){
+        return "zmień ustawienia forum";}
+    
+   /** Metoda dostarcza fraze "kategotia" */
+    public static String category(){
+        return "kategoria";}
+    
+    /** Metoda dostarcza fraze "dodawanie podforów" */
+    public static String addPodforums(){
+        return "dodawanie podforów";}
+    
+   /** Metoda dostarcza fraze "next" */
+    public static String next(){
+        return "next";}
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
