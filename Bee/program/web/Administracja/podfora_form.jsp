@@ -82,12 +82,12 @@
             String t=request.getParameter("tytul"+j);
             String o=request.getParameter("opis"+j);
             Podforum podforum= new Podforum("0",t,o,db_con.TAK,db_con.NIE,"0","0",db_con);
-            if( t.compareTo("")== 0 ) wiad.add(Messages.errorFieldNamePodforum());
+            if( t.compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNamePodforum()));
               else
-                if ( db_con.czyPodforum(Integer.decode(id_k).intValue(), t) ) wiad.add(Messages.errorNamePodforum());
+                if ( db_con.czyPodforum(Integer.decode(id_k).intValue(), t) ) wiad.add(Messages.makeError(Messages.errorNamePodforum()));
                   else 
-                    if (db_con.insertPodforum(Integer.decode(id_k).intValue(), podforum) ) wiad.add(Messages.addPodforum());
-                      else wiad.add(Messages.errorAddPodforum());
+                    if ( db_con.insertPodforum(Integer.decode(id_k).intValue(), podforum) ) wiad.add(Messages.makeInfo(Messages.addPodforum()));
+                      else wiad.add(Messages.makeError(Messages.errorAddPodforum()));
                   
             }%>
               <jsp:forward page="./edycja_podforow.jsp"/>
@@ -97,15 +97,15 @@
        %>
             
        <br/> 
-       <p align="center">Kategoria: <%=tytul%> </p>
-       <p align="center">Opis: <%=opis%> </p>
+       <p align="center"> <%=Messages.wielka(Messages.category()) %>: <%=tytul%> </p>
+       <p align="center"> <%=Messages.wielka(Messages.describe()) %>: <%=opis%> </p>
        <br/>
-        <p align="center"> <a href="./edycja_podforow.jsp">Powrót</a>  </p>
+        <p align="center"> <a href="./edycja_podforow.jsp"><%=Messages.wielka(Messages.back()) %> </a>  </p>
        <br/>
     <form id="form" onsubmit="dodaj();"  action="./podfora_form.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="0">
-       <caption> Dodawanie Podforów </caption>
-       <tr> <th> Next </th> <th> Tytul </th> <th> Opis </th> </tr>
+       <caption> <%=Messages.wielka(Messages.addPodforums()) %> </caption>
+       <tr> <th> <%=Messages.wielka(Messages.next()) %> </th> <th> <%=Messages.wielka(Messages.title()) %> </th> <th> <%=Messages.wielka(Messages.describe()) %> </th> </tr>
        <%for(int i=0; i<5; i++) { %>       
       <tr id="<%=i%>"> <td> <input type="button" name="p<%=i%>" value="+" onclick="next(<%=i%>);"/>  </td> 
            <td> <input size="40" type="text" name="tytul<%=i%>" value=""/> </td>
@@ -114,7 +114,7 @@
        <%}%>
       </table>
          <input type="hidden" name="id_kat" value="<%=id_kat%>"/>
-        <p  align="center"> <input size="40" type="submit" value="Dodaj"/> </p>
+        <p  align="center"> <input size="40" type="submit" value="<%=Messages.wielka(Messages.add()) %>"/> </p>
      </form>
     </body>
 </html>
