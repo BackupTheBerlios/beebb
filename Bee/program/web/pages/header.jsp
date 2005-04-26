@@ -17,7 +17,7 @@
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
 	<td width="20%" align="top">
-		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top"/>
+		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top" onClick="linkClick('./main.jsp')" style="cursor: pointer;" />
 	</td>
 <td>
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
