@@ -34,9 +34,9 @@ public class Commons {
                 "<title>"+title+"</title>\n"+
                 "<link rel=\"stylesheet\" href=\""+path+"/styles/temat.css\" type=\"text/css\"/>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/skrypt.js\"></script>\n"+
-                "<script type=\"text/javascript\" src=\""+path+"js/iframe_resize.js\"></script>\n"+
-                "<script type=\"text/javascript\" src=\""+path+"js/forms.js\"></script>\n"+
-                "<script type=\"text/javascript\" src=\""+path+"js/header.js\"></script>\n"+
+                "<script type=\"text/javascript\" src=\""+path+"/js/iframe_resize.js\"></script>\n"+
+                "<script type=\"text/javascript\" src=\""+path+"/js/forms.js\"></script>\n"+
+                "<script type=\"text/javascript\" src=\""+path+"/js/header.js\"></script>\n"+
                 "</head>\n";
 
     }
