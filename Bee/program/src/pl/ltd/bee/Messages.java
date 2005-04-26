@@ -418,8 +418,8 @@ public class Messages {
         return "wiadomość sekcji zapomniane";}
     
    /** Metoda dostarcza fraze "zmień ustawienia forum" */
-    public static String changeSettings(){
-        return "zmień ustawienia forum";}
+    public static String applySettings(){
+        return "zastosuj ustawienia forum";}
     
    /** Metoda dostarcza fraze "kategotia" */
     public static String category(){

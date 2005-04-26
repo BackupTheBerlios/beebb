@@ -217,6 +217,10 @@ public class DataBase {
     }
     
     
+    public void disconnect() throws BeeConnectionException{
+        baza.disconnect();
+    }
+    
     /**
      * Metoda ustawia prefix tabel w bazie danych
      * @param pref - string reprezentujacy prefix

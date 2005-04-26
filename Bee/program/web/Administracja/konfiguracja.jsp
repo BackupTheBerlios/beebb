@@ -2,6 +2,8 @@
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
+<%@ page import="pl.ltd.bee.Exceptions.*"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -16,9 +18,11 @@
     </head>
     <body> 
  
-         <jsp:useBean id="conf" scope="request" class="pl.ltd.bee.Config" />
-              
+         <%--<jsp:useBean id="conf" scope="request" class="pl.ltd.bee.Config" />--%>
+<%@ include file="../pages/servletObjects.jsp" %>              
      <% 
+       Config conf = konfiguracja; //to jest przemapowanie nazwy obiektu z servletObjects.jsp na Twoja nazwe
+       
        try {
              conf.readConfig(application);
            }
@@ -98,20 +102,19 @@
            }
            
             if(pom.compareTo("ustawienia")==0){
-            /*******************************************************
-                   Tu wstawić kod przeładowania bazy   
-             **********************************************************/    
+                try{
+                   db_con.disconnect();
+                   db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+                   out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
+                }
+                catch (BeeConnectionException e)
+                {
+                    out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
+                }
             }
       }
         
    %>
-   <p align="center">
-     <form action="./konfiguracja.jsp" method="post">
-        <input type="hidden" name="ustawienia"/> 
-        <input type="submit" value=" <%out.println(Messages.wielka(Messages.changeSettings())); %>"/> 
-     </form> 
-   </p>
-     
     
  <table align="center" cellpadding="2" cellspacing="1" border="1">
    <caption> <font size="5" style="bold"> <%out.print(Messages.wielka(Messages.forumConfiguration())); %> </font> </caption>
@@ -154,5 +157,13 @@
    </form> 
        
  </table>
+ <hr/>
+   <div align="center">
+     <form action="./konfiguracja.jsp" method="post">
+        <input type="hidden" name="ustawienia"/> 
+        <input type="submit" value=" <%out.println(Messages.wielka(Messages.applySettings())); %>"/> 
+     </div> 
+   </span>
+     
  </body>
 </html>

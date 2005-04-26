@@ -27,6 +27,17 @@ public class ConnectorDB {
         setParameters(Host,Db,User,Pass);
     }
     
+    
+    /**
+     * Metoda likwiduje polaczenie z baza danych jesli takie bylo.
+     */
+    public void disconnect() throws BeeConnectionException{
+        try{
+        if (con != null)
+            if (!con.isClosed()) con.close();
+        }catch (SQLException e) {return;}
+    }
+    
     /**
      * Metoda ustawia parametry polaczenia z baza danych
      * @param Host adres serwera bazy danych
