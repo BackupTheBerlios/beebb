@@ -29,7 +29,7 @@ th	{
         font-weight : bold;
         }        
 
-.tdForumHeader	{ background-color: orange; border: 2px black solid; }
+.tdForumHeader	{ background-color: orange; border: 2px black solid; cursor: pointer;}
 
 /*.tdWypowiedzBox { background-color: gold; border: 2px black solid; } */
 

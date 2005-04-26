@@ -23,7 +23,7 @@
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
 		<tr>
 			<td class="tdForumHeader" bgcolor="white" align="center">
-			<span class="forumTitle">
+			<span class="forumTitle"  onClick="linkClick('./main.jsp')">
                                 <% 
                                     Forum f = db_con.getForum();
                                     if (f != null){
