@@ -19,7 +19,7 @@ public class Commons {
     
     /**
      * Metoda zwraca wypelniony znacznik HEAD.
-     * @param path Sciezka wzgledem korzenia calego serwisu do strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
+     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
      * @param title Tytul strony
      * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
      */
@@ -32,6 +32,7 @@ public class Commons {
                 "<meta name=\"description\" content=\"??\" />\n"+
                 "<meta name=\"keywords\" content=\"??\" />\n"+
                 "<title>"+title+"</title>\n"+
+                "<link href=\""+path+"/images/bee_icon.jpg\" rel=\"SHORTCUT ICON\" />\n"+
                 "<link rel=\"stylesheet\" href=\""+path+"/styles/temat.css\" type=\"text/css\"/>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/skrypt.js\"></script>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/iframe_resize.js\"></script>\n"+
@@ -43,7 +44,7 @@ public class Commons {
     
     /**
      * Metoda zwraca wypelniony znacznik HEAD. Tytul przyjety jest jako "BeeBB :: Content"
-     * @param path Sciezka wzgledem korzenia calego serwisu do strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
+     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
      * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
      */
     public static String htmlHead(String path){
