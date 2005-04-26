@@ -976,4 +976,11 @@ public class Messages {
      */
     public static String moveThread(){
 	    return "przenieś wątek";}	
+
+     /**
+     * Metoda dostarcza komunikat "czy na pewno ?"
+     * @return Komunikat o poprawnym przebiegu operacji
+     */
+    public static String areYouSure(){
+	    return "czy na pewno ?";}	
 }

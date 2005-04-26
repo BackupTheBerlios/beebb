@@ -43,3 +43,7 @@ if (document.getElementById('autor').value.length <=0)
     }
 return true;
 }
+
+function czyNaPewno(komunikat){
+    return confirm(komunikat);
+}
