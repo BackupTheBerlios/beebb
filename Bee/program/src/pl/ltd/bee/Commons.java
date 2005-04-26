@@ -52,4 +52,28 @@ public class Commons {
     }
     
     
+    
+    /** 
+     * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako trwaly przez rok
+     * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
+     */
+    public static void setCachingForever(javax.servlet.http.HttpServletResponse response){
+        java.util.Date d = new java.util.Date((new java.util.Date()).getTime() + 365 * 24 * 60 * 60 * 1000);//za rok od teraz
+        //java.text.SimpleDateFormat d1 = new java.text.SimpleDateFormat("dd MM yyyy hh:mm:ss");
+        response.setHeader("Expires",d.toString());//d1.format(d));
+        response.setHeader("Cache-Control","max-age = "+Long.toString(365 * 24 * 60 * 60));
+    }
+    
+
+    /** 
+     * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako trwaly przez wskazana liczbe sekund
+     * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
+     * @param sec Ilosc sekund waznosci dokumentu
+     */
+    public static void setCachingFor(javax.servlet.http.HttpServletResponse response, long sec){
+        java.util.Date d = new java.util.Date((new java.util.Date()).getTime() + sec * 1000);//za rok od teraz
+        //java.text.SimpleDateFormat d1 = new java.text.SimpleDateFormat("dd MM yyyy hh:mm:ss");
+        response.setHeader("Expires",d.toString());//d1.format(d));
+        response.setHeader("Cache-Control","max-age = "+Long.toString(sec));
+    }
 }

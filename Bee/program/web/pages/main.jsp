@@ -15,7 +15,6 @@
 <%@ include file="servletObjects.jsp" %>
 
 <%
-       
         Enumeration flds = request.getParameterNames();
         if (!flds.hasMoreElements()) {
             pl.ltd.bee.Forum f = db_con.getForum();
@@ -33,6 +32,7 @@
            if (field.compareTo("wpid") == 0) {
                 pl.ltd.bee.Wypowiedz wp = db_con.getWypowiedz(Integer.decode(request.getParameter(field)).intValue());
                 if (wp!=null) {
+                    Commons.setCachingForever(response);
                     out.println("<body style=\"mrgin:0pt;\" class=\"bodyWypowiedz\" >");
                     wp.printJSP(out);
                 }
