@@ -57,11 +57,11 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Podfora` DISABLE KEYS */;
 LOCK TABLES `Bee_Podfora` WRITE;
-INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`Aktywne`,`LiczbaWatkow`,`LiczbaWypowiedzi`) VALUES
-(1,'Tyskie','Dobre piwko','T',1,1),
-(2,'Warka','Tez dobre piwko','T',0,0),
-(3,'Lech','Rownież dobre piwko','T',0,0),
-(4,'Carlsberg','Probably the Best Beer in the World','T',0,0);
+INSERT INTO `Bee_Podfora`(`ID`,`Tytul`,`Opis`,`DataOstWypowiedzi`,`AutorOstWypowiedzi`,`Aktywne`,`LiczbaWatkow`,`LiczbaWypowiedzi`) VALUES
+(1,'Tyskie','Dobre piwko',NOW(),'Guest','T',1,1),
+(2,'Warka','Tez dobre piwko',NOW(),'','T',0,0),
+(3,'Lech','Rownież dobre piwko',NOW(),'','T',0,0),
+(4,'Carlsberg','Probably the Best Beer in the World',NOW(),'','T',0,0);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Bee_Podfora` ENABLE KEYS */;
 

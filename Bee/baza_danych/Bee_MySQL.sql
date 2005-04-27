@@ -75,6 +75,8 @@ CREATE TABLE `Bee_Podfora` (
   `ID` int(10) unsigned NOT NULL auto_increment,
   `Tytul` varchar(100) NOT NULL default '',
   `Opis` varchar(200) NOT NULL default '',
+  `DataOstWypowiedzi` datetime NOT NULL default '0000-00-00 00:00:00',
+  `AutorOstWypowiedzi` varchar(40) NOT NULL default '',
   `Aktywne` enum('T','N') NOT NULL default 'T',
   `Prywatne` enum('T','N') NOT NULL default 'N',
   `LiczbaWatkow` int(10) unsigned NOT NULL default '0',
