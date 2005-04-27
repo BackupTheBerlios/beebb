@@ -29,21 +29,33 @@
             out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
         else
         {
+            String s_wid = request.getParameter("wid");
             String s_wpid = request.getParameter("wpid");
             String op = request.getParameter("op");
-            if ( (s_wpid !=null) && (op != null) )
+            if ( ((s_wpid !=null) || (s_wid != null)) && (op != null) )
             {
                 //DataBase db_con;
-                int wpid = Integer.parseInt(s_wpid);
-                Wypowiedz wyp = db_con.getWypowiedz(wpid);
-                Watek wat = db_con.getWatekByWypowiedz(wpid);
+                Wypowiedz wyp = null;
+                Watek wat = null;
+                int wpid = 0;
+                
+                if (s_wid != null)
+                {
+                    wat = db_con.getWatek(Integer.parseInt(s_wid));
+                }
+                else
+                {
+                    wpid = Integer.parseInt(s_wpid);
+                    wyp = db_con.getWypowiedz(wpid);
+                    wat = db_con.getWatekByWypowiedz(wpid);
+                }
                 Podforum pod = db_con.getPodforumbyWatek(wat.getID());
-                if ((wyp == null) || (wat == null) || (pod == null))
+                if (((wyp == null) && (s_wpid != null))|| (wat == null) || (pod == null))
                 {
                     out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                     return;//TODO Jesli to dziala to na pewno nie wygeneruje poprawnego xhtml :D
                 }
-                if (op.compareTo("edit") == 0)
+                if ((op.compareTo("edit") == 0) && (s_wpid != null))
                 {
                     //edycja wypowiedzi
                     if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()))
@@ -64,7 +76,7 @@
                     }
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
-                if(op.compareTo("edited") == 0)
+                if ((op.compareTo("edited") == 0) && (s_wpid != null))
                 {
                     String text = request.getParameter("newText");
                     if (text != null)
@@ -78,7 +90,7 @@
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
                 }
-                if(op.compareTo("delete") == 0)
+                if((op.compareTo("delete") == 0) && (s_wpid != null))
                 {
                     //kasowanie wypowiedzi jesli ma sie prawo
                     if (user.moderator(pod.getID()))
@@ -160,7 +172,10 @@
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
                 
-             out.println("<br/><a href=\"./main.jsp?wid="+wat.getID()+"\">"+Messages.wielka(Messages.back())+"</a>");
+             out.print("<br/><a href=\"./main.jsp?");
+             if (s_wpid != null) out.print("wid="+wat.getID());
+             else out.print("pid="+pod.getID());
+             out.println("\">"+Messages.wielka(Messages.back())+"</a>");
             }
             else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
         }
