@@ -20,6 +20,7 @@ public class Watek {
     private String Temat;
     private String Data;
     private String DataOstWypowiedzi;
+    private boolean zmienDateOstWypowiedzi;
     private String AutorOstWypowiedzi;
     private boolean Prywatny;
     private boolean Aktywny;
@@ -53,6 +54,7 @@ public class Watek {
         this.Temat=Temat;
         this.Data=Data;
         this.DataOstWypowiedzi=DataOstWypowiedzi;
+        this.zmienDateOstWypowiedzi=false;
         this.AutorOstWypowiedzi=AutorOstWypowiedzi;
         if (Prywatny != null) this.Prywatny=Prywatny.compareTo(DataBase.TAK) == 0;
         else this.Prywatny = false;
@@ -108,7 +110,7 @@ public class Watek {
         return Data;
     }
     
-    
+      
     /** Zwraca date ostatniej wypowiedzi w watku
      * @return zwraca string reprezentujący date ostatniej wypowiedzi w watku
      */
@@ -129,7 +131,16 @@ public class Watek {
      * @param DataOstWypowiedzi string reprezentujący date ostatniej wypowiedzi w watku
      */
     public void setDataOstWypowiedzi(String DataOstWypowiedzi) {
+        this.zmienDateOstWypowiedzi=true;
         this.DataOstWypowiedzi=DataOstWypowiedzi;
+    }
+    
+    
+    /** Sprawdza czy data ostatniej wypowiedzi sie zmieniła
+     * @return T w przypadku gdy data się zmieniła, wp F
+     */
+    public boolean checkDataOstWypowiedzi() {
+        return zmienDateOstWypowiedzi;
     }
     
     
@@ -139,7 +150,7 @@ public class Watek {
     public String getAutorOstWypowiedzi() {
         return AutorOstWypowiedzi;
     }
-
+    
     
     /** Ustawia autora ostatniej wypowiedzi w watku
      * @param AutorOstWypowiedzi string reprezentujący autora ostatniej wypowiedzi w watku
@@ -221,7 +232,7 @@ public class Watek {
         strona.println("<tr>");
         strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
-
+        
         strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&id_autor="+this.ID_Autor+"&op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=move')\" /><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=block')\" /><img src=\"../images/lock.png\" alt=\"Zablokuj\" border=\"0\" /></span>");
@@ -241,8 +252,8 @@ public class Watek {
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>");
         User u = db.getUser(AutorOstWypowiedzi);
-        if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println("~"+AutorOstWypowiedzi); else
-        strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
+        if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
+            strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
         strona.println("<a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }

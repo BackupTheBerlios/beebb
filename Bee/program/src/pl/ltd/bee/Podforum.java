@@ -243,7 +243,7 @@ public class Podforum {
             if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
             strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
             strona.println("<a href=\"viewtopic.html\"></a></span>");
-        }
+        } else strona.println("&nbsp;");
         strona.println("</td></tr>");
     }
     
