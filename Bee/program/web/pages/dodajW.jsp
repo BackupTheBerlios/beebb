@@ -58,9 +58,19 @@
                     return wt;
                 }
                 
-                public void incrAddWatek(Watek wt) throws Exception {
+                public void incrAddWatek(Watek wt,String ID_Usera, String Nazwa_Usera) throws Exception {
                     Podforum pf = db_con.getPodforumbyWatek(wt.getID());
                     wt.zwiekszLiczbeAktywnychWypowiedzi();
+                    String Nazwa_Usera2=Nazwa_Usera;
+                    if ((Integer.decode(ID_Usera).intValue())==Config.GUEST_ID)
+                        Nazwa_Usera2="~" + Nazwa_Usera;
+
+                    wt.setDataOstWypowiedzi(DataBase.getDate());
+                    wt.setAutorOstWypowiedzi(Nazwa_Usera2);
+                    pf.setDataOstWypowiedzi(DataBase.getDate());
+                    pf.setAutorOstWypowiedzi(Nazwa_Usera2);
+                    
+                    
                     if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
                     pf.zwiekszLiczbeAktywnychWatkow();
                     pf.zwiekszLiczbeAktywnychWypowiedzi();
@@ -133,7 +143,7 @@
                     Watek wt = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title);
                     //dodaj Wypowiedz
                     d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
-                    d.incrAddWatek(wt);
+                    d.incrAddWatek(wt,ID_Usera,Nazwa_Usera);
                 }
                     out.print("<center><br/><br/><a href=\"./main.jsp"); 
                     if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");

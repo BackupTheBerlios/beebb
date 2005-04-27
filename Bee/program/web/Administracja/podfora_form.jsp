@@ -81,7 +81,7 @@
          for(int j=0; j<licz; j++) {  
             String t=request.getParameter("tytul"+j);
             String o=request.getParameter("opis"+j);
-            Podforum podforum= new Podforum("0",t,o,db_con.TAK,db_con.NIE,"0","0",db_con);
+            Podforum podforum= new Podforum("0",t,o,DataBase.getDateToInsert(),"",db_con.TAK,db_con.NIE,"0","0",db_con);
             if( t.compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNamePodforum()));
               else
                 if ( db_con.czyPodforum(Integer.decode(id_k).intValue(), t) ) wiad.add(Messages.makeError(Messages.errorNamePodforum()));

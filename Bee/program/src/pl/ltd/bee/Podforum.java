@@ -17,6 +17,8 @@ public class Podforum {
     private int ID;
     private String Tytul;
     private String Opis;
+    private String AutorOstWypowiedzi;
+    private String DataOstWypowiedzi;
     private boolean Aktywne;
     private boolean Prywatne;
     private DataBase db;
@@ -36,9 +38,11 @@ public class Podforum {
      * @param Prywatne okresla czy podforum jest prywatne
      * @param db Obiekt DataBase
      */
-    public Podforum(String ID, String Tytul,String Opis, String Aktywne, String Prywatne,String LiczbaWatkow,String LiczbaWypowiedzi, DataBase db) {
+    public Podforum(String ID, String Tytul,String Opis,String DataOstWypowiedzi,String AutorOstWypowiedzi, String Aktywne, String Prywatne,String LiczbaWatkow,String LiczbaWypowiedzi, DataBase db) {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
+        this.DataOstWypowiedzi=DataOstWypowiedzi;
+        this.AutorOstWypowiedzi=AutorOstWypowiedzi;
         if (Aktywne != null) this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
         else this.Aktywne = false;
         if (Prywatne != null) this.Prywatne=Prywatne.compareTo(DataBase.TAK) == 0;
@@ -82,6 +86,23 @@ public class Podforum {
     }
     
     
+    /** Metoda zwraca autora ostatniej wypowiedzi
+     * @return String z autorem ostatniej wypowiedzi
+     */
+    public String getAutorOstWypowiedzi(){
+        return AutorOstWypowiedzi;
+    }
+    
+    
+    
+    /** Metoda zwraca date ostatniej wypowiedzi
+     * @return String z datą ostatniej wypowiedzi
+     */
+    public String getDataOstWypowiedzi(){
+        return DataOstWypowiedzi;
+    }
+    
+    
     /** Zwraca  pole aktywne
      * @return boolean
      */
@@ -97,12 +118,30 @@ public class Podforum {
         this.Opis=op;
     }
     
+    
+    /** Ustawia autora ostatniej wypowiedzi
+     * @param AutorOstWypowiedzi String opisujący autora ostatniej wypowiedzi
+     */
+    public void setAutorOstWypowiedzi(String AutorOstWypowiedzi) {
+        this.AutorOstWypowiedzi=AutorOstWypowiedzi;
+    }
+    
+    
+    /** Ustawia date ostatniej wypowiedzi
+     * @param DataOstWypowiedzi String reprezentujący datę ostatniej wypowiedzi
+     */
+    public void setDataOstWypowiedzi(String DataOstWypowiedzi) {
+        this.DataOstWypowiedzi=DataOstWypowiedzi;
+    }
+    
+    
     /** Ustawia nazwe podforum
      * @param op String ustawianej nazwy
      */
     public void setNazwa(String naz) {
         this.Tytul=naz;
     }
+    
     
     /** Ustawia id podforum
      * @param id String ustawianego opisu
@@ -186,8 +225,15 @@ public class Podforum {
         strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <a href=\"main.jsp?pid=" + this.getID() + "\" class=\"aTytulPodforum\">"+ this.getTytul() +"</a><br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">"+ liczbaAktywnychWatkow() + "</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">" + liczbaAktywnychWypowiedzi() + "</span></td>");
-        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\"> <span class=\"lastPost\">Czw Mar 17, 2005 3:29 am<br /><a href=\"profile.html\">User 1</a> <a href=\"viewtopic.html\"></a></span></td>");
-        strona.println("</tr>");
+        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\">");
+        if (AutorOstWypowiedzi.compareTo("")!=0) {
+            strona.println("<span class=\"lastPost\">" + DataOstWypowiedzi + "<br />");
+            User u = db.getUser(AutorOstWypowiedzi);
+            if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
+            strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
+            strona.println("<a href=\"viewtopic.html\"></a></span>");
+        }
+        strona.println("</td></tr>");
     }
     
     /**

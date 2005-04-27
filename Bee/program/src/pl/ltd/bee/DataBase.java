@@ -117,6 +117,8 @@ public class DataBase {
     static final String PODFORUM_ID = "ID";
     static final String PODFORUM_TYTUL = "TYTUL";
     static final String PODFORUM_OPIS = "OPIS";
+    static final String PODFORUM_DATA_OST_WYPOWIEDZI = "DATAOSTWYPOWIEDZI";
+    static final String PODFORUM_AUTOR_OST_WYPOWIEDZI = "AUTOROSTWYPOWIEDZI";
     static final String PODFORUM_AKTYWNE = "AKTYWNE";
     static final String PODFORUM_PRYWATNE = "PRYWATNE";
     static final String PODFORUM_LICZBA_WATKOW = "LICZBAWATKOW";
@@ -287,7 +289,7 @@ public class DataBase {
     public Podforum getPodforum(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
         if (podforum == null) return null;
-        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this);
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this);
     }
     
     
@@ -299,7 +301,7 @@ public class DataBase {
     public Podforum getPodforumbyWatek(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_PODFORUM + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
         if (podforum == null) return null;
-        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this);
+        return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this);
     }
     
     
@@ -600,7 +602,7 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ("+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"', '" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ("+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"'," + p.getDataOstWypowiedzi() + ",'" + p.getAutorOstWypowiedzi() + "','" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
             Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
             if (pf==null) return false;
             
@@ -673,7 +675,7 @@ public class DataBase {
         if(p.czyAktywne()) aktywne=TAK; else aktywne=NIE;
         String prywatne;
         if(p.czyPrywatne()) prywatne=TAK; else prywatne=NIE;
-        return baza.dmlQuery("UPDATE " + BEE_PODFORA + " set " + PODFORUM_TYTUL + " = '" + p.getTytul() + "'," + PODFORUM_OPIS + " = '" + p.getOpis() + "'," + PODFORUM_AKTYWNE + "='" + aktywne + "'," + PODFORUM_PRYWATNE + "='" + prywatne + "'," + PODFORUM_LICZBA_WYPOWIEDZI + "='" + p.liczbaAktywnychWypowiedzi() + "'," + PODFORUM_LICZBA_WATKOW + "='" + p.liczbaAktywnychWatkow() + "' where " + WATEK_ID + "="  + new String().valueOf(p.getID()) );
+        return baza.dmlQuery("UPDATE " + BEE_PODFORA + " set " + PODFORUM_TYTUL + " = '" + p.getTytul() + "'," + PODFORUM_OPIS + " = '" + p.getOpis() + "'," +  PODFORUM_DATA_OST_WYPOWIEDZI + "= '" + prepareDateToUpdate(p.getDataOstWypowiedzi()) + "'," + PODFORUM_AUTOR_OST_WYPOWIEDZI + " = '" + p.getAutorOstWypowiedzi()  + "'," + PODFORUM_AKTYWNE + "='" + aktywne + "'," + PODFORUM_PRYWATNE + "='" + prywatne + "'," + PODFORUM_LICZBA_WYPOWIEDZI + "='" + p.liczbaAktywnychWypowiedzi() + "'," + PODFORUM_LICZBA_WATKOW + "='" + p.liczbaAktywnychWatkow() + "' where " + WATEK_ID + "="  + new String().valueOf(p.getID()) );
     }
     
     
@@ -802,7 +804,7 @@ public class DataBase {
         ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + ID + " and "+PODFORUM_AKTYWNE+"= '"+aktywne+"'");
         for(int i=0;i<podfora.size();i++) {
             Hashtable podforum = (Hashtable)podfora.get(i);
-            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
+            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
         }
         return wynik;
     }
@@ -957,7 +959,7 @@ public class DataBase {
      */
     public static String prepareDateToUpdate(String data) {
         return data;
-    }    
+    }
     
     
     /** Metoda zwraca datę dla wybranej bazy danych
