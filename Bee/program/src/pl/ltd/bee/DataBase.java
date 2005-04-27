@@ -1041,15 +1041,21 @@ public class DataBase {
     }
     
     /** Metoda przenosi watek z jednego podforum do drugiego
-     * @param id_watku Identyfikator przenoszonego watku
+     * @param watek Przenoszony watek
      * @param id_from Identyfikator podforum z ktorego usuwamy
      * @param id_to Identyfikator podforum do ktorego przenosimy
      * @return True jesli operacja powiodla sie
      */
-    public boolean moveWatek(int id_watku,int id_from,int id_to){
+    public boolean moveWatek(Watek watek,int id_from,int id_to){
         if (id_from == id_to) return true;
-        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+id_watku+")"))
-            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+id_watku+")")) return true;
+        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+watek.getID()+")"))
+            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+watek.getID()+")"))
+            //teraz trzeba przeniesc liczby
+                if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"-1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"-"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_from))
+                    if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"+1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"-"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_to)) 
+                                    return true;
+                    else return false;
+                else return false;
             else return false;
         else return false;
     }
