@@ -659,7 +659,7 @@ public class DataBase {
         if(w.czyZamkniety()) zamkniety=TAK; else zamkniety=NIE;
         String zablokowany;
         if(w.czyZablokowany()) zablokowany=TAK; else zablokowany=NIE;
-        return baza.dmlQuery("UPDATE " + BEE_WATKI + " set " + WATEK_AUTOR + " = '" + w.getAutor() + "'," + WATEK_ID_AUTORA + " = '" + w.getIDAutora() + "'," + WATEK_DATA + " = '" + prepareDateToUpdate(w.getData())  + "'," + WATEK_TEMAT + "='" + w.getTemat() + "'," + WATEK_LICZBA_WYPOWIEDZI + "='" + w.liczbaAktywnychWypowiedzi() + "'," +  WATEK_AKTYWNY + "='" + aktywny + "'," + WATEK_PRYWATNY + "='" + prywatny + "'," + WATEK_ZABLOKOWANY + "='" + zablokowany + "'," + WATEK_ZAMKNIETY + "='" + zamkniety + "'," + WATEK_LICZBA_ODWIEDZIN + "=" + w.licznikOdwiedzin() +  " where " + WATEK_ID + "="  + new String().valueOf(w.getID()) );
+        return baza.dmlQuery("UPDATE " + BEE_WATKI + " set " + WATEK_AUTOR + " = '" + w.getAutor() + "'," + WATEK_ID_AUTORA + " = '" + w.getIDAutora() + "'," + WATEK_DATA + " = '" + prepareDateToUpdate(w.getData())  + "'," + WATEK_AUTOR_OST_WYPOWIEDZI + " = '" + w.getAutorOstWypowiedzi() + "'," + WATEK_DATA_OST_WYPOWIEDZI + "='" + prepareDateToUpdate(w.getDataOstWypowiedzi()) + "'," + WATEK_TEMAT + "='" + w.getTemat() + "'," + WATEK_LICZBA_WYPOWIEDZI + "='" + w.liczbaAktywnychWypowiedzi() + "'," +  WATEK_AKTYWNY + "='" + aktywny + "'," + WATEK_PRYWATNY + "='" + prywatny + "'," + WATEK_ZABLOKOWANY + "='" + zablokowany + "'," + WATEK_ZAMKNIETY + "='" + zamkniety + "'," + WATEK_LICZBA_ODWIEDZIN + "=" + w.licznikOdwiedzin() +  " where " + WATEK_ID + "="  + new String().valueOf(w.getID()) );
     }
     
     
@@ -939,7 +939,7 @@ public class DataBase {
      * @return String reprezentujacy date dla aktualnej bazy danych
      */
     public static String getDate() {
-        return "1970-01-01 00:00:00";
+        return "2006-09-09 12:12:12";
     }
     
     

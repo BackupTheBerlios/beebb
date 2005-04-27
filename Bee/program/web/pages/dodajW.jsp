@@ -49,7 +49,10 @@
                     Watek wt;
                     String prywatne=DataBase.NIE;
                     if(pf.czyPrywatne()) prywatne=DataBase.TAK;
-                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDateToInsert(),db_con.getDateToInsert(),Nazwa_Usera,prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0","0",db_con);
+                    String Nazwa_Usera2=Nazwa_Usera;
+                    if ((Integer.decode(ID_Usera).intValue())==Config.GUEST_ID)
+                        Nazwa_Usera2="~" + Nazwa_Usera;
+                    wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDateToInsert(),db_con.getDateToInsert(),Nazwa_Usera2,prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0","0",db_con);
                     wt = db_con.insertWatek(podforum,wt);
                     if (wt==null) out.print(Messages.errorDataBaseConnection()); else out.print(Messages.addedThread()  + "<br/>");
                     return wt;
@@ -64,9 +67,15 @@
                     if (!db_con.updatePodforum(pf)) out.print(Messages.errorDataBaseConnection());
                 }
                 
-                public void incrAddWypowiedz(Watek wt) throws Exception {
+                public void incrAddWypowiedz(Watek wt,String ID_Usera, String Nazwa_Usera) throws Exception {
                     Podforum pf = db_con.getPodforumbyWatek(wt.getID());
                     wt.zwiekszLiczbeAktywnychWypowiedzi();
+                    String Nazwa_Usera2=Nazwa_Usera;
+                    if ((Integer.decode(ID_Usera).intValue())==Config.GUEST_ID)
+                        Nazwa_Usera2="~" + Nazwa_Usera;
+
+                    wt.setDataOstWypowiedzi(DataBase.getDate());
+                    wt.setAutorOstWypowiedzi(Nazwa_Usera2);
                     if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
                     pf.zwiekszLiczbeAktywnychWypowiedzi();
                     if (!db_con.updatePodforum(pf)) out.print(Messages.errorDataBaseConnection());
@@ -115,7 +124,7 @@
                 Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
                 //dodaj Wypowiedz
                 d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
-                d.incrAddWypowiedz(wt);
+                d.incrAddWypowiedz(wt,ID_Usera,Nazwa_Usera);
                 } else
                 if (podforum!=null && text!=null) {
                     String title=request.getParameter("title");

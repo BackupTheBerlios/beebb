@@ -139,6 +139,14 @@ public class Watek {
     public String getAutorOstWypowiedzi() {
         return AutorOstWypowiedzi;
     }
+
+    
+    /** Ustawia autora ostatniej wypowiedzi w watku
+     * @param AutorOstWypowiedzi string reprezentujący autora ostatniej wypowiedzi w watku
+     */
+    public void setAutorOstWypowiedzi(String AutorOstWypowiedzi) {
+        this.AutorOstWypowiedzi=AutorOstWypowiedzi;
+    }
     
     
     /** Zwraca czy watek jest prywatny
@@ -225,7 +233,7 @@ public class Watek {
         }
         strona.println("</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
-        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/><a href=\"./profile.jsp\">" + AutorOstWypowiedzi + "</a> <a href=\"viewtopic.html\"></a></span></td>");
+        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>" + AutorOstWypowiedzi + "<a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }
     
