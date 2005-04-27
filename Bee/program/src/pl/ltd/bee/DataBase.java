@@ -675,7 +675,10 @@ public class DataBase {
         if(p.czyAktywne()) aktywne=TAK; else aktywne=NIE;
         String prywatne;
         if(p.czyPrywatne()) prywatne=TAK; else prywatne=NIE;
-        return baza.dmlQuery("UPDATE " + BEE_PODFORA + " set " + PODFORUM_TYTUL + " = '" + p.getTytul() + "'," + PODFORUM_OPIS + " = '" + p.getOpis() + "'," +  PODFORUM_DATA_OST_WYPOWIEDZI + "= '" + prepareDateToUpdate(p.getDataOstWypowiedzi()) + "'," + PODFORUM_AUTOR_OST_WYPOWIEDZI + " = '" + p.getAutorOstWypowiedzi()  + "'," + PODFORUM_AKTYWNE + "='" + aktywne + "'," + PODFORUM_PRYWATNE + "='" + prywatne + "'," + PODFORUM_LICZBA_WYPOWIEDZI + "='" + p.liczbaAktywnychWypowiedzi() + "'," + PODFORUM_LICZBA_WATKOW + "='" + p.liczbaAktywnychWatkow() + "' where " + WATEK_ID + "="  + new String().valueOf(p.getID()) );
+        String data_zm = "";
+        if (p.checkDataOstWypowiedzi()) 
+            data_zm = PODFORUM_DATA_OST_WYPOWIEDZI + "= " + getDateToInsert() + ",";
+        return baza.dmlQuery("UPDATE " + BEE_PODFORA + " set " + PODFORUM_TYTUL + " = '" + p.getTytul() + "'," + PODFORUM_OPIS + " = '" + p.getOpis() + "',"  + data_zm  + PODFORUM_AUTOR_OST_WYPOWIEDZI + " = '" + p.getAutorOstWypowiedzi()  + "'," + PODFORUM_AKTYWNE + "='" + aktywne + "'," + PODFORUM_PRYWATNE + "='" + prywatne + "'," + PODFORUM_LICZBA_WYPOWIEDZI + "='" + p.liczbaAktywnychWypowiedzi() + "'," + PODFORUM_LICZBA_WATKOW + "='" + p.liczbaAktywnychWatkow() + "' where " + WATEK_ID + "="  + new String().valueOf(p.getID()) );
     }
     
     

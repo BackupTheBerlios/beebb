@@ -19,6 +19,7 @@ public class Podforum {
     private String Opis;
     private String AutorOstWypowiedzi;
     private String DataOstWypowiedzi;
+    private boolean zmienDateOstWypowiedzi;
     private boolean Aktywne;
     private boolean Prywatne;
     private DataBase db;
@@ -42,6 +43,7 @@ public class Podforum {
         this.ID=Integer.decode(ID).intValue();
         this.Tytul=Tytul;
         this.DataOstWypowiedzi=DataOstWypowiedzi;
+        this.zmienDateOstWypowiedzi=false;
         this.AutorOstWypowiedzi=AutorOstWypowiedzi;
         if (Aktywne != null) this.Aktywne=Aktywne.compareTo(DataBase.TAK) == 0;
         else this.Aktywne = false;
@@ -131,7 +133,16 @@ public class Podforum {
      * @param DataOstWypowiedzi String reprezentujący datę ostatniej wypowiedzi
      */
     public void setDataOstWypowiedzi(String DataOstWypowiedzi) {
+        this.zmienDateOstWypowiedzi=true;
         this.DataOstWypowiedzi=DataOstWypowiedzi;
+    }
+    
+    
+    /** Sprawdza czy data ostatniej wypowiedzi sie zmieniła 
+     * @return T w przypadku gdy data się zmieniła, wp F
+     */
+    public boolean checkDataOstWypowiedzi() {
+        return zmienDateOstWypowiedzi;
     }
     
     
