@@ -233,7 +233,11 @@ public class Watek {
         }
         strona.println("</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
-        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>" + AutorOstWypowiedzi + "<a href=\"viewtopic.html\"></a></span></td>");
+        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>");
+        User u = db.getUser(AutorOstWypowiedzi);
+        if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
+        strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
+        strona.println("<a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }
     
