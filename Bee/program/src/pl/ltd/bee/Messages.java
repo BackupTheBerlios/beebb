@@ -979,8 +979,16 @@ public class Messages {
 
      /**
      * Metoda dostarcza komunikat "czy na pewno ?"
-     * @return Komunikat o poprawnym przebiegu operacji
+     * @return Pytanie czy na pewno wykonac dana operacje
      */
     public static String areYouSure(){
 	    return "czy na pewno ?";}	
+    
+    
+     /**
+     * Metoda dostarcza slowo "akcje"
+     * @return Slowo "akcje"
+     */
+    public static String actions(){
+        return "akcje";}
 }

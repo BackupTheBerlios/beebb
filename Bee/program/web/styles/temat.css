@@ -41,7 +41,7 @@ th	{
 	border: 1px black solid; 
 	}
 
-.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost, .tdPictureWatek , .tdTytulWatek , .tdAutor{
+.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost, .tdPictureWatek , .tdTytulWatek , .tdAutor, .tdModeratingWatek{
 	border: 1px black solid;
 	background-color: goldenrod;
 	}

@@ -221,6 +221,12 @@ public class Watek {
         strona.println("<tr>");
         strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
+
+        strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&id_autor="+this.ID_Autor+"&op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=move')\" /><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/></span>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=block')\" /><img src=\"../images/lock.png\" alt=\"Zablokuj\" border=\"0\" /></span>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=close')\" /><img src=\"../images/cut.gif\" alt=\"Zamknij\" border=\"0\"/></span>");
+        
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
         if (LiczbaWypowiedzi > 0) strona.println((LiczbaWypowiedzi-1)); else strona.println(LiczbaWypowiedzi);
         strona.println("</span></td>");
