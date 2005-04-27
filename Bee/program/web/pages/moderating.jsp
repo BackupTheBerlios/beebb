@@ -58,7 +58,7 @@
                 if ((op.compareTo("edit") == 0) && (s_wpid != null))
                 {
                     //edycja wypowiedzi
-                    if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()))
+                    if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()) || (user.admin()))
                     {
                     %>
                         <form action="moderating.jsp" method="get">
@@ -80,7 +80,7 @@
                 {
                     String text = request.getParameter("newText");
                     if (text != null)
-                    if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()))
+                    if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()) || (user.admin()))
                     {
                         text = new String(text.getBytes("8859_1"),"UTF-8");
                         if (db_con.zmienTekstWypowiedzi(wyp,wat.getID(),text))
@@ -93,7 +93,7 @@
                 if((op.compareTo("delete") == 0) && (s_wpid != null))
                 {
                     //kasowanie wypowiedzi jesli ma sie prawo
-                    if (user.moderator(pod.getID()))
+                    if (user.moderator(pod.getID()) || (user.admin()))
                         if (db_con.zmienAktywnoscWypowiedzi(wpid,false))
                             out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
@@ -107,7 +107,7 @@
                     else
                     {
                         int id_autor = Integer.parseInt(s_autor);
-                        if (user.moderator(pod.getID()))
+                        if (user.moderator(pod.getID()) || (user.admin()))
                             if (db_con.banUser(id_autor,pod.getID(),true))
                                 out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                             else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
@@ -117,6 +117,8 @@
                 if (op.compareTo("move") == 0)
                 {
                     //przesuwanie watku
+                    if (user.moderator(pod.getID()) || (user.admin()))
+                    {
                     %>
                         <form action="moderating.jsp" method="get">
                             <table border="0" class="tableMovePodforum" align="center">
@@ -132,13 +134,15 @@
                                 }
                             %>
                             </select>
-                            <input type="hidden" name="wpid" value="<%out.print(s_wpid);%>" />
+                            <input type="hidden" name="<% if (s_wpid != null) out.print("wpid\" value=\""+s_wpid+"\"");else out.print("wid\" value=\""+wat.getID()+"\"");%> />
                             <input type="hidden" name="op" value="moveto" />
                             </td></tr>
                             <tr><td align="center" class="tdMoveTo"><input type="submit" value="<% out.print(Messages.wielka(Messages.move()));%>"</td></tr>
                             </table>
                         </form>
                     <%
+                    }
+                        else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
                 if (op.compareTo("moveto") == 0)
                 {
@@ -148,15 +152,17 @@
                     else
                     {
                         int moveto = Integer.parseInt(s_moveto);
-                        if (db_con.moveWatek(wat.getID(),pod.getID(),moveto))
-                                out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
-                            else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
+                        if (user.moderator(pod.getID()) || (user.admin()))
+                            if (db_con.moveWatek(wat,pod.getID(),moveto))
+                                    out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
+                                else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
+                        else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                     }
                 }                
                 if (op.compareTo("block") == 0)
                 {
                     //blokowanie watku
-                    if (user.moderator(pod.getID()))
+                    if (user.moderator(pod.getID()) || (user.admin()))
                         if (db_con.blokowanieWatku(wat.getID(),true))
                             out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
@@ -165,7 +171,7 @@
                 if (op.compareTo("close") == 0)
                 {
                     //zamkniecie watku
-                    if (user.moderator(pod.getID()))
+                    if (user.moderator(pod.getID()) || (user.admin()))
                         if (db_con.zamykanieWatku(wat.getID(),true))
                             out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
