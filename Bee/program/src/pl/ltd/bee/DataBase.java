@@ -223,6 +223,7 @@ public class DataBase {
         baza.disconnect();
     }
     
+    
     /**
      * Metoda ustawia prefix tabel w bazie danych
      * @param pref - string reprezentujacy prefix
