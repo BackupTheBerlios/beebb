@@ -126,6 +126,7 @@
                 String autor=request.getParameter("autor");
                 if (autor!=null) {
                       autor = new String(autor.getBytes("8859_1"),"UTF-8");
+                      autor = Commons.wypowiedzDoBazy(autor);
                       Nazwa_Usera=autor;
                 }
             }
@@ -140,6 +141,7 @@
                 if (podforum!=null && text!=null) {
                     String title=request.getParameter("title");
                     title = new String(title.getBytes("8859_1"),"UTF-8");
+                    title = Commons.wypowiedzDoBazy(title);
                     //dodaj Watek
                     Watek wt = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title);
                     //dodaj Wypowiedz
