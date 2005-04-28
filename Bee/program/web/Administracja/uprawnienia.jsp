@@ -57,8 +57,8 @@
          }
         }   
             u=db_con.getUsers();  %>
-    <head><title>Uprawnienia</title></head>
-    <body>
+ 
+
 
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
       <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> 

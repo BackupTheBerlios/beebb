@@ -55,7 +55,7 @@
          else {
             id_kat=db_con.dajIdKategorii( (String) request.getParameter("kategoria_pom"));
             if( id_kat!=(p.getIdKat()) )   
-              if ( db_con.czyPodforum(id_kat, p.getTytul()) ) { ok=false; wiad.add(Messages.makeError(Messages.errorNamePodforum())); } 
+              if ( db_con.dajIdPodforum(id_kat, p.getTytul()) != -1 ) { ok=false; wiad.add(Messages.makeError(Messages.errorNamePodforum())); } 
              
              if(ok) { 
                 if ( db_con.updatePodforum(p.getID(), id_kat, p.getTytul(), p.getOpis()) )

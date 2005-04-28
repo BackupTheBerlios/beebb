@@ -58,6 +58,9 @@
 	         <td class="tdTopLink"><a class="aTopLink" href="./backup.jsp" target="tresc">
 			[] <%out.print(Messages.wielka(Messages.backup()));%> </a>
 		 </td>
+		  <td class="tdTopLink"><a class="aTopLink" href="./moderatorzy.jsp" target="tresc">
+			[] <%out.print(Messages.wielka(Messages.moderators()));%> </a>
+		 </td>
 	        </tr>
 	      </table>
 	     </td>
