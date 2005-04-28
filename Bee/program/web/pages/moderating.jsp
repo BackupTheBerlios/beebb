@@ -65,7 +65,7 @@
                             <table border="0" class="tableEditWypowiedz" align="center">
                             <tr><th><%out.print(Messages.wielka(Messages.edition()));%></th></tr>
                             <tr><td class="tdEditWypowiedz" align="center">
-                            <textarea cols="100" rows="5" name="newText"><%out.print(wyp.getTekst());%></textarea>
+                            <textarea cols="100" rows="5" name="newText"><%out.print(Commons.wypowiedzDoTekst(wyp.getTekst()));%></textarea>
                             <input type="hidden" name="wpid" value="<%out.print(s_wpid);%>" />
                             <input type="hidden" name="op" value="edited" />
                             </td></tr>
@@ -83,7 +83,7 @@
                     if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()) || (user.admin()))
                     {
                         text = new String(text.getBytes("8859_1"),"UTF-8");
-                        if (db_con.zmienTekstWypowiedzi(wyp,wat.getID(),text))
+                        if (db_con.zmienTekstWypowiedzi(wyp,wat.getID(),Commons.wypowiedzDoBazy(text)))
                             out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                         else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                     }
