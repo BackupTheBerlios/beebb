@@ -119,7 +119,8 @@ public class ConnectorDB {
             while(result.next()) {
                 Hashtable row=new Hashtable();
                 for(int i=1;i<=licz;i++) {
-                    row.put(rsmd.getColumnName(i).toUpperCase(),result.getString(i));                    
+                    if (result.getString(i)!=null)
+                        row.put(rsmd.getColumnName(i).toUpperCase(),result.getString(i));                    
                 }
                 pom.add(row);
             }            
