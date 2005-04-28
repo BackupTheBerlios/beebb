@@ -66,25 +66,6 @@ CREATE TABLE `Bee_Kategorie` (
   PRIMARY KEY  (`ID`)
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela kategorii';
 
---
--- Table structure for table `Bee_Podfora`
---
-
-DROP TABLE IF EXISTS `Bee_Podfora`;
-CREATE TABLE `Bee_Podfora` (
-  `ID` int(10) unsigned NOT NULL auto_increment,
-  `Tytul` varchar(100) NOT NULL default '',
-  `Opis` varchar(200) NOT NULL default '',
-  `DataOstWypowiedzi` datetime NOT NULL default '0000-00-00 00:00:00',
-  `AutorOstWypowiedzi` varchar(40) NOT NULL default '',
-  `Aktywne` enum('T','N') NOT NULL default 'T',
-  `Prywatne` enum('T','N') NOT NULL default 'N',
-  `LiczbaWatkow` int(10) unsigned NOT NULL default '0',
-  `LiczbaWypowiedzi` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`ID`)
-) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela podfor';
-
-
 
 --
 -- Table structure for table `Bee_Watki`
@@ -109,6 +90,28 @@ CREATE TABLE `Bee_Watki` (
   KEY `id_aut` (`ID_autora`),
   CONSTRAINT `Bee_Watki_ibfk_1` FOREIGN KEY (`ID_autora`) REFERENCES `Bee_Users` (`ID`) ON UPDATE CASCADE
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z watkami';
+
+
+--
+-- Table structure for table `Bee_Podfora`
+--
+
+DROP TABLE IF EXISTS `Bee_Podfora`;
+CREATE TABLE `Bee_Podfora` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `Tytul` varchar(100) NOT NULL default '',
+  `Opis` varchar(200) NOT NULL default '',
+  `DataOstWypowiedzi` datetime NOT NULL default '0000-00-00 00:00:00',
+  `AutorOstWypowiedzi` varchar(40) NOT NULL default '',
+  `IDOstWatku` int(10) unsigned default '0',
+  `Aktywne` enum('T','N') NOT NULL default 'T',
+  `Prywatne` enum('T','N') NOT NULL default 'N',
+  `LiczbaWatkow` int(10) unsigned NOT NULL default '0',
+  `LiczbaWypowiedzi` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`ID`),
+  CONSTRAINT `Bee_Podfora_ibfk_1` FOREIGN KEY (`IDOstWatku`) REFERENCES `Bee_Watki` (`ID`) ON UPDATE CASCADE
+) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela podfor';
+
 
 
 --
