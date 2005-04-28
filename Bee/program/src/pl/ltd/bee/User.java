@@ -30,6 +30,7 @@ public class User {
     private boolean moderator;
     private DataBase db;
     
+    public User() {}
     
     /** Tworzy obiekt User
      * @param ID identyfikator uzytkownika
@@ -157,6 +158,14 @@ public class User {
         return ID;
     }
     
+     
+    /** Metoda ustawia id uzytkownika
+     * @param id Int z id-em uzytkownika
+     **/
+    public void setID(int id){
+        this.ID=id;
+    }
+    
     
     /** Metoda zwraca zahashowane haslo uzytkownika
      * @return String z reprezentacja hasla
@@ -204,7 +213,7 @@ public class User {
     public String getNazwisko(){
         return this.nazwisko;
     }
-    
+      
     
     /** Metoda ustawia Nazwisko uzytkownika
      * @param nazwisko String z Nazwiskiem użytkownika
@@ -227,6 +236,13 @@ public class User {
      **/
     public void setEmail(String email){
         this.email=email;
+    }
+    
+    /** Metoda ustawia login uzytkownika
+     * @param login String z loginem użytkownika
+     **/
+    public void setLogin(String login){
+        this.login=login;
     }
     
     
@@ -259,6 +275,13 @@ public class User {
      **/
     public void setJabber(String jabber){
         this.jabber=jabber;
+    }
+    
+    /** Metoda ustawia lastlog
+     * @param ll string z datą
+     **/
+    public void setLastLog(String ll){
+        this.lastlog=ll;
     }
     
     

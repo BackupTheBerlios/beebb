@@ -543,11 +543,30 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste wszystkich obiektow tabeli Users z bazy
-     * @return ArrayList obiektow RegisteredUsers
+     * @return ArrayList obiektow User
      */
     public ArrayList getUsers() {
         ArrayList wynik = new ArrayList();
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS);
+        for(int i=0; i<users.size(); i++) {
+            Hashtable user = (Hashtable)users.get(i);
+            wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
+        }
+        return wynik;
+    }
+    
+       /**
+     * Metoda zwaraca liste moderatorow w zaleznosci od parametów
+     * @param czy_aktywny true lub false 
+     * @param czy_moderator true lub false
+     * @return ArrayList obiektow User
+     */
+    public ArrayList getModeratorzy(boolean czy_aktywny, boolean czy_moderator) {
+        ArrayList wynik = new ArrayList();
+        String aktywny,moderator;
+        if(czy_aktywny) aktywny=TAK; else aktywny=NIE;
+        if(czy_moderator) moderator=TAK; else moderator=NIE;
+        ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +" WHERE "+USER_AKTYWNY+"= '"+aktywny+"' and "+USER_MODERATOR+"= '"+moderator+"'");
         for(int i=0; i<users.size(); i++) {
             Hashtable user = (Hashtable)users.get(i);
             wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
@@ -646,6 +665,16 @@ public class DataBase {
         return null;
     }
     
+     /**
+     * Metoda umieszcza wiersz w tabeli moderatorzy
+     * @param id_kat id kategorii
+     * @param id_pod id podforum
+     * @return zwraca true jezeli insert sie powiodl
+     */
+    public boolean insertModerator(int id_pod, int id_user) {
+      return baza.dmlQuery("INSERT INTO " + BEE_MODERATORZY + " VALUES (" + id_pod + "," +id_user + ")");
+    }
+    
     
     /**
      * Metoda aktualizuje watek w bazie danych
@@ -686,15 +715,15 @@ public class DataBase {
     
     
     /**
-     * Metoda sprawdz czy podforum o podanym tytule juz istnieje
+     * Metoda zwraca id podforum w danej kategorii
      * @param int id_kat id kategorii
      * @param String tytul tytuł podforum
-     * @return zwraca true jezeli podforum o podanym tytule juz istnieje
+     * @return zwraca id podforum
      */
-    public boolean czyPodforum(int id_kat, String tytul){
-        Hashtable kategoria = getObject("SELECT * FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" and "+PODFORUM_TYTUL+" = '" +tytul+ "'");
-        if (kategoria==null) return false;
-        return true;
+    public int dajIdPodforum(int id_kat, String tytul){
+        Hashtable podforum = getObject("SELECT "+PODFORUM_ID+" FROM " + BEE_PODFORA + " ,"+BEE_KATEGORIE_PODFORA +" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" and "+PODFORUM_TYTUL+" = '" +tytul+ "'");
+        if (podforum==null) return -1;
+        return Integer.decode((String) podforum.get(PODFORUM_ID)).intValue();
     }
     
     
@@ -709,7 +738,7 @@ public class DataBase {
         return  Integer.decode((String) kategoria.get(KATEGORIA_ID)).intValue();
     }
     
-    
+       
     /**
      * Metoda wstawia klucz do zapomnianego hasła
      * @param email adres mailowy uzytkownika
@@ -1078,6 +1107,16 @@ public class DataBase {
             else return false;
         }
         return false;
+    }
+    
+    /**
+     * Metoda usuwa uprawnienie z tabeli moderatorzy
+     * @param id_pod int id podforum
+     * @param id_user int id usera
+     */
+    public boolean usunPrawaModeratora(int id_pod, int id_user){
+      
+      return baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE "+MODERATORZY_ID_USER+"="+id_user+" and "+MODERATORZY_ID_PODFORUM+"="+id_pod);
     }
 }
 

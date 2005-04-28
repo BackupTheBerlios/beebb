@@ -432,6 +432,19 @@ public class Messages {
    /** Metoda dostarcza fraze "next" */
     public static String next(){
         return "next";}
+    
+  /** Metoda dostarcza fraze "moderatorzy" */
+    public static String moderators(){
+        return "moderatorzy";}
+    
+  /** Metoda dostarcza fraze "moderowane podfora" */
+    public static String moderatePodforas(){
+        return "moderowane podfora";}
+    
+  /** Metoda dostarcza fraze "podforum" */
+    public static String podforum(){
+        return "podforum";}
+    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
