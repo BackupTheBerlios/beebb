@@ -114,8 +114,7 @@
             if (text!=null) {
             text = new String(text.getBytes("8859_1"),"UTF-8");
             out.print("<br/><br/>");
-            text=text.replaceAll("\r\n","<br/>");
-            text=text.replaceAll("\n","<br/>");
+            text = Commons.wypowiedzDoBazy(text);
             ////////////////
             
             

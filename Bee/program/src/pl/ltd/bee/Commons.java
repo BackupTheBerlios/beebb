@@ -76,4 +76,33 @@ public class Commons {
         response.setHeader("Expires",d.toString());//d1.format(d));
         response.setHeader("Cache-Control","max-age = "+Long.toString(sec));
     }
+    
+    
+    /* Metoda przygotowuje wpisana wypowiedz uzytkownika do wprowadzenia do bazy
+     * @param text String ktory zostanie zmodyfikowany
+     * @return Zmodyfikowany String
+     */
+    public static String wypowiedzDoBazy(String text){
+            text=text.replaceAll("&","&amp;");
+            text=text.replaceAll("<","&lt;");
+            text=text.replaceAll(">","&gt;");
+            text=text.replaceAll("\"","&quot;");
+            text=text.replaceAll("\r\n","<br/>");
+            text=text.replaceAll("\n","<br/>");
+            return text;
+    }
+
+    /* Metoda przygotowuje wypowiedz z bazy do wypisania jej na stronie  do edycji
+     * @param text String ktory zostanie zmodyfikowany
+     * @return Zmodyfikowany String
+     */
+    public static String wypowiedzDoTekst(String text){
+            text=text.replaceAll("<br/>","\r\n");
+            text=text.replaceAll("&lt;","<");
+            text=text.replaceAll("&gt;",">");
+            text=text.replaceAll("&amp;","&");
+            text=text.replaceAll("&quot;","\"");
+            return text;
+    }
+    
 }
