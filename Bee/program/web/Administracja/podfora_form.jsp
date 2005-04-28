@@ -84,7 +84,7 @@
             Podforum podforum= new Podforum("0",t,o,DataBase.getDateToInsert(),"",db_con.TAK,db_con.NIE,"0","0",db_con);
             if( t.compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNamePodforum()));
               else
-                if ( db_con.czyPodforum(Integer.decode(id_k).intValue(), t) ) wiad.add(Messages.makeError(Messages.errorNamePodforum()));
+                if ( db_con.dajIdPodforum(Integer.decode(id_k).intValue(), t) != -1 ) wiad.add(Messages.makeError(Messages.errorNamePodforum()));
                   else 
                     if ( db_con.insertPodforum(Integer.decode(id_k).intValue(), podforum) ) wiad.add(Messages.makeInfo(Messages.addPodforum()));
                       else wiad.add(Messages.makeError(Messages.errorAddPodforum()));
