@@ -160,12 +160,12 @@
                                 </th>
                             <% if (watek==null) { %>
                             </tr> <tr>
-                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" name="title" id="title"></td>
+                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" style="width:450px" name="title" id="title"></td>
                             <% } %>
                             </tr> <tr>
-                                <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td><td><textarea cols="50" rows="5" name="text" id="text"></textarea></td>
+                                <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td><td><textarea cols="50" style="width:450px" rows="5" name="text" id="text"></textarea></td>
                             </tr> <tr>
-                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" name="autor" id="autor"><%}else{out.print(auth.user(request));}%></td>
+                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" style="width:450px" name="autor" id="autor"><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                             </tr>
