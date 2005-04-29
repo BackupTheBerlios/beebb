@@ -21,7 +21,7 @@ public class SendMail {
      * @param To adres emailowy uzytkownika do ktorego ma byc wyslana wiadomosc
      * @param Subject temat wiadomosci
      * @param Body tresc wiadomosci
-     */ 
+     */
     public static void send(String To, String Subject, String Body) {
         try {
             Properties props = System.getProperties();

@@ -69,8 +69,7 @@
                     wt.setAutorOstWypowiedzi(Nazwa_Usera2);
                     pf.setDataOstWypowiedzi(DataBase.getDate());
                     pf.setAutorOstWypowiedzi(Nazwa_Usera2);
-                    
-                    
+
                     if (!db_con.updateWatek(wt)) out.print(Messages.errorDataBaseConnection());
                     pf.zwiekszLiczbeAktywnychWatkow();
                     pf.zwiekszLiczbeAktywnychWypowiedzi();

@@ -71,7 +71,7 @@ public class Commons {
      * @param sec Ilosc sekund waznosci dokumentu
      */
     public static void setCachingFor(javax.servlet.http.HttpServletResponse response, long sec){
-        java.util.Date d = new java.util.Date((new java.util.Date()).getTime() + sec * 1000);//za rok od teraz
+        java.util.Date d = new java.util.Date((new java.util.Date()).getTime() + sec * 1000);
         //java.text.SimpleDateFormat d1 = new java.text.SimpleDateFormat("dd MM yyyy hh:mm:ss");
         response.setHeader("Expires",d.toString());//d1.format(d));
         response.setHeader("Cache-Control","max-age = "+Long.toString(sec));
