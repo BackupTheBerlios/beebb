@@ -233,7 +233,7 @@ public class Podforum {
     public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
         strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\"/></td>");
-        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <a href=\"main.jsp?pid=" + this.getID() + "\" class=\"aTytulPodforum\">"+ this.getTytul() +"</a><br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
+        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPOdforum\"> <span style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp?pid=" + this.getID() + "')\" class=\"aTytulPodforum\">"+ this.getTytul() +"</span><br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">"+ liczbaAktywnychWatkow() + "</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">" + liczbaAktywnychWypowiedzi() + "</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\">");
@@ -241,7 +241,7 @@ public class Podforum {
             strona.println("<span class=\"lastPost\">" + DataOstWypowiedzi + "<br />");
             User u = db.getUser(AutorOstWypowiedzi);
             if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
-            strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
+            strona.println("<span  class=\"aAutor\" style=\"cursor: pointer;\" onclick=\"hrefClick('./profile.jsp?uid=" + u.getID() + "')\">" + AutorOstWypowiedzi + "</span>");
             strona.println("<a href=\"viewtopic.html\"></a></span>");
         } else strona.println("&nbsp;");
         strona.println("</td></tr>");
@@ -255,8 +255,8 @@ public class Podforum {
         Kategoria k = db.getKategoriabyPodforum(ID);
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadPodforum\" id=\"textNadPodforum\" width=\"100%\"><tr>");
-        strona.println("<td class=\"tdPath\" align=\"left\"><a class=\"aPath\" href=\"main.jsp\">"+ f.getNazwa() +"</a> -> <a class=\"aPath\" href=\"main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a class=\"aPath\" href=\"main.jsp?pid=" + ID + "\">"+ Tytul +"</a></td>");
-        strona.println("<td class=\"tdTopAction\" align=\"right\"><a class=\"aTopAction\" href=\"./dodajW.jsp?p=" + ID + "\">" + Messages.wielka(Messages.add())+ " " + Messages.thread() + "</a></td>");
+        strona.println("<td class=\"tdPath\" align=\"left\"><span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp')\">"+ f.getNazwa() +"</span> -> <span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp?kid=" + k.getID() + "')\">"+ k.getNazwa() +"</span> -> <span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp?pid=" + ID + "')\">"+ Tytul +"</span></td>");
+        strona.println("<td class=\"tdTopAction\" align=\"right\"><span class=\"aTopAction\" style=\"cursor: pointer;\" onclick=\"hrefClick('./dodajW.jsp?p=" + ID + "')\">" + Messages.wielka(Messages.add())+ " " + Messages.thread() + "</span></td>");
         strona.println("</tr></table>");
         strona.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");

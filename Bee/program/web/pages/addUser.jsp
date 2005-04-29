@@ -8,7 +8,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.newUser())));%>
-    <body onload="resizeAddUser()" onresize="resizeAddUser()">
+    <body onload="swapIframes();resizeAddUser()" onresize="resizeAddUser()">
 <%@ include file="servletObjects.jsp" %>
     
         <table id="tableAddUser" align="center" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
@@ -53,14 +53,14 @@
                         if(!db_con.insertNewUser(nickname,numer))
                             out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                         else {
-                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<BR><br><a href=./main.jsp>" + Messages.back() + "</a><br>"); 
+                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<br/><br/><span style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp')\">" + Messages.wielka(Messages.back()) + "</span><br/>"); 
                             SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
                             out.println(Messages.makeError(Messages.errorUserCreate()));
                         else
-                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<BR><br><a href=./main.jsp>" +Messages.back()+"</a><br>"); 
+                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<br/><br/><span style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp')\">" +Messages.wielka(Messages.back())+"</span><br/>"); 
                     }
                 }
             } else {

@@ -7,7 +7,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./../..",Messages.wielka(Messages.forgetPasswd())));%>
-    <body onload="resizeForget()" onresize="resizeForget()">
+    <body onload="swapIframes();resizeForget()" onresize="resizeForget()">
 <%@ include file="../servletObjects.jsp" %>
         <table align="center" border="0" id="tableForget"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
@@ -46,7 +46,7 @@
                 else
                     out.print(Messages.errorChangePasswd());
             }
-            out.println("<a href=./../main.jsp>" + Messages.back() + "</a><br>"); 
+            out.println("<span style=\"cursor: pointer;\" onclick=\"hrefClick('./../main.jsp')>" + Messages.wielka(Messages.back()) + "</span><br>"); 
         }
         %>
                 </td>

@@ -7,7 +7,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.add())));%>
-    <body onLoad="resizeDodajW()" onresize="resizeDodajW()">
+    <body onLoad="<% if (request.getParameter("text") == null) out.print("swapIframes();");%>resizeDodajW()" onresize="resizeDodajW()">
         <%@ include file="servletObjects.jsp" %>
         <table align="center" border="0" id="tableDodajW"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
@@ -148,8 +148,8 @@
                     d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
                     d.incrAddWatek(wt,ID_Usera,Nazwa_Usera);
                 }
-                    out.print("<center><br/><br/><a href=\"./main.jsp"); 
-                    if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("\">" + Messages.back() + "</a></center>");
+                    out.print("<center><br/><br/><span class=\"a\" style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp"); 
+                    if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("')\">" + Messages.back() + "</span></center>");
                 }
                 else {
         %>
@@ -173,7 +173,7 @@
                         </table>
                     </form>
                     <br><br>
-                    <center><a href="main.jsp<% if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); %>"><%out.print(Messages.back());%></a></center>
+                    <center><span style="cursor: pointer;" onclick="hrefClick('main.jsp<% if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); %>')"><%out.print(Messages.wielka(Messages.back()));%></span></center>
    <% } }%>
                 </td>
             </tr>

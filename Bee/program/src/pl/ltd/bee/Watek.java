@@ -231,7 +231,7 @@ public class Watek {
     public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
         strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\"/></td>");
-        strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <a href=\"?wid="+ ID +"\" class=\"aTytulWatek\">"+ Temat +"</a></span>");
+        strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPOdforum\"> <span style=\"cursor: pointer;\" onclick=\"hrefClick('?wid="+ ID +"')\" class=\"aTytulWatek\">"+ Temat +"</span></span>");
         
         strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&id_autor="+this.ID_Autor+"&op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=move')\" /><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/></span>");
@@ -246,14 +246,14 @@ public class Watek {
             strona.println("~" + this.Autor);
         else {
             User u = db.getUser(this.ID_Autor);
-            strona.println("<a href=\"profile.jsp?uid=" + this.ID_Autor + "\"> " + u.getLogin() + "</a>");
+            strona.println("<span style=\"cursor: pointer;\" onclick=\"hrefClick('profile.jsp?uid=" + this.ID_Autor + "')\"> " + u.getLogin() + "</span>");
         }
         strona.println("</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>");
         User u = db.getUser(AutorOstWypowiedzi);
         if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
-            strona.println("<a href=\"./profile.jsp?uid=" + u.getID() + "\">" + AutorOstWypowiedzi + "</a>");
+            strona.println("<span class=\"aAutor\" style=\"cursor: pointer;\" onclick=\"hrefClick('./profile.jsp?uid=" + u.getID() + "')\">" + AutorOstWypowiedzi + "</span>");
         strona.println("<a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }
@@ -271,8 +271,8 @@ public class Watek {
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadWatkiem\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
         if (p!=null && k!=null && f!=null)
-            strona.println("<td class=\"tdPath\" align=\"left\"><a class=\"aPath\" href=\"./main.jsp\">"+ f.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?kid=" + k.getID() + "\">"+ k.getNazwa() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?pid=" + p.getID() + "\">"+ p.getTytul() +"</a> -> <a class=\"aPath\" href=\"./main.jsp?wid=" + ID + "\">"+ Temat +"</a></td>");
-        strona.println("<td class=\"tdTopAction\" align=\"right\"><a class=\"aTopAction\" href=\"./dodajW.jsp?w=" + ID + "\">" + Messages.wielka(Messages.add()) +" "+ Messages.message() + "</a></td>");
+            strona.println("<td class=\"tdPath\" align=\"left\"><span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp')\">"+ f.getNazwa() +"</span> -> <span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp?kid=" + k.getID() + "')\">"+ k.getNazwa() +"</span> -> <span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp?pid=" + p.getID() + "')\">"+ p.getTytul() +"</span> -> <span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp?wid=" + ID + "')\">"+ Temat +"</span></td>");
+        strona.println("<td class=\"tdTopAction\" align=\"right\"><span class=\"aTopAction\" style=\"cursor: pointer;\" onclick=\"hrefClick('./dodajW.jsp?w=" + ID + "')\">" + Messages.wielka(Messages.add()) +" "+ Messages.message() + "</span></td>");
         strona.println("</tr></table>");
         strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");

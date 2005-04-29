@@ -7,7 +7,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.logInYourself())));%>
-    <body onload="resizeAuth()" onresize="resizeAuth()">
+    <body onload="swapIframes();resizeAuth()" onresize="resizeAuth()">
     
 <%@ include file="servletObjects.jsp" %>
 <table width="100%" border="0" id="tableAuth"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
@@ -56,12 +56,12 @@
                         </tr> <tr>
                         <td><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo"/></td>
                         </tr> <tr>        
-                            <td><a href="forgetPasswd.jsp"><%out.println(Messages.iForgetPasswd());%> </a></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
+                            <td><span style="cursor: pointer;" onclick="hrefClick('forgetPasswd.jsp')"><%out.println(Messages.iForgetPasswd());%> </span></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
                         </tr>
                     </table>
                 </form>
                 <br>
-                <p><%out.println(Messages.doNotHaveAccount());%> <a href="addUser.jsp"><%out.println(Messages.registerYourself());%></a></p>
+                <p><%out.println(Messages.doNotHaveAccount());%> <span style="cursor: pointer;" onclick="hrefClick('addUser.jsp')"><%out.println(Messages.registerYourself());%></span></p>
             </td>
             </tr>
         </table>

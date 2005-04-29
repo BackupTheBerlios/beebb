@@ -64,8 +64,10 @@ th	{
 	color: firebrick;	
 	}	
 
-.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link{
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link,
+.atytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor{
 	color: darkred;	
+        text-decoration: underline;
 	}	
 	
 .trWypowiedz {
@@ -92,12 +94,12 @@ th	{
         font-weight : normal;
         }
 
-.tdPath a:link, .tdPath a:visited{
+.tdPath a:link, .tdPath a:visited, .aPath{
         color: brown;
         font-size: 10pt;
 }
 
-.tdTopAction a:link, .tdTopAction a:visited{
+.tdTopAction a:link, .tdTopAction a:visited, .aTopAction{
         color: darkred;
         font-size: 10pt;
 }

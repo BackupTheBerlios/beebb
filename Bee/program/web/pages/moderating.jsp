@@ -12,7 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
 <%@ include file="servletObjects.jsp" %>
-<body onload="tableMorderating()" onresize="tableMorderating()">
+<body onload="swapIframes();tableMorderating()" onresize="tableMorderating()">
 <table width="100%" border="0" id="tableMorderating">
 <tr><td>
 
@@ -178,10 +178,10 @@
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
                 
-             out.print("<br/><a href=\"./main.jsp?");
+             out.print("<br/><span style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp?");
              if (s_wpid != null) out.print("wid="+wat.getID());
              else out.print("pid="+pod.getID());
-             out.println("\">"+Messages.wielka(Messages.back())+"</a>");
+             out.println("')\">"+Messages.wielka(Messages.back())+"</span>");
             }
             else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
         }

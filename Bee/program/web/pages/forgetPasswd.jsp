@@ -8,7 +8,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.forgetPasswd())));%>
-    <body onload="resizeForgetPass()" onresize="resizeForgetPass()">
+    <body onload="swapIframes();resizeForgetPass()" onresize="resizeForgetPass()">
 <%@ include file="servletObjects.jsp" %>
     <table align="center" border="0" id="tableForgetPass"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
             <tr>
@@ -33,7 +33,7 @@
                     else
                         SendMail.send(email,Config.FORGET_MAIL_SUBJECT,Messages.wielka(Messages.welcome()) + uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + number);
                 }
-                out.println(Messages.messageForgetPasswdEmailSend() +  "<center><a href=\"main.jsp\">" + Messages.back() + " </a></center>");
+                out.println(Messages.messageForgetPasswdEmailSend() +  "<center><span style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp')\">" + Messages.wielka(Messages.back()) + " </span></center>");
             } else {
                 response.sendRedirect("forgetPasswd.jsp");
             }

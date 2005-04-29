@@ -7,7 +7,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.editProfile())));%>
-    <body onload="resizeAuth()" onresize="resizeAuth()">
+    <body onload="swapIframes();resizeAuth()" onresize="resizeAuth()">
     
         <%@ include file="servletObjects.jsp" %>
         <table width="100%" border="0" id="tableAuth"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->

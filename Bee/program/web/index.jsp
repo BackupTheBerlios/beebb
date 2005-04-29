@@ -21,7 +21,8 @@
 </tr>
 <tr>
 <td id="cellTresc">
-	<iframe id="frameTresc" width="100%" height="5000" src="./pages/main.jsp" scrolling="no" frameborder="0"></iframe>
+	<iframe id="frameTresc_1" width="100%" height="5000" src="./pages/main.jsp" scrolling="no" frameborder="0" style=" display : none;" ></iframe>
+	<iframe id="frameTresc_2" width="100%" height="5000" src="" scrolling="no" frameborder="0" style=" display : block;" ></iframe>
 </td>
 </tr>
 </table>    
