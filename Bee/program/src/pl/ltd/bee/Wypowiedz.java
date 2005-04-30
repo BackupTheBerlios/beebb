@@ -107,12 +107,12 @@ public class Wypowiedz {
         strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");
         strona.println("<tr><td><table cellpadding=\"4\" cellspacing=\"1\" width=\"100%\"><tr>");
         strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
-        strona.println("<span class=\"linkAutor\">");
+        strona.println("<span ");
         if (Config.GUEST_ID == this.ID_Autora)
-            strona.println("~" + this.Autor);
+            strona.println(">~" + this.Autor);
         else {
             User u = db.getUser(this.ID_Autora);
-            strona.println("<a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + u.getLogin() + "</a>");
+            strona.println("class=\"linkAutor\"><a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + u.getLogin() + "</a>");
         }
         strona.println("</span><br/>");
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");

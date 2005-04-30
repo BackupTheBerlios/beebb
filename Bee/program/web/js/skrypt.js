@@ -5,7 +5,30 @@ function reloadHeader(url){
 }
 
 function wypowiedzLinkClick(url){
+    i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 2 : 1;
     
-    if (top.frames[1].location)
-        top.frames[1].location.href = url;
+    if (top.frames[i].location)
+        top.frames[i].location.href = url;
+}
+
+
+function hrefClick(url){
+    i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 1 : 2;
+
+    if (top.frames[i].location)
+        top.frames[i].location.href = url;
+
+}
+
+function swapIframes(){
+    if (top.document.getElementById('frameTresc_1').style.display == 'none')
+    {
+        top.document.getElementById('frameTresc_1').style.display = 'block';
+        top.document.getElementById('frameTresc_2').style.display = 'none';
+    }
+    else
+    {
+        top.document.getElementById('frameTresc_2').style.display = 'block';
+        top.document.getElementById('frameTresc_1').style.display = 'none';
+    }
 }
