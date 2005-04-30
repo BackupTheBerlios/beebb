@@ -65,7 +65,7 @@ th	{
 	}	
 
 .tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link,
-.atytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor{
+.atytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor, .aHref{
 	color: darkred;	
         text-decoration: underline;
 	}	

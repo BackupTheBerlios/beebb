@@ -124,7 +124,7 @@ public class Kategoria {
         //TODO te naglowki moze trzeba bedziew wywalic gdzie indziej .. ale poki co to dobre dla nich miejsce
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadForum\" id=\"textNadForum\" width=\"100%\"><tr>");
-        strona.println("<td class=\"tdPath\" align=\"left\"><span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp')\">"+ f.getNazwa() +"</span> -> <span class=\"aPath\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp?kid=" + ID + "')\">"+ Tytul +"</span>");
+        strona.println("<td class=\"tdPath\" align=\"left\">"+ Commons.aHref(f.getNazwa(), "main.jsp","aPath")+" -> "+Commons.aHref(Tytul, "main.jsp?kid=" + ID,"aPath"));
         strona.println("</td></tr></table>");
         strona.println("<table id=\"tableForum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("\t<tr>");
@@ -142,7 +142,7 @@ public class Kategoria {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
-        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\"><span class=\"atytulKategorii\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp?kid="+ this.ID +"')\" class=\"aTytulKategorii\">" + Tytul + "</span></span></td>");
+        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\">"+Commons.aHref(Tytul,"main.jsp?kid="+ this.ID, "aTytulKategorii")+ "</span></td>");
         strona.println("</tr>");
         ArrayList podfora = db.getPodforaKategorii(this.ID,true);
         for(int i=0;i<podfora.size();i++) {
