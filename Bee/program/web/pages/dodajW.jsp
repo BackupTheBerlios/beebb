@@ -2,6 +2,7 @@
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
+<%@ page import="java.util.*"%>
 <%@ page session="false" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -151,14 +152,36 @@
                 }
                 else {
         %>
-                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
-                        <table align="center" cellpadding="2" cellspacing="1" border="0">
-                            <tr>
+                    <table align="center">
+                    <tr>
                                 <th colspan="2">
                                     <%out.print(Messages.wielka(Messages.add())+" "); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
                                 </th>
+                    </tr>
+                    <tr>
+                            <td class="tdImgEmotikona">
+                                <%
+                                    int k = 0;
+                                    Enumeration i = Config.SMILES.keys();
+                                    while (i.hasMoreElements()){
+                                        Object o_tag = i.nextElement();
+                                        String tag = (String)o_tag;
+                                        String url = (String)Config.SMILES.get(o_tag);
+                                        out.println("<img src=\""+Config.URL_FORUM+url+"\" alt=\""+tag+"\" class=\"imgEmotikona\" onclick=\"addEmoticon('"+Config.SMILE_TAG_OPEN+tag+Config.SMILE_TAG_CLOSE+"')\"/>");
+                                        k++;
+                                        if (k == 5) 
+                                        {
+                                            k=0;
+                                            out.println("<br/>");
+                                        }
+                                    }
+                                %>
+                            </td>
+                        <td class="tdDodawanie">
+                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
+                        <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <% if (watek==null) { %>
-                            </tr> <tr>
+                            <tr>
                             <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" style="width:450px" name="title" id="title"></td>
                             <% } %>
                             </tr> <tr>
@@ -170,6 +193,9 @@
                             </tr>
                         </table>
                     </form>
+                    </td>
+                    </tr>
+                    </table>
                     <br><br>
                     <center><% Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
    <% } }%>

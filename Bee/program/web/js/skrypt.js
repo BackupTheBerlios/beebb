@@ -32,3 +32,8 @@ function swapIframes(){
         top.document.getElementById('frameTresc_1').style.display = 'none';
     }
 }
+
+function addEmoticon(tag){
+    document.getElementById('text').value += tag;
+    document.getElementById('text').focus();
+}
