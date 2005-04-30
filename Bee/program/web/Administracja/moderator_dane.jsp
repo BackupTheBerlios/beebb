@@ -170,7 +170,7 @@
                   </td>
            </tr>
            <tr> <td><%= Messages.wielka(Messages.podforum()) %> </td> 
-                  <td>  <select name="podforum_dod" > <% ArrayList podfora=db_con.getPodforaKategoriiAll(id_kat,true);
+                  <td>  <select name="podforum_dod" > <% ArrayList podfora=db_con.getPodforaKategorii(id_kat,true);
                                                     for (int i=0; i<podfora.size(); i++) { 
                                                             Podforum pod= (Podforum) podfora.get(i);
                                                              if ( !identpodforow.contains(new Integer(pod.getID())) ) {      %>

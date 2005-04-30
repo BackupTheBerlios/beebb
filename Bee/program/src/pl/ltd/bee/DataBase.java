@@ -401,6 +401,26 @@ public class DataBase {
         return wynik;
     }
     
+    /**
+     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne badż nie w
+     * zalezności od parametru aktywne
+     * @param aktywne boolena T lub F
+     * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
+     * @return ArrayList obiektow Podforum
+     */
+    public ArrayList  getPodforaKategorii(int ID, boolean czy_aktywne) {
+        ArrayList wynik = new ArrayList();
+        String aktywne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
+        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + ID + " and "+PODFORUM_AKTYWNE+"= '"+aktywne+"'");
+        for(int i=0;i<podfora.size();i++) {
+            Hashtable podforum = (Hashtable)podfora.get(i);
+            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
+        }
+        return wynik;
+    }
+    
+    
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Watkow w podanym Podforum
@@ -823,26 +843,6 @@ public class DataBase {
      */
     public boolean usunKluczNewUser(String klucz){
         return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");
-    }
-    
-    
-    /**
-     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne badż nie w
-     * zalezności od parametru aktywne
-     * @param aktywne boolena T lub F
-     * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
-     * @return ArrayList obiektow Podforum
-     */
-    public ArrayList  getPodforaKategoriiAll(int ID, boolean czy_aktywne) {
-        ArrayList wynik = new ArrayList();
-        String aktywne;
-        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
-        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + ID + " and "+PODFORUM_AKTYWNE+"= '"+aktywne+"'");
-        for(int i=0;i<podfora.size();i++) {
-            Hashtable podforum = (Hashtable)podfora.get(i);
-            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
-        }
-        return wynik;
     }
     
     

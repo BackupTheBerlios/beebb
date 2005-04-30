@@ -112,7 +112,7 @@ public class Kategoria {
      * @return zwraca ArralList bedacy lista podforow
      */
     public ArrayList getPodfora(boolean aktywne) {
-        return db.getPodforaKategoriiAll(this.ID, aktywne);
+        return db.getPodforaKategorii(this.ID, aktywne);
     }
     
     
@@ -144,10 +144,9 @@ public class Kategoria {
         strona.println("<tr>");
         strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\"><span class=\"atytulKategorii\" style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp?kid="+ this.ID +"')\" class=\"aTytulKategorii\">" + Tytul + "</span></span></td>");
         strona.println("</tr>");
-        ArrayList podfora = db.getPodforaKategorii(this.ID);
+        ArrayList podfora = db.getPodforaKategorii(this.ID,true);
         for(int i=0;i<podfora.size();i++) {
-            Podforum p = db.getPodforum(((Integer)podfora.get(i)).intValue());
-            p.printJSPHeader(strona);
+            ((Podforum)podfora.get(i)).printJSPHeader(strona);
         }
     }
     
