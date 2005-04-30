@@ -66,6 +66,8 @@ public class Config {
     private final static String TAG_SMILE_TAG="smile_tag";
     private final static String TAG_SMILE_URL="smile_url";
     private final static String TAG_CACHE_COUNTER="cache_counter";
+    private final static String TAG_SMILE_TAG_OPEN="smile_open_tag";
+    private final static String TAG_SMILE_TAG_CLOSE="smile_close_tag";
     
     
     /** Zmienna informuje czy konfig zostal odczytany */
@@ -125,6 +127,13 @@ public class Config {
      **/
     public static Hashtable SMILES = new Hashtable();
     
+    
+    /** Ustala ciag znakow rozpoczynajacych znacznik emotikony */
+    public static String SMILE_TAG_OPEN = ":|";
+    
+    /** Ustala ciag znakow konczacy znacznik emotikony */
+    public static String SMILE_TAG_CLOSE = "|:";
+    
     /**    
      * Klasa odpowiedzialna za przetworzenie dokumnetu XML
      */
@@ -170,6 +179,8 @@ public class Config {
             if ( tag.compareTo(Config.TAG_USE_COMPRESSION) == 0)config.USE_COMPRESSION = Boolean.valueOf(wynik).booleanValue();
             if ( tag.compareTo(Config.TAG_USE_SSL) == 0)        config.USE_SSL = Boolean.valueOf(wynik).booleanValue();
             if ( tag.compareTo(Config.TAG_USER) == 0)           config.USER = wynik;
+            if ( tag.compareTo(Config.TAG_SMILE_TAG_OPEN) == 0) config.SMILE_TAG_OPEN = wynik;
+            if ( tag.compareTo(Config.TAG_SMILE_TAG_CLOSE) == 0) config.SMILE_TAG_CLOSE = wynik;
             if ( tag.compareTo(Config.TAG_SMILE_URL) == 0)      if (last_smile_tag.length() > 0) SMILES.put(last_smile_tag,wynik);
             if ( tag.compareTo(Config.TAG_SMILE_TAG) == 0)      last_smile_tag = wynik; //to musi byc przed SMILE_URL boolean zeruje last_smile_tag
                                 else                            last_smile_tag = "";
@@ -237,8 +248,10 @@ public class Config {
            if (parent.getNodeName().compareTo(TAG_TABLES_PREFIX) == 0)          node.setNodeValue(DATABASE_PREFIX);
            if (parent.getNodeName().compareTo(TAG_URL_FORUM) == 0)              node.setNodeValue(URL_FORUM);
            if (parent.getNodeName().compareTo(TAG_USE_COMPRESSION) == 0)        node.setNodeValue(Boolean.toString(USE_COMPRESSION));
-           if (parent.getNodeName().compareTo(TAG_USE_SSL) == 0)        node.setNodeValue(Boolean.toString(USE_SSL));
+           if (parent.getNodeName().compareTo(TAG_USE_SSL) == 0)                node.setNodeValue(Boolean.toString(USE_SSL));
            if (parent.getNodeName().compareTo(TAG_USER) == 0)                   node.setNodeValue(USER);       
+           if (parent.getNodeName().compareTo(TAG_SMILE_TAG_OPEN) == 0)         node.setNodeValue(SMILE_TAG_OPEN);       
+           if (parent.getNodeName().compareTo(TAG_SMILE_TAG_CLOSE) == 0)        node.setNodeValue(SMILE_TAG_CLOSE);       
            }
        if (nodeType == Node.ELEMENT_NODE || nodeType == Node.DOCUMENT_NODE) {
            NodeList chldrn = node.getChildNodes();

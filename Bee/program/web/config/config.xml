@@ -2,7 +2,7 @@
 <!DOCTYPE bee_configuration SYSTEM "config.dtd">
 <bee_configuration version="1.0">
 <general>
-<url_forum>http://127.0.0.1:8080</url_forum>
+<url_forum>http://127.0.0.1:8084/Bee</url_forum>
 </general>
 <database>
 <host>localhost</host>
@@ -10,7 +10,7 @@
 <password>bee</password>
 <database_name>Bee</database_name>
 <tables_prefix>Bee</tables_prefix>
-<use_compres>true</use_compres>
+<use_compres>false</use_compres>
 <use_ssl>false</use_ssl>
 </database>
 
@@ -32,6 +32,8 @@
 </mailing>
 
 <smiles>
-<smile_tag>lol</smile_tag><smile_url>images/smiles/default/lol.gif</smile_url>
+<smile_open_tag>\:\|</smile_open_tag>
+<smile_close_tag>\|\:</smile_close_tag>
+<smile_tag>lol</smile_tag><smile_url>/images/smiles/default/lol.gif</smile_url>
 </smiles>
 </bee_configuration>

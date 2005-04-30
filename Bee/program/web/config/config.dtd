@@ -34,7 +34,9 @@
 <!ELEMENT forget_subject (#PCDATA)>
 <!ELEMENT forget_body (#PCDATA)>
 
-<!ELEMENT smiles (smile)*>
+<!ELEMENT smiles (smile_open_tag,smile_close_tag,(smile)*)>
+<!ELEMENT smile_open_tag (#PCDATA)>
+<!ELEMENT smile_close_tag (#PCDATA)>
 <!ELEMENT smile (smile_tag,smile_url)>
 <!ELEMENT smile_tag (#PCDATA)>
 <!ELEMENT smile_url (#PCDATA)>

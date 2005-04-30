@@ -10,6 +10,9 @@ package pl.ltd.bee;
  *
  * @author wilk
  */
+
+import java.util.*;
+
 public class Commons {
     
     /** Creates a new instance of Commons */
@@ -123,4 +126,35 @@ public class Commons {
     public static String aHref(String text, String where){
         return aHref(text,where,"aHref");
     }
+    
+    /** Metoda zamienia wszystkie znaczniki w podanym tekscie na znaczniki xhtml odnoszace sie do emotikonek
+     * @param s Tekst do zmiany
+     * @return Zmieniony tekst
+     */
+    public static String dodajEmotikonki(String s){
+        Enumeration ikony = Config.SMILES.keys();
+        while (ikony.hasMoreElements()){
+            Object key = ikony.nextElement();
+            s = s.replaceAll(Config.SMILE_TAG_OPEN+(String)key+Config.SMILE_TAG_CLOSE,makeEmotikonLink((String)Config.SMILES.get(key),(String)key));
+        }
+        return s;
+    }
+    
+    /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
+     * @param url Sciezka do pliku graficznego
+     * @return Znacznik z grafika
+     */
+    public static String makeEmotikonLink(String url){
+       return makeEmotikonLink(url,">Image<");
+    }
+    
+    /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
+     * @param url Sciezka do pliku graficznego
+     * @param alt Tekst opisujacy obrazek
+     * @return Znacznik z grafika
+     */
+    public static String makeEmotikonLink(String url,String alt){
+       return "<img src=\""+Config.URL_FORUM+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" />";
+    }
+    
 }
