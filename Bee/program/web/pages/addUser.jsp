@@ -8,7 +8,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.newUser())));%>
-    <body onload="swapIframes();resizeAddUser()" onresize="resizeAddUser()">
+    <body onload="<% if (request.getParameter("user") == null) out.print("swapIframes();");%>resizeAddUser()" onresize="resizeAddUser()">
 <%@ include file="servletObjects.jsp" %>
     
         <table id="tableAddUser" align="center" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
