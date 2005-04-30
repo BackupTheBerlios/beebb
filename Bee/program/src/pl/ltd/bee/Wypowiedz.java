@@ -118,7 +118,7 @@ public class Wypowiedz {
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
         strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
-        strona.println(Commons.dodajEmotikonki(Tekst));
+        strona.println(Tekst);
         strona.println("</td>");
         strona.println("</tr></table></tr>");
         strona.println("<tr><td class=\"tdWypowiedzModer\">");

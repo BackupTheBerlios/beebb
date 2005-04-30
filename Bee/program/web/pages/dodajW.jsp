@@ -115,6 +115,7 @@
             text = new String(text.getBytes("8859_1"),"UTF-8");
             out.print("<br/><br/>");
             text = Commons.wypowiedzDoBazy(text);
+            out.println(text+"<br/>");
             ////////////////
             
             

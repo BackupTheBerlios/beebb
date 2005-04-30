@@ -697,8 +697,8 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertWypowiedz(String id_wat, Wypowiedz w) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES ("+ w.getID() +", " + w.getIDAutora() + ", '" + w.getAutor() + "' ," + w.getData() + ", \"" + w.getTekst() + "\",'" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
-            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_AUTOR + "= '" + w.getAutor() + "' AND " + WYPOWIEDZ_TEKST + "=\"" + w.getTekst() + "\"");
+        if ( baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES ("+ w.getID() +", " + w.getIDAutora() + ", '" + w.getAutor() + "' ," + w.getData() + ", '" + w.getTekst() + "','" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
+            Hashtable wid = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_AUTOR + "= '" + w.getAutor() + "' AND " + WYPOWIEDZ_TEKST + "='" + w.getTekst() + "'");
             if (wid==null) return false;
             return baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI + " VALUES (" + id_wat + "," + wid.get(WYPOWIEDZ_ID) + ")");
         }

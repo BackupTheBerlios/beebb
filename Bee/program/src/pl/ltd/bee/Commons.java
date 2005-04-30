@@ -87,8 +87,10 @@ public class Commons {
             text=text.replaceAll("<","&lt;");
             text=text.replaceAll(">","&gt;");
             text=text.replaceAll("\"","&quot;");
+            text=text.replaceAll("'","\'");
             text=text.replaceAll("\r\n","<br/>");
             text=text.replaceAll("\n","<br/>");
+            text = Commons.dodajEmotikonki(text);
             return text;
     }
 
@@ -102,6 +104,7 @@ public class Commons {
             text=text.replaceAll("&gt;",">");
             text=text.replaceAll("&amp;","&");
             text=text.replaceAll("&quot;","\"");
+            text = Commons.zabierzEmotikonki(text);
             return text;
     }
     
@@ -137,6 +140,16 @@ public class Commons {
             Object key = ikony.nextElement();
             s = s.replaceAll(Config.SMILE_TAG_OPEN+(String)key+Config.SMILE_TAG_CLOSE,makeEmotikonLink((String)Config.SMILES.get(key),(String)key));
         }
+        return s;
+    }
+    
+    /** Metoda zamienia wszystkie znaczniki <img w podanym tekscie na znaczniki emotikonek 
+     * @param s Tekst do zmiany
+     * @return Zmieniony tekst
+     */
+    public static String zabierzEmotikonki(String s){
+        //TODO to trzeba napisac. Najlepiej tak by wyciagac nazwy tagow z tego tekstu a nie z konfiga, bo on moze miec inne ikonki juz
+        s = s.replaceAll("<img src=\"[^\"]+\" alt=\"[^\"]+\" class=\"imgEmotikona\" />", "(TU BYLA IKONA)");
         return s;
     }
     
