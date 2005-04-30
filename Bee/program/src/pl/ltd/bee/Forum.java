@@ -16,7 +16,6 @@ public class Forum {
     
     private String Nazwa;
     private String Opis;
-    private ArrayList Kategorie;
     private DataBase db;
     
     /** Tworzy nowa instancje klasy Forum
@@ -26,7 +25,6 @@ public class Forum {
     public Forum(String Nazwa, String Opis, DataBase db) {
         this.Nazwa=Nazwa;
         this.Opis=Opis;
-        this.Kategorie=db.getKategorieForum();
         this.db=db;
     }
     
@@ -50,7 +48,7 @@ public class Forum {
      * @return ArrayList 
      */
     public ArrayList getKategorie() {
-        return Kategorie;
+        return db.getKategorie(true);
     }
     
     /**
@@ -59,10 +57,9 @@ public class Forum {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //teraz wypisanie kategorii
-        ArrayList kategorie = db.getKategorieForum();
-        for(int i=0;i<Kategorie.size();i++) {
-            Kategoria k = ((Kategoria)db.getKategoria(((Integer)Kategorie.get(i)).intValue()));
-            k.printJSP(strona);
+        ArrayList kategorie = db.getKategorie(true);
+        for(int i=0;i<kategorie.size();i++) {
+            ((Kategoria)kategorie.get(i)).printJSP(strona);
         }
     }
     

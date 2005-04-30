@@ -856,6 +856,7 @@ public class DataBase {
         String aktywna;
         if(czy_aktywna) aktywna=TAK; else aktywna=NIE;
         ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE "+KATEGORIA_AKTYWNA+"='"+aktywna+"' ");
+        if (kategorie == null) return wynik;
         for(int i=0;i<kategorie.size();i++) {
             Hashtable kategoria = (Hashtable)kategorie.get(i);
             wynik.add(new Kategoria((String) kategoria.get(KATEGORIA_ID), (String) kategoria.get(KATEGORIA_TYTUL), (String) kategoria.get(KATEGORIA_OPIS), (String) kategoria.get(KATEGORIA_AKTYWNA), (String) kategoria.get(KATEGORIA_PRYWATNA),this ));
