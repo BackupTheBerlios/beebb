@@ -178,10 +178,7 @@
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
                 
-             out.print("<br/><span style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp?");
-             if (s_wpid != null) out.print("wid="+wat.getID());
-             else out.print("pid="+pod.getID());
-             out.println("')\">"+Messages.wielka(Messages.back())+"</span>");
+             out.print("<br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp?"+ ((s_wpid != null)?("wid="+wat.getID()):("pid="+pod.getID()))));
             }
             else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
         }

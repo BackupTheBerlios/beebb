@@ -33,7 +33,7 @@
                     else
                         SendMail.send(email,Config.FORGET_MAIL_SUBJECT,Messages.wielka(Messages.welcome()) + uzytkownik + "\n" + Config.FORGET_MAIL_BODY + Config.URL_FORUM + "/pages/reg/forget.jsp?id=" + number);
                 }
-                out.println(Messages.messageForgetPasswdEmailSend() +  "<center><span style=\"cursor: pointer;\" onclick=\"hrefClick('main.jsp')\">" + Messages.wielka(Messages.back()) + " </span></center>");
+                out.println(Messages.messageForgetPasswdEmailSend() +  "<center>"+Commons.aHref(Messages.wielka(Messages.back()), "main.jsp")+"</center>");
             } else {
                 response.sendRedirect("forgetPasswd.jsp");
             }

@@ -46,7 +46,7 @@
                 else
                     out.print(Messages.errorChangePasswd());
             }
-            out.println("<span style=\"cursor: pointer;\" onclick=\"hrefClick('./../main.jsp')>" + Messages.wielka(Messages.back()) + "</span><br>"); 
+            out.println(Commons.aHref(Messages.wielka(Messages.back()), "./../main.jsp")+"<br>"); 
         }
         %>
                 </td>

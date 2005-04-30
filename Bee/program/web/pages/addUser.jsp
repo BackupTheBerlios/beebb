@@ -53,14 +53,14 @@
                         if(!db_con.insertNewUser(nickname,numer))
                             out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                         else {
-                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<br/><br/><span style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp')\">" + Messages.wielka(Messages.back()) + "</span><br/>"); 
+                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp")+"<br/>"); 
                             SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
                         if(!db_con.setAktywnyUser(nickname))
                             out.println(Messages.makeError(Messages.errorUserCreate()));
                         else
-                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<br/><br/><span style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp')\">" +Messages.wielka(Messages.back())+"</span><br/>"); 
+                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp")+"<br/>"); 
                     }
                 }
             } else {

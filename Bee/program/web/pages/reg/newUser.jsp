@@ -28,7 +28,7 @@
             } else 
                 out.print(Messages.errorKeyNewUser());
             
-        } else out.println("<span style=\"cursor: pointer;\" onclick=\"hrefClick('../../index.jsp')\">" + Messages.wielka(Messages.back()) + "</span><br/>"); 
+        } else out.println(Commons.aHref(Messages.wielka(Messages.back()),"../../index.jsp")+"<br/>"); 
         %>
                 </td>
             </tr>

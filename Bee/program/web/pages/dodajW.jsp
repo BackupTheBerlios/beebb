@@ -147,8 +147,7 @@
                     d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
                     d.incrAddWatek(wt,ID_Usera,Nazwa_Usera);
                 }
-                    out.print("<center><br/><br/><span class=\"a\" style=\"cursor: pointer;\" onclick=\"hrefClick('./main.jsp"); 
-                    if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); out.print("')\">" + Messages.back() + "</span></center>");
+                    out.print("<center><br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()),"./main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
                 }
                 else {
         %>
@@ -172,7 +171,7 @@
                         </table>
                     </form>
                     <br><br>
-                    <center><span style="cursor: pointer;" onclick="hrefClick('main.jsp<% if(watek!=null) out.print("?wid="+watek); else out.print("?pid="+podforum); %>')"><%out.print(Messages.wielka(Messages.back()));%></span></center>
+                    <center><% Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
    <% } }%>
                 </td>
             </tr>
