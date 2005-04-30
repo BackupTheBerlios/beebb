@@ -299,7 +299,7 @@ public class Watek {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         printMainTableJSP(strona);
-        ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID);
+        ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID,true);
         for(int i=0;i<Wypowiedzi.size();i++) {
             strona.println("<tr class=\"trWypowiedz\">");
             strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");

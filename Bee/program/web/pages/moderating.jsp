@@ -12,15 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
 <%@ include file="servletObjects.jsp" %>
-<body onload="<%
-                String s_op=request.getParameter("op"); 
-                if ( s_op!=null) 
-                {
-                    if ((s_op.compareTo("moveto")!=0) &&(s_op.compareTo("edited")!=0)) 
-                        out.print("swapIframes();");
-                }
-                else out.print("swapIframes();");
-             %>tableMorderating()" onresize="tableMorderating()">
+<body onload="tableMorderating()" onresize="tableMorderating()">
 <table width="100%" border="0" id="tableMorderating">
 <tr><td>
 

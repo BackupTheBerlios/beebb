@@ -218,10 +218,9 @@ public class Podforum {
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         printMainTableJSP(strona);
-        ArrayList Watki=db.getWatkiPodforum(this.ID);
-        for(int i=0;i<Watki.size();i++) {
-            Watek w = ((Watek)db.getWatek(((Integer)Watki.get(i)).intValue()));
-            w.printJSPHeader(strona);
+        ArrayList watki=db.getWatkiPodforum(this.ID,true);
+        for(int i=0;i<watki.size();i++) {
+            ((Watek)watki.get(i)).printJSPHeader(strona);
         }
         printMainTableCloseJSP(strona);
     }

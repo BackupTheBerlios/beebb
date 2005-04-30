@@ -60,7 +60,7 @@
                         </tr>
                     </table>
                 </form>
-                <br>
+                <br/>
                 <p><%out.println(Messages.doNotHaveAccount());%> <span style="cursor: pointer;" onclick="hrefClick('addUser.jsp')"><%out.println(Messages.registerYourself());%></span></p>
             </td>
             </tr>

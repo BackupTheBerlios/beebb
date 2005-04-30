@@ -438,7 +438,26 @@ public class DataBase {
         return wynik;
     }
     
-    
+
+    /**
+     * Metoda zwaraca liste obiektow Watek bedacych Watkami w podanym Podforum oraz majace pole aktywny na podane w parametrze
+     * @param ID Podforum w ramach ktorego interesuja nas watki
+     * @param aktywne Okresla czy interesuja nas watki aktywne czy nie
+     * @return ArrayList obiektow Watek
+     */
+    public ArrayList getWatkiPodforum(int ID, boolean aktywne) {
+        ArrayList wynik = new ArrayList();
+        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_WATKU+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'");
+        if (watki == null) return wynik;
+        for(int i=0;i<watki.size();i++) {
+            Hashtable watek = (Hashtable)watki.get(i);
+            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
+            wynik.add(new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this));
+        }
+        return wynik;
+    }
+
+
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku
      * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
@@ -455,6 +474,24 @@ public class DataBase {
         return wynik;
     }
     
+    
+    /**
+     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku o stanie aktywnosci podanym w parametrze
+     * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
+     * @param aktywne Okresla jakie wypowiedzi nas interesuja
+     * @return ArrayList obiektow Integer
+     */
+    public ArrayList getWypowiedziWatku(int ID, boolean aktywne) {
+        ArrayList wynik = new ArrayList();
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'");
+        for(int i=0;i<wypowiedzi.size();i++) {
+            Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
+            int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
+            wynik.add(new Integer(id));
+        }
+        return wynik;
+    }
+
     
     /**
      * Metoda zwaraca objekt User o podanym identyfikatorze
@@ -923,7 +960,11 @@ public class DataBase {
      * @return boolean True jezeli zmiana sie powiodla False w p.p.
      **/
     public boolean zmienAktywnoscWypowiedzi(int id, boolean czy_aktywna){
-        return  baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_AKTYWNA+"='"+ (czy_aktywna?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id);
+        if (baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_AKTYWNA+"='"+ (czy_aktywna?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id))
+            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_WATKU+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")")) 
+                        return true;
+            else return false;
+        else return false;
     }
     
     /**
