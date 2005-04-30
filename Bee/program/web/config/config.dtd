@@ -7,12 +7,14 @@
 <!ELEMENT url_forum (#PCDATA)>
 
 <!-- sekcja bazy danych -->
-<!ELEMENT database (host,user,password,database_name,tables_prefix)>
+<!ELEMENT database (host,user,password,database_name,tables_prefix,use_compres,use_ssl)>
 <!ELEMENT host (#PCDATA)>
 <!ELEMENT user (#PCDATA)>
 <!ELEMENT password (#PCDATA)>
 <!ELEMENT database_name (#PCDATA)>
 <!ELEMENT tables_prefix (#PCDATA)>
+<!ELEMENT use_compres (#PCDATA)>
+<!ELEMENT use_ssl (#PCDATA)>
 
 <!-- sekcja zachowania sie forum -->
 <!ELEMENT behave (guest_account,guest_id,log_in_max_age,minimum_pass_length,new_user_mail_auth)>

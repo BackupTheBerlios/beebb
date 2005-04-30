@@ -58,6 +58,8 @@ public class Config {
     private final static String TAG_REGISTRATION_BODY="registration_body";
     private final static String TAG_FORGET_SUBJECT="forget_subject";
     private final static String TAG_FORGET_BODY="forget_body";
+    private final static String TAG_USE_COMPRESSION="use_compres";
+    private final static String TAG_USE_SSL="use_ssl";
     
     /** Zmienna informuje czy konfig zostal odczytany */
     private static boolean read = false;
@@ -76,11 +78,9 @@ public class Config {
     public static String DATABASE_PREFIX = "Bee";
     
     /** Ustala czy polaczenie z baza ma byc kompresowane */
-    //TODO DODAC TO DO XML'a oraz SET
     public static boolean USE_COMPRESSION = false;
     
     /** Ustala czy polaczenie z baza ma byc szyfrowane */
-    //TODO DODAC TO DO XML'a oraz SET
     public static boolean USE_SSL = false;
     
     /** Adres www forum */
@@ -154,6 +154,8 @@ public class Config {
             if ( tag.compareTo(Config.TAG_SMTP_SERVER) == 0)    config.SMTP_SERVER = wynik;
             if ( tag.compareTo(Config.TAG_TABLES_PREFIX) ==0)   config.DATABASE_PREFIX = wynik;
             if ( tag.compareTo(Config.TAG_URL_FORUM) == 0)      config.URL_FORUM = wynik;
+            if ( tag.compareTo(Config.TAG_USE_COMPRESSION) == 0)config.USE_COMPRESSION = Boolean.valueOf(wynik).booleanValue();
+            if ( tag.compareTo(Config.TAG_USE_SSL) == 0)        config.USE_SSL = Boolean.valueOf(wynik).booleanValue();
             if ( tag.compareTo(Config.TAG_USER) == 0)           config.USER = wynik;
         }
     }    
@@ -201,23 +203,25 @@ public class Config {
        int nodeType = node.getNodeType();
            if (nodeType == Node.TEXT_NODE) {
            Node parent = node.getParentNode();
-           if (parent.getNodeName().compareTo(TAG_DATABASE_NAME) == 0) node.setNodeValue(DATABASE);
-           if (parent.getNodeName().compareTo(TAG_FORGET_BODY) == 0) node.setNodeValue(FORGET_MAIL_BODY);
-           if (parent.getNodeName().compareTo(TAG_FORGET_SUBJECT) == 0) node.setNodeValue(FORGET_MAIL_SUBJECT);
-           if (parent.getNodeName().compareTo(TAG_GUEST_ACCOUNT) == 0) node.setNodeValue(GUEST);
-           if (parent.getNodeName().compareTo(TAG_GUEST_ID) == 0) node.setNodeValue(Integer.toString(GUEST_ID));
-           if (parent.getNodeName().compareTo(TAG_HOST) == 0) node.setNodeValue(HOST);
-           if (parent.getNodeName().compareTo(TAG_LOG_IN_MAX_AGE) == 0) node.setNodeValue(Integer.toString(LOG_IN_MAX_AGE));
-           if (parent.getNodeName().compareTo(TAG_MAIL_FROM) == 0) node.setNodeValue(MAIL_FROM);
-           if (parent.getNodeName().compareTo(TAG_MINIMUM_PASS_LENGTH) == 0) node.setNodeValue(Integer.toString(MIN_PASSWD));
-           if (parent.getNodeName().compareTo(TAG_NEW_USER_MAIL_AUTH) == 0) node.setNodeValue(Boolean.toString(NEW_USER_MAIL_AUTH));
-           if (parent.getNodeName().compareTo(TAG_PASSWORD) == 0) node.setNodeValue(PASSWORD);
-           if (parent.getNodeName().compareTo(TAG_REGISTRATION_BODY) == 0) node.setNodeValue(REG_MAIL_BODY);
-           if (parent.getNodeName().compareTo(TAG_REGISTRATION_SUBJECT) == 0) node.setNodeValue(REG_MAIL_SUBJECT);
-           if (parent.getNodeName().compareTo(TAG_SMTP_SERVER) == 0) node.setNodeValue(SMTP_SERVER);
-           if (parent.getNodeName().compareTo(TAG_TABLES_PREFIX) == 0) node.setNodeValue(DATABASE_PREFIX);
-           if (parent.getNodeName().compareTo(TAG_URL_FORUM) == 0) node.setNodeValue(URL_FORUM);
-           if (parent.getNodeName().compareTo(TAG_USER) == 0) node.setNodeValue(USER);       
+           if (parent.getNodeName().compareTo(TAG_DATABASE_NAME) == 0)          node.setNodeValue(DATABASE);
+           if (parent.getNodeName().compareTo(TAG_FORGET_BODY) == 0)            node.setNodeValue(FORGET_MAIL_BODY);
+           if (parent.getNodeName().compareTo(TAG_FORGET_SUBJECT) == 0)         node.setNodeValue(FORGET_MAIL_SUBJECT);
+           if (parent.getNodeName().compareTo(TAG_GUEST_ACCOUNT) == 0)          node.setNodeValue(GUEST);
+           if (parent.getNodeName().compareTo(TAG_GUEST_ID) == 0)               node.setNodeValue(Integer.toString(GUEST_ID));
+           if (parent.getNodeName().compareTo(TAG_HOST) == 0)                   node.setNodeValue(HOST);
+           if (parent.getNodeName().compareTo(TAG_LOG_IN_MAX_AGE) == 0)         node.setNodeValue(Integer.toString(LOG_IN_MAX_AGE));
+           if (parent.getNodeName().compareTo(TAG_MAIL_FROM) == 0)              node.setNodeValue(MAIL_FROM);
+           if (parent.getNodeName().compareTo(TAG_MINIMUM_PASS_LENGTH) == 0)    node.setNodeValue(Integer.toString(MIN_PASSWD));
+           if (parent.getNodeName().compareTo(TAG_NEW_USER_MAIL_AUTH) == 0)     node.setNodeValue(Boolean.toString(NEW_USER_MAIL_AUTH));
+           if (parent.getNodeName().compareTo(TAG_PASSWORD) == 0)               node.setNodeValue(PASSWORD);
+           if (parent.getNodeName().compareTo(TAG_REGISTRATION_BODY) == 0)      node.setNodeValue(REG_MAIL_BODY);
+           if (parent.getNodeName().compareTo(TAG_REGISTRATION_SUBJECT) == 0)   node.setNodeValue(REG_MAIL_SUBJECT);
+           if (parent.getNodeName().compareTo(TAG_SMTP_SERVER) == 0)            node.setNodeValue(SMTP_SERVER);
+           if (parent.getNodeName().compareTo(TAG_TABLES_PREFIX) == 0)          node.setNodeValue(DATABASE_PREFIX);
+           if (parent.getNodeName().compareTo(TAG_URL_FORUM) == 0)              node.setNodeValue(URL_FORUM);
+           if (parent.getNodeName().compareTo(TAG_USE_COMPRESSION) == 0)        node.setNodeValue(Boolean.toString(USE_COMPRESSION));
+           if (parent.getNodeName().compareTo(TAG_USE_SSL) == 0)        node.setNodeValue(Boolean.toString(USE_SSL));
+           if (parent.getNodeName().compareTo(TAG_USER) == 0)                   node.setNodeValue(USER);       
            }
        if (nodeType == Node.ELEMENT_NODE || nodeType == Node.DOCUMENT_NODE) {
            NodeList chldrn = node.getChildNodes();
@@ -397,12 +401,26 @@ public class Config {
         FORGET_MAIL_BODY = body;}
     
      /** Metoda ustawia czas wygasania sesji
-     * @param body String z zawartoscia listu
+     * @param p ilosc sekund
      */
     public void setLogInMaxAge(int p){
         modified = true;
         LOG_IN_MAX_AGE = p;}
        
+     /** Metoda ustala czy polaczenie z baza ma byc kompresowane
+     * @param b Ustala wartosc
+     */
+    public void setUseCompression(boolean b){
+        modified = true;
+        USE_COMPRESSION = b;}
+
+     /** Metoda ustala czy polaczenie z baza ma byc szyfrowane
+     * @param b Ustala wartosc
+     */
+    public void setUseSsl(boolean b){
+        modified = true;
+        USE_SSL = b;}
+    
     /**
      * Konstruktor
      */

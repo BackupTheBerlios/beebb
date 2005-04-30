@@ -5,11 +5,13 @@
 <url_forum>http://127.0.0.1:8080</url_forum>
 </general>
 <database>
-<host>192.168.3.174</host>
+<host>localhost</host>
 <user>bee</user>
 <password>bee</password>
 <database_name>Bee</database_name>
 <tables_prefix>Bee</tables_prefix>
+<use_compres>true</use_compres>
+<use_ssl>false</use_ssl>
 </database>
 
 <behave>
