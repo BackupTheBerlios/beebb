@@ -58,10 +58,7 @@ public class Commons {
      * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
      */
     public static void setCachingForever(javax.servlet.http.HttpServletResponse response){
-        java.util.Date d = new java.util.Date((new java.util.Date()).getTime() + 365 * 24 * 60 * 60 * 1000);//za rok od teraz
-        //java.text.SimpleDateFormat d1 = new java.text.SimpleDateFormat("dd MM yyyy hh:mm:ss");
-        response.setHeader("Expires",d.toString());//d1.format(d));
-        response.setHeader("Cache-Control","max-age = "+Long.toString(365 * 24 * 60 * 60));
+        setCachingFor(response, 365 * 24 * 60 * 60);
     }
     
 
