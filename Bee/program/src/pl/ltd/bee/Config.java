@@ -20,6 +20,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
 import pl.ltd.bee.Exceptions.*;
+import java.util.*;
 
 /**
  *
@@ -60,6 +61,12 @@ public class Config {
     private final static String TAG_FORGET_BODY="forget_body";
     private final static String TAG_USE_COMPRESSION="use_compres";
     private final static String TAG_USE_SSL="use_ssl";
+    private final static String TAG_SMILES="smiles";
+    private final static String TAG_SMILE="smile";
+    private final static String TAG_SMILE_TAG="smile_tag";
+    private final static String TAG_SMILE_URL="smile_url";
+    private final static String TAG_CACHE_COUNTER="cache_counter";
+    
     
     /** Zmienna informuje czy konfig zostal odczytany */
     private static boolean read = false;
@@ -114,6 +121,10 @@ public class Config {
      */
     public static int CACHE_COUNTER = 10; 
     
+    /** Hashtable w ktorych kluczami sa znaczniki emotikonek a wartosciami url do nich
+     **/
+    public static Hashtable SMILES = new Hashtable();
+    
     /**    
      * Klasa odpowiedzialna za przetworzenie dokumnetu XML
      */
@@ -121,6 +132,7 @@ public class Config {
         
         private String tag;
         private Config config;
+        private String last_smile_tag="";
         
         public MyHandler(Config conf){
             config = conf;
@@ -138,6 +150,7 @@ public class Config {
         
         public void characters(char[] ch, int start, int length) {
             String wynik = new String(ch,start,length);
+            if ( tag.compareTo(Config.TAG_CACHE_COUNTER) == 0)  config.CACHE_COUNTER = Integer.parseInt(wynik);
             if ( tag.compareTo(Config.TAG_DATABASE_NAME) == 0)  config.DATABASE = wynik;
             if ( tag.compareTo(Config.TAG_FORGET_BODY) ==0)     config.FORGET_MAIL_BODY = wynik;
             if ( tag.compareTo(Config.TAG_FORGET_SUBJECT) ==0)  config.FORGET_MAIL_SUBJECT = wynik;
@@ -157,6 +170,9 @@ public class Config {
             if ( tag.compareTo(Config.TAG_USE_COMPRESSION) == 0)config.USE_COMPRESSION = Boolean.valueOf(wynik).booleanValue();
             if ( tag.compareTo(Config.TAG_USE_SSL) == 0)        config.USE_SSL = Boolean.valueOf(wynik).booleanValue();
             if ( tag.compareTo(Config.TAG_USER) == 0)           config.USER = wynik;
+            if ( tag.compareTo(Config.TAG_SMILE_URL) == 0)      if (last_smile_tag.length() > 0) SMILES.put(last_smile_tag,wynik);
+            if ( tag.compareTo(Config.TAG_SMILE_TAG) == 0)      last_smile_tag = wynik; //to musi byc przed SMILE_URL boolean zeruje last_smile_tag
+                                else                            last_smile_tag = "";
         }
     }    
     
@@ -203,6 +219,7 @@ public class Config {
        int nodeType = node.getNodeType();
            if (nodeType == Node.TEXT_NODE) {
            Node parent = node.getParentNode();
+           if (parent.getNodeName().compareTo(TAG_CACHE_COUNTER) == 0)          node.setNodeValue(Integer.toString(CACHE_COUNTER));
            if (parent.getNodeName().compareTo(TAG_DATABASE_NAME) == 0)          node.setNodeValue(DATABASE);
            if (parent.getNodeName().compareTo(TAG_FORGET_BODY) == 0)            node.setNodeValue(FORGET_MAIL_BODY);
            if (parent.getNodeName().compareTo(TAG_FORGET_SUBJECT) == 0)         node.setNodeValue(FORGET_MAIL_SUBJECT);
@@ -420,6 +437,23 @@ public class Config {
     public void setUseSsl(boolean b){
         modified = true;
         USE_SSL = b;}
+    
+    /** Metoda ustala co ile sekund zapisywac liczbe odwiedzin do bazy
+     * @param i Ilosc sekund
+     */
+    public void setCacheCounter(int i){
+        modified = true;
+        CACHE_COUNTER = i;
+    }
+    
+    /** Metoda dodaje tag dla emotikonki. Jesli tag istnieje zostanie podmieniony
+     * @param tag Ciag znakow okreslajacy znacznik emotikony
+     * @param url Sciezka do pliku graficznego
+     */
+    public void setSmileTag(String tag, String url){
+        modified = true;
+        SMILES.put(tag, url);
+    }
     
     /**
      * Konstruktor

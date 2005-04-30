@@ -1,5 +1,5 @@
 <!-- glowny element sklada sie z sekcji -->
-<!ELEMENT bee_configuration (general,database,behave,mailing)>
+<!ELEMENT bee_configuration (general,database,behave,mailing,smiles)>
 <!ATTLIST bee_configuration version CDATA #REQUIRED>
 
 <!-- sekcja glowna -->
@@ -17,12 +17,13 @@
 <!ELEMENT use_ssl (#PCDATA)>
 
 <!-- sekcja zachowania sie forum -->
-<!ELEMENT behave (guest_account,guest_id,log_in_max_age,minimum_pass_length,new_user_mail_auth)>
+<!ELEMENT behave (guest_account,guest_id,log_in_max_age,minimum_pass_length,new_user_mail_auth,cache_counter)>
 <!ELEMENT guest_account (#PCDATA)>
 <!ELEMENT guest_id (#PCDATA)>
 <!ELEMENT log_in_max_age (#PCDATA)>
 <!ELEMENT minimum_pass_length (#PCDATA)>
 <!ELEMENT new_user_mail_auth (#PCDATA)>
+<!ELEMENT cache_counter (#PCDATA)>
 
 <!-- sekcja konfiguracji poczty -->
 <!ELEMENT mailing (smtp_server,mail_from,registration_subject,registration_body,forget_subject,forget_body)>
@@ -32,5 +33,10 @@
 <!ELEMENT registration_body (#PCDATA)>
 <!ELEMENT forget_subject (#PCDATA)>
 <!ELEMENT forget_body (#PCDATA)>
+
+<!ELEMENT smiles (smile)*>
+<!ELEMENT smile (smile_tag,smile_url)>
+<!ELEMENT smile_tag (#PCDATA)>
+<!ELEMENT smile_url (#PCDATA)>
 
 

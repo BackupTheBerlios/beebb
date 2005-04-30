@@ -30,4 +30,8 @@
 <forget_subject>[BEE] Zapomniane hasło</forget_subject>
 <forget_body>Poniżej link do zmiany zapomnianego hasła:</forget_body>
 </mailing>
+
+<smiles>
+<smile_tag>lol</smile_tag><smile_url>images/smiles/default/lol.gif</smile_url>
+</smiles>
 </bee_configuration>
