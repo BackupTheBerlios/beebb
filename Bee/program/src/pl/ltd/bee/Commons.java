@@ -102,4 +102,25 @@ public class Commons {
             return text;
     }
     
+    /**
+     * Metoda dostarcza znacznik xhtml bedacy poprawnym odnosnikiem w projekcie wykorzystujacym rotacje ramek
+     * @param text Zawartosc tekstowa odnosnika
+     * @param where Strona docelowa
+     * @param classType Nazwa klasy odnosnika
+     * @return Znacznik xhtml z odnosnikiem
+     */
+    public static String aHref(String text, String where, String classType){
+        return "<span class=\""+classType+"\" style=\"cursor: pointer;\" onclick=\"hrefClick('"+where+"')\">"+text+"</span>";
+    }
+    
+    /**
+     * Metoda dostarcza znacznik xhtml bedacy poprawnym odnosnikiem w projekcie wykorzystujacym rotacje ramek
+     * @param text Zawartosc tekstowa odnosnika
+     * @param where Strona docelowa
+     * @param classType Nazwa klasy odnosnika
+     * @return Znacznik xhtml z odnosnikiem
+     */
+    public static String aHref(String text, String where){
+        return aHref(text,where,"aHref");
+    }
 }

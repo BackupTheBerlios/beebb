@@ -20,9 +20,7 @@
         if (!flds.hasMoreElements()) {
             pl.ltd.bee.Forum f = db_con.getForum();
                 if (f!=null) {
-                    String skad = request.getHeader("referer");
-                    boolean swap = !((skad !=null) && (skad.indexOf("auth.jsp") != -1));
-                    out.println("<body onload=\"reloadHeader('./header.jsp');"+ (swap?"swapIframes();":"") + "resizeMain();true;\" onresize=\"resizeMain()\">");    
+                    out.println("<body onload=\"swapIframes();resizeMain();true;\" onresize=\"resizeMain()\">");    
                     Forum.printMainTableJSP(out);
                     f.printJSP(out);
                     Forum.printMainTableCloseJSP(out);
