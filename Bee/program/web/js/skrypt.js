@@ -33,7 +33,7 @@ function swapIframes(){
     }
 }
 
-function addEmoticon(tag){
-    document.getElementById('text').value += tag;
-    document.getElementById('text').focus();
+function addEmoticon(tag, textarea){
+    document.getElementById(textarea).value += tag;
+    document.getElementById(textarea).focus();
 }

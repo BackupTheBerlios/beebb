@@ -63,13 +63,32 @@
                     %>
                         <form action="moderating.jsp" method="get">
                             <table border="0" class="tableEditWypowiedz" align="center">
-                            <tr><th><%out.print(Messages.wielka(Messages.edition()));%></th></tr>
-                            <tr><td class="tdEditWypowiedz" align="center">
-                            <textarea cols="100" rows="5" name="newText"><%out.print(Commons.wypowiedzDoTekst(wyp.getTekst()));%></textarea>
+                            <tr><th colspan="2"><%out.print(Messages.wielka(Messages.edition()));%></th></tr>
+                            <tr>
+                            <td class="tdImgEmotikona">
+                                <%
+                                    int k = 0;
+                                    Enumeration i = Config.SMILES.keys();
+                                    while (i.hasMoreElements()){
+                                        Object o_tag = i.nextElement();
+                                        String tag = (String)o_tag;
+                                        String url = (String)Config.SMILES.get(o_tag);
+                                        out.println(Commons.makeEmotikonLink(url,tag,"style=\"cursor:pointer;\" onclick=\"addEmoticon('"+Config.SMILE_TAG_OPEN+tag+Config.SMILE_TAG_CLOSE+"','newText')\""));
+                                        k++;
+                                        if (k == 5) 
+                                        {
+                                            k=0;
+                                            out.println("<br/>");
+                                        }
+                                    }
+                                %>
+                            </td>
+                            <td class="tdEditWypowiedz" align="center">
+                            <textarea cols="60" rows="8" name="newText" id="newText"><%out.print(Commons.wypowiedzDoTekst(wyp.getTekst()));%></textarea>
                             <input type="hidden" name="wpid" value="<%out.print(s_wpid);%>" />
                             <input type="hidden" name="op" value="edited" />
                             </td></tr>
-                            <tr><td align="center" class="tdEditWypowiedz"><input type="submit" value="<% out.print(Messages.wielka(Messages.save()));%>"</td></tr>
+                            <tr><td colspan="2" align="center" class="tdEditWypowiedz"><input type="submit" value="<% out.print(Messages.wielka(Messages.save()));%>"</td></tr>
                             </table>
                         </form>
                     <%
