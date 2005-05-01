@@ -168,7 +168,7 @@
                                         Object o_tag = i.nextElement();
                                         String tag = (String)o_tag;
                                         String url = (String)Config.SMILES.get(o_tag);
-                                        out.println("<img src=\""+Config.URL_FORUM+url+"\" alt=\""+tag+"\" class=\"imgEmotikona\" onclick=\"addEmoticon('"+Config.SMILE_TAG_OPEN+tag+Config.SMILE_TAG_CLOSE+"')\"/>");
+                                        out.println(Commons.makeEmotikonLink(url,tag,"onclick=\"addEmoticon('"+Config.SMILE_TAG_OPEN+tag+Config.SMILE_TAG_CLOSE+"')\""));
                                         k++;
                                         if (k == 5) 
                                         {

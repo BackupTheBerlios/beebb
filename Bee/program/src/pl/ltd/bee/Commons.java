@@ -12,6 +12,7 @@ package pl.ltd.bee;
  */
 
 import java.util.*;
+import java.util.regex.*;
 
 public class Commons {
     
@@ -148,13 +149,23 @@ public class Commons {
      * @return Zmieniony tekst
      */
     public static String zabierzEmotikonki(String s){
-        //TODO to trzeba napisac. Najlepiej tak by wyciagac nazwy tagow z tego tekstu a nie z konfiga, bo on moze miec inne ikonki juz
-        s = s.replaceAll("<img src=\"[^\"]+\" alt=\"[^\"]+\" class=\"imgEmotikona\" />", "(TU BYLA IKONA)");
-        return s;
+        String wynik = s;
+        Pattern pattern = Pattern.compile("<img src=\"([^\"]+)\" alt=\"([^\"]+)\" class=\"imgEmotikona\" />");
+        Matcher matcher = pattern.matcher(s);
+        while (matcher.find())
+        {
+            String url = matcher.group(1);
+            String tag = matcher.group(2);
+            url = url.replaceAll("\\\\","\\\\\\\\");
+            url = url.replaceAll("\\:","\\\\\\:");
+            url = url.replaceAll("\\.","\\\\\\.");
+            wynik = wynik.replaceAll("<img src=\""+url+"\" alt=\""+tag+"\" class=\"imgEmotikona\" />",Config.SMILE_TAG_OPEN+tag+Config.SMILE_TAG_CLOSE);
+        }
+        return wynik;
     }
     
     /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
-     * @param url Sciezka do pliku graficznego
+     * @param url Sciezka do pliku graficznego zaczynajac od korzenia serwisu
      * @return Znacznik z grafika
      */
     public static String makeEmotikonLink(String url){
@@ -162,7 +173,7 @@ public class Commons {
     }
     
     /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
-     * @param url Sciezka do pliku graficznego
+     * @param url Sciezka do pliku graficznego zaczynajac od korzenia serwisu
      * @param alt Tekst opisujacy obrazek
      * @return Znacznik z grafika
      */
@@ -170,4 +181,13 @@ public class Commons {
        return "<img src=\""+Config.URL_FORUM+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" />";
     }
     
+    /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
+     * @param url Sciezka do pliku graficznego zaczynajac od korzenia serwisu
+     * @param alt Tekst opisujacy obrazek
+     * @param extraAttr Dodatkowe wlasciwosci dla znacznika xhtml. Np: "onclick=\"aHref('index.jsp')\""
+     * @return Znacznik z grafika
+     */
+    public static String makeEmotikonLink(String url,String alt, String extraAttr){
+       return "<img src=\""+Config.URL_FORUM+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" "+extraAttr+" />";
+    }
 }
