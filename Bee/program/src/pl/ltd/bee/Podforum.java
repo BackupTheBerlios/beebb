@@ -231,8 +231,8 @@ public class Podforum {
      */
     public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
-        strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\"/></td>");
-        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPodforum\">"+Commons.aHref(this.getTytul(),"main.jsp?pid=" + this.getID(),"aTytulPodforum")+"<br/></span><span class=\"opisPodforum\">" + this.getOpis() + "<br/>");
+        strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\" alt=\"Category\"/></td>");
+        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPodforum\">"+Commons.aHref(this.getTytul(),"main.jsp?pid=" + this.getID(),"aTytulPodforum")+"</span><br/><span class=\"opisPodforum\">" + this.getOpis() + "</span><br/></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">"+ liczbaAktywnychWatkow() + "</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">" + liczbaAktywnychWypowiedzi() + "</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\">");

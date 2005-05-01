@@ -116,14 +116,14 @@ public class Wypowiedz {
         }
         strona.println("</span><br/>");
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
-        strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\"/></td>");
+        strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\" alt=\"Folder img\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
         strona.println(Tekst);
         strona.println("</td>");
         strona.println("</tr></table></tr>");
         strona.println("<tr><td class=\"tdWypowiedzModer\">");
         strona.println("<table width=\"100%\" border=\"0\"><tr><td align=\"left\">");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&op=edit')\"><img src=\"../images/edit.gif\" alt=\"Edytuj\" border=\"0\"/></span>"); //TODO MESSAGES
+        strona.println("<span style=\"cursor: pointer\" onclick=\"wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&op=edit')\"><img src=\"../images/edit.gif\" alt=\"Edytuj\" border=\"0\" alt=\"Edit\"/></span>"); //TODO MESSAGES
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&op=delete')\"><img src=\"../images/delete.gif\" alt=\"Skasuj\" border=\"0\"/></span>");
         strona.println("</td><td align=\"right\">");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&id_autor="+this.ID_Autora+"&op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
