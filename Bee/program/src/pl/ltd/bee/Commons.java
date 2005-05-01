@@ -178,7 +178,7 @@ public class Commons {
      * @return Znacznik z grafika
      */
     public static String makeEmotikonLink(String url,String alt){
-       return "<img src=\""+Config.URL_FORUM+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" />";
+       return makeEmotikonLink(url,alt,"");
     }
     
     /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
@@ -188,6 +188,6 @@ public class Commons {
      * @return Znacznik z grafika
      */
     public static String makeEmotikonLink(String url,String alt, String extraAttr){
-       return "<img src=\""+Config.URL_FORUM+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" "+extraAttr+" />";
+       return "<img src=\""+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" "+extraAttr+" />";
     }
 }
