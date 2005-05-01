@@ -230,9 +230,10 @@ public class Watek {
      */
     public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
-        strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\" alt=\"Koperta\"/></td>");
+        if (this.Zablokowany) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/lock.png\" alt=\"Zablokowany\"/></td>");
+        else if (this.Zamkniety) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/cut.gif\" alt=\"Zamkniety\" /></td>");
+        else strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\" alt=\"Koperta\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPodforum\">"+ Commons.aHref(Temat,"?wid="+ ID,"aTytulWatek")+"</span></td>");
-        
         strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&id_autor="+this.ID_Autor+"&op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=move')\" /><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=block')\" /><img src=\"../images/lock.png\" alt=\"Zablokuj\" border=\"0\" /></span>");

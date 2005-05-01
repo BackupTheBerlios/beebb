@@ -134,9 +134,13 @@
             
             if (watek!=null) {
                 Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
-                //dodaj Wypowiedz
-                d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
-                d.incrAddWypowiedz(wt,ID_Usera,Nazwa_Usera);
+                if ((!wt.czyZablokowany()) && (!wt.czyZamkniety()))
+                    {
+                        //dodaj Wypowiedz
+                        d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
+                        d.incrAddWypowiedz(wt,ID_Usera,Nazwa_Usera);
+                    }
+                    else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 } else
                 if (podforum!=null && text!=null) {
                     String title=request.getParameter("title");
