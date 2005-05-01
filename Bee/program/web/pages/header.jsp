@@ -7,8 +7,9 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
     <body>
@@ -16,7 +17,7 @@
    
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
-	<td width="20%" align="top">
+	<td width="20%" valign="top">
 		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top" onClick="linkClick('./main.jsp')" style="cursor: pointer;" />
 	</td>
 <td>
