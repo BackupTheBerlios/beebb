@@ -43,7 +43,7 @@
                 else
                     out.print(Messages.errorChangePasswd());
             }
-            out.println(Commons.aHref(Messages.wielka(Messages.back()), "./../main.jsp")+"<br>"); 
+            out.println("<a class=\"aHref\" href=\"./../../index.jsp\">"+Messages.wielka(Messages.back())+"</a><br/>"); 
         }
         %>
     </body>

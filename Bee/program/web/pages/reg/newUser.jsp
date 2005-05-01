@@ -25,7 +25,7 @@
             } else 
                 out.print(Messages.errorKeyNewUser());
             
-        } else out.println(Commons.aHref(Messages.wielka(Messages.back()),"../../index.jsp")+"<br/>"); 
+        } else out.println("<a class=\"aHref\" href=\"../../index.jsp\">"+Messages.wielka(Messages.back())+"</a><br/>"); 
         %>
     </body>
 </html>
