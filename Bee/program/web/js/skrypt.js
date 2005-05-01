@@ -37,3 +37,8 @@ function addEmoticon(tag, textarea){
     document.getElementById(textarea).value += tag;
     document.getElementById(textarea).focus();
 }
+
+
+function setResizeFunction(fun){
+    window.onresize = fun;
+}

@@ -7,11 +7,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./../..",Messages.wielka(Messages.forgetPasswd())));%>
-    <body onload="<% if(request.getParameter("id") == null) out.print("swapIframes();");%>resizeForget()" onresize="resizeForget()">
+    <body onload="<% if(request.getParameter("id") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);">
 <%@ include file="../servletObjects.jsp" %>
-        <table align="center" border="0" id="tableForget"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
-            <tr>
-                <td> 
         <br/><br/>
         <% Enumeration flds = request.getParameterNames();
         String klucz=request.getParameter("id");
@@ -49,8 +46,5 @@
             out.println(Commons.aHref(Messages.wielka(Messages.back()), "./../main.jsp")+"<br>"); 
         }
         %>
-                </td>
-            </tr>
-        </table>
     </body>
 </html>

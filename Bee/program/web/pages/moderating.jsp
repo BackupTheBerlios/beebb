@@ -12,9 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
 <%@ include file="servletObjects.jsp" %>
-<body onload="tableMorderating()" onresize="tableMorderating()">
-<table width="100%" border="0" id="tableMorderating">
-<tr><td>
+<body onload="resizeMain();setResizeFunction(resizeMain);" >
 
 <%
         User user = auth.getUser(request,db_con);
@@ -204,7 +202,5 @@
         }
 %>
 
-</td></tr>
-</table>
 </body>
 </html>

@@ -22,7 +22,7 @@
         if (!flds.hasMoreElements()) {
             pl.ltd.bee.Forum f = db_con.getForum();
                 if (f!=null) {
-                    out.println("<body onload=\"swapIframes();resizeMain();true;\" onresize=\"resizeMain()\">");    
+                    out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
                     Forum.printMainTableJSP(out);
                     f.printJSP(out);
                     Forum.printMainTableCloseJSP(out);
@@ -45,7 +45,7 @@
             if (field.compareTo("wid") == 0) {
                 pl.ltd.bee.Watek w = db_con.getWatek(Integer.decode(request.getParameter(field)).intValue());
                 if (w!=null){
-                    out.println("<body onload=\"swapIframes();resizeMain();true;\" onresize=\"resizeMain()\">");    
+                    out.println("<body onload=\"swapIframes();resizeWatek();setResizeFunction(resizeWatek);true;\" >");    
                     w.printJSP(out);
                 }
                 else 
@@ -54,7 +54,7 @@
                 if (field.compareTo("kid") == 0) {
                 pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
                 if (k!=null) {
-                      out.println("<body onload=\"swapIframes();resizeMain();true;\" onresize=\"resizeMain()\">");    
+                      out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
                       k.printMainTableJSP(out);
                       k.printJSP(out);
                       k.printMainTableCloseJSP(out);
@@ -65,7 +65,7 @@
                     if (field.compareTo("pid") == 0) {
                         pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
                         if (p!=null) {
-                            out.println("<body onload=\"swapIframes();resizeMain();true;\" onresize=\"resizeMain()\">");    
+                            out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
                             p.printJSP(out);
                         }
                         else

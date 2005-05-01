@@ -7,11 +7,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.editProfile())));%>
-    <body onload="<% if ((request.getParameter("psw") == null) && (request.getParameter("chd") == null )) out.print("swapIframes();");%>resizeAuth()" onresize="resizeAuth()">
+    <body onload="<% if ((request.getParameter("psw") == null) && (request.getParameter("chd") == null )) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
     
         <%@ include file="servletObjects.jsp" %>
-        <table width="100%" border="0" id="tableAuth"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
-            <tr><td align="center">
                 
     <%
                 User user = auth.getUser(request,db_con);
@@ -95,8 +93,5 @@
                     out.println();
                 }
       %>
-            </td>
-            </tr>
-        </table>
     </body>
 </html>

@@ -8,11 +8,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.add())));%>
-    <body onLoad="<% if (request.getParameter("text") == null) out.print("swapIframes();");%>resizeDodajW()" onresize="resizeDodajW()">
+    <body onLoad="<% if (request.getParameter("text") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
         <%@ include file="servletObjects.jsp" %>
-        <table align="center" border="0" id="tableDodajW"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
-            <tr>
-                <td> 
         <% Enumeration flds = request.getParameterNames();
         /* Validacja za pomocą JS */
 /*
@@ -203,8 +200,5 @@
                     <br><br>
                     <center><% Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
    <% } }%>
-                </td>
-            </tr>
-        </table>
     </body>
 </html>
