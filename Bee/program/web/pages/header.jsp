@@ -41,38 +41,38 @@
 		<td id="cellMenu" align="center">
 			<table id="tableMenu" border="0" width="600"> 
 			<tr>
-			<td class="tdTopLink"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink">
 				[] <%out.print(Messages.wielka(Messages.help()));%>
 				</span>
 			</td>
-			<td class="tdTopLink"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink">
 				[] <%out.print(Messages.wielka(Messages.search()));%>
 				</span>
 			</td>
-			<td class="tdTopLink"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink">
 				[] <%out.print(Messages.wielka(Messages.users()));%>
 				</span>
 			</td>
-			<td class="tdTopLink"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink">
 				[] <%out.print(Messages.wielka(Messages.groups()));%>
 				</span>
 			</td>
 			</tr>
 			<tr>
-			<td class="tdTopLink"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink">
                                 <%out.print("[] <span  class=\"aTopLink\"");
                                 if (auth.zalogowany(request,db_con)) 
                                     out.print("[] onclick=\"linkClick('./editProfile.jsp')\"");   
                                 out.print(">" +Messages.wielka(Messages.profile()) + "</span>");%>
 				</span>
 			</td>
-			<td class="tdTopLink">
+			<td class="tdTopLink" align="left">
 				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp','Bee')" target="_blank">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
 			</td>
-			<td class="tdTopLink">
+			<td class="tdTopLink" align="left">
 				<span  class="aTopLink" onClick="linkClick('./addUser.jsp')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
 			</td>
-			<td class="tdTopLink">
+			<td class="tdTopLink" align="left">
                                 <%
                                 if (!auth.zalogowany(request,db_con)) 
                                     out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp')\">[] " + Messages.wielka(Messages.logIn()) +"</span>");
