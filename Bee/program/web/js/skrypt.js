@@ -13,14 +13,20 @@ function wypowiedzLinkClick(url){
 
 
 function hrefClick(url){
-    i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 1 : 2;
+    if (!(top.document.getElementById('frameTresc_1'))) 
+            top.location = url;
+    else 
+    {
+    var i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 1 : 2;
 
     if (top.frames[i].location)
         top.frames[i].location.href = url;
-
+    }
 }
 
 function swapIframes(){
+    if (!(top.document.getElementById('frameTresc_1'))) 
+            return;
     if (top.document.getElementById('frameTresc_1').style.display == 'none')
     {
         top.document.getElementById('frameTresc_1').style.display = 'block';
