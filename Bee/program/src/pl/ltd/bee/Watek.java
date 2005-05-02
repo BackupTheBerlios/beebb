@@ -234,12 +234,12 @@ public class Watek {
         else if (this.Zamkniety) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/cut.gif\" alt=\"Zamkniety\" /></td>");
         else strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\" alt=\"Koperta\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPodforum\">"+ Commons.aHref(Temat,"?wid="+ ID,"aTytulWatek")+"</span></td>");
-        strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&id_autor="+this.ID_Autor+"&op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=move')\" /><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/></span>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=block')\" /><img src=\"../images/lock.png\" alt=\"Zablokuj\" border=\"0\" /></span>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&op=close')\" /><img src=\"../images/cut.gif\" alt=\"Zamknij\" border=\"0\"/></span>");
+        strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;id_autor="+this.ID_Autor+"&amp;op=ban')\"><img src=\"../images/kick_user.gif\" alt=\"BanujAutora\" border=\"0\"/></span>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=move')\" /><img src=\"../images/move.gif\" alt=\"Przenies\" border=\"0\"/>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=block')\" /><img src=\"../images/lock.png\" alt=\"Zablokuj\" border=\"0\"/>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=close')\" /><img src=\"../images/cut.gif\" alt=\"Zamknij\" border=\"0\"/>");
         
-        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
+        strona.println("</td><td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
         if (LiczbaWypowiedzi > 0) strona.println((LiczbaWypowiedzi-1)); else strona.println(LiczbaWypowiedzi);
         strona.println("</span></td>");
         strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
@@ -270,7 +270,7 @@ public class Watek {
         Kategoria k = null;
         if (p!=null) k = db.getKategoriabyPodforum(p.getID());
         Forum f = db.getForum();
-        strona.println("<table border=\"0\" class=\"tableTextNadWatkiem\" id=\"textNadWatkiem\" width=\"100%\" nowrap=\"nowrap\"><tr>");
+        strona.println("<table border=\"0\" class=\"tableTextNadWatkiem\" id=\"textNadWatkiem\" width=\"100%\"><tr>");
         if (p!=null && k!=null && f!=null)
             strona.println("<td class=\"tdPath\" align=\"left\">"+Commons.aHref( f.getNazwa(), "./main.jsp","aPath")+" -> " + Commons.aHref( k.getNazwa(), "./main.jsp?kid=" + k.getID(),"aPath")+ " -> "+ Commons.aHref(p.getTytul(),"./main.jsp?pid=" + p.getID(),"aPath")+" -> "+ Commons.aHref(Temat,"./main.jsp?wid=" + ID,"aPath" )+"</td>");
         strona.println("<td class=\"tdTopAction\" align=\"right\">"+ Commons.aHref(Messages.wielka(Messages.add()) +" "+ Messages.message(),"./dodajW.jsp?w=" + ID,"aTopAction")+"</td>");
@@ -290,8 +290,6 @@ public class Watek {
      */
     public void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("</table>");
-        strona.println("</body>");
-        strona.println("</html>");
     }
     
     /**
