@@ -16,13 +16,8 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
-
-        <script type="text/javascript" LANGUAGE="JavaScript">
-            function Info(param)
-            {
-            return confirm(param);
-            }
-        </script>
+        <script type="text/javascript" src="../js/podfora.js"></script>
+       
     </head>
     
     <body> 
@@ -46,7 +41,7 @@
       if(field.compareTo("akt_kat")==0 )
            {
              String nr=request.getParameter("akt_kat");
-             if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr),true)) out.print(Messages.activeKat());
+             if ( db_con.zmienAktywnoscKategorii(Integer.parseInt(nr),true)) out.print(Messages.makeInfo(Messages.activeKat()));
                 else out.print(Messages.makeError(Messages.errorActiveKat()));
            }
         if (field.compareTo("akt_pod")==0 )
@@ -70,7 +65,7 @@
               ArrayList lista2 = kkk.getPodfora(false);
            if ( (lista2.size() > 0)||(!kkk.czyAktywna()) ) {  
                licz++;
-         %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= licz %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
+         %><tr bgcolor="gold" > <td align="center"> <button id="plusik<%=i%>" onClick="rozwijanie('<%=i%>'); return false;"> +/- </button> </td> <td> <%= licz %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
           
              <td><form action="./edycja_usunietych.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isActiveKat())+"');" %>">
                  <input type="hidden" name="akt_kat" value="<%= kkk.getID() %>"/>
@@ -82,7 +77,11 @@
              </form> 
              </td>
          </tr>
-            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center">  <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
+         
+         <tr> <td colspan="5">
+         <p id="podfora<%=i%>" class="podfora"> 
+        <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
+            <tr bgcolor="yellow" > <td> </td> <td colspan="5" align="center">  <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
@@ -96,10 +95,13 @@
                  <% } %>
              </form> 
              </td> 
-             <td></td>
          </tr>
-          <% }
-          }%>
+          <% } %>
+           </table>
+          </p>
+          </td>
+          </tr>
+          <% } %>
     
        <% }%>
         </table>

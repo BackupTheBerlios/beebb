@@ -18,13 +18,7 @@
         <meta name="keywords" content="??" />
         <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
-
-        <script type="text/javascript" LANGUAGE="JavaScript">
-            function Info(param)
-            {
-            return confirm(param);
-            }
-        </script>
+        <script type="text/javascript" src="../js/podfora.js"></script>
     </head>
     
     <body> 
@@ -85,10 +79,11 @@
           out.print((String) wiad.get(i));
         }
       %>
-      
+   
+ 
    <br/>
      <% ArrayList lista=db_con.getKategorie(true); %>  
-        <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
+        <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
             <caption> <font size="5" style="bold"></font> </caption>
             <tr> <th><%out.println(Messages.wielka(Messages.rozwin())); %></th> <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
                  <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> 
@@ -96,7 +91,7 @@
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(true);  
-         %><tr bgcolor="gold" ><td align="center"> <a href="">+</a> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
+         %><tr bgcolor="gold" ><td align="center"> <button id="plusik<%=i%>" onClick="rozwijanie('<%=i%>'); return false;"> +/- </button> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
              <td><form action="./edycja_kat.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
@@ -117,11 +112,18 @@
              </form> 
              </td>
          </tr>
-            <tr bgcolor="yellow" > <td> </td> <td colspan="6" align="center"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
+         <tr> <td colspan="7">
+         <p id="podfora<%=i%>" class="podfora"> 
+        <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
+         
+         <tr><th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
+                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> 
+         </tr>
+            <tr bgcolor="yellow" id="number2" > <td colspan="5" align="center" id="nee"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr> 
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
-         %><tr bgcolor="goldenrod"> <td> </td><td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
+         %><tr bgcolor="goldenrod"> <td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
              <td><form action="./edycja_pod.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
@@ -135,12 +137,18 @@
                  <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
              </form> 
              </td> 
-             <td></td>
+     
          </tr>
           <% }%>
+          
+          </table>
+          </p>
+          </td>
+          </tr>
     
        <% }%>
         </table>
+
         <br/> <br/>
         <form action="./edycja_podforow.jsp" method="post">
             <table align="center" cellpadding="2" cellspacing="1" border="1">
