@@ -3,7 +3,7 @@ function resizeMain()
 {
               	if (top == window) return;//zabezpieczenie jesli nie jestesmy potomkiem
 
-                var  i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 2 : 1;
+                i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 2 : 1;
                 frameTresc = top.document.getElementById('frameTresc_1').style.display == 'none' ? 'frameTresc_2' : 'frameTresc_1';
                 
 		//poprawienie gornej ramki
@@ -29,13 +29,9 @@ function resizeMain()
 
                 
 function resizeWatek(){
-              	if (top == window) return;//zabezpieczenie jesli nie jestesmy potomkiem
-
-                var i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 2 : 1;
+                i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 2 : 1;
                 frameTresc = top.document.getElementById('frameTresc_1').style.display == 'none' ? 'frameTresc_2' : 'frameTresc_1';
 
-alert(top.window.frames.length);
-alert(window.frames[0].document);
                 if (top.frames[i].document.getElementById('tableWatek')) //zabezpieczenie by nie wyszlo zero		
 		{
                 	komorki = document.getElementsByTagName('td');
@@ -50,14 +46,12 @@ alert(window.frames[0].document);
             			}
             		}
                         var opera = navigator.userAgent.toLowerCase().indexOf("opera",0) != -1;
-                        var ramki = window.window.frames;
-//alert(ramki);
-                        for(var f=0;f<wypowiedzi.length;f++)
+                        for(f=0;f<frames.length;f++)
                         {
                             if (!opera)
-                                wypowiedzi[f].height = Math.max(ramki[f].document.body.scrollHeight,ramki[f].document.body.offsetHeight) + 10; //getElementById('tableWypowiedz').offsetHeight + 10;
+                                wypowiedzi[f].height = Math.max(frames[f].document.body.scrollHeight,frames[f].document.body.offsetHeight) + 10; //getElementById('tableWypowiedz').offsetHeight + 10;
                             else
-                                wypowiedzi[f].height = Math.max(ramki[f].document.body.scrollHeight,ramki[f].document.body.offsetHeight) + 25; //getElementById('tableWypowiedz').offsetHeight + 25;
+                                wypowiedzi[f].height = Math.max(frames[f].document.body.scrollHeight,frames[f].document.body.offsetHeight) + 25; //getElementById('tableWypowiedz').offsetHeight + 25;
                         }
 
 		}
