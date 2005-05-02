@@ -119,8 +119,7 @@ public class Wypowiedz {
         strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\" alt=\"Folder img\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
         strona.println(Tekst);
-        strona.println("</td>");
-        strona.println("</tr></table></td></tr>");
+        strona.println("</td></tr></table></td></tr>");
         strona.println("<tr><td class=\"tdWypowiedzModer\">");
         strona.println("<table width=\"100%\" border=\"0\"><tr><td align=\"left\">");
         strona.println("<span style=\"cursor: pointer\" onclick=\"wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=edit')\"><img src=\"../images/edit.gif\" alt=\"Edytuj\" border=\"0\"/></span>"); //TODO MESSAGES

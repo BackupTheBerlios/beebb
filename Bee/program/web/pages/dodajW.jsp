@@ -5,10 +5,8 @@
 <%@ page import="java.util.*"%>
 <%@ page session="false" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.add())));%>
-    <body onLoad="<% if (request.getParameter("text") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
+    <body onload="<% if (request.getParameter("text") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
         <%@ include file="servletObjects.jsp" %>
         <% Enumeration flds = request.getParameterNames();
         /* Validacja za pomocą JS */
@@ -179,16 +177,16 @@
                                 %>
                             </td>
                         <td class="tdDodawanie">
-                    <form method="POST" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
+                    <form method="post" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <% if (watek==null) { %>
                             <tr>
-                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" style="width:450px" name="title" id="title"></td>
+                            <td><%out.print(Messages.wielka(Messages.title()) + ":");%></td><td><input type="text" size="50" style="width:450px" name="title" id="title"/></td>
                             <% } %>
                             </tr> <tr>
                                 <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td><td><textarea cols="50" style="width:450px" rows="5" name="text" id="text"></textarea></td>
                             </tr> <tr>
-                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" style="width:450px" name="autor" id="autor"><%}else{out.print(auth.user(request));}%></td>
+                            <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" style="width:450px" name="autor" id="autor"/><%}else{out.print(auth.user(request));}%></td>
                             </tr> <tr>
                                 <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                             </tr>
@@ -197,7 +195,7 @@
                     </td>
                     </tr>
                     </table>
-                    <br><br>
+                    <br/><br/>
                     <center><% Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
    <% } }%>
     </body>

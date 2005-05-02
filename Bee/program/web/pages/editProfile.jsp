@@ -4,8 +4,6 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.editProfile())));%>
     <body onload="<% if ((request.getParameter("psw") == null) && (request.getParameter("chd") == null )) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
     
@@ -43,15 +41,15 @@
                 }
 %>
     
-                <form method="POST" action="editProfile.jsp">
+                <form method="post" action="editProfile.jsp">
                     <table align="center" class="tableProfile" border="0">
                         <tr><th><% out.print(Messages.wielka(Messages.nick()));%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getLogin().getBytes("8859_1"),"UTF-8"));%></td><td></td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.name()));%></th><td class="tdProfileField"><input type="text" name="imie" size="35" value="<% out.print(new String(user.getImie().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField" rowspan="2" valign="middle"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.surname()));%></th><td class="tdProfileField"><input type="text" name="nazwisko" size="35" value="<% out.print(new String(user.getNazwisko().getBytes("8859_1"),"UTF-8"));%>"></td><td></td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField"><input type="text" name="email" size="35" value="<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField"><input type="checkbox" name="emailPrywatny" <%if(!user.ifShowEmail()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField"><input type="text" name="gg" size="35" value="<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField"><input type="checkbox" name="ggPrywatne" <%if(!user.ifShowGG()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField"><input type="text" name="jabber" size="35" value="<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%>"></td><td class="tdProfileField"><input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>> <%out.print(Messages.hide());%> &nbsp;</td></tr>
-                        <tr><td colspan="2" align="right"><input type="hidden" name="chd" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.name()));%></th><td class="tdProfileField"><input type="text" name="imie" size="35" value="<% out.print(new String(user.getImie().getBytes("8859_1"),"UTF-8"));%>"/></td><td class="tdProfileField" rowspan="2" valign="middle"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.surname()));%></th><td class="tdProfileField"><input type="text" name="nazwisko" size="35" value="<% out.print(new String(user.getNazwisko().getBytes("8859_1"),"UTF-8"));%>"/></td><td></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.email()));%></th><td class="tdProfileField"><input type="text" name="email" size="35" value="<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%>"/></td><td class="tdProfileField"><input type="checkbox" name="emailPrywatny" <%if(!user.ifShowEmail()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th><td class="tdProfileField"><input type="text" name="gg" size="35" value="<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%>"/></td><td class="tdProfileField"><input type="checkbox" name="ggPrywatne" <%if(!user.ifShowGG()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField"><input type="text" name="jabber" size="35" value="<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%>"/></td><td class="tdProfileField"><input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td></tr>
+                        <tr><td colspan="2" align="right"><input type="hidden" name="chd" value=""/><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
                     </table>
                 </form>
                 <br/>
@@ -77,11 +75,11 @@
                     
                 }
                 %>
-                <form method="POST" action="editProfile.jsp">
+                <form method="post" action="editProfile.jsp">
                     <table align="center" class="tableProfile" border="0">
-                        <tr><th><% out.print(Messages.wielka(Messages.old()) + " " + Messages.password());%></th><td class="tdProfileField"><input type="password" name="oldpasswd" size="35"></td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.password()));%></th><td class="tdProfileField"><input type="password" name="passwd1" size="35"></td></tr>
-                        <tr><th><% out.print(Messages.wielka(Messages.password()) + " " + Messages.oneMoreTime()); %></th><td class="tdProfileField"><input type="password" name="passwd2" size="35"></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.old()) + " " + Messages.password());%></th><td class="tdProfileField"><input type="password" name="oldpasswd" size="35"/></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.password()));%></th><td class="tdProfileField"><input type="password" name="passwd1" size="35"/></td></tr>
+                        <tr><th><% out.print(Messages.wielka(Messages.password()) + " " + Messages.oneMoreTime()); %></th><td class="tdProfileField"><input type="password" name="passwd2" size="35"/></td></tr>
                         <tr><td colspan="2" align="right"><input type="hidden" name="psw" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
                     </table>
                 </form>

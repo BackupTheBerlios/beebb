@@ -7,9 +7,6 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
 <%@ include file="servletObjects.jsp" %>
 <body onload="resizeMain();setResizeFunction(resizeMain);" >

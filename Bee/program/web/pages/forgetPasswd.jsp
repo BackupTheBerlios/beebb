@@ -5,8 +5,6 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.forgetPasswd())));%>
     <body onload="<% if (request.getParameter("user") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
 <%@ include file="servletObjects.jsp" %>
