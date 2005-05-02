@@ -614,17 +614,15 @@ public class DataBase {
     }
     
        /**
-     * Metoda zwaraca liste moderatorow w zaleznosci od parametów
+     * Metoda zwaraca liste aktywnych Userów
      * @param czy_aktywny true lub false 
-     * @param czy_moderator true lub false
      * @return ArrayList obiektow User
      */
-    public ArrayList getModeratorzy(boolean czy_aktywny, boolean czy_moderator) {
+    public ArrayList getUsersAktywni(boolean czy_aktywny) {
         ArrayList wynik = new ArrayList();
         String aktywny,moderator;
         if(czy_aktywny) aktywny=TAK; else aktywny=NIE;
-        if(czy_moderator) moderator=TAK; else moderator=NIE;
-        ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +" WHERE "+USER_AKTYWNY+"= '"+aktywny+"' and "+USER_MODERATOR+"= '"+moderator+"'");
+        ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +" WHERE "+USER_AKTYWNY+"= '"+aktywny+"' ");
         for(int i=0; i<users.size(); i++) {
             Hashtable user = (Hashtable)users.get(i);
             wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
@@ -634,21 +632,27 @@ public class DataBase {
     
     
     /**
-     * Metoda ustawia pola uprawnien Usera, jezeli moderator jest false, to
-     * usuwa wszystkie wiersze z taveli bee_moderatorzy z podanym id
+     * Metoda ustawia pola uprawnien Usera 
      * @param id int id uzytkownika w bazie danych
      * @param admin boolean T lub F
-     * @param moderator boolena  T lub F
      * @param aktywny boolena T lub F
      */
-    public boolean zmienUpr(int id, boolean czy_admin, boolean czy_moderator, boolean czy_aktywny){
-        String admin,moderator,aktywny;
+    public boolean zmienUpr(int id, boolean czy_admin, boolean czy_aktywny){
+        String admin,aktywny;
         if(czy_admin) admin=TAK; else admin=NIE;
         if(czy_aktywny) aktywny=TAK; else aktywny=NIE;
-        if ( czy_moderator ) {
-            baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE "+MODERATORZY_ID_USER+"="+id);
-            moderator=TAK; } else moderator=NIE;
-        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET "+USER_ADMIN+"='"+admin+"' , "+USER_MODERATOR+"='"+moderator+"' , "+USER_AKTYWNY+"='"+aktywny+"' WHERE "+USER_ID+"="+id);
+        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET "+USER_ADMIN+"='"+admin+"' , "+USER_AKTYWNY+"='"+aktywny+"' WHERE "+USER_ID+"="+id);
+    }
+    
+    /**
+     * Metoda ustawia pole moderator Usera 
+     * @param id int id uzytkownika w bazie danych
+     * @param czy_moderator  boolean T lub F
+     */
+    public boolean zmienUprModerator(int id, boolean czy_moderator){
+        String moderator;
+        if(czy_moderator) moderator=TAK; else moderator=NIE;
+        return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET "+USER_MODERATOR+"='"+moderator+"'  WHERE "+USER_ID+"="+id);
     }
     
     
@@ -679,11 +683,11 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
-        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ("+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"'," + p.getDataOstWypowiedzi() + ",'" + p.getAutorOstWypowiedzi() + "','" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
-            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
-            if (pf==null) return false;
-            
-            return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get(PODFORUM_ID)+")");
+        if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ( "+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"' ," + p.getDataOstWypowiedzi() + " ,'" + p.getAutorOstWypowiedzi() + "', NULL , '" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
+          Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
+          if (pf==null) return false;
+       
+          return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get(PODFORUM_ID)+")");
         }
         return false;
     }
