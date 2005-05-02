@@ -15,7 +15,8 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body>
-       <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+        
        <%! ArrayList u;
            String dajDana(String param)
             {
@@ -35,42 +36,41 @@
             }
            
         %>
-        <% 
-         if (!db_con.isConnected()) {
+         <% if (!db_con.isConnected()) {
             try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
                 out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 out.print(e);
-            } }%>
-            
-   <% Enumeration params = request.getParameterNames();
-      if (params.hasMoreElements()) {
-           String field = (String) params.nextElement();
-           
-        if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_moderator")==0)|| (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
-           if( db_con.zmienUpr(Integer.decode(request.getParameter("id")).intValue(), dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_moderator")), dajTN(request.getParameter("czy_aktywny"))))
-
-              out.print(Messages.makeInfo(Messages.changeUpr())); 
-            else out.print(Messages.makeError(Messages.errorChangeUpr()));
-         }
-        }   
-            u=db_con.getModeratorzy(true,true);  %>
+            }
+        } %>
+        
+                   
+   <% 
+            u=db_con.getUsersAktywni(true);  %>
 
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
        <caption> <%=Messages.wielka(Messages.moderators())%> </caption>
       <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> 
       <th><%out.println(Messages.wielka(Messages.surname())); %></th> <th><%out.println(Messages.wielka(Messages.email())); %></th> <th><%out.println(Messages.wielka(Messages.gg())); %></th> 
-      <th><%out.println(Messages.wielka(Messages.jabber())); %></th> <th><%out.println(Messages.wielka(Messages.lastLogged())); %> </th> <th><%= Messages.wielka(Messages.moderatePodforas())%></th>
+      <th><%out.println(Messages.wielka(Messages.jabber())); %></th> <th><%out.println(Messages.wielka(Messages.lastLogged())); %> </th> <th><%out.println(Messages.wielka(Messages.moderator())); %> </th> 
+      <th><%= Messages.wielka(Messages.moderatePodforas())%></th>
      <% 
+          Config conf = new Config();
+       try {
+             conf.readConfig(application);
+           }
+          catch(Exception e) {
+           out.println(e);
+         }
             
         int licz=1;
         for(int i=0; i<u.size(); i++) 
         { User pom=(User) u.get(i);
           
           int id= pom.getID();
-  
+        if ( id != conf.GUEST_ID ) { 
           String login=pom.getLogin();
           String imie=pom.getImie();
           String nazwisko=pom.getNazwisko();
@@ -78,11 +78,13 @@
           String gg=pom.getGG();
           String jabber=pom.getJabber();
           String lastlog=pom.getLastLog();
+          String czy_moderator;
+             if( pom.moderator() ) czy_moderator=DataBase.TAK; else czy_moderator=DataBase.NIE; 
         
     
          %><tr> <td><%=licz %>. </td><td> <%=dajDana(login)%> </td><td> <%=dajDana(imie)%> </td> <td> <%=dajDana(nazwisko)%> </td>
                 <td> <%=dajDana(email)%> </td><td> <%=dajDana(gg)%> </td> <td> <%=dajDana(jabber)%> </td> <td><%=dajDana(lastlog) %> </td>
-    
+                <td align="center"><%= takNie(czy_moderator) %> </td>
                 <td align="center"> <form action="moderator_dane.jsp" method="post" target="tresc">
                         <input type="hidden" name="id" value="<%=id%>">
                         <input type="hidden" name="login" value="<%=login%>">
@@ -96,7 +98,7 @@
                      </form>
                 </td>
            </tr> <%       
-         licz++;   
+         licz++;  } 
          }   %>
      </table>      
     </body>

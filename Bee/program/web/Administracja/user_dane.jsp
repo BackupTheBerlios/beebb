@@ -47,8 +47,6 @@
                       <%= dajUpr(request.getParameter("czy_aktywny")) ? "checked" : "" %>><%out.print(Messages.wielka(Messages.active()));%></input> </td> </tr>
            <tr> <td> <input type="checkbox" name="czy_admin" 
                       <%= dajUpr(request.getParameter("czy_admin")) ? "checked" : "" %>><%out.print(Messages.wielka(Messages.admin()));%></input> </td> </tr>
-            <tr> <td> <input type="checkbox" name="czy_moderator" 
-                      <%= dajUpr(request.getParameter("czy_moderator")) ? "checked" : "" %>><%out.print(Messages.wielka(Messages.moderator()));%></input> </td> </tr>
           
              <tr> <td>  <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                         <input type="submit" value="<%out.print(Messages.wielka(Messages.changePriviliges()));%>"></td> </tr>

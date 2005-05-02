@@ -53,15 +53,17 @@
     </head>
     <body>
         
-         
-     <% if (!db_con.isConnected()) {
+       <%  
+         if (!db_con.isConnected()) {
             try {
-                db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-                db_con.setTablePrefix(Config.DATABASE_PREFIX);
-                } catch (Exception e) {
-                   out.print("Blad polaczenia z baza!");
-                }
-            } %>
+            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
+            db_con.setTablePrefix(Config.DATABASE_PREFIX);
+            } catch (Exception e) {
+                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                out.print(e);
+            }
+        } %>
+        
       
             
     <% Enumeration pom = request.getParameterNames();

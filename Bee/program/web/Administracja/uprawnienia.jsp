@@ -16,6 +16,7 @@
     </head>
     <body>
        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+         
        <%! ArrayList u;
            String dajDana(String param)
             {
@@ -35,22 +36,24 @@
             }
            
         %>
-        <% 
-         if (!db_con.isConnected()) {
+        <%
+           if (!db_con.isConnected()) {
             try {
             db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
             db_con.setTablePrefix(Config.DATABASE_PREFIX);
             } catch (Exception e) {
                 out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 out.print(e);
-            } }%>
+            }
+        } %>
+         
             
    <% Enumeration params = request.getParameterNames();
       if (params.hasMoreElements()) {
            String field = (String) params.nextElement();
            
-        if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_moderator")==0)|| (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
-           if( db_con.zmienUpr(Integer.decode(request.getParameter("id")).intValue(), dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_moderator")), dajTN(request.getParameter("czy_aktywny"))))
+        if( (field.compareTo("czy_admin")==0) || (field.compareTo("czy_aktywny")==0)|| (field.compareTo("id")==0) ) {
+           if( db_con.zmienUpr(Integer.decode(request.getParameter("id")).intValue(), dajTN(request.getParameter("czy_admin")), dajTN(request.getParameter("czy_aktywny"))))
 
               out.print(Messages.makeInfo(Messages.changeUpr())); 
             else out.print(Messages.makeError(Messages.errorChangeUpr()));
@@ -58,16 +61,14 @@
         }   
             u=db_con.getUsers();  %>
  
-
-
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
       <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.login())); %></th> <th><%out.println(Messages.wielka(Messages.name())); %></th> 
       <th><%out.println(Messages.wielka(Messages.surname())); %></th> <th><%out.println(Messages.wielka(Messages.email())); %></th> <th><%out.println(Messages.wielka(Messages.gg())); %></th> 
       <th><%out.println(Messages.wielka(Messages.jabber())); %></th> <th><%out.println(Messages.wielka(Messages.lastLogged())); %> </th> <th><%out.println(Messages.wielka(Messages.active())); %></th> 
       <th><%out.println(Messages.wielka(Messages.admin())); %></th><th><%out.println(Messages.wielka(Messages.moderator())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th>
      <% String czy_admin="", czy_moderator="", czy_aktywny="";
-        Config conf= new Config();
-        
+      
+         Config conf = new Config();
           try {
              conf.readConfig(application);
            }
