@@ -225,187 +225,187 @@ public class Messages {
     public static String ok(){
         return "ok";}
     
-   /** Metoda dostarcza fraze "strona główna" */
+    /** Metoda dostarcza fraze "strona główna" */
     public static String mainPage(){
         return "strona główna";}
     
-   /** Metoda dostarcza fraze "uprawnienia" */
+    /** Metoda dostarcza fraze "uprawnienia" */
     public static String priviliges(){
         return "uprawnienia";}
     
-     /** Metoda dostarcza fraze "edycja" */
+    /** Metoda dostarcza fraze "edycja" */
     public static String edition(){
         return "edycja";}
     
-   /** Metoda dostarcza fraze "konfiguracja" */
+    /** Metoda dostarcza fraze "konfiguracja" */
     public static String configuration(){
         return "konfiguracja";}
     
-   /** Metoda dostarcza fraze "usunięte" */
+    /** Metoda dostarcza fraze "usunięte" */
     public static String removed(){
         return "usunięte";}
     
-   /** Metoda dostarcza fraze "backup" */
+    /** Metoda dostarcza fraze "backup" */
     public static String backup(){
         return "backup";}
     
-  /** Metoda dostarcza fraze "nr." */
+    /** Metoda dostarcza fraze "nr." */
     public static String nr(){
         return "nr.";}
-      
-  /** Metoda dostarcza fraze "administrator" */
+    
+    /** Metoda dostarcza fraze "administrator" */
     public static String admin(){
         return "administrator";}
     
-   /** Metoda dostarcza fraze "moderator" */
+    /** Metoda dostarcza fraze "moderator" */
     public static String moderator(){
         return "moderator";}
     
-  /** Metoda dostarcza fraze "aktywny" */
+    /** Metoda dostarcza fraze "aktywny" */
     public static String active(){
         return "aktywny";}
     
-  /** Metoda dostarcza fraze "Zmień uprawnienia" */
+    /** Metoda dostarcza fraze "Zmień uprawnienia" */
     public static String changePriviliges(){
         return "zmień uprawnienia";}
     
- /** Metoda dostarcza fraze "Dane użytkownika" */
+    /** Metoda dostarcza fraze "Dane użytkownika" */
     public static String userData(){
         return "dane użytkownika";}
     
- /** Metoda dostarcza fraze "opis" */
+    /** Metoda dostarcza fraze "opis" */
     public static String describe(){
         return "opis";}
     
- /** Metoda dostarcza fraze "usuń" */
+    /** Metoda dostarcza fraze "usuń" */
     public static String remove(){
         return "usuń";}
     
-  /** Metoda dostarcza fraze "podfora kategorii" */
+    /** Metoda dostarcza fraze "podfora kategorii" */
     public static String podKat(){
         return "podfora kategorii";}
     
- /** Metoda dostarcza fraze "dodawanie kategorii" */
+    /** Metoda dostarcza fraze "dodawanie kategorii" */
     public static String addingKat(){
         return "dodawanie kategorii";}
     
- /** Metoda dostarcza fraze "zmień" */
+    /** Metoda dostarcza fraze "zmień" */
     public static String change(){
         return "zmień";}
     
- /** Metoda dostarcza fraze "edycja kategorii" */
+    /** Metoda dostarcza fraze "edycja kategorii" */
     public static String editionKat(){
         return "edycja kategorii";}
     
- /** Metoda dostarcza fraze "edycja podforum" */
+    /** Metoda dostarcza fraze "edycja podforum" */
     public static String editionPod(){
         return "edycja podforum";}
     
- /** Metoda dostarcza fraze "wybierz kategorie" */
+    /** Metoda dostarcza fraze "wybierz kategorie" */
     public static String chooseKat(){
         return "wybierz kategorie";}
     
- /** Metoda dostarcza fraze "rozwiń" */
+    /** Metoda dostarcza fraze "rozwiń" */
     public static String rozwin(){
         return "rozwiń";}
     
-  /** Metoda dostarcza fraze "pobierz plik z backupem" */
+    /** Metoda dostarcza fraze "pobierz plik z backupem" */
     public static String getBackyupFile(){
         return "pobierz plik z backupem";}
     
-  /** Metoda dostarcza fraze "zrób backup" */
+    /** Metoda dostarcza fraze "zrób backup" */
     public static String doBackup(){
         return "zrób backup";}
     
-  /** Metoda dostarcza fraze "wybierz plik" */
+    /** Metoda dostarcza fraze "wybierz plik" */
     public static String chooseFile(){
         return "wybierz plik";}
     
-  /** Metoda dostarcza fraze "odtwórz bazę danych" */
+    /** Metoda dostarcza fraze "odtwórz bazę danych" */
     public static String recreateDB(){
         return "odtwórz bazę danych";}
     
-  /** Metoda dostarcza fraze "aktywuj" */
+    /** Metoda dostarcza fraze "aktywuj" */
     public static String activation(){
         return "aktywuj";}
     
-  /** Metoda dostarcza fraze "konfiguracja forum" */
+    /** Metoda dostarcza fraze "konfiguracja forum" */
     public static String forumConfiguration(){
         return "konfiguracja forum";}
     
-  /** Metoda dostarcza fraze "główne" */
+    /** Metoda dostarcza fraze "główne" */
     public static String main(){
         return "główne";}
     
-  /** Metoda dostarcza fraze "baza danych" */
+    /** Metoda dostarcza fraze "baza danych" */
     public static String db(){
         return "baza danych";}
     
-  /** Metoda dostarcza fraze "zachowanie" */
+    /** Metoda dostarcza fraze "zachowanie" */
     public static String behave(){
         return "zachowanie";}
     
-  /** Metoda dostarcza fraze "wiadomości" */
+    /** Metoda dostarcza fraze "wiadomości" */
     public static String mailing(){
         return "wiadomości";}
     
-  /** Metoda dostarcza fraze "tak" */
+    /** Metoda dostarcza fraze "tak" */
     public static String yes(){
         return "tak";}
-        
-  /** Metoda dostarcza fraze "nie" */
+    
+    /** Metoda dostarcza fraze "nie" */
     public static String no(){
         return "nie";}
     
-  /** Metoda dostarcza fraze "url forum" */
+    /** Metoda dostarcza fraze "url forum" */
     public static String urlForum(){
         return "url forum";}
-   
-  /** Metoda dostarcza fraze "host" */
+    
+    /** Metoda dostarcza fraze "host" */
     public static String host(){
         return "host";}
-  
-  /** Metoda dostarcza fraze "nazwa bazy danych" */
+    
+    /** Metoda dostarcza fraze "nazwa bazy danych" */
     public static String dbName(){
         return "nazwa bazy danych";}
     
-   /** Metoda dostarcza fraze "prefix tabel" */
+    /** Metoda dostarcza fraze "prefix tabel" */
     public static String tablePrefix(){
         return "prefix tabel";}
     
-   /** Metoda dostarcza fraze "konto gościa" */
+    /** Metoda dostarcza fraze "konto gościa" */
     public static String guestAccount(){
         return "konto gościa";}
-   
-   /** Metoda dostarcza fraze "identyfikator gościa" */
+    
+    /** Metoda dostarcza fraze "identyfikator gościa" */
     public static String guestId(){
         return "identyfikator gościa";}
     
-   /** Metoda dostarcza fraze "maksymalny czas trwania sesji" */
+    /** Metoda dostarcza fraze "maksymalny czas trwania sesji" */
     public static String maxSession(){
         return "maksymalny czas trwania sesji";}
     
-  /** Metoda dostarcza fraze "minimalna długość hasła" */
+    /** Metoda dostarcza fraze "minimalna długość hasła" */
     public static String minPassLength(){
         return "minimalna długośc hasła";}
     
-  /** Metoda dostarcza fraze "Wysyłanie maila w celach autentykacji" */
+    /** Metoda dostarcza fraze "Wysyłanie maila w celach autentykacji" */
     public static String newUserMail(){
         return "wysyłanie maila w celach autentykacji";}
     
-  /** Metoda dostarcza fraze "SMTP server" */
+    /** Metoda dostarcza fraze "SMTP server" */
     public static String smtpServer(){
         return "smtp server";}
-   
-     /** Metoda dostarcza fraze "adres pocztowy nadawcy" */
+    
+    /** Metoda dostarcza fraze "adres pocztowy nadawcy" */
     public static String mailFrom(){
         return "adres poczty nadawcy";}
     
-   /** Metoda dostarcza fraze "temat rejestracji" */
+    /** Metoda dostarcza fraze "temat rejestracji" */
     public static String registrationTopic(){
         return "temat rejestracji";}
     
-     /** Metoda dostarcza fraze "wiadomość po rejestracji" */
+    /** Metoda dostarcza fraze "wiadomość po rejestracji" */
     public static String registrationMessage(){
         return "wiadomość po rejestracji";}
     
@@ -413,15 +413,15 @@ public class Messages {
     public static String forgetTopic(){
         return "temat sekcji zapomniane";}
     
-     /** Metoda dostarcza fraze "wiadomość sekcji zapomniane" */
+    /** Metoda dostarcza fraze "wiadomość sekcji zapomniane" */
     public static String forgetMessage(){
         return "wiadomość sekcji zapomniane";}
     
-   /** Metoda dostarcza fraze "zmień ustawienia forum" */
+    /** Metoda dostarcza fraze "zmień ustawienia forum" */
     public static String applySettings(){
         return "zastosuj ustawienia forum";}
     
-   /** Metoda dostarcza fraze "kategotia" */
+    /** Metoda dostarcza fraze "kategotia" */
     public static String category(){
         return "kategoria";}
     
@@ -429,46 +429,62 @@ public class Messages {
     public static String addPodforums(){
         return "dodawanie podforów";}
     
-   /** Metoda dostarcza fraze "next" */
+    /** Metoda dostarcza fraze "next" */
     public static String next(){
         return "next";}
     
-  /** Metoda dostarcza fraze "moderatorzy" */
+    /** Metoda dostarcza fraze "moderatorzy" */
     public static String moderators(){
         return "moderatorzy";}
     
-  /** Metoda dostarcza fraze "moderowane podfora" */
+    /** Metoda dostarcza fraze "moderowane podfora" */
     public static String moderatePodforas(){
         return "moderowane podfora";}
     
-  /** Metoda dostarcza fraze "podforum" */
+    /** Metoda dostarcza fraze "podforum" */
     public static String podforum(){
         return "podforum";}
+    
+    /** Metoda dostarcza fraze "zablokuj" */
+    public static String block(){
+        return "zablokuj";}
+    
+    /** Metoda dostarcza fraze "zamknij" */
+    public static String close(){
+        return "zamknij";}
+    
+    /** Metoda dostarcza fraze "usuń" */
+    public static String delete(){
+        return "usuń";}
+    
+    /** Metoda dostarcza fraze "edytuj" */
+    public static String edit(){
+        return "edytuj";}
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
     
     
-    /** Metoda dostarcza komunikat z zapytaniem 
+    /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
     public static String isRemoveKat(){
         return "Czy napewno chcesz usunąć kategorie?";}
     
-    /** Metoda dostarcza komunikat z zapytaniem 
+    /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
     public static String isRemovePod(){
         return "Czy napewno chcesz usunąć podforum?";}
     
-     /** Metoda dostarcza komunikat z zapytaniem 
+    /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
     public static String isActiveKat(){
         return "Czy napewno chcesz uaktywnić kategorie?";}
     
-    /** Metoda dostarcza komunikat z zapytaniem 
+    /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
     public static String isActivePod(){
@@ -975,33 +991,43 @@ public class Messages {
      */
     public static String updated(){
         return "Dane zaktualizowano";}
-	
-     /**
+    
+    /**
      * Metoda dostarcza komunikat "Operacja powiodla sie"
      * @return Komunikat o poprawnym przebiegu operacji
      */
     public static String actionDone(){
         return "operacja powiodła się";}
-	
-     /**
+    
+    /**
      * Metoda dostarcza komunikat "przenies watek"
      * @return Komunikat o poprawnym przebiegu operacji
      */
     public static String moveThread(){
-	    return "przenieś wątek";}	
-
-     /**
+        return "przenieś wątek";}
+    
+    /**
      * Metoda dostarcza komunikat "czy na pewno ?"
      * @return Pytanie czy na pewno wykonac dana operacje
      */
     public static String areYouSure(){
-	    return "czy na pewno ?";}	
+        return "czy na pewno ?";}
     
     
-     /**
+    /**
      * Metoda dostarcza slowo "akcje"
      * @return Slowo "akcje"
      */
     public static String actions(){
         return "akcje";}
+    
+    /**
+     * Metoda dostarcza frazę "Banuj Autora"
+     * @return string reprezentujący frazę
+     */
+    public static String banAuthor(){
+        return "Banuj Autora";}
+    
+    
+    
 }
