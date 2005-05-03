@@ -47,8 +47,7 @@
         } %>
         
                    
-   <% 
-            u=db_con.getUsersAktywni(true);  %>
+   <% u=db_con.getUsersAktywni(true);  %>
 
      <table name="tab" style="" align="center" cellpadding="2" cellspacing="1" border="1">
        <caption> <%=Messages.wielka(Messages.moderators())%> </caption>
