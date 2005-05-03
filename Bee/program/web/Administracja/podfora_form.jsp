@@ -19,26 +19,40 @@
         
          <script type="text/javascript" LANGUAGE="JavaScript">
          
-           function next(param) {
-                      document.getElementById(param+1).style.visibility='visible'; 
+           function next() {
+                   var t = document.getElementById('tab');
+                   var w = t.appendChild(document.createElement('tr'));
+                 
+                   var k = w.appendChild(document.createElement('td'));
+                   var a = k.appendChild(document.createElement('input'));
+                   a.type='text';
+                   a.name='tytuly';
+                   a.size='40';
+                   var k2 = w.appendChild(document.createElement('td'));
+                   var b = k2.appendChild(document.createElement('input'));
+                   b.type='text';
+                   b.name='opisy';
+                   b.size='40';
                }
                
-            window.onload = function() {
-                                for (var i=1; i<5; i++) {
-                                    document.getElementById(i).style.visibility='hidden';
-                                }
-                             }
-                             
-            function zlicz() {
-                  var licz=0;
-                  for (var i=0; i<5; i++) {
-                        if ( document.getElementById(i).style.visibility == 'visible')
-                         {
-                          licz=licz+1;
-                          }
-                      }
-                  return licz;    
+               function zlicz() {
+                     var x = document.getElementsByTagName('tr');
+	             var licz=x.length;
+                     return licz-1;    
                  }
+               
+           function usun() {
+                     var x = document.getElementsByTagName('tr');
+	             var licz=x.length;
+	             var usun=x[licz-1];
+	             
+                    if ( licz > 2 ) { 
+                        usun.parentNode.removeChild(usun);
+                    }
+                 
+               }
+   
+       
  
             function dodaj()
                 {
@@ -46,7 +60,7 @@
                    var y = f.appendChild(document.createElement('input'));
                    y.type='hidden';
                    y.name='licz';
-                   y.value=zlicz()+1;
+                   y.value=zlicz();
                 }
            </script>
         
@@ -78,11 +92,14 @@
       } 
        else {
          String id_k=request.getParameter("id_kat"); 
-          String l=request.getParameter("licz");
-          licz=(int) Integer.decode(l).intValue();
+         String l=request.getParameter("licz");
+         licz=(int) Integer.decode(l).intValue();
+          String[] tt=request.getParameterValues("tytuly");
+          String[] oo=request.getParameterValues("opisy");
+          
          for(int j=0; j<licz; j++) {  
-            String t=request.getParameter("tytul"+j);
-            String o=request.getParameter("opis"+j);
+           String t=tt[j];
+           String o=oo[j];
             Podforum podforum= new Podforum("0",t,o,DataBase.getDateToInsert(),"",db_con.TAK,db_con.NIE,"0","0",db_con);
             if( t.compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNamePodforum()));
               else
@@ -104,16 +121,16 @@
        <br/>
         <p align="center"> <a href="./edycja_podforow.jsp"><%=Messages.wielka(Messages.back()) %> </a>  </p>
        <br/>
+       <p align="center" > <button   onclick="next();">&nbsp + &nbsp </button> &nbsp <button onclick="usun();">&nbsp - &nbsp </button> </p>
     <form id="form" onsubmit="dodaj();"  action="./podfora_form.jsp" method="post">
-      <table align="center" cellpadding="2" cellspacing="1" border="0">
+      <table id="tab" align="center" cellpadding="2" cellspacing="1" border="0">
        <caption> <%=Messages.wielka(Messages.addPodforums()) %> </caption>
-       <tr> <th> <%=Messages.wielka(Messages.next()) %> </th> <th> <%=Messages.wielka(Messages.title()) %> </th> <th> <%=Messages.wielka(Messages.describe()) %> </th> </tr>
-       <%for(int i=0; i<5; i++) { %>       
-      <tr id="<%=i%>"> <td> <input type="button" name="p<%=i%>" value="+" onclick="next(<%=i%>);"/>  </td> 
-           <td> <input size="40" type="text" name="tytul<%=i%>" value=""/> </td>
-           <td> <input size="40" type="text" name="opis<%=i%>" value=""/>  </td> 
+       <tr> <th> <%=Messages.wielka(Messages.title()) %> </th> <th> <%=Messages.wielka(Messages.describe()) %> </th>  </tr>
+   
+      <tr id="w1" class="wiersz"> 
+           <td> <input size="40" type="text" name="tytuly" value=""/> </td>
+           <td> <input size="40" type="text" name="opisy" value=""/>  </td> 
       </tr>
-       <%}%>
       </table>
          <input type="hidden" name="id_kat" value="<%=id_kat%>"/>
         <p  align="center"> <input size="40" type="submit" value="<%=Messages.wielka(Messages.add()) %>"/> </p>
