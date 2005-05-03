@@ -52,9 +52,7 @@
                  
                }
    
-       
- 
-            function dodaj()
+           function dodaj()
                 {
                    var f = document.getElementById('form');
                    var y = f.appendChild(document.createElement('input'));

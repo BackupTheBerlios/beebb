@@ -19,6 +19,33 @@
         <title>BeeBB :: Edycja Kategorii</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="../js/podfora.js"></script>
+     <%!
+           String takNie(boolean param) {
+            if ( param ) return "TAK";
+               else return "NIE";
+            }
+           
+            boolean tN(String param) {
+            if ( param.compareTo("true")==0 ) return false;
+               return true;
+            }
+            
+            boolean zmienNaPrywatne(DataBase db_con, int id, boolean tf) {
+                
+              if ( !db_con.zmienPrywatnoscPodforum(id,tf) ) return false;
+              ArrayList wat=db_con.getWatkiPodforum(id);
+               for(int i=0;i<wat.size();i++) {
+                  if ( !db_con.zmienPrywatnoscWatku( ((Integer)wat.get(i)).intValue() ,tf ) ) return false;
+                  
+                    ArrayList wyp=db_con.getWypowiedziWatku( ((Integer)wat.get(i)).intValue() );
+                    for(int j=0;j<wyp.size();j++) {
+                       if ( !db_con.zmienPrywatnoscWypowiedzi( ((Integer)wyp.get(j)).intValue() ,tf ) ) return false;
+                    }
+               }
+              return true;
+            }
+           
+     %>
     </head>
     
     <body> 
@@ -72,6 +99,30 @@
              if ( db_con.zmienAktywnoscPodforum(Integer.parseInt(nr), false)) out.print(Messages.makeInfo(Messages.removePodforum()));
                 else  out.print(Messages.makeError(Messages.errorRemovePodforum()));
            }
+           
+        if ( (field.compareTo("upr_kat")==0)||( field.compareTo("upr_kat_bool")==0 ) )
+           {
+             int id= Integer.parseInt(request.getParameter("upr_kat"));
+             boolean tf=tN(request.getParameter("upr_kat_bool"));
+            if ( !db_con.zmienPrywatnoscKategorii(id,tf) ) out.print(Messages.makeError(Messages.errorChangePrivates()));
+                else {
+                 ArrayList pod=db_con.getPodforaKategorii(id);
+                 boolean ok=true;
+                 for(int i=0;i<pod.size();i++) {
+                   if ( !zmienNaPrywatne(db_con, ((Integer)pod.get(i)).intValue(), tf) ) { ok=false; break; }
+                 }
+                 if ( ok ) out.print(Messages.makeInfo(Messages.changePrivates()));
+                  else  out.print(Messages.makeError(Messages.errorChangePrivates()));
+                }
+           }
+           
+        if ( (field.compareTo("upr_pod")==0)||( field.compareTo("upr_pod_bool")==0 ) )
+           {
+             int id= Integer.parseInt(request.getParameter("upr_pod"));
+             boolean tf=tN(request.getParameter("upr_pod_bool"));
+             if ( zmienNaPrywatne(db_con, id, tf) ) out.print(Messages.makeInfo(Messages.changePrivates()));
+                else  out.print(Messages.makeError(Messages.errorChangePrivates()));
+           }
         }
       %> 
       
@@ -86,12 +137,13 @@
         <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
             <caption> <font size="5" style="bold"></font> </caption>
             <tr> <th><%out.println(Messages.wielka(Messages.rozwin())); %></th> <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.add())); %></th> </tr>
+                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th>  <th><%out.println(Messages.wielka(Messages.edition())); %></th> 
+                 <th><%out.println(Messages.wielka(Messages.remove())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th>  <th><%out.println(Messages.wielka(Messages.add())); %></th> </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(true);  
          %><tr bgcolor="gold" ><td align="center"> <button id="plusik<%=i%>" onClick="rozwijanie('<%=i%>'); return false;"> +/- </button> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
+                               <td align="center" ><%= takNie(kkk.czyPrywatna()) %> </td> 
              <td><form action="./edycja_kat.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
@@ -104,6 +156,13 @@
                  <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
              </form> 
              </td> 
+             </td> 
+             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
+                   <input type="hidden" name="upr_kat" value="<%= kkk.getID() %>"/>
+                   <input type="hidden" name="upr_kat_bool" value="<%= kkk.czyPrywatna() %>"/>
+                   <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/>
+                 </form> 
+             </td> 
              <td><form action="./podfora_form.jsp" method="post">
                  <input name="id" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
@@ -112,18 +171,20 @@
              </form> 
              </td>
          </tr>
-         <tr> <td colspan="7">
+         <tr> <td colspan="9">
          <p id="podfora<%=i%>" class="podfora"> 
         <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
          
          <tr><th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> 
+             <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th> 
+             <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th> 
          </tr>
-            <tr bgcolor="yellow" id="number2" > <td colspan="5" align="center" id="nee"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr> 
+            <tr bgcolor="yellow" id="number2" > <td colspan="7" align="center" id="nee"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr> 
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
          %><tr bgcolor="goldenrod"> <td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
+           <td align="center" ><%= takNie(podf.czyPrywatne()) %> </td> 
              <td><form action="./edycja_pod.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
@@ -132,10 +193,16 @@
                  <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>"/>
              </form> 
              </td> 
-             <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemovePod())+"');" %>">
-                 <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
-                 <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
-             </form> 
+            <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemovePod())+"');" %>">
+                   <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
+                   <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
+                 </form> 
+             </td> 
+             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
+                   <input type="hidden" name="upr_pod" value="<%= podf.getID() %>"/>
+                   <input type="hidden" name="upr_pod_bool" value="<%= podf.czyPrywatne() %>"/>
+                   <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/>
+                 </form> 
              </td> 
      
          </tr>
