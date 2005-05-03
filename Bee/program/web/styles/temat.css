@@ -107,6 +107,13 @@ th	{
 }
 
 
+.hint{
+	font-size: 10pt;
+	color: black;
+	background-color: khaki;
+	border: 1px black solid;
+}
+
 .error{	
 	color: red;
 	}

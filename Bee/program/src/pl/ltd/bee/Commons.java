@@ -44,6 +44,7 @@ public class Commons {
                 "<script type=\"text/javascript\" src=\""+path+"/js/iframe_resize.js\"></script>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/forms.js\"></script>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/header.js\"></script>\n"+
+                "<script type=\"text/javascript\" src=\""+path+"/js/hints.js\"></script>\n"+
                 "</head>\n";
 
     }

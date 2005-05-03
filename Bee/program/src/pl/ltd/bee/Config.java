@@ -134,6 +134,10 @@ public class Config {
     /** Ustala ciag znakow konczacy znacznik emotikony */
     public static String SMILE_TAG_CLOSE = "|:";
     
+    /** Ustala po ilu milisekundach wyswietli sie chmurka podpowiadajaca */
+    public static int HINT_DELAY = 1000;
+    //TODO dodac do XML i zrobic SET'a
+    
     /**    
      * Klasa odpowiedzialna za przetworzenie dokumnetu XML
      */
