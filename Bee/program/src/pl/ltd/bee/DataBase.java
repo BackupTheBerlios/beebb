@@ -955,7 +955,7 @@ public class DataBase {
      **/
     public boolean zmienAktywnoscWatku(int id, boolean czy_aktywny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_AKTYWNY+"='"+ (czy_aktywny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
-    }
+    }   
     
     /**
      * Metoda zmienia pole aktywna na podane w parametrze
@@ -969,6 +969,46 @@ public class DataBase {
                         return true;
             else return false;
         else return false;
+    }
+    
+    /**
+     * Metoda zmienia pole prywatne na podane w parametrze
+     * @param id identyfikator kategorii
+     * @param czy_prywatny ustawiana prywatnosc
+     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     **/
+    public boolean zmienPrywatnoscKategorii(int id, boolean czy_prywatny){
+        return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+KATEGORIA_ID+"="+id);
+    }
+    
+    /**
+     * Metoda zmienia pole prywatne na podane w parametrze
+     * @param id identyfikator podforum
+     * @param czy_prywatny ustawiana prywatnosc
+     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     **/
+    public boolean zmienPrywatnoscPodforum(int id, boolean czy_prywatny){
+        return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_PRYWATNE+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+PODFORUM_ID+"="+id);
+    }
+    
+    /**
+     * Metoda zmienia pole prywatne na podane w parametrze
+     * @param id identyfikator wątku
+     * @param czy_prywatny ustawiana prywatnosc
+     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     **/
+    public boolean zmienPrywatnoscWatku(int id, boolean czy_prywatny){
+        return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_PRYWATNY+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
+    }
+    
+    /**
+     * Metoda zmienia pole prywatne na podane w parametrze
+     * @param id identyfikator wypowiedzi
+     * @param czy_prywatny ustawiana prywatnosc
+     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     **/
+    public boolean zmienPrywatnoscWypowiedzi(int id, boolean czy_prywatny){
+        return  baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id);
     }
     
     /**

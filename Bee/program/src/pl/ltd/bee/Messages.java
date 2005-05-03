@@ -461,6 +461,11 @@ public class Messages {
     public static String edit(){
         return "edytuj";}
     
+      /** Metoda dostarcza fraze "prywatne" */
+    public static String privates(){
+        return "prywatne";}
+    
+    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
@@ -778,6 +783,12 @@ public class Messages {
     public static String errorChangePod(){
         return "Zmiana podforum nie powiodła się.";}
     
+    /**
+     * Metoda dostarcza komunikat o tym, ze zmiana prywanosci sie nie powiodla
+     * @return String z komunikatem
+     */
+    public static String errorChangePrivates(){
+        return "Zmiana pól prywatne nie powiodła się.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien nie powiodďż˝a sie
@@ -786,6 +797,12 @@ public class Messages {
     public static String errorChangeUpr(){
         return "Zmiana uprawnien nie powiodła się.";}
     
+    /**
+     * Metoda dostarcza komunikat o tym, ze zmiana prywanosci sie powiodla
+     * @return String z komunikatem
+     */
+    public static String changePrivates(){
+        return "Zmiana pól prywatne powiodła się.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e dodanie kategorii powiodďż˝o sie
