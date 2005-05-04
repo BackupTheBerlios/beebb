@@ -275,10 +275,10 @@ public class Watek {
             strona.println("<td class=\"tdPath\" align=\"left\">"+Commons.aHref( f.getNazwa(), "./main.jsp","aPath")+" -> " + Commons.aHref( k.getNazwa(), "./main.jsp?kid=" + k.getID(),"aPath")+ " -> "+ Commons.aHref(p.getTytul(),"./main.jsp?pid=" + p.getID(),"aPath")+" -> "+ Commons.aHref(Temat,"./main.jsp?wid=" + ID,"aPath" )+"</td>");
         strona.println("<td class=\"tdTopAction\" align=\"right\">"+ Commons.aHref(Messages.wielka(Messages.add()) +" "+ Messages.message(),"./dodajW.jsp?w=" + ID,"aTopAction")+"</td>");
         strona.println("</tr></table>");
-        strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
+        strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" border=\"0\">");
         strona.println("<tr>");
         strona.println("<th class=\"thTopLCorner\" width=\"100%\" height=\"25\" nowrap=\"nowrap\">" +
-                "<table class=\"tableTitleWatek\" border=\"0\" width=\"100%\"><tr><td align=\"center\"  width=\"20%\">&nbsp;" + Messages.author() + "&nbsp;</td><td align=\"center\">&nbsp;" + Messages.wielka(Messages.message()) + "&nbsp;</td></tr></table>"+
+                "<table class=\"tableTitleWatek\" border=\"0\" width=\"100%\"><tr><td align=\"center\"  width=\"20%\">&nbsp;" + Messages.wielka(Messages.author()) + "&nbsp;</td><td align=\"center\">&nbsp;" + Messages.wielka(Messages.message()) + "&nbsp;</td></tr></table>"+
                 "</th>");
         strona.println("</tr>");
     }
@@ -301,7 +301,7 @@ public class Watek {
         ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID,true);
         for(int i=0;i<Wypowiedzi.size();i++) {
             strona.println("<tr class=\"trWypowiedz\">");
-            strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
+            strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe id=\"iframeWypowiedz"+i+"\" name=\"iframeWypowiedz"+i+"\" width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
             strona.println("</tr>");
         }
         printMainTableCloseJSP(strona);
