@@ -13,7 +13,7 @@
         <meta name="Author" content="BeeBB Group" />
         <meta name="description" content="??" />
         <meta name="keywords" content="??" />
-        <title>BeeBB :: Dodawanie podforow</title>
+        <title>BeeBB :: Konfiguracja</title>
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
@@ -43,7 +43,8 @@
                 }
            }
          if((pom.compareTo("host")==0)||(pom.compareTo("user")==0)||(pom.compareTo("haslo")==0)|| 
-            (pom.compareTo("haslo2")==0)||(pom.compareTo("bd_nazwa")==0)||(pom.compareTo("prefix_tabel")==0)) {
+            (pom.compareTo("haslo2")==0)||(pom.compareTo("bd_nazwa")==0)||(pom.compareTo("prefix_tabel")==0)
+             ||(pom.compareTo("use_ssl")==0)||(pom.compareTo("use_compresion")==0) ) {
                String h1=request.getParameter("haslo");
                String h2=request.getParameter("haslo2");
               if((h1.compareTo("")==0)||(h2.compareTo("")==0)||(h1.compareTo(h2)!=0))
@@ -56,6 +57,12 @@
                   conf.setUser(request.getParameter("user"));
                   conf.setDatabaseName(request.getParameter("bd_nazwa"));
                   conf.setTablesPrefix(request.getParameter("prefix_tabel"));
+                 if( (request.getParameter("use_compresion")).compareTo("tak")==0) conf.setUseCompression(true);
+                   else  conf.setUseCompression(false);
+                 if( (request.getParameter("use_ssl")).compareTo("tak")==0) conf.setUseSsl(true);
+                   else  conf.setUseSsl(false);
+                
+                
                 try{
                     conf.saveConfig(application);
                     out.print(Messages.makeInfo(Messages.changeConfigDb()));
@@ -112,6 +119,7 @@
                     out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
                 }
             }
+          
       }
         
    %>
@@ -132,6 +140,10 @@
        <tr>  <td align="center"> <%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>) </td> <td> <input  size="100"type="password" name="haslo2" value="<%=conf.PASSWORD%>"/>  </td> </tr>
        <tr>  <td align="center">  <%out.print(Messages.wielka(Messages.dbName())); %> </td> <td> <input size="100" type="text" name="bd_nazwa" value="<%=conf.DATABASE%>"/>  </td> </tr>
        <tr> <td align="center"> <%out.print(Messages.wielka(Messages.tablePrefix())); %>  </td> <td> <input size="100" type="text" name="prefix_tabel" value="<%=conf.DATABASE_PREFIX%>"/>  </td> </tr>
+       <tr> <td align="center">  <%out.print(Messages.wielka(Messages.useCompresion())); %> </td><td> <%out.print(Messages.wielka(Messages.yes())); %> <input type="radio" name="use_compresion" value="tak" <%if (conf.USE_COMPRESSION){ %>checked="" <%}%>/>  
+                                 <%out.print(Messages.wielka(Messages.no())); %>  <input type="radio" name="use_compresion" value="nie" <%if (!conf.USE_COMPRESSION){ %>checked="" <%}%> />   </td> </tr>
+       <tr> <td align="center">  <%out.print(Messages.wielka(Messages.useSsl())); %> </td><td> <%out.print(Messages.wielka(Messages.yes())); %> <input type="radio" name="use_ssl" value="tak" <%if (conf.USE_SSL){ %>checked="" <%}%>/>  
+                                 <%out.print(Messages.wielka(Messages.no())); %>  <input type="radio" name="use_ssl" value="nie" <%if (!conf.USE_SSL) { %>checked="" <%}%> />   </td> </tr>            
        <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.println(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form>
    <tr>  <th colspan="2">  <%out.print(Messages.wielka(Messages.behave())); %> </th> </tr>
@@ -155,15 +167,17 @@
        <tr> <td align="center"> <%out.print(Messages.wielka(Messages.forgetMessage())); %></td><td> <input size="100" type="textarea" name="z_zawart" value="<%=conf.FORGET_MAIL_BODY%>"/>  </td> </tr>
        <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.println(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form> 
+   
        
  </table>
  <hr/>
    <div align="center">
      <form action="./konfiguracja.jsp" method="post">
         <input type="hidden" name="ustawienia"/> 
-        <input type="submit" value=" <%out.println(Messages.wielka(Messages.applySettings())); %>"/> 
-     </div> 
-   </span>
+        <input type="submit" value=" <%out.println(Messages.wielka(Messages.applySettings())); %>"/>
+     </form>
+   </div> 
+   
      
  </body>
 </html>

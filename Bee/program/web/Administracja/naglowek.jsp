@@ -50,16 +50,19 @@
 		   <td class="tdTopLink"><a class="aTopLink" href="./konfiguracja.jsp" target="tresc">
 		       [] <%out.print(Messages.wielka(Messages.configuration()));%> </a>
 		   </td>
-		   <td class="tdTopLink"><a class="aTopLink" href="./edycja_usunietych.jsp" target="tresc">
-		       [] <%out.print(Messages.wielka(Messages.removed()));%> </a>
-		   </td>
 		  </tr>
 		<tr>
+		 <td class="tdTopLink"><a class="aTopLink" href="./edycja_usunietych.jsp" target="tresc">
+		       [] <%out.print(Messages.wielka(Messages.removed()));%> </a>
+		  </td>
 	         <td class="tdTopLink"><a class="aTopLink" href="./backup.jsp" target="tresc">
 			[] <%out.print(Messages.wielka(Messages.backup()));%> </a>
 		 </td>
 		  <td class="tdTopLink"><a class="aTopLink" href="./moderatorzy.jsp" target="tresc">
 			[] <%out.print(Messages.wielka(Messages.moderators()));%> </a>
+		 </td>
+		   <td class="tdTopLink"><a class="aTopLink" href="./konfiguracja_emo.jsp" target="tresc">
+			[] <%out.print(Messages.wielka(Messages.emotikons()));%> </a>
 		 </td>
 	        </tr>
 	      </table>
