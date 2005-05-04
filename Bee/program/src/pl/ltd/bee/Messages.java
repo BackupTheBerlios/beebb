@@ -465,6 +465,26 @@ public class Messages {
     public static String privates(){
         return "prywatne";}
     
+     /** Metoda dostarcza fraze "używaj ssl" */
+    public static String useSsl(){
+        return "używaj ssl";}
+    
+      /** Metoda dostarcza fraze "używaj kompresji" */
+    public static String useCompresion(){
+        return "używaj kompresji";}
+    
+      /** Metoda dostarcza fraze "emotikonki" */
+    public static String emotikons(){
+        return "emotikonki";}
+    
+   /** Metoda dostarcza fraze "grafika" */
+    public static String graphics(){
+        return "grafika";}
+    
+   /** Metoda dostarcza fraze "dodawanie emotikone" */
+    public static String addingEmotikons(){
+        return "dodawanie emotikonek";}
+    
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
@@ -962,6 +982,13 @@ public class Messages {
      */
     public static String changeConfigBehave(){
         return "Konfiguracja zachowania forum została zmieniona.";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij emotikonek forum powiodła sie
+     * @return String z komunikatem
+     */
+    public static String changeConfigEmotikons(){
+        return "Konfiguracja emotikonek została zmieniona.";}
     
     /**
      * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij mailingu powiodła sie
