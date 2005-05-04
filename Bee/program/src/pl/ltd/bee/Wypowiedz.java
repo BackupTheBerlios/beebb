@@ -44,7 +44,7 @@ public class Wypowiedz {
     }
     
     /** Zwraca identyfikator wypowiedzi
-     * @return zwraca liczbe bedacą identyfikatorem wypowiedzi w bazie
+     * @return zwraca liczbe bedacÄ… identyfikatorem wypowiedzi w bazie
      */
     public int getID() {
         return ID;
@@ -52,14 +52,14 @@ public class Wypowiedz {
     
     
     /** Zwraca identyfikator autora wypowiedzi
-     * @return zwraca liczbe bedacą identyfikatorem autora wypowiedzi
+     * @return zwraca liczbe bedacÄ… identyfikatorem autora wypowiedzi
      */
     public int getIDAutora() {
         return ID_Autora;
     }
     
-    /** Zwraca tymczasową ksywkę autora wypowiedzi (tylko w przypadku gościa!!)
-     * @return zwraca string bedacy tymczasową ksywką autora wypowiedzi
+    /** Zwraca tymczasowÄ… ksywkÄ™ autora wypowiedzi (tylko w przypadku goĹ›cia!!)
+     * @return zwraca string bedacy tymczasowÄ… ksywkÄ… autora wypowiedzi
      */
     public String getAutor() {
         return Autor;
@@ -67,31 +67,31 @@ public class Wypowiedz {
     
     
     /** Zwraca date utworzenia wypowiedzi
-     * @return zwraca string bedacy datą utworzenia wypowiedzi
+     * @return zwraca string bedacy datÄ… utworzenia wypowiedzi
      */
     public String getData() {
         return Data;
     }
     
     
-    /** Zwraca treść wypowiedzi
-     * @return zwraca string będący treścią wypowiedzi
+    /** Zwraca treĹ›Ä‡ wypowiedzi
+     * @return zwraca string bÄ™dÄ…cy treĹ›ciÄ… wypowiedzi
      */
     public String getTekst() {
         return Tekst;
     }
     
     
-    /** Zwraca czy wypowiedź jest prywatna
-     * @return true w przypadku gdy wypowiedź jest prywatna, wpp false
+    /** Zwraca czy wypowiedĹş jest prywatna
+     * @return true w przypadku gdy wypowiedĹş jest prywatna, wpp false
      */
     public boolean czyPrywatna() {
         return Prywatna;
     }
     
     
-    /** Zwraca czy wypowiedź jest Aktywna
-     * @return true w przypadku gdy wypowiedź jest aktywna, wpp false
+    /** Zwraca czy wypowiedĹş jest Aktywna
+     * @return true w przypadku gdy wypowiedĹş jest aktywna, wpp false
      */
     public boolean czyAktywna() {
         return Aktywna;
@@ -122,13 +122,13 @@ public class Wypowiedz {
         strona.println("</td></tr></table></td></tr>");
         strona.println("<tr><td class=\"tdWypowiedzModer\">");
         strona.println("<table width=\"100%\" border=\"0\"><tr><td align=\"left\">");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=edit')\"><img src=\"../images/edit.gif\" alt=\"" + Messages.wielka(Messages.edit()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.edit())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>"); 
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=delete')\"><img src=\"../images/delete.gif\" alt=\"" + Messages.wielka(Messages.delete()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.delete())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=edit')\"><img src=\"../images/edit.gif\" alt=\"" + Messages.wielka(Messages.edit()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintEditMessages())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>"); 
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=delete')\"><img src=\"../images/delete.gif\" alt=\"" + Messages.wielka(Messages.delete()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintDeleteMessage())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
         strona.println("</td><td align=\"right\">");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;id_autor="+this.ID_Autora+"&amp;op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"" + Messages.banAuthor() + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.banAuthor())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=move')\" /><img src=\"../images/move.gif\" alt=\"" + Messages.wielka(Messages.move()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.move())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=block')\" /><img src=\"../images/lock.png\" alt=\"" + Messages.wielka(Messages.block()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.block())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=close')\" /><img src=\"../images/cut.gif\" alt=\"" + Messages.wielka(Messages.close()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.close())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;id_autor="+this.ID_Autora+"&amp;op=ban')\" /><img src=\"../images/kick_user.gif\" alt=\"" + Messages.banAuthor() + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintBanAuthor())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=move')\" /><img src=\"../images/move.gif\" alt=\"" + Messages.wielka(Messages.move()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintMoveThread())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=block')\" /><img src=\"../images/lock.png\" alt=\"" + Messages.wielka(Messages.block()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintBlockThread())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wpid="+this.ID+"&amp;op=close')\" /><img src=\"../images/cut.gif\" alt=\"" + Messages.wielka(Messages.close()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintCloseThread())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");//INFO tu nie wyciagam ID_KAT bo i po co ? Lepiej jednorazowo zrobic to na podstawie id wypowiedzi przy banie raz na 1000 ;)
         strona.println("</td></tr></table>");
         strona.println("</td></tr>");
         strona.println("</table>");

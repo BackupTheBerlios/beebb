@@ -2,6 +2,8 @@ var hinting = false;
 var hint_text = '';
 var hint_object;
 var timeout_id;
+var hint_height = 100;
+var hint_width = 100;
 
 
 function findPosXShallow(obj)
@@ -86,20 +88,25 @@ function popupHint(text, ob){
 	c.value="hint";
 	div.setAttributeNode(c);
 //	div.style.visibility = "show";
-	div.style.display="block";
-	div.innerHTML = text;
+	div.style.display = "block";
+	div.innerHTML = '<table id="tableHint'+ob.id+'" border="0" width="'+hint_width+'"><tr<td>'+text+'</td></tr></table>';
 	div.style.position="absolute";
-	div.style.top = findPosY(ob) + Math.round(ob.offsetHeight / 2) + 10 + 'px';
-	div.style.left = findPosX(ob) + 'px';
-        if (div.style.left + div.offsetWidth > screen.width) 
-            div.style.left = (screen.width - div.offsetWidth -10) + 'px';
-        if (div.style.top + ob.offsetHeight > screen.height)
-            div.style.top = (screen.height - div.offsetHeight -10) + 'px';
+        var posX = findPosX(ob);
+        var posY = findPosY(ob);
+	div.style.top = posY + Math.round(ob.offsetHeight / 2) + 10 + 'px';
+	div.style.left = posX + 'px';
+        if (posX + top.document.getElementById('tableHint'+ob.id).offsetWidth >= screen.width) 
+            div.style.left = (screen.width - top.document.getElementById('tableHint'+ob.id).offsetWidth -40) + 'px';
+        if (posY + top.document.getElementById('tableHint'+ob.id).offsetHeight >= top.document.body.scrollHeight)
+            div.style.top = (top.document.body.scrollHeight - top.document.getElementById('tableHint'+ob.id).offsetHeight -20) + 'px';
 	}            
 }
 
-function showHint(text,ob,delay){
-        hideHint(hint_object);
+function showHint(text,ob,delay,w,h){
+        if (timeout_id)
+            clearTimeout(timeout_id);
+        if (w) hint_width = w; else hint_width = 100;
+        if (h) hine_height = h; else hine_height = 100;
 	hinting = true;
 	hint_object = ob;
 	hint_text = text;

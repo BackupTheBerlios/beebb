@@ -37,12 +37,12 @@ public class Watek {
      * @param ID_Autor id autora watku
      * @param Temat temat watku
      * @param Data data watku
-     * @param DataOstWypowiedzi data ostatniej wypowiedziw wątku
-     * @param AutorOstWypowiedzi autor ostatniej wypowiedziw wątku
+     * @param DataOstWypowiedzi data ostatniej wypowiedziw wÄ…tku
+     * @param AutorOstWypowiedzi autor ostatniej wypowiedziw wÄ…tku
      * @param Prywatny okresla czy watek jest prywatny
      * @param Aktywny okresla czy watek jest aktywny
      * @param Zablokowany okresla czy watek jest zablokowany
-     * @param Zamkniety okresla czy watek jest zamknięty
+     * @param Zamkniety okresla czy watek jest zamkniÄ™ty
      * @param LiczbaWypowiedzi liczba aktywnych wypowiedzi w watku
      * @param LicznikOdwiedzin okresla liczbe odwiedzin watku
      * @param db Obiekt DataBase
@@ -80,31 +80,31 @@ public class Watek {
     
     
     /** Zwraca identyfikator forum
-     * @return zwraca liczbe bedacą identyfikatorem watku w bazie
+     * @return zwraca liczbe bedacÄ… identyfikatorem watku w bazie
      */
     public int getID() {
         return ID;
     }
     
     
-    /** Zwraca identyfikator autora wątku
-     * @return zwraca liczbe bedacą identyfikatorem autora wątku
+    /** Zwraca identyfikator autora wÄ…tku
+     * @return zwraca liczbe bedacÄ… identyfikatorem autora wÄ…tku
      */
     public int getIDAutora() {
         return ID_Autor;
     }
     
     
-    /** Zwraca tymczasową ksywkę autora wątku (tylko w przypadku gościa!!)
-     * @return zwraca string bedacy tymczasową ksywką autora wątku
+    /** Zwraca tymczasowÄ… ksywkÄ™ autora wÄ…tku (tylko w przypadku goĹ›cia!!)
+     * @return zwraca string bedacy tymczasowÄ… ksywkÄ… autora wÄ…tku
      */
     public String getAutor() {
         return Autor;
     }
     
     
-    /** Zwraca date utworzenia wątku
-     * @return zwraca string bedacy datą utworzenia wątku
+    /** Zwraca date utworzenia wÄ…tku
+     * @return zwraca string bedacy datÄ… utworzenia wÄ…tku
      */
     public String getData() {
         return Data;
@@ -112,15 +112,15 @@ public class Watek {
     
       
     /** Zwraca date ostatniej wypowiedzi w watku
-     * @return zwraca string reprezentujący date ostatniej wypowiedzi w watku
+     * @return zwraca string reprezentujÄ…cy date ostatniej wypowiedzi w watku
      */
     public String getDataOstWypowiedzi() {
         return DataOstWypowiedzi;
     }
     
     
-    /** Ustawia autora ostatniej wypowiedzi w wątku
-     * @param AutorOstWypowiedzi string reprezentujący autora ostatniej wypowiedzi w wątku
+    /** Ustawia autora ostatniej wypowiedzi w wÄ…tku
+     * @param AutorOstWypowiedzi string reprezentujÄ…cy autora ostatniej wypowiedzi w wÄ…tku
      */
     public void getAutorOstWypowiedzi(String AutorOstWypowiedzi) {
         this.AutorOstWypowiedzi=AutorOstWypowiedzi;
@@ -128,7 +128,7 @@ public class Watek {
     
     
     /** Ustawia date ostatniej wypowiedzi w watku
-     * @param DataOstWypowiedzi string reprezentujący date ostatniej wypowiedzi w watku
+     * @param DataOstWypowiedzi string reprezentujÄ…cy date ostatniej wypowiedzi w watku
      */
     public void setDataOstWypowiedzi(String DataOstWypowiedzi) {
         this.zmienDateOstWypowiedzi=true;
@@ -136,16 +136,16 @@ public class Watek {
     }
     
     
-    /** Sprawdza czy data ostatniej wypowiedzi sie zmieniła
-     * @return T w przypadku gdy data się zmieniła, wp F
+    /** Sprawdza czy data ostatniej wypowiedzi sie zmieniĹ‚a
+     * @return T w przypadku gdy data siÄ™ zmieniĹ‚a, wp F
      */
     public boolean checkDataOstWypowiedzi() {
         return zmienDateOstWypowiedzi;
     }
     
     
-    /** Zwraca autora ostatniej wypowiedzi w wątku
-     * @return zwraca string reprezentujący autora ostatniej wypowiedzi w wątku
+    /** Zwraca autora ostatniej wypowiedzi w wÄ…tku
+     * @return zwraca string reprezentujÄ…cy autora ostatniej wypowiedzi w wÄ…tku
      */
     public String getAutorOstWypowiedzi() {
         return AutorOstWypowiedzi;
@@ -153,7 +153,7 @@ public class Watek {
     
     
     /** Ustawia autora ostatniej wypowiedzi w watku
-     * @param AutorOstWypowiedzi string reprezentujący autora ostatniej wypowiedzi w watku
+     * @param AutorOstWypowiedzi string reprezentujÄ…cy autora ostatniej wypowiedzi w watku
      */
     public void setAutorOstWypowiedzi(String AutorOstWypowiedzi) {
         this.AutorOstWypowiedzi=AutorOstWypowiedzi;
@@ -192,29 +192,29 @@ public class Watek {
     }
     
     
-    /** Zwieksza liczbe aktywnych wypowiedzi w wątku o 1 */
+    /** Zwieksza liczbe aktywnych wypowiedzi w wÄ…tku o 1 */
     public void zwiekszLiczbeAktywnychWypowiedzi() {
         this.LiczbaWypowiedzi++;
     }
     
     
-    /** Podaje liczbe aktywnych wypowiedzi w wątku
-     * @return liczba aktywnych wypowiedzi w wątku
+    /** Podaje liczbe aktywnych wypowiedzi w wÄ…tku
+     * @return liczba aktywnych wypowiedzi w wÄ…tku
      */
     public int liczbaAktywnychWypowiedzi() {
         return LiczbaWypowiedzi;
     }
     
     
-    /** Podaje liczbe aktywnych wypowiedzi w wątku
-     * @return liczba aktywnych wypowiedzi w wątku
+    /** Podaje liczbe aktywnych wypowiedzi w wÄ…tku
+     * @return liczba aktywnych wypowiedzi w wÄ…tku
      */
     public int licznikOdwiedzin() {
         return LicznikOdwiedzin;
     }
     
     
-    /** Zwieksza licznik odwiedzin i zapisuje do bazy jeżeli potrzeba */
+    /** Zwieksza licznik odwiedzin i zapisuje do bazy jeĹĽeli potrzeba */
     public void incrLicznikOdwiedzin() {
         this.LicznikOdwiedzin++;
         if (System.currentTimeMillis() - LicznikOdwiedzinDateLastSave > (Config.CACHE_COUNTER*1000)) {
@@ -234,10 +234,10 @@ public class Watek {
         else if (this.Zamkniety) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/cut.gif\" alt=\"Zamkniety\" /></td>");
         else strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\" alt=\"Koperta\"/></td>");
         strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPodforum\">"+ Commons.aHref(Temat,"?wid="+ ID,"aTytulWatek")+"</span></td>");
-        strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;id_autor="+this.ID_Autor+"&amp;op=ban')\"><img src=\"../images/kick_user.gif\" alt=\"" + Messages.banAuthor() + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.banAuthor())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=move')\" /><img src=\"../images/move.gif\" alt=\"" + Messages.wielka(Messages.move()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.move())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=block')\" /><img src=\"../images/lock.png\" alt=\"" + Messages.wielka(Messages.block()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.block())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
-        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=close')\" /><img src=\"../images/cut.gif\" alt=\"" + Messages.wielka(Messages.close()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.close())+"',this,"+Config.HINT_DELAY+")\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
+        strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;id_autor="+this.ID_Autor+"&amp;op=ban')\"><img src=\"../images/kick_user.gif\" alt=\"" + Messages.banAuthor() + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintBanAuthor())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=move')\" /><img src=\"../images/move.gif\" alt=\"" + Messages.wielka(Messages.move()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintMoveThread())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=block')\" /><img src=\"../images/lock.png\" alt=\"" + Messages.wielka(Messages.block()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintBlockThread())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
+        strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) wypowiedzLinkClick('moderating.jsp?wid="+this.ID+"&amp;op=close')\" /><img src=\"../images/cut.gif\" alt=\"" + Messages.wielka(Messages.close()) + "\" onmouseover=\"showHint('"+Messages.wielka(Messages.hintCloseThread())+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/>");
         
         strona.println("</td><td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
         if (LiczbaWypowiedzi > 0) strona.println((LiczbaWypowiedzi-1)); else strona.println(LiczbaWypowiedzi);
@@ -261,7 +261,7 @@ public class Watek {
     
     
     /**
-     * Metoda wypisuje na stronie glowną tabele i jej naglowki
+     * Metoda wypisuje na stronie glownÄ… tabele i jej naglowki
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
@@ -293,7 +293,7 @@ public class Watek {
     }
     
     /**
-     * Metoda powoduje wypisanie w�tku na przekazany strumien
+     * Metoda powoduje wypisanie wďż˝tku na przekazany strumien
      * @param strona strumien wyjsciowy
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
