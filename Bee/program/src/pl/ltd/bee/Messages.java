@@ -1061,7 +1061,7 @@ public class Messages {
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintBanAuthor(){
-        return "<img src=&quot;./images/kick_user.gif&quot; alt=&quot;" + Messages.wielka(Messages.banAuthor())+"&quot;>Operacja powoduje &quot;zabanowanie&quot; użytkownika forum. Spowoduje to zablokowanie możliwości wypowiadania się danego użytkownika na podforum, w którym znajduje się dana wypowiedź. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź.";
+        return "<img src=&quot;./images/kick_user.gif&quot; alt=&quot;" + Messages.wielka(Messages.banAuthor())+"&quot;>Operacja powoduje &quot;zabanowanie&quot; użytkownika forum. Spowoduje to zablokowanie możliwości wypowiadania się danego użytkownika na podforum, w którym znajduje się dana wypowiedź. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji kasowania wypowiedzi
@@ -1075,21 +1075,21 @@ public class Messages {
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintMoveThread(){
-        return "<img src=&quot;./images/move.gif&quot; alt=&quot;" + Messages.wielka(Messages.move()) + "&quot;>Operacja powoduje próbę przeniesienia wątku do innego podforum. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź, a także moderatorem podforum docelowego.";
+        return "<img src=&quot;./images/move.gif&quot; alt=&quot;" + Messages.wielka(Messages.move()) + "&quot;>Operacja powoduje próbę przeniesienia wątku do innego podforum. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek, a także moderatorem podforum docelowego.";
     }
 
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji blokowania wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintBlockThread(){
-        return "<img src=&quot;./images/lock.png&quot; alt=&quot;" + Messages.wielka(Messages.block())+"&quot;>Operacja powoduje zablokowanie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź.";
+        return "<img src=&quot;./images/lock.png&quot; alt=&quot;" + Messages.wielka(Messages.block())+"&quot;>Operacja powoduje zablokowanie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
 
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji zamknięcia wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintCloseThread(){
-        return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;>Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź.";
+        return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;>Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
 
 }
