@@ -95,10 +95,14 @@ function popupHint(text, ob){
         var posY = findPosY(ob);
 	div.style.top = posY + Math.round(ob.offsetHeight / 2) + 10 + 'px';
 	div.style.left = posX + 'px';
-        if (posX + top.document.getElementById('tableHint'+ob.id).offsetWidth >= screen.width) 
-            div.style.left = (screen.width - top.document.getElementById('tableHint'+ob.id).offsetWidth -40) + 'px';
-        if (posY + top.document.getElementById('tableHint'+ob.id).offsetHeight >= top.document.body.scrollHeight)
-            div.style.top = (top.document.body.scrollHeight - top.document.getElementById('tableHint'+ob.id).offsetHeight -20) + 'px';
+        var tabelka = top.document.getElementById('tableHint'+ob.id);
+        if (tabelka)
+        {
+            if (posX + tabelka.offsetWidth >= screen.width) 
+                div.style.left = (screen.width - tabelka.offsetWidth -40) + 'px';
+            if (posY + tabelka.offsetHeight >= top.document.body.scrollHeight)
+                div.style.top = (top.document.body.scrollHeight - tabelka.offsetHeight -20) + 'px';
+        }
 	}            
 }
 
