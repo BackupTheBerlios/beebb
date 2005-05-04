@@ -1073,6 +1073,20 @@ public class Messages {
         return "Banuj Autora";}
     
     
+    /** Metoda dostarcza frazę "szukana fraza"
+     *  @return String zawierający frazę
+     */
+    public static String searchingWords(){
+       return "szukana fraza"; 
+    }
+    
+    /** Metoda dostarcza frazę "szukaj w wypowiedziach"
+     *  @return String zawierający frazę
+     */
+    public static String searchInMessages(){
+       return "szukana fraza"; 
+    }
+    
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
@@ -1080,7 +1094,7 @@ public class Messages {
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji edytowania wypowiedzi
      * @return String zawierajacy wycinek dokumentu HTML
      */
-    public static String hintEditMessages(){
+   public static String hintEditMessages(){
         return "<img src=&quot;./images/edit.gif&quot; alt=&quot;" + Messages.wielka(Messages.edit())+"&quot;>Operacja pozwala edytować treść wskazanej wypowiedzi. Aby móc edytować wypowiedź należy być zalogowanym użytkownikiem forum oraz albo być właścicielem wypowiedzi albo być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     

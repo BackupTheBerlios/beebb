@@ -1205,5 +1205,46 @@ public class DataBase {
       
       return baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE "+MODERATORZY_ID_USER+"="+id_user+" and "+MODERATORZY_ID_PODFORUM+"="+id_pod);
     }
+    
+    
+    /** 
+     * Metoda wyszukuje w tytulach Watkow podanej frazy i zwraca je
+     * @param fraza String z szukana fraza
+     * @param limit Liczba ograniczająca liczność wyniku
+     * @param from Numer wiersza wyniku od którego zostanie zwrócony wynik
+     * @return ArrayList obiektów Watek o liczności <= limit
+     */
+    public ArrayList searchWatki(String fraza, int limit, int from){
+        ArrayList watki = baza.query("SELECT * FROM "+BEE_WATKI+" WHERE "+WATEK_TEMAT+" LIKE '%"+fraza+"%' LIMIT "+from+","+limit);
+        ArrayList wynik = new ArrayList();
+        if (watki == null) return wynik;
+        for(int i=0; i < watki.size(); i++)
+        {
+            Hashtable watek = (Hashtable)watki.get(i);
+            wynik.add(new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this));
+        }
+        return wynik;        
+    }
+    
+    /** 
+     * Metoda wyszukuje w tekstach Wypowiedzi podanej frazy i zwraca ich identyfikatory
+     * @param fraza String z szukana fraza
+     * @param limit Liczba ograniczająca liczność wyniku
+     * @param from Numer wiersza wyniku od którego zostanie zwrócony wynik
+     * @return ArrayList obiektów Integer o liczności <= limit
+     */
+    public ArrayList searchWypowiedzi(String fraza, int limit, int from){
+        ArrayList wypowiedzi = baza.query("SELECT "+WYPOWIEDZ_ID+" FROM "+BEE_WYPOWIEDZI+" WHERE "+WYPOWIEDZ_TEKST+" LIKE '%"+fraza+"%' LIMIT "+from+","+limit);
+        ArrayList wynik = new ArrayList();
+        if (wypowiedzi == null) return wynik;
+        for(int i=0;i<wypowiedzi.size();i++){
+            Hashtable id = (Hashtable)wypowiedzi.get(i);
+            try{
+            wynik.add(new Integer((String)id.get(WYPOWIEDZ_ID)));
+            }catch(NumberFormatException e) {}
+        }
+        return wynik;
+    }
+    
 }
 

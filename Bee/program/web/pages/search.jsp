@@ -18,8 +18,8 @@
 <form action="search.jsp" method="post">
 <table class="tableSearch" border="0" align="center">
 <tr><th colspan="2"><% out.print(Messages.wielka(Messages.search()));%></th></tr>
-<tr><td class="tdSearch"><% out.print(Messages.wielka("szukana fraza"));%></td><td class="tdSearch"><input type="text" name="fraza" /></td></tr>
-<tr><td class="tdSearch" colspan="2"><input type="checkbox" name="wypowiedzi" checked="true" /><% out.print(Messages.wielka("szukaj tez w wypowiedziach"));%></td></tr><!--zmeinie w domu -->
+<tr><td class="tdSearch"><% out.print(Messages.wielka(Messages.searchingWords()));%></td><td class="tdSearch"><input type="text" name="fraza" /></td></tr>
+<tr><td class="tdSearch" colspan="2"><input type="checkbox" name="wypowiedzi" checked="true" /><% out.print(Messages.wielka(Messages.searchInMessages()));%></td></tr>
 <tr><td colspan="2" align="center" class="tdSearch"><input type="submit" value="<% out.print(Messages.wielka(Messages.search()));%>" /></td></tr>
 </table>
 </form>
@@ -28,12 +28,38 @@
     String fraza = request.getParameter("fraza");
     if (fraza != null)
     {
-       // najpierw to co zwykle
-        %>
+    %>
     <%@ include file="servletObjects.jsp" %>
     <%
         //TERAZ DOPIERO MOGE SZUKAC
-       
+        ArrayList watki = db_con.searchWatki(fraza,50,0);
+        String czy_wyp = request.getParameter("wypowiedzi");
+        boolean czy_wypowiedzi = false;
+        if (czy_wyp != null) czy_wypowiedzi = czy_wyp.compareTo("on") == 0;
+        //if (czy_wypowiedzi)
+         //   wypowiedzi = db_con.searchWypowiedzi(fraza,50,0);
+        //TODO implementacja
+            /* Tego narazie nie bede implementowal bo wypadaloby scalic wyniki, ale zeby to zrobic potrzebny jest operator==
+             * co najmniej dla watkow
+             */
+        out.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
+        out.println("<tr>");
+        out.println("<th colspan=\"2\" class=\"thTopLCorner\" height=\"30\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.themes()) + "&nbsp;</th>");
+        out.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.actions()) + "&nbsp;</th>");
+        out.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.answers()) + "&nbsp;</th>");
+        out.println("<th width=\"80\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.author()) + "&nbsp;</th>");
+        out.println("<th width=\"50\" class=\"thTop\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.showed()) + "&nbsp;</th>");
+        out.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.lastPost()) + "&nbsp;</th>");
+        out.println("</tr>");
+
+        for(int i=0; i<watki.size(); i++)
+        {
+            Watek w = (Watek)watki.get(i);
+            w.printJSPHeader(out);
+        }
+       %>
+        </table>
+        <%
     }
 %>
 </tr></td>

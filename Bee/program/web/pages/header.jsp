@@ -41,7 +41,7 @@
 				[] <%out.print(Messages.wielka(Messages.help()));%>
 				</span>
 			</td>
-			<td class="tdTopLink" align="left"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./search.jsp')">
 				[] <%out.print(Messages.wielka(Messages.search()));%>
 				</span>
 			</td>
@@ -55,11 +55,11 @@
 			</td>
 			</tr>
 			<tr>
-			<td class="tdTopLink" align="left"><span class="aTopLink">
-                                <%out.print("[] <span  class=\"aTopLink\"");
+			<td class="tdTopLink" align="left"><span class="aTopLink"
+                                <%
                                 if (auth.zalogowany(request,db_con)) 
-                                    out.print("[] onclick=\"linkClick('./editProfile.jsp')\"");   
-                                out.print(">" +Messages.wielka(Messages.profile()) + "</span>");%>
+                                    out.print(" onclick=\"linkClick('./editProfile.jsp')\"");   
+                                out.print(">[] " +Messages.wielka(Messages.profile()));%>
 				</span>
 			</td>
 			<td class="tdTopLink" align="left">
