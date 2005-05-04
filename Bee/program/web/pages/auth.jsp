@@ -25,7 +25,6 @@
             if (field.compareTo("logout")==0) {
                 auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
                 out.println(Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"));
-                //response.sendRedirect("main.jsp");
                 bez_formy = true;
             }
             else {
@@ -39,13 +38,16 @@
                         try {
                         User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
                         if (u!=null)
-                            out.println(Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"));
-            //                response.sendRedirect("main.jsp");
+                              {
+                              out.println(Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"));
                               bez_formy = true;
+                              }
                         } catch (Exception e) {
                             out.print(e);
                         }
-                    }    
+                    }
+                    else 
+                        out.println(Messages.errorBadUserOrPass());
             }
             if (!bez_formy)
                 out.println(Messages.errorBadUserOrPass());
@@ -67,9 +69,6 @@
                 </form>
                 <br/>
                 <p><%out.println(Messages.doNotHaveAccount());out.println(Commons.aHref(Messages.wielka(Messages.registerYourself()),"addUser.jsp"));%> </p>
-            </td>
-            </tr>
-        </table>
      <%
          }
        }
@@ -77,5 +76,8 @@
           out.println(Messages.errorUnknown());
        }
      %>
+            </td>
+            </tr>
+        </table>
     </body>
 </html>
