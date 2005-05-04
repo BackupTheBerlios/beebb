@@ -45,7 +45,7 @@
 				[] <%out.print(Messages.wielka(Messages.search()));%>
 				</span>
 			</td>
-			<td class="tdTopLink" align="left"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./users.jsp')">
 				[] <%out.print(Messages.wielka(Messages.users()));%>
 				</span>
 			</td>
