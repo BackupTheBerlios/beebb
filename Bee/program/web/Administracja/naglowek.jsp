@@ -50,6 +50,9 @@
 		   <td class="tdTopLink"><a class="aTopLink" href="./konfiguracja.jsp" target="tresc">
 		       [] <%out.print(Messages.wielka(Messages.configuration()));%> </a>
 		   </td>
+		     <td class="tdTopLink"><a class="aTopLink" href="./grupy.jsp" target="tresc">
+		       [] <%out.print(Messages.wielka(Messages.groups()));%> </a>
+		   </td>
 		  </tr>
 		<tr>
 		 <td class="tdTopLink"><a class="aTopLink" href="./edycja_usunietych.jsp" target="tresc">
@@ -64,6 +67,7 @@
 		   <td class="tdTopLink"><a class="aTopLink" href="./konfiguracja_emo.jsp" target="tresc">
 			[] <%out.print(Messages.wielka(Messages.emotikons()));%> </a>
 		 </td>
+		 <td> </td>
 	        </tr>
 	      </table>
 	     </td>
