@@ -66,7 +66,8 @@ public class DataBase {
     
     static final String BEE_NEW_USER_BASE = "New_User";
     static final String BEE_BANNED_USERS_BASE = "Banned_Users";
-    
+    static final String BEE_GROUPS_BASE = "Groups";
+    static final String BEE_USERS_GROUPS_BASE = "Users_Groups";
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
@@ -78,11 +79,15 @@ public class DataBase {
     static String BEE_KATEGORIE = "Kategorie";
     static String BEE_FORUM = "Forum";
     
+    static String BEE_GROUPS = "Groups";
+    
     static String BEE_FORUM_KATEGORIE = "Forum_Kategorie";
     static String BEE_WATKI_WYPOWIEDZI = "Watki_Wypowiedzi";
     static String BEE_PODFORA_WATKI = "Podfora_Watki";
     static String BEE_KATEGORIE_PODFORA = "Kategorie_Podfora";
     static String BEE_MODERATORZY = "Moderatorzy";
+    
+    static String BEE_USERS_GROUPS = "Users_Groups";
     
     static String BEE_FORGET_PASSWD = "Forget_Passwd";
     
@@ -176,6 +181,12 @@ public class DataBase {
     static final String BANNED_USERS_ID_USER = "ID_USER";
     static final String BANNED_USERS_ID_PODFORUM = "ID_PODFORUM";
     
+    static final String USERS_GROUPS_ID_USER = "ID_USER";
+    static final String USERS_GROUPS_ID_GROUP = "ID_GROUP";
+    
+    static final String GROUP_ID = "ID";
+    static final String GROUP_NAZWA = "NAZWA";
+    
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     ConnectorDB baza;
     
@@ -243,6 +254,8 @@ public class DataBase {
         BEE_FORGET_PASSWD = pref + "_" + BEE_FORGET_PASSWD_BASE;
         BEE_NEW_USER = pref + "_" + BEE_NEW_USER_BASE;
         BEE_BANNED_USERS = pref + "_" + BEE_BANNED_USERS_BASE;
+        BEE_GROUPS= pref+ "_" + BEE_GROUPS_BASE;
+        BEE_USERS_GROUPS= pref+ "_" + BEE_USERS_GROUPS_BASE;
     }
     
     
@@ -613,6 +626,30 @@ public class DataBase {
         return wynik;
     }
     
+      /**
+     * Metoda zwaraca liste wszystkich obiektow tabeli Groups z bazy
+     * @return ArrayList obiektow Group
+     */
+    public ArrayList getGroups() {
+        ArrayList wynik = new ArrayList();
+        ArrayList gr= baza.query("SELECT * FROM "+BEE_GROUPS);
+        for(int i=0; i<gr.size(); i++) {
+            Hashtable g = (Hashtable)gr.get(i);
+            wynik.add(new Group(Integer.parseInt((String) g.get(GROUP_ID)), (String) g.get(GROUP_NAZWA) ));
+        }
+        return wynik;
+    }
+    
+     /**
+     * Metoda usuwa grupe
+     * @param id id grupy
+     * @return T lub N w zależności czy udalo sie usunac
+     */
+    public boolean usunGrupe(int id){
+       baza.dmlQuery("DELETE FROM " + BEE_USERS_GROUPS + " WHERE " + USERS_GROUPS_ID_GROUP + " = " + id );
+       return  baza.dmlQuery("DELETE FROM "+BEE_GROUPS+" WHERE " + GROUP_ID + " = " + id );
+    }
+    
        /**
      * Metoda zwaraca liste aktywnych Userów
      * @param czy_aktywny true lub false 
@@ -674,6 +711,15 @@ public class DataBase {
         }
         return false;
     }
+    
+    /**
+     * Metoda umieszcza grupe w bazie danych,
+     * @param Group wstawiana grupa
+     * @return zwraca true jezeli insert sie powiodl
+     */
+    public boolean insertGrupa(Group g) {
+        return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )"); 
+      }
     
     
     /**
@@ -800,6 +846,17 @@ public class DataBase {
         return  Integer.decode((String) kategoria.get(KATEGORIA_ID)).intValue();
     }
     
+        
+    /**
+     * Metoda zwraca id grupy, jezeli jej nie ma to -1
+     * @param tytul tytul grupy
+     * @return int numer grupy
+     */
+    public int dajIdGrupy(String tytul){
+        Hashtable grupa = getObject("SELECT "+GROUP_ID+" FROM "+BEE_GROUPS+" WHERE "+GROUP_NAZWA+" = '" +tytul+ "'");
+        if (grupa==null) return -1;
+        return  Integer.decode((String) grupa.get(GROUP_ID)).intValue();
+    }
        
     /**
      * Metoda wstawia klucz do zapomnianego hasła

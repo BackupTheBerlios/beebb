@@ -485,6 +485,10 @@ public class Messages {
     public static String addingEmotikons(){
         return "dodawanie emotikonek";}
     
+      /** Metoda dostarcza fraze "dodawanie grup" */
+    public static String addingGroups(){
+        return "dodawanie grup";}
+    
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
@@ -496,6 +500,12 @@ public class Messages {
      */
     public static String isRemoveKat(){
         return "Czy napewno chcesz usunąć kategorie?";}
+    
+    /** Metoda dostarcza komunikat z zapytaniem
+     * @return String z komunikatem
+     */
+    public static String isRemoveGroup(){
+        return "Czy napewno chcesz usunąć grupę?";}
     
     /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
@@ -788,6 +798,30 @@ public class Messages {
         return "Dodanie kategorii nie powiodło się.";}
     
     
+     /**
+     * Metoda dostarcza komunikat o istniejacej juz nazwie grupy
+     * @return String z komunikatem
+     */
+    public static String errorNameGroup(){
+        return "Grupa o podanej nazwie już istnieje.";}
+    
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ďż˝e naleďż˝y podaďż˝ nazwe grupy
+     * @return String z komunikatem
+     */
+    public static String errorFieldNameGroup(){
+        return "Należy podać nazwę grupy.";}
+    
+    
+    /**
+     * Metoda dostarcza komunikat o tym, ďż˝e dodanie grupy nie powiodďż˝o sie
+     * @return String z komunikatem
+     */
+    public static String errorAddGroup(){
+        return "Dodanie grupy nie powiodło się.";}
+    
+    
     /**
      * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii nie powiodďż˝a sie
      * @return String z komunikatem
@@ -830,6 +864,13 @@ public class Messages {
      */
     public static String addKat(){
         return "Kategoria została dodana.";}
+    
+        /**
+     * Metoda dostarcza komunikat o tym, ďż˝e dodanie grupy powiodďż˝o sie
+     * @return String z komunikatem
+     */
+    public static String addGroup(){
+        return "Grupa została dodana.";}
     
     
     /**
@@ -879,6 +920,12 @@ public class Messages {
     public static String removePodforum(){
         return "Podforum zostało usunięte.";}
     
+     /**
+     * Metoda dostarcza komunikat o tym, że usuniecie grupy powiodło się.
+     * @return String z komunikatem
+     */
+    public static String removeGroup(){
+        return "Grupa została usunięta.";}
     
     /**
      * Metoda dostarcza komunikat o tym, że aktywacja podforum powiodła się.
@@ -895,6 +942,12 @@ public class Messages {
     public static String errorRemoveKat(){
         return "Usunięcie kategorii nie powiodło się.";}
     
+    /**
+     * Metoda dostarcza komunikat o tym, usunięcie grupy nie powiodło się
+     * @return String z komunikatem
+     */
+    public static String errorRemoveGroup(){
+        return "Usunięcie grupy nie powiodło się.";}
     
     /**
      * Metoda dostarcza komunikat o tym, że aktywacja kategorii nie powiodła się
