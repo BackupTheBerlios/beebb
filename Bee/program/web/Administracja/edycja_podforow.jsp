@@ -142,7 +142,7 @@
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(true);  
-         %><tr bgcolor="gold" ><td align="center"> <button id="plusik<%=i%>" onClick="rozwijanie('<%=i%>'); return false;"> +/- </button> </td> <td><%= i+1 %>  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
+         %><tr bgcolor="gold" ><td align="center"> <button id="plusik<%=i%>" onClick="rozwijanie('<%=i%>'); return false;"> +/- </button> </td> <td><%= i+1 %>.  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
                                <td align="center" ><%= takNie(kkk.czyPrywatna()) %> </td> 
              <td><form action="./edycja_kat.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
@@ -171,19 +171,12 @@
              </form> 
              </td>
          </tr>
-         <tr> <td colspan="9">
-         <p id="podfora<%=i%>" class="podfora"> 
-        <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
-         
-         <tr><th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
-             <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th> 
-             <th><%out.println(Messages.wielka(Messages.edition())); %></th> <th><%out.println(Messages.wielka(Messages.remove())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th> 
-         </tr>
-            <tr bgcolor="yellow" id="number2" > <td colspan="7" align="center" id="nee"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr> 
+     
+            <tr class="w<%=i%>" bgcolor="yellow" > <td colspan="9" align="center" id="nee"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr> 
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
-         %><tr bgcolor="goldenrod"> <td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
+         %><tr class="w<%=i%>" bgcolor="goldenrod"> <td> </td> <td><%=i+1%>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
            <td align="center" ><%= takNie(podf.czyPrywatne()) %> </td> 
              <td><form action="./edycja_pod.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
@@ -204,14 +197,10 @@
                    <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/>
                  </form> 
              </td> 
-     
+             <td> </td>
          </tr>
           <% }%>
-          
-          </table>
-          </p>
-          </td>
-          </tr>
+   
     
        <% }%>
         </table>

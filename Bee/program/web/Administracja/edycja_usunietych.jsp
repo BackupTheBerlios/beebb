@@ -78,14 +78,12 @@
              </td>
          </tr>
          
-         <tr> <td colspan="5">
-         <p id="podfora<%=i%>" class="podfora"> 
-        <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
-            <tr bgcolor="yellow" > <td> </td> <td colspan="5" align="center">  <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
+
+            <tr class="w<%=i%>" bgcolor="yellow" > <td> </td> <td colspan="5" align="center">  <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr>
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
-         %><tr bgcolor="goldenrod"> <td> </td><td><%= licz %>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
+         %><tr class="w<%=i%>" bgcolor="goldenrod"> <td> </td><td><%= licz %>.<%=j+1%>  </td> <td> <%=podf.getTytul()%> </td> <td><%=podf.getOpis()%> </td> 
              <td><form  action="./edycja_usunietych.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isActivePod())+"');" %>">
                  <input type="hidden" name="akt_pod" value="<%= podf.getID() %>"/>
                  <% if (!kkk.czyAktywna()) { %>
@@ -97,10 +95,7 @@
              </td> 
          </tr>
           <% } %>
-           </table>
-          </p>
-          </td>
-          </tr>
+        
           <% } %>
     
        <% }%>
