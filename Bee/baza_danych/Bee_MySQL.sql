@@ -265,17 +265,14 @@ CREATE TABLE `Bee_Privilages` (
   `ID_Group` int(10) unsigned NOT NULL,
   `ID_Kategoria` int(10) unsigned NULL,
   `ID_Podforum` int(10) unsigned NULL,
-  `ID_Watek` int(10) unsigned NULL,
   `Czytanie` enum('T','N') NOT NULL,
   `Pisanie` enum('T','N') NOT NULL,
   KEY `id_g` (`ID_Group`),
   KEY `id_k` (`ID_Kategoria`),
   KEY `id_p` (`ID_Podforum`),
-  KEY `id_w` (`ID_Watek`),
   CONSTRAINT `Bee_Privilages_ibfk_1` FOREIGN KEY (`ID_Group`) REFERENCES `Bee_Groups` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Bee_Privilages_ibfk_2` FOREIGN KEY (`ID_Kategoria`) REFERENCES `Bee_Kategorie` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Bee_Privilages_ibfk_3` FOREIGN KEY (`ID_Podforum`) REFERENCES `Bee_Podfora` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `Bee_Privilages_ibfk_4` FOREIGN KEY (`ID_Watek`) REFERENCES `Bee_Watki` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CHECK ((ID_Kategoria is not NULL) AND (ID_PODFORUM is NULL) AND (ID_Watek is NULL))
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z prawami grup';
 
