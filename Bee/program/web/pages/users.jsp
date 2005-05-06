@@ -29,7 +29,7 @@
                 out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowName()?u.getImie():"")+"</td>");
                 out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowName()?u.getNazwisko():"")+"</td>");
                 out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowEmail()?"<a href=\"mailto:"+u.getEmail()+"\" class=\"aHref\">"+u.getEmail()+"</a>":"")+"</td>");
-                out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowGG()?"<a href=\"gg:"+u.getGG()+"\"><img border=\"0\" src=\"http://www.gadu-gadu.pl/users/status.asp?id="+u.getGG()+"&amp;style=1\" alt=\""+u.getGG()+"\"></a>":"")+"</td>");
+                out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowGG()?"<a class=\"aHref\" href=\"gg:"+u.getGG()+"\"><img border=\"0\" src=\"http://www.gadu-gadu.pl/users/status.asp?id="+u.getGG()+"&amp;style=1\" alt=\""+u.getGG()+"\"></a>":"")+"</td>");
                 out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowJabber()?u.getJabber():"")+"</td>");
                 out.print("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+u.getLastLog()+"</td>");
                 out.print("</tr>");

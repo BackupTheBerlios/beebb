@@ -191,7 +191,7 @@ public class DataBase {
     static final String GROUP_NAZWA = "NAZWA";
     
     
-    static final String PRIVILAGES_ID_GROUP = "ID_USER";
+    static final String PRIVILAGES_ID_GROUP = "ID_GROUP";
     static final String PRIVILAGES_ID_KATEGORIA = "ID_KATEGORIA";
     static final String PRIVILAGES_ID_PODFORUM = "ID_PODFORUM";
     static final String PRIVILAGES_ID_CZYTANIE = "CZYTANIE";
@@ -1322,13 +1322,13 @@ public class DataBase {
      * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
      */
     public boolean hasPodforumRights(int id_user, int id_podforum, boolean odczyt, boolean zapis){
-        ArrayList prawa = baza.query("SELECT p."+PRIVILAGES_ID_PISANIE+",p."+PRIVILAGES_ID_CZYTANIE+" FROM "+BEE_PRIVILAGES+" p,"+BEE_USERS_GROUPS+" u WHERE p."+PRIVILAGES_ID_GROUP+"=u."+USERS_GROUPS_ID_GROUP+" AND p."+PRIVILAGES_ID_PODFORUM+"="+id_podforum+" AND "+USERS_GROUPS_ID_USER+"="+id_user);
+        ArrayList prawa = baza.query("SELECT "+PRIVILAGES_ID_PISANIE+","+PRIVILAGES_ID_CZYTANIE+" FROM "+BEE_PRIVILAGES+" p,"+BEE_USERS_GROUPS+" u WHERE p."+PRIVILAGES_ID_GROUP+"=u."+USERS_GROUPS_ID_GROUP+" AND p."+PRIVILAGES_ID_PODFORUM+"="+id_podforum+" AND "+USERS_GROUPS_ID_USER+"="+id_user);
         //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace sie prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
         if (prawa.size() <=0) return false;
         Hashtable prawo = (Hashtable)prawa.get(0);
         String s_odczyt = (String)prawo.get(PRIVILAGES_ID_CZYTANIE);
         String s_zapis = (String)prawo.get(PRIVILAGES_ID_PISANIE);
-        return (odczyt?(s_odczyt == TAK):true) && (zapis?(s_zapis == TAK):true);
+        return (odczyt?(s_odczyt.compareTo(TAK) == 0):true) && (zapis?(s_zapis.compareTo(TAK) == 0):true);
     }
     
     /** Metoda sprawdza czy dany uzytkownik ma podane prawa do danej Kategorii
@@ -1345,7 +1345,7 @@ public class DataBase {
         Hashtable prawo = (Hashtable)prawa.get(0);
         String s_odczyt = (String)prawo.get(PRIVILAGES_ID_CZYTANIE);
         String s_zapis = (String)prawo.get(PRIVILAGES_ID_PISANIE);
-        return (odczyt?(s_odczyt == TAK):true) && (zapis?(s_zapis == TAK):true);
+        return (odczyt?(s_odczyt.compareTo(TAK) == 0):true) && (zapis?(s_zapis.compareTo(TAK) == 0):true);
     }
     
 

@@ -350,6 +350,15 @@ public class User {
         return db.hasPodforumRights(this.ID, p.getID(), true, false);
     }
         
+    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego watku
+     * @param id Identyfikator watku
+     * @return True jesli użytkownik ma prawo zapisu do wskazanego wątku lub False w p.p.
+     */
+    public boolean hasWriteWatekRight(int id){
+        Podforum p = db.getPodforumbyWatek(id);
+        return db.hasPodforumRights(this.ID, p.getID(), false, true);
+    }
+
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum
      * @param id Identyfikator podforum
      * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
@@ -358,11 +367,27 @@ public class User {
         return db.hasPodforumRights(this.ID, id, true, false);
     }
 
+    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego podforum
+     * @param id Identyfikator podforum
+     * @return True jesli użytkownik ma prawo zapisu do wskazanego Podforum lub False w p.p.
+     */
+    public boolean hasWritePodforumRight(int id){
+        return db.hasPodforumRights(this.ID, id, false, true);
+    }
+
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False w p.p.
      */
     public boolean hasReadKategoriaRight(int id){
         return db.hasKategoriaRights(this.ID, id, true, false);
+    }
+
+    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danej Kategorii
+     * @param id Identyfikator Kategorii
+     * @return True jesli użytkownik ma prawo zapisu do wskazanej Ktegorii lub False w p.p.
+     */
+    public boolean hasWriteKategoriaRight(int id){
+        return db.hasKategoriaRights(this.ID, id, false, true);
     }
 }

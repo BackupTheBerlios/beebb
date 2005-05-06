@@ -28,23 +28,45 @@
                     this.db_con=db_con;
                 }
                 
-                public void dodajWypowiedz(Watek wt, String ID_Usera, String Nazwa_Usera, String text) throws Exception {
+                public void dodajWypowiedz(Watek wt, String ID_Usera, String Nazwa_Usera, String text, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws Exception {
                     if (wt!=null) { 
+                    if ((!wt.czyZablokowany()) && (!wt.czyZamkniety()))
+                        {
                         String prywatne=DataBase.NIE;
-                        if(wt.czyPrywatny()) prywatne=DataBase.TAK;
+                        boolean dodaj = false;
+                        if(wt.czyPrywatny()) {
+                            prywatne=DataBase.TAK;
+                            User user = auth.getUser(pytanie,db_con);
+                            if (user != null)
+                                if (user.hasWriteWatekRight(wt.getID()))
+                                    dodaj = true;
+                        }else dodaj = true;
+                        if (dodaj){
                         Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDateToInsert(),text,prywatne,DataBase.TAK,db_con);
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
                             out.print(Messages.errorDataBaseConnection());
-                        else out.print(Messages.addedMessage() + "<br/>"); 
+                            else out.print(Messages.addedMessage() + "<br/>"); 
+                        }
+                        else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                     } else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                     } else out.print(Messages.errorDataBaseConnection());
                   }
                 
                 
-                public Watek dodajWatek(String podforum,String ID_Usera,String Nazwa_Usera,String title) throws Exception {
+                public Watek dodajWatek(String podforum,String ID_Usera,String Nazwa_Usera,String title, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws Exception {
                     Podforum pf = db_con.getPodforum(Integer.decode(podforum).intValue());
                     Watek wt;
                     String prywatne=DataBase.NIE;
-                    if(pf.czyPrywatne()) prywatne=DataBase.TAK;
+                    boolean dodaj = false;
+                    if(pf.czyPrywatne()) {
+                            prywatne=DataBase.TAK;
+                            User user = auth.getUser(pytanie,db_con);
+                            if (user != null)
+                                if (user.hasWritePodforumRight(pf.getID()))
+                                    dodaj = true;
+                    }
+                    else dodaj = true;
+                    if (dodaj){
                     String Nazwa_Usera2=Nazwa_Usera;
                     if ((Integer.decode(ID_Usera).intValue())==Config.GUEST_ID)
                         Nazwa_Usera2="~" + Nazwa_Usera;
@@ -52,6 +74,10 @@
                     wt = db_con.insertWatek(podforum,wt);
                     if (wt==null) out.print(Messages.errorDataBaseConnection()); else out.print(Messages.addedThread()  + "<br/>");
                     return wt;
+                    }else{
+                        out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                        return null;
+                    }
                 }
                 
                 public void incrAddWatek(Watek wt,String ID_Usera, String Nazwa_Usera) throws Exception {
@@ -88,6 +114,35 @@
                     if (!db_con.updatePodforum(pf)) out.print(Messages.errorDataBaseConnection());
                 }
                 
+                public boolean canCreate(String podforum, Watek watek, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth){
+                    if (podforum != null)
+                    {
+                        Podforum p = db_con.getPodforum(Integer.decode(podforum).intValue());
+                        if (p.czyPrywatne()){
+                            User user = auth.getUser(pytanie,db_con);
+                            if (user != null)
+                                if (user.hasWritePodforumRight(p.getID()))
+                                    return true;
+                                else return false;
+                            else return false;
+                        }
+                        else return true;
+                    }
+                    if (watek != null)
+                    {
+                        if (watek.czyZablokowany() || watek.czyZamkniety()) return false;
+                        if(watek.czyPrywatny()) {
+                            User user = auth.getUser(pytanie,db_con);
+                            if (user != null)
+                                if (user.hasWriteWatekRight(watek.getID()))
+                                    return true;
+                                else return false;
+                            else return false;
+                        }else return true;
+                    }
+                    return true;
+                }
+                
             }
         
             ////
@@ -99,8 +154,10 @@
             if (watek==null && podforum==null) {
                 out.print(Messages.formError());
             } else {
+                Watek wt = null;
+                if (watek != null)
+                    wt = db_con.getWatek(Integer.decode(watek).intValue());
             
-                
             String ID_Usera = new String().valueOf(Config.GUEST_ID); 
             String Nazwa_Usera= Config.GUEST;
             
@@ -127,29 +184,27 @@
             }
             ////////////
             
-            if (watek!=null) {
-                Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
-                if ((!wt.czyZablokowany()) && (!wt.czyZamkniety()))
-                    {
+            if (wt!=null) {
                         //dodaj Wypowiedz
-                        d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
+                        d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text,request,auth);
                         d.incrAddWypowiedz(wt,ID_Usera,Nazwa_Usera);
-                    }
-                    else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 } else
                 if (podforum!=null && text!=null) {
                     String title=request.getParameter("title");
                     title = new String(title.getBytes("8859_1"),"UTF-8");
                     title = Commons.wypowiedzDoBazy(title);
                     //dodaj Watek
-                    Watek wt = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title);
+                    Watek wat = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title,request,auth);
                     //dodaj Wypowiedz
-                    d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text);
-                    d.incrAddWatek(wt,ID_Usera,Nazwa_Usera);
+                    if (wat != null){
+                        d.dodajWypowiedz(wat,ID_Usera,Nazwa_Usera,text,request,auth);
+                        d.incrAddWatek(wat,ID_Usera,Nazwa_Usera);
+                    }
                 }
                     out.print("<center><br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()),"./main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
                 }
-                else {
+                else 
+                if (d.canCreate(podforum, wt,request,auth)) {
         %>
                     <table align="center">
                     <tr>
@@ -197,6 +252,11 @@
                     </table>
                     <br/><br/>
                     <center><% Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
-   <% } }%>
+   <% }
+                else {//to znaczy, ze canCreate zwrocilo FALSE
+                    out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                    out.println("<center>"+Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
+                }
+    }%>
     </body>
 </html>
