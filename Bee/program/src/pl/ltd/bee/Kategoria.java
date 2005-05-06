@@ -138,16 +138,28 @@ public class Kategoria {
     
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
-     * @param shtrona strumien wyjsciowy
+     * @param strona strumien wyjsciowy
+     * @param pytanie Zaptanie otrzymane przez serwer
+     * @param auth Obiekt autoryzacji
      */
-    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printJSP(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
+        boolean drukuj = false;
         strona.println("<tr>");
         strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\">"+Commons.aHref(Tytul,"main.jsp?kid="+ this.ID, "aTytulKategorii")+ "</span></td>");
         strona.println("</tr>");
-        ArrayList podfora = db.getPodforaKategorii(this.ID,true);
-        for(int i=0;i<podfora.size();i++) {
-            ((Podforum)podfora.get(i)).printJSPHeader(strona);
+        if (this.czyPrywatna()){
+            User user = auth.getUser(pytanie,this.db);
+            if (user != null)
+                drukuj = user.hasReadKategoriaRight(this.getID());
         }
+        else drukuj = true;
+        if (drukuj)
+        {
+                ArrayList podfora = db.getPodforaKategorii(this.ID,true);
+                for(int i=0;i<podfora.size();i++) {
+                    ((Podforum)podfora.get(i)).printJSPHeader(strona,pytanie,auth);
+                }
+        } 
     }
     
     

@@ -68,6 +68,8 @@ public class DataBase {
     static final String BEE_BANNED_USERS_BASE = "Banned_Users";
     static final String BEE_GROUPS_BASE = "Groups";
     static final String BEE_USERS_GROUPS_BASE = "Users_Groups";
+    static final String BEE_PRIVILAGES_BASE = "Privilages";
+    
     /**
      * Stala reprezentujaca nazwe tabeli w bazie danych
      */
@@ -93,6 +95,7 @@ public class DataBase {
     
     static String BEE_NEW_USER = "New_User";
     static String BEE_BANNED_USERS = "Banned_Users";
+    static String BEE_PRIVILAGES = "Privilages";
     
     /**
      * Stala reprezentujaca nazwe pola w tabeli w bazie danych
@@ -187,6 +190,13 @@ public class DataBase {
     static final String GROUP_ID = "ID";
     static final String GROUP_NAZWA = "NAZWA";
     
+    
+    static final String PRIVILAGES_ID_GROUP = "ID_USER";
+    static final String PRIVILAGES_ID_KATEGORIA = "ID_KATEGORIA";
+    static final String PRIVILAGES_ID_PODFORUM = "ID_PODFORUM";
+    static final String PRIVILAGES_ID_CZYTANIE = "CZYTANIE";
+    static final String PRIVILAGES_ID_PISANIE = "PISANIE";
+    
     //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
     ConnectorDB baza;
     
@@ -256,6 +266,7 @@ public class DataBase {
         BEE_BANNED_USERS = pref + "_" + BEE_BANNED_USERS_BASE;
         BEE_GROUPS= pref+ "_" + BEE_GROUPS_BASE;
         BEE_USERS_GROUPS= pref+ "_" + BEE_USERS_GROUPS_BASE;
+        BEE_PRIVILAGES= pref+ "_" + BEE_PRIVILAGES_BASE;
     }
     
     
@@ -1303,5 +1314,40 @@ public class DataBase {
         return wynik;
     }
     
+    /** Metoda sprawdza czy dany uzytkownik ma podane prawa do danego Podforum
+     * @param id_user Identyfikator użytkownika
+     * @param id_podforum Identyfikator podforum
+     * @param odczyt Prawo odczytu
+     * @param zapis Prawo pisania
+     * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
+     */
+    public boolean hasPodforumRights(int id_user, int id_podforum, boolean odczyt, boolean zapis){
+        ArrayList prawa = baza.query("SELECT p."+PRIVILAGES_ID_PISANIE+",p."+PRIVILAGES_ID_CZYTANIE+" FROM "+BEE_PRIVILAGES+" p,"+BEE_USERS_GROUPS+" u WHERE p."+PRIVILAGES_ID_GROUP+"=u."+USERS_GROUPS_ID_GROUP+" AND p."+PRIVILAGES_ID_PODFORUM+"="+id_podforum+" AND "+USERS_GROUPS_ID_USER+"="+id_user);
+        //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace sie prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
+        if (prawa.size() <=0) return false;
+        Hashtable prawo = (Hashtable)prawa.get(0);
+        String s_odczyt = (String)prawo.get(PRIVILAGES_ID_CZYTANIE);
+        String s_zapis = (String)prawo.get(PRIVILAGES_ID_PISANIE);
+        return (odczyt?(s_odczyt == TAK):true) && (zapis?(s_zapis == TAK):true);
+    }
+    
+    /** Metoda sprawdza czy dany uzytkownik ma podane prawa do danej Kategorii
+     * @param id_user Identyfikator użytkownika
+     * @param id_kategorii Identyfikator Kategorii
+     * @param odczyt Prawo odczytu
+     * @param zapis Prawo pisania
+     * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
+     */
+    public boolean hasKategoriaRights(int id_user, int id_kategorii, boolean odczyt, boolean zapis){
+        ArrayList prawa = baza.query("SELECT p."+PRIVILAGES_ID_PISANIE+",p."+PRIVILAGES_ID_CZYTANIE+" FROM "+BEE_PRIVILAGES+" p,"+BEE_USERS_GROUPS+" u WHERE p."+PRIVILAGES_ID_GROUP+"=u."+USERS_GROUPS_ID_GROUP+" AND p."+PRIVILAGES_ID_KATEGORIA+"="+id_kategorii+" AND "+USERS_GROUPS_ID_USER+"="+id_user);
+        //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace sie prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
+        if (prawa.size() <=0) return false;
+        Hashtable prawo = (Hashtable)prawa.get(0);
+        String s_odczyt = (String)prawo.get(PRIVILAGES_ID_CZYTANIE);
+        String s_zapis = (String)prawo.get(PRIVILAGES_ID_PISANIE);
+        return (odczyt?(s_odczyt == TAK):true) && (zapis?(s_zapis == TAK):true);
+    }
+    
+
 }
 

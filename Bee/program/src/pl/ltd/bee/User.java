@@ -340,5 +340,29 @@ public class User {
     public void setJabberPrywatny(boolean czyPrywatny){
         this.jabberPrywatny=czyPrywatny;
     }
+    
+    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku
+     * @param id Identyfikator watku
+     * @return True jesli użytkownik ma prawo odczytu wskazanego wątku lub False w p.p.
+     */
+    public boolean hasReadWatekRight(int id){
+        Podforum p = db.getPodforumbyWatek(id);
+        return db.hasPodforumRights(this.ID, p.getID(), true, false);
+    }
         
+    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum
+     * @param id Identyfikator podforum
+     * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
+     */
+    public boolean hasReadPodforumRight(int id){
+        return db.hasPodforumRights(this.ID, id, true, false);
+    }
+
+    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii
+     * @param id Identyfikator Kategorii
+     * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False w p.p.
+     */
+    public boolean hasReadKategoriaRight(int id){
+        return db.hasKategoriaRights(this.ID, id, true, false);
+    }
 }

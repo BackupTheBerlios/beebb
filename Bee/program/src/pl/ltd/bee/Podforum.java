@@ -215,21 +215,42 @@ public class Podforum {
     /**
      * Metoda wypisuje na strone glowna liste watkow
      * @param strona strumien wyjsciowy
+     * @param pytanie Zaptanie otrzymane przez serwer
+     * @param auth Obiekt autoryzacji
      */
-    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
-        printMainTableJSP(strona);
-        ArrayList watki=db.getWatkiPodforum(this.ID,true);
-        for(int i=0;i<watki.size();i++) {
-            ((Watek)watki.get(i)).printJSPHeader(strona);
-        }
+    public void printJSP(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
+        boolean drukuj = false;
+        if (this.czyPrywatne()){
+            User user = auth.getUser(pytanie,this.db);
+            if (user != null)
+                drukuj = user.hasReadPodforumRight(this.getID());
+        }else drukuj = true;
+        
+        if(drukuj){
+            printMainTableJSP(strona);
+            ArrayList watki=db.getWatkiPodforum(this.ID,true);
+            for(int i=0;i<watki.size();i++) {
+                ((Watek)watki.get(i)).printJSPHeader(strona);
+            }
         printMainTableCloseJSP(strona);
+        }
     }
     
     /**
      * Metoda wypisuje wiersz w tabeli kategorii z opisem podforum
      * @param strona strumien wyjsciowy
+     * @param pytanie Zaptanie otrzymane przez serwer
+     * @param auth Obiekt autoryzacji
      */
-    public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printJSPHeader(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
+        boolean drukuj = false;
+        if (this.czyPrywatne()){
+            User user = auth.getUser(pytanie,this.db);
+            if (user != null)
+                drukuj = user.hasReadPodforumRight(this.getID());
+        }else drukuj = true;
+
+        if (drukuj){
         strona.println("<tr>");
         strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\" alt=\"Category\"/></td>");
         strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPodforum\">"+Commons.aHref(this.getTytul(),"main.jsp?pid=" + this.getID(),"aTytulPodforum")+"</span><br/><span class=\"opisPodforum\">" + this.getOpis() + "</span><br/></td>");
@@ -244,6 +265,7 @@ public class Podforum {
             strona.println("<a href=\"viewtopic.html\"></a></span>");
         } else strona.println("&nbsp;");
         strona.println("</td></tr>");
+        }
     }
     
     /**

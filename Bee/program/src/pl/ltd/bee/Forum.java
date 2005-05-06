@@ -54,12 +54,21 @@ public class Forum {
     /**
      * Metoda powoduje wypisanie forum na przekazany strumien
      * @param strona strumien wyjsciowy
+     * @param pytanie Zaptanie otrzymane przez serwer
+     * @param auth Obiekt autoryzacji
      */
-    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printJSP(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
         //teraz wypisanie kategorii
         ArrayList kategorie = db.getKategorie(true);
         for(int i=0;i<kategorie.size();i++) {
-            ((Kategoria)kategorie.get(i)).printJSP(strona);
+            Kategoria k = (Kategoria)kategorie.get(i);
+            if (k.czyAktywna())
+                if(!k.czyPrywatna()) k.printJSP(strona,pytanie,auth);
+                else {
+                    User user = auth.getUser(pytanie,this.db);
+                    if (user != null)
+                        if (user.hasReadKategoriaRight(k.getID())) k.printJSP(strona,pytanie,auth);
+                }
         }
     }
     

@@ -82,6 +82,16 @@ public class Commons {
     }
     
     
+    /** 
+     * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako nie trwaly
+     * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
+     */
+    public static void setCachingNever(javax.servlet.http.HttpServletResponse response){
+        response.setHeader("Expires",(new java.util.Date()).toString());
+        response.setHeader("Cache-Control","max-age = 0, must-revalidate");//TODO SPRAWDZIC CZY TAK !!!!!!!!!!!!
+    }
+    
+    
     /* Metoda przygotowuje wpisana wypowiedz uzytkownika do wprowadzenia do bazy
      * @param text String ktory zostanie zmodyfikowany
      * @return Zmodyfikowany String
@@ -193,4 +203,6 @@ public class Commons {
     public static String makeEmotikonLink(String url,String alt, String extraAttr){
        return "<img src=\""+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" "+extraAttr+" />";
     }
+    
+
 }

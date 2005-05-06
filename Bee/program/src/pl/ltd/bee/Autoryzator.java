@@ -86,7 +86,7 @@ public class Autoryzator {
     /** Metoda zwraca zalogowanego uzytkownika
      *  @param pytanie Zapytanie otrzymane przez serwer
      *  @param db obiekt klasy Database do wyciagania uzytkownika
-     *  @return User reprezentujacy zalogowanego użytkownika
+     *  @return User reprezentujacy zalogowanego użytkownika lub NULL jesli zaden nie jest zalogowany
      */
     public User getUser(javax.servlet.http.HttpServletRequest pytanie,DataBase db) {
         javax.servlet.http.Cookie[] ciastka = pytanie.getCookies();
