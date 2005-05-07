@@ -733,6 +733,24 @@ public class DataBase {
         return wynik;
     }
     
+     /**
+     * Metoda zwaraca liste aktywnych userów danej grupy
+     * @param czy_aktywny true lub false 
+     * @param id_g id grupy
+     * @return ArrayList obiektow User
+     */
+    public ArrayList getGroupUsersAktywni(boolean czy_aktywny, int id_g) {
+        ArrayList wynik = new ArrayList();
+        String aktywny;
+        if(czy_aktywny) aktywny=TAK; else aktywny=NIE;
+        ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +", "+BEE_USERS_GROUPS+" WHERE "+USER_ID+"="+USERS_GROUPS_ID_USER+" and "+USERS_GROUPS_ID_GROUP+"= "+id_g+" and "+USER_AKTYWNY+"= '"+aktywny+"' ");
+        for(int i=0; i<users.size(); i++) {
+            Hashtable user = (Hashtable)users.get(i);
+            wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
+        }
+        return wynik;
+    }
+    
     
     /**
      * Metoda ustawia pola uprawnien Usera
@@ -787,6 +805,25 @@ public class DataBase {
         return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )");
     }
     
+      /**
+     * Metoda umieszcza usera w podanej grupie,
+     * @param id_u id usera
+     * @param id_g id grupy
+     * @return zwraca true jezeli insert sie powiodl
+     */
+    public boolean insertUserGroup(int id_u, int id_g) {
+        return baza.dmlQuery("INSERT INTO "+BEE_USERS_GROUPS+" VALUES ("+id_u+", "+id_g+" )"); 
+      }
+    
+    /**
+     * Metoda usuwa usera z podanej grupy,
+     * @param id_u id usera
+     * @param id_g id grupy
+     * @return zwraca true jezeli dlete sie powiodl
+     */
+    public boolean deleteUserGroup(int id_u, int id_g) {
+        return baza.dmlQuery("DELETE FROM "+BEE_USERS_GROUPS+" WHERE "+USERS_GROUPS_ID_USER+"="+id_u+" and "+USERS_GROUPS_ID_GROUP+"="+id_g); 
+      }
     
     /**
      * Metoda umieszcza podforum w bazie danych,

@@ -485,9 +485,13 @@ public class Messages {
     public static String addingEmotikons(){
         return "dodawanie emotikonek";}
     
-      /** Metoda dostarcza fraze "dodawanie grup" */
+  /** Metoda dostarcza fraze "dodawanie grup" */
     public static String addingGroups(){
         return "dodawanie grup";}
+    
+   /** Metoda dostarcza fraze "użytkownicy grupy" */
+    public static String groupUsers(){
+        return "użytkownicy grupy";}
     
     
     //_______________________________________________________________________________________________
@@ -512,6 +516,13 @@ public class Messages {
      */
     public static String isRemovePod(){
         return "Czy napewno chcesz usunąć podforum?";}
+    
+    /** Metoda dostarcza komunikat z zapytaniem
+     * @return String z komunikatem
+     */
+    public static String isRemoveUserGroup(){
+        return "Czy napewno chcesz usera z grupy? ";}
+  
     
     /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
@@ -936,6 +947,20 @@ public class Messages {
     
     
     /**
+     * Metoda dostarcza komunikat o tym, że dodanie usera do grupy powiodło się.
+     * @return String z komunikatem
+     */
+    public static String addUserGroup(){
+        return "User został dodany do grupy.";}
+    
+        /**
+     * Metoda dostarcza komunikat o tym, że usunięcie usera z ggrupy powiodło się.
+     * @return String z komunikatem
+     */
+    public static String removeUserGroup(){
+        return "User został dodany usunięty z grupy.";}
+    
+    /**
      * Metoda dostarcza komunikat o tym, usunięcie kategorii nie powiodło się
      * @return String z komunikatem
      */
@@ -948,6 +973,20 @@ public class Messages {
      */
     public static String errorRemoveGroup(){
         return "Usunięcie grupy nie powiodło się.";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, usunięcie usera nie powiodło się
+     * @return String z komunikatem
+     */
+    public static String errorRemoveUserGroup(){
+        return "Usunięcie usera nie powiodło się.";}
+    
+    /**
+     * Metoda dostarcza komunikat o tym, dodanie usera nie powiodło się
+     * @return String z komunikatem
+     */
+    public static String errorAddUserGroup(){
+        return "Dodanie usera nie powiodło się.";}
     
     /**
      * Metoda dostarcza komunikat o tym, że aktywacja kategorii nie powiodła się

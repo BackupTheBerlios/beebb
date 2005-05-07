@@ -15,6 +15,8 @@ public class Group {
     private int ID;
     private String nazwa;
     
+    public Group() {}
+    
     /** Creates a new instance of Group */
     public Group(int ID, String nazwa ) {
         this.ID=ID;
