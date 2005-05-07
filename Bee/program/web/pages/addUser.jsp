@@ -33,11 +33,23 @@
             if (gg==null) gg="";
             String jabber = request.getParameter("jabber");
             if (jabber==null) jabber="";
-            
-            
+            String tlen = request.getParameter("tlen");
+            if (tlen==null) tlen="";
+            String wpKontakt = request.getParameter("wpKontakt");
+            if (wpKontakt==null) wpKontakt="";
+            String icq = request.getParameter("icq");
+            if (icq==null) icq="";
+            String msn = request.getParameter("msn");
+            if (msn==null) msn="";
+            String miasto = request.getParameter("miasto");
+            if (miasto==null) miasto="";
+            String plec = request.getParameter("plec");
+            if (plec==null) plec="";
+            String rokUrodzenia = request.getParameter("rokUrodzenia");
+            if (rokUrodzenia==null) rokUrodzenia="";
             
             if (ok) {
-                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE,db_con);
+                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,tlen,DataBase.NIE,wpKontakt,DataBase.NIE,icq,DataBase.NIE,msn,DataBase.NIE,miasto,DataBase.NIE,plec,rokUrodzenia,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE,db_con);
                 if(!db_con.insertUser(u))
                 out.println(Messages.makeError(Messages.errorUserCreate()));
                 else {

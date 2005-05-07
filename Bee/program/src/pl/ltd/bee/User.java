@@ -19,12 +19,25 @@ public class User {
     private String email;
     private String gg;
     private String jabber;
+    private String tlen;
+    private String wpKontakt;
+    private String icq;
+    private String msn;
+    private String miasto;
+    private String plec;
+    private String rokUrodzenia;
     private String lastlog;
     private String currentlog;
     private boolean imieNazwiskoPrywatne;
     private boolean emailPrywatny;
     private boolean ggPrywatne;
     private boolean jabberPrywatny;
+    private boolean tlenPrywatny;
+    private boolean wpKontaktPrywatny;
+    private boolean icqPrywatne;
+    private boolean msnPrywatny;
+    private boolean miastoPrywatne;
+    private boolean rokUrodzeniaPrywatny;
     private boolean aktywny;
     private boolean admin;
     private boolean moderator;
@@ -44,12 +57,25 @@ public class User {
      * @param ggPrywatne czy uznawac numer gg za prywatny
      * @param jabber adres jabbera
      * @param jabberPrywatny czy uznawac jid za prywatny
+     * @param tlen id w komunikatorze tlen
+     * @param tlenPrywatny czy uznawac id komunikatora tlen za prywatne
+     * @param wpKontakt id komunikatora wpKontakt
+     * @param wpPrywatny czy uznawac id komunikatora wpKontakt za prywatny
+     * @param icq id komnikatora icq
+     * @param icqPrywatne czy uznawac id komnikatora icq za prywatne
+     * @param msn id komnikatora msn
+     * @param msnPrywatne czy uznawac id komnikatora msn za prywatne
+     * @param miasto miasto w ktorym mieszka uzytkownik (bądź z którego pochodzi)
+     * @param miastoPrywatne czy uznawac miasto za prywatne
+     * @param plec plec uzytkownika ('K' lub 'M')
+     * @param rokUrodzenia rok urodzenia uzytkownika
+     * @param rokUrodzeniaPrywatny czy uznawac rok urodzenia jako prywatny
      * @param lastlog ostatnie logowanie
      * @param currentlog data bierzacego logowania
      * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
      * @param db objekt bazy danych
      */
-    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator,DataBase _db) {
+    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String tlen, String tlenPrywatny,String wpKontakt, String wpKontaktPrywatny,String icq, String icqPrywatne,String msn, String msnPrywatny,String miasto, String miastoPrywatne,String plec, String rokUrodzenia,String rokUrodzeniaPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator,DataBase _db) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
@@ -58,6 +84,13 @@ public class User {
         this.email=email;
         this.gg=gg;
         this.jabber=jabber;
+        this.tlen=tlen;
+        this.wpKontakt=wpKontakt;
+        this.icq=icq;
+        this.msn=msn;
+        this.miasto=miasto;
+        this.plec=plec;
+        this.rokUrodzenia=rokUrodzenia;
         this.lastlog=lastlog;
         this.currentlog=currentlog;
         if (imieNazwiskoPrywatne.compareTo(DataBase.TAK)==0)
@@ -68,6 +101,18 @@ public class User {
             this.ggPrywatne=true; else this.ggPrywatne=false;
         if (jabberPrywatny.compareTo(DataBase.TAK)==0)
             this.jabberPrywatny=true; else this.jabberPrywatny=false;
+        if (tlenPrywatny.compareTo(DataBase.TAK)==0)
+            this.tlenPrywatny=true; else this.tlenPrywatny=false;
+        if (wpKontaktPrywatny.compareTo(DataBase.TAK)==0)
+            this.wpKontaktPrywatny=true; else this.wpKontaktPrywatny=false;
+        if (icqPrywatne.compareTo(DataBase.TAK)==0)
+            this.icqPrywatne=true; else this.icqPrywatne=false;
+        if (msnPrywatny.compareTo(DataBase.TAK)==0)
+            this.msnPrywatny=true; else this.msnPrywatny=false;
+        if (miastoPrywatne.compareTo(DataBase.TAK)==0)
+            this.miastoPrywatne=true; else this.miastoPrywatne=false;
+        if (rokUrodzeniaPrywatny.compareTo(DataBase.TAK)==0)
+            this.rokUrodzeniaPrywatny=true; else this.rokUrodzeniaPrywatny=false;
         if (aktywny.compareTo(DataBase.TAK)==0)
             this.aktywny=true; else this.aktywny=false;
         if (admin.compareTo(DataBase.TAK)==0)

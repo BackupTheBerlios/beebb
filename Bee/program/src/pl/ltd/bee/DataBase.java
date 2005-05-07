@@ -44,7 +44,8 @@ public class DataBase {
     
     public static final String TAK = "T";
     public static final String NIE = "N";
-    
+    public static final String KOBIETA = "K";
+    public static final String MEZCZYZNA = "M";
     /**
      * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
      */
@@ -163,6 +164,20 @@ public class DataBase {
     static final String USER_GG_PRYWATNE = "GGPRYWATNE";
     static final String USER_JABBER = "JABBER";
     static final String USER_JABBER_PRYWATNY = "JABBERPRYWATNY";
+    static final String USER_TLEN = "TLEN";
+    static final String USER_TLEN_PRYWATNY = "TLENPRYWATNY";
+    static final String USER_WPKONTAKT = "WPKONTAKT";
+    static final String USER_WPKONTAKT_PRYWATNY = "WPKONTAKTPRYWATNY";
+    static final String USER_ICQ = "ICQ";
+    static final String USER_ICQ_PRYWATNE = "ICQPRYWATNE";
+    static final String USER_MSN = "MSN";
+    static final String USER_MSN_PRYWATNY = "MSNPRYWATNY";
+    static final String USER_MIASTO = "MIASTO";
+    static final String USER_MIASTO_PRYWATNE = "MIASTOPRYWATNE";
+    static final String USER_PLEC = "PLEC";
+    static final String USER_ROKURODZENIA = "ROKURODZENIA";
+    static final String USER_ROKURODZENIA_PRYWATNY = "ROKURODZENIAPRYWATNY";
+    
     static final String USER_LASTLOG = "OSTATNIELOGOWANIE";
     static final String USER_CURRENTLOG = "BIERZACELOGOWANIE";
     static final String USER_AKTYWNY = "AKTYWNY";
@@ -462,7 +477,7 @@ public class DataBase {
         return wynik;
     }
     
-
+    
     /**
      * Metoda zwaraca liste obiektow Watek bedacych Watkami w podanym Podforum oraz majace pole aktywny na podane w parametrze
      * @param ID Podforum w ramach ktorego interesuja nas watki
@@ -480,8 +495,8 @@ public class DataBase {
         }
         return wynik;
     }
-
-
+    
+    
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku
      * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
@@ -515,17 +530,38 @@ public class DataBase {
         }
         return wynik;
     }
-
     
     /**
-     * Metoda zwaraca objekt User o podanym identyfikatorze
+     * Metoda zwaraca obiekt User stworzony z danych znajdujących się w hashtablicy podanej jako parametr
+     * @param user tablica (hashtable) z danymi usera wyciągniętymi z bazy
+     * @return Zwraca obiekt User
+     */
+    
+    public User ht2user(Hashtable user) {
+        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
+                (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
+                (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
+                (String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),
+                (String)user.get(USER_TLEN),(String)user.get(USER_TLEN_PRYWATNY),(String)user.get(USER_WPKONTAKT),
+                (String)user.get(USER_WPKONTAKT_PRYWATNY),(String)user.get(USER_ICQ),(String)user.get(USER_ICQ_PRYWATNE),
+                (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_MIASTO),
+                (String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),(String)user.get(USER_ROKURODZENIA),
+                (String)user.get(USER_ROKURODZENIA_PRYWATNY),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),
+                (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
+                (String)user.get(USER_MODERATOR),this);
+    }
+
+    
+    
+    /**
+     * Metoda zwaraca obiekt User o podanym identyfikatorze
      * @param ID Identyfikator szukanego uzytkownika
      * @return Zwraca obiekt User badz null w razie bledu.
      */
     public User getUser(int ID){
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         if (user == null) return null;
-        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this);
+        return ht2user(user);
     }
     
     
@@ -537,8 +573,7 @@ public class DataBase {
     public User getUser(String login) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "'");
         if (user == null) return null;
-        return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this);
-        //return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_EMAIL),(String)user.get(USER_GG),(String)user.get(USER_JABBER),(String)user.get(USER_LASTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR));
+        return ht2user(user);
     }
     
     
@@ -632,12 +667,22 @@ public class DataBase {
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS);
         for(int i=0; i<users.size(); i++) {
             Hashtable user = (Hashtable)users.get(i);
-            wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
+            wynik.add(new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
+                (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
+                (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
+                (String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),
+                (String)user.get(USER_TLEN),(String)user.get(USER_TLEN_PRYWATNY),(String)user.get(USER_WPKONTAKT),
+                (String)user.get(USER_WPKONTAKT_PRYWATNY),(String)user.get(USER_ICQ),(String)user.get(USER_ICQ_PRYWATNE),
+                (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_MIASTO),
+                (String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),(String)user.get(USER_ROKURODZENIA),
+                (String)user.get(USER_ROKURODZENIA_PRYWATNY),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),
+                (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
+                (String)user.get(USER_MODERATOR),this));
         }
         return wynik;
     }
     
-      /**
+    /**
      * Metoda zwaraca liste wszystkich obiektow tabeli Groups z bazy
      * @return ArrayList obiektow Group
      */
@@ -651,19 +696,19 @@ public class DataBase {
         return wynik;
     }
     
-     /**
+    /**
      * Metoda usuwa grupe
      * @param id id grupy
      * @return T lub N w zależności czy udalo sie usunac
      */
     public boolean usunGrupe(int id){
-       baza.dmlQuery("DELETE FROM " + BEE_USERS_GROUPS + " WHERE " + USERS_GROUPS_ID_GROUP + " = " + id );
-       return  baza.dmlQuery("DELETE FROM "+BEE_GROUPS+" WHERE " + GROUP_ID + " = " + id );
+        baza.dmlQuery("DELETE FROM " + BEE_USERS_GROUPS + " WHERE " + USERS_GROUPS_ID_GROUP + " = " + id );
+        return  baza.dmlQuery("DELETE FROM "+BEE_GROUPS+" WHERE " + GROUP_ID + " = " + id );
     }
     
-       /**
+    /**
      * Metoda zwaraca liste aktywnych Userów
-     * @param czy_aktywny true lub false 
+     * @param czy_aktywny true lub false
      * @return ArrayList obiektow User
      */
     public ArrayList getUsersAktywni(boolean czy_aktywny) {
@@ -673,14 +718,24 @@ public class DataBase {
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +" WHERE "+USER_AKTYWNY+"= '"+aktywny+"' ");
         for(int i=0; i<users.size(); i++) {
             Hashtable user = (Hashtable)users.get(i);
-            wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
+            wynik.add(new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
+                (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
+                (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
+                (String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),
+                (String)user.get(USER_TLEN),(String)user.get(USER_TLEN_PRYWATNY),(String)user.get(USER_WPKONTAKT),
+                (String)user.get(USER_WPKONTAKT_PRYWATNY),(String)user.get(USER_ICQ),(String)user.get(USER_ICQ_PRYWATNE),
+                (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_MIASTO),
+                (String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),(String)user.get(USER_ROKURODZENIA),
+                (String)user.get(USER_ROKURODZENIA_PRYWATNY),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),
+                (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
+                (String)user.get(USER_MODERATOR),this));
         }
         return wynik;
     }
     
     
     /**
-     * Metoda ustawia pola uprawnien Usera 
+     * Metoda ustawia pola uprawnien Usera
      * @param id int id uzytkownika w bazie danych
      * @param admin boolean T lub F
      * @param aktywny boolena T lub F
@@ -693,7 +748,7 @@ public class DataBase {
     }
     
     /**
-     * Metoda ustawia pole moderator Usera 
+     * Metoda ustawia pole moderator Usera
      * @param id int id uzytkownika w bazie danych
      * @param czy_moderator  boolean T lub F
      */
@@ -729,8 +784,8 @@ public class DataBase {
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertGrupa(Group g) {
-        return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )"); 
-      }
+        return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )");
+    }
     
     
     /**
@@ -741,10 +796,10 @@ public class DataBase {
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ( "+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"' ," + p.getDataOstWypowiedzi() + " ,'" + p.getAutorOstWypowiedzi() + "', NULL , '" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
-          Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
-          if (pf==null) return false;
-       
-          return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get(PODFORUM_ID)+")");
+            Hashtable pf = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+PODFORUM_TYTUL+" = '"+p.getTytul()+"'");
+            if (pf==null) return false;
+            
+            return baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE_PODFORA + " VALUES ("+id_kat+", "+pf.get(PODFORUM_ID)+")");
         }
         return false;
     }
@@ -784,14 +839,14 @@ public class DataBase {
         return null;
     }
     
-     /**
+    /**
      * Metoda umieszcza wiersz w tabeli moderatorzy
      * @param id_kat id kategorii
      * @param id_pod id podforum
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertModerator(int id_pod, int id_user) {
-      return baza.dmlQuery("INSERT INTO " + BEE_MODERATORZY + " VALUES (" + id_pod + "," +id_user + ")");
+        return baza.dmlQuery("INSERT INTO " + BEE_MODERATORZY + " VALUES (" + id_pod + "," +id_user + ")");
     }
     
     
@@ -827,7 +882,7 @@ public class DataBase {
         String prywatne;
         if(p.czyPrywatne()) prywatne=TAK; else prywatne=NIE;
         String data_zm = "";
-        if (p.checkDataOstWypowiedzi()) 
+        if (p.checkDataOstWypowiedzi())
             data_zm = PODFORUM_DATA_OST_WYPOWIEDZI + "= " + getDateToInsert() + ",";
         return baza.dmlQuery("UPDATE " + BEE_PODFORA + " set " + PODFORUM_TYTUL + " = '" + p.getTytul() + "'," + PODFORUM_OPIS + " = '" + p.getOpis() + "',"  + data_zm  + PODFORUM_AUTOR_OST_WYPOWIEDZI + " = '" + p.getAutorOstWypowiedzi()  + "'," + PODFORUM_AKTYWNE + "='" + aktywne + "'," + PODFORUM_PRYWATNE + "='" + prywatne + "'," + PODFORUM_LICZBA_WYPOWIEDZI + "='" + p.liczbaAktywnychWypowiedzi() + "'," + PODFORUM_LICZBA_WATKOW + "='" + p.liczbaAktywnychWatkow() + "' where " + WATEK_ID + "="  + new String().valueOf(p.getID()) );
     }
@@ -857,7 +912,7 @@ public class DataBase {
         return  Integer.decode((String) kategoria.get(KATEGORIA_ID)).intValue();
     }
     
-        
+    
     /**
      * Metoda zwraca id grupy, jezeli jej nie ma to -1
      * @param tytul tytul grupy
@@ -868,7 +923,7 @@ public class DataBase {
         if (grupa==null) return -1;
         return  Integer.decode((String) grupa.get(GROUP_ID)).intValue();
     }
-       
+    
     /**
      * Metoda wstawia klucz do zapomnianego hasła
      * @param email adres mailowy uzytkownika
@@ -1023,7 +1078,7 @@ public class DataBase {
      **/
     public boolean zmienAktywnoscWatku(int id, boolean czy_aktywny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_AKTYWNY+"='"+ (czy_aktywny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
-    }   
+    }
     
     /**
      * Metoda zmienia pole aktywna na podane w parametrze
@@ -1033,8 +1088,8 @@ public class DataBase {
      **/
     public boolean zmienAktywnoscWypowiedzi(int id, boolean czy_aktywna){
         if (baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_AKTYWNA+"='"+ (czy_aktywna?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id))
-            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_WATKU+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")")) 
-                        return true;
+            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_WATKU+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")"))
+                return true;
             else return false;
         else return false;
     }
@@ -1237,10 +1292,10 @@ public class DataBase {
         if (id_from == id_to) return true;
         if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+watek.getID()+")"))
             if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+watek.getID()+")"))
-            //teraz trzeba przeniesc liczby
+                //teraz trzeba przeniesc liczby
                 if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"-1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"-"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_from))
-                    if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"+1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"+"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_to)) 
-                                    return true;
+                    if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"+1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"+"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_to))
+                        return true;
                     else return false;
                 else return false;
             else return false;
@@ -1270,12 +1325,12 @@ public class DataBase {
      * @param id_user int id usera
      */
     public boolean usunPrawaModeratora(int id_pod, int id_user){
-      
-      return baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE "+MODERATORZY_ID_USER+"="+id_user+" and "+MODERATORZY_ID_PODFORUM+"="+id_pod);
+        
+        return baza.dmlQuery("DELETE FROM "+BEE_MODERATORZY+ " WHERE "+MODERATORZY_ID_USER+"="+id_user+" and "+MODERATORZY_ID_PODFORUM+"="+id_pod);
     }
     
     
-    /** 
+    /**
      * Metoda wyszukuje w tytulach Watkow podanej frazy i zwraca je
      * @param fraza String z szukana fraza
      * @param limit Liczba ograniczająca liczność wyniku
@@ -1286,15 +1341,14 @@ public class DataBase {
         ArrayList watki = baza.query("SELECT * FROM "+BEE_WATKI+" WHERE "+WATEK_TEMAT+" LIKE '%"+fraza+"%' LIMIT "+from+","+limit);
         ArrayList wynik = new ArrayList();
         if (watki == null) return wynik;
-        for(int i=0; i < watki.size(); i++)
-        {
+        for(int i=0; i < watki.size(); i++) {
             Hashtable watek = (Hashtable)watki.get(i);
             wynik.add(new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this));
         }
-        return wynik;        
+        return wynik;
     }
     
-    /** 
+    /**
      * Metoda wyszukuje w tekstach Wypowiedzi podanej frazy i zwraca ich identyfikatory
      * @param fraza String z szukana fraza
      * @param limit Liczba ograniczająca liczność wyniku
@@ -1308,7 +1362,7 @@ public class DataBase {
         for(int i=0;i<wypowiedzi.size();i++){
             Hashtable id = (Hashtable)wypowiedzi.get(i);
             try{
-            wynik.add(new Integer((String)id.get(WYPOWIEDZ_ID)));
+                wynik.add(new Integer((String)id.get(WYPOWIEDZ_ID)));
             }catch(NumberFormatException e) {}
         }
         return wynik;
@@ -1348,6 +1402,6 @@ public class DataBase {
         return (odczyt?(s_odczyt.compareTo(TAK) == 0):true) && (zapis?(s_zapis.compareTo(TAK) == 0):true);
     }
     
-
+    
 }
 
