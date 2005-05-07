@@ -746,8 +746,17 @@ public class DataBase {
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +", "+BEE_USERS_GROUPS+" WHERE "+USER_ID+"="+USERS_GROUPS_ID_USER+" and "+USERS_GROUPS_ID_GROUP+"= "+id_g+" and "+USER_AKTYWNY+"= '"+aktywny+"' ");
         for(int i=0; i<users.size(); i++) {
             Hashtable user = (Hashtable)users.get(i);
-            wynik.add(new User(Integer.parseInt((String) user.get(USER_ID)), (String)user.get(USER_LOGIN),(String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),(String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),(String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),(String)user.get(USER_MODERATOR),this));
-        }
+               wynik.add(new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
+                (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
+                (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
+                (String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),
+                (String)user.get(USER_TLEN),(String)user.get(USER_TLEN_PRYWATNY),(String)user.get(USER_WPKONTAKT),
+                (String)user.get(USER_WPKONTAKT_PRYWATNY),(String)user.get(USER_ICQ),(String)user.get(USER_ICQ_PRYWATNE),
+                (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_MIASTO),
+                (String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),(String)user.get(USER_ROKURODZENIA),
+                (String)user.get(USER_ROKURODZENIA_PRYWATNY),(String)user.get(USER_JABBER_PRYWATNY),(String)user.get(USER_LASTLOG),
+                (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
+                (String)user.get(USER_MODERATOR),this)); }
         return wynik;
     }
     
