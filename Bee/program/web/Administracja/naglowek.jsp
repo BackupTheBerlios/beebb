@@ -50,7 +50,7 @@
 		   <td class="tdTopLink"><a class="aTopLink" href="./konfiguracja.jsp" target="tresc">
 		       [] <%out.print(Messages.wielka(Messages.configuration()));%> </a>
 		   </td>
-		     <td class="tdTopLink"><a class="aTopLink" href="./grupy.jsp" target="tresc">
+		     <td class="tdTopLink"><a class="aTopLink" href="./grupy/grupy.jsp" target="tresc">
 		       [] <%out.print(Messages.wielka(Messages.groups()));%> </a>
 		   </td>
 		  </tr>
