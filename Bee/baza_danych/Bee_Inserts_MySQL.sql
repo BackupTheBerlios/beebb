@@ -30,8 +30,8 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `Bee_Users` DISABLE KEYS */;
 LOCK TABLES `Bee_Users` WRITE;
-INSERT INTO `Bee_Users`(`ID`,`Login`,`Haslo`,`Imie`,`Nazwisko`,`ImieNazwiskoPrywatne`,`Email`,`EmailPrywatny`,`GG`,`GGPrywatne`,`Jabber`,`JabberPrywatny`,`OstatnieLogowanie`,`BierzaceLogowanie`,`Aktywny`,`Admin`,`Moderator`) VALUES
-(1,'Guest','','Gosc','','N','','N','','N','','N',Now(),Now(),'T','N','N');
+INSERT INTO `Bee_Users`(`ID`,`Login`,`Haslo`,`Imie`,`Nazwisko`,`ImieNazwiskoPrywatne`,`Email`,`EmailPrywatny`,`GG`,`GGPrywatne`,`Jabber`,`JabberPrywatny`,`Tlen`,`TlenPrywatny`,`WPKontakt`,`WPKontaktPrywatny`,`ICQ`,`ICQPrywatne`,`Msn`,`MsnPrywatny`,`Miasto`,`MiastoPrywatne`,`Plec`,`RokUrodzenia`,`RokUrodzeniaPrywatny`,`OstatnieLogowanie`,`BierzaceLogowanie`,`Aktywny`,`Admin`,`Moderator`) VALUES
+(1,'Guest','','Gosc','','N','','N','','N','','N','','N','','N','','N','','N','','N','M','1970','N',Now(),Now(),'T','N','N');
 /*(2,'puszka','588ae983298ee2a03b6a37532c9f86ef','Olek','Puszka','puszkin@warka.pl','34567','denko@tyskie.pl',Now(),'T','T','N');
 (3,'pawelb','Hqgi7gS8D6tBE','','','pawelb@pld-linux.org','','','1970-01-01 00:00:00','T','N','N'),
 (4,'wilk','yIFz/FsHJVxBA','','','wilk@pl','',':p','1970-01-01 00:00:00','T','N','N');*/
