@@ -19,8 +19,8 @@
 <td>
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
 		<tr>
-			<td class="tdForumHeader" bgcolor="white" align="center">
-			<span class="forumTitle"  onClick="linkClick('./main.jsp')">
+			<td class="tdForumHeader" bgcolor="white" align="center"  onClick="linkClick('./main.jsp')">
+			<span class="forumTitle">
                                 <% 
                                     Forum f = db_con.getForum();
                                     if (f != null){
