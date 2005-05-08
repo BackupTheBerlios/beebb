@@ -325,9 +325,22 @@ public class Messages {
     public static String change(){
         return "zmień";}
     
+     /** Metoda dostarcza fraze "czytanie" */
+    public static String read(){
+        return "czytanie";}
+    
+    /** Metoda dostarcza fraze "pisaie" */
+    public static String write(){
+        return "pisanie";}
+    
+    
     /** Metoda dostarcza fraze "edycja kategorii" */
     public static String editionKat(){
         return "edycja kategorii";}
+    
+    /** Metoda dostarcza fraze "dodawanie podforów" */
+    public static String addingPod(){
+        return "dodawanie podforów";}
     
     /** Metoda dostarcza fraze "edycja podforum" */
     public static String editionPod(){

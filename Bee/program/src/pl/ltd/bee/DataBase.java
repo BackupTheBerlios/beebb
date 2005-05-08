@@ -1122,6 +1122,25 @@ public class DataBase {
         return wynik;
     }
     
+    /**
+     * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
+     * @param aktywne boolean T lub F
+     * @return ArrayList obiektow Kategoria
+     */
+    public ArrayList getKategoriePrywatne(boolean czy_aktywna, boolean czy_prywatna) {
+        ArrayList wynik = new ArrayList();
+        String aktywna,prywatna;
+        if(czy_aktywna) aktywna=TAK; else aktywna=NIE;
+        if(czy_prywatna) prywatna=TAK; else prywatna=NIE;
+        ArrayList kategorie = baza.query("SELECT * FROM "+ BEE_KATEGORIE+" WHERE "+KATEGORIA_AKTYWNA+"='"+aktywna+"' and "+KATEGORIA_PRYWATNA+"='"+prywatna+"' ");
+        if (kategorie == null) return wynik;
+        for(int i=0;i<kategorie.size();i++) {
+            Hashtable kategoria = (Hashtable)kategorie.get(i);
+            wynik.add(new Kategoria((String) kategoria.get(KATEGORIA_ID), (String) kategoria.get(KATEGORIA_TYTUL), (String) kategoria.get(KATEGORIA_OPIS), (String) kategoria.get(KATEGORIA_AKTYWNA), (String) kategoria.get(KATEGORIA_PRYWATNA),this ));
+        }
+        return wynik;
+    }
+    
     
     /**
      * Metoda zwaraca liste wszystkich obiektow Kategoria.
@@ -1497,5 +1516,132 @@ public class DataBase {
     }
     
     
+    /**
+     * Metoda zwaraca objekt Privilage o podanym identyfikatorze grupy i kategorii
+     * @param id_g Identyfikator grupy
+     * @param id_k Identyfikator kategorii
+     * @return Zwraca obiekt Privilage badz null w razie bledu lub gdy go nie ma.
+     */
+    public Privilage getPrivilageKat(int id_g, int id_k){
+        Hashtable p = getObject("SELECT * FROM " + BEE_PRIVILAGES + " WHERE " + PRIVILAGES_ID_GROUP +"=" + id_g+ " and " + PRIVILAGES_ID_KATEGORIA +"=" + id_k);
+        if (p == null) return null;
+        String s_odczyt = (String)p.get(PRIVILAGES_ID_CZYTANIE);
+        String s_zapis = (String)p.get(PRIVILAGES_ID_PISANIE);
+        return new Privilage( Integer.parseInt((String)p.get(PRIVILAGES_ID_GROUP)), Integer.parseInt((String)p.get(PRIVILAGES_ID_KATEGORIA)), -1, (s_odczyt.compareTo(TAK) == 0), (s_zapis.compareTo(TAK) == 0));
+    }
+    
+     /*
+     * Metoda zwaraca objekt Privilage o podanym identyfikatorze grupy i podforum
+     * @param id_g Identyfikator grupy
+     * @param id_p Identyfikator podforum
+     * @return Zwraca obiekt Privilage badz null w razie bledu lub gdy go nie ma.
+     */
+    public Privilage getPrivilagePod(int id_g, int id_p){
+        Hashtable p = getObject("SELECT * FROM " + BEE_PRIVILAGES + " WHERE " + PRIVILAGES_ID_GROUP +"=" + id_g+ " and " + PRIVILAGES_ID_PODFORUM +"=" + id_p);
+        if (p == null) return null;
+        String s_odczyt = (String)p.get(PRIVILAGES_ID_CZYTANIE);
+        String s_zapis = (String)p.get(PRIVILAGES_ID_PISANIE);
+        return new Privilage( Integer.parseInt((String)p.get(PRIVILAGES_ID_GROUP)), Integer.parseInt((String)p.get(PRIVILAGES_ID_KATEGORIA)), -1, (s_odczyt.compareTo(TAK) == 0), (s_zapis.compareTo(TAK) == 0));
+    }
+    
+    
+      /**
+     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii będących w danej grupie, aktywne badż nie w
+     * @param id_k Identyfikator kategorii
+     * @param id_g identyfikator grupy 
+     * @param czy_prywatne boolena T lub F
+     * @param czy_aktywne boolena T lub F
+     * @return ArrayList obiektow Podforum
+     */
+    public ArrayList  getPodforaPrywatneGrupy(int id_g ,int id_k, boolean czy_prywatne, boolean czy_aktywne) {
+        ArrayList wynik = new ArrayList();
+        String aktywne, prywatne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
+        if(czy_prywatne) prywatne=TAK; else prywatne=NIE;
+        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" a ,"+BEE_PODFORA+" b ,"+BEE_PRIVILAGES+" c WHERE b."+PODFORUM_ID+" = a."+KATEGORIE_PODFORA_ID_PODFORUM+" and b."+PODFORUM_ID+" = c."+PRIVILAGES_ID_PODFORUM+" and a."+KATEGORIE_PODFORA_ID_KATEGORII+" = " + id_k + " and b."+PODFORUM_AKTYWNE+" = '"+aktywne+"' and b."+PODFORUM_PRYWATNE+"= '"+prywatne+"' and c."+PRIVILAGES_ID_GROUP+"="+id_g);
+        for(int i=0;i<podfora.size();i++) {
+            Hashtable podforum = (Hashtable)podfora.get(i);
+            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
+        }
+        return wynik;
+    }
+    
+     
+      /**
+     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne i prywatnych badż nie w
+     * @param id_k Identyfikator kategorii
+     * @param czy_prywatne boolena T lub F
+     * @param czy_aktywne boolena T lub F
+     * @return ArrayList obiektow Podforum
+     */
+    public ArrayList  getPodforaPrywatne(int id_k, boolean czy_prywatne, boolean czy_aktywne) {
+        ArrayList wynik = new ArrayList();
+        String aktywne, prywatne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
+        if(czy_prywatne) prywatne=TAK; else prywatne=NIE;
+        ArrayList podfora = baza.query("SELECT * FROM "+BEE_KATEGORIE_PODFORA+" ,"+BEE_PODFORA+" WHERE "+PODFORUM_ID+"="+KATEGORIE_PODFORA_ID_PODFORUM+" and "+KATEGORIE_PODFORA_ID_KATEGORII+"=" + id_k + " and "+PODFORUM_AKTYWNE+" = '"+aktywne+"' and "+PODFORUM_PRYWATNE+" = '"+prywatne+"' ");
+        for(int i=0;i<podfora.size();i++) {
+            Hashtable podforum = (Hashtable)podfora.get(i);
+            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
+        }
+        return wynik;
+    }
+    /**
+     * Metoda wstawia wiersz do tabeli privilages
+     * @param p wstawiany login
+     * @return T lub N w zależności czy insert się powiódł
+     */
+    public boolean insertPrivilage(Privilage p){
+        String cz,pp;
+        if (p.czytanie()) cz=TAK; else cz=NIE;
+        if (p.pisanie()) pp=TAK; else pp=NIE;
+        return baza.dmlQuery("INSERT INTO " + BEE_PRIVILAGES + " VALUES ("+p.getIdGroup() +", "+ p.getIdKat() + ", "+p.getIdPod()+", '" + cz + "' , '" + pp + "')"  );
+    }
+     /**
+     * Metoda usuwa uprawnienie do podanego podforum,
+     * @param id_k id podforum
+     * @param id_g id grupy
+     * @return zwraca true jezeli dlete sie powiodl
+     */
+    public boolean deletePrivilagePodGroup(int id_g, int id_p) {
+        return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_PODFORUM+"="+id_p); 
+      }
+    
+    /**
+     * Metoda usuwa uprawnienie do podanej kategorii 
+     * @param id_k id kategorii
+     * @param id_g id grupy
+     * @return zwraca true jezeli dlete sie powiodl
+     */
+    public boolean deletePrivilageKatGroup(int id_g, int id_k) {
+        return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_KATEGORIA+"="+id_k); 
+      }
+    
+    /**
+     * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
+     * @param p updatowany obiekt
+     * @return boolean true jezeli update sie powiodl false wpp.
+     */
+    public boolean updatePrivilageKat(Privilage p ){
+         String cz,pp;
+        if (p.czytanie()) cz=TAK; else cz=NIE;
+        if (p.pisanie()) pp=TAK; else pp=NIE;
+        return  baza.dmlQuery("UPDATE "+BEE_PRIVILAGES+" SET "+PRIVILAGES_ID_PISANIE+"= '"+pp+"' , "+PRIVILAGES_ID_CZYTANIE+"= '"+cz+"' WHERE "+PRIVILAGES_ID_GROUP+"="+p.getIdGroup()+" and "+PRIVILAGES_ID_KATEGORIA+"="+p.getIdKat());
+      
+    }
+    
+     /**
+     * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
+     * @param p updatowany obiekt
+     * @return boolean true jezeli update sie powiodl false wpp.
+     */
+    public boolean updatePrivilagePod(Privilage p ){
+         String cz,pp;
+        if (p.czytanie()) cz=TAK; else cz=NIE;
+        if (p.pisanie()) pp=TAK; else pp=NIE;
+        return  baza.dmlQuery("UPDATE "+BEE_PRIVILAGES+" SET "+PRIVILAGES_ID_PISANIE+"= '"+pp+"' , "+PRIVILAGES_ID_CZYTANIE+"= '"+cz+"' WHERE "+PRIVILAGES_ID_GROUP+"="+p.getIdGroup()+" and "+PRIVILAGES_ID_PODFORUM+"="+p.getIdPod());
+      
+    }
+        
 }
 
