@@ -81,10 +81,11 @@
      <% ArrayList lista=db_con.getGroups(); %>  
         <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
             <caption> <font size="5" style="bold"></font> </caption>
-            <tr>  <th><%out.println(Messages.wielka(Messages.nr())); %></th> 
-                  <th><%out.println(Messages.wielka(Messages.title())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.edition())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.remove())); %></th>
+            <tr>  <th><%= Messages.wielka(Messages.nr()) %></th> 
+                  <th><%= Messages.wielka(Messages.title()) %></th> 
+                 <th><%= Messages.wielka(Messages.groupUsers()) %></th> 
+                 <th><%= Messages.wielka(Messages.remove()) %></th>
+                  <th><%= Messages.wielka(Messages.priviliges()) %></th>
             </tr> 
        <% for(int i=0; i<lista.size(); i++)
             { Group g=(Group) lista.get(i); 
@@ -95,13 +96,21 @@
                  <input name="id_g" type="hidden" value="<%= g.getID() %>"/>
                  <input name="nazwa_g" type="hidden" value="<%= g.getNazwa() %>"/>
                
-                 <input align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>"/>
+                 <input align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.groupUsers()) %>"/>
              </form> 
              </td> 
              <td><form action="./grupy.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveGroup())+"');" %>">
                  <input type="hidden" name="usun_grupe" value="<%= g.getID() %>"/>
-                 <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
+                 <input  align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.remove()) %>"/>
              </form> 
+             </td>
+               <td><form action="./grupy_upr.jsp" method="post">
+                 <input name="id_g" type="hidden" value="<%= g.getID() %>"/>
+                 <input name="nazwa_g" type="hidden" value="<%= g.getNazwa() %>"/>
+               
+                 <input align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.priviliges()) %>"/>
+             </form> 
+             </td> 
            
          </tr>
       
