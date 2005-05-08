@@ -121,6 +121,38 @@ public class Messages {
     public static String jabber(){
         return "jabber";}
     
+    /** Metoda dostarcza slowo "tlen" */
+    public static String tlen(){
+        return "tlen";}
+    
+    /** Metoda dostarcza slowo "wpKontakt" */
+    public static String wpKontakt(){
+        return "wpKontakt";}
+    
+    /** Metoda dostarcza slowo "icq" */
+    public static String icq(){
+        return "icq";}
+    
+    /** Metoda dostarcza slowo "msn" */
+    public static String msn(){
+        return "msn";}
+    
+    /** Metoda dostarcza slowo "miasto" */
+    public static String city(){
+        return "city";}
+    
+    /** Metoda dostarcza slowo "płeć" */
+    public static String sex(){
+        return "płeć";}
+    
+    /** Metoda dostarcza slowo "meżczyzna" */
+    public static String men(){
+        return "meżczyzna";}
+    
+    /** Metoda dostarcza slowo "kobieta" */
+    public static String woman(){
+        return "kobieta";}
+    
     /** Metoda dostarcza fraze "pola wymagane" */
     public static String fieldsObligatory(){
         return "pola wymagane";}
@@ -461,35 +493,35 @@ public class Messages {
     public static String edit(){
         return "edytuj";}
     
-      /** Metoda dostarcza fraze "prywatne" */
+    /** Metoda dostarcza fraze "prywatne" */
     public static String privates(){
         return "prywatne";}
     
-     /** Metoda dostarcza fraze "używaj ssl" */
+    /** Metoda dostarcza fraze "używaj ssl" */
     public static String useSsl(){
         return "używaj ssl";}
     
-      /** Metoda dostarcza fraze "używaj kompresji" */
+    /** Metoda dostarcza fraze "używaj kompresji" */
     public static String useCompresion(){
         return "używaj kompresji";}
     
-      /** Metoda dostarcza fraze "emotikonki" */
+    /** Metoda dostarcza fraze "emotikonki" */
     public static String emotikons(){
         return "emotikonki";}
     
-   /** Metoda dostarcza fraze "grafika" */
+    /** Metoda dostarcza fraze "grafika" */
     public static String graphics(){
         return "grafika";}
     
-   /** Metoda dostarcza fraze "dodawanie emotikone" */
+    /** Metoda dostarcza fraze "dodawanie emotikone" */
     public static String addingEmotikons(){
         return "dodawanie emotikonek";}
     
-  /** Metoda dostarcza fraze "dodawanie grup" */
+    /** Metoda dostarcza fraze "dodawanie grup" */
     public static String addingGroups(){
         return "dodawanie grup";}
     
-   /** Metoda dostarcza fraze "użytkownicy grupy" */
+    /** Metoda dostarcza fraze "użytkownicy grupy" */
     public static String groupUsers(){
         return "użytkownicy grupy";}
     
@@ -522,7 +554,7 @@ public class Messages {
      */
     public static String isRemoveUserGroup(){
         return "Czy napewno chcesz usera z grupy? ";}
-  
+    
     
     /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
@@ -597,6 +629,11 @@ public class Messages {
      */
     public static String passwordTooShort(){
         return "Hasło powinno mieć przynajmniej " + new String().valueOf(Config.MIN_PASSWD) +" znaków";}
+    
+    
+    /** Metoda dostarcza fraze "rok urodzenia" */
+    public static String birthdate(){
+        return "rok urodzenia";}
     
     
     /** Metoda dostarcza komunikat "Ostatnio zalogowany"
@@ -809,7 +846,7 @@ public class Messages {
         return "Dodanie kategorii nie powiodło się.";}
     
     
-     /**
+    /**
      * Metoda dostarcza komunikat o istniejacej juz nazwie grupy
      * @return String z komunikatem
      */
@@ -876,7 +913,7 @@ public class Messages {
     public static String addKat(){
         return "Kategoria została dodana.";}
     
-        /**
+    /**
      * Metoda dostarcza komunikat o tym, ďż˝e dodanie grupy powiodďż˝o sie
      * @return String z komunikatem
      */
@@ -931,7 +968,7 @@ public class Messages {
     public static String removePodforum(){
         return "Podforum zostało usunięte.";}
     
-     /**
+    /**
      * Metoda dostarcza komunikat o tym, że usuniecie grupy powiodło się.
      * @return String z komunikatem
      */
@@ -953,7 +990,7 @@ public class Messages {
     public static String addUserGroup(){
         return "User został dodany do grupy.";}
     
-        /**
+    /**
      * Metoda dostarcza komunikat o tym, że usunięcie usera z ggrupy powiodło się.
      * @return String z komunikatem
      */
@@ -1169,24 +1206,24 @@ public class Messages {
      *  @return String zawierający frazę
      */
     public static String searchingWords(){
-       return "szukana fraza"; 
+        return "szukana fraza";
     }
     
     /** Metoda dostarcza frazę "szukaj w wypowiedziach"
      *  @return String zawierający frazę
      */
     public static String searchInMessages(){
-       return "szukana fraza"; 
+        return "szukana fraza";
     }
     
     //_______________________________________________________________________________________________
     //                              Metody zwracajace komunikaty
     //_______________________________________________________________________________________________
-
+    
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji edytowania wypowiedzi
      * @return String zawierajacy wycinek dokumentu HTML
      */
-   public static String hintEditMessages(){
+    public static String hintEditMessages(){
         return "<img src=&quot;./images/edit.gif&quot; alt=&quot;" + Messages.wielka(Messages.edit())+"&quot;>Operacja pozwala edytować treść wskazanej wypowiedzi. Aby móc edytować wypowiedź należy być zalogowanym użytkownikiem forum oraz albo być właścicielem wypowiedzi albo być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     
@@ -1210,19 +1247,19 @@ public class Messages {
     public static String hintMoveThread(){
         return "<img src=&quot;./images/move.gif&quot; alt=&quot;" + Messages.wielka(Messages.move()) + "&quot;>Operacja powoduje próbę przeniesienia wątku do innego podforum. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek, a także moderatorem podforum docelowego.";
     }
-
+    
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji blokowania wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintBlockThread(){
         return "<img src=&quot;./images/lock.png&quot; alt=&quot;" + Messages.wielka(Messages.block())+"&quot;>Operacja powoduje zablokowanie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
-
+    
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji zamknięcia wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintCloseThread(){
         return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;>Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
-
+    
 }

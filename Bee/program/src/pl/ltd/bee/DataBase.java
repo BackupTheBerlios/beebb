@@ -530,13 +530,13 @@ public class DataBase {
         }
         return wynik;
     }
+
     
     /**
      * Metoda zwaraca obiekt User stworzony z danych znajdujących się w hashtablicy podanej jako parametr
      * @param user tablica (hashtable) z danymi usera wyciągniętymi z bazy
      * @return Zwraca obiekt User
      */
-    
     public User ht2user(Hashtable user) {
         return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
                 (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
@@ -550,7 +550,6 @@ public class DataBase {
                 (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
                 (String)user.get(USER_MODERATOR),this);
     }
-    
     
     
     /**
@@ -666,7 +665,35 @@ public class DataBase {
         if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
         String showJabber;
         if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
-        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() + "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() + "'," + USER_EMAIL_PRYWATNY + "='" + showEmail + "'," + USER_GG + "='" + u.getGG() + "'," + USER_GG_PRYWATNE + "='" + showGG + "'," + USER_JABBER + "='" + u.getJabber() + "',"  + USER_JABBER_PRYWATNY + "='" + showJabber + "'," + USER_AKTYWNY + "='" + aktywny + "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + "'," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
+        String showTlen;
+        if(u.ifShowTlen()) showTlen=NIE; else showTlen=TAK;
+        String showWPKontakt;
+        if(u.ifShowWPKontakt()) showWPKontakt=NIE; else showWPKontakt=TAK;
+        String showICQ;
+        if(u.ifShowICQ()) showICQ=NIE; else showICQ=TAK;
+        String showMSN;
+        if(u.ifShowMSN()) showMSN=NIE; else showMSN=TAK;
+        String showCity;
+        if(u.ifShowCity()) showCity=NIE; else showCity=TAK;
+        String showBirthDate;
+        if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + 
+                " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() + 
+                "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() + 
+                "'," + USER_EMAIL_PRYWATNY + "='" + showEmail + "'," + USER_GG + "='" + u.getGG() + 
+                "'," + USER_GG_PRYWATNE + "='" + showGG + "'," + USER_JABBER + "='" + u.getJabber() + 
+                "'," + USER_JABBER_PRYWATNY + "='" + showJabber + 
+                "'," + USER_TLEN + "='" + u.getTlen() + "'," + USER_TLEN_PRYWATNY + "='" + showTlen +
+                "'," + USER_WPKONTAKT + "='" + u.getWPKontakt() + "'," + USER_WPKONTAKT_PRYWATNY + "='" + showWPKontakt +
+                "'," + USER_ICQ + "='" + u.getICQ() + "'," + USER_ICQ_PRYWATNE + "='" + showICQ +
+                "'," + USER_MSN + "='" + u.getMSN() + "'," + USER_MSN_PRYWATNY + "='" + showMSN +
+                "'," + USER_MIASTO + "='" + u.getCity() + "'," + USER_MIASTO_PRYWATNE + "='" + showCity +
+                "'," + USER_PLEC + "='" + u.getSex() +
+                "'," + USER_ROKURODZENIA + "='" + u.getBirthDate() + "'," + USER_MIASTO_PRYWATNE + "='" + showBirthDate +
+                "'," + USER_AKTYWNY + "='" + aktywny + 
+                "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + 
+                "'," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + 
+                "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
     }
     
     
