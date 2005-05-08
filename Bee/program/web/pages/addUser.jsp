@@ -44,14 +44,17 @@
             String miasto = request.getParameter("miasto");
             if (miasto==null) miasto="";
             String plec = request.getParameter("plec");
-            if (plec==null) plec="";
+            if (plec==null) plec="M";
             String rokUrodzenia = request.getParameter("rokUrodzenia");
-            if (rokUrodzenia==null) rokUrodzenia="";
+            if (rokUrodzenia==null) rokUrodzenia="0";
             
             if (ok) {
-                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,tlen,DataBase.NIE,wpKontakt,DataBase.NIE,icq,DataBase.NIE,msn,DataBase.NIE,miasto,DataBase.NIE,plec,rokUrodzenia,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),DataBase.NIE,DataBase.NIE,DataBase.NIE,db_con);
+                String aktywny = DataBase.NIE;
+                if (!Config.NEW_USER_MAIL_AUTH) { aktywny = DataBase.TAK; } 
+                
+                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,tlen,DataBase.NIE,wpKontakt,DataBase.NIE,icq,DataBase.NIE,msn,DataBase.NIE,miasto,DataBase.NIE,plec,rokUrodzenia,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),aktywny,DataBase.NIE,DataBase.NIE,db_con);
                 if(!db_con.insertUser(u))
-                out.println(Messages.makeError(Messages.errorUserCreate()));
+                    out.println(Messages.makeError("tutaj" + Messages.errorUserCreate()));
                 else {
                     if (Config.NEW_USER_MAIL_AUTH) {
                        Random r = new Random();
@@ -65,10 +68,7 @@
                             SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
-                        if(!db_con.setAktywnyUser(nickname))
-                            out.println(Messages.makeError(Messages.errorUserCreate()));
-                        else
-                            out.println(Messages.user() +": " + nickname + " " + Messages.hasBeenAdded()+"<br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp")+"<br/>"); 
+                        out.println("<center>" + Messages.makeInfo(Messages.wielka(Messages.user()) + " " + nickname + " " + Messages.hasBeenAdded())+"<br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp")+"<br/></center>"); 
                     }
                 }
             } else {

@@ -160,7 +160,7 @@ public class User {
      * @return T lub N w zaleznosci czy user jest moderatorem czy nie
      */
     public boolean moderator(int id_podforum){
-            return this.db.isModerator(this.ID, id_podforum);
+        return this.db.isModerator(this.ID, id_podforum);
     }
     
     
@@ -196,6 +196,48 @@ public class User {
     }
     
     
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id tlenu
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowTlen() {
+        return !tlenPrywatny;
+    }
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id wpKontakt
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowWPKontakt() {
+        return !wpKontaktPrywatny;
+    }
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id icq
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowICQ() {
+        return !icqPrywatne;
+    }
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id msn
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowMSN() {
+        return !msnPrywatny;
+    }
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie miasta zamieszkania
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowCity() {
+        return !miastoPrywatne;
+    }
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie roku urodzenia
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowBirthDate() {
+        return !rokUrodzeniaPrywatny;
+    }
+    
     /** Metoda zwraca ID użytkownika
      * @return Integer reprezentujacy uzytkownika
      */
@@ -203,7 +245,7 @@ public class User {
         return ID;
     }
     
-     
+    
     /** Metoda ustawia id uzytkownika
      * @param id Int z id-em uzytkownika
      **/
@@ -258,7 +300,7 @@ public class User {
     public String getNazwisko(){
         return this.nazwisko;
     }
-      
+    
     
     /** Metoda ustawia Nazwisko uzytkownika
      * @param nazwisko String z Nazwiskiem użytkownika
@@ -321,6 +363,121 @@ public class User {
     public void setJabber(String jabber){
         this.jabber=jabber;
     }
+    
+    
+    /** Metoda zwraca konto tlen uzytkownika
+     * @return String z kontem tlen
+     **/
+    public String getTlen(){
+        return this.tlen;
+    }
+    
+    
+    /** Metoda ustawia tlen id uzytkownika
+     * @param jabber String z id tlen
+     **/
+    public void setTlen(String tlen){
+        this.tlen=tlen;
+    }
+    
+    
+    /** Metoda zwraca konto wpKontakt uzytkownika
+     * @return String z kontem wpKontakt
+     **/
+    public String getWPKontakt(){
+        return this.wpKontakt;
+    }
+    
+    
+    /** Metoda ustawia wpKontakt id uzytkownika
+     * @param jabber String z id wpKontakt
+     **/
+    public void setWPKontakt(String wpKontakt){
+        this.wpKontakt=wpKontakt;
+    }
+    
+    
+    
+    /** Metoda zwraca konto ICQ uzytkownika
+     * @return String z kontem ICQ
+     **/
+    public String getICQ(){
+        return this.icq;
+    }
+    
+    
+    /** Metoda ustawia ICQ id uzytkownika
+     * @param jabber String z id ICQ
+     **/
+    public void setICQ(String icq){
+        this.icq=icq;
+    }
+    
+    
+    /** Metoda zwraca konto MSN uzytkownika
+     * @return String z kontem MSN
+     **/
+    public String getMSN(){
+        return this.msn;
+    }
+    
+    
+    /** Metoda ustawia MSN id uzytkownika
+     * @param jabber String z id MSN
+     **/
+    public void setMSN(String msn){
+        this.msn=msn;
+    }
+    
+    
+    /** Metoda zwraca miasto zamieszkania uzytkownka
+     * @return String z miastem
+     **/
+    public String getCity(){
+        return this.miasto;
+    }
+    
+    
+    /** Metoda ustawia miasto uzytkownika
+     * @param jabber String z miastem uzytkownika
+     **/
+    public void setCity(String miasto){
+        this.miasto=miasto;
+    }
+    
+    
+    /** Metoda zwraca rok urodzenia Uzytkownka
+     * @return String z rokiem
+     **/
+    public String getBirthDate(){
+        return this.rokUrodzenia;
+    }
+    
+    
+    /** Metoda ustawia rok urodzenia uzytkownika
+     * @param jabber String z rokiem urodzenia
+     **/
+    public void setBirthDate(String rokUrodzenia){
+        this.rokUrodzenia=rokUrodzenia;
+    }
+    
+    
+    /** Metoda zwraca płeć użytkownika
+     * @return String z płcią
+     **/
+    public String getSex(){
+        return this.plec;
+    }
+    
+    
+    /** Metoda ustawia płeć uzytkownika {Database.kobieta, Database.mezczyzna}
+     * @param jabber String z płcią
+     **/
+    public void setSex(String plec){
+        this.plec=plec;
+    }
+    
+    
     
     /** Metoda ustawia lastlog
      * @param ll string z datą
@@ -394,7 +551,7 @@ public class User {
         Podforum p = db.getPodforumbyWatek(id);
         return db.hasPodforumRights(this.ID, p.getID(), true, false);
     }
-        
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego watku
      * @param id Identyfikator watku
      * @return True jesli użytkownik ma prawo zapisu do wskazanego wątku lub False w p.p.
@@ -403,7 +560,7 @@ public class User {
         Podforum p = db.getPodforumbyWatek(id);
         return db.hasPodforumRights(this.ID, p.getID(), false, true);
     }
-
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum
      * @param id Identyfikator podforum
      * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
@@ -411,7 +568,7 @@ public class User {
     public boolean hasReadPodforumRight(int id){
         return db.hasPodforumRights(this.ID, id, true, false);
     }
-
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego podforum
      * @param id Identyfikator podforum
      * @return True jesli użytkownik ma prawo zapisu do wskazanego Podforum lub False w p.p.
@@ -419,7 +576,7 @@ public class User {
     public boolean hasWritePodforumRight(int id){
         return db.hasPodforumRights(this.ID, id, false, true);
     }
-
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False w p.p.
@@ -427,7 +584,7 @@ public class User {
     public boolean hasReadKategoriaRight(int id){
         return db.hasKategoriaRights(this.ID, id, true, false);
     }
-
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danej Kategorii
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo zapisu do wskazanej Ktegorii lub False w p.p.
