@@ -19,17 +19,7 @@
         <title>BeeBB :: Edycja uprawnien grupy</title>
         <link rel="stylesheet" href="../../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="../../js/podfora.js"></script>
-     <%!
-           String takNie(boolean param) {
-            if ( param ) return "TAK";
-               else return "NIE";
-            }
-           
-            boolean tN(String param) {
-            if ( param.compareTo("true")==0 ) return false;
-               return true;
-            }
-       %>
+ 
     </head>
     
     <body> 

@@ -38,9 +38,6 @@
 	   <td id="cellMenu" align="center">
 	     <table id="tableMenu" border="0" width="600"> 
 		<tr>
-		  <td class="tdTopLink"> <a class="aTopLink" href="">
-                       [] <%= Messages.wielka(Messages.mainPage()) %></a>
-		   </td>
 		  <td class="tdTopLink"> <a class="aTopLink" href="./uprawnienia.jsp" target="tresc">
 		       [] <%out.print(Messages.wielka(Messages.priviliges()));%>    </a>
 		   </td>
