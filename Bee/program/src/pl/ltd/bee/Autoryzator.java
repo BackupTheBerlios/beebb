@@ -42,6 +42,7 @@ public class Autoryzator {
             coockiePass.setPath("/");
             odpowiedz.addCookie(coockieUser);
             odpowiedz.addCookie(coockiePass);
+            user.insertCurrentLog();
             return user;
         }
         else return null;

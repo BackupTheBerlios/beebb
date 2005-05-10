@@ -1279,7 +1279,8 @@ public class DataBase {
      * @return String reprezentujacy date dla aktualnej bazy danych
      */
     public static String getDate() {
-        return "2006-09-09 12:12:12";
+        Calendar c = Calendar.getInstance();
+        return c.get(Calendar.YEAR) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.DAY_OF_MONTH) + " " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
     }
     
     

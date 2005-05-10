@@ -531,57 +531,64 @@ public class User {
     /** Metoda ustawia prywatność Emaila
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setEmailPrywatny(boolean czyPrywatny){
-        this.emailPrywatny=czyPrywatny;
+    public void setEmailPrivate(boolean prv){
+        this.emailPrywatny=prv;
     }
     
     
     /** Metoda ustawia prywatność numeru gadu-gadu
      * @param czyPrywatne T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setGGPrywatne(boolean czyPrywatne){
-        this.ggPrywatne=czyPrywatne;
+    public void setGGPrivate(boolean prv){
+        this.ggPrywatne=prv;
     }
     
     
     /** Metoda ustawia prywatność jid
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setJabberPrywatny(boolean czyPrywatny){
-        this.jabberPrywatny=czyPrywatny;
+    public void setJabberPrivate(boolean prv){
+        this.jabberPrywatny=prv;
     }
     
     
     /** Metoda ustawia prywatność id tlena
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setTlenPrywatny(boolean czyPrywatny){
-        this.tlenPrywatny=czyPrywatny;
+    public void setTlenPrivate(boolean prv){
+        this.tlenPrywatny=prv;
     }
     
     /** Metoda ustawia prywatność id wpKontakt
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setWPKontaktPrywatny(boolean czyPrywatny){
-        this.wpKontaktPrywatny=czyPrywatny;
+    public void setWPKontaktPrivate(boolean prv){
+        this.wpKontaktPrywatny=prv;
     }
     
     
     /** Metoda ustawia prywatność id icq
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setICQPrywatne(boolean czyPrywatny){
-        this.icqPrywatne=czyPrywatny;
+    public void setICQPrivate(boolean prv){
+        this.icqPrywatne=prv;
     }
     
     
     /** Metoda ustawia prywatność id msn
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setMSNPrywatny(boolean czyPrywatny){
-        this.msnPrywatny=czyPrywatny;
+    public void setMSNPrivate(boolean prv){
+        this.msnPrywatny=prv;
     }
     
+    
+    /** Metoda ustawia prywatność miasta uzytkownika
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setCityPrivate(boolean prv){
+        this.miastoPrywatne=prv;
+    }
     
     
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku

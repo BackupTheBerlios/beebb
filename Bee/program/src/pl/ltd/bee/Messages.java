@@ -209,6 +209,10 @@ public class Messages {
     public static String profile(){
         return "profil";}
     
+    /** Metoda dostarcza fraze "strona www" */
+    public static String wwwPage(){
+        return "strona www";}
+    
     /** Metoda dostarcza fraze "panel administracyjny" */
     public static String adminPanel(){
         return "panel administracyjny";}
@@ -325,7 +329,7 @@ public class Messages {
     public static String change(){
         return "zmień";}
     
-     /** Metoda dostarcza fraze "czytanie" */
+    /** Metoda dostarcza fraze "czytanie" */
     public static String read(){
         return "czytanie";}
     

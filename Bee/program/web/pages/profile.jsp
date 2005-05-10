@@ -38,7 +38,7 @@
                 <% } if(user.ifShowJabber()) {%>
                     <tr><th><% out.print(Messages.wielka(Messages.jabber()));%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%></td></tr>
                 <% } %>
-                    <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLastLog());%></td></tr>
+                    <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getCurrentLog());%></td></tr>
                 </table>
                 <%
             }
