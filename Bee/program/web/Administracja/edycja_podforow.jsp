@@ -136,43 +136,43 @@
      <% ArrayList lista=db_con.getKategorie(true); %>  
         <table style="" align="center" cellpadding="2" cellspacing="1" border="1">
             <caption> <font size="5" style="bold"></font> </caption>
-            <tr> <th><%out.println(Messages.wielka(Messages.rozwin())); %></th> <th><%out.println(Messages.wielka(Messages.nr())); %></th> <th><%out.println(Messages.wielka(Messages.title())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.describe())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th>  <th><%out.println(Messages.wielka(Messages.edition())); %></th> 
-                 <th><%out.println(Messages.wielka(Messages.remove())); %></th> <th><%out.println(Messages.wielka(Messages.privates())); %></th>  <th><%out.println(Messages.wielka(Messages.add())); %></th> </tr>
+            <tr> <th><%= Messages.wielka(Messages.rozwin()) %></th> <th><%= Messages.wielka(Messages.nr()) %></th> <th><%= Messages.wielka(Messages.title()) %></th> 
+                 <th><%= Messages.wielka(Messages.describe()) %></th> <th><%= Messages.wielka(Messages.privates()) %></th>  <th><%= Messages.wielka(Messages.edition()) %></th> 
+                 <th><%= Messages.wielka(Messages.remove()) %></th> <th><%= Messages.wielka(Messages.privates()) %></th>  <th><%= Messages.wielka(Messages.add()) %></th> </tr>
        <% for(int i=0; i<lista.size(); i++)
             { Kategoria kkk=(Kategoria) lista.get(i);
               ArrayList lista2 = kkk.getPodfora(true);  
-         %><tr bgcolor="gold" ><td align="center"> <button id="plusik<%=i%>" onClick="rozwijanie('<%=i%>'); return false;"> +/- </button> </td> <td><%= i+1 %>.  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
+         %><tr bgcolor="gold" ><td align="center"> <button id="plusik<%=i%>" onclick="rozwijanie('<%=i%>');"> +/- </button> </td> <td><%= i+1 %>.  </td> <td> <%=kkk.getNazwa() %> </td> <td><%=kkk.getOpis() %> </td> 
                                <td align="center" ><%= takNie(kkk.czyPrywatna()) %> </td> 
              <td><form action="./edycja_kat.jsp" method="post">
                  <input name="id_kat" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
                  <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
-                 <input align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>"/>
+                 <input align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.edition()) %>"/>
              </form> 
              </td> 
              <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
                  <input type="hidden" name="usun_kat" value="<%= kkk.getID() %>"/>
-                 <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
+                 <input  align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.remove()) %>"/>
              </form> 
              </td> 
              </td> 
              <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
                    <input type="hidden" name="upr_kat" value="<%= kkk.getID() %>"/>
                    <input type="hidden" name="upr_kat_bool" value="<%= kkk.czyPrywatna() %>"/>
-                   <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/>
+                   <input  align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.change()) %>"/>
                  </form> 
              </td> 
              <td><form action="./podfora_form.jsp" method="post">
                  <input name="id" type="hidden" value="<%= kkk.getID() %>"/>
                  <input name="tytul" type="hidden" value="<%= kkk.getNazwa() %>"/>
                  <input name="opis" type="hidden" value="<%= kkk.getOpis() %>"/>
-                 <input align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.add())); %>"/>
+                 <input align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.add()) %>"/>
              </form> 
              </td>
          </tr>
      
-            <tr class="w<%=i%>" bgcolor="yellow" > <td colspan="9" align="center" id="nee"> <%out.println(Messages.wielka(Messages.podKat())); %>: <%=kkk.getNazwa() %> </td></tr> 
+            <tr class="w<%=i%>" bgcolor="yellow" > <td colspan="9" align="center" id="nee"> <%= Messages.wielka(Messages.podKat()) %>: <%=kkk.getNazwa() %> </td></tr> 
          <%     
           for(int j=0; j<lista2.size(); j++)
             { Podforum podf =(Podforum) lista2.get(j);
@@ -183,18 +183,18 @@
                  <input name="id_pod" type="hidden"  value="<%= podf.getID() %>"/>
                  <input name="tytul"  type="hidden"  value="<%= podf.getTytul() %>"/>
                  <input name="opis"   type="hidden"  value="<%= podf.getOpis() %>"/>
-                 <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.edition())); %>"/>
+                 <input align="center" size="20"  type="submit" value="<%= Messages.wielka(Messages.edition()) %>"/>
              </form> 
              </td> 
             <td><form  action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemovePod())+"');" %>">
                    <input type="hidden" name="usun_pod" value="<%= podf.getID() %>"/>
-                   <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
+                   <input align="center" size="20"  type="submit" value="<%= Messages.wielka(Messages.remove()) %>"/>
                  </form> 
              </td> 
              <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
                    <input type="hidden" name="upr_pod" value="<%= podf.getID() %>"/>
                    <input type="hidden" name="upr_pod_bool" value="<%= podf.czyPrywatne() %>"/>
-                   <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.change())); %>"/>
+                   <input  align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.change()) %>"/>
                  </form> 
              </td> 
              <td> </td>
@@ -208,10 +208,10 @@
         <br/> <br/>
         <form action="./edycja_podforow.jsp" method="post">
             <table align="center" cellpadding="2" cellspacing="1" border="1">
-                <caption> <font size="5" style="bold"> <%out.println(Messages.wielka(Messages.addingKat())); %> </font> </caption>
-                <tr> <td><%out.println(Messages.wielka(Messages.title())); %>: </td>  <td> <input  size="50" type="text" name="nazwa_kat" value="<%=nazwa%>"/> </td> </tr>
-                <tr> <td><%out.println(Messages.wielka(Messages.describe())); %>:  </td>  <td> <input  size="50" type="text" name="opis_kat" value="<%=opis%>"/>  </td>  </tr>
-                <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="<%out.println(Messages.wielka(Messages.add())); %>"/> </td> </tr>
+                <caption> <font size="5" style="bold"> <%= Messages.wielka(Messages.addingKat()) %> </font> </caption>
+                <tr> <td><%= Messages.wielka(Messages.title()) %>: </td>  <td> <input  size="50" type="text" name="nazwa_kat" value="<%=nazwa%>"/> </td> </tr>
+                <tr> <td><%= Messages.wielka(Messages.describe()) %>:  </td>  <td> <input  size="50" type="text" name="opis_kat" value="<%=opis%>"/>  </td>  </tr>
+                <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="<%= Messages.wielka(Messages.add()) %>"/> </td> </tr>
             </table>       
         </form>
    
