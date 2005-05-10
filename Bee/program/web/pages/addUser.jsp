@@ -48,7 +48,18 @@
             String rokUrodzenia = request.getParameter("rokUrodzenia");
             if (rokUrodzenia==null) rokUrodzenia="0";
             
-            if (ok) {
+            nazwisko  = new String(nazwisko.getBytes("8859_1"),"UTF-8");
+            imie      = new String(imie.getBytes("8859_1"),"UTF-8");
+            gg        = new String(gg.getBytes("8859_1"),"UTF-8");
+            jabber    = new String(jabber.getBytes("8859_1"),"UTF-8");
+            tlen      = new String(tlen.getBytes("8859_1"),"UTF-8");
+            wpKontakt = new String(wpKontakt.getBytes("8859_1"),"UTF-8");
+            icq       = new String(icq.getBytes("8859_1"),"UTF-8");
+            msn       = new String(msn.getBytes("8859_1"),"UTF-8");
+            miasto    = new String(miasto.getBytes("8859_1"),"UTF-8");
+            rokUrodzenia = new String(rokUrodzenia.getBytes("8859_1"),"UTF-8");
+
+                if (ok) {
                 String aktywny = DataBase.NIE;
                 if (!Config.NEW_USER_MAIL_AUTH) { aktywny = DataBase.TAK; } 
                 
