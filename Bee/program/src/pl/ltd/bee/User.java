@@ -11,6 +11,7 @@ package pl.ltd.bee;
  * @author pawelb i sopi
  */
 public class User {
+    
     private int ID;
     private String login;
     private String haslo;
@@ -236,6 +237,20 @@ public class User {
      */
     public boolean ifShowBirthDate() {
         return !rokUrodzeniaPrywatny;
+    }
+    
+    /** Metoda zwraca sprawdza czy użytkownik jest meższczyzną
+     * @return True jeśli użytkownik to meższczyzna
+     **/
+    public boolean ifMale(){
+        return this.plec.compareTo(DataBase.MEZCZYZNA) == 0;
+    }
+
+    /** Metoda zwraca sprawdza czy użytkownik jest kobietą
+     * @return True jeśli użytkownik to kobieta
+     **/
+    public boolean ifFemale(){
+        return this.plec.compareTo(DataBase.KOBIETA) == 0;
     }
     
     /** Metoda zwraca ID użytkownika
@@ -468,7 +483,6 @@ public class User {
     public String getSex(){
         return this.plec;
     }
-    
     
     /** Metoda ustawia płeć uzytkownika {Database.kobieta, Database.mezczyzna}
      * @param jabber String z płcią

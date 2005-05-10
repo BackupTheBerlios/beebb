@@ -57,6 +57,10 @@ public class Messages {
     public static String or(){
         return "lub";}
     
+    /** Metoda dostarcza lacznika "i" */
+    public static String and(){
+        return "i";}
+    
     /** Metoda dostarcza lacznika "zapamiętaj" */
     public static String save(){
         return "zapamiętaj";}
@@ -1278,5 +1282,13 @@ public class Messages {
     public static String hintCloseThread(){
         return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;>Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla wskaźnika statusu jabber
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintJabberStatus(){
+        return "Wskaźnik statusu dla sieci Jabber. Aby wskaźnik działał należy wysłać autoryzację do kontaktu jrky2@jabber.org";
+    }
+    
     
 }
