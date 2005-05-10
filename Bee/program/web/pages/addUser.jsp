@@ -138,7 +138,7 @@
                         </select>
                     </td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.birthdate()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"/></td>
+                <td><%out.print(Messages.wielka(Messages.birthdate()));%>:</td><td><input type="text" size="25" name="rokUrodzenia" value="<%out.print(rokUrodzenia);%>"/></td>
                 </tr> <tr>
                     <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                 </tr>

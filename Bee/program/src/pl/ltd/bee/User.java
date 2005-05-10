@@ -512,6 +512,14 @@ public class User {
     }
     
     
+    /** Metoda wstawia date bierzącego logowania do bazy*/
+    public void insertCurrentLog() {
+        this.lastlog=this.currentlog;
+        this.currentlog=db.getDate();
+        db.updateUser(this);
+    }
+    
+    
     /** Metoda ustawia prywatność Imienia i Nazwiska
      * @param czyPrywatne T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
@@ -542,6 +550,39 @@ public class User {
     public void setJabberPrywatny(boolean czyPrywatny){
         this.jabberPrywatny=czyPrywatny;
     }
+    
+    
+    /** Metoda ustawia prywatność id tlena
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setTlenPrywatny(boolean czyPrywatny){
+        this.tlenPrywatny=czyPrywatny;
+    }
+    
+    /** Metoda ustawia prywatność id wpKontakt
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setWPKontaktPrywatny(boolean czyPrywatny){
+        this.wpKontaktPrywatny=czyPrywatny;
+    }
+    
+    
+    /** Metoda ustawia prywatność id icq
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setICQPrywatne(boolean czyPrywatny){
+        this.icqPrywatne=czyPrywatny;
+    }
+    
+    
+    /** Metoda ustawia prywatność id msn
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setMSNPrywatny(boolean czyPrywatny){
+        this.msnPrywatny=czyPrywatny;
+    }
+    
+    
     
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku
      * @param id Identyfikator watku

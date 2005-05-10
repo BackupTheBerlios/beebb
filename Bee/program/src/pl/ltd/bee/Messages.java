@@ -139,7 +139,7 @@ public class Messages {
     
     /** Metoda dostarcza slowo "miasto" */
     public static String city(){
-        return "city";}
+        return "miasto";}
     
     /** Metoda dostarcza slowo "płeć" */
     public static String sex(){
