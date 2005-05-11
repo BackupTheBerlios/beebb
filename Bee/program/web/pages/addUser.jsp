@@ -78,7 +78,7 @@
                 
                 User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,www,gg,DataBase.NIE,
                         jabber,DataBase.NIE,tlen,DataBase.NIE,wpKontakt,DataBase.NIE,icq,DataBase.NIE,msn,DataBase.NIE,yahoo,
-                        DataBase.NIE,skype,DataBase.NIE,miasto,DataBase.NIE,plec,"",dataUrodzenia,DataBase.NIE,"0","0",
+                        DataBase.NIE,skype,DataBase.NIE,miasto,DataBase.NIE,plec,"","",DataBase.NIE,"","",DataBase.NIE,dataUrodzenia,DataBase.NIE,"0","0",
                         DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),
                         aktywny,DataBase.NIE,DataBase.NIE,db_con);
                 if(!db_con.insertUser(u))

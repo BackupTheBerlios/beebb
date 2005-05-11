@@ -181,6 +181,11 @@ public class DataBase {
     static final String USER_MIASTO_PRYWATNE = "MIASTOPRYWATNE";
     static final String USER_PLEC = "PLEC";
     static final String USER_AVATAR = "AVATAR";
+    static final String USER_SYGNATURKA = "SYGNATURKA";
+    static final String USER_SYGNATURKA_PUBLICZNA = "SYGNATURKAPUBLICZNA";
+    static final String USER_STYL = "STYL";
+    static final String USER_JEZYK = "JEZYK";
+    static final String USER_POWIADAMIANIE = "POWIADAMIANIE";
     static final String USER_DATAURODZENIA = "DATAURODZENIA";
     static final String USER_DATAURODZENIA_PRYWATNA = "DATAURODZENIAPRYWATNA";
     static final String USER_LICZBAWYPOWIEDZI = "LICZBAWYPOWIEDZI";
@@ -554,7 +559,9 @@ public class DataBase {
                 (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_YAHOO),
                 (String)user.get(USER_YAHOO_PRYWATNE),(String)user.get(USER_SKYPE),(String)user.get(USER_SKYPE_PRYWATNY),
                 (String)user.get(USER_MIASTO),(String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),
-                (String)user.get(USER_AVATAR),(String)user.get(USER_DATAURODZENIA),(String)user.get(USER_DATAURODZENIA_PRYWATNA),
+                (String)user.get(USER_AVATAR),(String)user.get(USER_SYGNATURKA),(String)user.get(USER_SYGNATURKA_PUBLICZNA), 
+                (String)user.get(USER_STYL),(String)user.get(USER_JEZYK),(String)user.get(USER_POWIADAMIANIE),
+                (String)user.get(USER_DATAURODZENIA),(String)user.get(USER_DATAURODZENIA_PRYWATNA),
                 (String)user.get(USER_LICZBAWYPOWIEDZI),(String)user.get(USER_LICZBAWATKOW),(String)user.get(USER_LASTLOG),
                 (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
                 (String)user.get(USER_MODERATOR),this);
@@ -629,6 +636,8 @@ public class DataBase {
         String showYahoo; if(u.ifShowYahoo()) showYahoo=NIE; else showYahoo=TAK;
         String showSkype; if(u.ifShowSkype()) showSkype=NIE; else showSkype=TAK;
         String showCity; if(u.ifShowCity()) showCity=NIE; else showCity=TAK;
+        String showSig; if(u.ifShowSig()) showSig=NIE; else showSig=TAK;
+        String notify; if(u.ifNotify()) notify=NIE; else notify=TAK;
         String showBirthDate; if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
         
         return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (" + u.getID() + ",\"" + u.getLogin() + 
@@ -637,7 +646,9 @@ public class DataBase {
                 "' ,'" + showGG + "','" + u.getJabber() + "','" +  showJabber + "','" + u.getTlen() + "','" +  showTlen + 
                 "','" + u.getWPKontakt() + "','" +  showWPKontakt + "','" + u.getICQ() + "','" +  showICQ + "','" + u.getMSN() + 
                 "','" +  showMSN + "','" + u.getYahoo() + "','" + showYahoo + "','" + u.getSkype() + "','" + showSkype +
-                "','" + u.getCity() + "','" +  showCity + "','" + u.getSex() + "','" + u.getAvatar() + "','" + prepareDateToUpdate(u.getBirthDate()) + 
+                "','" + u.getCity() + "','" +  showCity + "','" + u.getSex() + "','" + u.getAvatar() + "','" + u.getSig() + 
+                "','" +  showSig + "','" + u.getStyle() + "','" + u.getLang() + "','" + notify + 
+                "','" + prepareDateToUpdate(u.getBirthDate()) + 
                 "','" +  showBirthDate + "'," + u.getLiczbaWypowiedzi() + "," + u.getLiczbaWatkow() + 
                 ",'" + u.getLastLog() + "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
     }

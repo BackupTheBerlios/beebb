@@ -30,6 +30,9 @@ public class User {
     private String miasto;
     private String plec;
     private String avatar;
+    private String sygnaturka;
+    private String styl;
+    private String jezyk;
     private String dataUrodzenia;
     private int liczbaWypowiedzi;
     private int liczbaWatkow;
@@ -46,7 +49,9 @@ public class User {
     private boolean yahooPrywatne;
     private boolean skypePrywatny;
     private boolean miastoPrywatne;
+    private boolean sygnaturkaPubliczna;
     private boolean dataUrodzeniaPrywatna;
+    private boolean powiadamianie;
     private boolean aktywny;
     private boolean admin;
     private boolean moderator;
@@ -83,6 +88,11 @@ public class User {
      * @param miastoPrywatne czy uznawac miasto za prywatne
      * @param plec plec uzytkownika ('K' lub 'M')
      * @param avatar ikonka uzytkownika - nazwa pliku z ikonką
+     * @param sygnaturka Sygnaturka użytkownika doklejana pod wypowiedziami
+     * @param sygnaturkaPubliczna czy wyświetlać sygnaturkę
+     * @param styl styl forum
+     * @param jezyk jezyk forum
+     * @param powiadamianie czy powiadamiac o zmianach w zalozonych watkach
      * @param dataUrodzenia data urodzenia uzytkownika
      * @param dataUrodzeniaPrywatna czy uznawac rok urodzenia jako prywatny
      * @param liczbaWypowiedzi liczba wypowiedzi napisanych przez użytkownika
@@ -96,9 +106,9 @@ public class User {
             String email, String emailPrywatny, String www, String gg, String ggPrywatne, String jabber, String jabberPrywatny,
             String tlen, String tlenPrywatny,String wpKontakt, String wpKontaktPrywatny,String icq, String icqPrywatne,
             String msn, String msnPrywatny,String yahoo, String yahooPrywatne,String skype, String skypePrywatny, String miasto,
-            String miastoPrywatne,String plec,String avatar, String dataUrodzenia, String dataUrodzeniaPrywatna,
-            String liczbaWypowiedzi,String liczbaWatkow,String lastlog,String currentlog, String aktywny,String admin,
-            String moderator,DataBase _db) {
+            String miastoPrywatne,String plec, String avatar, String sygnaturka, String sygnaturkaPubliczna, String styl,String jezyk,
+            String powiadamianie, String dataUrodzenia, String dataUrodzeniaPrywatna, String liczbaWypowiedzi,String liczbaWatkow,
+            String lastlog, String currentlog, String aktywny,String admin, String moderator,DataBase _db) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
@@ -117,6 +127,9 @@ public class User {
         this.miasto=miasto;
         this.plec=plec;
         this.avatar=avatar;
+        this.sygnaturka=sygnaturka;
+        this.styl=styl;
+        this.jezyk=jezyk;
         this.dataUrodzenia=dataUrodzenia;
         this.liczbaWypowiedzi=Integer.decode(liczbaWypowiedzi).intValue();
         this.liczbaWatkow=Integer.decode(liczbaWatkow).intValue();
@@ -132,6 +145,8 @@ public class User {
         if (msnPrywatny.compareTo(DataBase.TAK)==0) this.msnPrywatny=true; else this.msnPrywatny=false;
         if (yahooPrywatne.compareTo(DataBase.TAK)==0) this.yahooPrywatne=true; else this.yahooPrywatne=false;
         if (skypePrywatny.compareTo(DataBase.TAK)==0) this.skypePrywatny=true; else this.skypePrywatny=false;
+        if (sygnaturkaPubliczna.compareTo(DataBase.TAK)==0) this.sygnaturkaPubliczna=true; else this.sygnaturkaPubliczna=false;
+        if (powiadamianie.compareTo(DataBase.TAK)==0) this.powiadamianie=true; else this.powiadamianie=false;
         if (miastoPrywatne.compareTo(DataBase.TAK)==0) this.miastoPrywatne=true; else this.miastoPrywatne=false;
         if (dataUrodzeniaPrywatna.compareTo(DataBase.TAK)==0) this.dataUrodzeniaPrywatna=true; else this.dataUrodzeniaPrywatna=false;
         if (aktywny.compareTo(DataBase.TAK)==0) this.aktywny=true; else this.aktywny=false;
@@ -262,12 +277,14 @@ public class User {
         return !skypePrywatny;
     }
     
+    
     /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie miasta zamieszkania
      * @return T lub N w zaleznosci czy user wyraża zgode czy nie
      */
     public boolean ifShowCity() {
         return !miastoPrywatne;
     }
+    
     
     /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie date urodzenia
      * @return T lub N w zaleznosci czy user wyraża zgode czy nie
@@ -276,12 +293,31 @@ public class User {
         return !dataUrodzeniaPrywatna;
     }
     
-    /** Metoda zwraca sprawdza czy użytkownik jest meższczyzną
-     * @return True jeśli użytkownik to meższczyzna
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie swojej sygnatury
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowSig() {
+        return sygnaturkaPubliczna;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik chce byc powiadamiany o nowych wiadomościach w jego watkach
+     * @return T lub N w zaleznosci czy user chce czy nie
+     */
+    public boolean ifNotify() {
+        return powiadamianie;
+    }
+    
+    
+    /** Metoda zwraca sprawdza czy użytkownik jest meżczyzną
+     * @return True jeśli użytkownik to meżczyzna
      **/
     public boolean ifMale(){
         return this.plec.compareTo(DataBase.MEZCZYZNA) == 0;
     }
+    
     
     /** Metoda zwraca sprawdza czy użytkownik jest kobietą
      * @return True jeśli użytkownik to kobieta
@@ -289,6 +325,7 @@ public class User {
     public boolean ifFemale(){
         return this.plec.compareTo(DataBase.KOBIETA) == 0;
     }
+    
     
     /** Metoda zwraca ID użytkownika
      * @return Integer reprezentujacy uzytkownika
@@ -587,11 +624,60 @@ public class User {
     }
     
     
+    /** Metoda zwraca sygnaturke użytkownika
+     * @return String z sygnaturką
+     **/
+    public String getSig(){
+        return this.sygnaturka;
+    }
+    
+    
+    /** Metoda zwraca wtyl wybrany przez użytkownika
+     * @return String reprezentujący styl
+     **/
+    public String getStyle(){
+        return this.styl;
+    }
+    
+    
+    /** Metoda zwraca jezyk preferowany przez użytkownika
+     * @return String reprezentujący wybrany język
+     **/
+    public String getLang(){
+        return this.jezyk;
+    }
+    
+    
     /** Metoda ustawia avatar uzytkownika (nazwe pliku w katalogu)
      * @param avatar String z nazwą pliku
      **/
     public void setAvatar(String avatar){
         this.avatar=avatar;
+    }
+    
+    
+    /** Metoda ustawia sygnaturke uzytkownika
+     * @param sig String z sygnaturką
+     **/
+    public void setSig(String sig){
+        this.sygnaturka=sig;
+    }
+    
+    
+    
+    /** Metoda ustawia jezyk uzytkownika
+     * @param lang String z wybranym językiem
+     **/
+    public void setLang(String lang){
+        this.jezyk=lang;
+    }
+    
+    
+    /** Metoda ustawia styl uzytkownika
+     * @param style String z wybranym stylem
+     **/
+    public void setStyle(String style){
+        this.styl=style;
     }
     
     
@@ -653,15 +739,15 @@ public class User {
     
     
     /** Metoda ustawia prywatność Imienia i Nazwiska
-     * @param czyPrywatne T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
-    public void setImieNazwiskoPrywatne(boolean czyPrywatne){
-        this.imieNazwiskoPrywatne=czyPrywatne;
+    public void setImieNazwiskoPrywatne(boolean prv){
+        this.imieNazwiskoPrywatne=prv;
     }
     
     
     /** Metoda ustawia prywatność Emaila
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setEmailPrivate(boolean prv){
         this.emailPrywatny=prv;
@@ -669,7 +755,7 @@ public class User {
     
     
     /** Metoda ustawia prywatność numeru gadu-gadu
-     * @param czyPrywatne T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setGGPrivate(boolean prv){
         this.ggPrywatne=prv;
@@ -677,7 +763,7 @@ public class User {
     
     
     /** Metoda ustawia prywatność jid
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setJabberPrivate(boolean prv){
         this.jabberPrywatny=prv;
@@ -685,14 +771,14 @@ public class User {
     
     
     /** Metoda ustawia prywatność id tlena
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setTlenPrivate(boolean prv){
         this.tlenPrywatny=prv;
     }
     
     /** Metoda ustawia prywatność id wpKontakt
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setWPKontaktPrivate(boolean prv){
         this.wpKontaktPrywatny=prv;
@@ -700,7 +786,7 @@ public class User {
     
     
     /** Metoda ustawia prywatność id icq
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setICQPrivate(boolean prv){
         this.icqPrywatne=prv;
@@ -708,7 +794,7 @@ public class User {
     
     
     /** Metoda ustawia prywatność id msn
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setMSNPrivate(boolean prv){
         this.msnPrywatny=prv;
@@ -716,7 +802,7 @@ public class User {
     
     
     /** Metoda ustawia prywatność id yahoo
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setYahooPrivate(boolean prv){
         this.yahooPrywatne=prv;
@@ -724,15 +810,31 @@ public class User {
     
     
     /** Metoda ustawia prywatność id skype
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setSkypePrivate(boolean prv){
         this.skypePrywatny=prv;
     }
     
     
+    /** Metoda ustawia publicznosc sygnaturki
+     * @param prv T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setSigPublic(boolean prv){
+        this.sygnaturkaPubliczna=prv;
+    }
+    
+    
+    /** Metoda ustawia czy powiadamiać użytkownika o zmianach w jego watkach
+     * @param nt T w przypadku gdy użytkownik chce być powiadamiany
+     **/
+    public void setSigNotify(boolean nt){
+        this.powiadamianie=nt;
+    }
+    
+    
     /** Metoda ustawia prywatność miasta uzytkownika
-     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param N prv w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setCityPrivate(boolean prv){
         this.miastoPrywatne=prv;
@@ -748,7 +850,7 @@ public class User {
     /** Metoda zwiększa liczbe watkow utworzonych przez użytkownika **/
     public void incrLiczbaWatkow(){
         this.liczbaWatkow++;
-    }    
+    }
     
     
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku
