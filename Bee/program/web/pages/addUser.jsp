@@ -167,7 +167,7 @@
                     <td><%out.print(Messages.wielka(Messages.city()));%>:</td><td><input type="text" size="25" name="miasto" value="<%out.print(miasto);%>"/></td>
                 </tr> <tr>
                     <td><%out.print(Messages.wielka(Messages.sex()));%>:</td><td><select name="plec">
-                        <option value="<%out.print(DataBase.MEZCZYZNA);%>" selected><%out.print(Messages.wielka(Messages.men()));%></option>
+                        <option value="<%out.print(DataBase.MEZCZYZNA);%>"><%out.print(Messages.wielka(Messages.men()));%></option>
                         <option value="<%out.print(DataBase.KOBIETA);%>"><%out.print(Messages.wielka(Messages.woman()));%></option>
                         </select>
                     </td>

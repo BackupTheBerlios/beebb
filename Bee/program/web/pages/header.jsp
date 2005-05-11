@@ -14,12 +14,12 @@
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
 	<td width="20%" valign="top">
-		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top" onClick="linkClick('./main.jsp')" style="cursor: pointer;" />
+		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top" onclick="linkClick('./main.jsp')" style="cursor: pointer;" />
 	</td>
 <td>
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
 		<tr>
-			<td class="tdForumHeader" bgcolor="white" align="center"  onClick="linkClick('./main.jsp')">
+			<td class="tdForumHeader" bgcolor="white" align="center"  onclick="linkClick('./main.jsp')">
 			<span class="forumTitle" id="forumTitle">
                                 <% 
                                     Forum f = db_con.getForum();
@@ -63,10 +63,10 @@
 				</span>
 			</td>
 			<td class="tdTopLink" align="left">
-				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp','Bee')" target="_blank">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
+				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp','Bee')">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
 			</td>
 			<td class="tdTopLink" align="left">
-				<span  class="aTopLink" onClick="linkClick('./addUser.jsp')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
+				<span  class="aTopLink" onclick="linkClick('./addUser.jsp')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
 			</td>
 			<td class="tdTopLink" align="left">
                                 <%
