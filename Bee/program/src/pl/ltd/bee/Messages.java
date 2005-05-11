@@ -1252,42 +1252,42 @@ public class Messages {
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintEditMessages(){
-        return "<img src=&quot;./images/edit.gif&quot; alt=&quot;" + Messages.wielka(Messages.edit())+"&quot;>Operacja pozwala edytować treść wskazanej wypowiedzi. Aby móc edytować wypowiedź należy być zalogowanym użytkownikiem forum oraz albo być właścicielem wypowiedzi albo być moderatorem podforum, w którym znajduje się wypowiedź.";
+        return "<img src=&quot;./images/edit.gif&quot; alt=&quot;" + Messages.wielka(Messages.edit())+"&quot;/>&nbsp;Operacja pozwala edytować treść wskazanej wypowiedzi. Aby móc edytować wypowiedź należy być zalogowanym użytkownikiem forum oraz albo być właścicielem wypowiedzi albo być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji banowania uzytkownika na podanym podforum
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintBanAuthor(){
-        return "<img src=&quot;./images/kick_user.gif&quot; alt=&quot;" + Messages.wielka(Messages.banAuthor())+"&quot;>Operacja powoduje &quot;zabanowanie&quot; użytkownika forum. Spowoduje to zablokowanie możliwości wypowiadania się danego użytkownika na podforum, w którym znajduje się dana wypowiedź. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
+        return "<img src=&quot;./images/kick_user.gif&quot; alt=&quot;" + Messages.wielka(Messages.banAuthor())+"&quot;/>&nbsp;Operacja powoduje &quot;zabanowanie&quot; użytkownika forum. Spowoduje to zablokowanie możliwości wypowiadania się danego użytkownika na podforum, w którym znajduje się dana wypowiedź. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji kasowania wypowiedzi
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintDeleteMessage(){
-        return "<img src=&quot;./images/delete.gif&quot; alt=&quot;" + Messages.wielka(Messages.delete())+"&quot;>Operacja powoduje skasowanie wypowiedzi. Nie będzie ona później dostępna. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź.";
+        return "<img src=&quot;./images/delete.gif&quot; alt=&quot;" + Messages.wielka(Messages.delete())+"&quot;/>&nbsp;Operacja powoduje skasowanie wypowiedzi. Nie będzie ona później dostępna. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji przenoszenia wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintMoveThread(){
-        return "<img src=&quot;./images/move.gif&quot; alt=&quot;" + Messages.wielka(Messages.move()) + "&quot;>Operacja powoduje próbę przeniesienia wątku do innego podforum. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek, a także moderatorem podforum docelowego.";
+        return "<img src=&quot;./images/move.gif&quot; alt=&quot;" + Messages.wielka(Messages.move()) + "&quot;/>&nbsp;Operacja powoduje próbę przeniesienia wątku do innego podforum. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek, a także moderatorem podforum docelowego.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji blokowania wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintBlockThread(){
-        return "<img src=&quot;./images/lock.png&quot; alt=&quot;" + Messages.wielka(Messages.block())+"&quot;>Operacja powoduje zablokowanie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
+        return "<img src=&quot;./images/lock.png&quot; alt=&quot;" + Messages.wielka(Messages.block())+"&quot;/>&nbsp;Operacja powoduje zablokowanie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji zamknięcia wątku
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintCloseThread(){
-        return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;>Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
+        return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;/>&nbsp;Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla wskaźnika statusu jabber
@@ -1296,6 +1296,15 @@ public class Messages {
     public static String hintJabberStatus(){
         return "Wskaźnik statusu dla sieci Jabber. Aby wskaźnik działał należy wysłać autoryzację do kontaktu jrky2@jabber.org";
     }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi informującej o potrzebie zalogowania się
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintPleaseLogin(){
+        return "<img src=&quot;./images/stop.gif&quot; alt=&quot;" + Messages.wielka(Messages.logInYourself())+"&quot;/>&nbsp;Proszę się najpierw zalogować.";
+    }
+    
     
     
 }

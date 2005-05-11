@@ -74,3 +74,35 @@ function debugIframes(){
         top.frames[0].document.getElementById('forumTitle').innerHTML=ramka+' ('+top.frames[1].location+' # '+top.frames[2].location;
  setTimeout('debugIframes()',500);
 }
+
+//___________________ Ciasteczka
+
+function getCookieVal (offset) {  
+    var endstr = document.cookie.indexOf (";", offset);  
+    if (endstr == -1)    
+    endstr = document.cookie.length;  
+    return unescape(document.cookie.substring(offset, endstr));
+}
+
+function getCookie (name) {  
+    var arg = name + "=";  
+    var alen = arg.length;  
+    var clen = document.cookie.length;  
+    var i = 0;  
+    while (i < clen) {    
+        var j = i + alen;    
+        if (document.cookie.substring(i, j) == arg)      
+            return getCookieVal(j);    
+        i = document.cookie.indexOf(" ", i) + 1;    
+        if (i == 0) break;   
+    }  
+    return null;
+}
+
+
+/** Metoda sprawdza czy ktos jest zalogowany na podstawie sprawdzenia czy ustawione jest ciasteczko o podanej nazwei*/
+function isLogin(user_cookie){
+    var wartosc = getCookie(user_cookie)
+    if (wartosc) return true;
+        else return false;
+}

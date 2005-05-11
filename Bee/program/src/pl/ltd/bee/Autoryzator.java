@@ -13,8 +13,8 @@ package pl.ltd.bee;
 public class Autoryzator {
     
     
-    private static final String COOKIE_USER_NAME = "user";
-    private static final String COOKIE_PASS_NAME = "pass";
+    public static final String COOKIE_USER_NAME = "user";
+    public static final String COOKIE_PASS_NAME = "pass";
     
     /** Creates a new instance of Autoryzator */
     public Autoryzator() {
