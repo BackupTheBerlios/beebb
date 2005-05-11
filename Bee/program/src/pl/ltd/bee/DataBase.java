@@ -660,32 +660,23 @@ public class DataBase {
      * @return zwraca czy update sie powiódl
      */
     public boolean updateUser(User u){
-        String aktywny;
-        if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
-        String moderator;
-        if(u.moderator()) moderator=TAK; else moderator=NIE;
-        String admin;
-        if(u.admin()) admin=TAK; else admin=NIE;
-        String showName;
-        if(u.ifShowName()) showName=NIE; else showName=TAK;
-        String showEmail;
-        if(u.ifShowEmail()) showEmail=NIE; else showEmail=TAK;
-        String showGG;
-        if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
-        String showJabber;
-        if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
-        String showTlen;
-        if(u.ifShowTlen()) showTlen=NIE; else showTlen=TAK;
-        String showWPKontakt;
-        if(u.ifShowWPKontakt()) showWPKontakt=NIE; else showWPKontakt=TAK;
-        String showICQ;
-        if(u.ifShowICQ()) showICQ=NIE; else showICQ=TAK;
-        String showMSN;
-        if(u.ifShowMSN()) showMSN=NIE; else showMSN=TAK;
-        String showCity;
-        if(u.ifShowCity()) showCity=NIE; else showCity=TAK;
-        String showBirthDate;
-        if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
+        String aktywny; if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
+        String moderator; if(u.moderator()) moderator=TAK; else moderator=NIE;
+        String admin; if(u.admin()) admin=TAK; else admin=NIE;
+        String showName; if(u.ifShowName()) showName=NIE; else showName=TAK;
+        String showEmail; if(u.ifShowEmail()) showEmail=NIE; else showEmail=TAK;
+        String showGG; if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
+        String showJabber; if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
+        String showTlen; if(u.ifShowTlen()) showTlen=NIE; else showTlen=TAK;
+        String showWPKontakt; if(u.ifShowWPKontakt()) showWPKontakt=NIE; else showWPKontakt=TAK;
+        String showICQ; if(u.ifShowICQ()) showICQ=NIE; else showICQ=TAK;
+        String showMSN; if(u.ifShowMSN()) showMSN=NIE; else showMSN=TAK;
+        String showYahoo; if(u.ifShowYahoo()) showYahoo=NIE; else showYahoo=TAK;
+        String showSkype; if(u.ifShowSkype()) showSkype=NIE; else showSkype=TAK;
+        String showCity; if(u.ifShowCity()) showCity=NIE; else showCity=TAK;
+        String showBirthDate; if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
+        String showSygnaturka; if(u.ifShowSig()) showSygnaturka=NIE; else showSygnaturka=TAK;
+        String powiadamianie; if(u.ifNotify()) powiadamianie=NIE; else powiadamianie=TAK;
         return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + 
                 " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() + 
                 "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() + 
@@ -696,9 +687,14 @@ public class DataBase {
                 "'," + USER_WPKONTAKT + "='" + u.getWPKontakt() + "'," + USER_WPKONTAKT_PRYWATNY + "='" + showWPKontakt +
                 "'," + USER_ICQ + "='" + u.getICQ() + "'," + USER_ICQ_PRYWATNE + "='" + showICQ +
                 "'," + USER_MSN + "='" + u.getMSN() + "'," + USER_MSN_PRYWATNY + "='" + showMSN +
+                "'," + USER_YAHOO + "='" + u.getYahoo() + "'," + USER_YAHOO_PRYWATNE + "='" + showYahoo +
+                "'," + USER_SKYPE + "='" + u.getSkype() + "'," + USER_SKYPE_PRYWATNY + "='" + showSkype +
                 "'," + USER_MIASTO + "='" + u.getCity() + "'," + USER_MIASTO_PRYWATNE + "='" + showCity +
-                "'," + USER_PLEC + "='" + u.getSex() +
-                "'," + USER_DATAURODZENIA + "=" + prepareDateToUpdate(u.getBirthDate()) + "," + USER_DATAURODZENIA_PRYWATNA + "='" + showBirthDate +
+                "'," + USER_PLEC + "='" + u.getSex() +  "'," + USER_AVATAR + "='" + u.getAvatar() +
+                "'," + USER_SYGNATURKA + "='" + u.getSig() + "'," + USER_SYGNATURKA_PUBLICZNA + "='" + showSygnaturka +
+                "'," + USER_STYL + "='" + u.getStyle() + "'," + USER_JEZYK + "='" + u.getLang() +
+                "'," + USER_POWIADAMIANIE + "='" + powiadamianie +
+                "'," + USER_DATAURODZENIA + "='" + prepareDateToUpdate(u.getBirthDate()) + "'," + USER_DATAURODZENIA_PRYWATNA + "='" + showBirthDate +
                 "'," + USER_AKTYWNY + "='" + aktywny + 
                 "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + 
                 "'," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + 
