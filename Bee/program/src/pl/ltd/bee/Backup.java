@@ -148,7 +148,7 @@ public class Backup {
           plik.write("  <opis>"+forum.getOpis()+"</opis> \n" );
           plik.write("\n   <kategorie> \n" );
           
-           ArrayList kat=forum.getKategorie();
+           ArrayList kat=db_con.getKategorieForum();
             for(int i=0;i<kat.size();i++) {
                Kategoria k=db_con.getKategoria( ((Integer)kat.get(i)).intValue() ) ;
                   plik.write("    <kategoria> \n" );
@@ -157,14 +157,14 @@ public class Backup {
                   plik.write("     <opis>"+k.getOpis()+"</opis> \n" );
                   plik.write("     <aktywna>"+k.czyAktywna()+"</aktywna> \n" );
                   plik.write("     <prywatna>"+k.czyPrywatna()+"</prywatna> \n" );
-                  zapiszPodfora(k.getID());
+                    zapiszPodfora(k.getID());
                   plik.write("    </kategoria> \n" );
             }  
-            plik.write("   </kategorie> \n" );
+            plik.write("   </kategorie> \n" ); 
          plik.write(" </forum> \n");
-         zapiszUsers();
+         zapiszUsers(); 
         
-        plik.write("</backup>");
+        plik.write("</backup>");  
      }
     
     public void zrobBackup(javax.servlet.ServletContext app) throws BeeException {
