@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.forgetPasswd())));%>
-    <body onload="<% if (request.getParameter("user") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
+    <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 <%@ include file="servletObjects.jsp" %>
         <br/><br/>
         <% 

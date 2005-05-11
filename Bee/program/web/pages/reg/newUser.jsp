@@ -7,7 +7,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <% out.println(Commons.htmlHead("./../..",Messages.wielka(Messages.newUser())));%>
-    <body onload="<% if( request.getParameter("id") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
+    <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 <%@ include file="../servletObjects.jsp" %>    
         <br/><br/>
         <% Enumeration flds = request.getParameterNames();

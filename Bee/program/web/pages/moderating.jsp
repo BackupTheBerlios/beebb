@@ -9,7 +9,7 @@
 
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
 <%@ include file="servletObjects.jsp" %>
-<body onload="resizeMain();setResizeFunction(resizeMain);" >
+<body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 
 <%
         User user = auth.getUser(request,db_con);

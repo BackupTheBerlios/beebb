@@ -13,8 +13,9 @@ function wypowiedzLinkClick(url){
 
 
 function hrefClick(url){
-    if (!(top.document.getElementById('frameTresc_1'))) 
+    if (!(top.document.getElementById('frameTresc_1'))){
             top.location = url;
+    }
     else 
     {
     var i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 1 : 2;
@@ -37,7 +38,23 @@ function swapIframes(){
         top.document.getElementById('frameTresc_2').style.display = 'block';
         top.document.getElementById('frameTresc_1').style.display = 'none';
     }
+
+    //zmienie cele forms'ow na stronie
+    changeTargetForms();
 }
+
+function changeTargetForms(){
+var cel = '';
+if (top.document.getElementById('frameTresc_1')) 
+    cel = top.document.getElementById('frameTresc_1').style.display == 'none' ? 'frameTresc_1' : 'frameTresc_2';
+
+if (document.forms){
+    for(var i=0; i<document.forms.length; i++){
+            document.forms[i].target=cel;
+            }
+}
+}
+
 
 function addEmoticon(tag, textarea){
     document.getElementById(textarea).value += tag;
@@ -47,4 +64,13 @@ function addEmoticon(tag, textarea){
 
 function setResizeFunction(fun){
     window.onresize = fun;
+}
+
+
+function debugIframes(){
+ var ramka = top.document.getElementById('frameTresc_1').style.display == 'none' ? 'frameTresc_2' : 'frameTresc_1';
+ if (top.frames[0].location)
+     if (top.frames[0].location.pathname.indexOf('header.jsp',0) != -1)
+        top.frames[0].document.getElementById('forumTitle').innerHTML=ramka+' ('+top.frames[1].location+' # '+top.frames[2].location;
+ setTimeout('debugIframes()',500);
 }

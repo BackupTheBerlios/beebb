@@ -8,7 +8,7 @@
 
 
 <% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
-    <body>
+    <body onload="debugIframes();">
 <%@ include file="servletObjects.jsp" %>
    
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
@@ -20,7 +20,7 @@
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
 		<tr>
 			<td class="tdForumHeader" bgcolor="white" align="center"  onClick="linkClick('./main.jsp')">
-			<span class="forumTitle">
+			<span class="forumTitle" id="forumTitle">
                                 <% 
                                     Forum f = db_con.getForum();
                                     if (f != null){

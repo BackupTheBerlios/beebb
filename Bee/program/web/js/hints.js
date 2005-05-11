@@ -96,7 +96,7 @@ function popupHint(text, ob){
 	div.style.top = posY + Math.round(ob.offsetHeight / 2) + 10 + 'px';
 	div.style.left = posX + 'px';
         var tabelka = top.document.getElementById('tableHint'+ob.id);
-        if (tabelka)
+        if ((tabelka) && (screen) && (posX))
         {
             if (posX + tabelka.offsetWidth >= screen.width) 
                 div.style.left = (screen.width - tabelka.offsetWidth -40) + 'px';

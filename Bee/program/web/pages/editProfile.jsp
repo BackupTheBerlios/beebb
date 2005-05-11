@@ -5,7 +5,7 @@
 <%@ page session="false" %>
 
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.editProfile())));%>
-    <body onload="<% if ((request.getParameter("psw") == null) && (request.getParameter("chd") == null )) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
+    <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
     
         <%@ include file="servletObjects.jsp" %>
                 

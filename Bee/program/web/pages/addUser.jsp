@@ -7,7 +7,7 @@
 
 
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.newUser())));%>
-    <body onload="<% if (request.getParameter("user") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);">
+    <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);">
         <%@ include file="servletObjects.jsp" %>
     
         <% Enumeration flds = request.getParameterNames();

@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 
 <% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.add())));%>
-    <body onload="<% if (request.getParameter("text") == null) out.print("swapIframes();");%>resizeMain();setResizeFunction(resizeMain);" >
+    <body onload="swapIframes();changeTargetForms();resizeMain();setResizeFunction(resizeMain);" >
         <%@ include file="servletObjects.jsp" %>
         <% Enumeration flds = request.getParameterNames();
         /* Validacja za pomocą JS */
