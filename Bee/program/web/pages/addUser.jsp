@@ -29,6 +29,8 @@
             if (nazwisko==null) nazwisko="";
             String imie = request.getParameter("imie");
             if (imie==null) imie="";
+            String www = request.getParameter("www");
+            if (www==null) www="";
             String gg = request.getParameter("gg");
             if (gg==null) gg="";
             String jabber = request.getParameter("jabber");
@@ -41,12 +43,20 @@
             if (icq==null) icq="";
             String msn = request.getParameter("msn");
             if (msn==null) msn="";
+            String yahoo = request.getParameter("yahoo");
+            if (yahoo==null) yahoo="";
+            String skype = request.getParameter("skype");
+            if (skype==null) skype="";
             String miasto = request.getParameter("miasto");
             if (miasto==null) miasto="";
             String plec = request.getParameter("plec");
             if (plec==null) plec="M";
             String rokUrodzenia = request.getParameter("rokUrodzenia");
-            if (rokUrodzenia==null) rokUrodzenia="0";
+            if (rokUrodzenia==null) rokUrodzenia="1900";
+            String miesiacUrodzenia = request.getParameter("miesiacUrodzenia");
+            if (miesiacUrodzenia==null) miesiacUrodzenia="01";
+            String dzienUrodzenia = request.getParameter("dzienUrodzenia");
+            if (dzienUrodzenia==null) dzienUrodzenia="01";
             
             nazwisko  = new String(nazwisko.getBytes("8859_1"),"UTF-8");
             imie      = new String(imie.getBytes("8859_1"),"UTF-8");
@@ -58,14 +68,21 @@
             msn       = new String(msn.getBytes("8859_1"),"UTF-8");
             miasto    = new String(miasto.getBytes("8859_1"),"UTF-8");
             rokUrodzenia = new String(rokUrodzenia.getBytes("8859_1"),"UTF-8");
+            miesiacUrodzenia = new String(miesiacUrodzenia.getBytes("8859_1"),"UTF-8");
+            dzienUrodzenia = new String(dzienUrodzenia.getBytes("8859_1"),"UTF-8");
+            String dataUrodzenia = rokUrodzenia + "-" + miesiacUrodzenia + "-" + dzienUrodzenia;
 
                 if (ok) {
                 String aktywny = DataBase.NIE;
                 if (!Config.NEW_USER_MAIL_AUTH) { aktywny = DataBase.TAK; } 
                 
-                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,gg,DataBase.NIE,jabber,DataBase.NIE,tlen,DataBase.NIE,wpKontakt,DataBase.NIE,icq,DataBase.NIE,msn,DataBase.NIE,miasto,DataBase.NIE,plec,rokUrodzenia,DataBase.NIE,DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),aktywny,DataBase.NIE,DataBase.NIE,db_con);
+                User u = new User(0,nickname,Crypto.crypt(passwd1),imie,nazwisko,DataBase.NIE,email,DataBase.NIE,www,gg,DataBase.NIE,
+                        jabber,DataBase.NIE,tlen,DataBase.NIE,wpKontakt,DataBase.NIE,icq,DataBase.NIE,msn,DataBase.NIE,yahoo,
+                        DataBase.NIE,skype,DataBase.NIE,miasto,DataBase.NIE,plec,"",dataUrodzenia,DataBase.NIE,"0","0",
+                        DataBase.getDate("1970","01","01","00","00","00"),DataBase.getDate("1970","01","01","00","00","00"),
+                        aktywny,DataBase.NIE,DataBase.NIE,db_con);
                 if(!db_con.insertUser(u))
-                    out.println(Messages.makeError("tutaj" + Messages.errorUserCreate()));
+                    out.println(Messages.makeError(Messages.errorUserCreate()));
                 else {
                     if (Config.NEW_USER_MAIL_AUTH) {
                        Random r = new Random();
@@ -129,6 +146,8 @@
             }%>
                 <td><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
                 </tr> <tr>
+                <td><%out.print(Messages.wielka(Messages.wwwPage()));%>:</td><td><input type="text" size="25" name="www" value="<%out.print(www);%>" id="www"/></td>
+                </tr> <tr>
                     <td><%out.print(Messages.wielka(Messages.gg()));%>:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"/></td>
                 </tr> <tr>
                 <td><%out.print(Messages.wielka(Messages.jabber()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"/></td>
@@ -141,6 +160,10 @@
                 </tr> <tr>
                 <td><%out.print(Messages.wielka(Messages.msn()));%>:</td><td><input type="text" size="25" name="msn" value="<%out.print(msn);%>"/></td>
                 </tr> <tr>
+                <td><%out.print(Messages.wielka(Messages.yahoo()));%>:</td><td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
+                </tr> <tr>
+                <td><%out.print(Messages.wielka(Messages.skype()));%>:</td><td><input type="text" size="25" name="skype" value="<%out.print(skype);%>"/></td>
+                </tr> <tr>
                     <td><%out.print(Messages.wielka(Messages.city()));%>:</td><td><input type="text" size="25" name="miasto" value="<%out.print(miasto);%>"/></td>
                 </tr> <tr>
                     <td><%out.print(Messages.wielka(Messages.sex()));%>:</td><td><select name="plec">
@@ -149,7 +172,8 @@
                         </select>
                     </td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.birthdate()));%>:</td><td><input type="text" size="25" name="rokUrodzenia" value="<%out.print(rokUrodzenia);%>"/></td>
+                <td><%out.print(Messages.wielka(Messages.birthdate()));%>:</td>
+                <td><input type="text" size="4" name="rokUrodzenia" value="<%out.print(rokUrodzenia);%>"/>-<input type="text" size="2" name="miesiacUrodzenia" value="<%out.print(miesiacUrodzenia);%>"/>-<input type="text" size="2" name="dzienUrodzenia" value="<%out.print(dzienUrodzenia);%>"/></td>
                 </tr> <tr>
                     <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
                 </tr>

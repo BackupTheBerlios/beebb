@@ -160,6 +160,7 @@ public class DataBase {
     static final String USER_IMIE_NAZWISKO_PRYWATNE = "IMIENAZWISKOPRYWATNE";
     static final String USER_EMAIL = "EMAIL";
     static final String USER_EMAIL_PRYWATNY = "EMAILPRYWATNY";
+    static final String USER_WWW = "WWW";
     static final String USER_GG = "GG";
     static final String USER_GG_PRYWATNE = "GGPRYWATNE";
     static final String USER_JABBER = "JABBER";
@@ -172,12 +173,18 @@ public class DataBase {
     static final String USER_ICQ_PRYWATNE = "ICQPRYWATNE";
     static final String USER_MSN = "MSN";
     static final String USER_MSN_PRYWATNY = "MSNPRYWATNY";
+    static final String USER_YAHOO = "YAHOO";
+    static final String USER_YAHOO_PRYWATNE = "YAHOOPRYWATNE";
+    static final String USER_SKYPE = "SKYPE";
+    static final String USER_SKYPE_PRYWATNY = "SKYPEPRYWATNY";
     static final String USER_MIASTO = "MIASTO";
     static final String USER_MIASTO_PRYWATNE = "MIASTOPRYWATNE";
     static final String USER_PLEC = "PLEC";
-    static final String USER_ROKURODZENIA = "ROKURODZENIA";
-    static final String USER_ROKURODZENIA_PRYWATNY = "ROKURODZENIAPRYWATNY";
-    
+    static final String USER_AVATAR = "AVATAR";
+    static final String USER_DATAURODZENIA = "DATAURODZENIA";
+    static final String USER_DATAURODZENIA_PRYWATNA = "DATAURODZENIAPRYWATNA";
+    static final String USER_LICZBAWYPOWIEDZI = "LICZBAWYPOWIEDZI";
+    static final String USER_LICZBAWATKOW = "LICZBAWATKOW";
     static final String USER_LASTLOG = "OSTATNIELOGOWANIE";
     static final String USER_CURRENTLOG = "BIERZACELOGOWANIE";
     static final String USER_AKTYWNY = "AKTYWNY";
@@ -541,12 +548,14 @@ public class DataBase {
         return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
                 (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
                 (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
-                (String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),
+                (String)user.get(USER_WWW),(String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),
                 (String)user.get(USER_TLEN),(String)user.get(USER_TLEN_PRYWATNY),(String)user.get(USER_WPKONTAKT),
                 (String)user.get(USER_WPKONTAKT_PRYWATNY),(String)user.get(USER_ICQ),(String)user.get(USER_ICQ_PRYWATNE),
-                (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_MIASTO),
-                (String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),(String)user.get(USER_ROKURODZENIA),
-                (String)user.get(USER_ROKURODZENIA_PRYWATNY),(String)user.get(USER_LASTLOG),
+                (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_YAHOO),
+                (String)user.get(USER_YAHOO_PRYWATNE),(String)user.get(USER_SKYPE),(String)user.get(USER_SKYPE_PRYWATNY),
+                (String)user.get(USER_MIASTO),(String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),
+                (String)user.get(USER_AVATAR),(String)user.get(USER_DATAURODZENIA),(String)user.get(USER_DATAURODZENIA_PRYWATNA),
+                (String)user.get(USER_LICZBAWYPOWIEDZI),(String)user.get(USER_LICZBAWATKOW),(String)user.get(USER_LASTLOG),
                 (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
                 (String)user.get(USER_MODERATOR),this);
     }
@@ -557,7 +566,7 @@ public class DataBase {
      * @param ID Identyfikator szukanego uzytkownika
      * @return Zwraca obiekt User badz null w razie bledu.
      */
-    public User getUser(int ID){
+    public User getUser(int ID) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
         if (user == null) return null;
         return ht2user(user);
@@ -606,42 +615,31 @@ public class DataBase {
      * @return zwraca czy insert sie powidl
      */
     public boolean insertUser(User u){
-        String aktywny;
-        if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
-        String moderator;
-        if(u.moderator()) moderator=TAK; else moderator=NIE;
-        String admin;
-        if(u.admin()) admin=TAK; else admin=NIE;
-        String showName;
-        if(u.ifShowName()) showName=NIE; else showName=TAK;
-        String showEmail;
-        if(u.ifShowEmail()) showEmail=NIE; else showEmail=TAK;
-        String showGG;
-        if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
-        String showJabber;
-        if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
-        String showTlen;
-        if(u.ifShowTlen()) showTlen=NIE; else showTlen=TAK;
-        String showWPKontakt;
-        if(u.ifShowWPKontakt()) showWPKontakt=NIE; else showWPKontakt=TAK;
-        String showICQ;
-        if(u.ifShowICQ()) showICQ=NIE; else showICQ=TAK;
-        String showMSN;
-        if(u.ifShowMSN()) showMSN=NIE; else showMSN=TAK;
-        String showCity;
-        if(u.ifShowCity()) showCity=NIE; else showCity=TAK;
-        String showBirthDate;
-        if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
+        String aktywny; if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
+        String moderator; if(u.moderator()) moderator=TAK; else moderator=NIE;
+        String admin; if(u.admin()) admin=TAK; else admin=NIE;
+        String showName; if(u.ifShowName()) showName=NIE; else showName=TAK;
+        String showEmail; if(u.ifShowEmail()) showEmail=NIE; else showEmail=TAK;
+        String showGG; if(u.ifShowGG()) showGG=NIE; else showGG=TAK;
+        String showJabber; if(u.ifShowJabber()) showJabber=NIE; else showJabber=TAK;
+        String showTlen; if(u.ifShowTlen()) showTlen=NIE; else showTlen=TAK;
+        String showWPKontakt; if(u.ifShowWPKontakt()) showWPKontakt=NIE; else showWPKontakt=TAK;
+        String showICQ; if(u.ifShowICQ()) showICQ=NIE; else showICQ=TAK;
+        String showMSN; if(u.ifShowMSN()) showMSN=NIE; else showMSN=TAK;
+        String showYahoo; if(u.ifShowYahoo()) showYahoo=NIE; else showYahoo=TAK;
+        String showSkype; if(u.ifShowSkype()) showSkype=NIE; else showSkype=TAK;
+        String showCity; if(u.ifShowCity()) showCity=NIE; else showCity=TAK;
+        String showBirthDate; if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
         
         return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (" + u.getID() + ",\"" + u.getLogin() + 
-                "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() + 
-                "' ,'" + showName + "' ,'" + u.getEmail()  + "' ,'" + showEmail + "' ,'" + u.getGG() + 
-                "' ,'" + showGG + "','" + u.getJabber() + "','" +  showJabber +  
-                "','" + u.getTlen() + "','" +  showTlen + "','" + u.getWPKontakt() + "','" +  showWPKontakt +
-                "','" + u.getICQ() + "','" +  showICQ + "','" + u.getMSN() + "','" +  showMSN +
-                "','" + u.getCity() + "','" +  showCity + "','" + u.getSex() + 
-                "'," + u.getBirthDate() + ",'" +  showBirthDate + "','" + u.getLastLog() + 
-                "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
+                "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() +  "' ,'" + showName + 
+                "','" + u.getEmail()  + "','" + showEmail + "' ,'" + u.getWWW() + "' ,'" + u.getGG() + 
+                "' ,'" + showGG + "','" + u.getJabber() + "','" +  showJabber + "','" + u.getTlen() + "','" +  showTlen + 
+                "','" + u.getWPKontakt() + "','" +  showWPKontakt + "','" + u.getICQ() + "','" +  showICQ + "','" + u.getMSN() + 
+                "','" +  showMSN + "','" + u.getYahoo() + "','" + showYahoo + "','" + u.getSkype() + "','" + showSkype +
+                "','" + u.getCity() + "','" +  showCity + "','" + u.getSex() + "','" + u.getAvatar() + "','" + prepareDateToUpdate(u.getBirthDate()) + 
+                "','" +  showBirthDate + "'," + u.getLiczbaWypowiedzi() + "," + u.getLiczbaWatkow() + 
+                ",'" + u.getLastLog() + "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
     }
     
     
@@ -689,7 +687,7 @@ public class DataBase {
                 "'," + USER_MSN + "='" + u.getMSN() + "'," + USER_MSN_PRYWATNY + "='" + showMSN +
                 "'," + USER_MIASTO + "='" + u.getCity() + "'," + USER_MIASTO_PRYWATNE + "='" + showCity +
                 "'," + USER_PLEC + "='" + u.getSex() +
-                "'," + USER_ROKURODZENIA + "=" + u.getBirthDate() + "," + USER_ROKURODZENIA_PRYWATNY + "='" + showBirthDate +
+                "'," + USER_DATAURODZENIA + "=" + prepareDateToUpdate(u.getBirthDate()) + "," + USER_DATAURODZENIA_PRYWATNA + "='" + showBirthDate +
                 "'," + USER_AKTYWNY + "='" + aktywny + 
                 "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + 
                 "'," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + 
@@ -774,17 +772,7 @@ public class DataBase {
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +", "+BEE_USERS_GROUPS+" WHERE "+USER_ID+"="+USERS_GROUPS_ID_USER+" and "+USERS_GROUPS_ID_GROUP+"= "+id_g+" and "+USER_AKTYWNY+"= '"+aktywny+"' ");
         for(int i=0; i<users.size(); i++) {
             Hashtable user = (Hashtable)users.get(i);
-            wynik.add(new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
-                    (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
-                    (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
-                    (String)user.get(USER_GG),(String)user.get(USER_GG_PRYWATNE),(String)user.get(USER_JABBER),(String)user.get(USER_JABBER_PRYWATNY),
-                    (String)user.get(USER_TLEN),(String)user.get(USER_TLEN_PRYWATNY),(String)user.get(USER_WPKONTAKT),
-                    (String)user.get(USER_WPKONTAKT_PRYWATNY),(String)user.get(USER_ICQ),(String)user.get(USER_ICQ_PRYWATNE),
-                    (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_MIASTO),
-                    (String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),(String)user.get(USER_ROKURODZENIA),
-                    (String)user.get(USER_ROKURODZENIA_PRYWATNY),(String)user.get(USER_LASTLOG),
-                    (String)user.get(USER_CURRENTLOG),(String)user.get(USER_AKTYWNY),(String)user.get(USER_ADMIN),
-                    (String)user.get(USER_MODERATOR),this)); }
+            wynik.add(ht2user(user));}
         return wynik;
     }
     

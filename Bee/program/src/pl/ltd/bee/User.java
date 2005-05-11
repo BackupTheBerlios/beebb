@@ -18,15 +18,21 @@ public class User {
     private String imie;
     private String nazwisko;
     private String email;
+    private String www;
     private String gg;
     private String jabber;
     private String tlen;
     private String wpKontakt;
     private String icq;
     private String msn;
+    private String yahoo;
+    private String skype;
     private String miasto;
     private String plec;
-    private String rokUrodzenia;
+    private String avatar;
+    private String dataUrodzenia;
+    private int liczbaWypowiedzi;
+    private int liczbaWatkow;
     private String lastlog;
     private String currentlog;
     private boolean imieNazwiskoPrywatne;
@@ -37,8 +43,10 @@ public class User {
     private boolean wpKontaktPrywatny;
     private boolean icqPrywatne;
     private boolean msnPrywatny;
+    private boolean yahooPrywatne;
+    private boolean skypePrywatny;
     private boolean miastoPrywatne;
-    private boolean rokUrodzeniaPrywatny;
+    private boolean dataUrodzeniaPrywatna;
     private boolean aktywny;
     private boolean admin;
     private boolean moderator;
@@ -54,6 +62,7 @@ public class User {
      * @pram imieNazwiskoPrywatne czy uznawać imie i nazwisko za prywatne
      * @param email email uzytkownika
      * @param emailPrywatny czy uznawac email za prywatny
+     * @param www strona www uzytkownika
      * @param gg numer gadu-gadu
      * @param ggPrywatne czy uznawac numer gg za prywatny
      * @param jabber adres jabbera
@@ -66,60 +75,68 @@ public class User {
      * @param icqPrywatne czy uznawac id komnikatora icq za prywatne
      * @param msn id komnikatora msn
      * @param msnPrywatne czy uznawac id komnikatora msn za prywatne
+     * @param yahoo id komnikatora yahoo
+     * @param yahooPrywatne czy uznawac id komnikatora yahoo za prywatne
+     * @param skype id komnikatora skype
+     * @param skypePrywatny czy uznawac id komnikatora skype za prywatne
      * @param miasto miasto w ktorym mieszka uzytkownik (bądź z którego pochodzi)
      * @param miastoPrywatne czy uznawac miasto za prywatne
      * @param plec plec uzytkownika ('K' lub 'M')
-     * @param rokUrodzenia rok urodzenia uzytkownika
-     * @param rokUrodzeniaPrywatny czy uznawac rok urodzenia jako prywatny
+     * @param avatar ikonka uzytkownika - nazwa pliku z ikonką
+     * @param dataUrodzenia data urodzenia uzytkownika
+     * @param dataUrodzeniaPrywatna czy uznawac rok urodzenia jako prywatny
+     * @param liczbaWypowiedzi liczba wypowiedzi napisanych przez użytkownika
+     * @param liczbaWatkow liczba watkow napisanych przez użytkownika
      * @param lastlog ostatnie logowanie
      * @param currentlog data bierzacego logowania
      * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
      * @param db objekt bazy danych
      */
-    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne, String email, String emailPrywatny, String gg, String ggPrywatne, String jabber, String jabberPrywatny,String tlen, String tlenPrywatny,String wpKontakt, String wpKontaktPrywatny,String icq, String icqPrywatne,String msn, String msnPrywatny,String miasto, String miastoPrywatne,String plec, String rokUrodzenia,String rokUrodzeniaPrywatny,String lastlog,String currentlog,String aktywny,String admin,String moderator,DataBase _db) {
+    public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne,
+            String email, String emailPrywatny, String www, String gg, String ggPrywatne, String jabber, String jabberPrywatny,
+            String tlen, String tlenPrywatny,String wpKontakt, String wpKontaktPrywatny,String icq, String icqPrywatne,
+            String msn, String msnPrywatny,String yahoo, String yahooPrywatne,String skype, String skypePrywatny, String miasto,
+            String miastoPrywatne,String plec,String avatar, String dataUrodzenia, String dataUrodzeniaPrywatna,
+            String liczbaWypowiedzi,String liczbaWatkow,String lastlog,String currentlog, String aktywny,String admin,
+            String moderator,DataBase _db) {
         this.ID=ID;
         this.login=login;
         this.haslo=haslo;
         this.imie=imie;
         this.nazwisko=nazwisko;
         this.email=email;
+        this.www=www;
         this.gg=gg;
         this.jabber=jabber;
         this.tlen=tlen;
         this.wpKontakt=wpKontakt;
         this.icq=icq;
         this.msn=msn;
+        this.yahoo=yahoo;
+        this.skype=skype;
         this.miasto=miasto;
         this.plec=plec;
-        this.rokUrodzenia=rokUrodzenia;
+        this.avatar=avatar;
+        this.dataUrodzenia=dataUrodzenia;
+        this.liczbaWypowiedzi=Integer.decode(liczbaWypowiedzi).intValue();
+        this.liczbaWatkow=Integer.decode(liczbaWatkow).intValue();
         this.lastlog=lastlog;
         this.currentlog=currentlog;
-        if (imieNazwiskoPrywatne.compareTo(DataBase.TAK)==0)
-            this.imieNazwiskoPrywatne=true; else this.imieNazwiskoPrywatne=false;
-        if (emailPrywatny.compareTo(DataBase.TAK)==0)
-            this.emailPrywatny=true; else this.emailPrywatny=false;
-        if (ggPrywatne.compareTo(DataBase.TAK)==0)
-            this.ggPrywatne=true; else this.ggPrywatne=false;
-        if (jabberPrywatny.compareTo(DataBase.TAK)==0)
-            this.jabberPrywatny=true; else this.jabberPrywatny=false;
-        if (tlenPrywatny.compareTo(DataBase.TAK)==0)
-            this.tlenPrywatny=true; else this.tlenPrywatny=false;
-        if (wpKontaktPrywatny.compareTo(DataBase.TAK)==0)
-            this.wpKontaktPrywatny=true; else this.wpKontaktPrywatny=false;
-        if (icqPrywatne.compareTo(DataBase.TAK)==0)
-            this.icqPrywatne=true; else this.icqPrywatne=false;
-        if (msnPrywatny.compareTo(DataBase.TAK)==0)
-            this.msnPrywatny=true; else this.msnPrywatny=false;
-        if (miastoPrywatne.compareTo(DataBase.TAK)==0)
-            this.miastoPrywatne=true; else this.miastoPrywatne=false;
-        if (rokUrodzeniaPrywatny.compareTo(DataBase.TAK)==0)
-            this.rokUrodzeniaPrywatny=true; else this.rokUrodzeniaPrywatny=false;
-        if (aktywny.compareTo(DataBase.TAK)==0)
-            this.aktywny=true; else this.aktywny=false;
-        if (admin.compareTo(DataBase.TAK)==0)
-            this.admin=true; else this.admin=false;
-        if (moderator.compareTo(DataBase.TAK)==0)
-            this.moderator=true; else this.moderator=false;
+        if (imieNazwiskoPrywatne.compareTo(DataBase.TAK)==0) this.imieNazwiskoPrywatne=true; else this.imieNazwiskoPrywatne=false;
+        if (emailPrywatny.compareTo(DataBase.TAK)==0) this.emailPrywatny=true; else this.emailPrywatny=false;
+        if (ggPrywatne.compareTo(DataBase.TAK)==0) this.ggPrywatne=true; else this.ggPrywatne=false;
+        if (jabberPrywatny.compareTo(DataBase.TAK)==0) this.jabberPrywatny=true; else this.jabberPrywatny=false;
+        if (tlenPrywatny.compareTo(DataBase.TAK)==0) this.tlenPrywatny=true; else this.tlenPrywatny=false;
+        if (wpKontaktPrywatny.compareTo(DataBase.TAK)==0) this.wpKontaktPrywatny=true; else this.wpKontaktPrywatny=false;
+        if (icqPrywatne.compareTo(DataBase.TAK)==0) this.icqPrywatne=true; else this.icqPrywatne=false;
+        if (msnPrywatny.compareTo(DataBase.TAK)==0) this.msnPrywatny=true; else this.msnPrywatny=false;
+        if (yahooPrywatne.compareTo(DataBase.TAK)==0) this.yahooPrywatne=true; else this.yahooPrywatne=false;
+        if (skypePrywatny.compareTo(DataBase.TAK)==0) this.skypePrywatny=true; else this.skypePrywatny=false;
+        if (miastoPrywatne.compareTo(DataBase.TAK)==0) this.miastoPrywatne=true; else this.miastoPrywatne=false;
+        if (dataUrodzeniaPrywatna.compareTo(DataBase.TAK)==0) this.dataUrodzeniaPrywatna=true; else this.dataUrodzeniaPrywatna=false;
+        if (aktywny.compareTo(DataBase.TAK)==0) this.aktywny=true; else this.aktywny=false;
+        if (admin.compareTo(DataBase.TAK)==0) this.admin=true; else this.admin=false;
+        if (moderator.compareTo(DataBase.TAK)==0) this.moderator=true; else this.moderator=false;
         this.db = _db;
     }
     
@@ -155,6 +172,7 @@ public class User {
     public boolean moderator() {
         return moderator;
     }
+    
     
     /** Metoda sprawdza czy uzytkownik jest moderatorem podanego podforum
      * @param id_podforum Podforum o ktorego moderowanie pytamy
@@ -204,12 +222,14 @@ public class User {
         return !tlenPrywatny;
     }
     
+    
     /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id wpKontakt
      * @return T lub N w zaleznosci czy user wyraża zgode czy nie
      */
     public boolean ifShowWPKontakt() {
         return !wpKontaktPrywatny;
     }
+    
     
     /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id icq
      * @return T lub N w zaleznosci czy user wyraża zgode czy nie
@@ -218,11 +238,28 @@ public class User {
         return !icqPrywatne;
     }
     
+    
     /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id msn
      * @return T lub N w zaleznosci czy user wyraża zgode czy nie
      */
     public boolean ifShowMSN() {
         return !msnPrywatny;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id yahoo
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowYahoo() {
+        return !yahooPrywatne;
+    }
+    
+    
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id skype
+     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+     */
+    public boolean ifShowSkype() {
+        return !skypePrywatny;
     }
     
     /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie miasta zamieszkania
@@ -232,11 +269,11 @@ public class User {
         return !miastoPrywatne;
     }
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie roku urodzenia
+    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie date urodzenia
      * @return T lub N w zaleznosci czy user wyraża zgode czy nie
      */
     public boolean ifShowBirthDate() {
-        return !rokUrodzeniaPrywatny;
+        return !dataUrodzeniaPrywatna;
     }
     
     /** Metoda zwraca sprawdza czy użytkownik jest meższczyzną
@@ -245,7 +282,7 @@ public class User {
     public boolean ifMale(){
         return this.plec.compareTo(DataBase.MEZCZYZNA) == 0;
     }
-
+    
     /** Metoda zwraca sprawdza czy użytkownik jest kobietą
      * @return True jeśli użytkownik to kobieta
      **/
@@ -339,6 +376,23 @@ public class User {
     public void setEmail(String email){
         this.email=email;
     }
+    
+    
+    /** Metoda zwraca strone www uzytkownika
+     * @return String ze stroną www
+     **/
+    public String getWWW(){
+        return this.www;
+    }
+    
+    
+    /** Metoda ustawia strone www uzytkownika
+     * @param email String ze stroną www użytkownika
+     **/
+    public void setWWW(String www){
+        this.www=www;
+    }
+    
     
     /** Metoda ustawia login uzytkownika
      * @param login String z loginem użytkownika
@@ -445,6 +499,38 @@ public class User {
     }
     
     
+    /** Metoda zwraca konto Yahoo uzytkownika
+     * @return String z kontem Yahoo
+     **/
+    public String getYahoo(){
+        return this.yahoo;
+    }
+    
+    
+    /** Metoda ustawia Yahoo id uzytkownika
+     * @param jabber String z id Yahoo
+     **/
+    public void setYahoo(String yahoo){
+        this.yahoo=yahoo;
+    }
+    
+    
+    /** Metoda zwraca konto Skype uzytkownika
+     * @return String z kontem Skype
+     **/
+    public String getSkype(){
+        return this.skype;
+    }
+    
+    
+    /** Metoda ustawia id Skype uzytkownika
+     * @param jabber String z id Skype
+     **/
+    public void setSkype(String skype){
+        this.skype=skype;
+    }
+    
+    
     /** Metoda zwraca miasto zamieszkania uzytkownka
      * @return String z miastem
      **/
@@ -461,19 +547,19 @@ public class User {
     }
     
     
-    /** Metoda zwraca rok urodzenia Uzytkownka
-     * @return String z rokiem
+    /** Metoda zwraca datę urodzenia Uzytkownka (YYYY-MM-DD)
+     * @return String z datą
      **/
     public String getBirthDate(){
-        return this.rokUrodzenia;
+        return this.dataUrodzenia;
     }
     
     
-    /** Metoda ustawia rok urodzenia uzytkownika
-     * @param jabber String z rokiem urodzenia
+    /** Metoda ustawia datę urodzenia uzytkownika (YYYY-MM-DD)
+     * @param jabber String z datą urodzenia
      **/
-    public void setBirthDate(String rokUrodzenia){
-        this.rokUrodzenia=rokUrodzenia;
+    public void setBirthDate(String dataUrodzenia){
+        this.dataUrodzenia=dataUrodzenia;
     }
     
     
@@ -484,13 +570,29 @@ public class User {
         return this.plec;
     }
     
+    
     /** Metoda ustawia płeć uzytkownika {Database.kobieta, Database.mezczyzna}
-     * @param jabber String z płcią
+     * @param plec String z płcią
      **/
     public void setSex(String plec){
         this.plec=plec;
     }
     
+    
+    /** Metoda zwraca avatar użytkownika (nazwe pliku w katalogu)
+     * @return String z avatarem
+     **/
+    public String getAvatar(){
+        return this.avatar;
+    }
+    
+    
+    /** Metoda ustawia avatar uzytkownika (nazwe pliku w katalogu)
+     * @param avatar String z nazwą pliku
+     **/
+    public void setAvatar(String avatar){
+        this.avatar=avatar;
+    }
     
     
     /** Metoda ustawia lastlog
@@ -523,6 +625,22 @@ public class User {
     public void setCurrentLog(String currentLog) {
         this.lastlog=this.currentlog;
         this.currentlog=currentLog;
+    }
+    
+    
+    /** Metoda zwraca liczbe wypowiedzi napisanych przez użytkownika
+     * @return int reprezentujący liczbę wypowiedzi
+     **/
+    public int getLiczbaWypowiedzi(){
+        return this.liczbaWypowiedzi;
+    }
+    
+    
+    /** Metoda zwraca liczbe watkow utworzonych przez użytkownika
+     * @return int reprezentujący liczbę wypowiedzi
+     **/
+    public int getLiczbaWatkow(){
+        return this.liczbaWatkow;
     }
     
     
@@ -597,12 +715,40 @@ public class User {
     }
     
     
+    /** Metoda ustawia prywatność id yahoo
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setYahooPrivate(boolean prv){
+        this.yahooPrywatne=prv;
+    }
+    
+    
+    /** Metoda ustawia prywatność id skype
+     * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setSkypePrivate(boolean prv){
+        this.skypePrywatny=prv;
+    }
+    
+    
     /** Metoda ustawia prywatność miasta uzytkownika
      * @param czyPrywatny T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setCityPrivate(boolean prv){
         this.miastoPrywatne=prv;
     }
+    
+    
+    /** Metoda zwiększa liczbe wypowiedzi napisanych przez użytkownika **/
+    public void incrLiczbaWypowiedzi(){
+        this.liczbaWypowiedzi++;
+    }
+    
+    
+    /** Metoda zwiększa liczbe watkow utworzonych przez użytkownika **/
+    public void incrLiczbaWatkow(){
+        this.liczbaWatkow++;
+    }    
     
     
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku
@@ -614,6 +760,7 @@ public class User {
         return db.hasPodforumRights(this.ID, p.getID(), true, false);
     }
     
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego watku
      * @param id Identyfikator watku
      * @return True jesli użytkownik ma prawo zapisu do wskazanego wątku lub False w p.p.
@@ -623,6 +770,7 @@ public class User {
         return db.hasPodforumRights(this.ID, p.getID(), false, true);
     }
     
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum
      * @param id Identyfikator podforum
      * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
@@ -630,6 +778,7 @@ public class User {
     public boolean hasReadPodforumRight(int id){
         return db.hasPodforumRights(this.ID, id, true, false);
     }
+    
     
     /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego podforum
      * @param id Identyfikator podforum
@@ -639,6 +788,7 @@ public class User {
         return db.hasPodforumRights(this.ID, id, false, true);
     }
     
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False w p.p.
@@ -647,6 +797,7 @@ public class User {
         return db.hasKategoriaRights(this.ID, id, true, false);
     }
     
+    
     /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danej Kategorii
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo zapisu do wskazanej Ktegorii lub False w p.p.
@@ -654,4 +805,5 @@ public class User {
     public boolean hasWriteKategoriaRight(int id){
         return db.hasKategoriaRights(this.ID, id, false, true);
     }
+    
 }

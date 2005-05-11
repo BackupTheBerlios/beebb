@@ -25,6 +25,8 @@
             else
             {   
                 User user = db_con.getUser(Integer.parseInt(uid));
+                if (user==null) out.println(Messages.errorUnknown()); else {
+                
                 %>
                 <table align="center" class="tableProfile" border="0">
                     <tr><th><% out.print(Messages.nick());%></th><td class="tdProfileField">&nbsp;<% out.print(new String(user.getLogin().getBytes("8859_1"),"UTF-8"));%></td></tr>
@@ -40,7 +42,7 @@
                 <% } %>
                     <tr><th><% out.print(Messages.lastLogged());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getCurrentLog());%></td></tr>
                 </table>
-                <%
+                <% }
             }
     %>
             </td></tr>

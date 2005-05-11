@@ -141,6 +141,14 @@ public class Messages {
     public static String msn(){
         return "msn";}
     
+    /** Metoda dostarcza slowo "yahoo" */
+    public static String yahoo(){
+        return "yahoo";}
+    
+    /** Metoda dostarcza slowo "skype" */
+    public static String skype(){
+        return "skype";}
+    
     /** Metoda dostarcza slowo "miasto" */
     public static String city(){
         return "miasto";}
@@ -340,7 +348,6 @@ public class Messages {
     /** Metoda dostarcza fraze "pisaie" */
     public static String write(){
         return "pisanie";}
-    
     
     /** Metoda dostarcza fraze "edycja kategorii" */
     public static String editionKat(){
@@ -652,9 +659,9 @@ public class Messages {
         return "Hasło powinno mieć przynajmniej " + new String().valueOf(Config.MIN_PASSWD) +" znaków";}
     
     
-    /** Metoda dostarcza fraze "rok urodzenia" */
+    /** Metoda dostarcza fraze "data urodzenia" */
     public static String birthdate(){
-        return "rok urodzenia";}
+        return "data urodzenia";}
     
     
     /** Metoda dostarcza komunikat "Ostatnio zalogowany"
