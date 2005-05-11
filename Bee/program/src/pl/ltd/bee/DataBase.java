@@ -697,7 +697,8 @@ public class DataBase {
                 "'," + USER_DATAURODZENIA + "='" + prepareDateToUpdate(u.getBirthDate()) + "'," + USER_DATAURODZENIA_PRYWATNA + "='" + showBirthDate +
                 "'," + USER_AKTYWNY + "='" + aktywny + 
                 "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + 
-                "'," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + 
+                "'," + USER_LICZBAWYPOWIEDZI + "=" + u.getLiczbaWypowiedzi() + "," + USER_LICZBAWATKOW + "=" + u.getLiczbaWatkow() + 
+                "," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + 
                 "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
     }
     
