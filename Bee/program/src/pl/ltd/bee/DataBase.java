@@ -680,6 +680,7 @@ public class DataBase {
         return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + 
                 " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() + 
                 "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() + 
+                "',"+ USER_WWW + "='" + u.getWWW() +
                 "'," + USER_EMAIL_PRYWATNY + "='" + showEmail + "'," + USER_GG + "='" + u.getGG() + 
                 "'," + USER_GG_PRYWATNE + "='" + showGG + "'," + USER_JABBER + "='" + u.getJabber() + 
                 "'," + USER_JABBER_PRYWATNY + "='" + showJabber + 

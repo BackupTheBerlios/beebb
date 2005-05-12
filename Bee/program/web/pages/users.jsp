@@ -19,6 +19,7 @@
         out.println(Messages.wielka(Messages.login())+"</th>"+
         "<th>"+Messages.wielka(Messages.name())+" "+Messages.and()+" "+Messages.wielka(Messages.surname())+"</th>"+
         "<th>"+Messages.wielka(Messages.email())+"</th>"+
+        "<th>"+Messages.wielka(Messages.wwwPage())+"</th>"+
         "<th>"+Messages.wielka(Messages.city())+"</th>"+
         "<th>"+Messages.wielka(Messages.birthdate())+"</th>"+
         "<th>"+Messages.wielka(Messages.gg())+"</th>"+
@@ -40,6 +41,7 @@
                 out.println("<td align=\"center\" class=\"tdUsersList\"><table width=\"100%\" border=\"0\"><tr><td align=\"left\"><img align=\"middle\" src=\""+(u.ifMale()?"../images/male.gif\" alt=\""+Messages.wielka(Messages.men()):"../images/female.gif\" alt=\""+Messages.wielka(Messages.woman()))+"\"></td><td>&nbsp;"+Commons.aHref(u.getLogin(),"./profile.jsp?uid="+u.getID())+"</td></tr></table></td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowName()?u.getImie()+"<br/>"+u.getNazwisko():"")+"</td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowEmail()?"<a href=\"mailto:"+u.getEmail()+"\" class=\"aHref\">"+u.getEmail()+"</a>":"")+"</td>");
+                out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.getWWW().length()>0?"<a href=\""+u.getWWW()+"\" class=\"aHref\" target=\"_blank\"><img src=\"../images/www.gif\" border=\"0\" alt=\""+u.getWWW()+"\"/></a>":"")+"</td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowCity()?u.getCity():"")+"</td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowBirthDate()?u.getBirthDate():"")+"</td>");
 
@@ -67,7 +69,6 @@
                                 "onerror=\"this.onerror=null;this.src='../images/jabberunknown.gif';\"></a>");
                 }
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowWPKontakt()&&(u.getWPKontakt().length()>0)?"<img src=\"http://kontakt.wp.pl/status.html?login="+u.getWPKontakt()+"&styl=0\" alt=\""+u.getWPKontakt()+"\">":"")+"</td>");
-
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+u.getLastLog()+"</td>");
                 out.println("</tr>");
             }

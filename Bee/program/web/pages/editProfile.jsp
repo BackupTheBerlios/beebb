@@ -31,6 +31,7 @@
                     if (imie!=null) user.setImie(new String(imie.getBytes("8859_1"),"UTF-8")); 
                     if (nazwisko!=null) user.setNazwisko(new String(nazwisko.getBytes("8859_1"),"UTF-8")); 
                     if (email!=null) user.setEmail(new String(email.getBytes("8859_1"),"UTF-8")); 
+                    if (www!=null) user.setWWW(new String(www.getBytes("8859_1"),"UTF-8")); 
                     if (gg!=null) user.setGG(new String(gg.getBytes("8859_1"),"UTF-8"));
                     if (jabber!=null) user.setJabber(new String(jabber.getBytes("8859_1"),"UTF-8"));
                     if (tlen!=null) user.setTlen(new String(tlen.getBytes("8859_1"),"UTF-8"));
@@ -109,7 +110,7 @@
                 </tr>
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.wwwPage()));%></th>
-                    <td class="tdProfileField"><input type="text" name="email" size="35" style="width:230px" value="<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%>"/></td>
+                    <td class="tdProfileField"><input type="text" name="www" size="35" style="width:230px" value="<% out.print(new String(user.getWWW().getBytes("8859_1"),"UTF-8"));%>"/></td>
                     <td></td>
                     </tr>
                 <tr>
