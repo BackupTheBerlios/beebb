@@ -592,6 +592,33 @@ public class User {
     }
     
     
+    /** Metoda zwraca rok urodzenia Uzytkownka
+     * @return String z rokiem
+     **/
+    public String getBirthYear(){
+        //dataUrodzenia musi być w formacie YYYY-MM-DD
+        return dataUrodzenia.substring(0, 4);
+    }
+    
+    
+    /** Metoda zwraca miesiąc urodzenia Uzytkownka
+     * @return String z miesiącem
+     **/
+    public String getBirthMonth(){
+        //dataUrodzenia musi być w formacie YYYY-MM-DD
+        return dataUrodzenia.substring(5, 7);
+    }
+    
+        
+    /** Metoda zwraca dzien miesiaca urodzenia Uzytkownka
+     * @return String z dniem
+     **/
+    public String getBirthDay(){
+        //dataUrodzenia musi być w formacie YYYY-MM-DD
+        return dataUrodzenia.substring(8, 10);
+    }
+
+    
     /** Metoda ustawia datę urodzenia uzytkownika (YYYY-MM-DD)
      * @param jabber String z datą urodzenia
      **/

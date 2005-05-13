@@ -26,6 +26,8 @@
                     String miasto=request.getParameter("miasto");
                     String plec=request.getParameter("plec");
                     String rokUrodzenia=request.getParameter("rokUrodzenia");
+                    String miesiacUrodzenia=request.getParameter("miesiacUrodzenia");
+                    String dzienUrodzenia=request.getParameter("dzienUrodzenia");
                     String www=request.getParameter("www");
                     
                     if (imie!=null) user.setImie(new String(imie.getBytes("8859_1"),"UTF-8")); 
@@ -40,7 +42,25 @@
                     if (msn!=null) user.setMSN(new String(msn.getBytes("8859_1"),"UTF-8"));
                     if (miasto!=null) user.setCity(new String(miasto.getBytes("8859_1"),"UTF-8"));
                     if (plec!=null) user.setSex(new String(plec.getBytes("8859_1"),"UTF-8"));
-                    if (rokUrodzenia!=null) user.setBirthDate(new String(rokUrodzenia.getBytes("8859_1"),"UTF-8"));
+                    String dataUrodzenia;
+                    try {
+                    if (rokUrodzenia!=null && miesiacUrodzenia!=null && dzienUrodzenia!=null) {
+                        if (Integer.decode(rokUrodzenia).intValue()>=1000 && Integer.decode(rokUrodzenia).intValue()<2100 &&  
+                                Integer.decode(miesiacUrodzenia).intValue()>=1 && Integer.decode(miesiacUrodzenia).intValue()<=12 && 
+                                Integer.decode(dzienUrodzenia).intValue()>=1 && Integer.decode(dzienUrodzenia).intValue()<=31) {
+                        dataUrodzenia=rokUrodzenia + "-";
+                        if (Integer.decode(miesiacUrodzenia).intValue() < 10) dataUrodzenia+="0";
+                        dataUrodzenia+=miesiacUrodzenia + "-";
+                        if (Integer.decode(dzienUrodzenia).intValue() < 10) dataUrodzenia+="0";
+                        dataUrodzenia+= dzienUrodzenia;
+
+                        user.setBirthDate(new String(dataUrodzenia.getBytes("8859_1"),"UTF-8"));
+                        }
+                    }
+                    } catch (Exception e) {
+                        //jak ktoś jest głupi i nie umie poprawnie wpisać swojej daty urodzenia to tylko pogratulować
+                    }
+                    
                     
                     String imieNazwiskoPrywatne=request.getParameter("imieNazwiskoPrywatne");
                     if (imieNazwiskoPrywatne!=null) user.setImieNazwiskoPrywatne(true); else
@@ -79,10 +99,11 @@
                     if (miastoPrywatne!=null) user.setCityPrivate(true); else
                         user.setCityPrivate(false);
 
-                    
+                    out.println("<center>");
                     if(!db_con.updateUser(user)) {
                         out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                     } else out.print(Messages.makeInfo(Messages.updated()));
+                    out.println("</center><hr/><br/>");
                 }
 %>
     
@@ -160,8 +181,30 @@
                 </tr>                        
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.birthdate()));%></th>
-                    <td class="tdProfileField"><input type="text" name="rokUrodzenia" size="35" style="width:230px" value="<% out.print(new String(user.getBirthDate().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="rokUrodzeniaPrywatny" <%if(!user.ifShowBirthDate()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
+                    <td class="tdProfileField">
+                        <select name="rokUrodzenia">
+                        <% for (int i=1982; i<=2005; i++)  {
+                            out.print("<option value=\""+i+"\"");
+                            if (i==Integer.decode(user.getBirthYear()).intValue()) out.print(" selected"); 
+                            out.println(">" + i + "</option>");
+                        } %>
+                        </select> -
+                        <select name="miesiacUrodzenia">
+                        <% for (int i=1; i<=12; i++) {
+                            out.print("<option value=\""+i+"\"");
+                            if (i==Integer.decode(user.getBirthMonth()).intValue()) out.print(" selected"); 
+                            out.println(">"+ i +"</option>");
+                        } %>
+                        </select> -
+                        <select name="dzienUrodzenia">
+                        <% for (int i=1; i<=31; i++) {
+                            out.print("<option value=\""+i+"\"");
+                            if (i==Integer.decode(user.getBirthDay()).intValue()) out.print(" selected"); 
+                            out.println(">"+ i +"</option>");
+                        } %>
+                        </select>
+                    </td>
+                    <td class="tdProfileField"><input type="checkbox" name="dataUrodzeniaPrywatna" <%if(!user.ifShowBirthDate()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
                 </tr>                        
                 <tr><td colspan="2" align="right"><input type="hidden" name="chd" value=""/><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
             </table>
