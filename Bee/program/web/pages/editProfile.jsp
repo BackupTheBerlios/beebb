@@ -23,6 +23,8 @@
                     String wpKontakt=request.getParameter("wpKontakt");
                     String icq=request.getParameter("icq");
                     String msn=request.getParameter("msn");
+                    String yahoo=request.getParameter("yahoo");
+                    String skype=request.getParameter("skype");
                     String miasto=request.getParameter("miasto");
                     String plec=request.getParameter("plec");
                     String rokUrodzenia=request.getParameter("rokUrodzenia");
@@ -40,6 +42,8 @@
                     if (wpKontakt!=null) user.setWPKontakt(new String(wpKontakt.getBytes("8859_1"),"UTF-8"));
                     if (icq!=null) user.setICQ(new String(icq.getBytes("8859_1"),"UTF-8"));
                     if (msn!=null) user.setMSN(new String(msn.getBytes("8859_1"),"UTF-8"));
+                    if (yahoo!=null) user.setYahoo(new String(yahoo.getBytes("8859_1"),"UTF-8"));
+                    if (skype!=null) user.setSkype(new String(skype.getBytes("8859_1"),"UTF-8"));
                     if (miasto!=null) user.setCity(new String(miasto.getBytes("8859_1"),"UTF-8"));
                     if (plec!=null) user.setSex(new String(plec.getBytes("8859_1"),"UTF-8"));
                     String dataUrodzenia;
@@ -53,7 +57,7 @@
                         dataUrodzenia+=miesiacUrodzenia + "-";
                         if (Integer.decode(dzienUrodzenia).intValue() < 10) dataUrodzenia+="0";
                         dataUrodzenia+= dzienUrodzenia;
-
+                        
                         user.setBirthDate(new String(dataUrodzenia.getBytes("8859_1"),"UTF-8"));
                         }
                     }
@@ -61,44 +65,54 @@
                         //jak ktoś jest głupi i nie umie poprawnie wpisać swojej daty urodzenia to tylko pogratulować
                     }
                     
-                    
                     String imieNazwiskoPrywatne=request.getParameter("imieNazwiskoPrywatne");
                     if (imieNazwiskoPrywatne!=null) user.setImieNazwiskoPrywatne(true); else
                         user.setImieNazwiskoPrywatne(false);
-                    
+                        
                     String emailPrywatny=request.getParameter("emailPrywatny");
                     if (emailPrywatny!=null) user.setEmailPrivate(true); else
                         user.setEmailPrivate(false);
-                    
+                        
                     String ggPrywatne=request.getParameter("ggPrywatne");
                     if (ggPrywatne!=null) user.setGGPrivate(true); else
                         user.setGGPrivate(false);
-                    
+                        
                     String jabberPrywatny=request.getParameter("jabberPrywatny");
                     if (jabberPrywatny!=null) user.setJabberPrivate(true); else
                         user.setJabberPrivate(false);
-                    
-                    
+                        
                     String tlenPrywatny=request.getParameter("tlenPrywatny");
                     if (tlenPrywatny!=null) user.setTlenPrivate(true); else
                         user.setTlenPrivate(false);
-                    
+                        
                     String wpKontaktPrywatny=request.getParameter("wpKontaktPrywatny");
                     if (wpKontaktPrywatny!=null) user.setWPKontaktPrivate(true); else
                         user.setWPKontaktPrivate(false);
-                    
+                        
                     String icqPrywatne=request.getParameter("icqPrywatne");
                     if (icqPrywatne!=null) user.setICQPrivate(true); else
                         user.setICQPrivate(false);
-
+                        
                     String msnPrywatny=request.getParameter("msnPrywatny");
                     if (msnPrywatny!=null) user.setMSNPrivate(true); else
                         user.setMSNPrivate(false);
-
+                        
+                    String yahooPrywatne=request.getParameter("yahooPrywatne");
+                    if (yahooPrywatne!=null) user.setYahooPrivate(true); else
+                        user.setYahooPrivate(false);
+                    
+                    String skypePrywatny=request.getParameter("skypePrywatny");
+                    if (skypePrywatny!=null) user.setSkypePrivate(true); else
+                        user.setSkypePrivate(false);
+                        
                     String miastoPrywatne=request.getParameter("miastoPrywatne");
                     if (miastoPrywatne!=null) user.setCityPrivate(true); else
                         user.setCityPrivate(false);
-
+                        
+                    String dataUrodzeniaPrywatna=request.getParameter("dataUrodzeniaPrywatna");
+                    if (dataUrodzeniaPrywatna!=null) user.setBirthDatePrivate(true); else
+                        user.setBirthDatePrivate(false);
+                    
                     out.println("<center>");
                     if(!db_con.updateUser(user)) {
                         out.print(Messages.makeError(Messages.errorDataBaseConnection()));
@@ -133,7 +147,7 @@
                     <th><% out.print(Messages.wielka(Messages.wwwPage()));%></th>
                     <td class="tdProfileField"><input type="text" name="www" size="35" style="width:230px" value="<% out.print(new String(user.getWWW().getBytes("8859_1"),"UTF-8"));%>"/></td>
                     <td></td>
-                    </tr>
+                </tr>
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th>
                     <td class="tdProfileField"><input type="text" name="gg" size="35" style="width:230px" value="<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%>"/></td>
@@ -143,7 +157,7 @@
                     <th><% out.print(Messages.wielka(Messages.jabber()));%></th>
                     <td class="tdProfileField"><input type="text" name="jabber" size="35" style="width:230px" value="<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%>"/></td>
                     <td class="tdProfileField"><input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                    </tr>
+                </tr>
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.tlen()));%></th>
                     <td class="tdProfileField"><input type="text" name="tlen" size="35" style="width:230px" value="<% out.print(new String(user.getTlen().getBytes("8859_1"),"UTF-8"));%>"/></td>
@@ -165,6 +179,16 @@
                     <td class="tdProfileField"><input type="checkbox" name="msnPrywatny" <%if(!user.ifShowMSN()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
                 </tr>
                 <tr>
+                    <th><% out.print(Messages.wielka(Messages.yahoo()));%></th>
+                    <td class="tdProfileField"><input type="text" name="yahoo" size="35" style="width:230px" value="<% out.print(new String(user.getYahoo().getBytes("8859_1"),"UTF-8"));%>"/></td>
+                    <td class="tdProfileField"><input type="checkbox" name="yahooPrywatne" <%if(!user.ifShowYahoo()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
+                </tr>
+                <tr>
+                    <th><% out.print(Messages.wielka(Messages.skype()));%></th>
+                    <td class="tdProfileField"><input type="text" name="skype" size="35" style="width:230px" value="<% out.print(new String(user.getSkype().getBytes("8859_1"),"UTF-8"));%>"/></td>
+                    <td class="tdProfileField"><input type="checkbox" name="skypePrywatny" <%if(!user.ifShowSkype()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
+                </tr>
+                <tr>
                     <th><% out.print(Messages.wielka(Messages.city()));%></th>
                     <td class="tdProfileField"><input type="text" name="miasto" size="35" style="width:230px" value="<% out.print(new String(user.getCity().getBytes("8859_1"),"UTF-8"));%>"/></td>
                     <td class="tdProfileField"><input type="checkbox" name="miastoPrywatne" <%if(!user.ifShowCity()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
@@ -172,9 +196,9 @@
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.sex()));%></th>
                     <td class="tdProfileField">
-                    <select name="plec" style="width:230px">
-                        <option value="<%out.print(DataBase.MEZCZYZNA);%>" <% if(user.getSex().compareTo(DataBase.MEZCZYZNA)==0) out.print("selected");%>><%out.print(Messages.wielka(Messages.men()));%></option>
-                        <option value="<%out.print(DataBase.KOBIETA);%>" <% if(user.getSex().compareTo(DataBase.KOBIETA)==0) out.print("selected");%>><%out.print(Messages.wielka(Messages.woman()));%></option>
+                        <select name="plec" style="width:230px">
+                            <option value="<%out.print(DataBase.MEZCZYZNA);%>" <% if(user.getSex().compareTo(DataBase.MEZCZYZNA)==0) out.print("selected");%>><%out.print(Messages.wielka(Messages.men()));%></option>
+                            <option value="<%out.print(DataBase.KOBIETA);%>" <% if(user.getSex().compareTo(DataBase.KOBIETA)==0) out.print("selected");%>><%out.print(Messages.wielka(Messages.woman()));%></option>
                         </select>
                     </td>
                     <td></td>

@@ -844,6 +844,14 @@ public class User {
     }
     
     
+    /** Metoda ustawia prywatność daty urodzenia
+     * @param prv N w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     **/
+    public void setBirthDatePrivate(boolean prv){
+        this.dataUrodzeniaPrywatna=prv;
+    }
+    
+    
     /** Metoda ustawia publicznosc sygnaturki
      * @param prv T w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
