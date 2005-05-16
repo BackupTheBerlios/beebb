@@ -26,14 +26,14 @@
                             User user = auth.getUser(request,db_con);
                             if (user != null)
                             if (user.hasReadWatekRight(w.getID()))
-                                wp.printJSP(out);
+                                wp.printJSP(request,out);
                             else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                             else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                             } else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
                         }
                         else{
                             Commons.setCachingForever(response);
-                            wp.printJSP(out);
+                            wp.printJSP(request,out);
                         }
                 }
                 else 

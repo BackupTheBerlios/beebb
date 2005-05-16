@@ -100,21 +100,21 @@ public class Wypowiedz {
     
     /**
      * Metoda wypisuje tresc wiadomosci
+     * @param request Otrzymane zapytanie HTTP
      * @param strona strumien wyjsciowy
      */
-    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //strona.println("<body class=\"bodyWypowiedz\">");
         strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");
         strona.println("<tr><td><table cellpadding=\"4\" cellspacing=\"1\" width=\"100%\"><tr>");
         strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
-        strona.println("<span ");
         if (Config.GUEST_ID == this.ID_Autora)
-            strona.println(">~" + this.Autor);
+            strona.println("<span>~" + this.Autor+"</span>");
         else {
             User u = db.getUser(this.ID_Autora);
-            strona.println("class=\"linkAutor\"><span onclick=\"hrefClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + u.getLogin() + "</span>");
+            strona.println(Commons.aHref(request,u.getLogin(),"./profile.jsp?uid=" + this.ID_Autora, "linkAutor"));
         }
-        strona.println("</span><br/>");
+        strona.println("<br/>");
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
         strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\" alt=\"Folder img\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
