@@ -118,6 +118,7 @@ public class Kategoria {
     
     /**
      * Metoda wypisuje na stronie glowną tabele i jej naglowki
+     * @param request Otrzymane zapytanie HTTP
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.http.HttpServletRequest request,javax.servlet.jsp.JspWriter strona) throws java.io.IOException {

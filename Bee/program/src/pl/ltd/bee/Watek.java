@@ -206,8 +206,8 @@ public class Watek {
     }
     
     
-    /** Podaje liczbe aktywnych wypowiedzi w wÄ…tku
-     * @return liczba aktywnych wypowiedzi w wÄ…tku
+    /** Podaje liczbe aktywnych wypowiedzi w wątku
+     * @return liczba aktywnych wypowiedzi w wątku
      */
     public int licznikOdwiedzin() {
         return LicznikOdwiedzin;
@@ -226,6 +226,7 @@ public class Watek {
     
     /**
      * Metoda wypisuje naglowek watku
+     * @param request Otrzymane zapytanie HTTP
      * @param strona strumien wyjsciowy
      */
     public void printJSPHeader(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
@@ -261,8 +262,9 @@ public class Watek {
     
     
     /**
-     * Metoda wypisuje na stronie glownÄ… tabele i jej naglowki
-     * @param strona strumien wyjsciowy
+     * Metoda wypisuje na stronie glowną tabele i jej nagłówki
+     * @param request Otrzymane zapytanie HTTP
+     * @param strona strumień wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         this.incrLicznikOdwiedzin();

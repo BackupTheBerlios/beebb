@@ -239,7 +239,7 @@ public class Podforum {
     /**
      * Metoda wypisuje wiersz w tabeli kategorii z opisem podforum
      * @param strona strumien wyjsciowy
-     * @param pytanie Zaptanie otrzymane przez serwer
+     * @param pytanie Zapytanie otrzymane przez serwer
      * @param auth Obiekt autoryzacji
      */
     public void printJSPHeader(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
@@ -270,6 +270,7 @@ public class Podforum {
     
     /**
      * Metoda wypisuje na strone glowna tabele z watkami
+     * @param request Otrzymane zapytanie HTTP
      * @param strona strumien wyjsciowy
      */
     public void printMainTableJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
