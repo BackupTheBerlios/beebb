@@ -32,7 +32,7 @@
                 }
                 out.println(Messages.messageForgetPasswdEmailSend() +  "<center>"+Commons.aHref(request,Messages.wielka(Messages.back()), "main.jsp")+"</center>");
             } else {
-                response.sendRedirect("forgetPasswd.jsp");
+                out.println(Messages.makeError(Messages.errorUnknown()));
             }
         }
         else
