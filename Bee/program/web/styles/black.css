@@ -1,5 +1,6 @@
 body {
-	background-color: azure; 
+	background-color: black; 
+        font-family: Verdana, Arial, Helvetica, sans-serif ;
 /*	scrollbar-face-color: #DEE3E7;
 	scrollbar-highlight-color: #FFFFFF;
 	scrollbar-shadow-color: #DEE3E7;
@@ -10,41 +11,52 @@ body {
 }
 
 font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
+    
+td {
+    color: white;
+    background-color: black;
+    font-size: 12px; 
+}
+
 /* a:link,a:active,a:visited { color : #006699; } */
 /* a:hover		{ text-decoration: underline; color : #DD6900; } */
 hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
 
 
 th	{
-	color: black; 
-        font-size: 11px; 
+	color: white; 
+        font-size: 11px;
         font-weight : bold;
-	background-color: dodgerblue; 
+	background-color: black; 
         /*height: 30px;*/
-	border: 1px black solid;
+	border: 1px silver solid;
 }
 
 .tableTitleWatek{
-	color: black; 
+	color: white; 
+        background-color: black;
         font-size: 11px; 
         font-weight : bold;
         }        
 
-.tdForumHeader	{ background-color: blue; color: white; border: 2px black solid; cursor: pointer;}
+.tdForumHeader	{ background-color: black; color: white; border: 2px silver solid; cursor: pointer;}
 
 /*.tdWypowiedzBox { background-color: gold; border: 2px black solid; } */
 
 
 .tdTytulKategorii { 
-	background-color:  skyblue;
+	background-color:  white;
+        color: black;
 	height : 15;
 	background-repeat: repeat-x; 
 	border: 1px black solid; 
 	}
 
 .tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost, .tdPictureWatek , .tdTytulWatek , .tdAutor, .tdModeratingWatek{
-	border: 1px black solid;
-	background-color: whitesmoke;
+	border: 1px gray solid;
+        color: black;
+        font-size: 11px;
+	background-color: white;
 	}
 
 .tdTytulKategorii a:visited, .aTopLink:visited{
@@ -53,38 +65,47 @@ th	{
 
 .aTopLink {
         text-decoration: underline;
-        color: blue;
+        color: silver;
         cursor: pointer;
         }
 
-.tdTytulKategorii a:link, .aTopLink:link{
-	color: blue;
-}
 
 .tdTytulPodforum a:visited , .tdAutor a:visited , .tdLastPost a:visited, .tdTytulWatek a:visited, .linkAutor a:visited{
-	color: navy;	
+	color: black;	
 	}	
 
-.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link, .aTytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor, .aHref{
-	color: navy;	
-        text-decoration: underline;
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link, .aTytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor{
+        font-size: 12px;
+	color: black;	
+        text-decoration: none;
 	}	
+
+.aHref{
+        color:white;
+}
 	
 .trWypowiedz {
-	background-color: powederblue;
+	background-color: black;
 	}
 
 .tdWypowiedzBox{
-        background-color: azure;
+        background-color: black;
+        color: white;
         }
 	
 .bodyWypowiedz{
-	background-color: azure;
+	background-color: black;
         margin: 0pt;
 	}
 
+.opisPodforum, .tdLiczba, .tdLastPost{
+        font-size: 10px;
+        color: black;
+}
+
 .tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
-        background-color: powederblue;
+        background-color: white;
+        color: black;
         border: 1px black solid; 
         }
 
@@ -94,13 +115,13 @@ th	{
         font-weight : normal;
         }
 
-.tdPath a:link, .tdPath a:visited, .aPath{
-        color: navy;
+.tdPath, .tdPath a:link, .tdPath a:visited, .aPath{
+        color: white;
         font-size: 10pt;
 }
 
-.tdTopAction a:link, .tdTopAction a:visited, .aTopAction{
-        color: navy;
+.tdTopAction, .tdTopAction a:link, .tdTopAction a:visited, .aTopAction{
+        color: white;
         font-size: 10pt;
 }
 
@@ -110,9 +131,9 @@ th	{
 
 .hint{
 	font-size: 10pt;
-	color: black;
-	background-color: cornflowerblue;
-	border: 1px black solid;
+	color: white;
+	background-color: black;
+	border: 1px silver solid;
 }
 
 .error{	
