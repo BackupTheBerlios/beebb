@@ -4,7 +4,7 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.editProfile())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.editProfile())));%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
     
         <%@ include file="servletObjects.jsp" %>

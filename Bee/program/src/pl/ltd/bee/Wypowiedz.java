@@ -112,7 +112,7 @@ public class Wypowiedz {
             strona.println(">~" + this.Autor);
         else {
             User u = db.getUser(this.ID_Autora);
-            strona.println("class=\"linkAutor\"><a href=\"\" onclick=\"wypowiedzLinkClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + u.getLogin() + "</a>");
+            strona.println("class=\"linkAutor\"><span onclick=\"hrefClick('./profile.jsp?uid=" + this.ID_Autora + "')\"> " + u.getLogin() + "</span>");
         }
         strona.println("</span><br/>");
         strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");

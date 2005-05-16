@@ -10,7 +10,7 @@
 <% 
 String css = request.getParameter("style");
 if (css == null) css = Config.DEFAULT_STYLE; 
-out.println(Commons.htmlHead(".","BeeBB :: Content",css));
+out.println(Commons.htmlHead(request, ".","BeeBB :: Content"));
 %>
     <body>
         <table width="100%" border="0"> 

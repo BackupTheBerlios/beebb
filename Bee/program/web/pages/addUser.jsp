@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 
 
-<% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.newUser())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.newUser())));%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);">
         <%@ include file="servletObjects.jsp" %>
     

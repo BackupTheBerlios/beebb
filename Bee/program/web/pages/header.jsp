@@ -8,9 +8,8 @@
 
 
 <%
- String css = request.getParameter("style");
- if (css == null) css = Config.DEFAULT_STYLE; 
- out.println(Commons.htmlHead("./..","BeeBB :: Content",css));
+ out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));
+ String css = Commons.getQueryStyle(request);
 %>
     <body>
 <%@ include file="servletObjects.jsp" %>
@@ -45,11 +44,11 @@
 				[] <%out.print(Messages.wielka(Messages.help()));%>
 				</span>
 			</td>
-			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./search.jsp')">
+			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./search.jsp<% out.print(css.length()>0?"?"+css:"");%>')">
 				[] <%out.print(Messages.wielka(Messages.search()));%>
 				</span>
 			</td>
-			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./users.jsp')">
+			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./users.jsp<% out.print(css.length()>0?"?"+css:"");%>')">
 				[] <%out.print(Messages.wielka(Messages.users()));%>
 				</span>
 			</td>
@@ -62,22 +61,22 @@
 			<td class="tdTopLink" align="left"><span class="aTopLink"
                                 <%
                                 if (auth.zalogowany(request,db_con)) 
-                                    out.print(" onclick=\"linkClick('./editProfile.jsp')\"");   
+                                    out.print(" onclick=\"linkClick('./editProfile.jsp"+(css.length()>0?"?"+css:"")+"')\"");   
                                 out.print(">[] " +Messages.wielka(Messages.profile()));%>
 				</span>
 			</td>
 			<td class="tdTopLink" align="left">
-				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp','Bee')">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
+				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp<% out.print(css.length()>0?"?"+css:"");%>','Bee')">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
 			</td>
 			<td class="tdTopLink" align="left">
-				<span  class="aTopLink" onclick="linkClick('./addUser.jsp')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
+				<span  class="aTopLink" onclick="linkClick('./addUser.jsp<% out.print(css.length()>0?"?"+css:"");%>')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
 			</td>
 			<td class="tdTopLink" align="left">
                                 <%
                                 if (!auth.zalogowany(request,db_con)) 
-                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp')\">[] " + Messages.wielka(Messages.logIn()) +"</span>");
+                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp"+(css.length()>0?"?"+css:"")+"')\">[] " + Messages.wielka(Messages.logIn()) +"</span>");
                                else
-                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp?logout=yes')\">["+auth.user(request)+"] " + Messages.wielka(Messages.logOut()) + "</span>");   
+                                    out.print("<span  class=\"aTopLink\" onclick=\"linkClick('./auth.jsp?logout=yes"+(css.length()>0?"&amp;"+css:"")+"')\">["+auth.user(request)+"] " + Messages.wielka(Messages.logOut()) + "</span>");   
                                 %>
 			</td>
 			</tr>

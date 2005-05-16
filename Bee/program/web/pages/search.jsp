@@ -10,7 +10,7 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
+<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));%>
 <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >    
 <table id="tableSearch" border="0" width="100%">
 <tr><td>

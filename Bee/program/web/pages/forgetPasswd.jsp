@@ -5,7 +5,7 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<% out.println(Commons.htmlHead("./..",Messages.wielka(Messages.forgetPasswd())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.forgetPasswd())));%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 <%@ include file="servletObjects.jsp" %>
         <br/><br/>

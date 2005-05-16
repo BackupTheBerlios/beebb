@@ -8,9 +8,7 @@
 
 
 <% 
-    String css = request.getParameter("style");
-    if (css == null) css = "temat"; //TODO Tu moze wypada zastosowac jakas stala Config.DEFAULT_STYLE
-    out.println(Commons.htmlHead("./..","BeeBB :: Content",css));
+    out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));
 %>
 
 <%@ include file="servletObjects.jsp" %>

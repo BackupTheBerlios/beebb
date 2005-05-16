@@ -7,7 +7,7 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-<% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
+<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >    
         <table border="0" id="mainTableProfile" width="100%">
             <tr><td>

@@ -7,7 +7,7 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-<% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
+<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));%>
 <%@ include file="servletObjects.jsp" %>
 <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 

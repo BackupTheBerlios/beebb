@@ -23,12 +23,15 @@ public class Commons {
     
     /**
      * Metoda zwraca wypelniony znacznik HEAD.
+     * @param request Otrzymane zapytanie HTTP
      * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
      * @param title Tytul strony
      * @param css Nazwa pliku z arkuszem stylu (Uwaga tylko nazwa bez rozszezenia)
      * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
      */
-    public static String htmlHead(String path, String title, String css){
+    public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title){
+        String css = request.getParameter("style");
+        if (css == null) css = Config.DEFAULT_STYLE;
         return  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\">" +
                 "<head>\n"+
@@ -52,23 +55,14 @@ public class Commons {
     
     /**
      * Metoda zwraca wypelniony znacznik HEAD. Tytul przyjety jest jako "BeeBB :: Content"
+     * @param request Otrzymane zapytanie HTTP
      * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
      * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
      */
-    public static String htmlHead(String path){
-        return htmlHead(path, "BeeBB :: Content");
+    public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path){
+        return htmlHead(request,path, "BeeBB :: Content");
     }
     
-    
-    /**
-     * Metoda zwraca wypelniony znacznik HEAD.
-     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
-     * @param title Tytul strony
-     * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
-     */
-    public static String htmlHead(String path, String title){
-        return htmlHead(path,title,"temat");
-    }
     
     /** 
      * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako trwaly przez rok

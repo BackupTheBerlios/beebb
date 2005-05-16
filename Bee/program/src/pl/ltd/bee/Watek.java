@@ -296,6 +296,7 @@ public class Watek {
     
     /**
      * Metoda powoduje wypisanie wďż˝tku na przekazany strumien
+     * @param request Otrzymane zapytanie HTTP
      * @param strona strumien wyjsciowy
      */
     public void printJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
