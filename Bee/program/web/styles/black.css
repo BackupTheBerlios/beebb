@@ -32,6 +32,10 @@ th	{
 	border: 1px silver solid;
 }
 
+.beePicture{
+        background-color: white;
+}
+
 .tableTitleWatek{
 	color: white; 
         background-color: black;
