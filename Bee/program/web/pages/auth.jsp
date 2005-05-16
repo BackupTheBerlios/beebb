@@ -4,7 +4,9 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.logInYourself())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.logInYourself())));
+ String css = Commons.getQueryStyle(request);
+%>
     <body onload="swapIframes();reloadHeader('./header.jsp<% out.print(css.length()>0?"?"+css:"");%>');resizeMain();setResizeFunction(resizeMain);" >
     
 <%@ include file="servletObjects.jsp" %>
