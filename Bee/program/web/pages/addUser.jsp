@@ -6,7 +6,9 @@
 <%@ page session="false" %>
 
 
-<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.newUser())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.newUser())));
+ String css = Commons.getQueryStyle(request);
+%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);">
         <%@ include file="servletObjects.jsp" %>
     
@@ -101,7 +103,7 @@
                 }
             } else {
         %>
-        <form method="post" action="addUser.jsp" onsubmit="return submitAddUser(this,<% out.print(Config.MIN_PASSWD + ",'" + Messages.wielka(Messages.errorFieldNeeded())+"','"+Messages.wielka(Messages.errorPassNotMatch()) + "','" + Messages.wielka(Messages.errorPassToShort(Config.MIN_PASSWD))); %>')">
+        <form method="post" action="addUser.jsp<% out.print(css.length()>0?"?"+css:"");%>" onsubmit="return submitAddUser(this,<% out.print(Config.MIN_PASSWD + ",'" + Messages.wielka(Messages.errorFieldNeeded())+"','"+Messages.wielka(Messages.errorPassNotMatch()) + "','" + Messages.wielka(Messages.errorPassToShort(Config.MIN_PASSWD))); %>')">
             <table align="center" cellpadding="2" cellspacing="1" border="0">
                 <tr>
                 <th colspan="2">

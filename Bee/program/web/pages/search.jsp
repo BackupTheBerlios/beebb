@@ -10,12 +10,14 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));%>
+<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));
+ String css = Commons.getQueryStyle(request);
+%>
 <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >    
 <table id="tableSearch" border="0" width="100%">
 <tr><td>
 
-<form action="search.jsp" method="post">
+<form action="search.jsp<% out.print(css.length()>0?"?"+css:"");%>" method="post">
 <table class="tableSearch" border="0" align="center">
 <tr><th colspan="2"><% out.print(Messages.wielka(Messages.search()));%></th></tr>
 <tr><td class="tdSearch"><% out.print(Messages.wielka(Messages.searchingWords()));%></td><td class="tdSearch"><input type="text" name="fraza" /></td></tr>

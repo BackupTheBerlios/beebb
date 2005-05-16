@@ -7,7 +7,9 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));%>
+<% out.println(Commons.htmlHead(request,"./..","BeeBB :: Content"));
+ String css = Commons.getQueryStyle(request);
+%>
 <%@ include file="servletObjects.jsp" %>
 <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 
@@ -56,7 +58,7 @@
                     if ((user.moderator(pod.getID())) || (user.getID() == wyp.getIDAutora()) || (user.admin()))
                     {
                     %>
-                        <form action="moderating.jsp" method="get">
+                        <form action="moderating.jsp<% out.print(css.length()>0?"?"+css:"");%>" method="get">
                             <table border="0" class="tableEditWypowiedz" align="center">
                             <tr><th colspan="2"><%out.print(Messages.wielka(Messages.edition()));%></th></tr>
                             <tr>
@@ -134,7 +136,7 @@
                     if (user.moderator(pod.getID()) || (user.admin()))
                     {
                     %>
-                        <form action="moderating.jsp" method="get">
+                        <form action="moderating.jsp<% out.print(css.length()>0?"?"+css:"");%>" method="get">
                             <table border="0" class="tableMovePodforum" align="center">
                             <tr><th><%out.print(Messages.wielka(Messages.moveThread())+" ('"+ wat.getTemat() +"')");%></th></tr>
                             <tr><td class="tdMoveTo" align="center">

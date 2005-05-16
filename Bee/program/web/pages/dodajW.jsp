@@ -5,7 +5,9 @@
 <%@ page import="java.util.*"%>
 <%@ page session="false" %>
 
-<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.add())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.add())));
+ String css = Commons.getQueryStyle(request);
+%>
     <body onload="swapIframes();changeTargetForms();resizeMain();setResizeFunction(resizeMain);" >
         <%@ include file="servletObjects.jsp" %>
         <% Enumeration flds = request.getParameterNames();
@@ -232,7 +234,7 @@
                                 %>
                             </td>
                         <td class="tdDodawanie">
-                    <form method="post" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); %>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
+                    <form method="post" action="dodajW.jsp<%if (watek!=null) out.print("?w="+watek); else out.print("?p="+podforum); out.print(css.length()>0?"&amp;"+css:"");%>" onsubmit="return submitDodajW('<% out.print(Messages.wielka(Messages.errorFieldNeeded())); %>')">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
                             <% if (watek==null) { %>
                             <tr>

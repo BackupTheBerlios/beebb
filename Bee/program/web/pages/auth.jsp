@@ -54,7 +54,7 @@
          }
          if (!bez_formy){
         %> 
-                <form method="post" action="auth.jsp">
+                <form method="post" action="auth.jsp<% out.print(css.length()>0?"?"+css:"");%>">
                     <table align="center" cellpadding="2" cellspacing="1" border="0">
                         <tr>
                         <th colspan="2"><%out.println(Messages.logInYourself());%></th>

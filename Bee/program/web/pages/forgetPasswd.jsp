@@ -5,7 +5,9 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.forgetPasswd())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.forgetPasswd())));
+ String css = Commons.getQueryStyle(request);
+%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
 <%@ include file="servletObjects.jsp" %>
         <br/><br/>
@@ -36,7 +38,7 @@
         else
         {
          %>
-                <form method="post" action="forgetPasswd.jsp" onsubmit="return submitForgetPasswd('<% out.print(Messages.wielka(Messages.errorFieldNeeded()));%>')">
+                <form method="post" action="forgetPasswd.jsp<% out.print(css.length()>0?"?"+css:"");%>" onsubmit="return submitForgetPasswd('<% out.print(Messages.wielka(Messages.errorFieldNeeded()));%>')">
                     <table align="center" cellpadding="2" cellspacing="1" border="0">
                         <tr>
                         <th colspan="2"><%out.println(Messages.forgetPasswd());%>:</th>

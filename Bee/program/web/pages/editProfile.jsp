@@ -4,7 +4,9 @@
 <%@ page import="pl.ltd.bee.*"%>
 <%@ page session="false" %>
 
-<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.editProfile())));%>
+<% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.editProfile())));
+ String css = Commons.getQueryStyle(request);
+%>
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
     
         <%@ include file="servletObjects.jsp" %>
@@ -121,7 +123,7 @@
                 }
 %>
     
-        <form method="post" action="editProfile.jsp">
+        <form method="post" action="editProfile.jsp<% out.print(css.length()>0?"?"+css:"");%>">
             <table align="center" class="tableProfile" border="0">
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.nick()));%></th>
@@ -256,7 +258,7 @@
                     
                 }
                 %>
-        <form method="post" action="editProfile.jsp">
+        <form method="post" action="editProfile.jsp<% out.print(css.length()>0?"?"+css:"");%>">
             <table align="center" class="tableProfile" border="0">
                 <tr><th><% out.print(Messages.wielka(Messages.old()) + " " + Messages.password());%></th><td class="tdProfileField"><input type="password" name="oldpasswd" size="35"/></td></tr>
                 <tr><th><% out.print(Messages.wielka(Messages.password()));%></th><td class="tdProfileField"><input type="password" name="passwd1" size="35"/></td></tr>

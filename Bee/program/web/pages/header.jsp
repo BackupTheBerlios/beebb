@@ -17,12 +17,12 @@
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
 	<td width="20%" valign="top">
-		<img class="beePicture" alt="Bee Sign" src="./../images/Bee.gif" align="top" onclick="linkClick('./main.jsp')" style="cursor: pointer;" />
+		<img class="beePicture" alt="Bee Sign" src="./../images/Bee.gif" align="top" onclick="linkClick('./main.jsp<% out.print(css.length()>0?"?"+css:"");%>')" style="cursor: pointer;" />
 	</td>
 <td>
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">
 		<tr>
-			<td class="tdForumHeader" bgcolor="white" align="center"  onclick="linkClick('./main.jsp')">
+			<td class="tdForumHeader" bgcolor="white" align="center"  onclick="linkClick('./main.jsp<% out.print(css.length()>0?"?"+css:"");%>')">
 			<span class="forumTitle" id="forumTitle">
                                 <% 
                                     Forum f = db_con.getForum();
