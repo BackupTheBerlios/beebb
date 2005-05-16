@@ -1,0 +1,125 @@
+body {
+	background-color: azure; 
+/*	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;*/
+}
+
+font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
+/* a:link,a:active,a:visited { color : #006699; } */
+/* a:hover		{ text-decoration: underline; color : #DD6900; } */
+hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+
+
+th	{
+	color: black; font-size: 11px; font-weight : bold;
+	background-color: dodgerblue; height: 30px;
+	border: 1px black solid;
+}
+
+.tableTitleWatek{
+	color: skyblue; 
+        font-size: 11px; 
+        font-weight : bold;
+        }        
+
+.tdForumHeader	{ background-color: blue; color: white; border: 2px black solid; cursor: pointer;}
+
+/*.tdWypowiedzBox { background-color: gold; border: 2px black solid; } */
+
+
+.tdTytulKategorii { 
+	background-color:  skyblue;
+	height : 15;
+	background-repeat: repeat-x; 
+	border: 1px black solid; 
+	}
+
+.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost, .tdPictureWatek , .tdTytulWatek , .tdAutor, .tdModeratingWatek{
+	border: 1px black solid;
+	background-color: lightsteelblue;
+	}
+
+.tdTytulKategorii a:visited, .aTopLink:visited{
+	color: black;	
+}	
+
+.aTopLink {
+        text-decoration: underline;
+        color: #2f2929;
+        cursor: pointer;
+        }
+
+.tdTytulKategorii a:link, .aTopLink:link{
+	color: #2f2929;
+}
+
+.tdTytulPodforum a:visited , .tdAutor a:visited , .tdLastPost a:visited, .tdTytulWatek a:visited, .linkAutor a:visited{
+	color: firebrick;	
+	}	
+
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link, .aTytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor, .aHref{
+	color: darkred;	
+        text-decoration: underline;
+	}	
+	
+.trWypowiedz {
+	background-color: cornflowerblue;
+	}
+
+.tdWypowiedzBox{
+        background-color: royalblue;
+        }
+	
+.bodyWypowiedz{
+	background-color: royalblue;
+        margin: 0pt;
+	}
+
+.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
+        background-color: cornflowerblue;
+        border: 1px black solid; 
+        }
+
+.wypowiedzData{
+        font-size: 8pt;
+        color: firebrick;
+        font-weight : normal;
+        }
+
+.tdPath a:link, .tdPath a:visited, .aPath{
+        color: brown;
+        font-size: 10pt;
+}
+
+.tdTopAction a:link, .tdTopAction a:visited, .aTopAction{
+        color: darkred;
+        font-size: 10pt;
+}
+
+.tableTextNadForum, .tableTextNadPodforum, .tableTextNadWatkiem{
+}
+
+
+.hint{
+	font-size: 10pt;
+	color: black;
+	background-color: cornflowerblue;
+	border: 1px black solid;
+}
+
+.error{	
+	color: red;
+	}
+
+.info{	
+	color: yellow;
+	}
+
+.success {	
+	color: green;
+	}
