@@ -22,7 +22,7 @@
             String field = (String) flds.nextElement(); 
             if (field.compareTo("logout")==0) {
                 auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
-                out.println(Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"));
+                out.println(Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"));
                 bez_formy = true;
             }
             else {
@@ -37,7 +37,7 @@
                         User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
                         if (u!=null)
                               {
-                              out.println(Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"));
+                              out.println(Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"));
                               bez_formy = true;
                               }
                         } catch (Exception e) {
@@ -61,12 +61,12 @@
                         </tr> <tr>
                         <td><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo"/></td>
                         </tr> <tr>        
-                            <td><% out.println(Commons.aHref(Messages.iForgetPasswd(),"forgetPasswd.jsp"));%></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
+                            <td><% out.println(Commons.aHref(request,Messages.iForgetPasswd(),"forgetPasswd.jsp"));%></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
                         </tr>
                     </table>
                 </form>
                 <br/>
-                <p><%out.println(Messages.doNotHaveAccount());out.println(Commons.aHref(Messages.wielka(Messages.registerYourself()),"addUser.jsp"));%> </p>
+                <p><%out.println(Messages.doNotHaveAccount());out.println(Commons.aHref(request,Messages.wielka(Messages.registerYourself()),"addUser.jsp"));%> </p>
      <%
          }
        }

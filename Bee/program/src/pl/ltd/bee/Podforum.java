@@ -227,10 +227,10 @@ public class Podforum {
         }else drukuj = true;
         
         if(drukuj){
-            printMainTableJSP(strona);
+            printMainTableJSP(pytanie,strona);
             ArrayList watki=db.getWatkiPodforum(this.ID,true);
             for(int i=0;i<watki.size();i++) {
-                ((Watek)watki.get(i)).printJSPHeader(strona);
+                ((Watek)watki.get(i)).printJSPHeader(pytanie, strona);
             }
         printMainTableCloseJSP(strona);
         }
@@ -253,7 +253,7 @@ public class Podforum {
         if (drukuj){
         strona.println("<tr>");
         strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\" alt=\"Category\"/></td>");
-        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPodforum\">"+Commons.aHref(this.getTytul(),"main.jsp?pid=" + this.getID(),"aTytulPodforum")+"</span><br/><span class=\"opisPodforum\">" + this.getOpis() + "</span><br/></td>");
+        strona.println("<td class=\"tdTytulPodforum\" width=\"100%\" height=\"50\"><span class=\"tytulPodforum\">"+Commons.aHref(pytanie, this.getTytul(),"main.jsp?pid=" + this.getID(),"aTytulPodforum")+"</span><br/><span class=\"opisPodforum\">" + this.getOpis() + "</span><br/></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">"+ liczbaAktywnychWatkow() + "</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"50\"><span class=\"liczba\">" + liczbaAktywnychWypowiedzi() + "</span></td>");
         strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"50\" nowrap=\"nowrap\">");
@@ -261,7 +261,7 @@ public class Podforum {
             strona.println("<span class=\"lastPost\">" + DataOstWypowiedzi + "<br />");
             User u = db.getUser(AutorOstWypowiedzi);
             if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
-            strona.println(Commons.aHref(AutorOstWypowiedzi,"./profile.jsp?uid=" + u.getID(),"aAutor"));
+            strona.println(Commons.aHref(pytanie, AutorOstWypowiedzi,"./profile.jsp?uid=" + u.getID(),"aAutor"));
             strona.println("<a href=\"viewtopic.html\"></a></span>");
         } else strona.println("&nbsp;");
         strona.println("</td></tr>");
@@ -272,12 +272,12 @@ public class Podforum {
      * Metoda wypisuje na strone glowna tabele z watkami
      * @param strona strumien wyjsciowy
      */
-    public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printMainTableJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         Kategoria k = db.getKategoriabyPodforum(ID);
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadPodforum\" id=\"textNadPodforum\" width=\"100%\"><tr>");
-        strona.println("<td class=\"tdPath\" align=\"left\">"+Commons.aHref(f.getNazwa(), "main.jsp","aPath")+ " -> " +Commons.aHref(k.getNazwa(),"main.jsp?kid=" + k.getID(),"aPath")+" -> "+Commons.aHref(Tytul,"main.jsp?pid=" + ID,"aPath")+"</td>");
-        strona.println("<td class=\"tdTopAction\" align=\"right\">" + Commons.aHref(Messages.wielka(Messages.add())+ " " + Messages.thread(), "./dodajW.jsp?p=" + ID,"aTopAction")+"</td>");
+        strona.println("<td class=\"tdPath\" align=\"left\">"+Commons.aHref(request, f.getNazwa(), "main.jsp","aPath")+ " -> " +Commons.aHref(request,k.getNazwa(),"main.jsp?kid=" + k.getID(),"aPath")+" -> "+Commons.aHref(request,Tytul,"main.jsp?pid=" + ID,"aPath")+"</td>");
+        strona.println("<td class=\"tdTopAction\" align=\"right\">" + Commons.aHref(request, Messages.wielka(Messages.add())+ " " + Messages.thread(), "./dodajW.jsp?p=" + ID,"aTopAction")+"</td>");
         strona.println("</tr></table>");
         strona.println("<table id=\"tablePodforum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("<tr>");

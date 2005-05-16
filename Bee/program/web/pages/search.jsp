@@ -55,7 +55,7 @@
         for(int i=0; i<watki.size(); i++)
         {
             Watek w = (Watek)watki.get(i);
-            w.printJSPHeader(out);
+            w.printJSPHeader(request,out);
         }
        %>
         </table>

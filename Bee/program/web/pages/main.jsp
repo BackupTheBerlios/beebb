@@ -7,27 +7,18 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-<% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
+<% 
+    String css = request.getParameter("style");
+    if (css == null) css = "temat"; //TODO Tu moze wypada zastosowac jakas stala Config.DEFAULT_STYLE
+    out.println(Commons.htmlHead("./..","BeeBB :: Content",css));
+%>
 
 <%@ include file="servletObjects.jsp" %>
 
-<%
-        Enumeration flds = request.getParameterNames();
-        if (!flds.hasMoreElements()) {
-            pl.ltd.bee.Forum f = db_con.getForum();
-                if (f!=null) {
-                    out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
-                    Forum.printMainTableJSP(out);
-                    f.printJSP(out,request,auth);
-                    Forum.printMainTableCloseJSP(out);
-                } else {
-                    out.println(Messages.errorDataBaseConnection()+"<br/>");
-                }
-        } else {
-            String field = (String) flds.nextElement();
-            String redirectURL;
-           if (field.compareTo("wpid") == 0) {
-                pl.ltd.bee.Wypowiedz wp = db_con.getWypowiedz(Integer.decode(request.getParameter(field)).intValue());
+<%            
+            
+           if (request.getParameter("wpid") != null) {
+                pl.ltd.bee.Wypowiedz wp = db_con.getWypowiedz(Integer.decode(request.getParameter("wpid")).intValue());
                 if (wp!=null) {
                     out.println("<body style=\"mrgin:0pt;\" class=\"bodyWypowiedz\" >");
                     if (wp.czyPrywatna()){
@@ -49,9 +40,10 @@
                 }
                 else 
                     out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorThreadNotExists()+"<br/>");
-            } 
-            if (field.compareTo("wid") == 0) {
-                pl.ltd.bee.Watek w = db_con.getWatek(Integer.decode(request.getParameter(field)).intValue());
+            }
+           else
+            if (request.getParameter("wid") != null) {
+                pl.ltd.bee.Watek w = db_con.getWatek(Integer.decode(request.getParameter("wid")).intValue());
                 if (w!=null){
                     Commons.setCachingNever(response);
                     out.println("<body onload=\"swapIframes();resizeWatek();setResizeFunction(resizeWatek);true;\" >");    
@@ -59,31 +51,33 @@
                             User user = auth.getUser(request,db_con);
                             if (user != null)
                             if (user.hasReadWatekRight(w.getID()))
-                                w.printJSP(out);
+                                w.printJSP(request, out);
                             else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                             else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                         }
                         else
-                            w.printJSP(out);
+                            w.printJSP(request,out);
                 }
                 else 
                     out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorThreadNotExists()+"<br/>");
             } 
-                if (field.compareTo("kid") == 0) {
-                pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter(field)).intValue());
+            else
+                if (request.getParameter("kid") != null) {
+                pl.ltd.bee.Kategoria k = db_con.getKategoria(Integer.decode(request.getParameter("kid")).intValue());
                 if (k!=null) {
                       Commons.setCachingNever(response);
                       out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
-                      k.printMainTableJSP(out);
+                      k.printMainTableJSP(request,out);
                       k.printJSP(out,request,auth);
                       k.printMainTableCloseJSP(out);
                 }
                 else 
                       out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorCategoryNotExists()+"<br/>");
                 } 
-                    if (field.compareTo("pid") == 0) {
+                else
+                    if (request.getParameter("pid") != null) {
                         Commons.setCachingNever(response);
-                        pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter(field)).intValue());
+                        pl.ltd.bee.Podforum p = db_con.getPodforum(Integer.decode(request.getParameter("pid")).intValue());
                         if (p!=null) {
                             out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
                             p.printJSP(out,request,auth);
@@ -91,7 +85,18 @@
                         else
                             out.println(Messages.errorDataBaseConnection()+Messages.or()+Messages.errorSubForumNotExists()+"<br/>");
             }
-        }
+                    else
+                    {
+                        pl.ltd.bee.Forum f = db_con.getForum();
+                        if (f!=null) {
+                            out.println("<body onload=\"swapIframes();resizeMain();setResizeFunction(resizeMain);true;\" >");    
+                            Forum.printMainTableJSP(out);
+                            f.printJSP(out,request,auth);
+                            Forum.printMainTableCloseJSP(out);
+                        } else {
+                                out.println(Messages.errorDataBaseConnection()+"<br/>");
+                            }
+                    }
     %>
     </body>
 </html>

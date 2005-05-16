@@ -25,9 +25,10 @@ public class Commons {
      * Metoda zwraca wypelniony znacznik HEAD.
      * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
      * @param title Tytul strony
+     * @param css Nazwa pliku z arkuszem stylu (Uwaga tylko nazwa bez rozszezenia)
      * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
      */
-    public static String htmlHead(String path, String title){
+    public static String htmlHead(String path, String title, String css){
         return  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\">" +
                 "<head>\n"+
@@ -39,7 +40,7 @@ public class Commons {
                 "<meta name=\"keywords\" content=\"??\" />\n"+
                 "<title>"+title+"</title>\n"+
                 "<link href=\""+path+"/images/bee_icon.jpg\" rel=\"SHORTCUT ICON\" />\n"+
-                "<link rel=\"stylesheet\" href=\""+path+"/styles/temat.css\" type=\"text/css\"/>\n"+
+                "<link rel=\"stylesheet\" href=\""+path+"/styles/"+css+".css\" type=\"text/css\"/>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/skrypt.js\"></script>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/iframe_resize.js\"></script>\n"+
                 "<script type=\"text/javascript\" src=\""+path+"/js/forms.js\"></script>\n"+
@@ -59,6 +60,15 @@ public class Commons {
     }
     
     
+    /**
+     * Metoda zwraca wypelniony znacznik HEAD.
+     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
+     * @param title Tytul strony
+     * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
+     */
+    public static String htmlHead(String path, String title){
+        return htmlHead(path,title,"temat");
+    }
     
     /** 
      * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako trwaly przez rok
@@ -87,8 +97,8 @@ public class Commons {
      * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
      */
     public static void setCachingNever(javax.servlet.http.HttpServletResponse response){
-        response.setHeader("Expires",(new java.util.Date()).toString());
-        response.setHeader("Cache-Control","max-age = 0, must-revalidate");//TODO SPRAWDZIC CZY TAK !!!!!!!!!!!!
+        //response.setHeader("Expires",(new java.util.Date()).toString());
+        response.setHeader("Cache-Control","max-age=0, must-revalidate");//TODO SPRAWDZIC CZY TAK !!!!!!!!!!!!
     }
     
     
@@ -122,26 +132,45 @@ public class Commons {
             return text;
     }
     
+    
+    /** Metoda dostarcza zapytanie GET które należy dokleić do odnośnika
+     * @param request Otrzymane zapytanie HTTP
+     * @return String z nazwa parametru i wartoscia lub pusty jelsi styl nie jest okreslony
+     */
+    public static String getQueryStyle(javax.servlet.http.HttpServletRequest request){
+        String css = request.getParameter("style");
+        if (css != null)
+            return "style="+css;
+        else return "";           
+    }
+    
     /**
      * Metoda dostarcza znacznik xhtml bedacy poprawnym odnosnikiem w projekcie wykorzystujacym rotacje ramek
+     * @param request Otrzymane zapytanie HTTP 
      * @param text Zawartosc tekstowa odnosnika
      * @param where Strona docelowa
      * @param classType Nazwa klasy odnosnika
      * @return Znacznik xhtml z odnosnikiem
      */
-    public static String aHref(String text, String where, String classType){
+    public static String aHref(javax.servlet.http.HttpServletRequest request, String text, String where, String classType){
+        String css = request.getParameter("style");
+        if (css != null)
+            if (where.indexOf('?') != -1)
+                where+="&amp;style="+css;
+            else where+="?style="+css;           
         return "<span class=\""+classType+"\" style=\"cursor: pointer;\" onclick=\"hrefClick('"+where+"')\">"+text+"</span>";
     }
     
     /**
      * Metoda dostarcza znacznik xhtml bedacy poprawnym odnosnikiem w projekcie wykorzystujacym rotacje ramek
+     * @param request Otrzymane zapytanie HTTP 
      * @param text Zawartosc tekstowa odnosnika
      * @param where Strona docelowa
      * @param classType Nazwa klasy odnosnika
      * @return Znacznik xhtml z odnosnikiem
      */
-    public static String aHref(String text, String where){
-        return aHref(text,where,"aHref");
+    public static String aHref(javax.servlet.http.HttpServletRequest request, String text, String where){
+        return aHref(request,text,where,"aHref");
     }
     
     /** Metoda zamienia wszystkie znaczniki w podanym tekscie na znaczniki xhtml odnoszace sie do emotikonek

@@ -92,11 +92,11 @@
                         if(!db_con.insertNewUser(nickname,numer))
                             out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                         else {
-                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp")+"<br/>"); 
+                            out.println(Messages.makeInfo(Messages.messageActivEmailSend())+"<br/><br/>"+Commons.aHref(request,Messages.wielka(Messages.back()), "./main.jsp")+"<br/>"); 
                             SendMail.send(email,Config.REG_MAIL_SUBJECT,Messages.welcome()+" "+nickname + "\n" + Config.REG_MAIL_BODY + Config.URL_FORUM + "/pages/reg/newUser.jsp?id=" + numer);
                         }
                     } else {
-                        out.println("<center>" + Messages.makeInfo(Messages.wielka(Messages.user()) + " " + nickname + " " + Messages.hasBeenAdded())+"<br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp")+"<br/></center>"); 
+                        out.println("<center>" + Messages.makeInfo(Messages.wielka(Messages.user()) + " " + nickname + " " + Messages.hasBeenAdded())+"<br/><br/>"+Commons.aHref(request,Messages.wielka(Messages.back()), "./main.jsp")+"<br/></center>"); 
                     }
                 }
             } else {

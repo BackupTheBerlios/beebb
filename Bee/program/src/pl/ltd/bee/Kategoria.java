@@ -120,11 +120,11 @@ public class Kategoria {
      * Metoda wypisuje na stronie glowną tabele i jej naglowki
      * @param strona strumien wyjsciowy
      */
-    public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printMainTableJSP(javax.servlet.http.HttpServletRequest request,javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //TODO te naglowki moze trzeba bedziew wywalic gdzie indziej .. ale poki co to dobre dla nich miejsce
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadForum\" id=\"textNadForum\" width=\"100%\"><tr>");
-        strona.println("<td class=\"tdPath\" align=\"left\">"+ Commons.aHref(f.getNazwa(), "main.jsp","aPath")+" -> "+Commons.aHref(Tytul, "main.jsp?kid=" + ID,"aPath"));
+        strona.println("<td class=\"tdPath\" align=\"left\">"+ Commons.aHref(request,f.getNazwa(), "main.jsp","aPath")+" -> "+Commons.aHref(request,Tytul, "main.jsp?kid=" + ID,"aPath"));
         strona.println("</td></tr></table>");
         strona.println("<table id=\"tableForum\" width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\">");
         strona.println("\t<tr>");
@@ -145,7 +145,7 @@ public class Kategoria {
     public void printJSP(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
         boolean drukuj = false;
         strona.println("<tr>");
-        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\">"+Commons.aHref(Tytul,"main.jsp?kid="+ this.ID, "aTytulKategorii")+ "</span></td>");
+        strona.println("<td class=\"tdTytulKategorii\" colspan=\"5\" height=\"20\"><span class=\"tytulKategorii\">"+Commons.aHref(pytanie,Tytul,"main.jsp?kid="+ this.ID, "aTytulKategorii")+ "</span></td>");
         strona.println("</tr>");
         if (this.czyPrywatna()){
             User user = auth.getUser(pytanie,this.db);

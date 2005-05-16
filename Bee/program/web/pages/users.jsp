@@ -38,7 +38,7 @@
             if (u.getID() != Config.GUEST_ID)
             {
                 out.println("<tr>");
-                out.println("<td align=\"center\" class=\"tdUsersList\"><table width=\"100%\" border=\"0\"><tr><td align=\"left\"><img align=\"middle\" src=\""+(u.ifMale()?"../images/male.gif\" alt=\""+Messages.wielka(Messages.men()):"../images/female.gif\" alt=\""+Messages.wielka(Messages.woman()))+"\"></td><td>&nbsp;"+Commons.aHref(u.getLogin(),"./profile.jsp?uid="+u.getID())+"</td></tr></table></td>");
+                out.println("<td align=\"center\" class=\"tdUsersList\"><table width=\"100%\" border=\"0\"><tr><td align=\"left\"><img align=\"middle\" src=\""+(u.ifMale()?"../images/male.gif\" alt=\""+Messages.wielka(Messages.men()):"../images/female.gif\" alt=\""+Messages.wielka(Messages.woman()))+"\"></td><td>&nbsp;"+Commons.aHref(request,u.getLogin(),"./profile.jsp?uid="+u.getID())+"</td></tr></table></td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowName()?u.getImie()+"<br/>"+u.getNazwisko():"")+"</td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowEmail()?"<a href=\"mailto:"+u.getEmail()+"\" class=\"aHref\">"+u.getEmail()+"</a>":"")+"</td>");
                 out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.getWWW().length()>0?"<a href=\""+u.getWWW()+"\" class=\"aHref\" target=\"_blank\"><img src=\"../images/www.gif\" border=\"0\" alt=\""+u.getWWW()+"\"/></a>":"")+"</td>");

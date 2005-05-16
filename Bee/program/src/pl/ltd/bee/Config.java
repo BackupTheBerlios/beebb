@@ -138,6 +138,9 @@ public class Config {
     public static int HINT_DELAY = 1000;
     //TODO dodac do XML i zrobic SET'a
     
+    /** Ustala temat domyslny */
+    public static String DEFAULT_STYLE = "temat";
+    
     /**    
      * Klasa odpowiedzialna za przetworzenie dokumnetu XML
      */

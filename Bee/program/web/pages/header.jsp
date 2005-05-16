@@ -7,14 +7,18 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-<% out.println(Commons.htmlHead("./..","BeeBB :: Content"));%>
-    <body onload="debugIframes();">
+<%
+ String css = request.getParameter("style");
+ if (css == null) css = Config.DEFAULT_STYLE; 
+ out.println(Commons.htmlHead("./..","BeeBB :: Content",css));
+%>
+    <body>
 <%@ include file="servletObjects.jsp" %>
    
 <table id="tableHeader" width="100%" cellspacing="0" cellpadding="1" border="0"><!-- Aby dobrze sie skalowalo wszystko musi byc zwarte w tej tabeli -->
 <tr>
 	<td width="20%" valign="top">
-		<img class="beePicture" alt="Bee Sign" src="./../images/Bee_logo.gif" align="top" onclick="linkClick('./main.jsp')" style="cursor: pointer;" />
+		<img class="beePicture" alt="Bee Sign" src="./../images/Bee.gif" align="top" onclick="linkClick('./main.jsp')" style="cursor: pointer;" />
 	</td>
 <td>
 	<table width="100%" cellspacing="0" cellpadding="2" border="0">

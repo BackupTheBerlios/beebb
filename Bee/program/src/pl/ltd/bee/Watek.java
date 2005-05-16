@@ -228,33 +228,33 @@ public class Watek {
      * Metoda wypisuje naglowek watku
      * @param strona strumien wyjsciowy
      */
-    public void printJSPHeader(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printJSPHeader(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("<tr>");
-        if (this.Zablokowany) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/lock.png\" alt=\"Zablokowany\"/></td>");
-        else if (this.Zamkniety) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/cut.gif\" alt=\"Zamkniety\" /></td>");
-        else strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\" alt=\"Koperta\"/></td>");
-        strona.println("<td class=\"tdTytulWatek\" width=\"100%\" height=\"25\"><span class=\"tytulPodforum\">"+ Commons.aHref(Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span></td>");
+        if (this.Zablokowany) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\"><img src=\"./../images/lock.png\" alt=\"Zablokowany\"/></td>");
+        else if (this.Zamkniety) strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\"><img src=\"./../images/cut.gif\" alt=\"Zamkniety\" /></td>");
+        else strona.println("<td class=\"tdPictureWatek\" align=\"center\" valign=\"middle\"><img src=\"./../images/koperta2.gif\" width=\"14\" height=\"11\" alt=\"Koperta\"/></td>");
+        strona.println("<td class=\"tdTytulWatek\" width=\"100%\"><span class=\"tytulPodforum\">"+ Commons.aHref(request,Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span></td>");
         strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) hrefClick('moderating.jsp?wid="+this.ID+"&amp;id_autor="+this.ID_Autor+"&amp;op=ban')\"><img src=\"../images/kick_user.gif\" alt=\"" + Messages.banAuthor() + "\" onmouseover=\"showHint(isLogin('"+Autoryzator.COOKIE_USER_NAME+"')?'"+Messages.hintBanAuthor()+"':'"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) hrefClick('moderating.jsp?wid="+this.ID+"&amp;op=move')\"><img src=\"../images/move.gif\" alt=\"" + Messages.wielka(Messages.move()) + "\" onmouseover=\"showHint(isLogin('"+Autoryzator.COOKIE_USER_NAME+"')?'"+Messages.hintMoveThread()+"':'"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) hrefClick('moderating.jsp?wid="+this.ID+"&amp;op=block')\"><img src=\"../images/lock.png\" alt=\"" + Messages.wielka(Messages.block()) + "\" onmouseover=\"showHint(isLogin('"+Autoryzator.COOKIE_USER_NAME+"')?'"+Messages.hintBlockThread()+"':'"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
         strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) hrefClick('moderating.jsp?wid="+this.ID+"&amp;op=close')\"><img src=\"../images/cut.gif\" alt=\"" + Messages.wielka(Messages.close()) + "\" onmouseover=\"showHint(isLogin('"+Autoryzator.COOKIE_USER_NAME+"')?'"+Messages.hintCloseThread()+"':'"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
         
-        strona.println("</td><td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
+        strona.println("</td><td class=\"tdLiczba\" align=\"center\" valign=\"middle\"><span class=\"liczba\">");
         if (LiczbaWypowiedzi > 0) strona.println((LiczbaWypowiedzi-1)); else strona.println(LiczbaWypowiedzi);
         strona.println("</span></td>");
-        strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">");
+        strona.println("<td class=\"tdAutor\" align=\"center\" valign=\"middle\"><span class=\"liczba\">");
         if (Config.GUEST_ID == this.ID_Autor)
             strona.println("~" + this.Autor);
         else {
             User u = db.getUser(this.ID_Autor);
-            strona.println(Commons.aHref(u.getLogin(),"profile.jsp?uid=" + this.ID_Autor));
+            strona.println(Commons.aHref(request,u.getLogin(),"profile.jsp?uid=" + this.ID_Autor));
         }
         strona.println("</span></td>");
-        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\" height=\"25\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
-        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" height=\"25\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>");
+        strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");
+        strona.println("<td class=\"tdLastPost\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"> <span class=\"lastPost\">" + DataOstWypowiedzi + "<br/>");
         User u = db.getUser(AutorOstWypowiedzi);
         if (u==null || AutorOstWypowiedzi.compareTo(Config.GUEST)==0) strona.println(AutorOstWypowiedzi); else
-            strona.println(Commons.aHref(AutorOstWypowiedzi,"./profile.jsp?uid=" + u.getID(),"aAutor"));
+            strona.println(Commons.aHref(request,AutorOstWypowiedzi,"./profile.jsp?uid=" + u.getID(),"aAutor"));
         strona.println("<a href=\"viewtopic.html\"></a></span></td>");
         strona.println("</tr>");
     }
@@ -264,7 +264,7 @@ public class Watek {
      * Metoda wypisuje na stronie glownÄ… tabele i jej naglowki
      * @param strona strumien wyjsciowy
      */
-    public void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+    public void printMainTableJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         this.incrLicznikOdwiedzin();
         Podforum p = db.getPodforumbyWatek(ID);
         Kategoria k = null;
@@ -272,8 +272,8 @@ public class Watek {
         Forum f = db.getForum();
         strona.println("<table border=\"0\" class=\"tableTextNadWatkiem\" id=\"textNadWatkiem\" width=\"100%\"><tr>");
         if (p!=null && k!=null && f!=null)
-            strona.println("<td class=\"tdPath\" align=\"left\">"+Commons.aHref( f.getNazwa(), "./main.jsp","aPath")+" -> " + Commons.aHref( k.getNazwa(), "./main.jsp?kid=" + k.getID(),"aPath")+ " -> "+ Commons.aHref(p.getTytul(),"./main.jsp?pid=" + p.getID(),"aPath")+" -> "+ Commons.aHref(Temat,"./main.jsp?wid=" + ID,"aPath" )+"</td>");
-        strona.println("<td class=\"tdTopAction\" align=\"right\">"+ Commons.aHref(Messages.wielka(Messages.add()) +" "+ Messages.message(),"./dodajW.jsp?w=" + ID,"aTopAction")+"</td>");
+            strona.println("<td class=\"tdPath\" align=\"left\">"+Commons.aHref(request, f.getNazwa(), "./main.jsp","aPath")+" -> " + Commons.aHref(request, k.getNazwa(), "./main.jsp?kid=" + k.getID(),"aPath")+ " -> "+ Commons.aHref(request,p.getTytul(),"./main.jsp?pid=" + p.getID(),"aPath")+" -> "+ Commons.aHref(request,Temat,"./main.jsp?wid=" + ID,"aPath" )+"</td>");
+        strona.println("<td class=\"tdTopAction\" align=\"right\">"+ Commons.aHref(request,Messages.wielka(Messages.add()) +" "+ Messages.message(),"./dodajW.jsp?w=" + ID,"aTopAction")+"</td>");
         strona.println("</tr></table>");
         strona.println("<table class=\"tableWatek\" id=\"tableWatek\" width=\"100%\" border=\"0\">");
         strona.println("<tr>");
@@ -296,12 +296,13 @@ public class Watek {
      * Metoda powoduje wypisanie wďż˝tku na przekazany strumien
      * @param strona strumien wyjsciowy
      */
-    public void printJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
-        printMainTableJSP(strona);
+    public void printJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
+        printMainTableJSP(request,strona);
+        String css = Commons.getQueryStyle(request);
         ArrayList Wypowiedzi=db.getWypowiedziWatku(this.ID,true);
         for(int i=0;i<Wypowiedzi.size();i++) {
             strona.println("<tr class=\"trWypowiedz\">");
-            strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe id=\"iframeWypowiedz"+i+"\" name=\"iframeWypowiedz"+i+"\" width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() + "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
+            strona.println("<td colspan=\"2\" class=\"tdWypowiedzBox\" align=\"center\" valign=\"middle\" nowrap=\"nowrap\"><iframe id=\"iframeWypowiedz"+i+"\" name=\"iframeWypowiedz"+i+"\" width=\"100%\" height=\"100%\" src=\"./main.jsp?wpid=" + ((Integer)Wypowiedzi.get(i)).intValue() +(css.length()>0?"&amp;"+css:"")+ "\" scrolling=\"no\" frameborder=\"0\"></iframe></td>");
             strona.println("</tr>");
         }
         printMainTableCloseJSP(strona);

@@ -192,7 +192,7 @@
                     else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
                 }
                 
-             out.print("<br/>"+Commons.aHref(Messages.wielka(Messages.back()), "./main.jsp?"+ ((s_wpid != null)?("wid="+wat.getID()):("pid="+pod.getID()))));
+             out.print("<br/>"+Commons.aHref(request,Messages.wielka(Messages.back()), "./main.jsp?"+ ((s_wpid != null)?("wid="+wat.getID()):("pid="+pod.getID()))));
             }
             else out.println(Messages.makeError(Messages.wielka(Messages.errorUnknown())));
         }

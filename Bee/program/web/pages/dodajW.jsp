@@ -201,7 +201,7 @@
                         d.incrAddWatek(wat,ID_Usera,Nazwa_Usera);
                     }
                 }
-                    out.print("<center><br/><br/>"+Commons.aHref(Messages.wielka(Messages.back()),"./main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
+                    out.print("<center><br/><br/>"+Commons.aHref(request,Messages.wielka(Messages.back()),"./main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
                 }
                 else 
                 if (d.canCreate(podforum, wt,request,auth)) {
@@ -251,11 +251,11 @@
                     </tr>
                     </table>
                     <br/><br/>
-                    <center><% Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
+                    <center><% Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
    <% }
                 else {//to znaczy, ze canCreate zwrocilo FALSE
                     out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
-                    out.println("<center>"+Commons.aHref(Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
+                    out.println("<center>"+Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
                 }
     }%>
     </body>
