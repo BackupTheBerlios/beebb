@@ -39,7 +39,10 @@
                         User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
                         if (u!=null)
                               {
-                              out.println(Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"));
+                              String user_css = u.getStyle();
+                              if (user_css.length() > 0) user_css = "?style="+user_css;
+                              out.println("<script type=\"text/javascript\">reloadHeader('./header.jsp"+user_css+"');</script>");
+                              out.println(Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"+user_css));
                               bez_formy = true;
                               }
                         } catch (Exception e) {
