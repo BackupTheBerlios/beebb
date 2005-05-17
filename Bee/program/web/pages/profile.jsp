@@ -37,7 +37,7 @@
                       }  
                     if ((user.ifShowEmail())&&(user.getEmail().length()>0)) {
                         out.println("<tr><th>"+Messages.wielka(Messages.email())+"</th>");
-                        out.println("<td align=\"center\" class=\"tdProfileField\"><a href=\"mailto:"+user.getEmail()+"\" class=\"aHref\">"+user.getEmail()+"</a></td>");
+                        out.println("<td align=\"center\" class=\"tdProfileField\"><a href=\"mailto:"+user.getEmail()+"\" class=\"aHref\"><img src=\"../images/mail.gif\" border=\"0\" alt=\""+user.getEmail()+"\"/></a></td>");
                         out.println("</tr>");
                       }
                     out.println("<tr><th>"+Messages.wielka(Messages.wwwPage())+"</th>");
