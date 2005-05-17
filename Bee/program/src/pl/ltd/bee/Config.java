@@ -100,8 +100,8 @@ public class Config {
     public static int GUEST_ID = 1;
     
     /** Rozmiar i waga avatara */
-    public static int AVATAR_WIDTH = 100;
-    public static int AVATAR_HEIGHT = 100;
+    public static int AVATAR_WIDTH = 130;
+    public static int AVATAR_HEIGHT = 200;
     public static int AVATAR_SIZE = 100000;
     
     

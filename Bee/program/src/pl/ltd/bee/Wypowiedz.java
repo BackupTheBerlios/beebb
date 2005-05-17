@@ -108,15 +108,19 @@ public class Wypowiedz {
         strona.println("<table border=\"0\" id=\"tableWypowiedz\" class=\"tableWypowiedz\" width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");
         strona.println("<tr><td><table cellpadding=\"4\" cellspacing=\"1\" width=\"100%\"><tr>");
         strona.println("<td class=\"tdAutorBox\" id=\"tdAutorBox\" width=\"20%\" align=\"center\" valign=\"middle\">");
-        if (Config.GUEST_ID == this.ID_Autora)
+        if (Config.GUEST_ID == this.ID_Autora){
             strona.println("<span>~" + this.Autor+"</span>");
+            strona.println("<br/>");
+            strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
+        }
         else {
             User u = db.getUser(this.ID_Autora);
             strona.println(Commons.aHref(request,u.getLogin(),"./profile.jsp?uid=" + this.ID_Autora, "linkAutor"));
+            strona.println("<br/>");
+            strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
+            if (u.getAvatar().length() >0)
+                strona.println("<img src=\"./../data/avatars/"+u.getAvatar()+"\" alt=\""+u.getLogin()+"\"/></td>");            
         }
-        strona.println("<br/>");
-        strona.println("<span class=\"wypowiedzData\">" + this.Data + "</span><br/>");
-        strona.println("<img src=\"./../images/folder_big.gif\" width=\"46\" height=\"25\" alt=\"Folder img\"/></td>");
         strona.println("<td class=\"tdWypowiedz\" id=\"wypowiedzTekst\">");
         strona.println(Tekst);
         strona.println("</td></tr></table></td></tr>");
