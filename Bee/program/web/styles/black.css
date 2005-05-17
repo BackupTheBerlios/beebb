@@ -11,13 +11,14 @@ body {
 }
 
 font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
-    
+
+/*    
 td {
     color: white;
     background-color: black;
     font-size: 12px; 
 }
-
+*/
 /* a:link,a:active,a:visited { color : #006699; } */
 /* a:hover		{ text-decoration: underline; color : #DD6900; } */
 hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
@@ -78,7 +79,7 @@ th	{
 	color: black;	
 	}	
 
-.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link, .aTytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor{
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link, .aTytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor, .aUserProfile{
         font-size: 12px;
 	color: black;	
         text-decoration: none;
@@ -86,7 +87,7 @@ th	{
 	}	
 
 .aHref{
-        color:white;
+        color: white;
 }
 	
 .trWypowiedz {
@@ -116,7 +117,7 @@ th	{
 
 .wypowiedzData{
         font-size: 8pt;
-        color: firebrick;
+        color: gray;
         font-weight : normal;
         }
 
@@ -133,6 +134,17 @@ th	{
 .tableTextNadForum, .tableTextNadPodforum, .tableTextNadWatkiem{
 }
 
+.imgEmail{
+    width: 0pt;
+    height: 0pt;
+}
+
+.divImgEmail{
+    background-image: url(./../images/mail_black.jpg);
+    width: 25pt;
+    height: 15pt;
+    display: block;
+}
 
 .hint{
 	font-size: 10pt;

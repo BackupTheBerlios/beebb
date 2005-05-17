@@ -29,10 +29,10 @@
             if (u.getID() != Config.GUEST_ID)
             {
                 out.println("<tr>");
-                out.println("<td align=\"center\" class=\"tdUsersList\"><table width=\"100%\" border=\"0\"><tr><td align=\"left\"><img align=\"middle\" src=\""+(u.ifMale()?"../images/male.gif\" alt=\""+Messages.wielka(Messages.men()):"../images/female.gif\" alt=\""+Messages.wielka(Messages.woman()))+"\"></td><td>&nbsp;"+Commons.aHref(request,u.getLogin(),"./profile.jsp?uid="+u.getID())+"</td></tr></table></td>");
-                out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowName()?u.getImie()+" "+u.getNazwisko():"")+"</td>");
-                out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+(u.ifShowEmail()?"<a href=\"mailto:"+u.getEmail()+"\" class=\"aHref\"><img src=\"../images/mail.gif\" border=\"0\" alt=\""+u.getEmail()+"\"/></a>":"")+"</td>");
-                out.println("<td align=\"center\"class=\"tdUsersList\">&nbsp;"+u.getLastLog()+"</td>");
+                out.println("<td align=\"center\" class=\"tdUsersList\"><table width=\"100%\" border=\"0\"><tr><td align=\"left\" width=\"10\"><img align=\"middle\" src=\""+(u.ifMale()?"../images/male.gif\" alt=\""+Messages.wielka(Messages.men()):"../images/female.gif\" alt=\""+Messages.wielka(Messages.woman()))+"\"></td><td align=\"center\">&nbsp;"+Commons.aHref(request,u.getLogin(),"./profile.jsp?uid="+u.getID(),"aUserProfile")+"</td></tr></table></td>");
+                out.println("<td align=\"center\" class=\"tdUsersList\">&nbsp;"+(u.ifShowName()?u.getImie()+" "+u.getNazwisko():"")+"</td>");
+                out.println("<td align=\"center\" class=\"tdUsersList\">&nbsp;"+(u.ifShowEmail()?"<a href=\"mailto:"+u.getEmail()+"\" class=\"aHref\"><span class=\"divImgEmail\"></span><img class=\"imgEmail\" src=\"../images/mail.gif\" border=\"0\" alt=\""+u.getEmail()+"\"/></a>":"")+"</td>");
+                out.println("<td align=\"center\" class=\"tdUsersList\">&nbsp;"+u.getLastLog()+"</td>");
                 out.println("</tr>");
             }
         }

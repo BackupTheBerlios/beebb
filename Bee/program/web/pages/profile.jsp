@@ -29,7 +29,7 @@
                 
                 %>
                 <table align="center" class="tableProfile" border="0">
-                    <tr><th><% out.print(Messages.login());%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%>&nbsp;</td></tr>
+                    <tr><th><% out.print(Messages.wielka(Messages.login()));%></th><td class="tdProfileField">&nbsp;<% out.print(user.getLogin());%>&nbsp;</td></tr>
                 <% 
                     if(user.ifShowName()) {
                         out.print("<tr><th>"+Messages.wielka(Messages.name())+"</th><td class=\"tdProfileField\">&nbsp;"+user.getImie()+"&nbsp;</td></tr>");
@@ -37,7 +37,7 @@
                       }  
                     if ((user.ifShowEmail())&&(user.getEmail().length()>0)) {
                         out.println("<tr><th>"+Messages.wielka(Messages.email())+"</th>");
-                        out.println("<td align=\"center\" class=\"tdProfileField\"><a href=\"mailto:"+user.getEmail()+"\" class=\"aHref\"><img src=\"../images/mail.gif\" border=\"0\" alt=\""+user.getEmail()+"\"/></a></td>");
+                        out.println("<td align=\"center\" class=\"tdProfileField\"><a href=\"mailto:"+user.getEmail()+"\" class=\"aHref\"><img class=\"imgEmail\" src=\"../images/mail.gif\" border=\"0\" alt=\""+user.getEmail()+"\"/></a></td>");
                         out.println("</tr>");
                       }
                     out.println("<tr><th>"+Messages.wielka(Messages.wwwPage())+"</th>");
