@@ -11,7 +11,6 @@ package pl.ltd.bee;
  * @author pawelb i sopi
  */
 public class User {
-    
     private int ID;
     private String login;
     private String haslo;

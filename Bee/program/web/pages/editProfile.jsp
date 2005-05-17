@@ -1,7 +1,10 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.io.*"%>
 <%@ page import="pl.ltd.bee.*"%>
+<%@ page import="org.apache.commons.fileupload.*"%>
+<%@ page import="javax.swing.ImageIcon"%>
 <%@ page session="false" %>
 
 <% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.editProfile())));
@@ -10,10 +13,57 @@
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
     
         <%@ include file="servletObjects.jsp" %>
-                
+        
     <%
                 User user = auth.getUser(request,db_con);
-                if (user!=null) {
+                if (user!=null) { %>
+           
+        <% String avt=request.getParameter("avt");
+            if (FileUpload.isMultipartContent(request)) {
+            DiskFileUpload upload = new DiskFileUpload();
+            List items = upload.parseRequest(request);
+            Iterator iter = items.iterator();
+            if (iter.hasNext()) {
+                FileItem item = (FileItem) iter.next();
+                if (!item.isFormField()) {
+                    try {
+                        ImageIcon icon = new ImageIcon(item.get());
+                        if((item.getContentType().compareTo("image/png") == 0 || item.getContentType().compareTo("image/jpeg") == 0 )
+                                && item.getSize() > 0 && item.getSize() <= Config.AVATAR_SIZE
+                                && icon.getIconHeight() > 0 && icon.getIconHeight() <= Config.AVATAR_HEIGHT
+                                && icon.getIconWidth() > 0 && icon.getIconWidth() <= Config.AVATAR_WIDTH  ) {
+                                 String filetype="";
+                                 if ( item.getContentType().compareTo("image/png") == 0 ) filetype = ".png";
+                                 if ( item.getContentType().compareTo("image/jpeg") == 0 ) filetype = ".jpg";
+                                    File outputFile = new File(application.getRealPath("/data/avatars/" + user.getLogin()  + filetype));
+                                    item.write(outputFile);
+                                    user.setAvatar(user.getLogin()  + filetype);
+                                    out.println("<center>");
+                                    if(!db_con.updateUser(user))
+                                        out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                                    else out.print(Messages.makeInfo(Messages.updated()));
+                                        out.println("</center><hr/><br/>");
+                        }
+                        else out.println(Messages.makeError(Messages.avatarError()));
+                    } catch (Exception e) {
+                     //out.println("blad!" + e);   
+                    }
+                }
+            }
+         }
+        %>        
+        
+        <form enctype="multipart/form-data" method="post" action="editProfile.jsp<% out.print(css.length()>0?"?"+css:"");%>">
+            <table align="center" class="tableProfile" border="0">
+                <tr><td><% if(user.getAvatar().compareTo("")!=0) out.println("<img src=\"../data/avatars/" + user.getAvatar() + "\" alt=\"AVATAR\"/>"); %></td></tr>
+                <tr><td class="tdProfileField"><input type="file" name="avatar-file" size="35"/></td></tr>
+                <tr><td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
+            </table>
+        </form>
+        <br/>
+        
+        
+        <%
                 String chd=request.getParameter("chd");
                 if (chd!=null) { 
                     String imie=request.getParameter("imie");

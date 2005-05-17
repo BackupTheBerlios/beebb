@@ -1163,6 +1163,14 @@ public class Messages {
     
     
     /**
+     * Metoda dostarcza komunikat o błędzie wczytywania avatara
+     * @return String z komunikatem
+     */
+    public static String avatarError(){
+        return "Obrazek nieprawidłowy! Proszę podać plik graficzny o rozmiarach " + Config.AVATAR_WIDTH + "x" + Config.AVATAR_HEIGHT + " nienwiększy niż " + Config.AVATAR_SIZE/1000 + " kbajtów." ;}
+    
+    
+    /**
      * Metoda dostarcza komunikat o poprawnym dodaniu wypowiedzi
      * @return String z komunikatem
      */

@@ -99,6 +99,12 @@ public class Config {
     public static String GUEST = "Guest";
     public static int GUEST_ID = 1;
     
+    /** Rozmiar i waga avatara */
+    public static int AVATAR_WIDTH = 100;
+    public static int AVATAR_HEIGHT = 100;
+    public static int AVATAR_SIZE = 100000;
+    
+    
     /** czas w sekundach po jakim uzytkownik zostanie automatycznie wylogowany */
     public static int LOG_IN_MAX_AGE = 3600;
     
