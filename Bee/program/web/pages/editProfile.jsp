@@ -259,7 +259,7 @@
                     <th><% out.print(Messages.wielka(Messages.birthdate()));%></th>
                     <td class="tdProfileField">
                         <select name="rokUrodzenia">
-                        <% for (int i=1982; i<=2005; i++)  {
+                        <% for (int i=1900; i<=2005; i++)  {
                             out.print("<option value=\""+i+"\"");
                             if (i==Integer.decode(user.getBirthYear()).intValue()) out.print(" selected"); 
                             out.println(">" + i + "</option>");
