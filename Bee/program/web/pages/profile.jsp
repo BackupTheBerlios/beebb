@@ -75,7 +75,7 @@
                     {
                         out.println("<tr><th>"+Messages.wielka(Messages.msn())+"</th><td align=\"center\" class=\"tdProfileField\">");
                         out.println("<!-- http://www.onlinestatus.org/ -->");
-                        out.println("<td><a href=\"http://checker.tdknights.com:1337/message/msn/"+user.getMSN()+"\">");
+                        out.println("<a href=\"http://checker.tdknights.com:1337/message/msn/"+user.getMSN()+"\">");
                         out.println("<img src=\"http://checker.tdknights.com:1337/msn/"+user.getMSN()+"\" align=\"center\" border=\"0\" alt=\""+user.getMSN()+"\" onerror=\"this.onerror=null;this.src='../images/msnunknown.gif';\"></a>");
                         out.println("</td></tr>");
                     }
@@ -95,19 +95,19 @@
                         out.println("</tr>");
                       }                      
                     if ((user.ifShowYahoo())&&(user.getYahoo().length()>0)){
-                        out.println("<tr><th>"+Messages.wielka(Messages.yahoo())+"</th>");
+                        out.println("<tr><th>"+Messages.wielka(Messages.yahoo())+"</th><td align=\"center\" class=\"tdProfileField\">");
                         out.println("<!-- http://www.onlinestatus.org/ -->");
                         out.println("<a href=\"ymsgr:sendIM?"+user.getYahoo()+"\">");
                         out.println("<img src=\"http://osi.lostinspacehosting.com:81/yahoo/"+user.getYahoo()+"/onurl=media.dl.matrixau.net/etc/osi/yahooonline.gif/offurl=media.dl.matrixau.net/etc/osi/yahoooffline.gif/unknownurl=media.dl.matrixau.net/etc/osi/yahoounknown.gif\""+
                                     "align=\"middle\" border=\"0\" alt=\""+user.getYahoo()+"\""+
                                     "onerror=\"this.onerror=null;this.src='http://media.dl.matrixau.net/etc/osi/yahoounknown.gif';\"></a>");
-                        out.println("</tr>");
+                        out.println("</td></tr>");
                       }                      
                     if ((user.ifShowSkype())&&(user.getSkype().length()>0)){
                         out.println("<tr><th>"+Messages.wielka(Messages.skype())+"</th>");
-                        out.println("<a href=\"callto://"+user.getSkype()+"\" target=\"_blank\">");
+                        out.println("<td align=\"center\" class=\"tdProfileField\"><a href=\"callto://"+user.getSkype()+"\" target=\"_blank\">");
                         out.println("<img src=\"http://www.skypestatus.com/"+user.getSkype()+".gif\" border=\"0\"></a>");
-                        out.println("</tr>");
+                        out.println("</td></tr>");
                       }                      
                     out.println("<tr><th>"+Messages.wielka(Messages.lastLogged())+"</th>");
                     out.println("<td align=\"center\" class=\"tdProfileField\">&nbsp;"+user.getLastLog()+"&nbsp;</td>");
