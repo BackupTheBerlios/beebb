@@ -58,7 +58,17 @@ public class ConnectorDB {
     public boolean isConnected(){//TODO to podobno jest zle, bo isClosed zwraca falszywe odpowiedzi. trzeba zrobic "SELECT 1;"
         if (con == null) return false;
         try{
-            return !(con.isClosed());
+            if (con.isClosed()) return false;
+            else
+            {
+                Statement select = con.createStatement();        
+                ResultSet result = select.executeQuery("SELECT 1");
+                ResultSetMetaData rsmd = result.getMetaData();
+            
+                int licz = rsmd.getColumnCount();            
+                if (result.next()) return true;
+                    else return false;
+            }
         }catch (SQLException e) {return false;}
     }
     
