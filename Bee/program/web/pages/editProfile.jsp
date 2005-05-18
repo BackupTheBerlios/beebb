@@ -276,10 +276,12 @@
                             java.io.File katalog = new java.io.File(stylesDir);
                             if (katalog.isDirectory()){
                             File[] pliki = katalog.listFiles();
+                            String user_temat = user.getStyle();
+                            if (user_temat.length() == 0) user_temat = Config.DEFAULT_STYLE;
                             for(int i=0; i<pliki.length; i++)
                                 if (pliki[i].isFile()){
                                     String temat = pliki[i].getName().substring(0,pliki[i].getName().indexOf('.'));
-                                    out.println("<option"+(user.getStyle().compareTo(temat)==0?" selected":"")+">"+temat+"</option>");
+                                    out.println("<option"+(user_temat.compareTo(temat)==0?" selected":"")+">"+temat+"</option>");
                                 }
                             }
                         %>
