@@ -83,6 +83,7 @@
                     String miesiacUrodzenia=request.getParameter("miesiacUrodzenia");
                     String dzienUrodzenia=request.getParameter("dzienUrodzenia");
                     String www=request.getParameter("www");
+                    String styl=request.getParameter("styl");
                     
                     if (imie!=null) user.setImie(new String(imie.getBytes("8859_1"),"UTF-8")); 
                     if (nazwisko!=null) user.setNazwisko(new String(nazwisko.getBytes("8859_1"),"UTF-8")); 
@@ -98,6 +99,7 @@
                     if (skype!=null) user.setSkype(new String(skype.getBytes("8859_1"),"UTF-8"));
                     if (miasto!=null) user.setCity(new String(miasto.getBytes("8859_1"),"UTF-8"));
                     if (plec!=null) user.setSex(new String(plec.getBytes("8859_1"),"UTF-8"));
+                    if (styl!=null) user.setStyle(styl);
                     String dataUrodzenia;
                     try {
                     if (rokUrodzenia!=null && miesiacUrodzenia!=null && dzienUrodzenia!=null) {
@@ -254,7 +256,27 @@
                         </select>
                     </td>
                     <td></td>
-                </tr>                        
+                </tr>        
+                <tr>
+                    <th><% out.print(Messages.wielka(Messages.theme()));%></th>
+                    <td class="tdProfileField">
+                        <select name="styl" style="width:230px">
+                        <%
+                            String stylesDir = application.getRealPath("/styles/");
+                            java.io.File katalog = new java.io.File(stylesDir);
+                            if (katalog.isDirectory()){
+                            File[] pliki = katalog.listFiles();
+                            for(int i=0; i<pliki.length; i++)
+                                if (pliki[i].isFile()){
+                                    String temat = pliki[i].getName().substring(0,pliki[i].getName().indexOf('.'));
+                                    out.println("<option"+(user.getStyle().compareTo(temat)==0?" selected":"")+">"+temat+"</option>");
+                                }
+                            }
+                        %>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>        
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.birthdate()));%></th>
                     <td class="tdProfileField">

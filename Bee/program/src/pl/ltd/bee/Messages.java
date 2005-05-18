@@ -249,6 +249,10 @@ public class Messages {
     public static String themes(){
         return "tematy";}
     
+    /** Metoda dostarcza slowo "temat" */
+    public static String theme(){
+        return "temat";}
+
     /** Metoda dostarcza slowo "odpowiedzi" */
     public static String answers(){
         return "odpowiedzi";}
