@@ -572,6 +572,18 @@ public class Messages {
     /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
+    public static String isChangeKat(){
+        return "Czy napewno chcesz zmienić prywatność kategorii?";}
+    
+   /** Metoda dostarcza komunikat z zapytaniem
+     * @return String z komunikatem
+     */
+    public static String isChangePod(){
+        return "Czy napewno chcesz zmienić prywatność podforum?";}
+    
+    /** Metoda dostarcza komunikat z zapytaniem
+     * @return String z komunikatem
+     */
     public static String isRemoveGroup(){
         return "Czy napewno chcesz usunąć grupę?";}
     

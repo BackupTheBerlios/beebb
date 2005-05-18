@@ -151,7 +151,7 @@
              </form> 
              </td> 
              </td> 
-             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
+             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isChangeKat())+"');" %>">
                    <input type="hidden" name="upr_kat" value="<%= kkk.getID() %>"/>
                    <input type="hidden" name="upr_kat_bool" value="<%= kkk.czyPrywatna() %>"/>
                    <input  align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.change()) %>"/>
@@ -185,7 +185,7 @@
                    <input align="center" size="20"  type="submit" value="<%= Messages.wielka(Messages.remove()) %>"/>
                  </form> 
              </td> 
-             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
+             <td><form action="./edycja_podforow.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isChangePod())+"');" %>">
                    <input type="hidden" name="upr_pod" value="<%= podf.getID() %>"/>
                    <input type="hidden" name="upr_pod_bool" value="<%= podf.czyPrywatne() %>"/>
                    <input  align="center" size="15"  type="submit" value="<%= Messages.wielka(Messages.change()) %>"/>
