@@ -13,10 +13,12 @@ String css = request.getParameter("style");
 if (css == null){
     User user = auth.getUser(request,db_con);
     if (user != null){
-        css = user.getStyle();
+        if (user.getStyle().length() > 0)
+            css = user.getStyle();
+        else css = Config.DEFAULT_STYLE;
     }
     else
-    css = Config.DEFAULT_STYLE; 
+    css = Config.DEFAULT_STYLE;
 }
 out.println(Commons.htmlHead(request, ".","BeeBB :: Content",css));
 
