@@ -1,0 +1,147 @@
+body {
+	background-color: firebrick; 
+        font-family: Verdana, Arial, Helvetica, sans-serif ;
+/*	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;*/
+}
+
+font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
+
+
+hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+
+
+th	{
+	color: white; 
+        font-size: 11px;
+        font-weight : bold;
+	background-color: darkred; 
+        /*height: 30px;*/
+	border: 1px silver solid;
+}
+
+.tableTitleWatek{
+	color: white; 
+        background-color: darkred;
+        font-size: 11px; 
+        font-weight : bold;
+        }        
+
+.tdForumHeader	{ background-color: darkred; color: white; border: 2px silver solid; cursor: pointer;}
+
+
+.tdTytulKategorii { 
+	background-color:  indianred;
+        color: white;
+	height : 15;
+	border: 1px gray solid; 
+	}
+
+.tdPicturePodforum , .tdTytulPodforum , .tdLiczba , .tdLastPost, .tdPictureWatek , .tdTytulWatek , .tdAutor, .tdModeratingWatek{
+	border: 1px gray solid;
+        color: black;
+        font-size: 11px;
+	background-color: darksalmon;
+	}
+
+.tdTytulKategorii a:visited, .aTopLink:visited{
+	color: white;	
+}	
+
+.aTopLink {
+        text-decoration: underline;
+        color: silver;
+        cursor: pointer;
+        }
+
+
+.tdTytulPodforum a:visited , .tdAutor a:visited , .tdLastPost a:visited, .tdTytulWatek a:visited, .linkAutor a:visited{
+	color: black;	
+	}	
+
+.tdTytulPodforum a:link , .tdAutor a:link , .tdLastPost a:link, .tdTytulWatek a:link, .linkAutor, .linkAutor a:link, .aTytulKategorii, .aTytulPodforum, .aAutor, .aLastPost, .aTytulWatek, .linkAutor, .aUserProfile{
+        font-size: 12px;
+	color: black;	
+        cursor: pointer;
+	}	
+
+.tdLogIn, .tdForget, .tdRegister{
+	color: white; 
+        font-size: 11px;
+        font-weight : bold;
+	background-color: darkred; 
+	border: 1px silver solid;
+}
+
+.aHref{
+        color: white;
+        text-decoration: underline;
+}
+	
+.trWypowiedz {
+	background-color: firebrick;
+	}
+
+.tdWypowiedzBox{
+        background-color: firebrick;
+        color: white;
+        }
+	
+.bodyWypowiedz{
+	background-color: firebrick;
+        margin: 0pt;
+	}
+
+.opisPodforum, .tdLiczba, .tdLastPost{
+        font-size: 10px;
+        color: black;
+}
+
+.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
+        background-color: darksalmon;
+        color: black;
+        border: 1px black solid; 
+        }
+
+.wypowiedzData{
+        font-size: 8pt;
+        color: gray;
+        font-weight : normal;
+        }
+
+.tdPath, .tdPath a:link, .tdPath a:visited, .aPath{
+        color: white;
+        font-size: 10pt;
+}
+
+.tdTopAction, .tdTopAction a:link, .tdTopAction a:visited, .aTopAction{
+        color: white;
+        font-size: 10pt;
+}
+
+.tableTextNadForum, .tableTextNadPodforum, .tableTextNadWatkiem{
+}
+
+.hint{
+	font-size: 10pt;
+	color: white;
+	background-color: firebrick;
+	border: 1px silver solid;
+}
+
+.error{	
+	color: red;
+	}
+
+.info{	
+	color: yellow;
+	}
+
+.success {	
+	color: green;
+	}
