@@ -142,18 +142,6 @@ th	{
 .tableTextNadForum, .tableTextNadPodforum, .tableTextNadWatkiem{
 }
 
-.imgEmail{
-    width: 0pt;
-    height: 0pt;
-}
-
-.divImgEmail{
-    background-image: url(./../images/mail_black.jpg);
-    width: 25pt;
-    height: 15pt;
-    display: block;
-}
-
 .hint{
 	font-size: 10pt;
 	color: white;
