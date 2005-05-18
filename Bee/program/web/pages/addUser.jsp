@@ -120,7 +120,7 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorFieldNeeded()) + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                    <td><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"/></td>
+                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"/></td>
                 </tr> <tr>
         <%if(passwd1!=null && passwd2!=null) {
             if (passwd1.compareTo(passwd2)!=0) { ok=false;
@@ -129,13 +129,13 @@
                 out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordTooShort()) + "</td></tr><tr>"); }
         }
         %>
-                <td><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"/></td>
+                <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"/></td>
                 </tr> <tr>
-                    <td><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="passwd2" id="passwd2"/></td>
+                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="passwd2" id="passwd2"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"/></td>
                 </tr> <tr>
-                    <td><%out.print(Messages.wielka(Messages.surname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.surname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"/></td>
                 </tr> <tr>
             <%
             if (email==null) {
@@ -146,35 +146,35 @@
                  if (!db_con.sprawdzEmail(email)) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorEmailExists()) + "</td></tr><tr>"); }
             }%>
-                <td><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
+                <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.wwwPage()));%>:</td><td><input type="text" size="25" name="www" value="<%out.print(www);%>" id="www"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.wwwPage()));%>:</td><td><input type="text" size="25" name="www" value="<%out.print(www);%>" id="www"/></td>
                 </tr> <tr>
-                    <td><%out.print(Messages.wielka(Messages.gg()));%>:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.gg()));%>:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.jabber()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.jabber()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"/></td>
                 </tr> <tr>
-                    <td><%out.print(Messages.wielka(Messages.tlen()));%>:</td><td><input type="text" size="25" name="tlen" value="<%out.print(tlen);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.tlen()));%>:</td><td><input type="text" size="25" name="tlen" value="<%out.print(tlen);%>"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.wpKontakt()));%>:</td><td><input type="text" size="25" name="wpKontakt" value="<%out.print(wpKontakt);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.wpKontakt()));%>:</td><td><input type="text" size="25" name="wpKontakt" value="<%out.print(wpKontakt);%>"/></td>
                 </tr> <tr>
-                    <td><%out.print(Messages.wielka(Messages.icq()));%>:</td><td><input type="text" size="25" name="icq" value="<%out.print(icq);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.icq()));%>:</td><td><input type="text" size="25" name="icq" value="<%out.print(icq);%>"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.msn()));%>:</td><td><input type="text" size="25" name="msn" value="<%out.print(msn);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.msn()));%>:</td><td><input type="text" size="25" name="msn" value="<%out.print(msn);%>"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.yahoo()));%>:</td><td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.yahoo()));%>:</td><td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.skype()));%>:</td><td><input type="text" size="25" name="skype" value="<%out.print(skype);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.skype()));%>:</td><td><input type="text" size="25" name="skype" value="<%out.print(skype);%>"/></td>
                 </tr> <tr>
-                    <td><%out.print(Messages.wielka(Messages.city()));%>:</td><td><input type="text" size="25" name="miasto" value="<%out.print(miasto);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.city()));%>:</td><td><input type="text" size="25" name="miasto" value="<%out.print(miasto);%>"/></td>
                 </tr> <tr>
-                    <td><%out.print(Messages.wielka(Messages.sex()));%>:</td><td><select name="plec">
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.sex()));%>:</td><td><select name="plec">
                         <option value="<%out.print(DataBase.MEZCZYZNA);%>"><%out.print(Messages.wielka(Messages.men()));%></option>
                         <option value="<%out.print(DataBase.KOBIETA);%>"><%out.print(Messages.wielka(Messages.woman()));%></option>
                         </select>
                     </td>
                 </tr> <tr>
-                <td><%out.print(Messages.wielka(Messages.birthdate()));%>:</td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.birthdate()));%>:</td>
                 <td><input type="text" size="4" name="rokUrodzenia" value="<%out.print(rokUrodzenia);%>"/>-<input type="text" size="2" name="miesiacUrodzenia" value="<%out.print(miesiacUrodzenia);%>"/>-<input type="text" size="2" name="dzienUrodzenia" value="<%out.print(dzienUrodzenia);%>"/></td>
                 </tr> <tr>
                     <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>

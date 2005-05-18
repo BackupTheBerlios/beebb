@@ -24,9 +24,9 @@
                             <tr>
                             <th colspan="2"><%out.println(Messages.newPassword());%>:</th>
                             </tr> <tr>
-                                <td><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo1"/></td>
+                                <td class="tdForget"><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo1"/></td>
                             </tr> <tr>
-                            <td><%out.println(Messages.wielka(Messages.password()) + " (" + Messages.oneMoreTime()+ ")");%>:</td><td><input type="password" size="20" name="haslo2"/></td>
+                            <td class="tdForget"><%out.println(Messages.wielka(Messages.password()) + " (" + Messages.oneMoreTime()+ ")");%>:</td><td><input type="password" size="20" name="haslo2"/></td>
                             </tr> <tr>        
                                 <td align="right" colspan="2"><input type="hidden" size="20" name="email" value="<%out.print(email);%>"/><input type="submit" name="submit" value="<%out.println(Messages.wielka(Messages.ok()));%>"/></td>
                             </tr>

@@ -109,7 +109,7 @@ th	{
         color: black;
 }
 
-.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
+.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdLogIn, .tdForget, .tdRegister, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
         background-color: white;
         color: black;
         border: 1px black solid; 

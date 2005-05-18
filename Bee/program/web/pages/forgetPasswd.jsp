@@ -43,9 +43,9 @@
                         <tr>
                         <th colspan="2"><%out.println(Messages.forgetPasswd());%>:</th>
                         </tr> <tr>
-                            <td><% out.println(Messages.wielka(Messages.nick())); %>:</td><td><input type="text" size="20" name="user" id="user"/></td>
+                            <td class="tdForget"><% out.println(Messages.wielka(Messages.nick())); %>:</td><td><input type="text" size="20" name="user" id="user"/></td>
                         </tr> <tr>
-                        <td><% out.println(Messages.wielka(Messages.email())); %>:</td><td><input type="text" size="20" name="email" id="email"/></td>
+                            <td class="tdForget"><% out.println(Messages.wielka(Messages.email())); %>:</td><td><input type="text" size="20" name="email" id="email"/></td>
                         </tr> <tr>        
                             <td align="right" colspan="2"><input type="hidden" name="zm" value=""/><input type="submit" name="submit" value="<% out.println(Messages.wielka(Messages.send())); %>"/></td>
                         </tr>
