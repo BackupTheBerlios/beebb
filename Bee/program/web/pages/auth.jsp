@@ -7,23 +7,18 @@
 <% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.logInYourself())));
  String css = Commons.getQueryStyle(request);
 %>
-    <body onload="swapIframes();reloadHeader('./header.jsp<% out.print(css.length()>0?"?"+css:"");%>');resizeMain();setResizeFunction(resizeMain);" >
     
 <%@ include file="servletObjects.jsp" %>
-        <% Enumeration flds = request.getParameterNames();
-        try {
-         %>
-        <br/><br/>
-        <table align="center" border="0">
-            <tr>
-            <td>
         <%
+        
+         String error = "";
+         String url_redirect = "";
          boolean bez_formy = false;
          String zm=request.getParameter("zm");
          String logout=request.getParameter("logout");
          if (logout!=null) {
-             auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
-             out.println(Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"));
+             auth.wyloguj(response);
+             url_redirect = "../index.jsp";
              bez_formy = true;
           }
             else {
@@ -33,25 +28,36 @@
                     if (uzytkownik!=null && haslo!=null)
                     {
                         try {
-                        User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);//(uzytkownik,haslo,db_con.getUser(uzytkownik));
+                        User u = auth.zaloguj(uzytkownik,haslo,db_con,konfiguracja,response);
                         if (u!=null)
                               {
                               String user_css = u.getStyle();
                               if (user_css.length() > 0) user_css = "?style="+user_css;
-                              out.println("<script type=\"text/javascript\">reloadHeader('./header.jsp"+user_css+"');</script>");
-                              out.println(Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"+user_css));
+                              url_redirect = "../index.jsp"+user_css;
                               bez_formy = true;
                               }
+                        else error = Messages.errorBadUserOrPass();
                         } catch (Exception e) {
-                            out.print(e);
+                            error = Messages.errorUnknown();
                         }
                     }
                     else 
-                        out.println(Messages.errorBadUserOrPass());
+                        error = Messages.errorBadUserOrPass();
              }
             }
-         if (!bez_formy){
+%>         
+<%            
+         if (bez_formy)
+             out.println("<body onload=\"topLink('"+url_redirect+"');\" >");
+         if (error.length() >0) out.println(Messages.makeError(error));
+         if (!bez_formy)
+         {
         %> 
+    <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
+        <br/><br/>
+        <table align="center" border="0">
+            <tr>
+            <td>
                 <form method="post" action="auth.jsp<% out.print(css.length()>0?"?"+css:"");%>">
                     <table align="center" cellpadding="2" cellspacing="1" border="0">
                         <tr>
@@ -67,15 +73,11 @@
                 </form>
                 <br/>
                 <p><%out.println(Messages.doNotHaveAccount());out.println(Commons.aHref(request,Messages.wielka(Messages.registerYourself()),"addUser.jsp"));%> </p>
-     <%
-         }
-       }
-       catch (Exception e) {
-          out.println(Messages.errorUnknown());
-       }
-     %>
             </td>
             </tr>
         </table>
+     <%
+         }
+     %>
     </body>
 </html>

@@ -75,6 +75,12 @@ function debugIframes(){
  setTimeout('debugIframes()',500);
 }
 
+
+function topLink(url){
+    top.window.location.href = url;
+}
+
+
 //___________________ Ciasteczka
 
 function getCookieVal (offset) {  
