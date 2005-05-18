@@ -29,9 +29,7 @@ public class Commons {
      * @param css Nazwa pliku z arkuszem stylu (Uwaga tylko nazwa bez rozszezenia)
      * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
      */
-    public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title){
-        String css = request.getParameter("style");
-        if (css == null) css = Config.DEFAULT_STYLE;
+    public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title, String css){
         return  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\">" +
                 "<head>\n"+
@@ -51,6 +49,20 @@ public class Commons {
                 "<script type=\"text/javascript\" src=\""+path+"/js/hints.js\"></script>\n"+
                 "</head>\n";
 
+    }
+    
+
+    /**
+     * Metoda zwraca wypelniony znacznik HEAD.
+     * @param request Otrzymane zapytanie HTTP
+     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
+     * @param title Tytul strony
+     * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
+     */
+    public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title){
+        String css = request.getParameter("style");
+        if (css == null) css = Config.DEFAULT_STYLE;
+        return htmlHead(request,path,title,css);
     }
     
     /**
@@ -127,7 +139,7 @@ public class Commons {
     }
     
     
-    /** Metoda dostarcza zapytanie GET które należy dokleić do odnośnika
+    /** Metoda dostarcza zapytanie GET ktĂłre naleĹźy dokleiÄ do odnoĹnika
      * @param request Otrzymane zapytanie HTTP
      * @return String z nazwa parametru i wartoscia lub pusty jelsi styl nie jest okreslony
      */

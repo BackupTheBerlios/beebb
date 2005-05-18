@@ -6,16 +6,26 @@
 <%@ page import="org.apache.commons.fileupload.*"%>
 <%@ page import="javax.swing.ImageIcon"%>
 <%@ page session="false" %>
+    
+<%@ include file="servletObjects.jsp" %>
 
 <% out.println(Commons.htmlHead(request,"./..",Messages.wielka(Messages.editProfile())));
  String css = Commons.getQueryStyle(request);
 %>
-    <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);" >
-    
-        <%@ include file="servletObjects.jsp" %>
+    <body onload="<% 
+                User user = auth.getUser(request,db_con);
+                String styl = request.getParameter("styl");
+                if ((styl != null) && (user != null))
+                {
+                    if (user.getStyle().compareTo(styl) != 0)
+                        out.print("topLink('../index.jsp?style="+styl+"&amp;header=pages/header.jsp?style="+styl+"&amp;content=pages/editProfile.jsp?style="+styl+"')");
+                    else out.print("swapIframes();resizeMain();setResizeFunction(resizeMain);");
+                }
+                else out.print("swapIframes();resizeMain();setResizeFunction(resizeMain);");
+
+        %>" >
         
     <%
-                User user = auth.getUser(request,db_con);
                 if (user!=null) { %>
            
         <% String avt=request.getParameter("avt");
@@ -83,7 +93,7 @@
                     String miesiacUrodzenia=request.getParameter("miesiacUrodzenia");
                     String dzienUrodzenia=request.getParameter("dzienUrodzenia");
                     String www=request.getParameter("www");
-                    String styl=request.getParameter("styl");
+                    //String styl=request.getParameter("styl");
                     
                     if (imie!=null) user.setImie(new String(imie.getBytes("8859_1"),"UTF-8")); 
                     if (nazwisko!=null) user.setNazwisko(new String(nazwisko.getBytes("8859_1"),"UTF-8")); 
