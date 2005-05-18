@@ -65,9 +65,12 @@
                                 out.print(">[] " +Messages.wielka(Messages.profile()));%>
 				</span>
 			</td>
+			<%   User user = auth.getUser(request,db_con);
+                               if ( (user!=null)&&(user.admin()) ) {  %>
 			<td class="tdTopLink" align="left">
-				<span class="aTopLink" onclick="top.open('../Administracja/index.jsp<% out.print(css.length()>0?"?"+css:"");%>','Bee')">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span>
+				<span  class="aTopLink" onclick="top.open('../Administracja/index.jsp<% out.print(css.length()>0?"?"+css:"");%>','Bee')">[] <% out.print(Messages.wielka(Messages.adminPanel()));%></span> 
 			</td>
+			<% } %>
 			<td class="tdTopLink" align="left">
 				<span  class="aTopLink" onclick="linkClick('./addUser.jsp<% out.print(css.length()>0?"?"+css:"");%>')">[] <% out.print(Messages.wielka(Messages.registration()));%></span>
 			</td>
