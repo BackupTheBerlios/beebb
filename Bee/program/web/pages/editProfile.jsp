@@ -289,11 +289,11 @@
                     </td>
                     <td></td>
                 </tr>        
-                <tr>
+                <tr><% try { %>
                     <th><% out.print(Messages.wielka(Messages.birthdate()));%></th>
                     <td class="tdProfileField">
                         <select name="rokUrodzenia">
-                        <% for (int i=1900; i<=2005; i++)  {
+                        <% for (int i=1930; i<=2005; i++)  {
                             out.print("<option value=\""+i+"\"");
                             if (i==Integer.decode(user.getBirthYear()).intValue()) out.print(" selected"); 
                             out.println(">" + i + "</option>");
@@ -302,17 +302,22 @@
                         <select name="miesiacUrodzenia">
                         <% for (int i=1; i<=12; i++) {
                             out.print("<option value=\""+i+"\"");
-                            if (i==Integer.decode(user.getBirthMonth()).intValue()) out.print(" selected"); 
+                            String month = user.getBirthMonth();
+                            if (month.startsWith("0")) month=month.substring(1); 
+                            if (i==Integer.decode(month).intValue()) out.print(" selected"); 
                             out.println(">"+ i +"</option>");
                         } %>
                         </select> -
                         <select name="dzienUrodzenia">
                         <% for (int i=1; i<=31; i++) {
                             out.print("<option value=\""+i+"\"");
-                            if (i==Integer.decode(user.getBirthDay()).intValue()) out.print(" selected"); 
+                            String day = user.getBirthDay();
+                            if (day.startsWith("0")) day=day.substring(1);
+                            if (i==Integer.decode(day).intValue()) out.print(" selected"); 
                             out.println(">"+ i +"</option>");
                         } %>
                         </select>
+                        <% } catch (Exception e) { out.println(e); } %>
                     </td>
                     <td class="tdProfileField"><input type="checkbox" name="dataUrodzeniaPrywatna" <%if(!user.ifShowBirthDate()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
                 </tr>                        
