@@ -12,12 +12,12 @@
     <body onload="swapIframes();resizeMain();setResizeFunction(resizeMain);">
 <%@ include file="../servletObjects.jsp" %>
         <br/><br/>
-        <% Enumeration flds = request.getParameterNames();
-        String klucz=request.getParameter("id");
-        if (klucz!=null) {
-            String email = db_con.getEmailForgetPasswd(klucz);
-            if (email!=null)
+        <% 
+        String klucz =request.getParameter("id");
+        if (klucz!=null)
             {
+            String email = db_con.getEmailForgetPasswd(klucz);
+            if (email!=null) {
               %>
                     <form method="post" action="forget.jsp<% out.print(css.length()>0?"?"+css:"");%>">
                         <table align="center" cellpadding="2" cellspacing="1" border="0">
@@ -32,8 +32,7 @@
                             </tr>
                         </table>
                     </form>
-            <%            
-            } 
+            <% }
         } else 
         {
             String haslo=request.getParameter("haslo1");

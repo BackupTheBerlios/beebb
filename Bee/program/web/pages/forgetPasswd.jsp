@@ -12,8 +12,8 @@
 <%@ include file="servletObjects.jsp" %>
         <br/><br/>
         <% 
-        Enumeration flds = request.getParameterNames();
-        if (flds.hasMoreElements()) { 
+        String zm=request.getParameter("zm");
+        if (zm!=null) { 
             String uzytkownik=request.getParameter("user");
             String email=request.getParameter("email");
             if (uzytkownik!=null && email!=null) {
@@ -47,7 +47,7 @@
                         </tr> <tr>
                         <td><% out.println(Messages.wielka(Messages.email())); %>:</td><td><input type="text" size="20" name="email" id="email"/></td>
                         </tr> <tr>        
-                            <td align="right" colspan="2"><input type="submit" name="submit" value="<% out.println(Messages.wielka(Messages.send())); %>"/></td>
+                            <td align="right" colspan="2"><input type="hidden" name="zm" value=""/><input type="submit" name="submit" value="<% out.println(Messages.wielka(Messages.send())); %>"/></td>
                         </tr>
                     </table>
                 </form>

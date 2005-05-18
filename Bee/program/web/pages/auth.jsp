@@ -10,8 +10,7 @@
     <body onload="swapIframes();reloadHeader('./header.jsp<% out.print(css.length()>0?"?"+css:"");%>');resizeMain();setResizeFunction(resizeMain);" >
     
 <%@ include file="servletObjects.jsp" %>
-        <% 
-        Enumeration flds = request.getParameterNames();
+        <% Enumeration flds = request.getParameterNames();
         try {
          %>
         <br/><br/>
@@ -20,7 +19,8 @@
             <td>
         <%
          boolean bez_formy = false;
-         if (flds.hasMoreElements()) { 
+         String zm=request.getParameter("zm");
+         if (zm!=null) { 
             String field = (String) flds.nextElement(); 
             if (field.compareTo("logout")==0) {
                 auth.wyloguj(response);//auth.zaloguj(Config.GUEST,"",db_con.getUser(Config.GUEST));
@@ -28,11 +28,8 @@
                 bez_formy = true;
             }
             else {
-                String uzytkownik;
-                String haslo;
-                
-                    uzytkownik=request.getParameter("user");
-                    haslo=request.getParameter("haslo");
+                    String uzytkownik=request.getParameter("user");
+                    String haslo=request.getParameter("haslo");
                     if (uzytkownik!=null && haslo!=null)
                     {
                         try {
@@ -66,7 +63,7 @@
                         </tr> <tr>
                         <td><%out.println(Messages.wielka(Messages.password()));%>:</td><td><input type="password" size="20" name="haslo"/></td>
                         </tr> <tr>        
-                            <td><% out.println(Commons.aHref(request,Messages.iForgetPasswd(),"forgetPasswd.jsp"));%></td><td align="right"><input type="submit" name="submit" value="Loguj"/></td>
+                            <td><% out.println(Commons.aHref(request,Messages.iForgetPasswd(),"forgetPasswd.jsp"));%></td><td align="right"><input type="hidden" name="zm" value=""/><input type="submit" name="submit" value="Loguj"/></td>
                         </tr>
                     </table>
                 </form>
