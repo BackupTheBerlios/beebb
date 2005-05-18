@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
 
-        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
          <jsp:useBean id="grupa" scope="request" class="pl.ltd.bee.Group" />
         
   
@@ -19,21 +18,14 @@
         <title>BeeBB :: Edycja uprawnien grupy</title>
         <link rel="stylesheet" href="../../styles/temat.css" type="text/css"/>
         <script type="text/javascript" src="../../js/podfora.js"></script>
- 
     </head>
     
-    <body> 
-    <% 
-      
-       if (!db_con.isConnected()) {
-            try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-            } catch (Exception e) {
-                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-            }
-        } %>
+  <body> 
+    <%@ include file="../../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
         
         
    <% Enumeration pom = request.getParameterNames();
@@ -296,6 +288,6 @@
                 </td> </tr>
             </table>       
         </form>
-   
+     <% } %>
     </body>
 </html>

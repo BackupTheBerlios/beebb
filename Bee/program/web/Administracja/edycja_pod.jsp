@@ -15,21 +15,14 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
-
-         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
          <jsp:useBean id="p" scope="request" class="pl.ltd.bee.Podforum" />
          <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
 
-         
-        <% if (!db_con.isConnected()) {
-            try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-            } catch (Exception e) {
-                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-            }
-        } %>
+         <%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
          
      <% 
        Enumeration fff = request.getParameterNames();
@@ -101,6 +94,6 @@
       </table>
     </form>
 
-     
+     <%}%>
     </body>
 </html>

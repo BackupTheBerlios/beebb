@@ -1,8 +1,6 @@
 <%@ page language="java" import="java.util.*"%>
 <%@ page language="java" import="java.lang.*"%>
 <%@ page language="java" import="pl.ltd.bee.*"%>
-<%@ page session="false" %>
-<%@ page errorPage="true"%>
 <%@ page contentType="text/html"%>
 <%@ page pageEncoding="UTF-8"%>
 

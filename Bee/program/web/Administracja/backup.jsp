@@ -15,21 +15,14 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body> 
-         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+       
+<%@ include file="../pages/servletObjects.jsp" %>
 
-
-         
-           <% if (!db_con.isConnected()) {
-            try {
-                db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-                db_con.setTablePrefix(Config.DATABASE_PREFIX);
-                } catch (Exception e) {
-                   out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-                }
-            } 
-           
-             String napis="";
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
+        
+  <%        String napis="";
             Enumeration f = request.getParameterNames();
              if (f.hasMoreElements()) {
                   napis = (String) f.nextElement();
@@ -58,7 +51,7 @@
         </table>
      </form>
   
-   <br/>
+   <br/> <%--
      <form  action="./backup.jsp" method="post">
       <table align="center" cellpadding="2" cellspacing="1" border="1">
        <tr>  <th colspan="2"> <%out.println(Messages.wielka(Messages.chooseFile())); %> </th>  </tr>
@@ -69,7 +62,7 @@
        </tr>
       </table>
     </form>
-
-         
+     --%>
+        <%}%> 
     </body>
 </html>

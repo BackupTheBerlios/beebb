@@ -25,8 +25,14 @@
              return false;
            }
          %>
-    </head
+    </head>
+    
     <body>
+    <%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
      <a href="uprawnienia.jsp" target="tresc"><%out.print(Messages.wielka(Messages.back()));%></a>
         <table name="tabuser" style="" align="center" cellpadding="2" cellspacing="1" border="1">
           <th colspan="2">  <%out.print(Messages.wielka(Messages.userData()));%></th>
@@ -53,6 +59,6 @@
         </table>
          
         </form>
-      
+      <% } %>
     </body>
 </html>

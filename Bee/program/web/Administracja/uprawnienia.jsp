@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="../styles/temat.css" type="text/css"/> 
     </head>
     <body>
-       <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
          
        <%! ArrayList u;
            String dajDana(String param)
@@ -36,16 +35,11 @@
             }
            
         %>
-        <%
-           if (!db_con.isConnected()) {
-            try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-            } catch (Exception e) {
-                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-            }
-        } %>
+    <%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
          
             
    <% Enumeration params = request.getParameterNames();
@@ -115,6 +109,7 @@
            </tr> <%       
          licz++;   }
          }   %>
-     </table>      
+     </table>
+      <% } %>
     </body>
 </html>

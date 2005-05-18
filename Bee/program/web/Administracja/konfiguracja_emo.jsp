@@ -32,7 +32,12 @@
     </head>
     <body> 
  
-<%@ include file="../pages/servletObjects.jsp" %>              
+<%@ include file="../pages/servletObjects.jsp" %>
+            
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
      <% 
        Config conf = konfiguracja; 
        
@@ -127,6 +132,6 @@
          <tr> <td colspan="3" align="center"> <input type="submit" value=" <%out.println(Messages.wielka(Messages.add())); %>"/> </td> </tr>
          </form> 
     </table> 
-  
+  <% } %>
  </body>
 </html>

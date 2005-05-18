@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
 
-        <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
+
         <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
         
   
@@ -49,18 +49,12 @@
     </head>
     
     <body> 
-    <% 
-      
-       if (!db_con.isConnected()) {
-            try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-            } catch (Exception e) {
-                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-            }
-        } %>
-        
+    <%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
+    
         
    <% Enumeration pom = request.getParameterNames();
            String nazwa="";
@@ -214,6 +208,6 @@
                 <tr> <td></td> <td> <input align="center" size="20"  type="submit" value="<%= Messages.wielka(Messages.add()) %>"/> </td> </tr>
             </table>       
         </form>
-   
+     <%}%>
     </body>
 </html>

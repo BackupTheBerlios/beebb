@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
 
- <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
  <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,18 +63,12 @@
         
     </head>
     <body>
-        
-       <%  
-         if (!db_con.isConnected()) {
-            try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-            } catch (Exception e) {
-                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-            }
-        } %>
-        
+
+    <%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
       
             
     <% Enumeration pom = request.getParameterNames();
@@ -97,8 +90,8 @@
           
          for(int j=0; j<licz; j++) {  
            String t=tt[j];
-           String o=oo[j];
-            Podforum podforum= new Podforum("0",t,o,DataBase.getDateToInsert(),"",db_con.TAK,db_con.NIE,"0","0",db_con);
+           String op=oo[j];
+            Podforum podforum= new Podforum("0",t,op,DataBase.getDateToInsert(),"",db_con.TAK,db_con.NIE,"0","0",db_con);
             if( t.compareTo("")== 0 ) wiad.add(Messages.makeError(Messages.errorFieldNamePodforum()));
               else
                 if ( db_con.dajIdPodforum(Integer.decode(id_k).intValue(), t) != -1 ) wiad.add(Messages.makeError(Messages.errorNamePodforum()));
@@ -133,5 +126,7 @@
          <input type="hidden" name="id_kat" value="<%=id_kat%>"/>
         <p  align="center"> <input size="40" type="submit" value="<%=Messages.wielka(Messages.add()) %>"/> </p>
      </form>
+     
+     <% }%>
     </body>
 </html>

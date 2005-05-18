@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="pl.ltd.bee.*"%>
 
-   <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
    <jsp:useBean id="grupa" scope="request" class="pl.ltd.bee.Group" />
        
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -33,17 +32,12 @@
             }
            
         %>
-        <%
-           if (!db_con.isConnected()) {
-            try {
-            db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-            db_con.setTablePrefix(Config.DATABASE_PREFIX);
-            } catch (Exception e) {
-                out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                out.print(e);
-            }
-        } %>
-         
+      
+    <%@ include file="../../pages/servletObjects.jsp" %>
+
+    <%
+       User uss = auth.getUser(request,db_con);
+         if ( (uss==null)||(!uss.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
             
    <%  ArrayList identuserow= new ArrayList();
    
@@ -144,6 +138,7 @@
                   </td>
              </tr>     
          </form>
-       </table  
+     </table>
+       <% } %>
     </body>
 </html>

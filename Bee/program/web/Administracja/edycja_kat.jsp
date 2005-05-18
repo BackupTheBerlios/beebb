@@ -16,18 +16,13 @@
     </head>
     <body> 
          <jsp:useBean id="k" scope="request" class="pl.ltd.bee.Kategoria" />
-         <jsp:useBean id="db_con" scope="session" class="pl.ltd.bee.DataBase" />
          <jsp:useBean id="wiad" scope="request" class="java.util.ArrayList" />
 
-         
-           <% if (!db_con.isConnected()) {
-            try {
-                db_con.connect(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
-                db_con.setTablePrefix(Config.DATABASE_PREFIX);
-                } catch (Exception e) {
-                     out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                }
-            } %>
+     <%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
          
      <% String napis="";
        Enumeration f = request.getParameterNames();
@@ -87,6 +82,6 @@
       </table>
     </form>
 
-     
+     <% }%>
     </body>
 </html>

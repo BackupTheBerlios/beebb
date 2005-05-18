@@ -23,8 +23,13 @@
     </head>
     <body> 
  
-         <%--<jsp:useBean id="conf" scope="request" class="pl.ltd.bee.Config" />--%>
-<%@ include file="../pages/servletObjects.jsp" %>              
+
+        
+<%@ include file="../pages/servletObjects.jsp" %>
+
+    <%
+       User user = auth.getUser(request,db_con);
+                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
      <% 
        Config conf = konfiguracja; //to jest przemapowanie nazwy obiektu z servletObjects.jsp na Twoja nazwe
        
@@ -128,14 +133,13 @@
       }
         
    %>
-    
  <table align="center" cellpadding="2" cellspacing="1" border="1">
    <caption> <font size="5" style="bold"> <%out.print(Messages.wielka(Messages.forumConfiguration())); %> </font> </caption>
        
    <tr>  <th colspan="3">  <%out.print(Messages.wielka(Messages.main())); %> </th> </tr>
    <form action="./konfiguracja.jsp" method="post">
         <tr> <td align="center"> <%out.print(Messages.wielka(Messages.urlForum())); %> </td> <td> <input size="100" type="text" name="url_forum" value="<%=conf.URL_FORUM%>"/>  </td> 
-             <td><span style="cursor: pointer" onclick=""> <img src="../images/move.gif" alt="Przenieś" onmouseover="showHint('ddfffffhhhhhhrrhhhhhhhrrrrrrrrhtttttttttttttttthd', this, 1000, 400, 400);" onmouseout="hideHint(this);"  border="0"/> </span>  </td> </tr>
+        </tr>
         <tr> <td colspan="2" align="center"> <input type="submit" value=" <%out.print(Messages.wielka(Messages.change())); %>"/> </td> </tr>
    </form>
    <tr>  <th colspan="2">  <%out.print(Messages.wielka(Messages.db())); %> </th> </tr>
@@ -184,6 +188,6 @@
      </form>
    </div> 
    
-     
+     <%}%>
  </body>
 </html>
