@@ -99,7 +99,7 @@
             <td align="center"> <%= zemo[i] %>  </td> 
             <td align="center"> <img src="<%= emo.get(zemo[i]) %>" alt="<%=zemo[i]%>" />  </td> 
        
-           <td><form action="./konfiguracja_emo.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveKat())+"');" %>">
+           <td><form action="./konfiguracja_emo.jsp" method="post" onsubmit="<%= "return Info('"+Messages.wielka(Messages.isRemoveEmo())+"');" %>">
                      <input type="hidden" name="usun_emo" value="<%= zemo[i] %> "/> 
                     <input  align="center" size="15"  type="submit" value="<%out.println(Messages.wielka(Messages.remove())); %>"/>
                  </form> 

@@ -572,6 +572,12 @@ public class Messages {
     /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
+    public static String isRemoveEmo(){
+        return "Czy napewno chcesz usunąć emotikonkę?";}
+    
+    /** Metoda dostarcza komunikat z zapytaniem
+     * @return String z komunikatem
+     */
     public static String isChangeKat(){
         return "Czy napewno chcesz zmienić prywatność kategorii?";}
     

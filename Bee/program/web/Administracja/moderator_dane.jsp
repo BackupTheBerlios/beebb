@@ -56,8 +56,8 @@
     <%@ include file="../pages/servletObjects.jsp" %>
 
     <%
-       User user = auth.getUser(request,db_con);
-                if ( (user==null)||(!user.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
+       User us = auth.getUser(request,db_con);
+                if ( (us==null)||(!us.admin()) ) {  out.println(Messages.makeError(Messages.wielka(Messages.errorNotLoggedIn()))); } else {%>  
      <%
         ArrayList kategorie=db_con.getKategorie(true);
         int id_kat=-1;
