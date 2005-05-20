@@ -190,86 +190,135 @@
                 <tr>
                     <th><% out.print(Messages.wielka(Messages.nick()));%></th>
                     <td class="tdProfileField">&nbsp;<% out.print(new String(user.getLogin().getBytes("8859_1"),"UTF-8"));%></td>
+                    <td class="tdProfileField" align="center">&nbsp; <%out.print(Messages.hide());%> &nbsp;</td>
+                </tr>
+                <tr>
+                    <th><%out.print("<span onmouseover=\"showHint('"+Messages.hintName()+"',this,"+Config.HINT_DELAY+",100,100)\" onmouseout=\"hideHint(this)\">" +  Messages.wielka(Messages.name()) + "</span>");%></th>
+                    <td class="tdProfileField"><%out.print("<span onmouseover=\"showHint('"+Messages.hintName()+"',this,"+Config.HINT_DELAY+",100,100)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="imie" size="35" style="width:230px" value="<% out.print(new String(user.getImie().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" rowspan="2" valign="middle" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>/>&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <th><%out.print("<span onmouseover=\"showHint('"+Messages.hintSurname()+"',this,"+Config.HINT_DELAY+",100,100)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.surname())+ "</span>");%></th>
+                    <td class="tdProfileField"  align="center"><%out.print("<span onmouseover=\"showHint('"+Messages.hintSurname()+"',this,"+Config.HINT_DELAY+",100,100)\" onmouseout=\"hideHint(this)\">");%>
+                       <input type="text" name="nazwisko" size="35" style="width:230px" value="<% out.print(new String(user.getNazwisko().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <th><% out.print(Messages.wielka(Messages.name()));%></th>
-                    <td class="tdProfileField"><input type="text" name="imie" size="35" style="width:230px" value="<% out.print(new String(user.getImie().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField" rowspan="2" valign="middle"><input type="checkbox" name="imieNazwiskoPrywatne" <%if(!user.ifShowName()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.surname()));%></th>
-                    <td class="tdProfileField"><input type="text" name="nazwisko" size="35" style="width:230px" value="<% out.print(new String(user.getNazwisko().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.email()));%></th>
-                    <td class="tdProfileField"><input type="text" name="email" size="35" style="width:230px" value="<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="emailPrywatny" <%if(!user.ifShowEmail()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.wwwPage()));%></th>
-                    <td class="tdProfileField"><input type="text" name="www" size="35" style="width:230px" value="<% out.print(new String(user.getWWW().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.number())+ " " + Messages.gg());%></th>
-                    <td class="tdProfileField"><input type="text" name="gg" size="35" style="width:230px" value="<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="ggPrywatne" <%if(!user.ifShowGG()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.jabber()));%></th>
-                    <td class="tdProfileField"><input type="text" name="jabber" size="35" style="width:230px" value="<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.tlen()));%></th>
-                    <td class="tdProfileField"><input type="text" name="tlen" size="35" style="width:230px" value="<% out.print(new String(user.getTlen().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="tlenPrywatny" <%if(!user.ifShowTlen()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.wpKontakt()));%></th>
-                    <td class="tdProfileField"><input type="text" name="wpKontakt" size="35" style="width:230px" value="<% out.print(new String(user.getWPKontakt().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="wpKontaktPrywatny" <%if(!user.ifShowWPKontakt()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.icq()));%></th>
-                    <td class="tdProfileField"><input type="text" name="icq" size="35" style="width:230px" value="<% out.print(new String(user.getICQ().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="icqPrywatne" <%if(!user.ifShowICQ()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.msn()));%></th>
-                    <td class="tdProfileField"><input type="text" name="msn" size="35" style="width:230px" value="<% out.print(new String(user.getMSN().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="msnPrywatny" <%if(!user.ifShowMSN()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.yahoo()));%></th>
-                    <td class="tdProfileField"><input type="text" name="yahoo" size="35" style="width:230px" value="<% out.print(new String(user.getYahoo().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="yahooPrywatne" <%if(!user.ifShowYahoo()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.skype()));%></th>
-                    <td class="tdProfileField"><input type="text" name="skype" size="35" style="width:230px" value="<% out.print(new String(user.getSkype().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="skypePrywatny" <%if(!user.ifShowSkype()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.city()));%></th>
-                    <td class="tdProfileField"><input type="text" name="miasto" size="35" style="width:230px" value="<% out.print(new String(user.getCity().getBytes("8859_1"),"UTF-8"));%>"/></td>
-                    <td class="tdProfileField"><input type="checkbox" name="miastoPrywatne" <%if(!user.ifShowCity()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
-                </tr>
-                <tr>
-                    <th><% out.print(Messages.wielka(Messages.sex()));%></th>
+                    <th><%out.print("<span onmouseover=\"showHint('"+Messages.hintEmail()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.email())+ "</span>");%></th>
                     <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintEmail()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="email" size="35" style="width:230px" value="<% out.print(new String(user.getEmail().getBytes("8859_1"),"UTF-8"));%>"/></td>
+                    <td class="tdProfileField"  align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="emailPrywatny" <%if(!user.ifShowEmail()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintWWW()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.wwwPage())+ "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintWWW()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="www" size="35" style="width:230px" value="<% out.print(new String(user.getWWW().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintGG()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.number())+ " " + Messages.gg() + "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintGG()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="gg" size="35" style="width:230px" value="<% out.print(new String(user.getGG().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="ggPrywatne" <%if(!user.ifShowGG()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintJabber()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.jabber()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintJabber()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="jabber" size="35" style="width:230px" value="<% out.print(new String(user.getJabber().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="jabberPrywatny" <%if(!user.ifShowJabber()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintTlen()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.tlen()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintTlen()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="tlen" size="35" style="width:230px" value="<% out.print(new String(user.getTlen().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="tlenPrywatny" <%if(!user.ifShowTlen()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><%out.print("<span onmouseover=\"showHint('"+Messages.hintWPKontakt()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.wpKontakt()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                            <%out.print("<span onmouseover=\"showHint('"+Messages.hintWPKontakt()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                            <input type="text" name="wpKontakt" size="35" style="width:230px" value="<% out.print(new String(user.getWPKontakt().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="wpKontaktPrywatny" <%if(!user.ifShowWPKontakt()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintICQ()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.icq())+ "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintICQ()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="icq" size="35" style="width:230px" value="<% out.print(new String(user.getICQ().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="icqPrywatne" <%if(!user.ifShowICQ()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print(Messages.wielka("<span onmouseover=\"showHint('"+Messages.hintMSN()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.msn())+ "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintMSN()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="msn" size="35" style="width:230px" value="<% out.print(new String(user.getMSN().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="msnPrywatny" <%if(!user.ifShowMSN()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintYahoo()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.yahoo()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintYahoo()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="yahoo" size="35" style="width:230px" value="<% out.print(new String(user.getYahoo().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="yahooPrywatne" <%if(!user.ifShowYahoo()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintSkype()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.skype()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintSkype()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="skype" size="35" style="width:230px" value="<% out.print(new String(user.getSkype().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="skypePrywatny" <%if(!user.ifShowSkype()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print(Messages.wielka("<span onmouseover=\"showHint('"+Messages.hintCity()+"',this,"+Config.HINT_DELAY+",200,200)\" onmouseout=\"hideHint(this)\">" + Messages.city()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintCity()+"',this,"+Config.HINT_DELAY+",200,200)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="text" name="miasto" size="35" style="width:230px" value="<% out.print(new String(user.getCity().getBytes("8859_1"),"UTF-8"));%>"/></span></td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="miastoPrywatne" <%if(!user.ifShowCity()) out.print("checked");%>/></span></td>
+                </tr>
+                <tr>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintSex()+"',this,"+Config.HINT_DELAY+",100,100)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.sex()) + "</span>");%></th>
+                    <td class="tdProfileField">
+                                            <%out.print("<span onmouseover=\"showHint('"+Messages.hintSex()+"',this,"+Config.HINT_DELAY+",100,100)\" onmouseout=\"hideHint(this)\">");%>
                         <select name="plec" style="width:230px">
                             <option value="<%out.print(DataBase.MEZCZYZNA);%>" <% if(user.getSex().compareTo(DataBase.MEZCZYZNA)==0) out.print("selected");%>><%out.print(Messages.wielka(Messages.men()));%></option>
                             <option value="<%out.print(DataBase.KOBIETA);%>" <% if(user.getSex().compareTo(DataBase.KOBIETA)==0) out.print("selected");%>><%out.print(Messages.wielka(Messages.woman()));%></option>
                         </select>
+                        </span>
                     </td>
                     <td></td>
                 </tr>        
                 <tr>
-                    <th><% out.print(Messages.wielka(Messages.theme()));%></th>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintTheme()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.theme()) + "</span>");%></th>
                     <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintTheme()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
                         <select name="styl" style="width:230px">
                         <%
                             String stylesDir = application.getRealPath("/styles/");
@@ -286,19 +335,24 @@
                             }
                         %>
                         </select>
+                        </span>
                     </td>
                     <td></td>
                 </tr>        
                 <tr><% try { %>
-                    <th><% out.print(Messages.wielka(Messages.birthdate()));%></th>
+                    <th><% out.print("<span onmouseover=\"showHint('"+Messages.hintBirthDate()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.birthdate()));%></th>
                     <td class="tdProfileField">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintBirthYear()+"',this,"+Config.HINT_DELAY+",40,40)\" onmouseout=\"hideHint(this)\">");%>                    
                         <select name="rokUrodzenia">
                         <% for (int i=1930; i<=2005; i++)  {
                             out.print("<option value=\""+i+"\"");
                             if (i==Integer.decode(user.getBirthYear()).intValue()) out.print(" selected"); 
                             out.println(">" + i + "</option>");
                         } %>
-                        </select> -
+                        </select>
+                        </span>
+                        -
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintBirthMonth()+"',this,"+Config.HINT_DELAY+",40,40)\" onmouseout=\"hideHint(this)\">");%>                        
                         <select name="miesiacUrodzenia">
                         <% for (int i=1; i<=12; i++) {
                             out.print("<option value=\""+i+"\"");
@@ -307,7 +361,10 @@
                             if (i==Integer.decode(month).intValue()) out.print(" selected"); 
                             out.println(">"+ i +"</option>");
                         } %>
-                        </select> -
+                        </select>
+                        </span>
+                        -
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintBirthDay()+"',this,"+Config.HINT_DELAY+",40,40)\" onmouseout=\"hideHint(this)\">");%>                        
                         <select name="dzienUrodzenia">
                         <% for (int i=1; i<=31; i++) {
                             out.print("<option value=\""+i+"\"");
@@ -317,9 +374,12 @@
                             out.println(">"+ i +"</option>");
                         } %>
                         </select>
+                        </span>
                         <% } catch (Exception e) { out.println(e); } %>
                     </td>
-                    <td class="tdProfileField"><input type="checkbox" name="dataUrodzeniaPrywatna" <%if(!user.ifShowBirthDate()) out.print("checked");%>/> <%out.print(Messages.hide());%> &nbsp;</td>
+                    <td class="tdProfileField" align="center">
+                        <%out.print("<span onmouseover=\"showHint('"+Messages.hintHide()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%>
+                        <input type="checkbox" name="dataUrodzeniaPrywatna" <%if(!user.ifShowBirthDate()) out.print("checked");%>/></span></td>
                 </tr>                        
                 <tr><td colspan="2" align="right"><input type="hidden" name="chd" value=""/><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
             </table>

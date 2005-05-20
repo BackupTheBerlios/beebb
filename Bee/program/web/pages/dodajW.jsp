@@ -46,12 +46,12 @@
                         if (dodaj){
                         Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDateToInsert(),text,prywatne,DataBase.TAK,db_con);
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
-                            out.print(Messages.makeError(Messages.errorDataBaseConnection()));
-                            else out.print(Messages.makeSuccess(Messages.addedMessage() + "<br/>")); 
+                            out.print("<center>" + Messages.makeError(Messages.errorDataBaseConnection()) + "<center>");
+                            else out.print("<center>" + Messages.makeSuccess(Messages.addedMessage()  + "<center>"+ "<br/>")); 
                         }
-                        else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
-                     } else out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
-                    } else out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                        else out.println("<center>" + Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())) + "<center>");
+                     } else out.println("<center>" + Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())) + "<center>");
+                    } else out.print("<center>" + Messages.makeError(Messages.errorDataBaseConnection()) + "<center>");
                   }
                 
                 
@@ -74,11 +74,11 @@
                         Nazwa_Usera2="~" + Nazwa_Usera;
                     wt = new Watek("0",ID_Usera,Nazwa_Usera,title,db_con.getDateToInsert(),db_con.getDateToInsert(),Nazwa_Usera2,prywatne,DataBase.TAK,DataBase.NIE,DataBase.NIE,"0","0",db_con);
                     wt = db_con.insertWatek(podforum,wt);
-                    if (wt==null) out.print(Messages.makeError(Messages.errorDataBaseConnection())); 
-                            else out.print(Messages.makeSuccess(Messages.addedThread()  + "<br/>"));
+                    if (wt==null) out.print("<center>" + Messages.makeError(Messages.errorDataBaseConnection()) + "<center>"); 
+                            else out.print("<center>" + Messages.makeSuccess(Messages.addedThread())+ "<center>");
                     return wt;
                     }else{
-                        out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                        out.println("<center>" + Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())) + "<center>");
                         return null;
                     }
                 }
@@ -211,7 +211,7 @@
         %>
                     <table align="center">
                     <tr>
-                                <th colspan="2">
+                                <th colspan="2" align="center">
                                     <%out.print(Messages.wielka(Messages.add())+" "); if (watek!=null) out.print(Messages.message()); else out.print(Messages.thread()); %> 
                                 </th>
                     </tr>

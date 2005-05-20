@@ -252,7 +252,7 @@ public class Messages {
     /** Metoda dostarcza slowo "temat" */
     public static String theme(){
         return "temat";}
-
+    
     /** Metoda dostarcza slowo "odpowiedzi" */
     public static String answers(){
         return "odpowiedzi";}
@@ -581,7 +581,7 @@ public class Messages {
     public static String isChangeKat(){
         return "Czy napewno chcesz zmienić prywatność kategorii?";}
     
-   /** Metoda dostarcza komunikat z zapytaniem
+    /** Metoda dostarcza komunikat z zapytaniem
      * @return String z komunikatem
      */
     public static String isChangePod(){
@@ -714,11 +714,11 @@ public class Messages {
         return "Nie masz jeszcze konta?";}
     
     
-    /** Metoda dostarcza komunikat "Zapomniałem hasło"
+    /** Metoda dostarcza komunikat "Zapomniałem hasła"
      * @return String z komunikatem
      */
     public static String iForgetPasswd(){
-        return "Zapomniałem hasło";}
+        return "Zapomniałem hasła";}
     
     
     /** Metoda dostarcza komunikat "Hasło zmieniono"
@@ -1336,5 +1336,161 @@ public class Messages {
     }
     
     
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla imienia
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintName(){
+        return "Imię użytkownika";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla nazwisko
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintSurname(){
+        return "Nazwisko użytkownika";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla email
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintEmail(){
+        return "Adres e-mail użytkownika. Należy wpisać poprawny adres email - przy wyświetlaniu adresu na stronie będzie on zabezpieczony filtrem antyspamowym.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla email
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintWWW(){
+        return "Prywatna strona www użytkownika. Po wpisaniu tej wartości będzie się ona pojawiać zawsze w wizytówce użytkownika.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla ukrywania danych
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintHide(){
+        return "Zaznaczenie tej opcji spowoduje ukrycie danych przed innymi użytkownikami. Oznacza to że wartość nie pojawi się na publicznej wizytówce.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla gg
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintGG(){
+        return "Numer gadu-gadu. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Jabbera
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintJabber(){
+        return "Identyfikator jabbera. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla wpKontakt
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintTlen(){
+        return "Identyfikator Tlen. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla WPKontakt
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintWPKontakt(){
+        return "Identyfikator WPKontakt. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla ICQ
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintICQ(){
+        return "Identyfikator ICQ. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla MSN
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintMSN(){
+        return "Identyfikator MSN. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Yahoo
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintYahoo(){
+        return "Identyfikator Yahoo. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Skype
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintSkype(){
+        return "Identyfikator Skype. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Miasta, z którego pochodzi uzytkownik
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintCity(){
+        return "Miasto, z którego pochodzi użytkownik.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Daty Urodzenia
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintBirthDate(){
+        return "Data urodzenia, wykorzystywana min. przy generowaniu urodzin użytkowników.";
+    }
+
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Roku urodzenia
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintBirthYear(){
+        return "Rok urodzenia";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Miesiąca Urodzenia
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintBirthMonth(){
+        return "Miesiąc urodzenia";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Dnia Urodzenia
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintBirthDay(){
+        return "Dzień urodzenia";
+    }
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla płci użytkownika
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintSex(){
+        return "Płeć użytkownika";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla tematu
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintTheme(){
+        return "Temat wyglądu. Po zalogowaniu temat zostanie zmieniony na wybrany.";
+    }
     
 }
