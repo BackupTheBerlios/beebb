@@ -244,7 +244,7 @@
                             <% } %>
                             </tr> <tr>
                                 <td valign="top"><%out.print(Messages.wielka(Messages.tresc()) + ":");%></td></tr>
-                                <tr><td><textarea cols="50" style="width:450px" rows="5" name="text" id="text"></textarea></td>
+                                <tr><td><textarea cols="50" style="width:450px" rows="20" name="text" id="text"></textarea></td>
                             </tr> <tr>
                             <td><%out.print(Messages.wielka(Messages.author()) + ":");%></td></tr>
                             <tr><td><% if(!auth.zalogowany(request,db_con)){%><input type="text" size="50" style="width:450px" name="autor" id="autor"/><%}else{out.print(auth.user(request));}%></td>

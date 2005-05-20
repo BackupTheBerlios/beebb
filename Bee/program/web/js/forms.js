@@ -54,7 +54,7 @@ function submitDodajW(komunikat_wymagane){
 if ( ((document.getElementById('title'))&&(document.getElementById('title').value.length <=0)) || (document.getElementById('text').value.length <=0))
     {
         //alert(komunikat_wymagane);
-        if (document.getElementById('title').value.length <=0) 
+        if (document.getElementById('title') && document.getElementById('title').value.length <=0) 
             showError(document.getElementById('title'),komunikat_wymagane);
         else
         if (document.getElementById('text').value.length <=0)
