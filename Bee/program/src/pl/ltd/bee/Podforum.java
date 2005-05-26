@@ -147,7 +147,7 @@ public class Podforum {
     
     
     /** Ustawia nazwe podforum
-     * @param op String ustawianej nazwy
+     * @param naz String ustawianej nazwy
      */
     public void setNazwa(String naz) {
         this.Tytul=naz;

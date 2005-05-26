@@ -7,7 +7,7 @@
 package pl.ltd.bee;
 
 /**
- *
+ * Klasa odpowiedzielna za autoryzację użytkowników
  * @author wilk
  */
 public class Autoryzator {
@@ -16,17 +16,17 @@ public class Autoryzator {
     public static final String COOKIE_USER_NAME = "user";
     public static final String COOKIE_PASS_NAME = "pass";
     
-    /** Creates a new instance of Autoryzator */
+    /** Tworzy nową instancję klasy Autoryzator */
     public Autoryzator() {
     }
     
-    /** Zalogowuje uzytkownika
-     * @param login nazwa uzytwkownika
-     * @param haslo haslo uzytkownika w postaci hash'a
-     * @param db obiekt klasy Database do wyciagania uzytkownika
-     * @param conf obiekt klasy Config do ustawienia parametrow logowania
-     * @param odpowiedz Odpowiedz serwera jaka zostanie wyslana do uzytkownika
-     *  @return User reprezentujacy zalogowanego użytkownika
+    /** Loguje użytkownika
+     * @param login nazwa użytwkownika
+     * @param haslo hasło użytkownika w postaci hash
+     * @param db obiekt klasy Database do wyciągania użytkownika
+     * @param conf obiekt klasy Config do ustawienia parametrów logowania
+     * @param odpowiedz odpowiedź serwera jaka zostanie wysłana do użytkownika
+     *  @return Obiekt User reprezentujacy zalogowanego użytkownika
      */
     public User zaloguj(String login, String haslo,DataBase db, Config conf, javax.servlet.http.HttpServletResponse odpowiedz) {
         User user = db.getUser(login);
@@ -48,8 +48,8 @@ public class Autoryzator {
         else return null;
     }
 
-    /** Wylogowuje uzytkownika
-     * @param odpowiedz Odpowiedz serwera jaka zostanie wyslana do uzytkownika
+    /** Wylogowuje użytkownika
+     * @param odpowiedz odpowiedź serwera jaka zostanie wysłana do użytkownika
      */
     public void wyloguj(javax.servlet.http.HttpServletResponse odpowiedz) {
             javax.servlet.http.Cookie coockieUser = new javax.servlet.http.Cookie(COOKIE_USER_NAME,"");
@@ -62,18 +62,18 @@ public class Autoryzator {
             odpowiedz.addCookie(coockiePass);
     }
     
-    /** metoda sprawdza czy uzytkownik jest zalogowany
-     *  @param pytanie Zapytanie otrzymane przez serwer
-     *  @param db obiekt klasy Database do wyciagania uzytkownika
-     *  @return T lub N w zaleznosci czy jest zalogowany czy nie
+    /** Metoda sprawdza czy użytkownik jest zalogowany
+     *  @param pytanie zapytanie otrzymane przez serwer
+     *  @param db obiekt klasy Database do wyciągania użytkownika
+     *  @return true wtw gdzy użytkownik jest zalogowany
      */
     public boolean zalogowany(javax.servlet.http.HttpServletRequest pytanie,DataBase db) {
         return this.getUser(pytanie,db) != null;
     }
     
-    /** Metoda zwraca nazwe uzytkownika aktualnie zalogowanego
-     *  @param pytanie Zapytanie otrzymane przez serwer
-     *  @return String reprezentujacy nazwe aktualnie zalogowanego użytkownika
+    /** Metoda zwraca nazwę użytkownika aktualnie zalogowanego
+     *  @param pytanie zapytanie otrzymane przez serwer
+     *  @return String reprezentujący nazwę aktualnie zalogowanego użytkownika
      */
     public String user(javax.servlet.http.HttpServletRequest pytanie) {
         javax.servlet.http.Cookie[] ciastka = pytanie.getCookies();
@@ -84,10 +84,10 @@ public class Autoryzator {
         return "";
     }
     
-    /** Metoda zwraca zalogowanego uzytkownika
-     *  @param pytanie Zapytanie otrzymane przez serwer
-     *  @param db obiekt klasy Database do wyciagania uzytkownika
-     *  @return User reprezentujacy zalogowanego użytkownika lub NULL jesli zaden nie jest zalogowany
+    /** Metoda zwraca zalogowanego użytkownika
+     *  @param pytanie zapytanie otrzymane przez serwer
+     *  @param db obiekt klasy Database do wyciągania użytkownika
+     *  @return Obiekt User reprezentujący zalogowanego użytkownika lub NULL jesli żaden nie jest zalogowany
      */
     public User getUser(javax.servlet.http.HttpServletRequest pytanie,DataBase db) {
         javax.servlet.http.Cookie[] ciastka = pytanie.getCookies();

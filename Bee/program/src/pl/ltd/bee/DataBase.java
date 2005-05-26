@@ -438,7 +438,7 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami podfor w podanej Kategorii
-     * @param kat Kategoria w ramach ktorej interesuja nas podfora
+     * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Integer
      */
     public ArrayList getPodforaKategorii(int ID) {
@@ -454,8 +454,8 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne badż nie w
-     * zalezności od parametru aktywne
-     * @param aktywne boolena T lub F
+     * zalezności od parametru
+     * @param czy_aktywne Okresla interesujacy nas stan kategori
      * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
      * @return ArrayList obiektow Podforum
      */
@@ -511,7 +511,7 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku
-     * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
+     * @param ID Identyfikator watku w ramach ktorego interesuja nas Wypowiedzi
      * @return ArrayList obiektow Integer
      */
     public ArrayList getWypowiedziWatku(int ID) {
@@ -528,7 +528,7 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku o stanie aktywnosci podanym w parametrze
-     * @param wat Watek w ramach ktorego interesuja nas Wypowiedzi
+     * @param ID Identyfikator watku w ramach ktorego interesuja nas Wypowiedzi
      * @param aktywne Okresla jakie wypowiedzi nas interesuja
      * @return ArrayList obiektow Integer
      */
@@ -788,9 +788,9 @@ public class DataBase {
     
     /**
      * Metoda ustawia pola uprawnien Usera
-     * @param id int id uzytkownika w bazie danych
-     * @param admin boolean T lub F
-     * @param aktywny boolena T lub F
+     * @param id Identyfikator uzytkownika w bazie danych
+     * @param czy_admin Okresla parametr administrator
+     * @param czy_aktywny Okresla parametr aktywnosci uzytkownika
      */
     public boolean zmienUpr(int id, boolean czy_admin, boolean czy_aktywny){
         String admin,aktywny;
@@ -813,8 +813,8 @@ public class DataBase {
     
     /**
      * Metoda umieszcza kategorie w bazie danych,
-     * @param int id_forum
-     * @param Kategoria wstawiana kategoria
+     * @param id_forum Identyfikator forum
+     * @param k wstawiana kategoria
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertKategoria(int id_forum, Kategoria k) {
@@ -832,7 +832,7 @@ public class DataBase {
     
     /**
      * Metoda umieszcza grupe w bazie danych,
-     * @param Group wstawiana grupa
+     * @param g wstawiana grupa
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertGrupa(Group g) {
@@ -862,7 +862,7 @@ public class DataBase {
     /**
      * Metoda umieszcza podforum w bazie danych,
      * @param id_kat id kategorii do ktorej dodawane jest podforum
-     * @param Podforum obiekt Podforum
+     * @param p obiekt Podforum
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
@@ -912,8 +912,8 @@ public class DataBase {
     
     /**
      * Metoda umieszcza wiersz w tabeli moderatorzy
-     * @param id_kat id kategorii
      * @param id_pod id podforum
+     * @param id_user id uzytkownika
      * @return zwraca true jezeli insert sie powiodl
      */
     public boolean insertModerator(int id_pod, int id_user) {
@@ -961,8 +961,8 @@ public class DataBase {
     
     /**
      * Metoda zwraca id podforum w danej kategorii
-     * @param int id_kat id kategorii
-     * @param String tytul tytuł podforum
+     * @param id_kat id kategorii
+     * @param tytul tytuł podforum
      * @return zwraca id podforum
      */
     public int dajIdPodforum(int id_kat, String tytul){
@@ -1083,7 +1083,7 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
-     * @param aktywne boolean T lub F
+     * @param czy_aktywna boolean T lub F
      * @return ArrayList obiektow Kategoria
      */
     public ArrayList getKategorie(boolean czy_aktywna) {
@@ -1101,7 +1101,7 @@ public class DataBase {
     
     /**
      * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
-     * @param aktywne boolean T lub F
+     * @param czy_aktywna boolean T lub F
      * @return ArrayList obiektow Kategoria
      */
     public ArrayList getKategoriePrywatne(boolean czy_aktywna, boolean czy_prywatna) {
@@ -1136,8 +1136,8 @@ public class DataBase {
     
     /**
      * Metoda zmienia pole aktywna , a takze wszystjie podfora w niej sie zawierajace
-     * @param boolean aktywne T lub F
-     * @param int id kategorii
+     * @param czy_aktywne T lub F
+     * @param id kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
     public boolean zmienAktywnoscKategorii(int id, boolean czy_aktywne){
@@ -1150,8 +1150,8 @@ public class DataBase {
     
     /**
      * Metoda zmienia pole aktywna na podane w parametrze aktywne
-     * @param String aktywne 'T' lub 'N'
-     * @param String id podforum
+     * @param id Identyfikator podforum
+     * @param czy_aktywne Okresla aktywnosc
      * @return boolean true jezeli update sie powiodl dalse wpp.
      **/
     public boolean zmienAktywnoscPodforum(int id, boolean czy_aktywne){
@@ -1246,9 +1246,9 @@ public class DataBase {
     
     /**
      * Metoda zmienia tytul i opis kategorii
-     * @param String id kategorii
-     * @param String tytul kategorii
-     * @param String opis kategorii
+     * @param id Identyfikator kategorii
+     * @param tytul Tytul kategorii
+     * @param opis Opis kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      */
     public boolean updateKategoria(int id, String tytul, String opis ){
@@ -1260,10 +1260,10 @@ public class DataBase {
     // DO ZMIANY !!!! metoda ma przyjmować OBIEKT!!!
     /**
      * Metoda zmienia tytul i opis podforum, oraz zmienia kategorie podforum na id_kat
-     * @param int id podforum
-     * @param int id_kat kategorii
-     * @param String tytul kategorii
-     * @param String opis kategorii
+     * @param id Identyfikator podforum
+     * @param id_kat Identyfikator kategorii
+     * @param tytul Tytul kategorii
+     * @param opis Opis kategorii
      * @return boolean true jezeli update sie powiodl dalse wpp.
      */
     public boolean updatePodforum(int id, int id_kat, String tytul, String opis ){
@@ -1314,7 +1314,7 @@ public class DataBase {
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami uzytkownikow,
      * ktorzy sa moderatorami w danym podforum
-     * @param int id podforum
+     * @param id_podforum Identyfikator podforum
      * @return ArrayList obiektow Integer
      */
     public ArrayList getIdModeratorzyPodforum(int id_podforum) {
@@ -1344,7 +1344,7 @@ public class DataBase {
     /**
      * Metoda pozwala zabanowac uzytkownika lub <i>odbanowac - to sie moze zakonczyc niepowodzeniem, bo nie bylo polaczenia z baza lub nie bylo co odbanowywac</i>
      * @param user_id identyfikator uzytkownika
-     * @param podforum_id identyfikator podforum
+     * @param id_podforum identyfikator podforum
      * @param ban okresla czy nalezy zabanowac uzytkownika czy odbanowac
      * @return True jest operacja powiodla sie False w p.p.
      */
@@ -1577,8 +1577,8 @@ public class DataBase {
     }
      /**
      * Metoda usuwa uprawnienie do podanego podforum,
-     * @param id_k id podforum
-     * @param id_g id grupy
+     * @param id_g Identyfikator grupy
+     * @param id_p Identyfikator podforum
      * @return zwraca true jezeli dlete sie powiodl
      */
     public boolean deletePrivilagePodGroup(int id_g, int id_p) {

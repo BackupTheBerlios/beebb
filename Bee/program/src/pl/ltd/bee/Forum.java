@@ -19,8 +19,9 @@ public class Forum {
     private DataBase db;
     
     /** Tworzy nowa instancje klasy Forum
-     * @param ID identyfikator forum w bazie
-     * @param kategorie lista identyfikatorow (long) kategori nalezacych do forum
+     * @param Nazwa Nazwa forum
+     * @param Opis Opis forum
+     * @param db Obiekt polaczenia z baza danych
      */
     public Forum(String Nazwa, String Opis, DataBase db) {
         this.Nazwa=Nazwa;

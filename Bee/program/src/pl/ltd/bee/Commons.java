@@ -6,28 +6,27 @@
 
 package pl.ltd.bee;
 
-/**
- *
- * @author wilk
- */
-
 import java.util.*;
 import java.util.regex.*;
 
+/**
+ * Klasa zawierająca metody ogólnego zastosowania
+ * @author wilk
+ */
 public class Commons {
     
-    /** Creates a new instance of Commons */
+    /** Tworzy nową instancję klasy Commons */
     public Commons() {
     }
     
     
     /**
-     * Metoda zwraca wypelniony znacznik HEAD.
-     * @param request Otrzymane zapytanie HTTP
-     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
-     * @param title Tytul strony
-     * @param css Nazwa pliku z arkuszem stylu (Uwaga tylko nazwa bez rozszezenia)
-     * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
+     * Metoda zwraca znacznik head wypełniony parametrami meta oraz źródłami JavaScript i CSS
+     * @param request otrzymane zapytanie HTTP
+     * @param path ścieżka względna do korzenia całego serwisu od strony w której zostanie umieszczony znacznik. Dla korzenia podaje się ".". Ścieżka nie może być zakończona separatorem "/"
+     * @param title tytuł strony
+     * @param css nazwa pliku z arkuszem stylu (Uwaga tylko nazwa bez rozszeżenia)
+     * @return Zwraca łancuch znaków będący wypełnionym znacznikiem head.
      */
     public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title, String css){
         return  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">" +
@@ -53,11 +52,11 @@ public class Commons {
     
 
     /**
-     * Metoda zwraca wypelniony znacznik HEAD.
-     * @param request Otrzymane zapytanie HTTP
-     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
-     * @param title Tytul strony
-     * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
+     * Metoda zwraca znacznik head wypełniony parametrami meta oraz źródłami JavaScript i CSS
+     * @param request otrzymane zapytanie HTTP
+     * @param path ścieżka względna do korzenia całego serwisu od strony w której zostanie umieszczony znacznik. Dla korzenia podaje się ".". Ścieżka nie może być zakończona separatorem "/"
+     * @param title tytuł strony
+     * @return Zwraca łancuch znaków będący wypełnionym znacznikiem head.
      */
     public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title){
         String css = request.getParameter("style");
@@ -66,10 +65,10 @@ public class Commons {
     }
     
     /**
-     * Metoda zwraca wypelniony znacznik HEAD. Tytul przyjety jest jako "BeeBB :: Content"
-     * @param request Otrzymane zapytanie HTTP
-     * @param path Sciezka wzgledna do korzenia calego serwisu od strony w ktorej zostanie umieszczony znacznik. Dla korzenia podaje sie ".". Sciezka nie moze byc zakonczona separatorem "/"
-     * @return Zwaraca lancuch znakow bedacy wypelnionym znacznikiem head.
+     * Metoda zwraca znacznik head wypełniony parametrami meta oraz źródłami JavaScript i CSS
+     * @param request otrzymane zapytanie HTTP
+     * @param path ścieżka względna do korzenia całego serwisu od strony w której zostanie umieszczony znacznik. Dla korzenia podaje się ".". Ścieżka nie może być zakończona separatorem "/"
+     * @return Zwraca łancuch znaków będący wypełnionym znacznikiem head.
      */
     public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path){
         return htmlHead(request,path, "BeeBB :: Content");
@@ -77,8 +76,8 @@ public class Commons {
     
     
     /** 
-     * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako trwaly przez rok
-     * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
+     * Metoda ustawia nagłówki o cacheowaniu. Określa dokument jako trwały przez rok
+     * @param response odpowiedź jaka zostanie wysłana z serwera do klienta
      */
     public static void setCachingForever(javax.servlet.http.HttpServletResponse response){
         setCachingFor(response, 365 * 24 * 60 * 60);
@@ -86,9 +85,9 @@ public class Commons {
     
 
     /** 
-     * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako trwaly przez wskazana liczbe sekund
-     * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
-     * @param sec Ilosc sekund waznosci dokumentu
+     * Metoda ustawia nagłówki o cacheowaniu. Określa dokument jako trwały przez wskazaną liczbę sekund
+     * @param response odpowiedź jaka zostanie wysłana z serwera do klienta
+     * @param sec ilość sekund ważności dokumentu
      */
     public static void setCachingFor(javax.servlet.http.HttpServletResponse response, long sec){
         java.util.Date d = new java.util.Date((new java.util.Date()).getTime() + sec * 1000);
@@ -99,8 +98,8 @@ public class Commons {
     
     
     /** 
-     * Metoda ustawia naglowki o cacheowaniu. Okresla dokument jako nie trwaly
-     * @param response Odpowiedz jaka zostanie wyslana z serwera do klienta
+     * Metoda ustawia nagłówki o cacheowaniu. Określa dokument jako nie trwały
+     * @param response odpowiedź jaka zostanie wysłana z serwera do klienta
      */
     public static void setCachingNever(javax.servlet.http.HttpServletResponse response){
         //response.setHeader("Expires",(new java.util.Date()).toString());
@@ -108,8 +107,8 @@ public class Commons {
     }
     
     
-    /* Metoda przygotowuje wpisana wypowiedz uzytkownika do wprowadzenia do bazy
-     * @param text String ktory zostanie zmodyfikowany
+    /* Metoda przygotowuje wpisaną wypowiedź użytkownika do wprowadzenia do bazy
+     * @param text string który zostanie zmodyfikowany
      * @return Zmodyfikowany String
      */
     public static String wypowiedzDoBazy(String text){
@@ -124,8 +123,8 @@ public class Commons {
             return text;
     }
 
-    /* Metoda przygotowuje wypowiedz z bazy do wypisania jej na stronie  do edycji
-     * @param text String ktory zostanie zmodyfikowany
+    /* Metoda przygotowuje wypowiedź z bazy do wypisania jej na stronie  do edycji
+     * @param text string który zostanie zmodyfikowany
      * @return Zmodyfikowany String
      */
     public static String wypowiedzDoTekst(String text){
@@ -139,9 +138,9 @@ public class Commons {
     }
     
     
-    /** Metoda dostarcza zapytanie GET ktĂłre naleĹźy dokleiÄ do odnoĹnika
-     * @param request Otrzymane zapytanie HTTP
-     * @return String z nazwa parametru i wartoscia lub pusty jelsi styl nie jest okreslony
+    /** Metoda dostarcza zapytanie GET które należy dokleić do odnośnika
+     * @param request otrzymane zapytanie HTTP
+     * @return String z nazwą parametru i wartością lub pusty jeśli styl nie jest określony
      */
     public static String getQueryStyle(javax.servlet.http.HttpServletRequest request){
         String css = request.getParameter("style");
@@ -151,12 +150,12 @@ public class Commons {
     }
     
     /**
-     * Metoda dostarcza znacznik xhtml bedacy poprawnym odnosnikiem w projekcie wykorzystujacym rotacje ramek
-     * @param request Otrzymane zapytanie HTTP 
-     * @param text Zawartosc tekstowa odnosnika
-     * @param where Strona docelowa
-     * @param classType Nazwa klasy odnosnika
-     * @return Znacznik xhtml z odnosnikiem
+     * Metoda dostarcza znacznik xhtml będący poprawnym odnośnikiem w projekcie wykorzystującym rotacje ramek
+     * @param request otrzymane zapytanie HTTP 
+     * @param text zawartość tekstowa odnośnika
+     * @param where strona docelowa
+     * @param classType nazwa klasy odnośnika
+     * @return Znacznik xhtml z odnośnikiem
      */
     public static String aHref(javax.servlet.http.HttpServletRequest request, String text, String where, String classType){
         String css = request.getParameter("style");
@@ -168,19 +167,18 @@ public class Commons {
     }
     
     /**
-     * Metoda dostarcza znacznik xhtml bedacy poprawnym odnosnikiem w projekcie wykorzystujacym rotacje ramek
-     * @param request Otrzymane zapytanie HTTP 
-     * @param text Zawartosc tekstowa odnosnika
-     * @param where Strona docelowa
-     * @param classType Nazwa klasy odnosnika
-     * @return Znacznik xhtml z odnosnikiem
+     * Metoda dostarcza znacznik xhtml będący poprawnym odnośnikiem w projekcie wykorzystującym rotacje ramek
+     * @param request otrzymane zapytanie HTTP 
+     * @param text zawartość tekstowa odnośnika
+     * @param where strona docelowa
+     * @return Znacznik xhtml z odnośnikiem
      */
     public static String aHref(javax.servlet.http.HttpServletRequest request, String text, String where){
         return aHref(request,text,where,"aHref");
     }
     
-    /** Metoda zamienia wszystkie znaczniki w podanym tekscie na znaczniki xhtml odnoszace sie do emotikonek
-     * @param s Tekst do zmiany
+    /** Metoda zamienia wszystkie znaczniki w podanym tekscie na znaczniki xhtml odnoszące się do emotikonek
+     * @param s tekst do zmiany
      * @return Zmieniony tekst
      */
     public static String dodajEmotikonki(String s){
@@ -193,7 +191,7 @@ public class Commons {
     }
     
     /** Metoda zamienia wszystkie znaczniki <img w podanym tekscie na znaczniki emotikonek 
-     * @param s Tekst do zmiany
+     * @param s tekst do zmiany
      * @return Zmieniony tekst
      */
     public static String zabierzEmotikonki(String s){
@@ -212,28 +210,28 @@ public class Commons {
         return wynik;
     }
     
-    /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
-     * @param url Sciezka do pliku graficznego zaczynajac od korzenia serwisu
-     * @return Znacznik z grafika
+    /** Metoda dostarcza znacznika xhtml wyświetlającego emotikone na podstawie podanego url'a
+     * @param url ścieżka do pliku graficznego zaczynając od korzenia serwisu
+     * @return Znacznik z grafiką
      */
     public static String makeEmotikonLink(String url){
        return makeEmotikonLink(url,">Image<");
     }
     
-    /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
-     * @param url Sciezka do pliku graficznego zaczynajac od korzenia serwisu
-     * @param alt Tekst opisujacy obrazek
-     * @return Znacznik z grafika
+    /** Metoda dostarcza znacznika xhtml wyświetlającego emotikone na podstawie podanego url'a
+     * @param url ścieżka do pliku graficznego zaczynając od korzenia serwisu
+     * @param alt tekst opisujący obrazek
+     * @return Znacznik z grafiką
      */
     public static String makeEmotikonLink(String url,String alt){
        return makeEmotikonLink(url,alt,"");
     }
     
-    /** Metoda dostarcza znacznika xhtml wyswietlajacego emotikone na podstawie podanego url'a
-     * @param url Sciezka do pliku graficznego zaczynajac od korzenia serwisu
-     * @param alt Tekst opisujacy obrazek
-     * @param extraAttr Dodatkowe wlasciwosci dla znacznika xhtml. Np: "onclick=\"aHref('index.jsp')\""
-     * @return Znacznik z grafika
+    /** Metoda dostarcza znacznika xhtml wyświetlającego emotikone na podstawie podanego url'a
+     * @param url ścieżka do pliku graficznego zaczynając od korzenia serwisu
+     * @param alt tekst opisujący obrazek
+     * @param extraAttr dodatkowe właściwości dla znacznika xhtml. Np: "onclick=\"aHref('index.jsp')\""
+     * @return Znacznik z grafiką
      */
     public static String makeEmotikonLink(String url,String alt, String extraAttr){
        return "<img src=\""+url+"\" alt=\""+alt+"\" class=\"imgEmotikona\" "+extraAttr+" />";

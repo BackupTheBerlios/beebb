@@ -91,14 +91,14 @@ public class Privilage {
     }
     
      /** metoda ustawia pisanie
-     * @return T lub N 
+     * @param pis Okresla prawa pisania
      */
     public void setPisanie(boolean pis) {
       pisanie=pis;
     }
     
     /** metoda ustawia czytanie
-     * @return T lub N 
+     * @param czyt Okresla prawa odczytu
      */
     public void setCzytanie(boolean czyt) {
       czytanie=czyt;

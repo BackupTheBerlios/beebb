@@ -61,9 +61,9 @@ public class User {
     /** Tworzy obiekt User
      * @param ID identyfikator uzytkownika
      * @param haslo zakodowane haslo uzytkownika
-     * @pram imie imie uzytkownika
-     * @pram nazwisko nazwisko uzytkownika
-     * @pram imieNazwiskoPrywatne czy uznawać imie i nazwisko za prywatne
+     * @param imie imie uzytkownika
+     * @param nazwisko nazwisko uzytkownika
+     * @param imieNazwiskoPrywatne czy uznawać imie i nazwisko za prywatne
      * @param email email uzytkownika
      * @param emailPrywatny czy uznawac email za prywatny
      * @param www strona www uzytkownika
@@ -74,11 +74,11 @@ public class User {
      * @param tlen id w komunikatorze tlen
      * @param tlenPrywatny czy uznawac id komunikatora tlen za prywatne
      * @param wpKontakt id komunikatora wpKontakt
-     * @param wpPrywatny czy uznawac id komunikatora wpKontakt za prywatny
+     * @param wpKontaktPrywatny czy uznawac id komunikatora wpKontakt za prywatny
      * @param icq id komnikatora icq
      * @param icqPrywatne czy uznawac id komnikatora icq za prywatne
      * @param msn id komnikatora msn
-     * @param msnPrywatne czy uznawac id komnikatora msn za prywatne
+     * @param msnPrywatny czy uznawac id komnikatora msn za prywatne
      * @param yahoo id komnikatora yahoo
      * @param yahooPrywatne czy uznawac id komnikatora yahoo za prywatne
      * @param skype id komnikatora skype
@@ -99,7 +99,7 @@ public class User {
      * @param lastlog ostatnie logowanie
      * @param currentlog data bierzacego logowania
      * @param aktywny czy użytkownik jest aktywny DataBase.TAK lub DataBase.NIE
-     * @param db objekt bazy danych
+     * @param _db objekt bazy danych
      */
     public User(int ID, String login, String haslo, String imie, String nazwisko,String imieNazwiskoPrywatne,
             String email, String emailPrywatny, String www, String gg, String ggPrywatne, String jabber, String jabberPrywatny,
@@ -423,7 +423,7 @@ public class User {
     
     
     /** Metoda ustawia strone www uzytkownika
-     * @param email String ze stroną www użytkownika
+     * @param www String ze stroną www użytkownika
      **/
     public void setWWW(String www){
         this.www=www;
@@ -479,7 +479,7 @@ public class User {
     
     
     /** Metoda ustawia tlen id uzytkownika
-     * @param jabber String z id tlen
+     * @param tlen String z id tlen
      **/
     public void setTlen(String tlen){
         this.tlen=tlen;
@@ -495,7 +495,7 @@ public class User {
     
     
     /** Metoda ustawia wpKontakt id uzytkownika
-     * @param jabber String z id wpKontakt
+     * @param wpKontakt String z id wpKontakt
      **/
     public void setWPKontakt(String wpKontakt){
         this.wpKontakt=wpKontakt;
@@ -512,7 +512,7 @@ public class User {
     
     
     /** Metoda ustawia ICQ id uzytkownika
-     * @param jabber String z id ICQ
+     * @param icq String z id ICQ
      **/
     public void setICQ(String icq){
         this.icq=icq;
@@ -528,7 +528,7 @@ public class User {
     
     
     /** Metoda ustawia MSN id uzytkownika
-     * @param jabber String z id MSN
+     * @param msn String z id MSN
      **/
     public void setMSN(String msn){
         this.msn=msn;
@@ -544,7 +544,7 @@ public class User {
     
     
     /** Metoda ustawia Yahoo id uzytkownika
-     * @param jabber String z id Yahoo
+     * @param yahoo String z id Yahoo
      **/
     public void setYahoo(String yahoo){
         this.yahoo=yahoo;
@@ -560,7 +560,7 @@ public class User {
     
     
     /** Metoda ustawia id Skype uzytkownika
-     * @param jabber String z id Skype
+     * @param skype String z id Skype
      **/
     public void setSkype(String skype){
         this.skype=skype;
@@ -576,7 +576,7 @@ public class User {
     
     
     /** Metoda ustawia miasto uzytkownika
-     * @param jabber String z miastem uzytkownika
+     * @param miasto String z miastem uzytkownika
      **/
     public void setCity(String miasto){
         this.miasto=miasto;
@@ -619,7 +619,7 @@ public class User {
 
     
     /** Metoda ustawia datę urodzenia uzytkownika (YYYY-MM-DD)
-     * @param jabber String z datą urodzenia
+     * @param dataUrodzenia String z datą urodzenia
      **/
     public void setBirthDate(String dataUrodzenia){
         this.dataUrodzenia=dataUrodzenia;
@@ -868,7 +868,7 @@ public class User {
     
     
     /** Metoda ustawia prywatność miasta uzytkownika
-     * @param N prv w przypadku gdy chcemy udostepnic dane do widoku innych osób
+     * @param prv True w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setCityPrivate(boolean prv){
         this.miastoPrywatne=prv;

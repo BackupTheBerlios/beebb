@@ -101,14 +101,14 @@ public class Kategoria {
     }
     
     /** Ustawia opis kategorii
-     * @param op String ustawianej nazwy
+     * @param naz String ustawianej nazwy
      */
     public void setNazwa(String naz) {
         this.Tytul=naz;
     }
     
     /** Zwraca liste podforow
-     * @param boolena T lub F  
+     * @param aktywne Okresla aktywnosc podfor
      * @return zwraca ArralList bedacy lista podforow
      */
     public ArrayList getPodfora(boolean aktywne) {
