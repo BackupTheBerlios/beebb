@@ -9,7 +9,7 @@ package pl.ltd.bee;
 import java.util.ArrayList;
 
 /**
- *
+ * Klasa będąca odwzorowaniem obiektu Forum z bazy danych
  * @author pawelb
  */
 public class Forum {
@@ -18,10 +18,10 @@ public class Forum {
     private String Opis;
     private DataBase db;
     
-    /** Tworzy nowa instancje klasy Forum
-     * @param Nazwa Nazwa forum
-     * @param Opis Opis forum
-     * @param db Obiekt polaczenia z baza danych
+    /** Tworzy nową instancję klasy Forum
+     * @param Nazwa nazwa forum
+     * @param Opis opis forum
+     * @param db obiekt połączenia z bazą danych
      */
     public Forum(String Nazwa, String Opis, DataBase db) {
         this.Nazwa=Nazwa;
@@ -30,8 +30,8 @@ public class Forum {
     }
     
     
-    /** Zwraca nazwe forum
-     * @return string bedacy nazwa forum
+    /** Zwraca nazwę forum
+     * @return String będący nazwa forum
      */
     public String getNazwa() {
         if (Nazwa==null) return "";
@@ -39,24 +39,24 @@ public class Forum {
     }
     
     /** Zwraca opis forum
-     * @return string bedacy opisem forum badz null jesli nie istnieje
+     * @return String będący opisem forum bądź null jeśli nie istnieje
      */
     public String getOpis() {
         return Opis;
     }
     
-    /** Zwraca liste identyfikatorow kategorii
-     * @return ArrayList 
+    /** Zwraca listę identyfikatorów kategorii
+     * @return ArrayList z identyfikatorami kategori
      */
     public ArrayList getKategorie() {
         return db.getKategorie(true);
     }
     
     /**
-     * Metoda powoduje wypisanie forum na przekazany strumien
-     * @param strona strumien wyjsciowy
-     * @param pytanie Zaptanie otrzymane przez serwer
-     * @param auth Obiekt autoryzacji
+     * Metoda powoduje wypisanie forum na przekazany strumień
+     * @param strona strumień wyjściowy
+     * @param pytanie zapytanie otrzymane przez serwer
+     * @param auth obiekt autoryzacji
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
         //teraz wypisanie kategorii
@@ -74,8 +74,8 @@ public class Forum {
     }
     
     /**
-     * Metoda wypisuje na stronie glowną tabele i jej naglowki
-     * @param strona strumien wyjsciowy
+     * Metoda wypisuje na stronie główną tabele i jej nagłówki
+     * @param strona strumień wyjściowy
      */
     public static void printMainTableJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //TODO te naglowki moze trzeba bedziew wywalic gdzie indziej .. ale poki co to dobre dla nich miejsce
@@ -91,7 +91,7 @@ public class Forum {
     }
     
     /**
-     * Metoda wypisuje na stronie zamkniecie glownej tabeli
+     * Metoda wypisuje na stronie zamknięcie głównej tabeli
      * @param strona strumien wyjsciowy
      */
     public static void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {

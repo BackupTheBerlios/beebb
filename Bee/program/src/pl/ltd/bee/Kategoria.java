@@ -9,7 +9,7 @@ package pl.ltd.bee;
 import java.util.ArrayList;
 
 /**
- *
+ * Klasa będąca odwzorowaniem obiektu Kategoria z bazy danych
  * @author pawelb i sopi
  */
 public class Kategoria {
@@ -27,13 +27,12 @@ public class Kategoria {
     public Kategoria() {
     }
     
-    /** Tworzy instancje klasy Kategoria zawierajaca w Podfora
-     * obiekty klasy Podforum
+    /** Tworzy instancje klasy Kategoria
      * @param ID identyfikator kategorii w bazie danych
      * @param Tytul nazwa kategorii
-     * @param Opis Opis kategorii
-     * @param Aktywna okresla czy kategoria jest aktywna
-     * @param Prywatna okresla czy kategoria jest prywatna
+     * @param Opis opis kategorii
+     * @param Aktywna określa czy kategoria jest aktywna
+     * @param Prywatna określa czy kategoria jest prywatna
      * @param db obiekt klasy DataBase
      */
     
@@ -48,15 +47,15 @@ public class Kategoria {
     
     
     /** Zwraca identyfikator forum
-     * @return zwraca long bedacy identyfikatorem kategorii w bazie
+     * @return Zwraca long bedący identyfikatorem kategorii w bazie
      */
     public int getID() {
         return ID;
     }
     
     
-    /** Zwraca nazwe kategori
-     * @return string bedacy nazwa kategori
+    /** Zwraca nazwę kategorii
+     * @return String będący nazwą kategorii
      */
     public String getNazwa() {
         if (Tytul==null) return "";
@@ -65,7 +64,7 @@ public class Kategoria {
     
     
     /** Zwraca opis kategorii
-     * @return zwraca string bedacy opisem kategori
+     * @return Zwraca String będący opisem kategorii
      */
     public String getOpis() {
         if (Opis==null) return "";
@@ -80,20 +79,20 @@ public class Kategoria {
     }
     
      /** Zwraca  pole aktywna
-     * @return boolean
+     * @return True jeśli aktywna i false w p.p.
      */
     public boolean czyAktywna() {
         return Aktywna;
     }
     
     /** Zwraca  pole prywatna
-     * @return boolean
+     * @return True jeśli prywatna i false w p.p.
      */
     public boolean czyPrywatna() {
         return Prywatna;
     }
     
-    /** Ustawia opis kategori
+    /** Ustawia opis kategorii
      * @param op String ustawianego opisu
      */
     public void setOpis(String op) {
@@ -107,9 +106,9 @@ public class Kategoria {
         this.Tytul=naz;
     }
     
-    /** Zwraca liste podforow
-     * @param aktywne Okresla aktywnosc podfor
-     * @return zwraca ArralList bedacy lista podforow
+    /** Zwraca listę podfor
+     * @param aktywne określa aktywność podfor
+     * @return zwraca ArralList będący listą podfor
      */
     public ArrayList getPodfora(boolean aktywne) {
         return db.getPodforaKategorii(this.ID, aktywne);
@@ -117,9 +116,9 @@ public class Kategoria {
     
     
     /**
-     * Metoda wypisuje na stronie glowną tabele i jej naglowki
-     * @param request Otrzymane zapytanie HTTP
-     * @param strona strumien wyjsciowy
+     * Metoda wypisuje na stronie główną tabele i jej nagłówki
+     * @param request otrzymane zapytanie HTTP
+     * @param strona strumień wyjściowy
      */
     public void printMainTableJSP(javax.servlet.http.HttpServletRequest request,javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         //TODO te naglowki moze trzeba bedziew wywalic gdzie indziej .. ale poki co to dobre dla nich miejsce
@@ -138,10 +137,10 @@ public class Kategoria {
     
     
     /**
-     * Metoda powoduje wypisanie forum na przekazany strumien
-     * @param strona strumien wyjsciowy
-     * @param pytanie Zaptanie otrzymane przez serwer
-     * @param auth Obiekt autoryzacji
+     * Metoda powoduje wypisanie forum na przekazany strumień
+     * @param strona strumień wyjściowy
+     * @param pytanie zapytanie otrzymane przez serwer
+     * @param auth obiekt autoryzacji
      */
     public void printJSP(javax.servlet.jsp.JspWriter strona, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws java.io.IOException {
         boolean drukuj = false;
@@ -165,8 +164,8 @@ public class Kategoria {
     
     
     /**
-     * Metoda wypisuje na stronie zamkniecie glownej tabeli
-     * @param strona strumien wyjsciowy
+     * Metoda wypisuje na stronie zamknięcie głównej tabeli
+     * @param strona strumień wyjściowy
      */
     public void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("</table>");

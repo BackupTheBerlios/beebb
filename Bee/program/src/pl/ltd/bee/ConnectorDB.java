@@ -6,7 +6,7 @@ import java.lang.*;
 import pl.ltd.bee.Exceptions.*;
 
 /**
- * Klasa implementujaca placzenie z baza danych i wykonywanie zapytan SQL.
+ * Klasa implementujaca płączenie z baza danych i wykonywanie zapytań SQL.
  */
 public class ConnectorDB {
 
@@ -20,8 +20,8 @@ public class ConnectorDB {
      * Konstruktor
      * @param Host adres serwera bazy danych
      * @param Db nazwa bazy danych
-     * @param User nazwa uzytkownika bazy danych
-     * @param Pass haslo uzytkownika bazy danych
+     * @param User nazwa użytkownika bazy danych
+     * @param Pass hasło użytkownika bazy danych
      */
     public ConnectorDB(String Host, String Db, String User, String Pass) {
         setParameters(Host,Db,User,Pass);
@@ -29,7 +29,7 @@ public class ConnectorDB {
     
     
     /**
-     * Metoda likwiduje polaczenie z baza danych jesli takie bylo.
+     * Metoda likwiduje połączenie z bazą danych jeśli takie było.
      */
     public void disconnect() throws BeeConnectionException{
         try{
@@ -39,11 +39,11 @@ public class ConnectorDB {
     }
     
     /**
-     * Metoda ustawia parametry polaczenia z baza danych
+     * Metoda ustawia parametry połączenia z bazą danych
      * @param Host adres serwera bazy danych
      * @param Db nazwa bazy danych
-     * @param User nazwa uzytkownika bazy danych
-     * @param Pass haslo uzytkownika bazy danych
+     * @param User nazwa użytkownika bazy danych
+     * @param Pass hasło użytkownika bazy danych
      */
     public void setParameters(String Host, String Db, String User, String Pass) {
         this.Host=Host;
@@ -52,8 +52,8 @@ public class ConnectorDB {
         this.Pass=Pass;
     }
     
-    /** Metoda zwraca odpowiedz na pytanie czy obiekt ma aktywne polaczenie z baza danych
-     * @return True jesli polaczenie z baza danych jest aktywne i False w p.p.
+    /** Metoda zwraca odpowiedź na pytanie czy obiekt ma aktywne połączenie z bazą danych
+     * @return True jeśli połączenie z bazą danych jest aktywne i False w p.p.
      */
     public boolean isConnected(){//TODO to podobno jest zle, bo isClosed zwraca falszywe odpowiedzi. trzeba zrobic "SELECT 1;"
         if (con == null) return false;
@@ -74,8 +74,8 @@ public class ConnectorDB {
     
     
     /**
-     * Metoda tworzaca polaczenie z baza danych
-     * @return Objekt klasy Connection bedacy uchwytem do polaczenia z baza.
+     * Metoda tworząca połączenie z bazą danych
+     * @return Obiekt klasy Connection będący uchwytem do połączenia z bazą.
      */
     public Connection connect() throws BeeConnectionException
     {
@@ -111,10 +111,10 @@ public class ConnectorDB {
     }
     
     /**
-     * Metoda wykonuje przekazane zapytanie i zwraca liste wierszy ktore zwieraja hashtable:
-     * klucz:nazwa kolumny       wartosc: wartosc w kolumnie
-     * Klucze i wartosci sa typu String
-     * @param q Zapytanie do wykonania
+     * Metoda wykonuje przekazane zapytanie i zwraca listę wierszy które zwierają hashtable:
+     * klucz:nazwa kolumny       wartość: wartość w kolumnie
+     * Klucze i wartości sa typu String
+     * @param q zapytanie do wykonania
      * @return ArrayList of Hashtables
      **/
     public ArrayList query(String q) {
@@ -143,7 +143,7 @@ public class ConnectorDB {
     
     /** 
      * Metoda wykonuje Insert, Update lub Delete 
-     * @return True jesli operacja sie powiodla, False w p.p.
+     * @return True jesli operacja sie powiodła, False w p.p.
      **/
     public boolean dmlQuery(String q) {
         try{

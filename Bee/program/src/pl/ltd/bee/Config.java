@@ -23,14 +23,16 @@ import pl.ltd.bee.Exceptions.*;
 import java.util.*;
 
 /**
- *
+ * Klasa odpowiedzialna za obsługę konfiguracji przechowywanej w pliku XML
  * @author wilk
  */
 public class Config {
     
-    /** stale ktore sloza do umieszczenia objektow w contenerze na ktorym sie wykonuje Bee */
+    /** Stała która służy do umieszczenia obiektu połączenia z bazą danych w kontenerze na którym się wykonuje projekt Bee */
     public final static String APPLICATION_OBJECT_DATABASE = "pl.ltd.bee.DataBase";
+    /** Stała która służy do umieszczenia obiektu konfiguracji w kontenerze na którym się wykonuje projekt Bee */
     public final static String APPLICATION_OBJECT_CONFIG = "pl.ltd.bee.Config";
+    /** Stała która służy do umieszczenia obiektu autoryzacji w kontenerze na którym się wykonuje projekt Bee */
     public final static String APPLICATION_OBJECT_AUTORYZACJA = "pl.ltd.bee.Autoryzator";
  
     private final static String FILE_NAME = "/config/config.xml"; 
@@ -75,76 +77,88 @@ public class Config {
     /** Zmienna informuje czy konfig jest "brudny". Jesli !read to ta zmienna jest true */
     private static boolean modified = true;
     
-    /**
+    /*
      * Zmienne ktore pozniej stana sie pewnie metodami,
      * ale teraz skupia w jednym miejscu konfiguracje.
      * Te zmienne nie powinny byc static, bo kazda z instancji Config dba tylko o swoje zmienne
      */
+    
+    /** Określa adres serwera bazy danych */
     public static String HOST = "";//"wilk.waw.pl";
+    /** Określa nazwę użytkownika do serwera bazy danych */
     public static String USER = "";//"bee";
+    /** Określa hasło dla użytkownika do serwera bazy danych */
     public static String PASSWORD = "";//"bee";
+    /** Określa nazwę bazy danych na serwerze bazy danych */
     public static String DATABASE = "";//"Bee";
+    /** Określa prefiks nazw tabel w bazie danych */
     public static String DATABASE_PREFIX = "Bee";
     
-    /** Ustala czy polaczenie z baza ma byc kompresowane */
+    /** Ustala czy połączenie z bazą danych ma być kompresowane */
     public static boolean USE_COMPRESSION = false;
     
-    /** Ustala czy polaczenie z baza ma byc szyfrowane */
+    /** Ustala czy połączenie z bazą danych ma być szyfrowane */
     public static boolean USE_SSL = false;
     
     /** Adres www forum */
     public static String URL_FORUM = "http://127.0.0.1:8080";
     
-    /** nazwa uzytkownika ktorego bedziemy traktowac jako goscia */
+    /** Nazwa użytkownika którego będziemy traktować jako gościa */
     public static String GUEST = "Guest";
+    /** Identyfikator użytkownika którego będziemy traktować jako gościa */
     public static int GUEST_ID = 1;
     
-    /** Rozmiar i waga avatara */
+    /** Maksymalna szerokość obrazka Avatar */
     public static int AVATAR_WIDTH = 130;
+    /** Maksymalna wysokość obrazka Avatar */
     public static int AVATAR_HEIGHT = 200;
+    /** Maksymalny rozmiar pliku z obraziem Avatar */
     public static int AVATAR_SIZE = 100000;
     
     
-    /** czas w sekundach po jakim uzytkownik zostanie automatycznie wylogowany */
+    /** Czas w sekundach po jakim użytkownik zostanie automatycznie wylogowany */
     public static int LOG_IN_MAX_AGE = 3600;
     
-    /** minimalna d�ugo�� has�a wpisanego przez u�ytkownika */
+    /** Minimalna długość hasła wpisanego przez użytkownika */
     public static int MIN_PASSWD = 5;
     
-    /** stale potrzebne do wysylania poczty do uzytkownikow */
+    /** Adres serwera SMTP */
     public static String SMTP_SERVER = "127.0.0.1";
+    /** Ustala zawartość pola "from" w poczcie wysyłanej przez forum */
     public static String MAIL_FROM = "bee@localhost";
     
-    /** rejestracja uzytkownika */
+    /** Ustala czy podczas rejestracji użytkownika będzie wysyłana poczta potwierdzająca */
     public static boolean NEW_USER_MAIL_AUTH = true;
+    /** Ustala tytuł listu wysyłanego podczas rejestracji użytkownika */
     public static String REG_MAIL_SUBJECT = "[BEE] Rejestracja";
+    /** Ustala zawartość listu wysyłanego podczas rejestracji użytkownika */
     public static String REG_MAIL_BODY = "Właśnie założyłeś konto na forum Bee, poniżej znajduje się link w który należy kliknąć aby aktywować konto: \n";
 
-    /** zapomniane haslo */
+    /** Ustala tytuł listu przypominającego hasło  */
     public static String FORGET_MAIL_SUBJECT = "[BEE] Zapomniane hasło";
+    /** Ustala zawartość listu przypominającego hasło  */
     public static String FORGET_MAIL_BODY = "Poniżej link do zmiany zapomnianego hasła: \n";
 
-    /** cacheowanie liczby odwiedzin 
-     * co ile sekund zapisywac do bazy licznik odwiedzin
+    /** Cacheowanie liczby odwiedzin. Ustala co ile sekund zapisywana będzie do bazy liczba odwiedzin
      */
     public static int CACHE_COUNTER = 10; 
     
-    /** Hashtable w ktorych kluczami sa znaczniki emotikonek a wartosciami url do nich
+    /** Hashtable w których kluczami są znaczniki emotikonek a wartościami url do nich
      **/
     public static Hashtable SMILES = new Hashtable();
     
     
-    /** Ustala ciag znakow rozpoczynajacych znacznik emotikony */
+    /** Ustala ciąg znaków rozpoczynających znacznik emotikony */
     public static String SMILE_TAG_OPEN = ":|";
     
-    /** Ustala ciag znakow konczacy znacznik emotikony */
+    /** Ustala ciąg znaków kończący znacznik emotikony */
     public static String SMILE_TAG_CLOSE = "|:";
     
-    /** Ustala po ilu milisekundach wyswietli sie chmurka podpowiadajaca */
+    /** Ustala po ilu milisekundach wyświetli się chmurka podpowiadająca */
     public static int HINT_DELAY = 1000;
     //TODO dodac do XML i zrobic SET'a
     
-    /** Ustala temat domyslny */
+    /** Ustala domyślny styl wyglądu forum */
     public static String DEFAULT_STYLE = "temat";
     
     /**    
@@ -202,7 +216,7 @@ public class Config {
     
     /**
      * Metoda wczytuje konfiguracje z pliku XML
-     * @param app context serwletu na ktorym sie wykonujemy
+     * @param app kontekst serwletu na którym wykonujemy się aplikacja
      */
     public void readConfig(javax.servlet.ServletContext app) throws BeeException{
         if ((read) && (!modified)) return;//TODO uznaje ze jesli jest odczytany a zmodyfikowany to znaczy ze odczyt jest wymuszany wiec pomijam zmiany
@@ -309,8 +323,8 @@ public class Config {
     }
     
     /**
-     * Metoda zapisuje konfiguracje do pliku XML
-     * @param app context serwletu na ktorym sie wykonujemy
+     * Metoda zapisuje konfigurację do pliku XML
+     * @param app kontekst serwletu na którym wykonuje się aplikacja
      */
     public void saveConfig(javax.servlet.ServletContext app) throws BeeException{
         if (!modified) return;//zakladam, ze zmienna jest poprawna boolean Config mozna zmienic tylko przez set*
@@ -345,21 +359,21 @@ public class Config {
         modified = true;
         HOST = host;}
 
-    /** Metoda ustawia nazwe uzytkownika bazy danych
-     * @param user nazwa uzytkownika
+    /** Metoda ustawia nazwę użytkownika bazy danych
+     * @param user nazwa użytkownika
      */
     public void setUser(String user){
         modified = true;
         USER = user;}
 
-    /** Metoda ustawia haslo uzytkownika do bazy danych
-     * @param pass haslo uzytkownika
+    /** Metoda ustawia hasło użytkownika do bazy danych
+     * @param pass hasło użytkownika
      */
     public void setPassword(String pass){
         modified = true;
         PASSWORD = pass;}
 
-    /** Metoda ustawia nazwe bazy danych
+    /** Metoda ustawia nazwę bazy danych
      * @param name nazwa bazy danych
      */
     public void setDatabaseName(String name){
@@ -373,29 +387,29 @@ public class Config {
         modified = true;
         DATABASE_PREFIX = prefix;}
 
-    /** Metoda ustawia nazwe konta gosc
-     * @param guest nazwa konta gosc
+    /** Metoda ustawia nazwę konta gość
+     * @param guest nazwa konta gość
      */
     public void setGuestAccount(String guest){
         modified = true;
         GUEST = guest;}
 
-    /** Metoda ustawia numer konta gosc
-     * @param id numer konta gosc
+    /** Metoda ustawia numer konta gość
+     * @param id numer konta gość
      */
     public void setGuestId(int id){
         modified = true;
         GUEST_ID = id;}
 
-    /** Metoda ustawia dlugosc minimalna dlugosc hasla
-     * @param len minimalna dlugosc hasla
+    /** Metoda ustawia minimalną długość hasła
+     * @param len minimalna długość hasła
      */
     public void setMinimumPassLength(int len){
         modified = true;
         MIN_PASSWD = len;}
     
-    /** Metoda ustawia parametr potwierdzania rejestracji uzytkownika
-     * @param makeIt nowa wartosc parametru
+    /** Metoda ustawia parametr potwierdzania rejestracji użytkownika
+     * @param makeIt nowa wartość parametru
      */
     public void setNewUserMailAuth(boolean makeIt){
         modified = true;
@@ -408,73 +422,73 @@ public class Config {
         modified = true;
         SMTP_SERVER = server;}
 
-    /** Metoda ustawia wartosc pola FROM
-     * @param from zawartosc pola
+    /** Metoda ustawia wartość pola FROM w poczcie elektronicznej
+     * @param from zawartość pola
      */
     public void setMailFrom(String from){
         modified = true;
         MAIL_FROM = from;}
 
     /** Metoda ustawia temat listu rejestracyjnego
-     * @param subject String z tematem
+     * @param subject temat listu
      */
     public void setRegistrationSubject(String subject){
         modified = true;
         REG_MAIL_SUBJECT = subject;}
 
-    /** Metoda ustawia zawartosc listu rejestracyjnego
-     * @param body String z zawartoscia
+    /** Metoda ustawia zawartość listu rejestracyjnego
+     * @param body zawartoscia listu
      */
     public void setRegistrationBody(String body){
         modified = true;
         REG_MAIL_BODY = body;}
 
-    /** Metoda ustawia temat listu przypominajacego haslo
-     * @param subject String z tytulem
+    /** Metoda ustawia temat listu przypominającego hasło
+     * @param subject temat listu
      */
     public void setForgetSubject(String subject){
         modified = true;
         FORGET_MAIL_SUBJECT = subject;}
 
-    /** Metoda ustawia zawartosc listu przypominajacego haslo
-     * @param body String z zawartoscia listu
+    /** Metoda ustawia zawartość listu przypominającego hasło
+     * @param body zawartość listu
      */
     public void setForgetBody(String body){
         modified = true;
         FORGET_MAIL_BODY = body;}
     
      /** Metoda ustawia czas wygasania sesji
-     * @param p ilosc sekund
+     * @param p ilość sekund
      */
     public void setLogInMaxAge(int p){
         modified = true;
         LOG_IN_MAX_AGE = p;}
        
-     /** Metoda ustala czy polaczenie z baza ma byc kompresowane
-     * @param b Ustala wartosc
+     /** Metoda ustala czy połączenie z baza ma być kompresowane
+     * @param b nowa wartość
      */
     public void setUseCompression(boolean b){
         modified = true;
         USE_COMPRESSION = b;}
 
-     /** Metoda ustala czy polaczenie z baza ma byc szyfrowane
-     * @param b Ustala wartosc
+     /** Metoda ustala czy połączenie z baza ma być szyfrowane
+     * @param b nowa wartość
      */
     public void setUseSsl(boolean b){
         modified = true;
         USE_SSL = b;}
     
-    /** Metoda ustala co ile sekund zapisywac liczbe odwiedzin do bazy
-     * @param i Ilosc sekund
+    /** Metoda ustala co ile sekund zapisywać liczbę odwiedzin do bazy
+     * @param i ilość sekund
      */
     public void setCacheCounter(int i){
         modified = true;
         CACHE_COUNTER = i;
     }
     
-    /** Metoda dodaje tag dla emotikonki. Jesli tag istnieje zostanie podmieniony
-     * @param tag Ciag znakow okreslajacy znacznik emotikony
-     * @param url Sciezka do pliku graficznego
+    /** Metoda dodaje tag dla emotikonki. Jeśli tag istnieje zostanie podmieniony
+     * @param tag ciąg znaków określający znacznik emotikony
+     * @param url ścieżka do pliku graficznego
      */
     public void setSmileTag(String tag, String url){
         modified = true;
@@ -488,6 +502,10 @@ public class Config {
         //this.readConfig();
     }
     
+    /**
+     * Konstruktor
+     * @param app kontekst serwletu na którym wykonuje się aplikacja
+     */
     public Config(javax.servlet.ServletContext app) throws BeeException{
         this.readConfig(app);
     }

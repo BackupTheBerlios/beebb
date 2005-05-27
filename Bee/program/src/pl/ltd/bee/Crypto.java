@@ -9,25 +9,25 @@ package pl.ltd.bee;
 import pl.aislib.util.crypt.UnixCrypt;
 
 /**
- *
+ * Klasa odpowiedzialna na szyfrowanie haseł użytkowników
  * @author pawelb
  */
 public class Crypto {
     
     
-    /** Szyfruje haslo
-     * @param haslo haslo w plain tekst
-     * @return zakodowane haslo
+    /** Szyfruje hasło
+     * @param haslo hasło w plain tekst
+     * @return Zakodowane hasło
      */
     public static String crypt(String haslo) {
         return UnixCrypt.crypt(haslo);
     }
     
     
-    /** Sprawdza czy zakodowane haslo (1 arg) jest takie same jak haslo w plain tekst (2 arg)
-     * @param zakodhaslo zakodowane haslo
-     * @param plainhaslo haslo w plain tekst
-     * @return T lub F w zaleznosci czy hasla sa takie same czy nie
+    /** Sprawdza czy zakodowane hasło (1 arg) jest takie samo jak hasło w plain tekst (2 arg)
+     * @param zakodhaslo zakodowane hasło
+     * @param plainhaslo hasło w plain tekst
+     * @return True lub false w zależności czy hasła są takie same czy nie
      */
     public static boolean matches(String zakodhaslo, String plainhaslo) {
         return UnixCrypt.matches(zakodhaslo, plainhaslo);
