@@ -7,26 +7,26 @@
 package pl.ltd.bee;
 
 /**
- * Klasa odpowiada za dostarczenie wszystkich komunikatow kierowanych do uzytkownika forum
- * W pozniejszym etapie mozna zaimplementowac wyciaganie komunikatow we wskazanym jezyku z pliku XML
+ * Klasa odpowiada za dostarczenie wszystkich komunikatów kierowanych do użytkownika forum
+ * W późniejszym etapie można zaimplementować wyciąganie komunikatów we wskazanym języku z pliku XML
  * @author wilk
  */
 public class Messages {
     
-    /** Creates a new instance of Messages */
+    /** Tworzy nową instancję klasy Messages */
     public Messages() {
     }
     
-    /** Metoda zmienia pierwsza litere na wilka przekazanego napisu
-     * @param s Napis do przerobki
-     * @return Zwraca podany parametr ale z pierwsza litera zamieniona na wielka
+    /** Metoda zmienia pierwszą literą na wielką przekazanego napisu
+     * @param s napis do przeróbki
+     * @return Zwraca podany parametr ale z pierwszą literą zamienioną na wielką
      */
     public static String wielka(String s){
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
     
-    /** Metoda zamienia podany napis na komunikat o bledzie
-     * @param s Komunikat
+    /** Metoda zamienia podany napis na komunikat o błędzie
+     * @param s komunikat
      * @return Zwraca podany komunikat zawarty w znacznikach xhtml
      */
     public static String makeError(String s){
@@ -34,15 +34,15 @@ public class Messages {
     }
     
     /** Metoda zamienia podany napis na komunikat informacyjny
-     * @param s Komunikat
+     * @param s komunikat
      * @return Zwraca podany komunikat zawarty w znacznikach xhtml
      */
     public static String makeInfo(String s){
         return "<p class=\"info\">"+s+"</p>";
     }
     
-    /** Metoda zamienia podany napis na komunikat powiadamiajacy o powodzeniu
-     * @param s Komunikat
+    /** Metoda zamienia podany napis na komunikat powiadamiający o powodzeniu
+     * @param s komunikat
      * @return Zwraca podany komunikat zawarty w znacznikach xhtml
      */
     public static String makeSuccess(String s){
@@ -53,63 +53,63 @@ public class Messages {
     //_______________________________________________________________________________________________
     //                              Metody zwracajace slowa
     //_______________________________________________________________________________________________
-    /** Metoda dostarcza lacznika "lub" */
+    /** Metoda dostarcza łącznika "lub" */
     public static String or(){
         return "lub";}
     
-    /** Metoda dostarcza lacznika "i" */
+    /** Metoda dostarcza łącznika "i" */
     public static String and(){
         return "i";}
     
-    /** Metoda dostarcza lacznika "zapamiętaj" */
+    /** Metoda dostarcza słowo "zapamiętaj" */
     public static String save(){
         return "zapamiętaj";}
     
-    /** Metoda dostarcza fraze nowy uzytkownik */
+    /** Metoda dostarcza frazę "nowy użytkownik" */
     public static String newUser(){
         return "nowy użytkownik";}
     
-    /** Metoda dostarcza slowa "powrot" */
+    /** Metoda dostarcza słowo "powrót" */
     public static String back(){
         return "powrót";}
     
-    /** Metoda dostarcza slowo "witaj" */
+    /** Metoda dostarcza słowo "witaj" */
     public static String welcome(){
         return "witaj";}
     
-    /** Metoda dostarcza slowo "uzytkownik" */
+    /** Metoda dostarcza słowo "użytkownik" */
     public static String user(){
         return "użytkownik";}
     
-    /** Metoda dostarcza fraze "zostal dodany" */
+    /** Metoda dostarcza frazę "został dodany" */
     public static String hasBeenAdded(){
         return "został dodany";}
     
-    /** Metoda dostarcza fraze "dodaj uzytkownika" */
+    /** Metoda dostarcza frazę "dodaj użytkownika" */
     public static String addUser(){
         return "dodaj użytkownika";}
     
-    /** Metoda dostarcza slowo "nick" */
+    /** Metoda dostarcza słowo "nick" */
     public static String nick(){
         return "nick";}
     
-    /** Metoda dostarcza slowo "haslo" */
+    /** Metoda dostarcza słowo "hasło" */
     public static String password(){
         return "hasło";}
     
-    /** Metoda dostarcza fraze "jeszcze raz" */
+    /** Metoda dostarcza frazę "jeszcze raz" */
     public static String oneMoreTime(){
         return "jeszcze raz";}
     
-    /** Metoda dostarcza slowo "imie" */
+    /** Metoda dostarcza słowo "imię" */
     public static String name(){
         return "imię";}
     
-    /** Metoda dostarcza slowo "nazwisko" */
+    /** Metoda dostarcza słowo "nazwisko" */
     public static String surname(){
         return "nazwisko";}
     
-    /** Metoda dostarcza slowo "e-mail" */
+    /** Metoda dostarcza słowo "e-mail" */
     public static String email(){
         return "e-mail";}
     
@@ -117,443 +117,443 @@ public class Messages {
     public static String number(){
         return "numer";}
     
-    /** Metoda dostarcza slowo "gadu-gadu" */
+    /** Metoda dostarcza słowo "gadu-gadu" */
     public static String gg(){
         return "gadu-gadu";}
     
-    /** Metoda dostarcza slowo "jabber" */
+    /** Metoda dostarcza słowo "jabber" */
     public static String jabber(){
         return "jabber";}
     
-    /** Metoda dostarcza slowo "tlen" */
+    /** Metoda dostarcza słowo "tlen" */
     public static String tlen(){
         return "tlen";}
     
-    /** Metoda dostarcza slowo "wpKontakt" */
+    /** Metoda dostarcza słowo "wpKontakt" */
     public static String wpKontakt(){
         return "wpKontakt";}
     
-    /** Metoda dostarcza slowo "icq" */
+    /** Metoda dostarcza słowo "icq" */
     public static String icq(){
         return "icq";}
     
-    /** Metoda dostarcza slowo "msn" */
+    /** Metoda dostarcza słowo "msn" */
     public static String msn(){
         return "msn";}
     
-    /** Metoda dostarcza slowo "yahoo" */
+    /** Metoda dostarcza słowo "yahoo" */
     public static String yahoo(){
         return "yahoo";}
     
-    /** Metoda dostarcza slowo "skype" */
+    /** Metoda dostarcza słowo "skype" */
     public static String skype(){
         return "skype";}
     
-    /** Metoda dostarcza slowo "miasto" */
+    /** Metoda dostarcza słowo "miasto" */
     public static String city(){
         return "miasto";}
     
-    /** Metoda dostarcza slowo "płeć" */
+    /** Metoda dostarcza słowo "płeć" */
     public static String sex(){
         return "płeć";}
     
-    /** Metoda dostarcza slowo "meżczyzna" */
+    /** Metoda dostarcza słowo "meżczyzna" */
     public static String men(){
         return "meżczyzna";}
     
-    /** Metoda dostarcza slowo "kobieta" */
+    /** Metoda dostarcza słowo "kobieta" */
     public static String woman(){
         return "kobieta";}
     
-    /** Metoda dostarcza fraze "pola wymagane" */
+    /** Metoda dostarcza frazę "pola wymagane" */
     public static String fieldsObligatory(){
         return "pola wymagane";}
     
-    /** Metoda dostarcza slowo "wyslij" */
+    /** Metoda dostarcza słowo "wyślij" */
     public static String send(){
         return "wyślij";}
     
-    /** Metoda dostarcza slowo "dodaj" */
+    /** Metoda dostarcza słowo "dodaj" */
     public static String add(){
         return "dodaj";}
     
-    /** Metoda dostarcza slowo "wątek" */
+    /** Metoda dostarcza słowo "wątek" */
     public static String thread(){
         return "wątek";}
     
-    /** Metoda dostarcza slowo "Tytuł" */
+    /** Metoda dostarcza słowo "tytuł" */
     public static String title(){
         return "tytuł";}
     
-    /** Metoda dostarcza slowo "wypowiedź" */
+    /** Metoda dostarcza słowo "wypowiedź" */
     public static String message(){
         return "wypowiedź";}
     
-    /** Metoda dostarcza slowo "autor" */
+    /** Metoda dostarcza słowo "autor" */
     public static String author(){
         return "autor";}
     
-    /** Metoda dostarcza slowo "treść" */
+    /** Metoda dostarcza słowo "treść" */
     public static String tresc(){
         return "treść";}
     
-    /** Metoda dostarcza slowo "pomoc" */
+    /** Metoda dostarcza słowo "pomoc" */
     public static String help(){
         return "pomoc";}
     
-    /** Metoda dostarcza slowo "szukaj" */
+    /** Metoda dostarcza słowo "szukaj" */
     public static String search(){
         return "szukaj";}
     
-    /** Metoda dostarcza slowo "uzytkownicy" */
+    /** Metoda dostarcza słowo "użytkownicy" */
     public static String users(){
         return "użytkownicy";}
     
-    /** Metoda dostarcza slowo "grupy" */
+    /** Metoda dostarcza słowo "grupy" */
     public static String groups(){
         return "grupy";}
     
-    /** Metoda dostarcza slowo "przenies" */
+    /** Metoda dostarcza słowo "przenieś" */
     public static String move(){
         return "przenieś";}
     
-    /** Metoda dostarcza slowo "profil" */
+    /** Metoda dostarcza słowo "profil" */
     public static String profile(){
         return "profil";}
     
-    /** Metoda dostarcza fraze "strona www" */
+    /** Metoda dostarcza frazę "strona www" */
     public static String wwwPage(){
         return "strona www";}
     
-    /** Metoda dostarcza fraze "panel administracyjny" */
+    /** Metoda dostarcza frazę "panel administracyjny" */
     public static String adminPanel(){
         return "panel administracyjny";}
     
-    /** Metoda dostarcza slowo "rejestracja" */
+    /** Metoda dostarcza słowo "rejestracja" */
     public static String registration(){
         return "rejestracja";}
     
-    /** Metoda dostarcza fraze "login" */
+    /** Metoda dostarcza frazę "login" */
     public static String login(){
         return "login";}
     
-    /** Metoda dostarcza fraze "zaloguj" */
+    /** Metoda dostarcza frazę "zaloguj" */
     public static String logIn(){
         return "zaloguj";}
     
-    /** Metoda dostarcza fraze "wyloguj" */
+    /** Metoda dostarcza frazę "wyloguj" */
     public static String logOut(){
         return "wyloguj";}
     
-    /** Metoda dostarcza slowo "tematy" */
+    /** Metoda dostarcza słowo "tematy" */
     public static String themes(){
         return "tematy";}
     
-    /** Metoda dostarcza slowo "temat" */
+    /** Metoda dostarcza słowo "temat" */
     public static String theme(){
         return "temat";}
     
-    /** Metoda dostarcza slowo "odpowiedzi" */
+    /** Metoda dostarcza słowo "odpowiedzi" */
     public static String answers(){
         return "odpowiedzi";}
     
-    /** Metoda dostarcza slowo "wyswietlen" */
+    /** Metoda dostarcza słowo "wyświetleń" */
     public static String showed(){
         return "wyświetleń";}
     
-    /** Metoda dostarcza fraze "ostatnia wypowiedz" */
+    /** Metoda dostarcza frazę "ostatnia wypowiedź" */
     public static String lastPost(){
         return "ostatnia wypowiedź";}
     
-    /** Metoda dostarcza fraze "ukryj" */
+    /** Metoda dostarcza frazę "ukryj" */
     public static String hide(){
         return "ukryj";}
     
-    /** Metoda dostarcza fraze "stare" */
+    /** Metoda dostarcza frazę "stare" */
     public static String old(){
         return "stare";}
     
-    /** Metoda dostarcza fraze "ok" */
+    /** Metoda dostarcza frazę "ok" */
     public static String ok(){
         return "ok";}
     
-    /** Metoda dostarcza fraze "strona główna" */
+    /** Metoda dostarcza frazę "strona główna" */
     public static String mainPage(){
         return "strona główna";}
     
-    /** Metoda dostarcza fraze "uprawnienia" */
+    /** Metoda dostarcza słowo "uprawnienia" */
     public static String priviliges(){
         return "uprawnienia";}
     
-    /** Metoda dostarcza fraze "edycja" */
+    /** Metoda dostarcza słowo "edycja" */
     public static String edition(){
         return "edycja";}
     
-    /** Metoda dostarcza fraze "konfiguracja" */
+    /** Metoda dostarcza słowo "konfiguracja" */
     public static String configuration(){
         return "konfiguracja";}
     
-    /** Metoda dostarcza fraze "usunięte" */
+    /** Metoda dostarcza słowo "usunięte" */
     public static String removed(){
         return "usunięte";}
     
-    /** Metoda dostarcza fraze "backup" */
+    /** Metoda dostarcza frazę "backup" */
     public static String backup(){
         return "backup";}
     
-    /** Metoda dostarcza fraze "nr." */
+    /** Metoda dostarcza słowo "nr" */
     public static String nr(){
-        return "nr.";}
+        return "nr";}
     
-    /** Metoda dostarcza fraze "administrator" */
+    /** Metoda dostarcza słowo "administrator" */
     public static String admin(){
         return "administrator";}
     
-    /** Metoda dostarcza fraze "moderator" */
+    /** Metoda dostarcza słowo "moderator" */
     public static String moderator(){
         return "moderator";}
     
-    /** Metoda dostarcza fraze "aktywny" */
+    /** Metoda dostarcza słowo "aktywny" */
     public static String active(){
         return "aktywny";}
     
-    /** Metoda dostarcza fraze "Zmień uprawnienia" */
+    /** Metoda dostarcza frazę "Zmień uprawnienia" */
     public static String changePriviliges(){
         return "zmień uprawnienia";}
     
-    /** Metoda dostarcza fraze "Dane użytkownika" */
+    /** Metoda dostarcza frazę "Dane użytkownika" */
     public static String userData(){
         return "dane użytkownika";}
     
-    /** Metoda dostarcza fraze "opis" */
+    /** Metoda dostarcza słowo "opis" */
     public static String describe(){
         return "opis";}
     
-    /** Metoda dostarcza fraze "usuń" */
+    /** Metoda dostarcza słowo "usuń" */
     public static String remove(){
         return "usuń";}
     
-    /** Metoda dostarcza fraze "podfora kategorii" */
+    /** Metoda dostarcza frazę "podfora kategorii" */
     public static String podKat(){
         return "podfora kategorii";}
     
-    /** Metoda dostarcza fraze "dodawanie kategorii" */
+    /** Metoda dostarcza frazę "dodawanie kategorii" */
     public static String addingKat(){
         return "dodawanie kategorii";}
     
-    /** Metoda dostarcza fraze "zmień" */
+    /** Metoda dostarcza słowo "zmień" */
     public static String change(){
         return "zmień";}
     
-    /** Metoda dostarcza fraze "czytanie" */
+    /** Metoda dostarcza słowo "czytanie" */
     public static String read(){
         return "czytanie";}
     
-    /** Metoda dostarcza fraze "pisaie" */
+    /** Metoda dostarcza słowo "pisanie" */
     public static String write(){
         return "pisanie";}
     
-    /** Metoda dostarcza fraze "edycja kategorii" */
+    /** Metoda dostarcza frazę "edycja kategorii" */
     public static String editionKat(){
         return "edycja kategorii";}
     
-    /** Metoda dostarcza fraze "dodawanie podforów" */
+    /** Metoda dostarcza frazę "dodawanie podfor" */
     public static String addingPod(){
-        return "dodawanie podforów";}
+        return "dodawanie podfor";}
     
-    /** Metoda dostarcza fraze "edycja podforum" */
+    /** Metoda dostarcza frazę "edycja podforum" */
     public static String editionPod(){
         return "edycja podforum";}
     
-    /** Metoda dostarcza fraze "wybierz kategorie" */
+    /** Metoda dostarcza frazę "wybierz kategorie" */
     public static String chooseKat(){
         return "wybierz kategorie";}
     
-    /** Metoda dostarcza fraze "rozwiń" */
+    /** Metoda dostarcza słowo "rozwiń" */
     public static String rozwin(){
         return "rozwiń";}
     
-    /** Metoda dostarcza fraze "pobierz plik z backupem" */
+    /** Metoda dostarcza frazę "pobierz plik z backupem" */
     public static String getBackyupFile(){
         return "pobierz plik z backupem";}
     
-    /** Metoda dostarcza fraze "zrób backup" */
+    /** Metoda dostarcza frazę "zrób backup" */
     public static String doBackup(){
         return "zrób backup";}
     
-    /** Metoda dostarcza fraze "wybierz plik" */
+    /** Metoda dostarcza frazę "wybierz plik" */
     public static String chooseFile(){
         return "wybierz plik";}
     
-    /** Metoda dostarcza fraze "odtwórz bazę danych" */
+    /** Metoda dostarcza frazę "odtwórz bazę danych" */
     public static String recreateDB(){
         return "odtwórz bazę danych";}
     
-    /** Metoda dostarcza fraze "aktywuj" */
+    /** Metoda dostarcza słowo "aktywuj" */
     public static String activation(){
         return "aktywuj";}
     
-    /** Metoda dostarcza fraze "konfiguracja forum" */
+    /** Metoda dostarcza frazę "konfiguracja forum" */
     public static String forumConfiguration(){
         return "konfiguracja forum";}
     
-    /** Metoda dostarcza fraze "główne" */
+    /** Metoda dostarcza słowo "główne" */
     public static String main(){
         return "główne";}
     
-    /** Metoda dostarcza fraze "baza danych" */
+    /** Metoda dostarcza frazę "baza danych" */
     public static String db(){
         return "baza danych";}
     
-    /** Metoda dostarcza fraze "zachowanie" */
+    /** Metoda dostarcza słowo "zachowanie" */
     public static String behave(){
         return "zachowanie";}
     
-    /** Metoda dostarcza fraze "wiadomości" */
+    /** Metoda dostarcza słowo "wiadomości" */
     public static String mailing(){
         return "wiadomości";}
     
-    /** Metoda dostarcza fraze "tak" */
+    /** Metoda dostarcza słowo "tak" */
     public static String yes(){
         return "tak";}
     
-    /** Metoda dostarcza fraze "nie" */
+    /** Metoda dostarcza słowo "nie" */
     public static String no(){
         return "nie";}
     
-    /** Metoda dostarcza fraze "url forum" */
+    /** Metoda dostarcza frazę "url forum" */
     public static String urlForum(){
         return "url forum";}
     
-    /** Metoda dostarcza fraze "host" */
+    /** Metoda dostarcza słowo "host" */
     public static String host(){
         return "host";}
     
-    /** Metoda dostarcza fraze "nazwa bazy danych" */
+    /** Metoda dostarcza frazę "nazwa bazy danych" */
     public static String dbName(){
         return "nazwa bazy danych";}
     
-    /** Metoda dostarcza fraze "prefix tabel" */
+    /** Metoda dostarcza frazę "prefix tabel" */
     public static String tablePrefix(){
         return "prefix tabel";}
     
-    /** Metoda dostarcza fraze "konto gościa" */
+    /** Metoda dostarcza frazę "konto gościa" */
     public static String guestAccount(){
         return "konto gościa";}
     
-    /** Metoda dostarcza fraze "identyfikator gościa" */
+    /** Metoda dostarcza frazę "identyfikator gościa" */
     public static String guestId(){
         return "identyfikator gościa";}
     
-    /** Metoda dostarcza fraze "maksymalny czas trwania sesji" */
+    /** Metoda dostarcza frazę "maksymalny czas trwania sesji" */
     public static String maxSession(){
         return "maksymalny czas trwania sesji";}
     
-    /** Metoda dostarcza fraze "minimalna długość hasła" */
+    /** Metoda dostarcza frazę "minimalna długość hasła" */
     public static String minPassLength(){
         return "minimalna długośc hasła";}
     
-    /** Metoda dostarcza fraze "Wysyłanie maila w celach autentykacji" */
+    /** Metoda dostarcza frazę "wysyłanie maila w celach autentykacji" */
     public static String newUserMail(){
         return "wysyłanie maila w celach autentykacji";}
     
-    /** Metoda dostarcza fraze "SMTP server" */
+    /** Metoda dostarcza frazę "SMTP server" */
     public static String smtpServer(){
         return "smtp server";}
     
-    /** Metoda dostarcza fraze "adres pocztowy nadawcy" */
+    /** Metoda dostarcza frazę "adres pocztowy nadawcy" */
     public static String mailFrom(){
         return "adres poczty nadawcy";}
     
-    /** Metoda dostarcza fraze "temat rejestracji" */
+    /** Metoda dostarcza frazę "temat rejestracji" */
     public static String registrationTopic(){
         return "temat rejestracji";}
     
-    /** Metoda dostarcza fraze "wiadomość po rejestracji" */
+    /** Metoda dostarcza frazę "wiadomość po rejestracji" */
     public static String registrationMessage(){
         return "wiadomość po rejestracji";}
     
-    /** Metoda dostarcza fraze "temat sekcji zapomniane" */
+    /** Metoda dostarcza frazę "temat sekcji zapomniane" */
     public static String forgetTopic(){
         return "temat sekcji zapomniane";}
     
-    /** Metoda dostarcza fraze "wiadomość sekcji zapomniane" */
+    /** Metoda dostarcza frazę "wiadomość sekcji zapomniane" */
     public static String forgetMessage(){
         return "wiadomość sekcji zapomniane";}
     
-    /** Metoda dostarcza fraze "zmień ustawienia forum" */
+    /** Metoda dostarcza frazę "zmień ustawienia forum" */
     public static String applySettings(){
         return "zastosuj ustawienia forum";}
     
-    /** Metoda dostarcza fraze "kategotia" */
+    /** Metoda dostarcza słowo "kategotia" */
     public static String category(){
         return "kategoria";}
     
-    /** Metoda dostarcza fraze "dodawanie podforów" */
+    /** Metoda dostarcza frazę "dodawanie podforów" */
     public static String addPodforums(){
         return "dodawanie podforów";}
     
-    /** Metoda dostarcza fraze "next" */
+    /** Metoda dostarcza słowo "next" */
     public static String next(){
         return "next";}
     
-    /** Metoda dostarcza fraze "moderatorzy" */
+    /** Metoda dostarcza słowo "moderatorzy" */
     public static String moderators(){
         return "moderatorzy";}
     
-    /** Metoda dostarcza fraze "moderowane podfora" */
+    /** Metoda dostarcza frazę "moderowane podfora" */
     public static String moderatePodforas(){
         return "moderowane podfora";}
     
-    /** Metoda dostarcza fraze "podforum" */
+    /** Metoda dostarcza słowo "podforum" */
     public static String podforum(){
         return "podforum";}
     
-    /** Metoda dostarcza fraze "zablokuj" */
+    /** Metoda dostarcza słowo "zablokuj" */
     public static String block(){
         return "zablokuj";}
     
-    /** Metoda dostarcza fraze "zamknij" */
+    /** Metoda dostarcza słowo "zamknij" */
     public static String close(){
         return "zamknij";}
     
-    /** Metoda dostarcza fraze "usuń" */
+    /** Metoda dostarcza słowo "usuń" */
     public static String delete(){
         return "usuń";}
     
-    /** Metoda dostarcza fraze "edytuj" */
+    /** Metoda dostarcza słowo "edytuj" */
     public static String edit(){
         return "edytuj";}
     
-    /** Metoda dostarcza fraze "prywatne" */
+    /** Metoda dostarcza słowo "prywatne" */
     public static String privates(){
         return "prywatne";}
     
-    /** Metoda dostarcza fraze "używaj ssl" */
+    /** Metoda dostarcza frazę "używaj ssl" */
     public static String useSsl(){
         return "używaj ssl";}
     
-    /** Metoda dostarcza fraze "używaj kompresji" */
+    /** Metoda dostarcza frazę "używaj kompresji" */
     public static String useCompresion(){
         return "używaj kompresji";}
     
-    /** Metoda dostarcza fraze "emotikonki" */
+    /** Metoda dostarcza słowo "emotikonki" */
     public static String emotikons(){
         return "emotikonki";}
     
-    /** Metoda dostarcza fraze "grafika" */
+    /** Metoda dostarcza słowo "grafika" */
     public static String graphics(){
         return "grafika";}
     
-    /** Metoda dostarcza fraze "dodawanie emotikone" */
+    /** Metoda dostarcza frazę "dodawanie emotikone" */
     public static String addingEmotikons(){
         return "dodawanie emotikonek";}
     
-    /** Metoda dostarcza fraze "dodawanie grup" */
+    /** Metoda dostarcza frazę "dodawanie grup" */
     public static String addingGroups(){
         return "dodawanie grup";}
     
-    /** Metoda dostarcza fraze "użytkownicy grupy" */
+    /** Metoda dostarcza frazę "użytkownicy grupy" */
     public static String groupUsers(){
         return "użytkownicy grupy";}
     
@@ -681,7 +681,7 @@ public class Messages {
         return "Hasło powinno mieć przynajmniej " + new String().valueOf(Config.MIN_PASSWD) +" znaków";}
     
     
-    /** Metoda dostarcza fraze "data urodzenia" */
+    /** Metoda dostarcza frazę "data urodzenia" */
     public static String birthdate(){
         return "data urodzenia";}
     
@@ -729,88 +729,88 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat bledu o polaczeniu z baza danych
-     * @return String z komunikatem o braku polaczenia z baza danych
+     * Metoda dostarcza komunikat błedu o połączeniu z bazą danych
+     * @return String z komunikatem o braku połączenia z bazą danych
      */
     public static String errorDataBaseConnection(){
         return "Błąd połączenia z bazą danych!";}
     
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze uzytkownik nie moze zostac stworzony
-     * @return String z komunikatem o tym ze uzytkownik nie moze zostac stworzony
+     * Metoda dostarcza komunikat błedu informujacego że użytkownik nie może zostać stworzony
+     * @return String z komunikatem o tym że użytkownik nie może zostać stworzony
      */
     public static String errorUserCreate(){
         return "Nie można dodać użytkownika - skontaktuj się z administratorem forum";}
     
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze podany uzytkownik juz istnieje
-     * @param nick String z nazwa uzytkownika
-     * @return String z komunikatem o tym ze podany uzytkownik juz istnieje
+     * Metoda dostarcza komunikat błedu informujacego że podany użytkownik już istnieje
+     * @param nick String z nazwa użytkownika
+     * @return String z komunikatem o tym że podany użytkownik już istnieje
      */
     public static String errorUserExists(String nick){
         return "Użytkownik " + nick + " już istnieje!";}
     
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze pole jest wymagane
-     * @return String z komunikatem o tym ze pole jest wymagane
+     * Metoda dostarcza komunikat błedu informujacego że pole jest wymagane
+     * @return String z komunikatem o tym że pole jest wymagane
      */
     public static String errorFieldNeeded(){
         return "Pole jest wymagane!";}
     
     
     /**
-     * Metoda dostarcza komunikat bledu niewystarczajacych uprawnien
-     * @return String z komunikatem o braku wystarczajacych uprawnien
+     * Metoda dostarcza komunikat błedu niewystarczajacych uprawnień
+     * @return String z komunikatem o braku wystarczajacych uprawnień
      */
     public static String errorPermissionDenied(){
         return "Nie wystarczające uprawnienia";}
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze pole jest wymagane
+     * Metoda dostarcza komunikat błedu informujacego że pole jest wymagane
      * @param field String z nazwa pola
-     * @return String z komunikatem o tym ze pole jest wymagane
+     * @return String z komunikatem o tym że pole jest wymagane
      */
     public static String errorFieldNeeded(String field){
         return "Pole '" + field + "'jest wymagane!";}
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze haslo jest za krotkie
-     * @param length liczba wyznaczajaca minimalna dlugosc hasla
-     * @return String z komunikatem o tym ze haslo jest za krotkie
+     * Metoda dostarcza komunikat błedu informujacy że hasło jest za krótkie
+     * @param length liczba wyznaczająca minimalną długość hasła
+     * @return String z komunikatem o tym że hasło jest za krótkie
      */
     public static String errorPassToShort(int length){
         return "Hasło musi mieć przynajmniej " + length + " znaków";}
     
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze hasla nie sa identyczne
-     * @return String z komunikatem o tym ze hasla nie sa identyczne
+     * Metoda dostarcza komunikat błedu informujacy że hasła nie są identyczne
+     * @return String z komunikatem o tym że hasła nie są identyczne
      */
     public static String errorPassNotMatch(){
         return "Hasła się nie zgadzają";}
     
     /**
-     * Metoda dostarcza komunikat bledu informujacy ze bledzie logowania
-     * @return String z komunikatem o bledzie logowania
+     * Metoda dostarcza komunikat błedu informujacego o błędzie logowania
+     * @return String z komunikatem o błędzie logowania
      */
     public static String errorBadUserOrPass(){
         return "Błędny użytkownik lub hasło!";}
     
     
     /**
-     * Metoda dostarcza komunikat bledu nieokreslonego
-     * @return String z komunikatem o bledzie nieokreslonym
+     * Metoda dostarcza komunikat błedu nieokreślonego
+     * @return String z komunikatem o błędzie nieokreślonym
      */
     public static String errorUnknown(){
         return "Błąd! skontaktuj się z administratorem strony!";}
     
     
     /**
-     * Metoda dostarcza komunikat o nie istnieniu watku
-     * @return String z komunikatem o nie istnieniu watku
+     * Metoda dostarcza komunikat o nie istnieniu wątku
+     * @return String z komunikatem o nie istnieniu wątku
      */
     public static String errorThreadNotExists(){
         return "Brak takiego wątku!";    }
@@ -833,47 +833,47 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o bledzie odczytu pliku konfiguracyjnego
-     * @return String z komunikatem o bledzie odczytu pliku konfiguracyjnego
+     * Metoda dostarcza komunikat o błędzie odczytu pliku konfiguracyjnego
+     * @return String z komunikatem o błędzie odczytu pliku konfiguracyjnego
      */
     public static String errorXMLRead(){
         return "Błąd odczytu pliku konfiguracyjnego.";}
     
     
     /**
-     * Metoda dostarcza komunikat o bledzie zapisu pliku konfiguracyjnego
-     * @return String z komunikatem o bledzie zapisu pliku konfiguracyjnego
+     * Metoda dostarcza komunikat o błędzie zapisu pliku konfiguracyjnego
+     * @return String z komunikatem o błędzie zapisu pliku konfiguracyjnego
      */
     public static String errorXMLWrite(){
         return "Błąd zapisu pliku konfiguracyjnego.";}
     
     
     /**
-     * Metoda dostarcza komunikat o bledzie klucza nowego uzytkownika
-     * @return String z komunikatem o bledzie klucza nowego uzytkownika
+     * Metoda dostarcza komunikat o błędzie klucza nowego użytkownika
+     * @return String z komunikatem o błędzie klucza nowego użytkownika
      */
     public static String errorKeyNewUser(){
         return "Błędny klucz.";}
     
     
     /**
-     * Metoda dostarcza komunikat o bledzie zmiany hasla
-     * @return String z komunikatem o bledzie zmiany hasla
+     * Metoda dostarcza komunikat o błędzie zmiany hasła
+     * @return String z komunikatem o błędzie zmiany hasła
      */
     public static String errorChangePasswd(){
         return "Nie można zmienić hasła, skontaktuj się z administratorem forum.";}
     
     
     /**
-     * Metoda dostarcza komunikat o istniejacym juz uzytkowniku z takim emailem
-     * @return String z komunikatem o istniejaym juz uzytkowniku z takim emailem
+     * Metoda dostarcza komunikat o istniejącym już użytkowniku z takim emailem
+     * @return String z komunikatem o istniejącym już użytkowniku z takim emailem
      */
     public static String errorEmailExists(){
         return "Użytkownik ma już konto w serwisie.";}
     
     
     /**
-     * Metoda dostarcza komunikat o istniejacej juz nazwie kategorii
+     * Metoda dostarcza komunikat o istniejącej już nazwie kategorii
      * @return String z komunikatem
      */
     public static String errorNameKat(){
@@ -881,7 +881,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e naleďż˝y podaďż˝ nazwie kategorii
+     * Metoda dostarcza komunikat o tym, że należy podać nazwę kategorii
      * @return String z komunikatem
      */
     public static String errorFieldNameKat(){
@@ -889,7 +889,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e dodanie kategorii nie powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że dodanie kategorii nie powiodło się
      * @return String z komunikatem
      */
     public static String errorAddKat(){
@@ -897,7 +897,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o istniejacej juz nazwie grupy
+     * Metoda dostarcza komunikat o istniejącej już nazwie grupy
      * @return String z komunikatem
      */
     public static String errorNameGroup(){
@@ -905,7 +905,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e naleďż˝y podaďż˝ nazwe grupy
+     * Metoda dostarcza komunikat o tym, że należy podać nazwę grupy
      * @return String z komunikatem
      */
     public static String errorFieldNameGroup(){
@@ -913,7 +913,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e dodanie grupy nie powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że dodanie grupy nie powiodło się
      * @return String z komunikatem
      */
     public static String errorAddGroup(){
@@ -921,7 +921,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e zmiana kategorii nie powiodďż˝a sie
+     * Metoda dostarcza komunikat o tym, że zmiana kategorii nie powiodła się
      * @return String z komunikatem
      */
     public static String errorChangeKat(){
@@ -929,42 +929,42 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e zmiana podforum nie powiodďż˝a sie
+     * Metoda dostarcza komunikat o tym, że zmiana podforum nie powiodła się
      * @return String z komunikatem
      */
     public static String errorChangePod(){
         return "Zmiana podforum nie powiodła się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana prywanosci sie nie powiodla
+     * Metoda dostarcza komunikat o tym, że zmiana prywaności się nie powiodła
      * @return String z komunikatem
      */
     public static String errorChangePrivates(){
         return "Zmiana pól prywatne nie powiodła się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien nie powiodďż˝a sie
+     * Metoda dostarcza komunikat o tym, że zmiana uprawnień nie powiodła się
      * @return String z komunikatem
      */
     public static String errorChangeUpr(){
         return "Zmiana uprawnien nie powiodła się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana prywanosci sie powiodla
+     * Metoda dostarcza komunikat o tym, że zmiana prywaności się powiodła
      * @return String z komunikatem
      */
     public static String changePrivates(){
         return "Zmiana pól prywatne powiodła się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e dodanie kategorii powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że dodanie kategorii powiodło się
      * @return String z komunikatem
      */
     public static String addKat(){
         return "Kategoria została dodana.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e dodanie grupy powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, że dodanie grupy powiodło się
      * @return String z komunikatem
      */
     public static String addGroup(){
@@ -972,7 +972,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, ďż˝e zmiana uprawnien powiodďż˝a sie
+     * Metoda dostarcza komunikat o tym, że zmiana uprawnień powiodła się
      * @return String z komunikatem
      */
     public static String changeUpr(){
@@ -1012,14 +1012,14 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że usuniecie podforum powiodło się.
+     * Metoda dostarcza komunikat o tym, że usunięcie podforum powiodło się.
      * @return String z komunikatem
      */
     public static String removePodforum(){
         return "Podforum zostało usunięte.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, że usuniecie grupy powiodło się.
+     * Metoda dostarcza komunikat o tym, że usunięcie grupy powiodło się.
      * @return String z komunikatem
      */
     public static String removeGroup(){
@@ -1041,14 +1041,14 @@ public class Messages {
         return "User został dodany do grupy.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, że usunięcie usera z ggrupy powiodło się.
+     * Metoda dostarcza komunikat o tym, że usunięcie usera z grupy powiodło się.
      * @return String z komunikatem
      */
     public static String removeUserGroup(){
         return "User został dodany usunięty z grupy.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, usunięcie kategorii nie powiodło się
+     * Metoda dostarcza komunikat o tym, że usunięcie kategorii nie powiodło się
      * @return String z komunikatem
      */
     public static String errorRemoveKat(){
@@ -1084,7 +1084,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, usuniecie podforum nie powiodďż˝o sie
+     * Metoda dostarcza komunikat o tym, usunięcie podforum nie powiodło się
      * @return String z komunikatem
      */
     
@@ -1102,7 +1102,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że aktwacja podforum nie powiodło się
+     * Metoda dostarcza komunikat o tym, że aktwacja podforum nie powiodła się
      * @return String z komunikatem
      */
     
@@ -1111,7 +1111,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że podforum o podanej nazwie juz istnieje.
+     * Metoda dostarcza komunikat o tym, że podforum o podanej nazwie już istnieje.
      * @return String z komunikatem
      */
     public static String errorNamePodforum(){
@@ -1135,49 +1135,49 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że dodanie podforum powiodło sie
+     * Metoda dostarcza komunikat o tym, że dodanie podforum powiodło się
      * @return String z komunikatem
      */
     public static String addPodforum(){
         return "Podforum zostało dodane.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij głównej powiodła sie
+     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracji głównej powiodła się
      * @return String z komunikatem
      */
     public static String changeConfigMain(){
         return "Konfiguracja główna została zmieniona.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij bazy danych powiodła sie
+     * Metoda dostarcza komunikat o tym, że zmiana konfiguracji bazy danych powiodła się
      * @return String z komunikatem
      */
     public static String changeConfigDb(){
         return "Konfiguracja bazy danych została zmieniona.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij zachowania forum powiodła sie
+     * Metoda dostarcza komunikat o tym, że zmiana konfiguracji zachowania forum powiodła się
      * @return String z komunikatem
      */
     public static String changeConfigBehave(){
         return "Konfiguracja zachowania forum została zmieniona.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij emotikonek forum powiodła sie
+     * Metoda dostarcza komunikat o tym, że zmiana konfiguracji emotikonek forum powiodła się
      * @return String z komunikatem
      */
     public static String changeConfigEmotikons(){
         return "Konfiguracja emotikonek została zmieniona.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, ze zmiana konfiguracij mailingu powiodła sie
+     * Metoda dostarcza komunikat o tym, że zmiana konfiguracji mailingu powiodła się
      * @return String z komunikatem
      */
     public static String changeConfigMail(){
         return "Konfiguracja mailingu została zmieniona.";}
     
     /**
-     * Metoda dostarcza komunikat o blďż˝dzie wywolania formularza
+     * Metoda dostarcza komunikat o błędzie wywołania formularza
      * @return String z komunikatem
      */
     public static String formError(){
@@ -1224,14 +1224,14 @@ public class Messages {
         return "Dane zaktualizowano";}
     
     /**
-     * Metoda dostarcza komunikat "Operacja powiodla sie"
+     * Metoda dostarcza komunikat "Operacja powiodła się"
      * @return Komunikat o poprawnym przebiegu operacji
      */
     public static String actionDone(){
         return "operacja powiodła się";}
     
     /**
-     * Metoda dostarcza komunikat "przenies watek"
+     * Metoda dostarcza komunikat "przenieś wątek"
      * @return Komunikat o poprawnym przebiegu operacji
      */
     public static String moveThread(){
@@ -1239,15 +1239,15 @@ public class Messages {
     
     /**
      * Metoda dostarcza komunikat "czy na pewno ?"
-     * @return Pytanie czy na pewno wykonac dana operacje
+     * @return Pytanie czy na pewno wykonać daną operację
      */
     public static String areYouSure(){
         return "czy na pewno ?";}
     
     
     /**
-     * Metoda dostarcza slowo "akcje"
-     * @return Slowo "akcje"
+     * Metoda dostarcza słowo "akcje"
+     * @return słowo "akcje"
      */
     public static String actions(){
         return "akcje";}
@@ -1279,49 +1279,49 @@ public class Messages {
     //_______________________________________________________________________________________________
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji edytowania wypowiedzi
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintEditMessages(){
         return "<img src=&quot;./images/edit.gif&quot; alt=&quot;" + Messages.wielka(Messages.edit())+"&quot;/>&nbsp;Operacja pozwala edytować treść wskazanej wypowiedzi. Aby móc edytować wypowiedź należy być zalogowanym użytkownikiem forum oraz albo być właścicielem wypowiedzi albo być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji banowania uzytkownika na podanym podforum
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBanAuthor(){
         return "<img src=&quot;./images/kick_user.gif&quot; alt=&quot;" + Messages.wielka(Messages.banAuthor())+"&quot;/>&nbsp;Operacja powoduje &quot;zabanowanie&quot; użytkownika forum. Spowoduje to zablokowanie możliwości wypowiadania się danego użytkownika na podforum, w którym znajduje się dana wypowiedź. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji kasowania wypowiedzi
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintDeleteMessage(){
         return "<img src=&quot;./images/delete.gif&quot; alt=&quot;" + Messages.wielka(Messages.delete())+"&quot;/>&nbsp;Operacja powoduje skasowanie wypowiedzi. Nie będzie ona później dostępna. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji przenoszenia wątku
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintMoveThread(){
         return "<img src=&quot;./images/move.gif&quot; alt=&quot;" + Messages.wielka(Messages.move()) + "&quot;/>&nbsp;Operacja powoduje próbę przeniesienia wątku do innego podforum. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek, a także moderatorem podforum docelowego.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji blokowania wątku
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBlockThread(){
         return "<img src=&quot;./images/lock.png&quot; alt=&quot;" + Messages.wielka(Messages.block())+"&quot;/>&nbsp;Operacja powoduje zablokowanie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji zamknięcia wątku
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintCloseThread(){
         return "<img src=&quot;./images/cut.gif&quot; alt=&quot;" + Messages.wielka(Messages.close())+"&quot;/>&nbsp;Operacja powoduje zamknięcie wątku. Dalsza dyskusja nie będzie możliwa. Aby móc wykonać tą operację należy być zalogowanym użytkownikiem forum oraz być moderatorem podforum, w którym znajduje się wątek.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla wskaźnika statusu jabber
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintJabberStatus(){
         return "Wskaźnik statusu dla sieci Jabber. Aby wskaźnik działał należy wysłać autoryzację do kontaktu jrky2@jabber.org";
@@ -1329,7 +1329,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi informującej o potrzebie zalogowania się
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintPleaseLogin(){
         return "<img src=&quot;./images/stop.gif&quot; alt=&quot;" + Messages.wielka(Messages.logInYourself())+"&quot;/>&nbsp;Proszę się najpierw zalogować.";
@@ -1337,7 +1337,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla imienia
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintName(){
         return "Imię użytkownika";
@@ -1345,7 +1345,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla nazwisko
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintSurname(){
         return "Nazwisko użytkownika";
@@ -1353,15 +1353,15 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla email
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintEmail(){
         return "Adres e-mail użytkownika. Należy wpisać poprawny adres email - przy wyświetlaniu adresu na stronie będzie on zabezpieczony filtrem antyspamowym.";
     }
     
     
-    /** Metoda dostarcza zawartość chmurki podpowiedzi dla email
-     * @return String zawierajacy wycinek dokumentu HTML
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla WWW
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintWWW(){
         return "Prywatna strona www użytkownika. Po wpisaniu tej wartości będzie się ona pojawiać zawsze w wizytówce użytkownika.";
@@ -1369,7 +1369,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla ukrywania danych
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintHide(){
         return "Zaznaczenie tej opcji spowoduje ukrycie danych przed innymi użytkownikami. Oznacza to że wartość nie pojawi się na publicznej wizytówce.";
@@ -1377,7 +1377,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla gg
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintGG(){
         return "Numer gadu-gadu. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1385,7 +1385,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Jabbera
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintJabber(){
         return "Identyfikator jabbera. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1393,7 +1393,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla wpKontakt
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintTlen(){
         return "Identyfikator Tlen. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1401,7 +1401,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla WPKontakt
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintWPKontakt(){
         return "Identyfikator WPKontakt. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1409,7 +1409,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla ICQ
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintICQ(){
         return "Identyfikator ICQ. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1417,14 +1417,14 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla MSN
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintMSN(){
         return "Identyfikator MSN. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Yahoo
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintYahoo(){
         return "Identyfikator Yahoo. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1432,7 +1432,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Skype
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintSkype(){
         return "Identyfikator Skype. Wpisanie tej wartości pozwoli na obserwowanie Twojego statusu przez innych użytkowników.";
@@ -1440,7 +1440,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Miasta, z którego pochodzi uzytkownik
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintCity(){
         return "Miasto, z którego pochodzi użytkownik.";
@@ -1448,7 +1448,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Daty Urodzenia
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBirthDate(){
         return "Data urodzenia, wykorzystywana min. przy generowaniu urodzin użytkowników.";
@@ -1456,7 +1456,7 @@ public class Messages {
 
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Roku urodzenia
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBirthYear(){
         return "Rok urodzenia";
@@ -1464,7 +1464,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Miesiąca Urodzenia
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBirthMonth(){
         return "Miesiąc urodzenia";
@@ -1472,14 +1472,14 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Dnia Urodzenia
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBirthDay(){
         return "Dzień urodzenia";
     }
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla płci użytkownika
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintSex(){
         return "Płeć użytkownika";
@@ -1487,7 +1487,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla tematu
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintTheme(){
         return "Temat wyglądu. Po zalogowaniu temat zostanie zmieniony na wybrany.";
