@@ -409,9 +409,12 @@
                 %>
         <form method="post" action="editProfile.jsp<% out.print(css.length()>0?"?"+css:"");%>">
             <table align="center" class="tableProfile" border="0">
-                <tr><th><% out.print(Messages.wielka(Messages.old()) + " " + Messages.password());%></th><td class="tdProfileField"><input type="password" name="oldpasswd" size="35"/></td></tr>
-                <tr><th><% out.print(Messages.wielka(Messages.password()));%></th><td class="tdProfileField"><input type="password" name="passwd1" size="35"/></td></tr>
-                <tr><th><% out.print(Messages.wielka(Messages.password()) + " " + Messages.oneMoreTime()); %></th><td class="tdProfileField"><input type="password" name="passwd2" size="35"/></td></tr>
+                <tr><th><% out.print("<span onmouseover=\"showHint('"+Messages.hintOldPassword()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.old()) + " " + Messages.password() + "</span>");%></th>
+                    <td class="tdProfileField"><%out.print("<span onmouseover=\"showHint('"+Messages.hintOldPassword()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%><input type="password" name="oldpasswd" size="35"/></span></td></tr>
+                <tr><th><% out.print("<span onmouseover=\"showHint('"+Messages.hintPasswordOnceAgain()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" +Messages.wielka(Messages.password()) + "</span>");%></th>
+                    <td class="tdProfileField"><%out.print("<span onmouseover=\"showHint('"+Messages.hintPassword()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%><input type="password" name="passwd1" size="35"/></span></td></tr>
+                <tr><th><% out.print("<span onmouseover=\"showHint('"+Messages.hintPasswordOnceAgain()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">" +Messages.wielka(Messages.password()) + " " + Messages.oneMoreTime() + "</span>"); %></th>
+                    <td class="tdProfileField"><%out.print("<span onmouseover=\"showHint('"+Messages.hintPasswordOnceAgain()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%><input type="password" name="passwd2" size="35"/></span></td></tr>
                 <tr><td colspan="2" align="right"><input type="hidden" name="psw" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
             </table>
         </form>
