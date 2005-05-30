@@ -40,10 +40,6 @@
 		<td id="cellMenu" align="center">
 			<table id="tableMenu" border="0" width="600"> 
 			<tr>
-			<td class="tdTopLink" align="left"><span class="aTopLink">
-				[] <%out.print(Messages.wielka(Messages.help()));%>
-				</span>
-			</td>
 			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./search.jsp<% out.print(css.length()>0?"?"+css:"");%>')">
 				[] <%out.print(Messages.wielka(Messages.search()));%>
 				</span>
@@ -62,6 +58,7 @@
                                 <%
                                 if (auth.zalogowany(request,db_con)) 
                                     out.print(" onclick=\"linkClick('./editProfile.jsp"+(css.length()>0?"?"+css:"")+"')\"");   
+                                else out.print(" onmouseover=\"showHint('"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\"");
                                 out.print(">[] " +Messages.wielka(Messages.profile()));%>
 				</span>
 			</td>
