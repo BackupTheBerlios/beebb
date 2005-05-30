@@ -1453,7 +1453,7 @@ public class Messages {
     public static String hintBirthDate(){
         return "Data urodzenia, wykorzystywana min. przy generowaniu urodzin użytkowników.";
     }
-
+    
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Roku urodzenia
      * @return String zawierający wycinek dokumentu HTML
@@ -1492,5 +1492,38 @@ public class Messages {
     public static String hintTheme(){
         return "Temat wyglądu. Po zalogowaniu temat zostanie zmieniony na wybrany.";
     }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla starego hasła
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintOldPassword(){
+        return "Pole zawiera aktualne hasło użytkownika, aby móc zmienić hasło należy podać stare.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla hasła
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintPassword(){
+        return "Pole zawiera hasło użytkownika, hasło powinno być mieć nie mniej niż " + Config.MIN_PASSWD + " znaków.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla hasła
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintPasswordOnceAgain(){
+        return "Aby uniemożliwić pomyłkę przy zmianie hasła, należy podać je jeszcze raz.";
+    }
+    
+    
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Avatarka
+     * @return String zawierajacy wycinek dokumentu HTML
+     */
+    public static String hintAvatar(){
+        return "zmiana obrazka w wizytówce"; //TODO napisać coś konkretnego
+    }
+    
     
 }
