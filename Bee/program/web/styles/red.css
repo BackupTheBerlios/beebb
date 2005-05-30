@@ -102,7 +102,7 @@ th	{
         color: black;
 }
 
-.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
+.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdSearch, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList, .tdGroupsList{ 
         background-color: darksalmon;
         color: black;
         border: 1px black solid; 

@@ -48,7 +48,7 @@
 				[] <%out.print(Messages.wielka(Messages.users()));%>
 				</span>
 			</td>
-			<td class="tdTopLink" align="left"><span class="aTopLink">
+			<td class="tdTopLink" align="left"><span class="aTopLink" onclick="linkClick('./groups.jsp<% out.print(css.length()>0?"?"+css:"");%>')">
 				[] <%out.print(Messages.wielka(Messages.groups()));%>
 				</span>
 			</td>

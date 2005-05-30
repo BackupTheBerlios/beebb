@@ -83,7 +83,7 @@ th	{
         margin: 0pt;
 	}
 
-.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdLogIn, .tdSearch, .tdForget, .tdRegister, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList{ 
+.tdAutorBox, .tdWypowiedz, .tdProfileField, .tdLogIn, .tdSearch, .tdForget, .tdRegister, .tdWypowiedzModer, .tdMoveTo, .tdImgEmotikona, .tdDodawanie, .tdEditWypowiedz, .tdUsersList, .tdGroupsList{ 
         background-color: powederblue;
         border: 1px black solid; 
         }
