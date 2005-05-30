@@ -1082,9 +1082,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
-     * @param czy_aktywna boolean T lub F
-     * @return ArrayList obiektow Kategoria
+     * Metoda zwraca listę obiektów Kategoria, aktywne bądź nie, na podstawie parametru czy_aktywna
+     * @param czy_aktywna boolean true lub false
+     * @return ArrayList obiektów Kategoria
      */
     public ArrayList getKategorie(boolean czy_aktywna) {
         ArrayList wynik = new ArrayList();
@@ -1099,6 +1099,24 @@ public class DataBase {
         return wynik;
     }
     
+    /**
+     * Metoda zwraca listę obiektów Podforum, aktywne bądź nie, na podstawie parametru czy_aktywna
+     * @param czy_aktywne boolean true lub false
+     * @return ArrayList obiektów Podforum
+     */
+    public ArrayList getPodfora(boolean czy_aktywne) {
+        ArrayList wynik = new ArrayList();
+        String aktywne;
+        if(czy_aktywne) aktywne=TAK; else aktywne=NIE;
+        ArrayList podfora = baza.query("SELECT * FROM "+ BEE_PODFORA+" WHERE "+PODFORUM_AKTYWNE+"='"+aktywne+"' ");
+        if (podfora == null) return wynik;
+        for(int i=0;i<podfora.size();i++) {
+            Hashtable podforum = (Hashtable)podfora.get(i);
+            wynik.add(new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this));
+        }
+        return wynik;
+    }
+
     /**
      * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
      * @param czy_aktywna boolean T lub F

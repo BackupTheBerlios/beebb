@@ -142,12 +142,18 @@
                             <tr><td class="tdMoveTo" align="center">
                             <select name="moveto">
                             <%
-                                ArrayList podfora = db_con.getModerowanePodfora(user.getID());
+                                ArrayList podfora = null;
+                                if (!user.admin())
+                                    podfora = db_con.getModerowanePodfora(user.getID());
+                                else podfora = db_con.getPodfora(true);
+                                out.println(podfora+"<br/>");
+                                if (podfora != null)
                                 for(int i=0;i<podfora.size();i++)
                                 {
                                     Podforum p = (Podforum)podfora.get(i);
                                     out.println("<option value=\""+p.getID()+"\">" + p.getTytul()+" ("+ p.getOpis() +")</option>");
                                 }
+
                             %>
                             </select>
                             <input type="hidden" name="<% if (s_wpid != null) out.print("wpid\" value=\""+s_wpid+"\"");else out.print("wid\" value=\""+wat.getID()+"\"");%> />
@@ -169,6 +175,7 @@
                     {
                         int moveto = Integer.parseInt(s_moveto);
                         if (user.moderator(pod.getID()) || (user.admin()))
+                            //TODO Tu trzeba jeszcze sprawdzic czy moderator ma praw przeniesienia !
                             if (db_con.moveWatek(wat,pod.getID(),moveto))
                                     out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                                 else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));
