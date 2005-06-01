@@ -117,7 +117,7 @@
                     if (!db_con.updatePodforum(pf)) out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                 }
                 
-                public boolean canCreate(String podforum, Watek watek, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth){
+                public boolean canCreate(String podforum, String watek, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth){
                     if (podforum != null)
                     {
                         Podforum p = db_con.getPodforum(Integer.decode(podforum).intValue());
@@ -133,11 +133,13 @@
                     }
                     if (watek != null)
                     {
-                        if (watek.czyZablokowany() || watek.czyZamkniety()) return false;
-                        if(watek.czyPrywatny()) {
+                       Watek wt = null;
+                        wt = db_con.getWatek(Integer.decode(watek).intValue());
+                        if (wt.czyZablokowany() || wt.czyZamkniety()) return false;
+                        if(wt.czyPrywatny()) {
                             User user = auth.getUser(pytanie,db_con);
                             if (user != null)
-                                if (user.hasWriteWatekRight(watek.getID()))
+                                if (user.hasWriteWatekRight(wt.getID()))
                                     return true;
                                 else return false;
                             else return false;
@@ -155,59 +157,58 @@
             String watek=request.getParameter("w");
             String podforum=request.getParameter("p");
             if (watek==null && podforum==null) {
-                out.print(Messages.formError());
-            } else {
-                Watek wt = null;
-                if (watek != null)
-                    wt = db_con.getWatek(Integer.decode(watek).intValue());
-            
-            String ID_Usera = new String().valueOf(Config.GUEST_ID); 
-            String Nazwa_Usera= Config.GUEST;
-            
+                out.print("<br/><center>" + Messages.makeError(Messages.formError()) + "</center>");
+            } else { /// watek || podforum!=null
             ////////////////
             String text=request.getParameter("text");
-            if (text!=null) {
-            text = new String(text.getBytes("8859_1"),"UTF-8");
-            out.print("<br/><br/>");
-            text = Commons.wypowiedzDoBazy(text);
-            ////////////////
-            
-            
-            //// user ////
-            if (auth.zalogowany(request,db_con)) {
-                ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
-                Nazwa_Usera = String.valueOf(auth.getUser(request,db_con).getLogin());
-            } else {
-                String autor=request.getParameter("autor");
-                if (autor!=null) {
+            if (text!=null) { // znaczy że dodaje coś
+                text = new String(text.getBytes("8859_1"),"UTF-8");
+                out.print("<br/><br/>");
+                text = Commons.wypowiedzDoBazy(text);
+                ////////////////
+
+                //// user ////
+                String ID_Usera = new String().valueOf(Config.GUEST_ID); 
+                String Nazwa_Usera= Config.GUEST;
+                if (auth.zalogowany(request,db_con)) {
+                    ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
+                    Nazwa_Usera = String.valueOf(auth.getUser(request,db_con).getLogin());
+                } else {
+                    String autor=request.getParameter("autor");
+                    if (autor!=null) {
                       autor = new String(autor.getBytes("8859_1"),"UTF-8");
                       autor = Commons.wypowiedzDoBazy(autor);
                       Nazwa_Usera=autor;
+                    }
                 }
-            }
-            ////////////
-            
-            if (wt!=null) {
+                //////////// tutaj dodaje wypowiedź (i watek)
+                if (podforum!=null) {
+                        String title=request.getParameter("title");
+                        title = new String(title.getBytes("8859_1"),"UTF-8");
+                        title = Commons.wypowiedzDoBazy(title);
+                        //dodaj Watek
+                        Watek wat = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title,request,auth);
+                        //dodaj Wypowiedz
+                        if (wat != null){
+                            d.dodajWypowiedz(wat,ID_Usera,Nazwa_Usera,text,request,auth);
+                            d.incrAddWatek(wat,ID_Usera,Nazwa_Usera);
+                        }
+                    } else { //znaczy że dodaje wypowiedz
+                        Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
                         //dodaj Wypowiedz
                         d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text,request,auth);
                         d.incrAddWypowiedz(wt,ID_Usera,Nazwa_Usera);
-                } else
-                if (podforum!=null && text!=null) {
-                    String title=request.getParameter("title");
-                    title = new String(title.getBytes("8859_1"),"UTF-8");
-                    title = Commons.wypowiedzDoBazy(title);
-                    //dodaj Watek
-                    Watek wat = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title,request,auth);
-                    //dodaj Wypowiedz
-                    if (wat != null){
-                        d.dodajWypowiedz(wat,ID_Usera,Nazwa_Usera,text,request,auth);
-                        d.incrAddWatek(wat,ID_Usera,Nazwa_Usera);
                     }
-                }
                     out.print("<center><br/><br/>"+Commons.aHref(request,Messages.wielka(Messages.back()),"./main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
-                }
+                } // tekst!=null ; koniec dodawania
                 else 
-                if (d.canCreate(podforum, wt,request,auth)) {
+                {
+                String ID_Usera = new String().valueOf(Config.GUEST_ID); 
+                if (auth.zalogowany(request,db_con))
+                    ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
+                int podf_id = -1;
+                if (podforum==null) podf_id=db_con.getPodforumbyWatek(Integer.decode(watek).intValue()).getID(); else podf_id = Integer.decode(podforum).intValue();
+                if (d.canCreate(podforum, watek,request,auth) && !db_con.isUserBanned(Integer.decode(ID_Usera).intValue(),podf_id)) {
         %>
                     <table align="center">
                     <tr>
@@ -260,9 +261,9 @@
                     <center><% Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)));%></center>
    <% }
                 else {//to znaczy, ze canCreate zwrocilo FALSE
-                    out.println(Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())));
+                    out.println("<center>"+Messages.makeError(Messages.wielka(Messages.errorPermissionDenied()))+ "</center>");
                     out.println("<center>"+Commons.aHref(request,Messages.wielka(Messages.back()),"main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
-                }
-    }%>
+                } }
+    } /// watek && podforum!=null%>
     </body>
 </html>

@@ -542,7 +542,7 @@ public class DataBase {
         }
         return wynik;
     }
-
+    
     
     /**
      * Metoda zwaraca obiekt User stworzony z danych znajdujących się w hashtablicy podanej jako parametr
@@ -559,7 +559,7 @@ public class DataBase {
                 (String)user.get(USER_MSN),(String)user.get(USER_MSN_PRYWATNY),(String)user.get(USER_YAHOO),
                 (String)user.get(USER_YAHOO_PRYWATNE),(String)user.get(USER_SKYPE),(String)user.get(USER_SKYPE_PRYWATNY),
                 (String)user.get(USER_MIASTO),(String)user.get(USER_MIASTO_PRYWATNE),(String)user.get(USER_PLEC),
-                (String)user.get(USER_AVATAR),(String)user.get(USER_SYGNATURKA),(String)user.get(USER_SYGNATURKA_PUBLICZNA), 
+                (String)user.get(USER_AVATAR),(String)user.get(USER_SYGNATURKA),(String)user.get(USER_SYGNATURKA_PUBLICZNA),
                 (String)user.get(USER_STYL),(String)user.get(USER_JEZYK),(String)user.get(USER_POWIADAMIANIE),
                 (String)user.get(USER_DATAURODZENIA),(String)user.get(USER_DATAURODZENIA_PRYWATNA),
                 (String)user.get(USER_LICZBAWYPOWIEDZI),(String)user.get(USER_LICZBAWATKOW),(String)user.get(USER_LASTLOG),
@@ -640,16 +640,16 @@ public class DataBase {
         String notify; if(u.ifNotify()) notify=NIE; else notify=TAK;
         String showBirthDate; if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
         
-        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (" + u.getID() + ",\"" + u.getLogin() + 
-                "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() +  "' ,'" + showName + 
-                "','" + u.getEmail()  + "','" + showEmail + "' ,'" + u.getWWW() + "' ,'" + u.getGG() + 
-                "' ,'" + showGG + "','" + u.getJabber() + "','" +  showJabber + "','" + u.getTlen() + "','" +  showTlen + 
-                "','" + u.getWPKontakt() + "','" +  showWPKontakt + "','" + u.getICQ() + "','" +  showICQ + "','" + u.getMSN() + 
+        return baza.dmlQuery("INSERT INTO " + BEE_USERS + " VALUES (" + u.getID() + ",\"" + u.getLogin() +
+                "\",\"" + u.getHaslo() + "\" ,'"+  u.getImie() +"' ,'" + u.getNazwisko() +  "' ,'" + showName +
+                "','" + u.getEmail()  + "','" + showEmail + "' ,'" + u.getWWW() + "' ,'" + u.getGG() +
+                "' ,'" + showGG + "','" + u.getJabber() + "','" +  showJabber + "','" + u.getTlen() + "','" +  showTlen +
+                "','" + u.getWPKontakt() + "','" +  showWPKontakt + "','" + u.getICQ() + "','" +  showICQ + "','" + u.getMSN() +
                 "','" +  showMSN + "','" + u.getYahoo() + "','" + showYahoo + "','" + u.getSkype() + "','" + showSkype +
-                "','" + u.getCity() + "','" +  showCity + "','" + u.getSex() + "','" + u.getAvatar() + "','" + u.getSig() + 
-                "','" +  showSig + "','" + u.getStyle() + "','" + u.getLang() + "','" + notify + 
-                "','" + prepareDateToUpdate(u.getBirthDate()) + 
-                "','" +  showBirthDate + "'," + u.getLiczbaWypowiedzi() + "," + u.getLiczbaWatkow() + 
+                "','" + u.getCity() + "','" +  showCity + "','" + u.getSex() + "','" + u.getAvatar() + "','" + u.getSig() +
+                "','" +  showSig + "','" + u.getStyle() + "','" + u.getLang() + "','" + notify +
+                "','" + prepareDateToUpdate(u.getBirthDate()) +
+                "','" +  showBirthDate + "'," + u.getLiczbaWypowiedzi() + "," + u.getLiczbaWatkow() +
                 ",'" + u.getLastLog() + "' ,'" + u.getCurrentLog() + "','" + aktywny + "','" + admin + "','" + moderator + "')");
     }
     
@@ -677,13 +677,13 @@ public class DataBase {
         String showBirthDate; if(u.ifShowBirthDate()) showBirthDate=NIE; else showBirthDate=TAK;
         String showSygnaturka; if(u.ifShowSig()) showSygnaturka=NIE; else showSygnaturka=TAK;
         String powiadamianie; if(u.ifNotify()) powiadamianie=NIE; else powiadamianie=TAK;
-        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO + 
-                " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() + 
-                "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() + 
+        return baza.dmlQuery("UPDATE " + BEE_USERS + " set " + USER_LOGIN + " = '" + u.getLogin() + "'," + USER_HASLO +
+                " = '" + u.getHaslo() + "'," + USER_IMIE + "='" + u.getImie() + "'," + USER_NAZWISKO + "='" + u.getNazwisko() +
+                "'," + USER_IMIE_NAZWISKO_PRYWATNE + "='" + showName + "'," + USER_EMAIL + "='" + u.getEmail() +
                 "',"+ USER_WWW + "='" + u.getWWW() +
-                "'," + USER_EMAIL_PRYWATNY + "='" + showEmail + "'," + USER_GG + "='" + u.getGG() + 
-                "'," + USER_GG_PRYWATNE + "='" + showGG + "'," + USER_JABBER + "='" + u.getJabber() + 
-                "'," + USER_JABBER_PRYWATNY + "='" + showJabber + 
+                "'," + USER_EMAIL_PRYWATNY + "='" + showEmail + "'," + USER_GG + "='" + u.getGG() +
+                "'," + USER_GG_PRYWATNE + "='" + showGG + "'," + USER_JABBER + "='" + u.getJabber() +
+                "'," + USER_JABBER_PRYWATNY + "='" + showJabber +
                 "'," + USER_TLEN + "='" + u.getTlen() + "'," + USER_TLEN_PRYWATNY + "='" + showTlen +
                 "'," + USER_WPKONTAKT + "='" + u.getWPKontakt() + "'," + USER_WPKONTAKT_PRYWATNY + "='" + showWPKontakt +
                 "'," + USER_ICQ + "='" + u.getICQ() + "'," + USER_ICQ_PRYWATNE + "='" + showICQ +
@@ -696,10 +696,10 @@ public class DataBase {
                 "'," + USER_STYL + "='" + u.getStyle() + "'," + USER_JEZYK + "='" + u.getLang() +
                 "'," + USER_POWIADAMIANIE + "='" + powiadamianie +
                 "'," + USER_DATAURODZENIA + "='" + prepareDateToUpdate(u.getBirthDate()) + "'," + USER_DATAURODZENIA_PRYWATNA + "='" + showBirthDate +
-                "'," + USER_AKTYWNY + "='" + aktywny + 
-                "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator + 
-                "'," + USER_LICZBAWYPOWIEDZI + "=" + u.getLiczbaWypowiedzi() + "," + USER_LICZBAWATKOW + "=" + u.getLiczbaWatkow() + 
-                "," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() + 
+                "'," + USER_AKTYWNY + "='" + aktywny +
+                "'," + USER_ADMIN + "='" + admin + "'," + USER_MODERATOR + "='" + moderator +
+                "'," + USER_LICZBAWYPOWIEDZI + "=" + u.getLiczbaWypowiedzi() + "," + USER_LICZBAWATKOW + "=" + u.getLiczbaWatkow() +
+                "," + USER_LASTLOG + "='" + u.getLastLog() + "'," + USER_CURRENTLOG + "='" + u.getCurrentLog() +
                 "' where " + USER_ID + "="  + new String().valueOf(u.getID()) );
     }
     
@@ -1116,7 +1116,7 @@ public class DataBase {
         }
         return wynik;
     }
-
+    
     /**
      * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
      * @param czy_aktywna boolean T lub F
@@ -1373,6 +1373,19 @@ public class DataBase {
     }
     
     
+    /**
+     * Metoda sprawdza czy użytkownik o podanym id jest zbanowany w podforum o danym id
+     * @param user_id IDentyfikator użytkownika
+     * @param id_podforum IDentyfikator podforum
+     * @return true w przypadku gdy użytkownik jest zbanowany w podanym podforum, wpp false
+     */
+    public boolean isUserBanned(int user_id, int id_podforum){    
+            return (baza.query("SELECT * FROM "+ BEE_BANNED_USERS + 
+                    " WHERE "+BANNED_USERS_ID_USER+"=" +  user_id + 
+                    " AND " + BANNED_USERS_ID_PODFORUM + "=" + id_podforum).size()!=0);
+    }
+    
+    
     /** Metoda dostarcza podfora moderowane przez wskazanego uzytkownika
      * @param user_id identyfikator uzytkownika
      * @return ArrayList obiektow podforum
@@ -1527,11 +1540,11 @@ public class DataBase {
     }
     
      /*
-     * Metoda zwaraca objekt Privilage o podanym identyfikatorze grupy i podforum
-     * @param id_g Identyfikator grupy
-     * @param id_p Identyfikator podforum
-     * @return Zwraca obiekt Privilage badz null w razie bledu lub gdy go nie ma.
-     */
+      * Metoda zwaraca objekt Privilage o podanym identyfikatorze grupy i podforum
+      * @param id_g Identyfikator grupy
+      * @param id_p Identyfikator podforum
+      * @return Zwraca obiekt Privilage badz null w razie bledu lub gdy go nie ma.
+      */
     public Privilage getPrivilagePod(int id_g, int id_p){
         Hashtable p = getObject("SELECT * FROM " + BEE_PRIVILAGES + " WHERE " + PRIVILAGES_ID_GROUP +"=" + id_g+ " and " + PRIVILAGES_ID_PODFORUM +"=" + id_p);
         if (p == null) return null;
@@ -1541,10 +1554,10 @@ public class DataBase {
     }
     
     
-      /**
+    /**
      * Metoda zwaraca liste obiektow Podforum w podanej Kategorii będących w danej grupie, aktywne badż nie w
      * @param id_k Identyfikator kategorii
-     * @param id_g identyfikator grupy 
+     * @param id_g identyfikator grupy
      * @param czy_prywatne boolena T lub F
      * @param czy_aktywne boolena T lub F
      * @return ArrayList obiektow Podforum
@@ -1562,8 +1575,8 @@ public class DataBase {
         return wynik;
     }
     
-     
-      /**
+    
+    /**
      * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne i prywatnych badż nie w
      * @param id_k Identyfikator kategorii
      * @param czy_prywatne boolena T lub F
@@ -1593,25 +1606,25 @@ public class DataBase {
         if (p.pisanie()) pp=TAK; else pp=NIE;
         return baza.dmlQuery("INSERT INTO " + BEE_PRIVILAGES + " VALUES ("+p.getIdGroup() +", "+ p.getIdKat() + ", "+p.getIdPod()+", '" + cz + "' , '" + pp + "')"  );
     }
-     /**
+    /**
      * Metoda usuwa uprawnienie do podanego podforum,
      * @param id_g Identyfikator grupy
      * @param id_p Identyfikator podforum
      * @return zwraca true jezeli dlete sie powiodl
      */
     public boolean deletePrivilagePodGroup(int id_g, int id_p) {
-        return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_PODFORUM+"="+id_p); 
-      }
+        return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_PODFORUM+"="+id_p);
+    }
     
     /**
-     * Metoda usuwa uprawnienie do podanej kategorii 
+     * Metoda usuwa uprawnienie do podanej kategorii
      * @param id_k id kategorii
      * @param id_g id grupy
      * @return zwraca true jezeli dlete sie powiodl
      */
     public boolean deletePrivilageKatGroup(int id_g, int id_k) {
-        return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_KATEGORIA+"="+id_k); 
-      }
+        return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_KATEGORIA+"="+id_k);
+    }
     
     /**
      * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
@@ -1619,25 +1632,25 @@ public class DataBase {
      * @return boolean true jezeli update sie powiodl false wpp.
      */
     public boolean updatePrivilageKat(Privilage p ){
-         String cz,pp;
+        String cz,pp;
         if (p.czytanie()) cz=TAK; else cz=NIE;
         if (p.pisanie()) pp=TAK; else pp=NIE;
         return  baza.dmlQuery("UPDATE "+BEE_PRIVILAGES+" SET "+PRIVILAGES_ID_PISANIE+"= '"+pp+"' , "+PRIVILAGES_ID_CZYTANIE+"= '"+cz+"' WHERE "+PRIVILAGES_ID_GROUP+"="+p.getIdGroup()+" and "+PRIVILAGES_ID_KATEGORIA+"="+p.getIdKat());
-      
+        
     }
     
-     /**
+    /**
      * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
      * @param p updatowany obiekt
      * @return boolean true jezeli update sie powiodl false wpp.
      */
     public boolean updatePrivilagePod(Privilage p ){
-         String cz,pp;
+        String cz,pp;
         if (p.czytanie()) cz=TAK; else cz=NIE;
         if (p.pisanie()) pp=TAK; else pp=NIE;
         return  baza.dmlQuery("UPDATE "+BEE_PRIVILAGES+" SET "+PRIVILAGES_ID_PISANIE+"= '"+pp+"' , "+PRIVILAGES_ID_CZYTANIE+"= '"+cz+"' WHERE "+PRIVILAGES_ID_GROUP+"="+p.getIdGroup()+" and "+PRIVILAGES_ID_PODFORUM+"="+p.getIdPod());
-      
-    }
         
+    }
+    
 }
 

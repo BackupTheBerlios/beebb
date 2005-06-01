@@ -18,10 +18,13 @@ public class Privilage {
     boolean czytanie;
     boolean pisanie;
     
-    /** Creates a new instance of Privilage */
-    public Privilage() {
-    }
-    
+     /** Tworzy obiekt privilage
+      * @param id_group ???
+      * @param id_kat ???
+      * @param id_pod ???
+      * @param czytanie ???
+      * @param pisanie ???
+     */
     public Privilage(int id_group, int id_kat, int id_pod, boolean czytanie, boolean pisanie) {
         this.id_group=id_group;
         this.id_kat=id_kat;
@@ -30,6 +33,7 @@ public class Privilage {
         this.pisanie=pisanie;
         
     }
+    
     
      /** Metoda zwraca ID grupy
      * @return Integer reprezentujacy grupę
@@ -46,6 +50,7 @@ public class Privilage {
         this.id_group=id;
     }
     
+    
      /** Metoda zwraca ID kategorii
      * @return Integer reprezentujacy kategorie
      */
@@ -60,6 +65,7 @@ public class Privilage {
     public void setIdKat(int id){
         this.id_kat=id;
     }
+    
     
     /** Metoda zwraca ID podforum
      * @return Integer reprezentujacy podforum
@@ -76,12 +82,14 @@ public class Privilage {
         this.id_pod=id;
     }
     
+    
     /** metoda zwraca pisanie
      * @return T lub N 
      */
     public boolean pisanie() {
         return pisanie;
     }
+    
     
      /** metoda zwraca czytanie
      * @return T lub N 
@@ -90,12 +98,14 @@ public class Privilage {
         return czytanie;
     }
     
+    
      /** metoda ustawia pisanie
      * @param pis Okresla prawa pisania
      */
     public void setPisanie(boolean pis) {
       pisanie=pis;
     }
+    
     
     /** metoda ustawia czytanie
      * @param czyt Okresla prawa odczytu

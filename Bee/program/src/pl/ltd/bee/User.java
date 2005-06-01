@@ -887,7 +887,7 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku
+    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku (w przypadku prywatnego)
      * @param id Identyfikator watku
      * @return True jesli użytkownik ma prawo odczytu wskazanego wątku lub False w p.p.
      */
@@ -897,7 +897,7 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego watku
+    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego watku (w przypadku prywatnego)
      * @param id Identyfikator watku
      * @return True jesli użytkownik ma prawo zapisu do wskazanego wątku lub False w p.p.
      */
@@ -907,7 +907,7 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum
+    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum (w przypadku prywatnego)
      * @param id Identyfikator podforum
      * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
      */
@@ -916,7 +916,7 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego podforum
+    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego podforum (w przypadku prywatnego)
      * @param id Identyfikator podforum
      * @return True jesli użytkownik ma prawo zapisu do wskazanego Podforum lub False w p.p.
      */
@@ -925,7 +925,7 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii
+    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii (w przypadku prywatnej)
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False w p.p.
      */
@@ -934,12 +934,14 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danej Kategorii
+    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danej Kategorii (w przypadku prywatnej)
      * @param id Identyfikator Kategorii
      * @return True jesli użytkownik ma prawo zapisu do wskazanej Ktegorii lub False w p.p.
      */
     public boolean hasWriteKategoriaRight(int id){
         return db.hasKategoriaRights(this.ID, id, false, true);
     }
+    
+    
     
 }
