@@ -174,8 +174,7 @@
                     else
                     {
                         int moveto = Integer.parseInt(s_moveto);
-                        if (user.moderator(pod.getID()) || (user.admin()))
-                            //TODO Tu trzeba jeszcze sprawdzic czy moderator ma praw przeniesienia !
+                        if ((user.moderator(pod.getID()) && user.moderator(moveto)) || (user.admin()))
                             if (db_con.moveWatek(wat,pod.getID(),moveto))
                                     out.println(Messages.makeSuccess(Messages.wielka(Messages.actionDone())));
                                 else out.println(Messages.makeError(Messages.wielka(Messages.errorDataBaseConnection())));

@@ -249,7 +249,7 @@ public class Watek {
             strona.println("~" + this.Autor);
         else {
             User u = db.getUser(this.ID_Autor);
-            strona.println(Commons.aHref(request,u.getLogin(),"profile.jsp?uid=" + this.ID_Autor));
+            strona.println(Commons.aHref(request,u.getLogin(),"profile.jsp?uid=" + this.ID_Autor,"aAutor"));
         }
         strona.println("</span></td>");
         strona.println("<td class=\"tdLiczba\" align=\"center\" valign=\"middle\"><span class=\"liczba\">" + this.LicznikOdwiedzin + "</span></td>");

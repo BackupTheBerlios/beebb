@@ -758,7 +758,7 @@ public class DataBase {
      */
     public ArrayList getUsersAktywni(boolean czy_aktywny) {
         ArrayList wynik = new ArrayList();
-        String aktywny,moderator;
+        String aktywny;
         if(czy_aktywny) aktywny=TAK; else aktywny=NIE;
         ArrayList users= baza.query("SELECT * FROM "+ BEE_USERS +" WHERE "+USER_AKTYWNY+"= '"+aktywny+"' ");
         for(int i=0; i<users.size(); i++) {
@@ -1354,8 +1354,8 @@ public class DataBase {
      */
     public boolean isModerator(int user_id, int podforum_id){
         ArrayList users_id = baza.query("SELECT " + MODERATORZY_ID_USER + " FROM "+ BEE_MODERATORZY+" WHERE ("+MODERATORZY_ID_PODFORUM+"="+podforum_id+") AND (" +MODERATORZY_ID_USER+"="+user_id+")");
-        if (users_id.size() > 0) return true;
-        else return false;
+        if (users_id == null) return false;
+        return users_id.size() > 0;
     }
     
     
