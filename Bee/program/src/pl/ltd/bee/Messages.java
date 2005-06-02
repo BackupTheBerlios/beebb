@@ -1357,6 +1357,14 @@ public class Messages {
     }
     
     
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla loginu
+     * @return String zawierający wycinek dokumentu HTML
+     */
+    public static String hintLogin(){
+        return "Login użytkownika - będzie służył do identyfikacji użytkownika na forum, a także pojawiał się przy kazdej wypowiedzi napisanej przez użytkownika. Login musi być unikalny.";
+    }
+    
+    
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla imienia
      * @return String zawierający wycinek dokumentu HTML
      */

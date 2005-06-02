@@ -106,9 +106,9 @@
         <form method="post" action="addUser.jsp<% out.print(css.length()>0?"?"+css:"");%>" onsubmit="return submitAddUser(this,<% out.print(Config.MIN_PASSWD + ",'" + Messages.wielka(Messages.errorFieldNeeded())+"','"+Messages.wielka(Messages.errorPassNotMatch()) + "','" + Messages.wielka(Messages.errorPassToShort(Config.MIN_PASSWD))); %>')">
             <table align="center" cellpadding="2" cellspacing="1" border="0">
                 <tr>
-                <th colspan="2">
+                    <th colspan="2">
                                 <%out.print(Messages.wielka(Messages.addUser()));%>
-                </th>
+                    </th>
                 </tr> <tr>
             <%
             ok = true;
@@ -120,7 +120,7 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorFieldNeeded()) + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.nick()));%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"/></td>
+                <td class="tdRegister"><b><% out.print("<span onmouseover=\"showHint('"+Messages.hintLogin()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.nick())+ "</span>");%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"/></td>
                 </tr> <tr>
         <%if(passwd1!=null && passwd2!=null) {
             if (passwd1.compareTo(passwd2)!=0) { ok=false;
@@ -129,13 +129,13 @@
                 out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordTooShort()) + "</td></tr><tr>"); }
         }
         %>
-                <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"/></td>
+                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="passwd2" id="passwd2"/></td>
+                <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="passwd2" id="passwd2"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.surname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"/></td>
+                <td class="tdRegister"><%out.print(Messages.wielka(Messages.surname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"/></td>
                 </tr> <tr>
             <%
             if (email==null) {
@@ -146,7 +146,7 @@
                  if (!db_con.sprawdzEmail(email)) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorEmailExists()) + "</td></tr><tr>"); }
             }%>
-                <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
+                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
                 </tr> <tr>
                 <td class="tdRegister"><%out.print(Messages.wielka(Messages.wwwPage()));%>:</td><td><input type="text" size="25" name="www" value="<%out.print(www);%>" id="www"/></td>
                 </tr> <tr>
@@ -162,7 +162,7 @@
                 </tr> <tr>
                 <td class="tdRegister"><%out.print(Messages.wielka(Messages.msn()));%>:</td><td><input type="text" size="25" name="msn" value="<%out.print(msn);%>"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.yahoo()));%>:</td><td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
+                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.yahoo()));%>:</td><td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
                 </tr> <tr>
                 <td class="tdRegister"><%out.print(Messages.wielka(Messages.skype()));%>:</td><td><input type="text" size="25" name="skype" value="<%out.print(skype);%>"/></td>
                 </tr> <tr>
@@ -171,7 +171,7 @@
                     <td class="tdRegister"><%out.print(Messages.wielka(Messages.sex()));%>:</td><td><select name="plec">
                         <option value="<%out.print(DataBase.MEZCZYZNA);%>"><%out.print(Messages.wielka(Messages.men()));%></option>
                         <option value="<%out.print(DataBase.KOBIETA);%>"><%out.print(Messages.wielka(Messages.woman()));%></option>
-                        </select>
+                    </select>
                     </td>
                 </tr> <tr>
                 <td class="tdRegister"><%out.print(Messages.wielka(Messages.birthdate()));%>:</td>
