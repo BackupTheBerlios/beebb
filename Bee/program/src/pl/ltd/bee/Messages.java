@@ -1267,11 +1267,28 @@ public class Messages {
         return "szukana fraza";
     }
     
+    
     /** Metoda dostarcza frazę "szukaj w wypowiedziach"
      *  @return String zawierający frazę
      */
     public static String searchInMessages(){
         return "szukana fraza";
+    }
+    
+    
+    /** Metoda dostarcza frazę "Liczba utworzonych wątków"
+     *  @return String zawierający frazę
+     */
+    public static String numberCreatedThreads(){
+        return "Liczba utworzonych wątków";
+    }
+    
+    
+    /** Metoda dostarcza frazę "Liczba napisanych wypowiedzi"
+     *  @return String zawierający frazę
+     */
+    public static String numberWroteMessages(){
+        return "Liczba napisanych wypowiedzi";
     }
     
     //_______________________________________________________________________________________________
@@ -1522,24 +1539,24 @@ public class Messages {
      * @return String zawierajacy wycinek dokumentu HTML
      */
     public static String hintAvatar(){
-        return "zmiana obrazka w wizytówce"; //TODO napisać coś konkretnego
+        return "Obrazek który będzie pojawiał się w wizytówce użytkownika,a także przy wszystkich jego wypowiedziach. Plik reprezentujący obrazek nie może być rozmiaru większego niż " + Config.AVATAR_WIDTH + "x" + Config.AVATAR_HEIGHT + " i zajmować więcej niż " + Config.AVATAR_SIZE/1000 + "bajtów.";
     }
     
-
+    
     /** Metoda dostarcza komunikat o nie istnieniu poszukiwanego zasobu na stronie
      * @return Zwraca łańcuch znaków, którego treść informuje o braku żądanego zasobu
      */
     public static String error404(){
         return "Przepraszamy, ale poszykiwana przez Ciebie strona nie istnieje.";
     }
-
+    
     /** Metoda dostarcza komunikat o braku uprawnień do strony
      * @return Zwraca łańcuch znaków, którego treść informuje o braku praw dostępu
      */
     public static String error403(){
         return "Przepraszamy, ale nie masz uprawnień aby wyświetlić poszykiwaną przez Ciebie stronę.";
     }
-
+    
     /** Metoda dostarcza komunikat o błędzie po stronie serwera
      * @return Zwraca łańcuch znaków, którego treść informuje o wystąpieniu błędu na serwerze
      */

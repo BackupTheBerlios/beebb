@@ -66,7 +66,7 @@
         <form enctype="multipart/form-data" method="post" action="editProfile.jsp<% out.print(css.length()>0?"?"+css:"");%>">
             <table align="center" class="tableProfile" border="0">
                 <tr><td><% if(user.getAvatar().compareTo("")!=0) out.println("<img src=\"../data/avatars/" + user.getAvatar() + "\" alt=\"AVATAR\"/>"); %></td></tr>
-                <tr><td class="tdProfileField"><input type="file" name="avatar-file" size="35"/></td></tr>
+                <tr><td class="tdProfileField"> <%out.print("<span onmouseover=\"showHint('"+Messages.hintAvatar()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\">");%><input type="file" name="avatar-file" size="35"/></span></td></tr>
                 <tr><td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
             </table>
         </form>
@@ -418,7 +418,12 @@
                 <tr><td colspan="2" align="right"><input type="hidden" name="psw" value=""><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td></tr>
             </table>
         </form>
-        <br/>
+        <br/><br/>
+                   <table align="center" class="tableProfile" border="0">
+                   <tr><th colspan="2">Statystyki</th></tr>
+                   <tr><th><%out.print(Messages.numberCreatedThreads());%></th><td>&nbsp; <%out.print(user.getLiczbaWatkow());%> &nbsp;<td></tr>
+                   <tr><th><%out.print(Messages.numberWroteMessages());%></th><td>&nbsp; <%out.print(user.getLiczbaWypowiedzi());%> &nbsp;<td></tr>
+                   </table><br/>
                 
      <%
                 } else {
