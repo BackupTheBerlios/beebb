@@ -15,30 +15,6 @@ import pl.ltd.bee.Exceptions.*;
  * @author wilk
  */
 
-/*
-(13:10:55) Wilk: "wymyslilem" jak latwo mozemy buforowac zapytania z bazy danych
-(13:12:21) Wilk: wystarczy miec w DataBase static lub nie zmienna np HashTable i po kazdym zapytaniu wrzucac obiekty: put("Objekt_ID",Object)
-(13:12:27) Wilk: final-> ok
-(13:12:33) Wilk: wiec np:
-(13:13:44) Wilk: getWatek(id)
-if ( jest object w hashtable("Watek_"+id)) to go zwroc
-SELECT
-Hastable.put("Watek_"+id,to co zwrocil SELECT);
-(13:14:12) Wilk: oczywiscie to powinno byc troszke madrzejsze, to znaczy to powinna byc HashTable z LRU
-(13:14:47) Wilk: i o zalozonym rozmiarze .. np 100 objektow
-(13:15:25) pawelb: brzmi sensownie
-(13:15:52) Wilk: mozna tez zrobic oddzielne bufory dla kazdego z objektow wtedy mozna wiecej stoic, np 10 miejsc na Kategorie ale juz 100 miejsc na Watki a 300 na wypowiedzi
-(13:16:22) pawelb: spoko, tylko mo�e narazie si� wstrzymamy z implementacj�
-(13:16:36) pawelb: bo musze troche przerobi� DataBase
-(13:16:59) Wilk: wtedy oczywiscie jest wiecej zmiennych, ale nie ma "Object_"+id tylko wystarczy sam id
-(13:17:36) Wilk: nie no implementacje nie teraz, to oczywiste
-(13:18:01) Wilk: tylko jak bys mogl moze wkleic te rozmowe do DataBase, albo do /teksty
-(13:18:02) Wilk: ok ?
-(13:18:23) pawelb: �ok
- 
- * TODO:
- * (na sam koniec implementacji) przy insertach doda� schemat tabeli po jej nazwie
- **/
 
 public class DataBase {
     
@@ -47,7 +23,7 @@ public class DataBase {
     public static final String KOBIETA = "K";
     public static final String MEZCZYZNA = "M";
     /**
-     * Stala reprezentujaca podstawe nazwy tabeli w bazie danych
+     * Stałe reprezentujące podstawę nazw tabeli w bazie danych
      */
     static final String BEE_USERS_BASE = "Users";
     
@@ -72,7 +48,7 @@ public class DataBase {
     static final String BEE_PRIVILAGES_BASE = "Privilages";
     
     /**
-     * Stala reprezentujaca nazwe tabeli w bazie danych
+     * Stałe reprezentujące nazwy tabeli w bazie danych
      */
     static String BEE_USERS = "Users";
     
@@ -99,7 +75,7 @@ public class DataBase {
     static String BEE_PRIVILAGES = "Privilages";
     
     /**
-     * Stala reprezentujaca nazwe pola w tabeli w bazie danych
+     * Stałe reprezentująca nazwy pól w tabeli w bazie danych
      */
     static final String WATEK_ID = "ID";
     static final String WATEK_ID_AUTORA = "ID_AUTORA";
@@ -228,7 +204,7 @@ public class DataBase {
     ConnectorDB baza;
     
     
-    /** Konstruktor bezargumentowy. Domyslnie laczy sie z baza Bee:bee@localhost. */
+    /** Konstruktor bezargumentowy. Domyślnie łączy się z bazą, parametry bierze z konfigu. */
     public DataBase() {
         baza = new ConnectorDB(Config.HOST,Config.DATABASE,Config.USER,Config.PASSWORD);
     }
@@ -238,8 +214,8 @@ public class DataBase {
      * Konstruktor
      * @param host Adres serwera bazy danych
      * @param Db nazwa bazy danych
-     * @param user Nazwa uzytkownika bazy danych
-     * @param pass Haslo uzytkownika bazy danych
+     * @param user Nazwa użytkownika bazy danych
+     * @param pass Hasło użytkownika bazy danych
      */
     public DataBase(String host, String Db,String user, String pass) {
         baza = new ConnectorDB(host,Db,user,pass);
@@ -247,7 +223,7 @@ public class DataBase {
     
     
     /**
-     * metoda sprawdzajaca czy obiekt polaczyl sie z baza - a dokladniej czy dostal base,usera i haslo
+     * Metoda sprawdzajaca czy obiekt połaczył się z bazą - a dokladniej czy dostal base,usera i haslo
      */
     public boolean isConnected() {
         return baza.isConnected();
@@ -255,11 +231,11 @@ public class DataBase {
     
     
     /**
-     * Metoda powoduje przylaczenie do bazy o podanych parametrach
+     * Metoda powoduje przyłaczenie do bazy o podanych parametrach
      * @param host Adres serwera bazy danych
-     * @param Db nazwa bazy danych
-     * @param user Nazwa uzytkownika bazy danych
-     * @param pass Haslo uzytkownika bazy danych
+     * @param Db Nazwa bazy danych
+     * @param user Nazwa użytkownika bazy danych
+     * @param pass Hasło użytkownika bazy danych
      */
     public void connect(String host, String Db, String user, String pass) throws BeeConnectionException{
         baza.setParameters(host, Db, user, pass);
@@ -267,6 +243,9 @@ public class DataBase {
     }
     
     
+    /**
+     * Metoda powoduje rozłączenie się z bazą danych
+     */
     public void disconnect() throws BeeConnectionException{
         baza.disconnect();
     }
@@ -274,7 +253,7 @@ public class DataBase {
     
     /**
      * Metoda ustawia prefix tabel w bazie danych
-     * @param pref - string reprezentujacy prefix
+     * @param pref string reprezentujacy prefix
      */
     public void setTablePrefix(String pref) {
         BEE_USERS = pref + "_" + BEE_USERS_BASE;
@@ -298,7 +277,7 @@ public class DataBase {
     
     
     /**
-     * Metoda dostarcza tylko pierwszy element (wiersz) z zadanego zapytania.
+     * Metoda dostarcza <b>pierwszy</b> element (wiersz) z zadanego zapytania.
      */
     private Hashtable getObject(String query) {
         ArrayList lista = baza.query(query);
@@ -309,9 +288,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Watek o podanym identyfikatorze
-     * @param ID Identyfikator szukanego watku
-     * @return Zwraca obiekt Watek badz null w razie bledu.
+     * Metoda zwraca obiekt Watek o podanym identyfikatorze
+     * @param ID Identyfikator szukanego wątku
+     * @return Zwraca obiekt Watek bądź null w razie bledu.
      */
     public Watek getWatek(int ID){
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
@@ -322,9 +301,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Wypowiedz o podanym identyfikatorze
+     * Metoda zwaraca obiekt Wypowiedz o podanym identyfikatorze
      * @param ID Identyfikator szukanej wypowiedzi
-     * @return Zwraca obiekt Wypowiedz badz null w razie bledu.
+     * @return Zwraca obiekt Wypowiedz bądź null w razie bledu.
      */
     public Wypowiedz getWypowiedz(int ID){
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
