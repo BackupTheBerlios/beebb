@@ -10,6 +10,14 @@
         <param-value>Paweł Boguszewski &amp; Marcin Pruszczyński</param-value>
         <description>Stundets of MIMUW</description>
     </context-param>
+    <filter> 
+        <filter-name>GeneralFilter</filter-name> 
+        <filter-class>pl.ltd.bee.Filters.GeneralFilter</filter-class> 
+    </filter> 
+    <filter-mapping>
+        <filter-name>GeneralFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <session-config>
         <session-timeout>
             30
