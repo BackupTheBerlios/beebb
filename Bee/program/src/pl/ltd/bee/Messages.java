@@ -1525,5 +1525,25 @@ public class Messages {
         return "zmiana obrazka w wizytówce"; //TODO napisać coś konkretnego
     }
     
-    
+
+    /** Metoda dostarcza komunikat o nie istnieniu poszukiwanego zasobu na stronie
+     * @return Zwraca łańcuch znaków, którego treść informuje o braku żądanego zasobu
+     */
+    public static String error404(){
+        return "Przepraszamy, ale poszykiwana przez Ciebie strona nie istnieje.";
+    }
+
+    /** Metoda dostarcza komunikat o braku uprawnień do strony
+     * @return Zwraca łańcuch znaków, którego treść informuje o braku praw dostępu
+     */
+    public static String error403(){
+        return "Przepraszamy, ale nie masz uprawnień aby wyświetlić poszykiwaną przez Ciebie stronę.";
+    }
+
+    /** Metoda dostarcza komunikat o błędzie po stronie serwera
+     * @return Zwraca łańcuch znaków, którego treść informuje o wystąpieniu błędu na serwerze
+     */
+    public static String error500(){
+        return "Przepraszamy, ale wystąpił błąd serwera. Prosimy spróbować za kilka chwil. Jeśli problem nie zniknie prosimy skontaktować się z administratorem forum.";
+    }
 }
