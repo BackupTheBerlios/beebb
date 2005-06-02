@@ -22,12 +22,19 @@
         
             class Dodaj {
                 
-                javax.servlet.jsp.JspWriter out;
-                DataBase db_con;
+                private javax.servlet.jsp.JspWriter out;
+                private DataBase db_con;
+                private User u;
                 
                 public Dodaj(javax.servlet.jsp.JspWriter out,DataBase db_con) {
                     this.out=out;
                     this.db_con=db_con;
+                    this.u=null;
+                }
+                
+                
+                public void setUser(User u) {
+                    this.u=u;
                 }
                 
                 public void dodajWypowiedz(Watek wt, String ID_Usera, String Nazwa_Usera, String text, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws Exception {
@@ -99,6 +106,11 @@
                     pf.zwiekszLiczbeAktywnychWatkow();
                     pf.zwiekszLiczbeAktywnychWypowiedzi();
                     if (!db_con.updatePodforum(pf)) out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                    if (u!=null) {
+                        u.incrLiczbaWypowiedzi();
+                        u.incrLiczbaWatkow();
+                        db_con.updateUser(u);
+                    }
                 }
                 
                 public void incrAddWypowiedz(Watek wt,String ID_Usera, String Nazwa_Usera) throws Exception {
@@ -115,6 +127,10 @@
                     if (!db_con.updateWatek(wt)) out.print(Messages.makeError(Messages.errorDataBaseConnection()));
                     pf.zwiekszLiczbeAktywnychWypowiedzi();
                     if (!db_con.updatePodforum(pf)) out.print(Messages.makeError(Messages.errorDataBaseConnection()));
+                    if (u!=null) {
+                        u.incrLiczbaWypowiedzi();
+                        db_con.updateUser(u);
+                    }
                 }
                 
                 public boolean canCreate(String podforum, String watek, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth){
@@ -171,6 +187,7 @@
                 String ID_Usera = new String().valueOf(Config.GUEST_ID); 
                 String Nazwa_Usera= Config.GUEST;
                 if (auth.zalogowany(request,db_con)) {
+                    d.setUser(auth.getUser(request,db_con));
                     ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
                     Nazwa_Usera = String.valueOf(auth.getUser(request,db_con).getLogin());
                 } else {
