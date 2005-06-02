@@ -545,6 +545,10 @@ public class Messages {
     public static String graphics(){
         return "grafika";}
     
+    /** Metoda dostarcza słowo "statystyki" */
+    public static String stats(){
+        return "statystyki";}
+    
     /** Metoda dostarcza frazę "dodawanie emotikone" */
     public static String addingEmotikons(){
         return "dodawanie emotikonek";}

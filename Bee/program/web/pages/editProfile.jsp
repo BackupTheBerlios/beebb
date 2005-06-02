@@ -420,7 +420,7 @@
         </form>
         <br/><br/>
                    <table align="center" class="tableProfile" border="0">
-                   <tr><th colspan="2">Statystyki</th></tr>
+                   <tr><th colspan="2"><%out.print(Messages.wielka(Messages.stats()));%></th></tr>
                    <tr><th><%out.print(Messages.numberCreatedThreads());%></th><td>&nbsp; <%out.print(user.getLiczbaWatkow());%> &nbsp;<td></tr>
                    <tr><th><%out.print(Messages.numberWroteMessages());%></th><td>&nbsp; <%out.print(user.getLiczbaWypowiedzi());%> &nbsp;<td></tr>
                    </table><br/>
