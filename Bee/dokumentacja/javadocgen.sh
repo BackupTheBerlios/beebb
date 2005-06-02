@@ -44,6 +44,6 @@ $JAVADOC -d $DESTDIR \
 	-windowtitle "$WINDOWSTITLE" \
 	-classpath $CLASSPATH \
 	-sourcepath ../program/src \
-	-source 1.5 `find ../program/src/pl/ltd/bee -name "*.java"` `find ../program/src/pl/ltd/bee/Exceptions -name "*.java"`
+	-source 1.5 `find ../program/src/pl/ltd/bee -name "*.java"`
 	
 	
