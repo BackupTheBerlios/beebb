@@ -39,7 +39,6 @@
     String css = Commons.getQueryStyle(request);
 %>
     
-<%@ include file="../servletObjects.jsp" %>
     <body>
         <center><%
         String message = Messages.errorUnknown();
