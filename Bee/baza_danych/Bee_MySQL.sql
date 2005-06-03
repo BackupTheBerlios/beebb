@@ -74,7 +74,9 @@ CREATE TABLE `Bee_Users` (
   `Aktywny` enum('T','N') NOT NULL default 'N',
   `Admin` enum('T','N') NOT NULL default 'N',
   `Moderator` enum('T','N') NOT NULL default 'N',
-  PRIMARY KEY  (`ID`)
+  PRIMARY KEY  (`ID`),
+  UNIQUE KEY `Login` (`Login`),
+  UNIQUE KEY `Email` (`Email`)
 ) TYPE=InnoDB CHARACTER SET utf8 COMMENT='Tabela z uzytkownikami';
 
 
