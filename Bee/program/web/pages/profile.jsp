@@ -55,7 +55,7 @@
                       }                      
                     if ((user.ifShowGG())&&(user.getGG().length()>0)){
                         out.print("<tr><th>"+Messages.wielka(Messages.number())+ " " + Messages.gg()+"</th>");
-                        out.println("<td class=\"tdProfileField\">&nbsp;<a class=\"aHref\" href=\"gg:"+user.getGG()+"\"><img border=\"0\" src=\"http://www.gadu-gadu.pl/users/status.asp?id="+user.getGG()+"&amp;style=1\" alt=\""+user.getGG()+"\" onerror=\"this.onerror=null;this.src='../images/ggunknown.gif';\"></a></td>");
+                        out.println("<td class=\"tdProfileField\" align=\"center\">&nbsp;<a class=\"aHref\" href=\"gg:"+user.getGG()+"\"><img border=\"0\" src=\"http://www.gadu-gadu.pl/users/status.asp?id="+user.getGG()+"&amp;style=1\" alt=\""+user.getGG()+"\" onerror=\"this.onerror=null;this.src='../images/ggunknown.gif';\"></a></td>");
                         out.println("</tr>");
                     }
                     if ((user.ifShowTlen()) && (user.getTlen().length()>0)){

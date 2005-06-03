@@ -468,16 +468,17 @@ public class DataBase {
         return wynik;
     }
     
-    
+   
     /**
      * Metoda zwaraca liste obiektow Watek bedacych Watkami w podanym Podforum oraz majace pole aktywny na podane w parametrze
      * @param ID Podforum w ramach ktorego interesuja nas watki
      * @param aktywne Okresla czy interesuja nas watki aktywne czy nie
+     * @param sortByDate Parametr określa czy zwrócona lista wątków ma być posortowana po dacie (poczynając od wątku najwcześniejszego)
      * @return ArrayList obiektow Watek
      */
-    public ArrayList getWatkiPodforum(int ID, boolean aktywne) {
+    public ArrayList getWatkiPodforum(int ID, boolean aktywne, boolean sortByDate) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_WATKU+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'");
+        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_WATKU+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" DESC":""));
         if (watki == null) return wynik;
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
@@ -509,11 +510,12 @@ public class DataBase {
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku o stanie aktywnosci podanym w parametrze
      * @param ID Identyfikator watku w ramach ktorego interesuja nas Wypowiedzi
      * @param aktywne Okresla jakie wypowiedzi nas interesuja
+     * @param sortByDate Parametr określa czy zwrócona lista wypowiedzi ma być posortowana po dacie (poczynając od wypowiedzi najwcześniejszej)
      * @return ArrayList obiektow Integer
      */
-    public ArrayList getWypowiedziWatku(int ID, boolean aktywne) {
+    public ArrayList getWypowiedziWatku(int ID, boolean aktywne, boolean sortByDate) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'");
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" DESC":""));
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));

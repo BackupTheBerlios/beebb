@@ -58,7 +58,7 @@ public class Backup {
     
     private void zapiszWatki(int id) throws Exception {
             plik.write("\n        <watki> \n" );
-            ArrayList wat=db_con.getWatkiPodforum(id);
+            ArrayList wat=db_con.getWatkiPodforum(id,false,false);
             for(int i=0;i<wat.size();i++) {
                Watek w=db_con.getWatek( ((Integer)wat.get(i)).intValue() ) ;
                   plik.write("        <watek> \n" );
