@@ -147,7 +147,15 @@
                                 else return false;
                             else return false;
                         }
-                        else return true;
+                        else 
+                        {
+                           int ID_Usera = Config.GUEST_ID; 
+                           if (auth.zalogowany(pytanie,db_con))
+                           ID_Usera = auth.getUser(pytanie,db_con).getID();
+                           int podf_id = Integer.decode(podforum).intValue();
+                           if (db_con.isUserBanned(ID_Usera,podf_id)) return false;
+                           else return true;
+                        }
                     }
                     if (watek != null)
                     {
@@ -161,7 +169,14 @@
                                     return true;
                                 else return false;
                             else return false;
-                        }else return true;
+                        }else {
+                           int podf_id = db_con.getPodforumbyWatek(wt.getID()).getID();
+                           int ID_Usera = Config.GUEST_ID; 
+                           if (auth.zalogowany(pytanie,db_con))
+                           ID_Usera = auth.getUser(pytanie,db_con).getID();
+                           if (db_con.isUserBanned(ID_Usera,podf_id)) return false;
+                           else return true;
+                        }
                     }
                     return true;
                 }
@@ -222,12 +237,12 @@
                 } // tekst!=null ; koniec dodawania
                 else 
                 {
-                String ID_Usera = new String().valueOf(Config.GUEST_ID); 
+                int ID_Usera = Config.GUEST_ID; 
                 if (auth.zalogowany(request,db_con))
-                    ID_Usera = String.valueOf(auth.getUser(request,db_con).getID());
+                    ID_Usera = auth.getUser(request,db_con).getID();
                 int podf_id = -1;
                 if (podforum==null) podf_id=db_con.getPodforumbyWatek(Integer.decode(watek).intValue()).getID(); else podf_id = Integer.decode(podforum).intValue();
-                if (d.canCreate(podforum, watek,request,auth) && !db_con.isUserBanned(Integer.decode(ID_Usera).intValue(),podf_id)) {
+                if (d.canCreate(podforum, watek,request,auth) && !db_con.isUserBanned(ID_Usera,podf_id)) {
         %>
                     <table align="center">
                     <tr>
