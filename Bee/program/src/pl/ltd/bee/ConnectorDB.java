@@ -150,7 +150,6 @@ public class ConnectorDB {
      **/
     public boolean dmlQuery(String q) {
         try{
-            System.err.println(q);
             //connect();
             Statement select = con.createStatement();
             int wynik = select.executeUpdate(q);
