@@ -120,7 +120,9 @@
                 if (nickname.compareTo("")==0) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorFieldNeeded()) + "</td></tr><tr>"); }
             } else { ok=false; nickname=""; } %>    
-                <td class="tdRegister"><b><% out.print("<span onmouseover=\"showHint('"+Messages.hintLogin()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.nick())+ "</span>");%>*:</b></td><td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"/></td>
+                <td class="tdRegister"><b>
+                    <%out.print("<span onmouseover=\"showHint('"+Messages.hintLogin()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.nick())+ "</span>");%>*:</b></td>
+                    <td><input type="text" size="25" name="user" value="<%out.print(nickname);%>" id="user"/></td>
                 </tr> <tr>
         <%if(passwd1!=null && passwd2!=null) {
             if (passwd1.compareTo(passwd2)!=0) { ok=false;
@@ -129,13 +131,17 @@
                 out.println("<td colspan=\"2\">" + Messages.makeError(Messages.passwordTooShort()) + "</td></tr><tr>"); }
         }
         %>
-                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%>*:</b></td><td><input type="password" size="25" name="passwd1" id="passwd1"/></td>
+                    <td class="tdRegister"><b><%out.print("<span onmouseover=\"showHint('"+Messages.hintPassword()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.password())+ "</span>");%>*:</b></td>
+                    <td><input type="password" size="25" name="passwd1" id="passwd1"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime());%>)*:</b></td><td><input type="password" size="25" name="passwd2" id="passwd2"/></td>
+                    <td class="tdRegister"><b><%out.print("<span onmouseover=\"showHint('"+Messages.hintPasswordOnceAgain()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.password()));%> (<%out.print(Messages.oneMoreTime()+ "</span>");%>)*:</b></td>
+                    <td><input type="password" size="25" name="passwd2" id="passwd2"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.name()));%>:</td><td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintName()+"',this,0,100,100)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.name())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="imie" value="<%out.print(imie);%>"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.surname()));%>:</td><td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintSurname()+"',this,0,100,100)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.surname())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="nazwisko" value="<%out.print(nazwisko);%>"/></td>
                 </tr> <tr>
             <%
             if (email==null) {
@@ -146,35 +152,47 @@
                  if (!db_con.sprawdzEmail(email)) { ok=false;
                     out.println("<td colspan=\"2\">" + Messages.makeError(Messages.errorEmailExists()) + "</td></tr><tr>"); }
             }%>
-                    <td class="tdRegister"><b><%out.print(Messages.wielka(Messages.email()));%>*:</b></td><td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
+                    <td class="tdRegister"><b><%out.print("<span onmouseover=\"showHint('"+Messages.hintEmail()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.email())+ "</span>");%>*:</b></td>
+                    <td><input type="text" size="25" name="email" value="<%out.print(email);%>" id="email"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.wwwPage()));%>:</td><td><input type="text" size="25" name="www" value="<%out.print(www);%>" id="www"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintWWW()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.wwwPage())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="www" value="<%out.print(www);%>" id="www"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.gg()));%>:</td><td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintGG()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.gg())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="gg" value="<%out.print(gg);%>"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.jabber()));%>:</td><td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintJabber()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.jabber())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="jabber" value="<%out.print(jabber);%>"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.tlen()));%>:</td><td><input type="text" size="25" name="tlen" value="<%out.print(tlen);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintTlen()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.tlen())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="tlen" value="<%out.print(tlen);%>"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.wpKontakt()));%>:</td><td><input type="text" size="25" name="wpKontakt" value="<%out.print(wpKontakt);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintWPKontakt()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.wpKontakt())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="wpKontakt" value="<%out.print(wpKontakt);%>"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.icq()));%>:</td><td><input type="text" size="25" name="icq" value="<%out.print(icq);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintICQ()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.icq())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="icq" value="<%out.print(icq);%>"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.msn()));%>:</td><td><input type="text" size="25" name="msn" value="<%out.print(msn);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintMSN()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.msn())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="msn" value="<%out.print(msn);%>"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.yahoo()));%>:</td><td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintYahoo()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.yahoo())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="yahoo" value="<%out.print(yahoo);%>"/></td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.skype()));%>:</td><td><input type="text" size="25" name="skype" value="<%out.print(skype);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintSkype()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.skype())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="skype" value="<%out.print(skype);%>"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.city()));%>:</td><td><input type="text" size="25" name="miasto" value="<%out.print(miasto);%>"/></td>
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintCity()+"',this,0,200,200)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.city())+ "</span>");%>:</td>
+                    <td><input type="text" size="25" name="miasto" value="<%out.print(miasto);%>"/></td>
                 </tr> <tr>
-                    <td class="tdRegister"><%out.print(Messages.wielka(Messages.sex()));%>:</td><td><select name="plec">
+                    <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintSex()+"',this,0,100,100)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.sex())+ "</span>");%>:</td>
+                    <td><select name="plec">
                         <option value="<%out.print(DataBase.MEZCZYZNA);%>"><%out.print(Messages.wielka(Messages.men()));%></option>
                         <option value="<%out.print(DataBase.KOBIETA);%>"><%out.print(Messages.wielka(Messages.woman()));%></option>
                     </select>
                     </td>
                 </tr> <tr>
-                <td class="tdRegister"><%out.print(Messages.wielka(Messages.birthdate()));%>:</td>
+                <td class="tdRegister"><%out.print("<span onmouseover=\"showHint('"+Messages.hintBirthDate()+"',this,0,400,400)\" onmouseout=\"hideHint(this)\">" + Messages.wielka(Messages.birthdate())+ "</span>");%>:</td>
                 <td><input type="text" size="4" name="rokUrodzenia" value="<%out.print(rokUrodzenia);%>"/>-<input type="text" size="2" name="miesiacUrodzenia" value="<%out.print(miesiacUrodzenia);%>"/>-<input type="text" size="2" name="dzienUrodzenia" value="<%out.print(dzienUrodzenia);%>"/></td>
                 </tr> <tr>
                     <td colspan="2" align="right"><input type="submit" name="submit" value="<%out.print(Messages.wielka(Messages.send()));%>"/></td>
