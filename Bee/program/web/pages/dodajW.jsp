@@ -37,7 +37,7 @@
                     this.u=u;
                 }
                 
-                public void dodajWypowiedz(Watek wt, String ID_Usera, String Nazwa_Usera, String text, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws Exception {
+                public boolean dodajWypowiedz(Watek wt, String ID_Usera, String Nazwa_Usera, String text, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws Exception {
                     if (wt!=null) { 
                     if ((!wt.czyZablokowany()) && (!wt.czyZamkniety()))
                         {
@@ -54,12 +54,14 @@
                         Wypowiedz wp = new Wypowiedz("0",ID_Usera,Nazwa_Usera,db_con.getDateToInsert(),text,prywatne,DataBase.TAK,db_con);
                         if (!db_con.insertWypowiedz(String.valueOf(wt.getID()),wp))
                             out.print("<center>" + Messages.makeError(Messages.errorDataBaseConnection()) + "<center>");
-                            else out.print("<center>" + Messages.makeSuccess(Messages.addedMessage()  + "<center>"+ "<br/>")); 
+                            else { out.print("<center>" + Messages.makeSuccess(Messages.addedMessage()  + "<center>"+ "<br/>")); return true; }
+                        
                         }
                         else out.println("<center>" + Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())) + "<center>");
-                     } else out.println("<center>" + Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())) + "<center>");
+                     } else out.println("<center>" + Messages.makeError(Messages.wielka(Messages.errorPermissionDenied())) + "<center>"); 
                     } else out.print("<center>" + Messages.makeError(Messages.errorDataBaseConnection()) + "<center>");
-                  }
+                    return false;
+                }
                 
                 
                 public Watek dodajWatek(String podforum,String ID_Usera,String Nazwa_Usera,String title, javax.servlet.http.HttpServletRequest pytanie, Autoryzator auth) throws Exception {
@@ -207,13 +209,13 @@
                         Watek wat = d.dodajWatek(podforum,ID_Usera,Nazwa_Usera,title,request,auth);
                         //dodaj Wypowiedz
                         if (wat != null){
-                            d.dodajWypowiedz(wat,ID_Usera,Nazwa_Usera,text,request,auth);
+                            if(d.dodajWypowiedz(wat,ID_Usera,Nazwa_Usera,text,request,auth))
                             d.incrAddWatek(wat,ID_Usera,Nazwa_Usera);
                         }
                     } else { //znaczy że dodaje wypowiedz
                         Watek wt = db_con.getWatek(Integer.decode(watek).intValue());
                         //dodaj Wypowiedz
-                        d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text,request,auth);
+                        if(d.dodajWypowiedz(wt,ID_Usera,Nazwa_Usera,text,request,auth))
                         d.incrAddWypowiedz(wt,ID_Usera,Nazwa_Usera);
                     }
                     out.print("<center><br/><br/>"+Commons.aHref(request,Messages.wielka(Messages.back()),"./main.jsp"+ ((watek!=null)?("?wid="+watek):("?pid="+podforum)))+"</center>");
