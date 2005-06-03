@@ -94,6 +94,7 @@
                 
                 public void incrAddWatek(Watek wt,String ID_Usera, String Nazwa_Usera) throws Exception {
                     Podforum pf = db_con.getPodforumbyWatek(wt.getID());
+                    if (pf !=null){
                     wt.zwiekszLiczbeAktywnychWypowiedzi();
                     String Nazwa_Usera2=Nazwa_Usera;
                     if ((Integer.decode(ID_Usera).intValue())==Config.GUEST_ID)
@@ -113,6 +114,9 @@
                         u.incrLiczbaWatkow();
                         db_con.updateUser(u);
                     }
+                    }
+                    else 
+                    out.print(Messages.makeError(Messages.errorUnknown()));
                 }
                 
                 public void incrAddWypowiedz(Watek wt,String ID_Usera, String Nazwa_Usera) throws Exception {

@@ -5,7 +5,7 @@ function reloadHeader(url){
 }
 
 function wypowiedzLinkClick(url){
-    i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 2 : 1;
+    i = top.document.getElementById('frameTresc_1').style.display == 'none' ? 1 : 2;
     
     if (top.frames[i].location)
         top.frames[i].location.href = url;

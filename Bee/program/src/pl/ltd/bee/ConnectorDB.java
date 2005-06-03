@@ -137,16 +137,20 @@ public class ConnectorDB {
             //con.close();
         } catch( Exception e ) { 
             //if ("08S01".equals(e.getSQLState()) || "41000".equals(e.getSQLState())) //to oznacza ze trzeba zrobic reconnect
+            System.err.println(q);
+            System.err.println(e);
         }
         return pom;
     }
     
     /** 
      * Metoda wykonuje Insert, Update lub Delete 
+     * @param q zapytanie do wykonania
      * @return True jesli operacja sie powiodła, False w p.p.
      **/
     public boolean dmlQuery(String q) {
         try{
+            System.err.println(q);
             //connect();
             Statement select = con.createStatement();
             int wynik = select.executeUpdate(q);
@@ -158,4 +162,36 @@ public class ConnectorDB {
         return false;
     }
 
+    //TODO niech ta metoda rzuca wyjatkiem w razie niepowodzenia i -1 jak nie ma last_id
+    /** 
+     * Metoda wykonuje Insert z jednoczesny sprawdzeniem ostatnio wstawionego identyfikatora.
+     * Uwaga: Metoda nie analizuje przekazanego zapytania. Jeśli zapytanie nie powoduje wygenerowanie nowego identyfikatora zostanie zwrócony ostatnio znany bądź losowy
+     * @param q zapytanie do wykonania
+     * @throws 
+     * @return Zwracany jest identyfikator jaki został wygenerowany przez przekazane zapytanie. W przypadku niepowodzenia metoda zwaraca -1.
+     **/
+    public int insert(String q) {
+        try{
+            //connect();
+            Statement select = con.createStatement();
+            int wynik = select.executeUpdate(q);
+            if (wynik > 0 ){
+              ArrayList ids = this.query("SELECT LAST_INSERT_ID() as ID");
+              if (ids == null) return -1;
+              if (ids.size()>0)
+              {
+                  Hashtable hid = (Hashtable)ids.get(0);
+                  String id = (String)hid.get("ID");
+                  if (id == null)  return -1;
+                    else return Integer.parseInt(id);
+              }
+              else return -1;
+              }
+        } catch( Exception e ) { 
+            //if ("08S01".equals(e.getSQLState()) || "41000".equals(e.getSQLState())) //to oznacza ze trzeba zrobic reconnect
+            System.err.println(q);
+            System.err.println(e);
+        }
+        return -1;
+    }
 }

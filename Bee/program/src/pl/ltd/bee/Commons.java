@@ -116,7 +116,7 @@ public class Commons {
             text=text.replaceAll("<","&lt;");
             text=text.replaceAll(">","&gt;");
             text=text.replaceAll("\"","&quot;");
-            text=text.replaceAll("'","\\\\'");
+            text=text.replaceAll("'","&#39;");//\\\\'");
             text=text.replaceAll("\r\n","<br/>");
             text=text.replaceAll("\n","<br/>");
             text = Commons.dodajEmotikonki(text);
@@ -129,6 +129,7 @@ public class Commons {
      */
     public static String wypowiedzDoTekst(String text){
             text=text.replaceAll("<br/>","\r\n");
+            text=text.replaceAll("&#39;","'");
             text=text.replaceAll("&lt;","<");
             text=text.replaceAll("&gt;",">");
             text=text.replaceAll("&amp;","&");
