@@ -27,9 +27,6 @@ public class Podforum {
     private int LiczbaWypowiedzi;
     private int id_kat;
     
-    /** Konstruktor bezargumentowy */
-    public Podforum() {}
-    
     
     /** Tworzy instancje podforum
      * @param ID identyfikator podforum w bazie danych
@@ -54,23 +51,25 @@ public class Podforum {
         this.db=db;
         this.Opis = Opis;
     }
+
     
     /** Zwraca identyfikator forum
-     * @return zwraca long bedacy identyfikatorem podforum w bazie
+     * @return zwraca integer będący identyfikatorem podforum w bazie
      */
     public int getID() {
         return ID;
     }
     
+    
     /** Zwraca identyfikator kat
-     * @return zwraca long bedacy identyfikatorem podforum w bazie
+     * @return zwraca integer będący identyfikatorem podforum w bazie
      */
     public int getIdKat() {
         return id_kat;
     }
     
     
-    /** Metoda zwraca tytul podforum
+    /** Metoda zwraca tytuł podforum
      * @return String z tytulem podforum
      */
     public String getTytul(){
@@ -96,8 +95,7 @@ public class Podforum {
     }
     
     
-    
-    /** Metoda zwraca date ostatniej wypowiedzi
+    /** Metoda zwraca datę ostatniej wypowiedzi
      * @return String z datą ostatniej wypowiedzi
      */
     public String getDataOstWypowiedzi(){
@@ -105,8 +103,8 @@ public class Podforum {
     }
     
     
-    /** Zwraca  pole aktywne
-     * @return boolean
+    /** Zwraca czy podforum jest aktywne
+     * @return T jeżeli podforum jest aktywne
      */
     public boolean getAktywne() {
         return Aktywne;
@@ -114,7 +112,7 @@ public class Podforum {
     
     
     /** Ustawia opis podforum
-     * @param op String ustawianego opisu
+     * @param op String reprezentujący ustawiany opis
      */
     public void setOpis(String op) {
         this.Opis=op;
@@ -129,7 +127,7 @@ public class Podforum {
     }
     
     
-    /** Ustawia date ostatniej wypowiedzi
+    /** Ustawia datę ostatniej wypowiedzi
      * @param DataOstWypowiedzi String reprezentujący datę ostatniej wypowiedzi
      */
     public void setDataOstWypowiedzi(String DataOstWypowiedzi) {
@@ -139,7 +137,7 @@ public class Podforum {
     
     
     /** Sprawdza czy data ostatniej wypowiedzi sie zmieniła 
-     * @return T w przypadku gdy data się zmieniła, wp F
+     * @return T w przypadku gdy data się zmieniła, wpp F
      */
     public boolean checkDataOstWypowiedzi() {
         return zmienDateOstWypowiedzi;
@@ -162,7 +160,7 @@ public class Podforum {
     }
     
     
-    /** Ustawia id kat
+    /** Ustawia identyfikator kategorii w której znajduje się forum
      * @param id String ustawianego id_kat
      */
     public void setIdKat(String id) {
@@ -184,6 +182,7 @@ public class Podforum {
     public boolean czyAktywne() {
         return Aktywne;
     }
+    
     
     /** Podaje liczbe aktywnych wątków w danym podforum
      * @return liczba aktywnych wątków w danym podforum
@@ -212,8 +211,9 @@ public class Podforum {
         this.LiczbaWatkow++;
     }
     
+    
     /**
-     * Metoda wypisuje na strone glowna liste watkow
+     * Metoda wypisuje na strone główną listę wątkow
      * @param strona strumien wyjsciowy
      * @param pytanie Zaptanie otrzymane przez serwer
      * @param auth Obiekt autoryzacji
@@ -236,6 +236,7 @@ public class Podforum {
         }
     }
     
+    
     /**
      * Metoda wypisuje wiersz w tabeli kategorii z opisem podforum
      * @param strona strumien wyjsciowy
@@ -249,7 +250,6 @@ public class Podforum {
             if (user != null)
                 drukuj = user.hasReadPodforumRight(this.getID());
         }else drukuj = true;
-
         if (drukuj){
         strona.println("<tr>");
         strona.println("<td class=\"tdPicturePodforum\" align=\"center\" valign=\"middle\" height=\"50\"><img src=\"./../images/category2.gif\" width=\"24\" height=\"24\" alt=\"Category\"/></td>");
@@ -268,10 +268,11 @@ public class Podforum {
         }
     }
     
+    
     /**
-     * Metoda wypisuje na strone glowna tabele z watkami
+     * Metoda wypisuje na stronę główną tabelę z wątkami
      * @param request Otrzymane zapytanie HTTP
-     * @param strona strumien wyjsciowy
+     * @param strona strumien wyjściowy
      */
     public void printMainTableJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         Kategoria k = db.getKategoriabyPodforum(ID);
@@ -290,6 +291,7 @@ public class Podforum {
         strona.println("<th class=\"thTopRCorner\" nowrap=\"nowrap\">&nbsp;" + Messages.wielka(Messages.lastPost()) + "&nbsp;</th>");
         strona.println("</tr>");
     }
+    
     
     /**
      * Metoda wypisuje na stronie zamkniecie tabeli
