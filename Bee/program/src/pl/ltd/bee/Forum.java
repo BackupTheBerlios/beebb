@@ -92,7 +92,7 @@ public class Forum {
     
     /**
      * Metoda wypisuje na stronie zamknięcie głównej tabeli
-     * @param strona strumien wyjsciowy
+     * @param strona strumień wyjściowy
      */
     public static void printMainTableCloseJSP(javax.servlet.jsp.JspWriter strona) throws java.io.IOException {
         strona.println("</table>");

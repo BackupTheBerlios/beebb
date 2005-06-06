@@ -6,7 +6,7 @@ import java.lang.*;
 import pl.ltd.bee.Exceptions.*;
 
 /**
- * Klasa implementujaca płączenie z baza danych i wykonywanie zapytań SQL.
+ * Klasa implementujaca połączenie z bazą danych i wykonywanie zapytań SQL.
  */
 public class ConnectorDB {
 
@@ -113,7 +113,7 @@ public class ConnectorDB {
     /**
      * Metoda wykonuje przekazane zapytanie i zwraca listę wierszy które zwierają hashtable:
      * klucz:nazwa kolumny       wartość: wartość w kolumnie
-     * Klucze i wartości sa typu String
+     * Klucze i wartości są typu String
      * @param q zapytanie do wykonania
      * @return ArrayList of Hashtables
      **/
@@ -146,7 +146,7 @@ public class ConnectorDB {
     /** 
      * Metoda wykonuje Insert, Update lub Delete 
      * @param q zapytanie do wykonania
-     * @return True jesli operacja sie powiodła, False w p.p.
+     * @return True jesli operacja się powiodła, False w p.p.
      **/
     public boolean dmlQuery(String q) {
         try{
@@ -167,7 +167,7 @@ public class ConnectorDB {
      * Uwaga: Metoda nie analizuje przekazanego zapytania. Jeśli zapytanie nie powoduje wygenerowanie nowego identyfikatora zostanie zwrócony ostatnio znany bądź losowy
      * @param q zapytanie do wykonania
      * @throws 
-     * @return Zwracany jest identyfikator jaki został wygenerowany przez przekazane zapytanie. W przypadku niepowodzenia metoda zwaraca -1.
+     * @return Zwracany jest identyfikator jaki został wygenerowany przez przekazane zapytanie. W przypadku niepowodzenia metoda zwraca -1.
      **/
     public int insert(String q) {
         try{

@@ -72,9 +72,9 @@ public class Config {
     private final static String TAG_SMILE_TAG_CLOSE="smile_close_tag";
     
     
-    /** Zmienna informuje czy konfig zostal odczytany */
+    /** Zmienna informuje czy konfig został odczytany */
     private static boolean read = false;
-    /** Zmienna informuje czy konfig jest "brudny". Jesli !read to ta zmienna jest true */
+    /** Zmienna informuje czy konfig jest "brudny". Jeśli !read to ta zmienna jest true */
     private static boolean modified = true;
     
     /*
@@ -239,7 +239,7 @@ public class Config {
     
     /**
      * Metoda tworzy drzewo DOM
-     * @param fileName sciezka do pliku XML
+     * @param fileName scieżka do pliku XML
      */
     private Document wczytajXML(String fileName) throws Exception{
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -249,7 +249,7 @@ public class Config {
     }
     
     /**
-     * Metoda wpisuje wartosci zmiennych do drzewa DOM
+     * Metoda wpisuje wartości zmiennych do drzewa DOM
      * @param node drzewo DOM
      */
     private void ustawZmienne(Node node) throws Exception
@@ -291,7 +291,7 @@ public class Config {
     /** TODO TRZEBA PRZEPISAC
      * Metoda zapisuje drzewo DOM do pliku
      * @param node drzewo DOM
-     * @param plik strumien do zapisu
+     * @param plik strumień do zapisu
      */
     private void zapiszXML(Node node,OutputStreamWriter plik) throws Exception
     {
@@ -437,7 +437,7 @@ public class Config {
         REG_MAIL_SUBJECT = subject;}
 
     /** Metoda ustawia zawartość listu rejestracyjnego
-     * @param body zawartoscia listu
+     * @param body zawartością listu
      */
     public void setRegistrationBody(String body){
         modified = true;

@@ -26,7 +26,7 @@ public class Commons {
      * @param path ścieżka względna do korzenia całego serwisu od strony w której zostanie umieszczony znacznik. Dla korzenia podaje się ".". Ścieżka nie może być zakończona separatorem "/"
      * @param title tytuł strony
      * @param css nazwa pliku z arkuszem stylu (Uwaga tylko nazwa bez rozszeżenia)
-     * @return Zwraca łancuch znaków będący wypełnionym znacznikiem head.
+     * @return Zwraca łańcuch znaków będący wypełnionym znacznikiem head.
      */
     public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title, String css){
         return  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">" +
@@ -56,7 +56,7 @@ public class Commons {
      * @param request otrzymane zapytanie HTTP
      * @param path ścieżka względna do korzenia całego serwisu od strony w której zostanie umieszczony znacznik. Dla korzenia podaje się ".". Ścieżka nie może być zakończona separatorem "/"
      * @param title tytuł strony
-     * @return Zwraca łancuch znaków będący wypełnionym znacznikiem head.
+     * @return Zwraca łańcuch znaków będący wypełnionym znacznikiem head.
      */
     public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path, String title){
         String css = request.getParameter("style");
@@ -68,7 +68,7 @@ public class Commons {
      * Metoda zwraca znacznik head wypełniony parametrami meta oraz źródłami JavaScript i CSS
      * @param request otrzymane zapytanie HTTP
      * @param path ścieżka względna do korzenia całego serwisu od strony w której zostanie umieszczony znacznik. Dla korzenia podaje się ".". Ścieżka nie może być zakończona separatorem "/"
-     * @return Zwraca łancuch znaków będący wypełnionym znacznikiem head.
+     * @return Zwraca łańcuch znaków będący wypełnionym znacznikiem head.
      */
     public static String htmlHead(javax.servlet.http.HttpServletRequest request, String path){
         return htmlHead(request,path, "BeeBB :: Content");
@@ -178,7 +178,7 @@ public class Commons {
         return aHref(request,text,where,"aHref");
     }
     
-    /** Metoda zamienia wszystkie znaczniki w podanym tekscie na znaczniki xhtml odnoszące się do emotikonek
+    /** Metoda zamienia wszystkie znaczniki w podanym tekście na znaczniki xhtml odnoszące się do emotikonek
      * @param s tekst do zmiany
      * @return Zmieniony tekst
      */
@@ -191,7 +191,7 @@ public class Commons {
         return s;
     }
     
-    /** Metoda zamienia wszystkie znaczniki <img w podanym tekscie na znaczniki emotikonek 
+    /** Metoda zamienia wszystkie znaczniki <img w podanym tekście na znaczniki emotikonek 
      * @param s tekst do zmiany
      * @return Zmieniony tekst
      */

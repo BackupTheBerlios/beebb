@@ -47,7 +47,7 @@ public class Kategoria {
     
     
     /** Zwraca identyfikator forum
-     * @return Zwraca long bedący identyfikatorem kategorii w bazie
+     * @return Zwraca long będący identyfikatorem kategorii w bazie
      */
     public int getID() {
         return ID;

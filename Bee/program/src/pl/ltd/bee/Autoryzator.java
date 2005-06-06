@@ -7,7 +7,7 @@
 package pl.ltd.bee;
 
 /**
- * Klasa odpowiedzielna za autoryzację użytkowników
+ * Klasa odpowiedzialna za autoryzację użytkowników
  * @author wilk
  */
 public class Autoryzator {
@@ -21,12 +21,12 @@ public class Autoryzator {
     }
     
     /** Loguje użytkownika
-     * @param login nazwa użytwkownika
+     * @param login nazwa użytkownika
      * @param haslo hasło użytkownika w postaci hash
      * @param db obiekt klasy Database do wyciągania użytkownika
      * @param conf obiekt klasy Config do ustawienia parametrów logowania
      * @param odpowiedz odpowiedź serwera jaka zostanie wysłana do użytkownika
-     *  @return Obiekt User reprezentujacy zalogowanego użytkownika
+     *  @return Obiekt User reprezentujący zalogowanego użytkownika
      */
     public User zaloguj(String login, String haslo,DataBase db, Config conf, javax.servlet.http.HttpServletResponse odpowiedz) {
         User user = db.getUser(login);
@@ -65,7 +65,7 @@ public class Autoryzator {
     /** Metoda sprawdza czy użytkownik jest zalogowany
      *  @param pytanie zapytanie otrzymane przez serwer
      *  @param db obiekt klasy Database do wyciągania użytkownika
-     *  @return true wtw gdzy użytkownik jest zalogowany
+     *  @return true wtw gdy użytkownik jest zalogowany
      */
     public boolean zalogowany(javax.servlet.http.HttpServletRequest pytanie,DataBase db) {
         return this.getUser(pytanie,db) != null;

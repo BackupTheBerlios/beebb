@@ -51,7 +51,7 @@ public class Messages {
     
     
     //_______________________________________________________________________________________________
-    //                              Metody zwracajace slowa
+    //                              Metody zwracające słowa
     //_______________________________________________________________________________________________
     /** Metoda dostarcza łącznika "lub" */
     public static String or(){
@@ -157,9 +157,9 @@ public class Messages {
     public static String sex(){
         return "płeć";}
     
-    /** Metoda dostarcza słowo "meżczyzna" */
+    /** Metoda dostarcza słowo "mężczyzna" */
     public static String men(){
-        return "meżczyzna";}
+        return "mężczyzna";}
     
     /** Metoda dostarcza słowo "kobieta" */
     public static String woman(){
@@ -433,9 +433,9 @@ public class Messages {
     public static String dbName(){
         return "nazwa bazy danych";}
     
-    /** Metoda dostarcza frazę "prefix tabel" */
+    /** Metoda dostarcza frazę "prefiks tabel" */
     public static String tablePrefix(){
-        return "prefix tabel";}
+        return "prefiks tabel";}
     
     /** Metoda dostarcza frazę "konto gościa" */
     public static String guestAccount(){
@@ -457,7 +457,7 @@ public class Messages {
     public static String newUserMail(){
         return "wysyłanie maila w celach autentykacji";}
     
-    /** Metoda dostarcza frazę "SMTP server" */
+    /** Metoda dostarcza frazę "SMTP serwer" */
     public static String smtpServer(){
         return "smtp server";}
     
@@ -485,7 +485,7 @@ public class Messages {
     public static String applySettings(){
         return "zastosuj ustawienia forum";}
     
-    /** Metoda dostarcza słowo "kategotia" */
+    /** Metoda dostarcza słowo "kategoria" */
     public static String category(){
         return "kategoria";}
     
@@ -622,14 +622,14 @@ public class Messages {
     public static String isActivePod(){
         return "Czy napewno chcesz uaktywnić podforum?";}
     
-    /** Metoda dostarcza komunikat o wyslaniu emaila aktywacyjnego
+    /** Metoda dostarcza komunikat o wysłaniu emaila aktywacyjnego
      * @return String z komunikatem
      */
     public static String messageActivEmailSend(){
         return "Email z linkiem aktywacyjnym został wysłany.";}
     
     
-    /** Metoda dostarcza komunikat o wyslaniu emaila z kluczem do zapomnianego hasła
+    /** Metoda dostarcza komunikat o wysłaniu emaila z kluczem do zapomnianego hasła
      * @return String z komunikatem
      */
     public static String messageForgetPasswdEmailSend(){
@@ -733,7 +733,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu o połączeniu z bazą danych
+     * Metoda dostarcza komunikat błędu o połączeniu z bazą danych
      * @return String z komunikatem o braku połączenia z bazą danych
      */
     public static String errorDataBaseConnection(){
@@ -741,7 +741,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu informujacego że użytkownik nie może zostać stworzony
+     * Metoda dostarcza komunikat błędu informującego że użytkownik nie może zostać stworzony
      * @return String z komunikatem o tym że użytkownik nie może zostać stworzony
      */
     public static String errorUserCreate(){
@@ -749,7 +749,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu informujacego że podany użytkownik już istnieje
+     * Metoda dostarcza komunikat błędu informującego że podany użytkownik już istnieje
      * @param nick String z nazwa użytkownika
      * @return String z komunikatem o tym że podany użytkownik już istnieje
      */
@@ -758,7 +758,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu informujacego że pole jest wymagane
+     * Metoda dostarcza komunikat błędu informującego że pole jest wymagane
      * @return String z komunikatem o tym że pole jest wymagane
      */
     public static String errorFieldNeeded(){
@@ -766,14 +766,14 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu niewystarczajacych uprawnień
-     * @return String z komunikatem o braku wystarczajacych uprawnień
+     * Metoda dostarcza komunikat błędu niewystarczających uprawnień
+     * @return String z komunikatem o braku wystarczających uprawnień
      */
     public static String errorPermissionDenied(){
         return "Nie wystarczające uprawnienia";}
     
     /**
-     * Metoda dostarcza komunikat błedu informujacego że pole jest wymagane
+     * Metoda dostarcza komunikat błędu informującego że pole jest wymagane
      * @param field String z nazwa pola
      * @return String z komunikatem o tym że pole jest wymagane
      */
@@ -781,7 +781,7 @@ public class Messages {
         return "Pole '" + field + "'jest wymagane!";}
     
     /**
-     * Metoda dostarcza komunikat błedu informujacy że hasło jest za krótkie
+     * Metoda dostarcza komunikat błędu informujący że hasło jest za krótkie
      * @param length liczba wyznaczająca minimalną długość hasła
      * @return String z komunikatem o tym że hasło jest za krótkie
      */
@@ -790,14 +790,14 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu informujacy że hasła nie są identyczne
+     * Metoda dostarcza komunikat błędu informujący że hasła nie są identyczne
      * @return String z komunikatem o tym że hasła nie są identyczne
      */
     public static String errorPassNotMatch(){
         return "Hasła się nie zgadzają";}
     
     /**
-     * Metoda dostarcza komunikat błedu informujacego o błędzie logowania
+     * Metoda dostarcza komunikat błędu informującego o błędzie logowania
      * @return String z komunikatem o błędzie logowania
      */
     public static String errorBadUserOrPass(){
@@ -805,7 +805,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat błedu nieokreślonego
+     * Metoda dostarcza komunikat błędu nieokreślonego
      * @return String z komunikatem o błędzie nieokreślonym
      */
     public static String errorUnknown(){
@@ -940,7 +940,7 @@ public class Messages {
         return "Zmiana podforum nie powiodła się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, że zmiana prywaności się nie powiodła
+     * Metoda dostarcza komunikat o tym, że zmiana prywatności się nie powiodła
      * @return String z komunikatem
      */
     public static String errorChangePrivates(){
@@ -954,7 +954,7 @@ public class Messages {
         return "Zmiana uprawnien nie powiodła się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, że zmiana prywaności się powiodła
+     * Metoda dostarcza komunikat o tym, że zmiana prywatności się powiodła
      * @return String z komunikatem
      */
     public static String changePrivates(){
@@ -984,7 +984,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że zmiana podforum powiodła sie
+     * Metoda dostarcza komunikat o tym, że zmiana podforum powiodła się
      * @return String z komunikatem
      */
     public static String changePod(){
@@ -992,7 +992,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że usuniecie kategorii powiodło sie
+     * Metoda dostarcza komunikat o tym, że usuniecie kategorii powiodło się
      * @return String z komunikatem
      */
     public static String removeKat(){
@@ -1000,7 +1000,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że aktywacja kategorii powiodła sie
+     * Metoda dostarcza komunikat o tym, że aktywacja kategorii powiodła się
      * @return String z komunikatem
      */
     public static String activeKat(){
@@ -1038,14 +1038,14 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że dodanie usera do grupy powiodło się.
+     * Metoda dostarcza komunikat o tym, że dodanie użytkownika do grupy powiodło się.
      * @return String z komunikatem
      */
     public static String addUserGroup(){
         return "User został dodany do grupy.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, że usunięcie usera z grupy powiodło się.
+     * Metoda dostarcza komunikat o tym, że usunięcie użytkownika z grupy powiodło się.
      * @return String z komunikatem
      */
     public static String removeUserGroup(){
@@ -1066,14 +1066,14 @@ public class Messages {
         return "Usunięcie grupy nie powiodło się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, usunięcie usera nie powiodło się
+     * Metoda dostarcza komunikat o tym, usunięcie użytkownika nie powiodło się
      * @return String z komunikatem
      */
     public static String errorRemoveUserGroup(){
         return "Usunięcie usera nie powiodło się.";}
     
     /**
-     * Metoda dostarcza komunikat o tym, dodanie usera nie powiodło się
+     * Metoda dostarcza komunikat o tym, dodanie użytkownika nie powiodło się
      * @return String z komunikatem
      */
     public static String errorAddUserGroup(){
@@ -1106,7 +1106,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o tym, że aktwacja podforum nie powiodła się
+     * Metoda dostarcza komunikat o tym, że aktywacja podforum nie powiodła się
      * @return String z komunikatem
      */
     
@@ -1205,7 +1205,7 @@ public class Messages {
     
     
     /**
-     * Metoda dostarcza komunikat o poprawnym dodaniu wątka
+     * Metoda dostarcza komunikat o poprawnym dodaniu wątku
      * @return String z komunikatem
      */
     public static String addedThread(){
@@ -1306,7 +1306,7 @@ public class Messages {
         return "<img src=&quot;./images/edit.gif&quot; alt=&quot;" + Messages.wielka(Messages.edit())+"&quot;/>&nbsp;Operacja pozwala edytować treść wskazanej wypowiedzi. Aby móc edytować wypowiedź należy być zalogowanym użytkownikiem forum oraz albo być właścicielem wypowiedzi albo być moderatorem podforum, w którym znajduje się wypowiedź.";
     }
     
-    /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji banowania uzytkownika na podanym podforum
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla operacji banowania użytkownika na podanym podforum
      * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintBanAuthor(){
@@ -1468,7 +1468,7 @@ public class Messages {
     }
     
     
-    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Miasta, z którego pochodzi uzytkownik
+    /** Metoda dostarcza zawartość chmurki podpowiedzi dla Miasta, z którego pochodzi użytkownik
      * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintCity(){
@@ -1524,7 +1524,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla starego hasła
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintOldPassword(){
         return "Pole zawiera aktualne hasło użytkownika, aby móc zmienić hasło należy podać stare.";
@@ -1532,7 +1532,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla hasła
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintPassword(){
         return "Pole zawiera hasło użytkownika, hasło powinno być mieć nie mniej niż " + Config.MIN_PASSWD + " znaków.";
@@ -1540,7 +1540,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla hasła
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintPasswordOnceAgain(){
         return "Aby uniemożliwić pomyłkę przy zmianie hasła, należy podać je jeszcze raz.";
@@ -1548,7 +1548,7 @@ public class Messages {
     
     
     /** Metoda dostarcza zawartość chmurki podpowiedzi dla Avatarka
-     * @return String zawierajacy wycinek dokumentu HTML
+     * @return String zawierający wycinek dokumentu HTML
      */
     public static String hintAvatar(){
         return "Obrazek który będzie pojawiał się w wizytówce użytkownika,a także przy wszystkich jego wypowiedziach. Plik reprezentujący obrazek nie może być rozmiaru większego niż " + Config.AVATAR_WIDTH + "x" + Config.AVATAR_HEIGHT + " i zajmować więcej niż " + Config.AVATAR_SIZE/1000 + "bajtów.";
