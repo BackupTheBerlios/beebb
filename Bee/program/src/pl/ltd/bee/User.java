@@ -59,14 +59,14 @@ public class User {
     public User() {}
     
     /** Tworzy obiekt User
-     * @param ID identyfikator uzytkownika
-     * @param haslo zakodowane haslo uzytkownika
-     * @param imie imie uzytkownika
-     * @param nazwisko nazwisko uzytkownika
+     * @param ID identyfikator użytkownika
+     * @param haslo zakodowane haslo użytkownika
+     * @param imie imie użytkownika
+     * @param nazwisko nazwisko użytkownika
      * @param imieNazwiskoPrywatne czy uznawać imie i nazwisko za prywatne
-     * @param email email uzytkownika
+     * @param email email użytkownika
      * @param emailPrywatny czy uznawac email za prywatny
-     * @param www strona www uzytkownika
+     * @param www strona www użytkownika
      * @param gg numer gadu-gadu
      * @param ggPrywatne czy uznawac numer gg za prywatny
      * @param jabber adres jabbera
@@ -83,16 +83,16 @@ public class User {
      * @param yahooPrywatne czy uznawac id komnikatora yahoo za prywatne
      * @param skype id komnikatora skype
      * @param skypePrywatny czy uznawac id komnikatora skype za prywatne
-     * @param miasto miasto w ktorym mieszka uzytkownik (bądź z którego pochodzi)
+     * @param miasto miasto w ktorym mieszka użytkownik (bądź z którego pochodzi)
      * @param miastoPrywatne czy uznawac miasto za prywatne
-     * @param plec plec uzytkownika ('K' lub 'M')
-     * @param avatar ikonka uzytkownika - nazwa pliku z ikonką
+     * @param plec plec użytkownika ('K' lub 'M')
+     * @param avatar ikonka użytkownika - nazwa pliku z ikonką
      * @param sygnaturka Sygnaturka użytkownika doklejana pod wypowiedziami
      * @param sygnaturkaPubliczna czy wyświetlać sygnaturkę
      * @param styl styl forum
      * @param jezyk jezyk forum
      * @param powiadamianie czy powiadamiac o zmianach w zalozonych watkach
-     * @param dataUrodzenia data urodzenia uzytkownika
+     * @param dataUrodzenia data urodzenia użytkownika
      * @param dataUrodzeniaPrywatna czy uznawac rok urodzenia jako prywatny
      * @param liczbaWypowiedzi liczba wypowiedzi napisanych przez użytkownika
      * @param liczbaWatkow liczba watkow napisanych przez użytkownika
@@ -155,7 +155,7 @@ public class User {
     }
     
     
-    /** Sprawdza czy podane hasło (plain) zgadza się
+    /** Sprawdza czy podane hasło (plain) zgadza się z hasłem użytkownika
      * @param passwd haslo w plain txt
      * @return T lub F w zaleznosci czy haslo sie zgadza
      */
@@ -164,129 +164,129 @@ public class User {
     }
     
     
-    /** metoda sprawdza czy uzytkownik jest aktywny
-     * @return T lub N w zaleznosci czy user jest aktywny czy nie
+    /** Metoda sprawdza czy użytkownik jest aktywny
+     * @return T lub N w zaleznosci czy użytkownik jest aktywny czy nie
      */
     public boolean aktywny() {
         return aktywny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik jest administratorem
-     * @return T lub N w zaleznosci czy user jest administratorem czy nie
+    /** Metoda sprawdza czy użytkownik jest administratorem
+     * @return T lub N w zaleznosci czy użytkownik jest administratorem czy nie
      */
     public boolean admin() {
         return admin;
     }
     
     
-    /** metoda sprawdza czy uzytkownik jest moderatorem
-     * @return T lub N w zaleznosci czy user jest moderatorem czy nie
+    /** metoda sprawdza czy użytkownik jest moderatorem
+     * @return T lub N w zaleznosci czy użytkownik jest moderatorem czy nie
      */
     public boolean moderator() {
         return moderator;
     }
     
     
-    /** Metoda sprawdza czy uzytkownik jest moderatorem podanego podforum
-     * @param id_podforum Podforum o ktorego moderowanie pytamy
-     * @return T lub N w zaleznosci czy user jest moderatorem czy nie
+    /** Metoda sprawdza czy użytkownik jest moderatorem podanego podforum
+     * @param id_podforum Podforum o którego moderowanie pytamy
+     * @return T lub N w zaleznosci czy użytkownik jest moderatorem czy nie
      */
     public boolean moderator(int id_podforum){
         return this.db.isModerator(this.ID, id_podforum);
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie Imienia i nazwiska
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** Metoda sprawdza czy użytkownik wyraża zgodę na ujawnienie imienia i nazwiska
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowName() {
         return !imieNazwiskoPrywatne;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie emaila
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** Metoda sprawdza czy użytkownik wyraża zgode na ujawnienie emaila
+     * @return T lub N w zależności czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowEmail() {
         return !emailPrywatny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie numeru gg
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgodę na ujawnienie numeru gg
+     * @return T lub N w zalezności czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowGG() {
         return !ggPrywatne;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie jid
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie jid
+     * @return T lub N w zależności czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowJabber() {
         return !jabberPrywatny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id tlenu
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie id tlenu
+     * @return T lub N w zależności czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowTlen() {
         return !tlenPrywatny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id wpKontakt
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie id wpKontakt
+     * @return T lub N w zależności czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowWPKontakt() {
         return !wpKontaktPrywatny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id icq
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie id icq
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowICQ() {
         return !icqPrywatne;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id msn
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie id msn
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowMSN() {
         return !msnPrywatny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id yahoo
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie id yahoo
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowYahoo() {
         return !yahooPrywatne;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie id skype
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie id skype
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowSkype() {
         return !skypePrywatny;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie miasta zamieszkania
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie miasta zamieszkania
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowCity() {
         return !miastoPrywatne;
     }
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie date urodzenia
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie date urodzenia
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowBirthDate() {
         return !dataUrodzeniaPrywatna;
@@ -294,16 +294,16 @@ public class User {
     
     
     
-    /** metoda sprawdza czy uzytkownik wyraża zgode na ujawnienie swojej sygnatury
-     * @return T lub N w zaleznosci czy user wyraża zgode czy nie
+    /** metoda sprawdza czy użytkownik wyraża zgode na ujawnienie swojej sygnatury
+     * @return T lub N w zaleznosci czy użytkownik wyraża zgode czy nie
      */
     public boolean ifShowSig() {
         return sygnaturkaPubliczna;
     }
     
     
-    /** metoda sprawdza czy uzytkownik chce byc powiadamiany o nowych wiadomościach w jego watkach
-     * @return T lub N w zaleznosci czy user chce czy nie
+    /** metoda sprawdza czy użytkownik chce byc powiadamiany o nowych wiadomościach w jego watkach
+     * @return T lub N w zaleznosci czy użytkownik chce czy nie
      */
     public boolean ifNotify() {
         return powiadamianie;
@@ -327,22 +327,22 @@ public class User {
     
     
     /** Metoda zwraca ID użytkownika
-     * @return Integer reprezentujacy uzytkownika
+     * @return Integer reprezentujacy użytkownika
      */
     public int getID() {
         return ID;
     }
     
     
-    /** Metoda ustawia id uzytkownika
-     * @param id Int z id-em uzytkownika
+    /** Metoda ustawia id użytkownika
+     * @param id Int z id-em użytkownika
      **/
     public void setID(int id){
         this.ID=id;
     }
     
     
-    /** Metoda zwraca zahashowane haslo uzytkownika
+    /** Metoda zwraca zahashowane haslo użytkownika
      * @return String z reprezentacja hasla
      **/
     public String getHaslo(){
@@ -350,7 +350,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca login uzytkownika
+    /** Metoda zwraca login użytkownika
      * @return String z nazwa Login
      **/
     public String getLogin(){
@@ -358,7 +358,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia haslo uzytkownika
+    /** Metoda ustawia haslo użytkownika
      * @param haslo String z zakodowanym hasłem użytkownika
      **/
     public void setHaslo(String haslo){
@@ -366,7 +366,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca imie uzytkownika
+    /** Metoda zwraca imie użytkownika
      * @return String z imieniem
      **/
     public String getImie(){
@@ -374,7 +374,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia Imie uzytkownika
+    /** Metoda ustawia Imie użytkownika
      * @param imie String z Imieniem użytkownika
      **/
     public void setImie(String imie){
@@ -382,7 +382,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca nazwisko uzytkownika
+    /** Metoda zwraca nazwisko użytkownika
      * @return String z nazwiskiem
      **/
     public String getNazwisko(){
@@ -390,7 +390,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia Nazwisko uzytkownika
+    /** Metoda ustawia Nazwisko użytkownika
      * @param nazwisko String z Nazwiskiem użytkownika
      **/
     public void setNazwisko(String nazwisko){
@@ -398,7 +398,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca e-mail uzytkownika
+    /** Metoda zwraca e-mail użytkownika
      * @return String z e-mailem
      **/
     public String getEmail(){
@@ -406,7 +406,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia email uzytkownika
+    /** Metoda ustawia email użytkownika
      * @param email String z emailem użytkownika
      **/
     public void setEmail(String email){
@@ -414,7 +414,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca strone www uzytkownika
+    /** Metoda zwraca strone www użytkownika
      * @return String ze stroną www
      **/
     public String getWWW(){
@@ -422,7 +422,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia strone www uzytkownika
+    /** Metoda ustawia strone www użytkownika
      * @param www String ze stroną www użytkownika
      **/
     public void setWWW(String www){
@@ -430,7 +430,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia login uzytkownika
+    /** Metoda ustawia login użytkownika
      * @param login String z loginem użytkownika
      **/
     public void setLogin(String login){
@@ -438,7 +438,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca numer GG uzytkownika
+    /** Metoda zwraca numer GG użytkownika
      * @return String z numerem GG
      **/
     public String getGG(){
@@ -446,7 +446,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia numer GG uzytkownika
+    /** Metoda ustawia numer GG użytkownika
      * @param gg String z numerem GG
      **/
     public void setGG(String gg){
@@ -454,7 +454,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca konto jabber uzytkownika
+    /** Metoda zwraca konto jabber użytkownika
      * @return String z kontem jabber
      **/
     public String getJabber(){
@@ -462,7 +462,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia jid uzytkownika
+    /** Metoda ustawia jid użytkownika
      * @param jabber String z jid
      **/
     public void setJabber(String jabber){
@@ -470,7 +470,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca konto tlen uzytkownika
+    /** Metoda zwraca konto tlen użytkownika
      * @return String z kontem tlen
      **/
     public String getTlen(){
@@ -478,7 +478,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia tlen id uzytkownika
+    /** Metoda ustawia tlen id użytkownika
      * @param tlen String z id tlen
      **/
     public void setTlen(String tlen){
@@ -486,7 +486,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca konto wpKontakt uzytkownika
+    /** Metoda zwraca konto wpKontakt użytkownika
      * @return String z kontem wpKontakt
      **/
     public String getWPKontakt(){
@@ -494,7 +494,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia wpKontakt id uzytkownika
+    /** Metoda ustawia wpKontakt id użytkownika
      * @param wpKontakt String z id wpKontakt
      **/
     public void setWPKontakt(String wpKontakt){
@@ -503,7 +503,7 @@ public class User {
     
     
     
-    /** Metoda zwraca konto ICQ uzytkownika
+    /** Metoda zwraca konto ICQ użytkownika
      * @return String z kontem ICQ
      **/
     public String getICQ(){
@@ -511,7 +511,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia ICQ id uzytkownika
+    /** Metoda ustawia ICQ id użytkownika
      * @param icq String z id ICQ
      **/
     public void setICQ(String icq){
@@ -519,7 +519,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca konto MSN uzytkownika
+    /** Metoda zwraca konto MSN użytkownika
      * @return String z kontem MSN
      **/
     public String getMSN(){
@@ -527,7 +527,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia MSN id uzytkownika
+    /** Metoda ustawia MSN id użytkownika
      * @param msn String z id MSN
      **/
     public void setMSN(String msn){
@@ -535,7 +535,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca konto Yahoo uzytkownika
+    /** Metoda zwraca konto Yahoo użytkownika
      * @return String z kontem Yahoo
      **/
     public String getYahoo(){
@@ -543,7 +543,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia Yahoo id uzytkownika
+    /** Metoda ustawia Yahoo id użytkownika
      * @param yahoo String z id Yahoo
      **/
     public void setYahoo(String yahoo){
@@ -551,7 +551,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca konto Skype uzytkownika
+    /** Metoda zwraca konto Skype użytkownika
      * @return String z kontem Skype
      **/
     public String getSkype(){
@@ -559,7 +559,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia id Skype uzytkownika
+    /** Metoda ustawia id Skype użytkownika
      * @param skype String z id Skype
      **/
     public void setSkype(String skype){
@@ -575,8 +575,8 @@ public class User {
     }
     
     
-    /** Metoda ustawia miasto uzytkownika
-     * @param miasto String z miastem uzytkownika
+    /** Metoda ustawia miasto użytkownika
+     * @param miasto String z miastem użytkownika
      **/
     public void setCity(String miasto){
         this.miasto=miasto;
@@ -618,7 +618,7 @@ public class User {
     }
 
     
-    /** Metoda ustawia datę urodzenia uzytkownika (YYYY-MM-DD)
+    /** Metoda ustawia datę urodzenia użytkownika (YYYY-MM-DD)
      * @param dataUrodzenia String z datą urodzenia
      **/
     public void setBirthDate(String dataUrodzenia){
@@ -634,7 +634,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia płeć uzytkownika {Database.kobieta, Database.mezczyzna}
+    /** Metoda ustawia płeć użytkownika {Database.kobieta, Database.mezczyzna}
      * @param plec String z płcią
      **/
     public void setSex(String plec){
@@ -674,7 +674,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia avatar uzytkownika (nazwe pliku w katalogu)
+    /** Metoda ustawia avatar użytkownika (nazwe pliku w katalogu)
      * @param avatar String z nazwą pliku
      **/
     public void setAvatar(String avatar){
@@ -682,7 +682,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia sygnaturke uzytkownika
+    /** Metoda ustawia sygnaturke użytkownika
      * @param sig String z sygnaturką
      **/
     public void setSig(String sig){
@@ -691,7 +691,7 @@ public class User {
     
     
     
-    /** Metoda ustawia jezyk uzytkownika
+    /** Metoda ustawia jezyk użytkownika
      * @param lang String z wybranym językiem
      **/
     public void setLang(String lang){
@@ -699,7 +699,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia styl uzytkownika
+    /** Metoda ustawia styl użytkownika
      * @param style String z wybranym stylem
      **/
     public void setStyle(String style){
@@ -715,7 +715,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca date ostatniego zalogowania uzytkownika
+    /** Metoda zwraca date ostatniego zalogowania użytkownika
      * @return String z datą ostatniego zalogowania
      **/
     public String getLastLog(){
@@ -723,7 +723,7 @@ public class User {
     }
     
     
-    /** Metoda zwraca date bierzącego zalogowania uzytkownika
+    /** Metoda zwraca date bierzącego zalogowania użytkownika
      * @return String z datą bierzącego zalogowania
      **/
     public String getCurrentLog(){
@@ -867,7 +867,7 @@ public class User {
     }
     
     
-    /** Metoda ustawia prywatność miasta uzytkownika
+    /** Metoda ustawia prywatność miasta użytkownika
      * @param prv True w przypadku gdy chcemy udostepnic dane do widoku innych osób
      **/
     public void setCityPrivate(boolean prv){
@@ -887,9 +887,9 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego watku (w przypadku prywatnego)
+    /** Metoda sprawdza czy dany użytkownik ma prawo odczytu danego watku (w przypadku prywatnego)
      * @param id Identyfikator watku
-     * @return True jesli użytkownik ma prawo odczytu wskazanego wątku lub False w p.p.
+     * @return True jesli użytkownik ma prawo odczytu wskazanego wątku lub False wpp
      */
     public boolean hasReadWatekRight(int id){
         Podforum p = db.getPodforumbyWatek(id);
@@ -897,9 +897,9 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego watku (w przypadku prywatnego)
+    /** Metoda sprawdza czy dany użytkownik ma prawo zapisu do danego watku (w przypadku prywatnego)
      * @param id Identyfikator watku
-     * @return True jesli użytkownik ma prawo zapisu do wskazanego wątku lub False w p.p.
+     * @return True jesli użytkownik ma prawo zapisu do wskazanego wątku lub False wpp
      */
     public boolean hasWriteWatekRight(int id){
         Podforum p = db.getPodforumbyWatek(id);
@@ -907,36 +907,36 @@ public class User {
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danego podforum (w przypadku prywatnego)
+    /** Metoda sprawdza czy dany użytkownik ma prawo odczytu danego podforum (w przypadku prywatnego)
      * @param id Identyfikator podforum
-     * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False w p.p.
+     * @return True jesli użytkownik ma prawo odczytu wskazanego Podforum lub False wpp
      */
     public boolean hasReadPodforumRight(int id){
         return db.hasPodforumRights(this.ID, id, true, false);
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danego podforum (w przypadku prywatnego)
+    /** Metoda sprawdza czy dany użytkownik ma prawo zapisu do danego podforum (w przypadku prywatnego)
      * @param id Identyfikator podforum
-     * @return True jesli użytkownik ma prawo zapisu do wskazanego Podforum lub False w p.p.
+     * @return True jesli użytkownik ma prawo zapisu do wskazanego Podforum lub False wpp
      */
     public boolean hasWritePodforumRight(int id){
         return db.hasPodforumRights(this.ID, id, false, true);
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo odczytu danej Kategorii (w przypadku prywatnej)
+    /** Metoda sprawdza czy dany użytkownik ma prawo odczytu danej Kategorii (w przypadku prywatnej)
      * @param id Identyfikator Kategorii
-     * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False w p.p.
+     * @return True jesli użytkownik ma prawo odczytu wskazanej Ktegorii lub False wpp
      */
     public boolean hasReadKategoriaRight(int id){
         return db.hasKategoriaRights(this.ID, id, true, false);
     }
     
     
-    /** Metoda sprawdza czy dany uzytkownik ma prawo zapisu do danej Kategorii (w przypadku prywatnej)
+    /** Metoda sprawdza czy dany użytkownik ma prawo zapisu do danej Kategorii (w przypadku prywatnej)
      * @param id Identyfikator Kategorii
-     * @return True jesli użytkownik ma prawo zapisu do wskazanej Ktegorii lub False w p.p.
+     * @return True jesli użytkownik ma prawo zapisu do wskazanej Ktegorii lub False wpp
      */
     public boolean hasWriteKategoriaRight(int id){
         return db.hasKategoriaRights(this.ID, id, false, true);
