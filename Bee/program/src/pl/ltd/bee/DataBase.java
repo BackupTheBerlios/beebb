@@ -123,9 +123,9 @@ public class DataBase {
     static final String KATEGORIE_PODFORA_ID_PODFORUM = "ID_PODFORUM";
     
     static final String PODFORA_WATKI_ID_PODFORUM = "ID_PODFORA";
-    static final String PODFORA_WATKI_ID_WATKU = "ID_WATKU";
+    static final String PODFORA_WATKI_ID_wątku = "ID_wątku";
     
-    static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_WATKU";
+    static final String WATKI_WYPOWIEDZI_ID_wątku = "ID_wątku";
     static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_WYPOWIEDZI";
     
     static final String USER_ID = "ID";
@@ -200,7 +200,7 @@ public class DataBase {
     static final String PRIVILAGES_ID_CZYTANIE = "CZYTANIE";
     static final String PRIVILAGES_ID_PISANIE = "PISANIE";
     
-    //TODO baza jest static czyli jeden obiekt dla wszystkich obiektow klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektow. To trzeba miec na uwadze w przyszlosci
+    //TODO baza jest static czyli jeden obiekt dla wszystkich obiektów klasy DataBase. Konstruktor(Host,User,Pass) zmieni ten obiekt dla wszystkich tych obiektów. To trzeba miec na uwadze w przyszlosci
     ConnectorDB baza;
     
     
@@ -253,7 +253,7 @@ public class DataBase {
     
     /**
      * Metoda ustawia prefix tabel w bazie danych
-     * @param pref string reprezentujacy prefix
+     * @param pref string reprezentujący prefix
      */
     public void setTablePrefix(String pref) {
         BEE_USERS = pref + "_" + BEE_USERS_BASE;
@@ -283,14 +283,14 @@ public class DataBase {
         ArrayList lista = baza.query(query);
         if (lista.size() > 0)
             return (Hashtable)lista.get(0);
-        else return null; //TODO: Co robic jesli nie ma zadanego objektu ?
+        else return null; //TODO: Co robic jesli nie ma zadanego obiektu ?
     }
     
     
     /**
      * Metoda zwraca obiekt Watek o podanym identyfikatorze
      * @param ID Identyfikator szukanego wątku
-     * @return Zwraca obiekt Watek bądź null w razie bledu.
+     * @return Zwraca obiekt Watek bądź null w razie błędu.
      */
     public Watek getWatek(int ID){
         Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"=" + ID);
@@ -301,9 +301,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca obiekt Wypowiedz o podanym identyfikatorze
+     * Metoda zwraca obiekt Wypowiedz o podanym identyfikatorze
      * @param ID Identyfikator szukanej wypowiedzi
-     * @return Zwraca obiekt Wypowiedz bądź null w razie bledu.
+     * @return Zwraca obiekt Wypowiedz bądź null w razie błędu.
      */
     public Wypowiedz getWypowiedz(int ID){
         Hashtable wypowiedz = getObject("SELECT * FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID +"=" + ID);
@@ -313,9 +313,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Podforum o podanym identyfikatorze
+     * Metoda zwraca obiekt Podforum o podanym identyfikatorze
      * @param ID Identyfikator szukanego podforum
-     * @return Zwraca obiekt Podforum badz null w razie bledu.
+     * @return Zwraca obiekt Podforum bądź null w razie błędu.
      */
     public Podforum getPodforum(int ID){
         Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE " + PODFORUM_ID +"=" + ID);
@@ -325,33 +325,33 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Podforum w ktorym znajduje sie Watek o podanym identyfikatorze
-     * @param ID Identyfikator watku w szukanym podforum
-     * @return Zwraca obiekt Podforum badz null w razie bledu.
+     * Metoda zwraca obiekt Podforum, w którym znajduje się Watek o podanym identyfikatorze
+     * @param ID Identyfikator wątku w szukanym podforum
+     * @return Zwraca obiekt Podforum bądź null w razie błędu.
      */
     public Podforum getPodforumbyWatek(int ID){
-        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_PODFORUM + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
+        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_PODFORUM + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_wątku + "=" + ID + ")");
         if (podforum == null) return null;
         return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this);
     }
     
     
     /**
-     * Metoda zwaraca objekt Watek w ktorym znajduje sie Wypowiedz o podanym identyfikatorze
-     * @param ID Identyfikator wypowiedzi w szukanym watku
-     * @return Zwraca obiekt Watek badz null w razie bledu.
+     * Metoda zwraca obiekt Watek, w którym znajduje się Wypowiedz o podanym identyfikatorze
+     * @param ID Identyfikator wypowiedzi w szukanym wątku
+     * @return Zwraca obiekt Watek bądź null w razie błędu.
      */
     public Watek getWatekByWypowiedz(int ID){
-        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_WATKU + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
+        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_wątku + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
         if (watek == null) return null;
         return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
     }
     
     
     /**
-     * Metoda zwaraca objekt Kategoria w ktorym znajduje sie Podforum o podanym identyfikatorze
+     * Metoda zwraca obiekt Kategoria, w którym znajduje się Podforum o podanym identyfikatorze
      * @param ID Identyfikator podforum w szukanej kategorii
-     * @return Zwraca obiekt Kategoria lub null gdy nie ma.
+     * @return Zwraca obiekt Kategoria lub null gdy kategoria nie istnieje.
      */
     public Kategoria getKategoriabyPodforum(int ID){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID + " = (SELECT " + KATEGORIE_PODFORA_ID_KATEGORII + " FROM " + BEE_KATEGORIE_PODFORA + " WHERE " + KATEGORIE_PODFORA_ID_PODFORUM + "=" + ID + ")");
@@ -361,8 +361,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Forum
-     * @return Zwraca obiekt Forum badz null w razie bledu.
+     * Metoda zwraca obiekt Forum
+     * @return Zwraca obiekt Forum bądź null w razie błędu.
      */
     public Forum getForum(){
         Hashtable forum = getObject("SELECT * FROM " + BEE_FORUM);
@@ -372,9 +372,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Kategoria o podanym identyfikatorze
+     * Metoda zwraca obiekt Kategoria o podanym identyfikatorze
      * @param ID Identyfikator szukanej Kategorii
-     * @return Zwraca obiekt Kategoria badz null w razie bledu.
+     * @return Zwraca obiekt Kategoria bądź null w razie błędu.
      */
     public Kategoria getKategoria(int ID){
         Hashtable kategoria = getObject("SELECT * FROM " + BEE_KATEGORIE + " WHERE " + KATEGORIA_ID +"=" + ID);
@@ -384,8 +384,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Kategorii w podanym Forum
-     * @return ArrayList obiektow Integer
+     * Metoda zwraca liste obiektów Integer będących identyfikatorami Kategorii w podanym Forum
+     * @return ArrayList obiektów Integer
      */
     public ArrayList getKategorieForum() {
         ArrayList wynik = new ArrayList();
@@ -400,8 +400,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow String bedacych tytulami Kategorii w podanym Forum
-     * @return ArrayList obiektow String
+     * Metoda zwraca liste obiektów String będących tytulami Kategorii w podanym Forum
+     * @return ArrayList obiektów String
      */
     public ArrayList getTytulyKategorii() {
         ArrayList wynik = new ArrayList();
@@ -416,9 +416,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami podfor w podanej Kategorii
-     * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
-     * @return ArrayList obiektow Integer
+     * Metoda zwraca liste obiektów Integer będacych identyfikatorami podfor w podanej Kategorii
+     * @param ID Identyfikator kategorii w ramach której interesują nas podfora
+     * @return ArrayList identyfikatorów
      */
     public ArrayList getPodforaKategorii(int ID) {
         ArrayList wynik = new ArrayList();
@@ -431,12 +431,13 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
-     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne badż nie w
+     * Metoda zwraca liste obiektów Podforum w podanej Kategorii, aktywne badż nie w
      * zalezności od parametru
-     * @param czy_aktywne Okresla interesujacy nas stan kategori
-     * @param ID Identyfikator kategorii w ramach ktorej interesuja nas podfora
-     * @return ArrayList obiektow Podforum
+     * @param czy_aktywne Okresla interesujacy nas stan kategorii
+     * @param ID Identyfikator kategorii w ramach której interesuja nas podfora
+     * @return ArrayList obiektów Podforum
      */
     public ArrayList  getPodforaKategorii(int ID, boolean czy_aktywne) {
         ArrayList wynik = new ArrayList();
@@ -453,16 +454,16 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Watkow w podanym Podforum
-     * @param ID Podforum w ramach ktorego interesuja nas watki
-     * @return ArrayList obiektow Integer
+     * Metoda zwraca liste obiektów Integer będących identyfikatorami Watkow w podanym Podforum
+     * @param ID Podforum w ramach którego interesuja nas watki
+     * @return ArrayList identyfikatorów
      */
     public ArrayList getWatkiPodforum(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT " + PODFORA_WATKI_ID_WATKU + " FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID);
+        ArrayList watki = baza.query("SELECT " + PODFORA_WATKI_ID_wątku + " FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID);
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
-            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
+            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_wątku));
             wynik.add(new Integer(id));
         }
         return wynik;
@@ -470,19 +471,19 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Watek bedacych Watkami w podanym Podforum oraz majace pole aktywny na podane w parametrze
-     * @param ID Podforum w ramach ktorego interesuja nas watki
-     * @param aktywne Okresla czy interesuja nas watki aktywne czy nie
+     * Metoda zwraca liste obiektów Watek będacych Watkami w podanym Podforum oraz majace pole aktywny -- podane w parametrze
+     * @param ID Podforum w ramach którego interesują nas wątki
+     * @param aktywne Okresla czy interesuja nas wątki aktywne czy nie
      * @param sortByDate Parametr określa czy zwrócona lista wątków ma być posortowana po dacie (poczynając od wątku najwcześniejszego)
-     * @return ArrayList obiektow Watek
+     * @return ArrayList obiektów Watek
      */
     public ArrayList getWatkiPodforum(int ID, boolean aktywne, boolean sortByDate) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_WATKU+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" DESC":""));
+        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_wątku+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" DESC":""));
         if (watki == null) return wynik;
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
-            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
+            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_wątku));
             wynik.add(new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this));
         }
         return wynik;
@@ -490,13 +491,13 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku
-     * @param ID Identyfikator watku w ramach ktorego interesuja nas Wypowiedzi
-     * @return ArrayList obiektow Integer
+     * Metoda zwraca liste obiektów Integer będących identyfikatorami Wypowiedzi w podanym wątku
+     * @param ID Identyfikator wątku w ramach którego interesuja nas Wypowiedzi
+     * @return ArrayList identyfikatorów
      */
     public ArrayList getWypowiedziWatku(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID);
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_wątku + "=" + ID);
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
@@ -507,15 +508,15 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami Wypowiedzi w podanym Watku o stanie aktywnosci podanym w parametrze
-     * @param ID Identyfikator watku w ramach ktorego interesuja nas Wypowiedzi
-     * @param aktywne Okresla jakie wypowiedzi nas interesuja
+     * Metoda zwraca liste identyfikatorów Wypowiedzi w podanym wątku, będących w stanie aktywnosci podanym w parametrze, z możliwością posortowania po dacie
+     * @param ID Identyfikator wątku w ramach którego interesuja nas Wypowiedzi
+     * @param aktywne Okresla jakie wypowiedzi nas interesują
      * @param sortByDate Parametr określa czy zwrócona lista wypowiedzi ma być posortowana po dacie (poczynając od wypowiedzi najpoźniejszej)
-     * @return ArrayList obiektow Integer
+     * @return ArrayList identyfikatorów
      */
     public ArrayList getWypowiedziWatku(int ID, boolean aktywne, boolean sortByDate) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" ASC":""));
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_wątku + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" ASC":""));
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
@@ -526,11 +527,11 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca obiekt User stworzony z danych znajdujących się w hashtablicy podanej jako parametr
+     * Metoda zwraca obiekt User stworzony z danych znajdujących się w hashtablicy podanej jako parametr
      * @param user tablica (hashtable) z danymi usera wyciągniętymi z bazy
      * @return Zwraca obiekt User
      */
-    public User ht2user(Hashtable user) {
+    private User ht2user(Hashtable user) {
         return new User(Integer.decode((String)user.get(USER_ID)).intValue(),(String)user.get(USER_LOGIN),
                 (String)user.get(USER_HASLO),(String)user.get(USER_IMIE),(String)user.get(USER_NAZWISKO),
                 (String)user.get(USER_IMIE_NAZWISKO_PRYWATNE),(String)user.get(USER_EMAIL),(String)user.get(USER_EMAIL_PRYWATNY),
@@ -550,9 +551,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca obiekt User o podanym identyfikatorze
+     * Metoda zwraca obiekt User o podanym identyfikatorze
      * @param ID Identyfikator szukanego uzytkownika
-     * @return Zwraca obiekt User badz null w razie bledu.
+     * @return Zwraca obiekt User bądź null w razie błędu.
      */
     public User getUser(int ID) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_ID +"=" + ID);
@@ -562,9 +563,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt User o podanym identyfikatorze
+     * Metoda zwraca obiekt User o podanym identyfikatorze
      * @param login Identyfikator (login) szukanego uzytkownika
-     * @return Zwraca obiekt User badz null w razie bledu.
+     * @return Zwraca obiekt User bądź null w razie błędu.
      */
     public User getUser(String login) {
         Hashtable user = getObject("SELECT * FROM " + BEE_USERS + " WHERE "+ USER_LOGIN +" = '" + login + "'");
@@ -574,9 +575,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca nazwe uzytkownika o danym kluczu w tabeli nowych kont
+     * Metoda zwraca nazwe uzytkownika o danym kluczu w tabeli nowych kont
      * @param klucz losowy klucz zwiazany z uzytkownikiem
-     * @return Zwraca nazwe uzytkownika badz null w razie bledu.
+     * @return Zwraca nazwe uzytkownika bądź null w razie błędu.
      */
     public String getLoginNewUser(String klucz){
         Hashtable user = getObject("SELECT * FROM " + BEE_NEW_USER + " WHERE "+ NEW_USER_KLUCZ +"='" + klucz + "'");
@@ -586,9 +587,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca email uzytkownika o danym kluczu w tabeli zapomnianych hasel
+     * Metoda zwraca email uzytkownika o danym kluczu w tabeli zapomnianych hasel
      * @param klucz losowy klucz zwiazany z uzytkownikiem
-     * @return Zwraca email uzytkownika badz null w razie bledu.
+     * @return Zwraca email uzytkownika bądź null w razie błędu.
      */
     public String getEmailForgetPasswd(String klucz){
         Hashtable user = getObject("SELECT * FROM " + BEE_FORGET_PASSWD + " WHERE "+ FORGET_PASSWD_KLUCZ +"='" + klucz + "'");
@@ -600,7 +601,7 @@ public class DataBase {
     /**
      * Metoda umieszcza uzytkownika w bazie danych
      * @param u obiekt User (bez waznego id) reprezentujący dodawaneg użytkownika
-     * @return zwraca czy insert sie powidl
+     * @return zwraca czy insert się powidl
      */
     public boolean insertUser(User u){
         String aktywny; if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
@@ -638,7 +639,7 @@ public class DataBase {
     /**
      * Metoda aktualizuje uzytkownika w bazie danych
      * @param u obiekt User reprezentujący użytkownika
-     * @return zwraca czy update sie powiódl
+     * @return zwraca czy update się powiódl
      */
     public boolean updateUser(User u){
         String aktywny; if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
@@ -687,7 +688,7 @@ public class DataBase {
     
     /** Ustawia uzytkownika jako aktywnego
      * @param nick login uzytkownika
-     * @return T lub N w zaleznosci czy update sie powiódl
+     * @return T lub N w zaleznosci czy update się powiódl
      */
     public boolean setAktywnyUser(String nick){
         return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='" + TAK + "' WHERE " + USER_LOGIN + "='" + nick + "'");
@@ -695,8 +696,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste wszystkich obiektow tabeli Users z bazy
-     * @return ArrayList obiektow User
+     * Metoda zwraca liste wszystkich obiektów tabeli Users z bazy
+     * @return ArrayList obiektów User
      */
     public ArrayList getUsers() {
         ArrayList wynik = new ArrayList();
@@ -709,8 +710,8 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste wszystkich obiektow tabeli Groups z bazy
-     * @return ArrayList obiektow Group
+     * Metoda zwraca liste wszystkich obiektów tabeli Groups z bazy
+     * @return ArrayList obiektów Group
      */
     public ArrayList getGroups() {
         ArrayList wynik = new ArrayList();
@@ -725,7 +726,7 @@ public class DataBase {
     /**
      * Metoda usuwa grupe
      * @param id id grupy
-     * @return T lub N w zależności czy udalo sie usunac
+     * @return T lub N w zależności czy udalo się usunac
      */
     public boolean usunGrupe(int id){
         baza.dmlQuery("DELETE FROM " + BEE_USERS_GROUPS + " WHERE " + USERS_GROUPS_ID_GROUP + " = " + id );
@@ -733,9 +734,9 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste aktywnych Userów
+     * Metoda zwraca liste aktywnych Userów
      * @param czy_aktywny true lub false
-     * @return ArrayList obiektow User
+     * @return ArrayList obiektów User
      */
     public ArrayList getUsersAktywni(boolean czy_aktywny) {
         ArrayList wynik = new ArrayList();
@@ -750,10 +751,10 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste aktywnych userów danej grupy
+     * Metoda zwraca liste aktywnych userów danej grupy
      * @param czy_aktywny true lub false
      * @param id_g id grupy
-     * @return ArrayList obiektow User
+     * @return ArrayList obiektów User
      */
     public ArrayList getGroupUsersAktywni(boolean czy_aktywny, int id_g) {
         ArrayList wynik = new ArrayList();
@@ -796,7 +797,7 @@ public class DataBase {
      * Metoda umieszcza kategorie w bazie danych,
      * @param id_forum Identyfikator forum
      * @param k wstawiana kategoria
-     * @return zwraca true jezeli insert sie powiodl
+     * @return zwraca true jezeli insert się powiodl
      */
     public boolean insertKategoria(int id_forum, Kategoria k) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES ("+k.getID()+", '"+k.getNazwa()+"' ,'"+k.getOpis()+"', '" + (k.czyAktywna()?TAK:NIE) + "', '" + (k.czyPrywatna()?TAK:NIE) + "')")) {
@@ -814,7 +815,7 @@ public class DataBase {
     /**
      * Metoda umieszcza grupe w bazie danych,
      * @param g wstawiana grupa
-     * @return zwraca true jezeli insert sie powiodl
+     * @return zwraca true jezeli insert się powiodl
      */
     public boolean insertGrupa(Group g) {
         return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )");
@@ -824,7 +825,7 @@ public class DataBase {
      * Metoda umieszcza usera w podanej grupie,
      * @param id_u id usera
      * @param id_g id grupy
-     * @return zwraca true jezeli insert sie powiodl
+     * @return zwraca true jezeli insert się powiodl
      */
     public boolean insertUserGroup(int id_u, int id_g) {
         return baza.dmlQuery("INSERT INTO "+BEE_USERS_GROUPS+" VALUES ("+id_u+", "+id_g+" )");
@@ -834,7 +835,7 @@ public class DataBase {
      * Metoda usuwa usera z podanej grupy,
      * @param id_u id usera
      * @param id_g id grupy
-     * @return zwraca true jezeli dlete sie powiodl
+     * @return zwraca true jezeli dlete się powiodl
      */
     public boolean deleteUserGroup(int id_u, int id_g) {
         return baza.dmlQuery("DELETE FROM "+BEE_USERS_GROUPS+" WHERE "+USERS_GROUPS_ID_USER+"="+id_u+" and "+USERS_GROUPS_ID_GROUP+"="+id_g);
@@ -842,9 +843,9 @@ public class DataBase {
     
     /**
      * Metoda umieszcza podforum w bazie danych,
-     * @param id_kat id kategorii do ktorej dodawane jest podforum
+     * @param id_kat id kategorii do której dodawane jest podforum
      * @param p obiekt Podforum
-     * @return zwraca true jezeli insert sie powiodl
+     * @return zwraca true jezeli insert się powiodl
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ( "+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"' ," + p.getDataOstWypowiedzi() + " ,'" + p.getAutorOstWypowiedzi() + "', NULL , '" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
@@ -862,7 +863,7 @@ public class DataBase {
      * date podajemy jak sekwencje do wyliczenia daty albo w ciapkach 'data'
      * @param id_wat id wątku, w którym dodajemy wypowiedź
      * @param w obiekt Wypowiedź (bez ważnego id) ktory należy wstawić do bazy
-     * @return zwraca true jezeli insert sie powiodl
+     * @return zwraca true jezeli insert się powiodl
      */
     public boolean insertWypowiedz(String id_wat, Wypowiedz w) {
         int id = baza.insert("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES ("+ w.getID() +", " + w.getIDAutora() + ", '" + w.getAutor() + "' ," + w.getData() + ", '" + w.getTekst() + "','" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')");
@@ -900,7 +901,7 @@ public class DataBase {
      * Metoda umieszcza wiersz w tabeli moderatorzy
      * @param id_pod id podforum
      * @param id_user id uzytkownika
-     * @return zwraca true jezeli insert sie powiodl
+     * @return zwraca true jezeli insert się powiodl
      */
     public boolean insertModerator(int id_pod, int id_user) {
         return baza.dmlQuery("INSERT INTO " + BEE_MODERATORZY + " VALUES (" + id_pod + "," +id_user + ")");
@@ -910,7 +911,7 @@ public class DataBase {
     /**
      * Metoda aktualizuje watek w bazie danych
      * @param w obiekt Watek reprezentujący watek
-     * @return zwraca czy update sie powiódl
+     * @return zwraca czy update się powiódl
      */
     public boolean updateWatek(Watek w){
         String aktywny;
@@ -931,7 +932,7 @@ public class DataBase {
     /**
      * Metoda aktualizuje podforum w bazie danych
      * @param p obiekt Podforum reprezentujący podforum
-     * @return zwraca czy update sie powiódl
+     * @return zwraca czy update się powiódl
      */
     public boolean updatePodforum(Podforum p){
         String aktywne;
@@ -1039,7 +1040,7 @@ public class DataBase {
     /**
      * Metoda usuwa klucz do zapomnianego hasła
      * @param email email uzytkownika
-     * @return T lub N w zależności czy udalo sie usunac
+     * @return T lub N w zależności czy udalo się usunac
      */
     public boolean usunZapomnianeHaslo(String email){
         return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_EMAIL + "='" + email + "'");
@@ -1104,9 +1105,9 @@ public class DataBase {
     }
     
     /**
-     * Metoda zwaraca liste obiektow Kategoria, aktywne badz nie, na podstawie parametru czy_aktywna
+     * Metoda zwraca liste obiektów Kategoria, aktywne bądź nie, na podstawie parametru czy_aktywna
      * @param czy_aktywna boolean T lub F
-     * @return ArrayList obiektow Kategoria
+     * @return ArrayList obiektów Kategoria
      */
     public ArrayList getKategoriePrywatne(boolean czy_aktywna, boolean czy_prywatna) {
         ArrayList wynik = new ArrayList();
@@ -1124,8 +1125,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste wszystkich obiektow Kategoria.
-     * @return ArrayList obiektow Kategoria
+     * Metoda zwraca liste wszystkich obiektów Kategoria.
+     * @return ArrayList obiektów Kategoria
      */
     public ArrayList getKategorieAll() {
         ArrayList wynik = new ArrayList();
@@ -1139,10 +1140,10 @@ public class DataBase {
     
     
     /**
-     * Metoda zmienia pole aktywna , a takze wszystjie podfora w niej sie zawierajace
+     * Metoda zmienia pole aktywna , a takze wszystjie podfora w niej się zawierajace
      * @param czy_aktywne T lub F
      * @param id kategorii
-     * @return boolean true jezeli update sie powiodl dalse wpp.
+     * @return boolean true jezeli update się powiodl dalse wpp.
      **/
     public boolean zmienAktywnoscKategorii(int id, boolean czy_aktywne){
         String aktywne;
@@ -1156,7 +1157,7 @@ public class DataBase {
      * Metoda zmienia pole aktywna na podane w parametrze aktywne
      * @param id Identyfikator podforum
      * @param czy_aktywne Okresla aktywnosc
-     * @return boolean true jezeli update sie powiodl dalse wpp.
+     * @return boolean true jezeli update się powiodl dalse wpp.
      **/
     public boolean zmienAktywnoscPodforum(int id, boolean czy_aktywne){
         String aktywne;
@@ -1166,11 +1167,11 @@ public class DataBase {
     
     /**
      * Metoda zmienia pole aktywna na podane w parametrze
-     * @param id identyfikator watku
+     * @param id identyfikator wątku
      * @param czy_aktywny ustawiana aktywnosc
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False w p.p.
      **/
-    public boolean zmienAktywnoscWatku(int id, boolean czy_aktywny){
+    public boolean zmienAktywnoscwątku(int id, boolean czy_aktywny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_AKTYWNY+"='"+ (czy_aktywny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
     }
     
@@ -1178,11 +1179,11 @@ public class DataBase {
      * Metoda zmienia pole aktywna na podane w parametrze
      * @param id identyfikator wypowiedzi
      * @param czy_aktywna ustawiana aktywnosc
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False w p.p.
      **/
     public boolean zmienAktywnoscWypowiedzi(int id, boolean czy_aktywna){
         if (baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_AKTYWNA+"='"+ (czy_aktywna?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id))
-            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_WATKU+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")"))
+            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_wątku+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")"))
                 return true;
             else return false;
         else return false;
@@ -1192,7 +1193,7 @@ public class DataBase {
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator kategorii
      * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False w p.p.
      **/
     public boolean zmienPrywatnoscKategorii(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+KATEGORIA_ID+"="+id);
@@ -1202,7 +1203,7 @@ public class DataBase {
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator podforum
      * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False w p.p.
      **/
     public boolean zmienPrywatnoscPodforum(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_PRYWATNE+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+PODFORUM_ID+"="+id);
@@ -1213,7 +1214,7 @@ public class DataBase {
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator wątku
      * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False wpp
      **/
     public boolean zmienPrywatnoscWatku(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_PRYWATNY+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
@@ -1224,7 +1225,7 @@ public class DataBase {
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator wypowiedzi
      * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False wpp
      **/
     public boolean zmienPrywatnoscWypowiedzi(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id);
@@ -1233,9 +1234,9 @@ public class DataBase {
     
     /**
      * Metoda zmienia pole zablokowany na podane w parametrze
-     * @param id identyfikator watku
+     * @param id identyfikator wątku
      * @param czy_blokowac ustawiane blokowanie
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False w p.p.
      **/
     public boolean blokowanieWatku(int id, boolean czy_blokowac){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZABLOKOWANY+"='"+ (czy_blokowac?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
@@ -1244,9 +1245,9 @@ public class DataBase {
     
     /**
      * Metoda zmienia pole zamkniety na podane w parametrze
-     * @param id identyfikator watku
+     * @param id identyfikator wątku
      * @param czy_zamkniety ustawiane zamkniecie
-     * @return boolean True jezeli zmiana sie powiodla False w p.p.
+     * @return boolean True jezeli zmiana się powiodla False w p.p.
      **/
     public boolean zamykanieWatku(int id, boolean czy_zamkniety){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZAMKNIETY+"='"+ (czy_zamkniety?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
@@ -1258,7 +1259,7 @@ public class DataBase {
      * @param id Identyfikator kategorii
      * @param tytul Tytul kategorii
      * @param opis Opis kategorii
-     * @return boolean true jezeli update sie powiodl dalse wpp.
+     * @return boolean true jezeli update się powiodl dalse wpp.
      */
     public boolean updateKategoria(int id, String tytul, String opis ){
         return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_TYTUL+"='"+tytul+"' , "+KATEGORIA_OPIS+"='"+opis+"' WHERE "+KATEGORIA_ID+"="+id);
@@ -1273,7 +1274,7 @@ public class DataBase {
      * @param id_kat Identyfikator kategorii
      * @param tytul Tytul kategorii
      * @param opis Opis kategorii
-     * @return boolean true jezeli update sie powiodl dalse wpp.
+     * @return boolean true jezeli update się powiodl dalse wpp.
      */
     public boolean updatePodforum(int id, int id_kat, String tytul, String opis ){
         return  ( baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" WHERE "+KATEGORIE_PODFORA_ID_PODFORUM+"="+id)
@@ -1382,10 +1383,10 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami uzytkownikow,
+     * Metoda zwraca liste obiektów Integer będących identyfikatorami uzytkownikow,
      * ktorzy sa moderatorami w danym podforum
      * @param id_podforum Identyfikator podforum
-     * @return ArrayList obiektow Integer
+     * @return ArrayList obiektów Integer
      */
     public ArrayList getIdModeratorzyPodforum(int id_podforum) {
         ArrayList wynik = new ArrayList();
@@ -1412,11 +1413,11 @@ public class DataBase {
     
     
     /**
-     * Metoda pozwala zabanowac uzytkownika lub <i>odbanowac - to sie moze zakonczyc niepowodzeniem, bo nie bylo polaczenia z baza lub nie bylo co odbanowywac</i>
+     * Metoda pozwala zabanowac uzytkownika lub <i>odbanowac - to się moze zakonczyc niepowodzeniem, bo nie bylo polaczenia z baza lub nie bylo co odbanowywac</i>
      * @param user_id identyfikator uzytkownika
      * @param id_podforum identyfikator podforum
      * @param ban okresla czy nalezy zabanowac uzytkownika czy odbanowac
-     * @return True jest operacja powiodla sie False w p.p.
+     * @return True jest operacja powiodla się False w p.p.
      */
     public boolean banUser(int user_id, int id_podforum, boolean ban){
         if (ban)
@@ -1440,7 +1441,7 @@ public class DataBase {
     
     /** Metoda dostarcza podfora moderowane przez wskazanego uzytkownika
      * @param user_id identyfikator uzytkownika
-     * @return ArrayList obiektow podforum
+     * @return ArrayList obiektów podforum
      */
     public ArrayList getModerowanePodfora(int user_id){
         ArrayList id_podfor = baza.query("SELECT " + MODERATORZY_ID_PODFORUM + " FROM "+ BEE_MODERATORZY+" WHERE "+MODERATORZY_ID_USER+"="+user_id);
@@ -1459,14 +1460,14 @@ public class DataBase {
     
     /** Metoda przenosi watek z jednego podforum do drugiego
      * @param watek Przenoszony watek
-     * @param id_from Identyfikator podforum z ktorego usuwamy
-     * @param id_to Identyfikator podforum do ktorego przenosimy
-     * @return True jesli operacja powiodla sie
+     * @param id_from Identyfikator podforum z którego usuwamy
+     * @param id_to Identyfikator podforum do którego przenosimy
+     * @return True jesli operacja powiodla się
      */
     public boolean moveWatek(Watek watek,int id_from,int id_to){
         if (id_from == id_to) return true;
-        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+watek.getID()+")"))
-            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+watek.getID()+")"))
+        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_wątku+") VALUE("+id_to+","+watek.getID()+")"))
+            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_wątku+"="+watek.getID()+")"))
                 //teraz trzeba przeniesc liczby
                 if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"-1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"-"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_from))
                     if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"+1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"+"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_to))
@@ -1478,17 +1479,17 @@ public class DataBase {
     }
     
     
-    /** Metoda podmienia tekst wypowiedzi. Powoduje to wprowadzenie nowej wypoweidzi i wstawienie jej do dotychczasowego watku
-     * @param w Obiekt wypowiedz w ktorym zmieniamy tekst
-     * @param id_watku Identyfikator watku ktory jest wlascicielem zmienianej wypowiedzi
+    /** Metoda podmienia tekst wypowiedzi. Powoduje to wprowadzenie nowej wypoweidzi i wstawienie jej do dotychczasowego wątku
+     * @param w Obiekt wypowiedz w którym zmieniamy tekst
+     * @param id_wątku Identyfikator wątku ktory jest wlascicielem zmienianej wypowiedzi
      * @param newText Nowa zawartosc wypowiedzi
      * @return True w przypadku poprawnej zmiany
      */
-    public boolean zmienTekstWypowiedzi(Wypowiedz w, int id_watku, String newText){
+    public boolean zmienTekstWypowiedzi(Wypowiedz w, int id_wątku, String newText){
         if (baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0," + w.getIDAutora() + ", '" + w.getAutor() + "' , '" +  prepareDateToUpdate(w.getData()) + "' , '" + newText + "','" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
             Hashtable wid = getObject("SELECT "+WYPOWIEDZ_ID+" FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + newText + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
             if (wid==null) return false;
-            if (baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI+"("+WATKI_WYPOWIEDZI_ID_WATKU+","+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+") VALUES (" + id_watku + "," + wid.get(WYPOWIEDZ_ID) + ")"))
+            if (baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI+"("+WATKI_WYPOWIEDZI_ID_wątku+","+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+") VALUES (" + id_wątku + "," + wid.get(WYPOWIEDZ_ID) + ")"))
                 return baza.dmlQuery("DELETE FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+ w.getID());
             else return false;
         }
@@ -1556,7 +1557,7 @@ public class DataBase {
      */
     public boolean hasPodforumRights(int id_user, int id_podforum, boolean odczyt, boolean zapis){
         ArrayList prawa = baza.query("SELECT "+PRIVILAGES_ID_PISANIE+","+PRIVILAGES_ID_CZYTANIE+" FROM "+BEE_PRIVILAGES+" p,"+BEE_USERS_GROUPS+" u WHERE p."+PRIVILAGES_ID_GROUP+"=u."+USERS_GROUPS_ID_GROUP+" AND p."+PRIVILAGES_ID_PODFORUM+"="+id_podforum+" AND "+USERS_GROUPS_ID_USER+"="+id_user);
-        //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace sie prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
+        //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace się prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
         if (prawa.size() <=0) return false;
         Hashtable prawo = (Hashtable)prawa.get(0);
         String s_odczyt = (String)prawo.get(PRIVILAGES_ID_CZYTANIE);
@@ -1573,7 +1574,7 @@ public class DataBase {
      */
     public boolean hasKategoriaRights(int id_user, int id_kategorii, boolean odczyt, boolean zapis){
         ArrayList prawa = baza.query("SELECT p."+PRIVILAGES_ID_PISANIE+",p."+PRIVILAGES_ID_CZYTANIE+" FROM "+BEE_PRIVILAGES+" p,"+BEE_USERS_GROUPS+" u WHERE p."+PRIVILAGES_ID_GROUP+"=u."+USERS_GROUPS_ID_GROUP+" AND p."+PRIVILAGES_ID_KATEGORIA+"="+id_kategorii+" AND "+USERS_GROUPS_ID_USER+"="+id_user);
-        //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace sie prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
+        //TODO Pytanie co jak user jest wiecej niz w jednej grupie ktora ma jakies prawa do tego podforum. Co gorsza wykluczajace się prawa ? Trzeba wtedy przejrzec wszystkie te prawa i podjac decyzja. Damy prawo adminowi wybrac czy wazniejsze jest prawo odczytu czy zapisu.
         if (prawa.size() <=0) return false;
         Hashtable prawo = (Hashtable)prawa.get(0);
         String s_odczyt = (String)prawo.get(PRIVILAGES_ID_CZYTANIE);
@@ -1583,10 +1584,10 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca objekt Privilage o podanym identyfikatorze grupy i kategorii
+     * Metoda zwraca obiekt Privilage o podanym identyfikatorze grupy i kategorii
      * @param id_g Identyfikator grupy
      * @param id_k Identyfikator kategorii
-     * @return Zwraca obiekt Privilage badz null w razie bledu lub gdy go nie ma.
+     * @return Zwraca obiekt Privilage bądź null w razie błędu lub gdy go nie ma.
      */
     public Privilage getPrivilageKat(int id_g, int id_k){
         Hashtable p = getObject("SELECT * FROM " + BEE_PRIVILAGES + " WHERE " + PRIVILAGES_ID_GROUP +"=" + id_g+ " and " + PRIVILAGES_ID_KATEGORIA +"=" + id_k);
@@ -1597,10 +1598,10 @@ public class DataBase {
     }
     
      /*
-      * Metoda zwaraca objekt Privilage o podanym identyfikatorze grupy i podforum
+      * Metoda zwraca obiekt Privilage o podanym identyfikatorze grupy i podforum
       * @param id_g Identyfikator grupy
       * @param id_p Identyfikator podforum
-      * @return Zwraca obiekt Privilage badz null w razie bledu lub gdy go nie ma.
+      * @return Zwraca obiekt Privilage bądź null w razie błędu lub gdy go nie ma.
       */
     public Privilage getPrivilagePod(int id_g, int id_p){
         Hashtable p = getObject("SELECT * FROM " + BEE_PRIVILAGES + " WHERE " + PRIVILAGES_ID_GROUP +"=" + id_g+ " and " + PRIVILAGES_ID_PODFORUM +"=" + id_p);
@@ -1612,12 +1613,12 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii będących w danej grupie, aktywne badż nie w
+     * Metoda zwraca liste obiektów Podforum w podanej Kategorii będących w danej grupie, aktywne badż nie w
      * @param id_k Identyfikator kategorii
      * @param id_g identyfikator grupy
      * @param czy_prywatne boolena T lub F
      * @param czy_aktywne boolena T lub F
-     * @return ArrayList obiektow Podforum
+     * @return ArrayList obiektów Podforum
      */
     public ArrayList  getPodforaPrywatneGrupy(int id_g ,int id_k, boolean czy_prywatne, boolean czy_aktywne) {
         ArrayList wynik = new ArrayList();
@@ -1634,11 +1635,11 @@ public class DataBase {
     
     
     /**
-     * Metoda zwaraca liste obiektow Podforum w podanej Kategorii, aktywne i prywatnych badż nie w
+     * Metoda zwraca liste obiektów Podforum w podanej Kategorii, aktywne i prywatnych badż nie w
      * @param id_k Identyfikator kategorii
      * @param czy_prywatne boolena T lub F
      * @param czy_aktywne boolena T lub F
-     * @return ArrayList obiektow Podforum
+     * @return ArrayList obiektów Podforum
      */
     public ArrayList  getPodforaPrywatne(int id_k, boolean czy_prywatne, boolean czy_aktywne) {
         ArrayList wynik = new ArrayList();
@@ -1667,7 +1668,7 @@ public class DataBase {
      * Metoda usuwa uprawnienie do podanego podforum,
      * @param id_g Identyfikator grupy
      * @param id_p Identyfikator podforum
-     * @return zwraca true jezeli dlete sie powiodl
+     * @return zwraca true jezeli dlete się powiodl
      */
     public boolean deletePrivilagePodGroup(int id_g, int id_p) {
         return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_PODFORUM+"="+id_p);
@@ -1677,7 +1678,7 @@ public class DataBase {
      * Metoda usuwa uprawnienie do podanej kategorii
      * @param id_k id kategorii
      * @param id_g id grupy
-     * @return zwraca true jezeli dlete sie powiodl
+     * @return zwraca true jezeli dlete się powiodl
      */
     public boolean deletePrivilageKatGroup(int id_g, int id_k) {
         return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_KATEGORIA+"="+id_k);
@@ -1686,7 +1687,7 @@ public class DataBase {
     /**
      * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
      * @param p updatowany obiekt
-     * @return boolean true jezeli update sie powiodl false wpp.
+     * @return boolean true jezeli update się powiodl false wpp.
      */
     public boolean updatePrivilageKat(Privilage p ){
         String cz,pp;
@@ -1699,7 +1700,7 @@ public class DataBase {
     /**
      * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
      * @param p updatowany obiekt
-     * @return boolean true jezeli update sie powiodl false wpp.
+     * @return boolean true jezeli update się powiodl false wpp.
      */
     public boolean updatePrivilagePod(Privilage p ){
         String cz,pp;
