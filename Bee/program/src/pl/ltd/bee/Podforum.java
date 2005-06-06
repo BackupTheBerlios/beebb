@@ -230,7 +230,7 @@ public class Podforum {
             printMainTableJSP(pytanie,strona);
             ArrayList watki=db.getWatkiPodforum(this.ID,true,true);
             for(int i=0;i<watki.size();i++) {
-                ((Watek)watki.get(i)).printJSPHeader(pytanie, strona);
+                ((Watek)watki.get(i)).printJSPHeader(pytanie, strona,auth);
             }
         printMainTableCloseJSP(strona);
         }

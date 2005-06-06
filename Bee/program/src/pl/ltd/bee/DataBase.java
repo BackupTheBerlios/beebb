@@ -468,7 +468,7 @@ public class DataBase {
         return wynik;
     }
     
-   
+    
     /**
      * Metoda zwaraca liste obiektow Watek bedacych Watkami w podanym Podforum oraz majace pole aktywny na podane w parametrze
      * @param ID Podforum w ramach ktorego interesuja nas watki
@@ -1208,6 +1208,7 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_PRYWATNE+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+PODFORUM_ID+"="+id);
     }
     
+    
     /**
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator wątku
@@ -1217,6 +1218,7 @@ public class DataBase {
     public boolean zmienPrywatnoscWatku(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_PRYWATNY+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
     }
+    
     
     /**
      * Metoda zmienia pole prywatne na podane w parametrze
@@ -1228,6 +1230,7 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id);
     }
     
+    
     /**
      * Metoda zmienia pole zablokowany na podane w parametrze
      * @param id identyfikator watku
@@ -1238,6 +1241,7 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZABLOKOWANY+"='"+ (czy_blokowac?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
     }
     
+    
     /**
      * Metoda zmienia pole zamkniety na podane w parametrze
      * @param id identyfikator watku
@@ -1247,6 +1251,7 @@ public class DataBase {
     public boolean zamykanieWatku(int id, boolean czy_zamkniety){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZAMKNIETY+"='"+ (czy_zamkniety?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
     }
+    
     
     /**
      * Metoda zmienia tytul i opis kategorii
@@ -1281,7 +1286,7 @@ public class DataBase {
      */
     public static String getDate() {
         Calendar c = Calendar.getInstance();
-        return c.get(Calendar.YEAR) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.DAY_OF_MONTH) + " " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
+        return c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH) + " " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
     }
     
     
@@ -1314,6 +1319,67 @@ public class DataBase {
     public static String getDate(String year,String mounth,String day,String hour,String min,String sec) {
         return year + "-" + mounth + "-" + day + " :"+ hour + ":" + min + ":" + sec;
     }
+    
+    
+    /** Metoda zwraca rok z daty o formacie YYYY-MM-DD
+     * @return String z rokiem
+     **/
+    public String getYear(String s){
+        String s1 = s.substring(0, 4);
+        if (s1.startsWith("0")) s1=s1.substring(1);
+        return s1;
+    }
+    
+    
+    /** Metoda zwraca miesiąc z daty o formacie YYYY-MM-DD
+     * @return String z miesiącem
+     **/
+    public String getMonth(String s){
+        String s1 = s.substring(5, 7);
+        if (s1.startsWith("0")) s1=s1.substring(1);
+        return s1;
+    }
+    
+    
+    /** Metoda zwraca dzień z daty o formacie YYYY-MM-DD
+     * @return String z dniem
+     **/
+    public String getDay(String s){
+        String s1 = s.substring(8, 10);
+        if (s1.startsWith("0")) s1=s1.substring(1);
+        return s1;
+    }
+    
+    
+    /** Metoda zwraca godzine z daty o formacie YYYY-MM-DD HH:MM:SS
+     * @return String z godziną
+     **/
+    public String getHour(String s){
+        String s1 = s.substring(11, 13);
+        if (s1.startsWith("0")) s1=s1.substring(1);
+        return s1;
+    }
+    
+    
+    /** Metoda zwraca minuty z daty o formacie YYYY-MM-DD HH:MM:SS
+     * @return String z minutami
+     **/
+    public String getMin(String s){
+        String s1 = s.substring(14, 16);
+        if (s1.startsWith("0")) s1=s1.substring(1);
+        return s1;
+    }
+    
+    
+    /** Metoda zwraca sekundy z daty o formacie YYYY-MM-DD HH:MM:SS
+     * @return String z sekundami
+     **/
+    public String getSec(String s){
+        String s1 = s.substring(17, 19);
+        if (s1.startsWith("0")) s1=s1.substring(1);
+        return s1;
+    }
+    
     
     /**
      * Metoda zwaraca liste obiektow Integer bedacych identyfikatorami uzytkownikow,
@@ -1365,10 +1431,10 @@ public class DataBase {
      * @param id_podforum IDentyfikator podforum
      * @return true w przypadku gdy użytkownik jest zbanowany w podanym podforum, wpp false
      */
-    public boolean isUserBanned(int user_id, int id_podforum){    
-            return (baza.query("SELECT * FROM "+ BEE_BANNED_USERS + 
-                    " WHERE "+BANNED_USERS_ID_USER+"=" +  user_id + 
-                    " AND " + BANNED_USERS_ID_PODFORUM + "=" + id_podforum).size()!=0);
+    public boolean isUserBanned(int user_id, int id_podforum){
+        return (baza.query("SELECT * FROM "+ BEE_BANNED_USERS +
+                " WHERE "+BANNED_USERS_ID_USER+"=" +  user_id +
+                " AND " + BANNED_USERS_ID_PODFORUM + "=" + id_podforum).size()!=0);
     }
     
     
@@ -1390,6 +1456,7 @@ public class DataBase {
         return wynik;
     }
     
+    
     /** Metoda przenosi watek z jednego podforum do drugiego
      * @param watek Przenoszony watek
      * @param id_from Identyfikator podforum z ktorego usuwamy
@@ -1410,6 +1477,7 @@ public class DataBase {
         else return false;
     }
     
+    
     /** Metoda podmienia tekst wypowiedzi. Powoduje to wprowadzenie nowej wypoweidzi i wstawienie jej do dotychczasowego watku
      * @param w Obiekt wypowiedz w ktorym zmieniamy tekst
      * @param id_watku Identyfikator watku ktory jest wlascicielem zmienianej wypowiedzi
@@ -1426,6 +1494,7 @@ public class DataBase {
         }
         return false;
     }
+    
     
     /**
      * Metoda usuwa uprawnienie z tabeli moderatorzy
@@ -1456,6 +1525,7 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
      * Metoda wyszukuje w tekstach Wypowiedzi podanej frazy i zwraca ich identyfikatory
      * @param fraza String z szukana fraza
@@ -1475,6 +1545,7 @@ public class DataBase {
         }
         return wynik;
     }
+    
     
     /** Metoda sprawdza czy dany uzytkownik ma podane prawa do danego Podforum
      * @param id_user Identyfikator użytkownika
