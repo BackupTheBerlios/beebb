@@ -251,8 +251,8 @@ public class Watek {
                     )
                 strona.println("<b><span class=\"tytulPodforum\">"+ Commons.aHref(request,Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span></b>");
             else
-                strona.println("<i><span class=\"tytulPodforum\">" + Commons.aHref(request,Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span></i>");
-            } else strona.println("<i><span class=\"tytulPodforum\">"+ Commons.aHref(request,Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span></i>");
+                strona.println("<span class=\"tytulPodforum\">" + Commons.aHref(request,Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span>");
+            } else strona.println("<span class=\"tytulPodforum\">"+ Commons.aHref(request,Temat,"./main.jsp?wid="+ ID,"aTytulWatek")+"</span>");
             strona.println("</td>");
             strona.println("<td class=\"tdModeratingWatek\"><span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) hrefClick('moderating.jsp?wid="+this.ID+"&amp;id_autor="+this.ID_Autor+"&amp;op=ban&amp;"+css+"')\"><img src=\"../images/kick_user.gif\" alt=\"" + Messages.banAuthor() + "\" onmouseover=\"showHint(isLogin('"+Autoryzator.COOKIE_USER_NAME+"')?'"+Messages.hintBanAuthor()+"':'"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
             strona.println("<span style=\"cursor: pointer\" onclick=\"if (czyNaPewno('"+ Messages.wielka(Messages.areYouSure())+"')) hrefClick('moderating.jsp?wid="+this.ID+"&amp;op=move&amp;"+css+"')\"><img src=\"../images/move.gif\" alt=\"" + Messages.wielka(Messages.move()) + "\" onmouseover=\"showHint(isLogin('"+Autoryzator.COOKIE_USER_NAME+"')?'"+Messages.hintMoveThread()+"':'"+Messages.hintPleaseLogin()+"',this,"+Config.HINT_DELAY+",400,400)\" onmouseout=\"hideHint(this)\" border=\"0\"/></span>");
