@@ -30,6 +30,7 @@ public class ConnectorDB {
     
     /**
      * Metoda likwiduje połączenie z bazą danych jeśli takie było.
+     * @throws W przypadku problemów ze sterownikiem lub połączeniem metoda rzuca wyjątek BeeConnectionException
      */
     public void disconnect() throws BeeConnectionException{
         try{
@@ -75,6 +76,7 @@ public class ConnectorDB {
     
     /**
      * Metoda tworząca połączenie z bazą danych
+     * @throws W przypadku problemów ze sterownikiem lub połączeniem metoda rzuca wyjątek BeeConnectionException
      * @return Obiekt klasy Connection będący uchwytem do połączenia z bazą.
      */
     public Connection connect() throws BeeConnectionException
@@ -166,7 +168,6 @@ public class ConnectorDB {
      * Metoda wykonuje Insert z jednoczesny sprawdzeniem ostatnio wstawionego identyfikatora.
      * Uwaga: Metoda nie analizuje przekazanego zapytania. Jeśli zapytanie nie powoduje wygenerowanie nowego identyfikatora zostanie zwrócony ostatnio znany bądź losowy
      * @param q zapytanie do wykonania
-     * @throws 
      * @return Zwracany jest identyfikator jaki został wygenerowany przez przekazane zapytanie. W przypadku niepowodzenia metoda zwraca -1.
      **/
     public int insert(String q) {
