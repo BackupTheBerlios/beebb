@@ -44,6 +44,7 @@ $JAVADOC -d $DESTDIR \
 	-windowtitle "$WINDOWSTITLE" \
 	-classpath $CLASSPATH \
 	-sourcepath ../program/src \
+	-stylesheetfile javadoc.css \
 	-source 1.5 `find ../program/src/pl/ltd/bee -name "*.java"`
 	
 	

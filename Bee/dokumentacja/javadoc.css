@@ -1,0 +1,36 @@
+/* Javadoc style sheet */
+
+/* Define colors, fonts and other style attributes here to override the defaults  */
+
+/* Page background color */
+body { background-color: darkgoldenrod;
+        color: black;
+        viewed: black;}
+	
+	
+a:link {color: darkred}
+A:VISITED {color:  firebrick}
+
+
+/* Table colors */
+.NavBarCell1                 { color: yellow}
+.NavBarCell1Rev              { background: goldenrod}
+.NavBarCell1                 { background: gold}
+.NavBarCell2                 { background: orange}
+.NavBarCell3                 { background: none }
+.NavBarCell3 a               { color: yellow }
+.TableHeadingColor           { background: yellow}
+.TableSubHeadingColor        { background: orange }
+.TableSummaryHeadingColor    { background: red } /* Dark blue */
+.TableInheritedHeadingColor  { background: red } /* Light blue */
+.TableRowColor               { background: goldenrod;
+                                color: black; } /* White */
+
+/* Font used in left-hand frame lists */
+
+.FrameTitleFont  { font-size: normal; font-family: normal }
+.FrameHeadingFont { font-size: normal; font-family: normal }
+.FrameItemFont  { font-size: normal; font-family: normal }
+
+/* Example */
+* .FrameItemFont  { font-size: 10pt; font-family: helvetica arial sans-serif } 
