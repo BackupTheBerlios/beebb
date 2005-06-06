@@ -821,7 +821,7 @@ public class DataBase {
     /**
      * Metoda umieszcza grupe w bazie danych,
      * @param g wstawiana grupa
-     * @return zwraca true jezeli insert się powiódl
+     * @return zwraca true jeżeli insert się powiódl
      */
     public boolean insertGrupa(Group g) {
         return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )");
@@ -852,7 +852,7 @@ public class DataBase {
      * Metoda umieszcza podforum w bazie danych,
      * @param id_kat identyfikator kategorii, do której dodawane jest podforum
      * @param p obiekt Podforum
-     * @return zwraca true jezeli insert się powiodl
+     * @return zwraca true jeżeli insert się powiódł
      */
     public boolean insertPodforum(int id_kat, Podforum p) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_PODFORA + " VALUES ( "+p.getID()+", '"+p.getTytul()+"' ,'"+p.getOpis()+"' ," + p.getDataOstWypowiedzi() + " ,'" + p.getAutorOstWypowiedzi() + "', NULL , '" + (p.czyAktywne()?TAK:NIE) + "', '" + (p.czyPrywatne()?TAK:NIE) + "' ,"+p.liczbaAktywnychWatkow()+" ,"+p.liczbaAktywnychWatkow()+")")) {
@@ -870,7 +870,7 @@ public class DataBase {
      * date podajemy jak sekwencje do wyliczenia daty albo w ciapkach 'data'
      * @param id_wat id wątku, w którym dodajemy wypowiedź
      * @param w obiekt Wypowiedź (bez ważnego id) ktory należy wstawić do bazy
-     * @return zwraca true jezeli insert się powiodl
+     * @return zwraca true jeżeli insert się powiódł
      */
     public boolean insertWypowiedz(String id_wat, Wypowiedz w) {
         int id = baza.insert("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES ("+ w.getID() +", " + w.getIDAutora() + ", '" + w.getAutor() + "' ," + w.getData() + ", '" + w.getTekst() + "','" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')");
@@ -908,7 +908,7 @@ public class DataBase {
      * Metoda umieszcza wiersz w tabeli moderatorzy
      * @param id_pod id podforum
      * @param id_user id użytkownika
-     * @return zwraca true jezeli insert się powiódl
+     * @return zwraca true jeżeli insert się powiódl
      */
     public boolean insertModerator(int id_pod, int id_user) {
         return baza.dmlQuery("INSERT INTO " + BEE_MODERATORZY + " VALUES (" + id_pod + "," +id_user + ")");
@@ -969,7 +969,7 @@ public class DataBase {
     /**
      * Metoda zwraca identyfikator kategorii o podanej nazwie
      * @param tytul tytuł kategorii
-     * @return int numer kategorii, jezeli jej nie ma to zwraca -1 
+     * @return int numer kategorii, jeżeli jej nie ma to zwraca -1 
      */
     public int dajIdKategorii(String tytul){
         Hashtable kategoria = getObject("SELECT "+KATEGORIA_ID+" FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '" +tytul+ "'");
@@ -981,7 +981,7 @@ public class DataBase {
     /**
      * Metoda zwraca identyfikator grupy
      * @param tytul tytul grupy
-     * @return int numer grupy, jezeli jej nie ma to -1
+     * @return int numer grupy, jeżeli jej nie ma to -1
      */
     public int dajIdGrupy(String tytul){
         Hashtable grupa = getObject("SELECT "+GROUP_ID+" FROM "+BEE_GROUPS+" WHERE "+GROUP_NAZWA+" = '" +tytul+ "'");
@@ -1014,7 +1014,7 @@ public class DataBase {
     
     /**
      * Metoda wstawia klucz do tabeli z nowymi uzytkownikami
-     * @param login login uzytkownika
+     * @param login login użytkownika
      * @param klucz losowo wygenerowany klucz
      * @return T lub N w zależności czy insert się powiódł
      */
@@ -1024,7 +1024,7 @@ public class DataBase {
     
     
     /**
-     * Metoda sprawdza czy istnieje klucz do aktywacji konta nowego uzytkownika w bazie danych
+     * Metoda sprawdza czy istnieje klucz do aktywacji konta nowego użytkownika w bazie danych
      * @param klucz losowo wygenerowany klucz
      * @return N lub T w zależności czy jest czy nie (T gdy klucza nie ma)
      */
@@ -1035,8 +1035,8 @@ public class DataBase {
     
     
     /**
-     * Metoda sprawdza czy istnieje juz user z takim emailem
-     * @param email email uzytkownika
+     * Metoda sprawdza czy istnieje już użytkownik z takim emailem
+     * @param email email użytkownika
      * @return N lub T w zalezności czy jest czy nie (T gdy emaila nie ma)
      */
     public boolean sprawdzEmail(String email){
@@ -1047,8 +1047,8 @@ public class DataBase {
     
     /**
      * Metoda usuwa klucz do zapomnianego hasła
-     * @param email email uzytkownika
-     * @return T lub N w zależności czy udalo się usunac
+     * @param email email użytkownika
+     * @return T lub N w zależności czy udało się usunąc
      */
     public boolean usunZapomnianeHaslo(String email){
         return baza.dmlQuery("DELETE FROM " + BEE_FORGET_PASSWD + " WHERE " + FORGET_PASSWD_EMAIL + "='" + email + "'");
@@ -1056,8 +1056,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zmienia haslo uzytkownikowi
-     * @param email email uzytkownika
+     * Metoda zmienia hasło użytkownikowi
+     * @param email email użytkownika
      * @param haslo nowe haslo podane w plain txt
      * @return T lub N w zależności czy update się powiódł
      */
@@ -1067,9 +1067,9 @@ public class DataBase {
     
     
     /**
-     * Metoda usuwa klucz do nowego uzytkownika
+     * Metoda usuwa klucz do nowego użytkownika
      * @param klucz losowo wygenerowany klucz
-     * @return T lub N w zale�no�ci czy insert się powiódł
+     * @return T lub N w zależności czy insert się powiódł
      */
     public boolean usunKluczNewUser(String klucz){
         return baza.dmlQuery("DELETE FROM " + BEE_NEW_USER + " WHERE " + NEW_USER_KLUCZ + "='" + klucz + "'");
@@ -1077,7 +1077,7 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca listę obiektów Kategoria, aktywne bądź nie, na podstawie parametru czy_aktywna
+     * Metoda zwraca listę obiektów Kategoria, aktywnych bądź nie, na podstawie parametru czy_aktywna
      * @param czy_aktywna boolean true lub false
      * @return ArrayList obiektów Kategoria
      */
@@ -1094,8 +1094,9 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
-     * Metoda zwraca listę obiektów Podforum, aktywne bądź nie, na podstawie parametru czy_aktywna
+     * Metoda zwraca listę obiektów Podforum, aktywnych bądź nie, na podstawie parametru czy_aktywna
      * @param czy_aktywne boolean true lub false
      * @return ArrayList obiektów Podforum
      */
@@ -1112,8 +1113,9 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
-     * Metoda zwraca liste obiektów Kategoria, aktywne bądź nie, na podstawie parametru czy_aktywna
+     * Metoda zwraca listę obiektów Kategoria, aktywnych bądź nie, na podstawie parametru czy_aktywna
      * @param czy_aktywna boolean T lub F
      * @return ArrayList obiektów Kategoria
      */
@@ -1133,7 +1135,7 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca liste wszystkich obiektów Kategoria.
+     * Metoda zwraca listę wszystkich obiektów Kategoria.
      * @return ArrayList obiektów Kategoria
      */
     public ArrayList getKategorieAll() {
@@ -1148,10 +1150,10 @@ public class DataBase {
     
     
     /**
-     * Metoda zmienia pole aktywna , a takze wszystjie podfora w niej się zawierajace
+     * Metoda zmienia pole aktywna , a takze wszystkie podfora w niej się zawierające
      * @param czy_aktywne T lub F
      * @param id kategorii
-     * @return boolean true jezeli update się powiodl dalse wpp.
+     * @return boolean true jeżeli update się powiódł, false wpp.
      **/
     public boolean zmienAktywnoscKategorii(int id, boolean czy_aktywne){
         String aktywne;
@@ -1164,8 +1166,8 @@ public class DataBase {
     /**
      * Metoda zmienia pole aktywna na podane w parametrze aktywne
      * @param id Identyfikator podforum
-     * @param czy_aktywne Okresla aktywnosc
-     * @return boolean true jezeli update się powiodl dalse wpp.
+     * @param czy_aktywne Okresla aktywność
+     * @return boolean true jeżeli update się powiódł, false wpp.
      **/
     public boolean zmienAktywnoscPodforum(int id, boolean czy_aktywne){
         String aktywne;
@@ -1173,21 +1175,22 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_AKTYWNE+"='"+aktywne+"' WHERE "+PODFORUM_ID+"="+id);
     }
     
+    
     /**
      * Metoda zmienia pole aktywna na podane w parametrze
      * @param id identyfikator wątku
-     * @param czy_aktywny ustawiana aktywnosc
-     * @return boolean True jezeli zmiana się powiodla False w p.p.
+     * @param czy_aktywny ustawiana aktywność
+     * @return boolean True jeżeli zmiana się powiódła, false w p.p.
      **/
-    public boolean zmienAktywnoscwątku(int id, boolean czy_aktywny){
+    public boolean zmienAktywnoscWatku(int id, boolean czy_aktywny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_AKTYWNY+"='"+ (czy_aktywny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
     }
     
     /**
      * Metoda zmienia pole aktywna na podane w parametrze
      * @param id identyfikator wypowiedzi
-     * @param czy_aktywna ustawiana aktywnosc
-     * @return boolean True jezeli zmiana się powiodla False w p.p.
+     * @param czy_aktywna ustawiana aktywność
+     * @return boolean True jeżeli zmiana się powiodła False w p.p.
      **/
     public boolean zmienAktywnoscWypowiedzi(int id, boolean czy_aktywna){
         if (baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_AKTYWNA+"='"+ (czy_aktywna?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id))
@@ -1200,8 +1203,8 @@ public class DataBase {
     /**
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator kategorii
-     * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana się powiodla False w p.p.
+     * @param czy_prywatny ustawiana prywatność
+     * @return boolean True jeżeli zmiana się powiodła, false w p.p.
      **/
     public boolean zmienPrywatnoscKategorii(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+KATEGORIA_ID+"="+id);
@@ -1210,8 +1213,8 @@ public class DataBase {
     /**
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator podforum
-     * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana się powiodla False w p.p.
+     * @param czy_prywatny ustawiana prywatność
+     * @return boolean True jeżeli zmiana się powiodła, false w p.p.
      **/
     public boolean zmienPrywatnoscPodforum(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_PRYWATNE+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+PODFORUM_ID+"="+id);
@@ -1221,8 +1224,8 @@ public class DataBase {
     /**
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator wątku
-     * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana się powiodla False wpp
+     * @param czy_prywatny ustawiana prywatność
+     * @return boolean True jeżeli zmiana się powiodła, false wpp
      **/
     public boolean zmienPrywatnoscWatku(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_PRYWATNY+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
@@ -1232,8 +1235,8 @@ public class DataBase {
     /**
      * Metoda zmienia pole prywatne na podane w parametrze
      * @param id identyfikator wypowiedzi
-     * @param czy_prywatny ustawiana prywatnosc
-     * @return boolean True jezeli zmiana się powiodla False wpp
+     * @param czy_prywatny ustawiana prywatność
+     * @return boolean True jeżeli zmiana się powiodła, false wpp
      **/
     public boolean zmienPrywatnoscWypowiedzi(int id, boolean czy_prywatny){
         return  baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_PRYWATNA+"='"+ (czy_prywatny?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id);
@@ -1244,7 +1247,7 @@ public class DataBase {
      * Metoda zmienia pole zablokowany na podane w parametrze
      * @param id identyfikator wątku
      * @param czy_blokowac ustawiane blokowanie
-     * @return boolean True jezeli zmiana się powiodla False w p.p.
+     * @return boolean True jeżeli zmiana się powiodła, false w p.p.
      **/
     public boolean blokowanieWatku(int id, boolean czy_blokowac){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZABLOKOWANY+"='"+ (czy_blokowac?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
@@ -1254,8 +1257,8 @@ public class DataBase {
     /**
      * Metoda zmienia pole zamkniety na podane w parametrze
      * @param id identyfikator wątku
-     * @param czy_zamkniety ustawiane zamkniecie
-     * @return boolean True jezeli zmiana się powiodla False w p.p.
+     * @param czy_zamkniety ustawiane zamknięcie wątku
+     * @return boolean True jeżeli zmiana się powiodła, false w p.p.
      **/
     public boolean zamykanieWatku(int id, boolean czy_zamkniety){
         return  baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_ZAMKNIETY+"='"+ (czy_zamkniety?TAK:NIE)+"' WHERE "+WATEK_ID+"="+id);
@@ -1263,11 +1266,11 @@ public class DataBase {
     
     
     /**
-     * Metoda zmienia tytul i opis kategorii
+     * Metoda zmienia tytuł i opis kategorii
      * @param id Identyfikator kategorii
      * @param tytul Tytul kategorii
      * @param opis Opis kategorii
-     * @return boolean true jezeli update się powiodl dalse wpp.
+     * @return boolean true jeżeli update się powiódł, false wpp.
      */
     public boolean updateKategoria(int id, String tytul, String opis ){
         return  baza.dmlQuery("UPDATE "+BEE_KATEGORIE+" SET "+KATEGORIA_TYTUL+"='"+tytul+"' , "+KATEGORIA_OPIS+"='"+opis+"' WHERE "+KATEGORIA_ID+"="+id);
@@ -1275,14 +1278,13 @@ public class DataBase {
     }
     
     
-    // DO ZMIANY !!!! metoda ma przyjmować OBIEKT!!!
     /**
      * Metoda zmienia tytul i opis podforum, oraz zmienia kategorie podforum na id_kat
      * @param id Identyfikator podforum
      * @param id_kat Identyfikator kategorii
-     * @param tytul Tytul kategorii
+     * @param tytul Tytuł kategorii
      * @param opis Opis kategorii
-     * @return boolean true jezeli update się powiodl dalse wpp.
+     * @return boolean true jeżeli update się powiódł, false wpp.
      */
     public boolean updatePodforum(int id, int id_kat, String tytul, String opis ){
         return  ( baza.dmlQuery("UPDATE "+BEE_KATEGORIE_PODFORA+" SET "+KATEGORIE_PODFORA_ID_KATEGORII+"="+id_kat+" WHERE "+KATEGORIE_PODFORA_ID_PODFORUM+"="+id)
@@ -1291,7 +1293,7 @@ public class DataBase {
     
     
     /** Metoda zwraca aktualną datę dla wybranej bazy danych
-     * @return String reprezentujacy date dla aktualnej bazy danych
+     * @return String reprezentujący datę dla aktualnej bazy danych
      */
     public static String getDate() {
         Calendar c = Calendar.getInstance();
@@ -1308,7 +1310,7 @@ public class DataBase {
     
     
     /** Metoda zwraca date przygotowaną do updejtu, w zależności od bazy data jest różna
-     * @param data string reprezentujacy date
+     * @param data string reprezentujący date
      * @return String reprezentujacy date przygotowaną do updejtu
      */
     public static String prepareDateToUpdate(String data) {
@@ -1425,7 +1427,7 @@ public class DataBase {
      * @param user_id identyfikator uzytkownika
      * @param id_podforum identyfikator podforum
      * @param ban okresla czy nalezy zabanowac uzytkownika czy odbanowac
-     * @return True jest operacja powiodla się False w p.p.
+     * @return True jest operacja powiódła się False w p.p.
      */
     public boolean banUser(int user_id, int id_podforum, boolean ban){
         if (ban)
@@ -1470,7 +1472,7 @@ public class DataBase {
      * @param watek Przenoszony watek
      * @param id_from Identyfikator podforum z którego usuwamy
      * @param id_to Identyfikator podforum do którego przenosimy
-     * @return True jesli operacja powiodla się
+     * @return True jesli operacja powiódła się
      */
     public boolean moveWatek(Watek watek,int id_from,int id_to){
         if (id_from == id_to) return true;
@@ -1621,11 +1623,11 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca liste obiektów Podforum w podanej Kategorii będących w danej grupie, aktywne badż nie w
+     * Metoda zwraca liste obiektów Podforum w podanej Kategorii będących w danej grupie
      * @param id_k Identyfikator kategorii
      * @param id_g identyfikator grupy
-     * @param czy_prywatne boolena T lub F
-     * @param czy_aktywne boolena T lub F
+     * @param czy_prywatne T jeżeli szukane podforum ma być prywatne (PO CO TO?)
+     * @param czy_aktywne T jeżeli szukane podforum ma być aktywne
      * @return ArrayList obiektów Podforum
      */
     public ArrayList  getPodforaPrywatneGrupy(int id_g ,int id_k, boolean czy_prywatne, boolean czy_aktywne) {
@@ -1643,10 +1645,10 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca liste obiektów Podforum w podanej Kategorii, aktywne i prywatnych badż nie w
+     * Metoda zwraca liste obiektów Podforum w podanej Kategorii  
      * @param id_k Identyfikator kategorii
-     * @param czy_prywatne boolena T lub F
-     * @param czy_aktywne boolena T lub F
+     * @param czy_prywatne T jeżeli szukane podforum ma być prywatne (BEZSENSU!)
+     * @param czy_aktywne T jeżeli szukane podforum ma być aktywne
      * @return ArrayList obiektów Podforum
      */
     public ArrayList  getPodforaPrywatne(int id_k, boolean czy_prywatne, boolean czy_aktywne) {
@@ -1661,8 +1663,10 @@ public class DataBase {
         }
         return wynik;
     }
+    
+    
     /**
-     * Metoda wstawia wiersz do tabeli privilages
+     * Metoda wstawia wiersz do tabeli privilages - ALE PO CO? (to że wstawia to z nazwy wnioskujemy)
      * @param p wstawiany login
      * @return T lub N w zależności czy insert się powiódł
      */
@@ -1672,30 +1676,34 @@ public class DataBase {
         if (p.pisanie()) pp=TAK; else pp=NIE;
         return baza.dmlQuery("INSERT INTO " + BEE_PRIVILAGES + " VALUES ("+p.getIdGroup() +", "+ p.getIdKat() + ", "+p.getIdPod()+", '" + cz + "' , '" + pp + "')"  );
     }
+    
+    
     /**
-     * Metoda usuwa uprawnienie do podanego podforum,
+     * Metoda usuwa uprawnienie grupie do podanego podforum,
      * @param id_g Identyfikator grupy
      * @param id_p Identyfikator podforum
-     * @return zwraca true jezeli dlete się powiodl
+     * @return zwraca true jeżeli delete się powiódło
      */
     public boolean deletePrivilagePodGroup(int id_g, int id_p) {
         return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_PODFORUM+"="+id_p);
     }
     
+    
     /**
-     * Metoda usuwa uprawnienie do podanej kategorii
+     * Metoda usuwa uprawnienie grupy do podanej kategorii
      * @param id_k id kategorii
      * @param id_g id grupy
-     * @return zwraca true jezeli dlete się powiodl
+     * @return zwraca true jeżeli delete się powiódło
      */
     public boolean deletePrivilageKatGroup(int id_g, int id_k) {
         return baza.dmlQuery("DELETE FROM "+BEE_PRIVILAGES+" WHERE "+PRIVILAGES_ID_GROUP+"="+id_g+" and "+PRIVILAGES_ID_KATEGORIA+"="+id_k);
     }
     
+    
     /**
-     * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
+     * Metoda zmienia pisanie  i czytanie przekazywnego obiektu -- ŻE CO?
      * @param p updatowany obiekt
-     * @return boolean true jezeli update się powiodl false wpp.
+     * @return boolean true jeżeli update się powiódł, false wpp.
      */
     public boolean updatePrivilageKat(Privilage p ){
         String cz,pp;
@@ -1705,10 +1713,11 @@ public class DataBase {
         
     }
     
+    
     /**
-     * Metoda zmienia pisanie  i czytanie przekazywnego obiektu
+     * Metoda zmienia pisanie  i czytanie przekazywnego obiektu -- ŻE CO?
      * @param p updatowany obiekt
-     * @return boolean true jezeli update się powiodl false wpp.
+     * @return boolean true jeżeli update się powiódł, false wpp.
      */
     public boolean updatePrivilagePod(Privilage p ){
         String cz,pp;
