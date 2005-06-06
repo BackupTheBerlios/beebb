@@ -552,7 +552,7 @@ public class DataBase {
     
     /**
      * Metoda zwraca obiekt User o podanym identyfikatorze
-     * @param ID Identyfikator szukanego uzytkownika
+     * @param ID Identyfikator szukanego użytkownika
      * @return Zwraca obiekt User bądź null w razie błędu.
      */
     public User getUser(int ID) {
@@ -564,7 +564,7 @@ public class DataBase {
     
     /**
      * Metoda zwraca obiekt User o podanym identyfikatorze
-     * @param login Identyfikator (login) szukanego uzytkownika
+     * @param login Identyfikator (login) szukanego użytkownika
      * @return Zwraca obiekt User bądź null w razie błędu.
      */
     public User getUser(String login) {
@@ -577,7 +577,7 @@ public class DataBase {
     /**
      * Metoda zwraca nazwe uzytkownika o danym kluczu w tabeli nowych kont
      * @param klucz losowy klucz zwiazany z uzytkownikiem
-     * @return Zwraca nazwe uzytkownika bądź null w razie błędu.
+     * @return Zwraca nazwę użytkownika bądź null w razie błędu.
      */
     public String getLoginNewUser(String klucz){
         Hashtable user = getObject("SELECT * FROM " + BEE_NEW_USER + " WHERE "+ NEW_USER_KLUCZ +"='" + klucz + "'");
@@ -588,8 +588,8 @@ public class DataBase {
     
     /**
      * Metoda zwraca email uzytkownika o danym kluczu w tabeli zapomnianych hasel
-     * @param klucz losowy klucz zwiazany z uzytkownikiem
-     * @return Zwraca email uzytkownika bądź null w razie błędu.
+     * @param klucz losowy klucz zwiazany z użytkownikiem
+     * @return Zwraca email użytkownika bądź null w razie błędu.
      */
     public String getEmailForgetPasswd(String klucz){
         Hashtable user = getObject("SELECT * FROM " + BEE_FORGET_PASSWD + " WHERE "+ FORGET_PASSWD_KLUCZ +"='" + klucz + "'");
@@ -599,9 +599,9 @@ public class DataBase {
     
     
     /**
-     * Metoda umieszcza uzytkownika w bazie danych
-     * @param u obiekt User (bez waznego id) reprezentujący dodawaneg użytkownika
-     * @return zwraca czy insert się powidl
+     * Metoda umieszcza użytkownika w bazie danych
+     * @param u obiekt User (bez waznego id) reprezentujący dodawanego użytkownika
+     * @return zwraca czy insert się powiódł
      */
     public boolean insertUser(User u){
         String aktywny; if(u.aktywny()) aktywny=TAK; else aktywny=NIE;
@@ -637,7 +637,7 @@ public class DataBase {
     
     
     /**
-     * Metoda aktualizuje uzytkownika w bazie danych
+     * Metoda aktualizuje użytkownika w bazie danych
      * @param u obiekt User reprezentujący użytkownika
      * @return zwraca czy update się powiódl
      */
@@ -686,9 +686,9 @@ public class DataBase {
     }
     
     
-    /** Ustawia uzytkownika jako aktywnego
-     * @param nick login uzytkownika
-     * @return T lub N w zaleznosci czy update się powiódl
+    /** Ustawia użytkownika jako aktywnego
+     * @param nick login użytkownika
+     * @return T lub N w zależnosci czy update się powiódl
      */
     public boolean setAktywnyUser(String nick){
         return baza.dmlQuery("UPDATE " + BEE_USERS + " SET " + USER_AKTYWNY + "='" + TAK + "' WHERE " + USER_LOGIN + "='" + nick + "'");
@@ -696,7 +696,7 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca liste wszystkich obiektów tabeli Users z bazy
+     * Metoda zwraca liste wszystkich obiektów tabeli Users z bazy danych
      * @return ArrayList obiektów User
      */
     public ArrayList getUsers() {
@@ -709,8 +709,9 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
-     * Metoda zwraca liste wszystkich obiektów tabeli Groups z bazy
+     * Metoda zwraca liste wszystkich obiektów tabeli Groups z bazy danych
      * @return ArrayList obiektów Group
      */
     public ArrayList getGroups() {
@@ -723,6 +724,7 @@ public class DataBase {
         return wynik;
     }
     
+    
     /**
      * Metoda usuwa grupe
      * @param id id grupy
@@ -732,6 +734,7 @@ public class DataBase {
         baza.dmlQuery("DELETE FROM " + BEE_USERS_GROUPS + " WHERE " + USERS_GROUPS_ID_GROUP + " = " + id );
         return  baza.dmlQuery("DELETE FROM "+BEE_GROUPS+" WHERE " + GROUP_ID + " = " + id );
     }
+    
     
     /**
      * Metoda zwraca liste aktywnych Userów
@@ -749,6 +752,7 @@ public class DataBase {
         }
         return wynik;
     }
+    
     
     /**
      * Metoda zwraca liste aktywnych userów danej grupy
@@ -769,10 +773,10 @@ public class DataBase {
     
     
     /**
-     * Metoda ustawia pola uprawnien Usera
-     * @param id Identyfikator uzytkownika w bazie danych
-     * @param czy_admin Okresla parametr administrator
-     * @param czy_aktywny Okresla parametr aktywnosci uzytkownika
+     * Metoda ustawia pola uprawnień Usera
+     * @param id Identyfikator użytkownika w bazie danych
+     * @param czy_admin okresla czy uzytkownik jest administratorem
+     * @param czy_aktywny okresla czy użytkownik jest aktywny
      */
     public boolean zmienUpr(int id, boolean czy_admin, boolean czy_aktywny){
         String admin,aktywny;
@@ -781,9 +785,10 @@ public class DataBase {
         return  baza.dmlQuery("UPDATE "+BEE_USERS+" SET "+USER_ADMIN+"='"+admin+"' , "+USER_AKTYWNY+"='"+aktywny+"' WHERE "+USER_ID+"="+id);
     }
     
+    
     /**
      * Metoda ustawia pole moderator Usera
-     * @param id int id uzytkownika w bazie danych
+     * @param id int id użytkownika w bazie danych
      * @param czy_moderator  boolean T lub F
      */
     public boolean zmienUprModerator(int id, boolean czy_moderator){
@@ -797,7 +802,7 @@ public class DataBase {
      * Metoda umieszcza kategorie w bazie danych,
      * @param id_forum Identyfikator forum
      * @param k wstawiana kategoria
-     * @return zwraca true jezeli insert się powiodl
+     * @return zwraca true jeżeli insert się powiódl
      */
     public boolean insertKategoria(int id_forum, Kategoria k) {
         if ( baza.dmlQuery("INSERT INTO " + BEE_KATEGORIE + " VALUES ("+k.getID()+", '"+k.getNazwa()+"' ,'"+k.getOpis()+"', '" + (k.czyAktywna()?TAK:NIE) + "', '" + (k.czyPrywatna()?TAK:NIE) + "')")) {
@@ -812,38 +817,40 @@ public class DataBase {
         return false;
     }
     
+    
     /**
      * Metoda umieszcza grupe w bazie danych,
      * @param g wstawiana grupa
-     * @return zwraca true jezeli insert się powiodl
+     * @return zwraca true jezeli insert się powiódl
      */
     public boolean insertGrupa(Group g) {
         return baza.dmlQuery("INSERT INTO "+BEE_GROUPS+" VALUES ("+g.getID()+", '"+g.getNazwa()+"' )");
     }
     
     /**
-     * Metoda umieszcza usera w podanej grupie,
-     * @param id_u id usera
-     * @param id_g id grupy
-     * @return zwraca true jezeli insert się powiodl
+     * Metoda umieszcza użytkownika w podanej grupie
+     * @param id_u identyfikator użytkownika
+     * @param id_g identyfikator grupy
+     * @return zwraca true jeżeli insert się powiódl
      */
     public boolean insertUserGroup(int id_u, int id_g) {
         return baza.dmlQuery("INSERT INTO "+BEE_USERS_GROUPS+" VALUES ("+id_u+", "+id_g+" )");
     }
     
     /**
-     * Metoda usuwa usera z podanej grupy,
-     * @param id_u id usera
-     * @param id_g id grupy
-     * @return zwraca true jezeli dlete się powiodl
+     * Metoda usuwa użytkownika z podanej grupy
+     * @param id_u identyfikator użytkownika
+     * @param id_g identyfikator grupy
+     * @return zwraca true jeżeli delete się powiódl
      */
     public boolean deleteUserGroup(int id_u, int id_g) {
         return baza.dmlQuery("DELETE FROM "+BEE_USERS_GROUPS+" WHERE "+USERS_GROUPS_ID_USER+"="+id_u+" and "+USERS_GROUPS_ID_GROUP+"="+id_g);
     }
     
+    
     /**
      * Metoda umieszcza podforum w bazie danych,
-     * @param id_kat id kategorii do której dodawane jest podforum
+     * @param id_kat identyfikator kategorii, do której dodawane jest podforum
      * @param p obiekt Podforum
      * @return zwraca true jezeli insert się powiodl
      */
@@ -900,8 +907,8 @@ public class DataBase {
     /**
      * Metoda umieszcza wiersz w tabeli moderatorzy
      * @param id_pod id podforum
-     * @param id_user id uzytkownika
-     * @return zwraca true jezeli insert się powiodl
+     * @param id_user id użytkownika
+     * @return zwraca true jezeli insert się powiódl
      */
     public boolean insertModerator(int id_pod, int id_user) {
         return baza.dmlQuery("INSERT INTO " + BEE_MODERATORZY + " VALUES (" + id_pod + "," +id_user + ")");
@@ -909,8 +916,8 @@ public class DataBase {
     
     
     /**
-     * Metoda aktualizuje watek w bazie danych
-     * @param w obiekt Watek reprezentujący watek
+     * Metoda aktualizuje wątek w bazie danych
+     * @param w obiekt Watek reprezentujący wątek
      * @return zwraca czy update się powiódl
      */
     public boolean updateWatek(Watek w){
@@ -947,8 +954,8 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca id podforum w danej kategorii
-     * @param id_kat id kategorii
+     * Metoda zwraca identyfikator podforum w kategorii o danym id
+     * @param id_kat identyfikator kategorii
      * @param tytul tytuł podforum
      * @return zwraca id podforum
      */
@@ -960,9 +967,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca id kategorii, jezeli jej nie ma to -1
-     * @param tytul tytul kategorii
-     * @return int numer kategorii
+     * Metoda zwraca identyfikator kategorii o podanej nazwie
+     * @param tytul tytuł kategorii
+     * @return int numer kategorii, jezeli jej nie ma to zwraca -1 
      */
     public int dajIdKategorii(String tytul){
         Hashtable kategoria = getObject("SELECT "+KATEGORIA_ID+" FROM " + BEE_KATEGORIE + " WHERE "+KATEGORIA_TYTUL+" = '" +tytul+ "'");
@@ -972,9 +979,9 @@ public class DataBase {
     
     
     /**
-     * Metoda zwraca id grupy, jezeli jej nie ma to -1
+     * Metoda zwraca identyfikator grupy
      * @param tytul tytul grupy
-     * @return int numer grupy
+     * @return int numer grupy, jezeli jej nie ma to -1
      */
     public int dajIdGrupy(String tytul){
         Hashtable grupa = getObject("SELECT "+GROUP_ID+" FROM "+BEE_GROUPS+" WHERE "+GROUP_NAZWA+" = '" +tytul+ "'");
@@ -982,9 +989,10 @@ public class DataBase {
         return  Integer.decode((String) grupa.get(GROUP_ID)).intValue();
     }
     
+    
     /**
      * Metoda wstawia klucz do zapomnianego hasła
-     * @param email adres mailowy uzytkownika
+     * @param email adres mailowy użytkownika
      * @param klucz losowo wygenerowany klucz
      * @return T lub N w zależności czy insert się powiódł
      */
