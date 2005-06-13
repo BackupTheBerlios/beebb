@@ -123,9 +123,9 @@ public class DataBase {
     static final String KATEGORIE_PODFORA_ID_PODFORUM = "ID_PODFORUM";
     
     static final String PODFORA_WATKI_ID_PODFORUM = "ID_PODFORA";
-    static final String PODFORA_WATKI_ID_wątku = "ID_wątku";
+    static final String PODFORA_WATKI_ID_WATKU = "ID_WATKU";
     
-    static final String WATKI_WYPOWIEDZI_ID_wątku = "ID_wątku";
+    static final String WATKI_WYPOWIEDZI_ID_WATKU = "ID_WATKU";
     static final String WATKI_WYPOWIEDZI_ID_WYPOWIEDZI = "ID_WYPOWIEDZI";
     
     static final String USER_ID = "ID";
@@ -330,7 +330,7 @@ public class DataBase {
      * @return Zwraca obiekt Podforum bądź null w razie błędu.
      */
     public Podforum getPodforumbyWatek(int ID){
-        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_PODFORUM + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_wątku + "=" + ID + ")");
+        Hashtable podforum = getObject("SELECT * FROM " + BEE_PODFORA + " WHERE "+ PODFORUM_ID +"= (SELECT " + PODFORA_WATKI_ID_PODFORUM + " FROM " + BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_WATKU + "=" + ID + ")");
         if (podforum == null) return null;
         return new Podforum((String)podforum.get(PODFORUM_ID),(String)podforum.get(PODFORUM_TYTUL),(String)podforum.get(PODFORUM_OPIS),(String)podforum.get(PODFORUM_DATA_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AUTOR_OST_WYPOWIEDZI),(String)podforum.get(PODFORUM_AKTYWNE),(String)podforum.get(PODFORUM_PRYWATNE),(String)podforum.get(PODFORUM_LICZBA_WATKOW),(String)podforum.get(PODFORUM_LICZBA_WYPOWIEDZI),this);
     }
@@ -342,7 +342,7 @@ public class DataBase {
      * @return Zwraca obiekt Watek bądź null w razie błędu.
      */
     public Watek getWatekByWypowiedz(int ID){
-        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_wątku + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
+        Hashtable watek = getObject("SELECT * FROM " + BEE_WATKI + " WHERE "+ WATEK_ID +"= (SELECT " + WATKI_WYPOWIEDZI_ID_WATKU + " FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI + "=" + ID + ")");
         if (watek == null) return null;
         return new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this);
     }
@@ -460,10 +460,10 @@ public class DataBase {
      */
     public ArrayList getWatkiPodforum(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT " + PODFORA_WATKI_ID_wątku + " FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID);
+        ArrayList watki = baza.query("SELECT " + PODFORA_WATKI_ID_WATKU + " FROM "+ BEE_PODFORA_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID);
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
-            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_wątku));
+            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
             wynik.add(new Integer(id));
         }
         return wynik;
@@ -479,11 +479,11 @@ public class DataBase {
      */
     public ArrayList getWatkiPodforum(int ID, boolean aktywne, boolean sortByDate) {
         ArrayList wynik = new ArrayList();
-        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_wątku+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" DESC":""));
+        ArrayList watki = baza.query("SELECT * FROM "+ BEE_PODFORA_WATKI+","+BEE_WATKI + " WHERE " + PODFORA_WATKI_ID_PODFORUM + "=" + ID +" AND "+PODFORA_WATKI_ID_WATKU+"="+WATEK_ID +" AND "+WATEK_AKTYWNY+"='"+ (aktywne?TAK:NIE) +"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" DESC":""));
         if (watki == null) return wynik;
         for(int i=0;i<watki.size();i++) {
             Hashtable watek = (Hashtable)watki.get(i);
-            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_wątku));
+            int id = Integer.parseInt((String)watek.get(PODFORA_WATKI_ID_WATKU));
             wynik.add(new Watek((String)watek.get(WATEK_ID),(String)watek.get(WATEK_ID_AUTORA),(String)watek.get(WATEK_AUTOR),(String)watek.get(WATEK_TEMAT),(String)watek.get(WATEK_DATA),(String)watek.get(WATEK_DATA_OST_WYPOWIEDZI),(String)watek.get(WATEK_AUTOR_OST_WYPOWIEDZI),(String)watek.get(WATEK_PRYWATNY),(String)watek.get(WATEK_AKTYWNY),(String)watek.get(WATEK_ZABLOKOWANY),(String)watek.get(WATEK_ZAMKNIETY),(String)watek.get(WATEK_LICZBA_WYPOWIEDZI),(String)watek.get(WATEK_LICZBA_ODWIEDZIN),this));
         }
         return wynik;
@@ -497,7 +497,7 @@ public class DataBase {
      */
     public ArrayList getWypowiedziWatku(int ID) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_wątku + "=" + ID);
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID);
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
@@ -516,7 +516,7 @@ public class DataBase {
      */
     public ArrayList getWypowiedziWatku(int ID, boolean aktywne, boolean sortByDate) {
         ArrayList wynik = new ArrayList();
-        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_wątku + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" ASC":""));
+        ArrayList wypowiedzi = baza.query("SELECT * FROM "+ BEE_WATKI_WYPOWIEDZI+","+BEE_WYPOWIEDZI + " WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+WYPOWIEDZ_ID+" AND " + WATKI_WYPOWIEDZI_ID_WATKU + "=" + ID+" AND "+WYPOWIEDZ_AKTYWNA+"='"+(aktywne?TAK:NIE)+"'"+(sortByDate?" ORDER BY "+WATEK_DATA+" ASC":""));
         for(int i=0;i<wypowiedzi.size();i++) {
             Hashtable wypowiedz = (Hashtable)wypowiedzi.get(i);
             int id = Integer.parseInt((String)wypowiedz.get(WATKI_WYPOWIEDZI_ID_WYPOWIEDZI));
@@ -1194,7 +1194,7 @@ public class DataBase {
      **/
     public boolean zmienAktywnoscWypowiedzi(int id, boolean czy_aktywna){
         if (baza.dmlQuery("UPDATE "+BEE_WYPOWIEDZI+" SET "+WYPOWIEDZ_AKTYWNA+"='"+ (czy_aktywna?TAK:NIE)+"' WHERE "+WYPOWIEDZ_ID+"="+id))
-            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_wątku+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")"))
+            if (baza.dmlQuery("UPDATE "+BEE_WATKI+" SET "+WATEK_LICZBA_WYPOWIEDZI+"="+WATEK_LICZBA_WYPOWIEDZI+"-1 WHERE "+ WATEK_ID+"= (SELECT "+WATKI_WYPOWIEDZI_ID_WATKU+" FROM "+BEE_WATKI_WYPOWIEDZI+" WHERE "+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+id+")"))
                 return true;
             else return false;
         else return false;
@@ -1476,8 +1476,8 @@ public class DataBase {
      */
     public boolean moveWatek(Watek watek,int id_from,int id_to){
         if (id_from == id_to) return true;
-        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_wątku+") VALUE("+id_to+","+watek.getID()+")"))
-            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_wątku+"="+watek.getID()+")"))
+        if (baza.dmlQuery("INSERT INTO "+BEE_PODFORA_WATKI+"("+PODFORA_WATKI_ID_PODFORUM+","+PODFORA_WATKI_ID_WATKU+") VALUE("+id_to+","+watek.getID()+")"))
+            if (baza.dmlQuery("DELETE FROM "+BEE_PODFORA_WATKI+" WHERE ("+PODFORA_WATKI_ID_PODFORUM+"="+id_from+")AND("+PODFORA_WATKI_ID_WATKU+"="+watek.getID()+")"))
                 //teraz trzeba przeniesc liczby
                 if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"-1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"-"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_from))
                     if (baza.dmlQuery("UPDATE "+BEE_PODFORA+" SET "+PODFORUM_LICZBA_WATKOW+"="+PODFORUM_LICZBA_WATKOW+"+1,"+PODFORUM_LICZBA_WYPOWIEDZI+"="+PODFORUM_LICZBA_WYPOWIEDZI+"+"+watek.liczbaAktywnychWypowiedzi()+" WHERE "+PODFORUM_ID+"="+id_to))
@@ -1491,15 +1491,15 @@ public class DataBase {
     
     /** Metoda podmienia tekst wypowiedzi. Powoduje to wprowadzenie nowej wypoweidzi i wstawienie jej do dotychczasowego wątku
      * @param w Obiekt wypowiedz w którym zmieniamy tekst
-     * @param id_wątku Identyfikator wątku ktory jest wlascicielem zmienianej wypowiedzi
+     * @param ID_WATKU Identyfikator wątku ktory jest wlascicielem zmienianej wypowiedzi
      * @param newText Nowa zawartosc wypowiedzi
      * @return True w przypadku poprawnej zmiany
      */
-    public boolean zmienTekstWypowiedzi(Wypowiedz w, int id_wątku, String newText){
+    public boolean zmienTekstWypowiedzi(Wypowiedz w, int ID_WATKU, String newText){
         if (baza.dmlQuery("INSERT INTO " + BEE_WYPOWIEDZI + " VALUES (0," + w.getIDAutora() + ", '" + w.getAutor() + "' , '" +  prepareDateToUpdate(w.getData()) + "' , '" + newText + "','" + (w.czyPrywatna()?TAK:NIE) + "','" + (w.czyAktywna()?TAK:NIE) + "')")) {
             Hashtable wid = getObject("SELECT "+WYPOWIEDZ_ID+" FROM " + BEE_WYPOWIEDZI + " WHERE " + WYPOWIEDZ_ID_AUTORA + "=" + w.getIDAutora() + " AND " + WYPOWIEDZ_TEKST + "='" + newText + "' AND " + WYPOWIEDZ_DATA + " = '" + w.getData() + "'");
             if (wid==null) return false;
-            if (baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI+"("+WATKI_WYPOWIEDZI_ID_wątku+","+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+") VALUES (" + id_wątku + "," + wid.get(WYPOWIEDZ_ID) + ")"))
+            if (baza.dmlQuery("INSERT INTO " + BEE_WATKI_WYPOWIEDZI+"("+WATKI_WYPOWIEDZI_ID_WATKU+","+WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+") VALUES (" + ID_WATKU + "," + wid.get(WYPOWIEDZ_ID) + ")"))
                 return baza.dmlQuery("DELETE FROM " + BEE_WATKI_WYPOWIEDZI + " WHERE " + WATKI_WYPOWIEDZI_ID_WYPOWIEDZI+"="+ w.getID());
             else return false;
         }
