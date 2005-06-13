@@ -27,6 +27,11 @@ public class Podforum {
     private int LiczbaWypowiedzi;
     private int id_kat;
     
+    /** Tworzy instancje podforum
+     * TODO: Tylko na potrzeby edycja_pod.jsp. Usunać po usunięciu tej strony.
+     */
+    public Podforum() {
+    }
     
     /** Tworzy instancje podforum
      * @param ID identyfikator podforum w bazie danych
