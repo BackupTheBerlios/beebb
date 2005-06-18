@@ -1,0 +1,40 @@
+%\documentclass[11pt,oneside]{article}
+\documentclass[12pt,a4paper,twoside]{article}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{times}
+%\usepackage[T1]{fontenc}
+\RequirePackage[latin2]{inputenc}
+\RequirePackage[polish]{babel}
+%\usepackage[polish]{babel}
+
+\RequirePackage{comment}
+
+\RequirePackage{a4wide}
+\RequirePackage{longtable}
+\RequirePackage{multicol}
+\RequirePackage{url}
+\usepackage[dvips]{color,graphicx}
+%\usepackage[latin2]{inputenc}
+
+\author{Marcin Pruszczy"nski}
+\title{Struktura repozytorium CVS}
+\date{\today}
+
+\begin{document}
+
+\tableofcontents
+
+\section{CVS}
+Projekt Bee posiada swoje repozytorium na serwerze CVS. Adres serwera to {\it wilk.waw.pl}. Autoryzacja opiera siê o {\it pserver}, który dostêpny jest na standardowym numerze portu 2401. ¦cie¿ka do repozytorium to: {\it /home/cvs/projekty}.
+Struktura katalogów w repozytorium:
+\begin{itemize}
+\item {\it baza\_danych} -- katalog przeznaczony na skrypty tworz±ce bazy danych
+\item {\it dokumentacja} -- katalog przeznaczony dla plików sk³adaj±cych siê na dokumentacjê projektu
+\item {\it layout} -- katalog zawieraj±cy szkielet wygl±du projektu. Katalog i zawarto¶æ jest nieaktualna.
+\item {\it program} -- katalog zawieraj±cy projekt Bee bêd±cy projektem ¶rodowiska NetBeans w wersji 4.1
+\item {\it teksty} -- katalog przeznaczony na pliki zawieraj±ce opisy zagadnieñ, które mog± byæ przydatne podczas implementacji projektu
+\item {\it testy} -- katalog przeznaczony na pliki
+\end{itemize}
+
+\end{document}
