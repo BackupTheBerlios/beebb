@@ -1,7 +1,7 @@
 LATEX=latex
 DVI2PDF=dvipdf
 
-all: opis_srodowiska TODO konkurencja spotkanie_17.02.2005 strukturaCVS
+all: opis_srodowiska TODO konkurencja spotkanie_17.02.2005 strukturaCVS dokumentacja
 
 opis_srodowiska: opis_srodowiska.pdf
 
@@ -13,7 +13,13 @@ spotkanie_17.02.2005: spotkanie_17.02.2005.pdf
 
 strukturaCVS: strukturaCVS.pdf
 
+dokumentacja: dokumentacja.pdf
+
 opis_srodowiska.dvi: opis_srodowiska.tex
+	$(LATEX) $<
+	$(LATEX) $<
+
+dokumentacja.dvi: dokumentacja.tex
 	$(LATEX) $<
 	$(LATEX) $<
 
