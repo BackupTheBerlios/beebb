@@ -17,24 +17,89 @@
 \usepackage[dvips]{color,graphicx}
 %\usepackage[latin2]{inputenc}
 
-\author{Marcin Pruszczy"nski}
+\author{Marcin Pruszczyñski}
 \title{Struktura repozytorium CVS}
 \date{\today}
 
 \begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
 
 \tableofcontents
+\section{Wstêp}
+Dokument ten opisuje strukturê repozytorium projektu Bee oraz pliki znajduj±ce siê w nim. Obowi±zkiem ka¿dego programisty jest uzupe³nianie oraz utrzymywanie dokumentu aktualnym po ka¿dej zmianie w projekcie lub dodaniu nowego pliku. Wyj±tkiem s± pliki projektu NetBeans, których opis nie jest wymagany.  
 
-\section{CVS}
+\section{Repozytorium}
 Projekt Bee posiada swoje repozytorium na serwerze CVS. Adres serwera to {\it wilk.waw.pl}. Autoryzacja opiera siê o {\it pserver}, który dostêpny jest na standardowym numerze portu 2401. ¦cie¿ka do repozytorium to: {\it /home/cvs/projekty}.
 Struktura katalogów w repozytorium:
 \begin{itemize}
 \item {\it baza\_danych} -- katalog przeznaczony na skrypty tworz±ce bazy danych
 \item {\it dokumentacja} -- katalog przeznaczony dla plików sk³adaj±cych siê na dokumentacjê projektu
 \item {\it layout} -- katalog zawieraj±cy szkielet wygl±du projektu. Katalog i zawarto¶æ jest nieaktualna.
-\item {\it program} -- katalog zawieraj±cy projekt Bee bêd±cy projektem ¶rodowiska NetBeans w wersji 4.1
+\item {\it program} -- katalog zawieraj±cy projekt Bee bêd±cy projektem ¶rodowiska NetBeans w wersji 4.1. Pliki w tym katalogu nie wymagaj± opisu. Opis odnosz±cy siê do nich znajduje siê w dokumencie ''Dokumentacja techniczna''.
 \item {\it teksty} -- katalog przeznaczony na pliki zawieraj±ce opisy zagadnieñ, które mog± byæ przydatne podczas implementacji projektu
 \item {\it testy} -- katalog przeznaczony na pliki
 \end{itemize}
+
+\subsection{Katalog {\it baza\_danych}}
+\begin{itemize}
+\item {\it Bee\_MySQL.sql} -- skrypt tworz±cy tabele projektu w aktualnie otwartej bazie danych. Przeznaczony jest dla MySQL od wersji 4.1
+\item {\it Bee\_Inserts\_MySQL.sql} -- skrypt wstawiaj±cy kilka podstawowych danych do utworzonych tabel projektu. Uwaga: Skrypt nie czy¶ci zawarto¶ci tabel przed wstawieniem nowych danych.
+\item {\it Bee\_Inserts\_Piknik\_MySQL.sql} -- skrypt wstawiaj±cy dane do utworzonych tabel projektu. Zestaw danych bardziej obszerny przeznaczony na Piknik Internautów z dnia 5.06.2005. Uwaga: Skrypt nie czy¶ci zawarto¶ci tabel przed wstawieniem nowych danych.
+\end{itemize}
+
+\subsection{Katalog {\it dokumentacja}}
+\begin{itemize}
+\item {\it dokumentacja.tex} -- Dokument w formacie LaTeX opisuj±cy projekt Bee. Tekst obejmuje ogólne za³o¿enia projektu, funkcjonalno¶æ, algorytm oraz czê¶æ zagadnieñ technicznych. Tre¶æ nie stanowi jednak dokumentacji technicznej. Uwaga: plik u¿ywa kodowania ISO-8859-2.
+\item {\it forum\_model.mdl} -- Plik bêd±cy projektem RationalRose. Opisuje bardzo wczesne stadium projektu Bee. Zawiera jedynie diagram przypadków u¿ycia oraz niepe³ny diagram klas. Schematy nie s± kontynuowane.
+\item {\it javadoc.css} -- Plik bêd±cy arkuszem stylu dla generowanych stron JavaDoc.
+\item {\it javadocgen.sh} -- Skrypt bash'owy generuj±cy JavaDoc na podstawie plików ¼ród³owych projektu. Wynik zapisywany jest w katalogu {\it program/dist/javadoc}.
+\item {\it konkurencja.tex} -- Dokument w formacie LaTeX opisuj±cy produkty konkurencyjne dla projektu Bee.
+\item {\it Makefile} -- Plik dla programu make tworz±cy pliki w formacie PDF na podstawie zawartych w katalogu plików w formacie LaTeX
+\item {\it opis\_srodowiska.tex} -- Dokument w formacie LaTeX opisuj±cy ¶rodowisko pracy programisty projektu Bee. Uwaga: plik u¿ywa kodowania ISO-8859-2.
+\item {\it spotkanie\_17.02.2005.tex} -- Dokument w formacie LaTeX zawieraj±cy notatki ze spotkania zespo³u programistów, które odby³o siê dnia 17 luty 2005 roku.
+\item {\it strukturaCVS.tex} -- Niniejszy dokument. Uwaga: plik u¿ywa kodowania ISO-8859-2.
+\item {\it TODO.tex} -- Dokument w formacie LaTeX zawieraj±cy spis pomys³ów, które mog± zostaæ wprowadzone do projektu. Uwaga: plik u¿ywa kodowania ISO-8859-2.
+\end{itemize}
+\subsubsection{Katalog {\it images}}
+\begin{itemize}
+\item {\it layers.eps} -- Obraz przedstawiaj±cy warstwy projektu. Wykorzystywany w {\it dokumentacja.tex}.   
+\end{itemize}
+
+\subsection{Katalog {\it layout}}
+Katalog zawiera nie rozwijan± ju¿ wersjê ''szablonu wygl±du'' projektu.
+
+\subsection{Katalog {\it program}}
+Jest to katalog projektu ¶rodowiska NetBeans w wersji 4.1. Oto obja¶nienia kilku podstawowych katalogów i plików:
+\begin{itemize}
+\item {\it dist} -- w tym katalogu znajduj± siê wyniki budowania projektu
+\item {\it nbproject} -- katalog zawiera pliki konfiguracyjne ¶rodowiska NetBeans i projektu
+\item {it src} -- katalog zawiera ¼ród³a klas Java
+\item {\it web} -- katalog zawiera ¼ród³a plików JSP oraz pliki, które zostan± umieszczone na serwerze Tomcat
+\item {\it web/Administracja} -- katalog zawiera panel administracyjny napisany przez Piotra. Projekt porzucony i nierozwijany.
+\item {\it web/admin} -- katalog zawieraj±cy ¼ród³a nowego panelu administratora
+\item {\it web/config} -- katalog zawiera pliki konfiguracyjne projektu Bee
+\item {\it web/js} -- katalog przeznaczony na pliki ze skryptami JavaScript
+\item {\it web/META-INF/context.xml} -- plik przeznaczony dla serwera Tomcat opisuj±cy projekt
+\item {\it web/pages} -- katalog zawiera ¼ród³a plików JSP
+\item {\it web/styles} -- katalog przeznaczony na pliki z tematami projektu w formacie CSS
+\item {\it web/WEB-INF/lib} -- katalog zawieraj±cy biblioteki wykorzystywane w projekcie
+\item {\it web/WEB-INF/web.xml} -- plik przeznaczony dla serwera Tomcat z konfiguracj± kontenera serwletów 
+\end{itemize}
+
+\subsection{Katalog {\it teksty}}
+\begin{itemize}
+\item {\it cacheowanie} -- zapis wyk³adu Aleksa Schuberta o cacheowaniu
+\item {\it wstep\_Schubert} -- zapis z pierwszego laboratorium A.Schubert. Nieaktualne.
+\end{itemize}
+
+\subsection{Katalog {\it testy}}
+\begin{itemize}
+\item {\it jMeter} -- katalog z testami dla programu jMeter
+\item {\it validator} -- katalog zawiera skrypt waliduj±cy strony html przy u¿yciu walidatora W3org  
+\end{itemize}
+
 
 \end{document}

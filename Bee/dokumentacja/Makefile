@@ -23,6 +23,10 @@ dokumentacja.dvi: dokumentacja.tex
 	$(LATEX) $<
 	$(LATEX) $<
 
+strukturaCVS.dvi: strukturaCVS.tex
+	$(LATEX) $<
+	$(LATEX) $<
+
 %.dvi: %.tex
 	$(LATEX) $<
 
