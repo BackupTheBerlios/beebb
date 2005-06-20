@@ -1,49 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-	 version="2.4">
-    <display-name>BeeBB Project</display-name>         
-    <context-param>
-        <param-name>developers</param-name>
-        <param-value>Paweł Boguszewski &amp; Marcin Pruszczyński</param-value>
-        <description>Stundets of MIMUW</description>
-    </context-param>
-    <filter> 
-        <filter-name>GeneralFilter</filter-name> 
-        <filter-class>pl.ltd.bee.Filters.GeneralFilter</filter-class> 
-    </filter> 
-    <filter-mapping>
-        <filter-name>GeneralFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <session-config>
-        <session-timeout>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>BeeBB Project</display-name>
+  <context-param>
+    <description>Stundets of MIMUW</description>
+    <param-name>developers</param-name>
+    <param-value>Paweł Boguszewski &amp; Marcin Pruszczyński</param-value>
+  </context-param>
+  <filter>
+    <filter-name>GeneralFilter</filter-name>
+    <filter-class>pl.ltd.bee.Filters.GeneralFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>GeneralFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <session-config>
+    <session-timeout>
             30
         </session-timeout>
-    </session-config>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/pages/errors/error.jsp?code=404</location>
-    </error-page>    
-    <error-page>
-        <error-code>403</error-code>
-        <location>/pages/errors/error.jsp?code=403</location>
-    </error-page>    
-    <error-page>
-        <error-code>500</error-code>
-        <location>/pages/errors/error.jsp?code=500</location>
-    </error-page>    
-    <welcome-file-list>
-	<welcome-file>
+  </session-config>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/pages/errors/error.jsp?code=404</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/pages/errors/error.jsp?code=403</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/pages/errors/error.jsp?code=500</location>
+  </error-page>
+  <welcome-file-list>
+    <welcome-file>
             index.jsp
         </welcome-file>
-	<welcome-file>
+    <welcome-file>
             index.html
         </welcome-file>
-	<welcome-file>
+    <welcome-file>
             index.htm
         </welcome-file>
-    </welcome-file-list>
+  </welcome-file-list>
 </web-app>
