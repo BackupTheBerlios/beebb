@@ -1,0 +1,18 @@
+<?
+
+$TEAM		= "Zespol";
+$MEMBERS	= "Czlonkowie";
+
+$NICK		= "nick";
+$NAME		= "imie i nazwisko ";
+$MAIL		= "email";
+$ROLE		= "rola w projekcie";
+
+$R_PROGRAMMER	= " programista ";
+$R_MANAGER	= " menadzer ";
+$R_DESIGNER	= " projektant grafiki "; 
+$M_Pwaelb	="";
+$M_Wilk		="";
+$M_Etna		="Jezeli cala Twoja filozofia opiera sie o marzenia,<br>
+		nigdy nie bedziesz usatysfakcjonowany";
+?>

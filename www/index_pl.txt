@@ -1,0 +1,88 @@
+<?
+
+/* header */
+
+/*
+$HEAD		=array("W zasadzie to tylko jeszcze jednen bulletin board<br>tylko czasami ro¿nica nie jest widoczna na pierwszy rzut oka",
+		       "Jako¶æ to ci±g³e wyzwania i rywalizacja<br>- my zaczeli¶my od zmierzenia siê z najlepszymi",
+		       "Znaczna czê¶æ tej strony to komercja<br>- liczy sie tylko to co jest w samym kodzie",
+		       "Je¿eli masz wybór<br>- zawsze pozostawiaj sobie odrobinê niezale¿no¶ci",
+		       "We have an attitude<br>and we are not affraid to use it");
+*/
+$HEAD		=array("W zasadzie to tylko jeszcze jednen bulletin board<br>tylko czasami roznica nie jest widoczna na pierwszy rzut oka",
+		       "Jakosc to ciagle wyzwania i rywalizacja<br>- my zaczelismy od zmierzenia siê z najlepszymi",
+		       "Znaczna czesc tej strony to komercja<br>- naprawde liczy sie tylko to co jest w samym kodzie",
+		       "Jezeli masz wybor<br>- zawsze pozostawiaj sobie odrobine niezaleznosci",
+		       "We have an attitude<br>and we are not affraid to use it");
+ 
+/* flag */
+
+$FLAG		="<br>[ english ] ";
+
+/* menu */
+/*
+$TEAM		="Zespó³";
+$MEMBERS	="Sk³ad";
+$PROJECT	="Projekt";
+$DEMO		="Demo";
+$DOCS		="Dokumentacja";
+$CVS		="CVS";
+$BUGS		="Bugzilla";
+$BERLIOS	="Berlios";
+*/
+$TEAM		="Zespol";
+$MEMBERS	="Sklad";
+$PROJECT	="Projekt";
+$DEMO		="Demo";
+$DOCS		="Dokumentacja";
+$CVS		="CVS";
+$BUGS		="Bugzilla";
+$BERLIOS	="Berlios";
+/* main_text */
+
+
+/* header_links */
+
+$H_LINK1        ="bulletin board";
+$H_LINK1_T      = "bulletin board [ definicje ]";
+$H_LINK2        ="download";
+$H_LINK2_T      = "sciagnij wlasna wersje BeeBB";
+$H_LINK3        ="ewolucje";
+$H_LINK3_T      = "poprzednie wersje";
+$H_LINK4        ="galeria";
+$H_LINK4_T      = "kilka zdjec, screenow...";
+$H_LINK5        ="historia";
+$H_LINK5_T      = "jak to sie wszystko zaczelo";
+$H_LINK6        ="komentarze";
+$H_LINK6_T      = "chcesz cos dodac, ujac... prosze bardzo";
+$H_LINK7        ="";
+$H_LINK7_T      = "";
+
+
+
+/* bottom_links */
+
+$B_LINK1        ="technologia";
+$B_LINK1_T      ="co sprawia, ze nadal mozemy byc niezalezni";
+$B_LINK2        ="faq";
+$B_LINK2_T      ="frequently answered questions";
+$B_LINK3        ="standardy";
+$B_LINK3_T      ="dla nas wazne - dla was wygodne";
+$B_LINK4        ="rss";
+$B_LINK4_T      ="na bierzaco... no prawie";
+$B_LINK5        ="inne rozwiazania";
+$B_LINK5_T      ="nie boimy sie konkurencji";
+
+
+/* bottom_table */
+ 
+$COUNTER	="odwiedzin : ";
+
+$LICENSE_INFO	="TO OPROGRAMOWANIE JEST DOSTEPNE NA ZASADACH LICENCJI ";
+$LICENSE	="GPL";
+$LICENSE_LINK	="http://www.gnu.org/copyleft/gpl.html";
+$LAST_MODIF	="Data ostatnich zmian: ";
+$CONTACT	="Informacje o tym jak sie z nami skontaktowac sa dostepne na stronie ";
+$CONTACT_LINK	="kontaktowej";
+
+?>

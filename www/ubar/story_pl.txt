@@ -1,0 +1,13 @@
+<?
+
+$STORY		="Historia BeeBB";
+
+$INTRO		="To co definiuje ten zespol to:";
+$QUESTIONS1	="Pytanie, ktore pojawia sie zawsze:";
+$QUESTIONS2	="'Nie da sie zrobic tego lepiej ?'";
+$QUESTIONS3	="I pytanie, ktore nigdy nie pada:";
+$QUESTIONS4	="'Czy juz osiagnelismy wszytstko ?'";
+		  
+		 
+		
+?>

@@ -1,0 +1,8 @@
+<?
+
+$INTRO_TEXT 	="Mozna nazwac to jeszcze jednym... no dobra - jak to nazwac ???<br>
+		    <A href=\"javascript:go_http('http://www.ectaco.pl')\">Ectaco-Poland</A> tlumaczy <i>bulletin-board</i> jako tablica ogloszen. Na poczatek moze byc... <br>";
+
+?>
+
+

@@ -1,0 +1,10 @@
+<?
+
+$STORY		="BeeBB story";
+
+$INTRO		="There are just two things, which define us";
+$QUESTIONS1	="The question we always ask:";
+$QUESTIONS2	="'Is it the best you can do ?'";
+$QUESTIONS3	="And the question we never ask:";
+$QUESTIONS4	="'Are we there yet ?'";	
+?>

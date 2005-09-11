@@ -1,0 +1,19 @@
+<?
+
+$TEAM		= "Team";
+$MEMBERS	= "Members";
+
+$NICK		= "nick";
+$NAME		= "name";
+$MAIL		= "email";
+$ROLE		= "role";
+
+$R_PROGRAMMER	= " programmer ";
+$R_MANAGER	= " manager ";
+$R_DESIGNER	= " web designer";
+
+$M_Pawelb 		= "this part is for notes - whatever pawelb thinks you need to know about bee... ";
+$M_Wilk 		= "and this: hopefully this one will be filled by wilk himself - sometime soon";
+$M_Etna			= "if your whole philosophy is based on a power of dreams,<br>
+			you are never satisfied.";
+?>

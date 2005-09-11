@@ -1,0 +1,14 @@
+<?
+
+$DOCS		= "Dokumentacja";
+
+$FILE 	= " dokument ";
+$DESC	= " opis ";
+
+$FILES	= array ( array("konkurencja.txt", "konkurencja.txt", "Przeglad konkurencyjnych aplikacji - for dyskusyjnych"),
+		 array("javadoc","javadoc", "JavaDoc wygenerowany z naszego projektu z dnia 30.03.2005 z godziny 18:45")
+	);
+
+
+
+?>

@@ -1,0 +1,44 @@
+<?
+
+$INTRO		="[definition]";
+$TEXT1		="Follow the definition of 
+		<a href=\"http://www.answers.com/topic/bulletin-board?initiator=3\" 
+		title='bulletin board on Answers.com' target=\"new\" >bulletin board</a>....";
+
+$TERM1		="BULLETIN BOARD";
+
+$DIC1		="Houghton Mifflin Company Dictionary";
+$DEFINITION1	="A board on which notices are posted.";
+
+$DIC2		="WordNet";
+$DEFINITION2	="A board that hangs on a wall; displays announcements";
+
+$TEXT2		="The most accurate definition provides ";
+
+$DIC3		="Wikipedia";
+$DEFINITION3	="A bulletin board is a place where people can leave public messages, for example, to advertise things to buy or sell, announce events, or provide information.";
+
+$TEXT3		="Above is expanded with: ";
+
+$TERM2		="ELECTRONIC BULLETIN BOARD";
+
+$DIC4		= $DIC3;
+$DEFINITION4	="A computer service that provides facilities for people to leave messages by phone or telecomputing.";
+
+$DIC5		= $DIC2;
+$DEFINITION5	= "a computer that is running software that allows users to leave messages and access information of general interest"; 
+
+$TEXT4		= "But there comes another definition: BBS <i>[ bulletin board system ]</i>";
+
+$DIC6		= $DIC3;
+$DEFINITION6	= "a computer system running software that allows users to dial into the system over a phone line 
+		    and, using a terminal program, perform functions such as downloading software and data, uploading 
+		    data, playing games, reading news, and exchanging messages with other users. <br>
+		    In modern usage (primarily in Japan) the term BBS may be used to refer to any online 
+		    forum or message board <i>[ Internet forum ]</i>.<br>
+		    Bulletin board systems were in many ways a precursor to the modern form of the World Wide Web 
+		    and other aspects of the Internet. BBSes were a highly social phenomenon and were used for meeting 
+		    people and having discussions in message boards as well as for publishing articles, downloading 
+		    software, playing games and many more things using a single application. ";
+		    
+?>

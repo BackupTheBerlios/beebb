@@ -1,0 +1,49 @@
+<?
+
+$INTRO		="[definicja]";
+$TEXT1		="Opierajac sie o definicje  
+		<a href=\"http://www.answers.com/topic/bulletin-board?initiator=3\" 
+		title='bulletin board - Answers.com' target=\"new\" >bulletin board</a> <i>(ang.)</i>...<br><br>
+		W jezyku polskim tablica ogloszen jest jedynie bezposrednim tlumaczeniem. <br>
+		Definicja Forum Dyskusyjnego zawiera dokladniejszy opis tego czym jest BeeBB";
+
+$TERM1		="BULLETIN BOARD";
+
+$DIC1 		="";
+$DEFINITION1	="";
+
+$DIC2 		="";
+$DEFINITION2	="";
+
+$DIC3		="Wikipedia";
+$DEFINITION3	="przeniesiona do struktury stron WWW forma grup dyskusyjnych, ktora sluzy do wymiany informacji, 
+		pogladow miedzy osobami o podobnych zainteresowaniach przy uzyciu przegladarki internetowej.<br>
+		Fora dyskusyjne sa obecnie bardzo popularna forma grup dyskusyjnych w internecie.<br> 
+		Prowadza je praktycznie wszystkie portale, wiekszosc wortali, znaczna liczba ISP.<br> 
+		Sa one takze powszechne na stronach wielu instytucji, czasopism, przedsiebiorstw, uczelni itp. 
+		a takze spotykane sa liczne fora zakladane zupelnie prywatnie.";
+
+
+$DIC4		="Netopedia";
+$DEFINITION4	="miejsce, w ktorym uzytkownicy sieci moga wymieniac miedzy soba informacje, spostrzezenia i dyskutowac na dowolne tematy.<br>
+		Forum pelni role elektronicznej tablicy ogloszen: dowolna osoba moze zostawic tam swoja wiadomosc oraz 
+		przeczytac wszystkie pozostale. ";
+
+$TEXT2		="";
+
+
+$TEXT3		="";
+$TEXT4		= "Ponownie: ";
+
+$TERM2		="ELECTRONIC BULLETIN BOARD";
+
+$DIC5		= "";
+$DEFINITION5	= "";
+
+$DIC6		= $DIC3;
+$DEFINITION6	="to serwis komputerowy, polegajacy na udostepnianiu na maszynie jego wlasciciela miejsca, 
+		gdzie mozna umieszczac i czytac ogloszenia, obslugiwac wlasna skrzynke pocztowa, dokonywac transferu plikow itp. ";
+
+
+    
+?>

@@ -1,0 +1,71 @@
+<?
+
+/* header */
+
+$HEAD		=array ("Yes, you can call it another bulletin board<br>but we can offer so much more than you can find in other apps<br>",
+		"How about a bit more independency in your live ?<br>you choose: platform, database ?",
+		"Lets start with giving you chance to decide<br>- for a change<br>",
+		"Way to make things better ?<br>- We've started with competing the best",
+		"We have an attitude<br>and we are not affraid to use it");
+ 
+/* flag */
+
+$FLAG		="<br>[ polski ] ";
+
+/* menu */
+
+$TEAM		="Team";
+$MEMBERS	="Members";
+$PROJECT	="Project";
+$DEMO		="Demo";
+$DOCS		="Documentation";
+$CVS		="CVS";
+$BUGS		="Bugzilla";
+$BERLIOS	="Berlios";
+
+
+/* header_links */
+
+$H_LINK1	="bulletin board";
+$H_LINK1_T	= "bulletin board [ definitions ]";
+$H_LINK2	="download";
+$H_LINK2_T	= "get your own BeeBB";
+$H_LINK3	="evolution";
+$H_LINK3_T	= "previous versions";
+$H_LINK4	="gallery";
+$H_LINK4_T	= "its just a gallery...";
+$H_LINK5	="story";
+$H_LINK5_T	= "wanna read how everything started ?";
+$H_LINK6	="feedback";
+$H_LINK6_T	= "feel a need to tell us something ?";
+$H_LINK7	="";
+$H_LINK7_T	= "";
+
+
+/* bottom_links */
+
+$B_LINK1	="technology";
+$B_LINK1_T	="what we have used to stay independent";
+$B_LINK2	="faq";
+$B_LINK2_T	="frequently answered questions";
+$B_LINK3	="standards";
+$B_LINK3_T	="we keep our attention to details";
+$B_LINK4	="rss";
+$B_LINK4_T	="cach up with us";
+$B_LINK5	="other solutions";
+$B_LINK5_T	="we are not affraid of competition";
+
+/* bottom_table */
+ 
+$COUNTER	="visits: ";
+
+$LICENSE_INFO	="THIS SOFTWARE IS DISTIBUTED UNDER ";
+$LICENSE        ="GPL LICENSE";
+$LICENSE_LINK   ="http://www.gnu.org/copyleft/gpl.html";
+$LAST_MODIF	="Last modified: ";
+$CONTACT	="Contact detatils are available on ";
+$CONTACT_LINK	="contact page";
+
+
+
+?>

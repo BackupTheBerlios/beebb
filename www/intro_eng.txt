@@ -1,0 +1,7 @@
+<?
+
+$INTRO_TEXT 	="You can obviously call it yet another bulletin board.<br>Can you ?";
+
+?>
+
+

@@ -1,0 +1,19 @@
+<?
+
+$GOAL		= "Celem tego projektu jest stworzenie nowoczesnego fora dyskusyjnego. <br>
+		Najwiekszym wyzwaniem dla nas jest zaprojektowanie i implementacja wydajnego, zapewniajacego 
+		maksymalne bezpieczenstwo systemu, dajacego ogrome mozliwosci modyfikacji i dopasowania do wlasnego 
+		profilu uzytkownika oraz zagwarantowanie pelnej niezaleznosci - zarowno od strony sprzetowej, jak i oprogramowania.<br>
+		
+		Our goal is to succeed in creating high-powered, highly customizable, secure and cacheable product,
+		which can easily compete with other BBSystems (including phpBB and InvisionBoard). 
+		As their future alternative, BeeBB will provide:";
+$OBJECTIVES	= "<ul><li>higher level of security, including protection from all kinds of code injections (html/sql/script),</li>
+		<li>better performance rate as a result of well designed cacheability.</li></ul>";
+$ADDS1		= "The project has already entered the advanced stage of implementation. <br>
+		Development include usage of Tomcat as a servlet container for JSP pages, and Hibernates mappings 
+		to ensure database independency. See ";
+$ADDS2		="for details.";
+
+$TECH		="technology ";
+?>
