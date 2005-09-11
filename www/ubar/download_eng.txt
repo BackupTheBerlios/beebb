@@ -1,0 +1,7 @@
+<?
+
+$DOWNLOAD	= "Download";
+
+$INTRO		= "";
+
+?>

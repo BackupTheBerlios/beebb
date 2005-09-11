@@ -1,0 +1,7 @@
+<?
+
+$STANDARDS	= "Standards";
+
+$INTRO		= "";
+
+?>

@@ -1,0 +1,27 @@
+<?
+
+$GREATING	= "BeeBB - contact page";
+
+$INTRO		= "Getting in contact with Us";
+
+$TEXT1		= "<b>note : </b> Polish language is the common language for communication with us. As an open project we try to provide
+		any information in english as well. We therefor ask that initial enquiries be made in either polish or english.";
+
+$TEXT2		= "Most of the information about BeeBB is collected on our web site, so please browse through it first 
+		before contacting us.";
+
+$TEXT3		= "Our FAQ will answer many of your questions (sometime soon). ";
+
+$TEXT4a		= "Helping BeeBB : ";
+$TEXT4b		= "";
+
+$TEXT5a		= "Reporting problems : ";
+$TEXT5b		= "";
+
+$TEXT6a		= "BeeBB development: ";
+$TEXT6b		= "";
+
+$TEXT7a		= "Feedback : ";
+$TEXT7b		= "";
+
+?>

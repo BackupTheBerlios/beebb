@@ -1,0 +1,8 @@
+<?
+
+$EVOLUTION	= "Ewolucja";
+
+$INTRO		= "";
+
+
+?>
