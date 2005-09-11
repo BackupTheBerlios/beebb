@@ -71,15 +71,15 @@
 			<br>
 					<A href="javascript: show('ubar/bb.php','<?php echo $lang; ?>');" title="<?php echo $H_LINK1_T; ?>"><?php echo $H_LINK1; ?></A> 
 						&nbsp;|&nbsp;
-					<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title="<?php echo $H_LINK2_T; ?>"><?php echo $H_LINK2; ?></A> 
+					<A href="javascript: show('ubar/download.php','<?php echo $lang; ?>');" title="<?php echo $H_LINK2_T; ?>"><?php echo $H_LINK2; ?></A> 
 						&nbsp;|&nbsp;
-					<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title="<?php echo $H_LINK3_T; ?>"><?php echo $H_LINK3; ?></A> 
+					<A href="javascript: show('ubar/evolution.php','<?php echo $lang; ?>');" title="<?php echo $H_LINK3_T; ?>"><?php echo $H_LINK3; ?></A> 
 						&nbsp;|&nbsp;
-					<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title="<?php echo $H_LINK4_T; ?>"><?php echo $H_LINK4; ?></A> 
+					<A href="javascript: show('ubar/gallery.php','<?php echo $lang; ?>');" title="<?php echo $H_LINK4_T; ?>"><?php echo $H_LINK4; ?></A> 
 						&nbsp;|&nbsp;
 					<A href="javascript: show('ubar/story.php','<?php echo $lang; ?>');" title="<?php echo $H_LINK5_T; ?>"><?php echo $H_LINK5; ?></A> 		
 						&nbsp;|&nbsp;
-					<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title="<?php echo $H_LINK6_T; ?>"><?php echo $H_LINK6; ?></A> 
+					<A href="javascript: show('ubar/feedback.php','<?php echo $lang; ?>');" title="<?php echo $H_LINK6_T; ?>"><?php echo $H_LINK6; ?></A> 
 						&nbsp;
 						
 		</TD>
@@ -186,11 +186,11 @@
 	<TD width="85px">
 	</TD
 	<TD class="bottom_table_bar_gray_middle">
-		<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK1_T."\">".$B_LINK1; ?></A> 
+		<A href="javascript: show('lbar/technology.php','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK1_T."\">".$B_LINK1; ?></A> 
 		&nbsp;|&nbsp;
-		<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK2_T."\">".$B_LINK2; ?></A> 
+		<A href="javascript: show('lbar/faq.php','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK2_T."\">".$B_LINK2; ?></A> 
 		&nbsp;|&nbsp;
-		<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK3_T."\">".$B_LINK3; ?></A> 
+		<A href="javascript: show('lbar/standards.php','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK3_T."\">".$B_LINK3; ?></A> 
 		&nbsp;|&nbsp;
 		<A href="javascript: show('temp/temp.html','<?php echo $lang; ?>');" title=<?php	echo "\"".$B_LINK4_T."\">".$B_LINK4; ?></A> 
 		&nbsp;|&nbsp;
@@ -225,7 +225,7 @@
 	echo $LAST_MODIF;
 	echo date( "d M Y [ H:i:s ].", filemtime($_SERVER["SCRIPT_FILENAME"])); 
 	echo "<br>";
-	echo $CONTACT."<A HREF=\"contact.php\">".$CONTACT_LINK."</A>";
+	echo $CONTACT."<A HREF=\"javascript: show('contact.php');\">".$CONTACT_LINK."</A>";
  ?>		
  	<br><br>
 	</TD>
