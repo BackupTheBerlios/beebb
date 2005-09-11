@@ -1,10 +1,7 @@
 
 body 			{	margin: 20px;
 					color: #000000; 
-/*					background-color: #FFFFFF; 
-*/					background-color: #D6D6CE; 
-					scrollbar-base-color: #FFFFFF;
-					scrollbar-arrow-color: #868669;
+					background-color: #D6D6CE; 
 					background-image: url(../img/background-main.jpg);
 				}
 
@@ -12,12 +9,10 @@ body 			{	margin: 20px;
 				{	margin: 20px;
 					color: #000000; 
 					background-color: #D6D6CE; 
-					scrollbar-base-color: #FFFFFF;
-					scrollbar-arrow-color: #868669;
 				}
 					
 h3, h3.text	{	margin: 3px;
-					font-family: vibrocentric, verdana, arial, helvetica, sans;
+					font-family: vibrocentric, verdana, arial, helvetica, sans-serif;
 					font-size: 14pt;
 				}
 					
@@ -54,7 +49,7 @@ span.link
 				
 				
 
-.text, td	{	font-family: vibrocentric, verdana, arial, helvetica, sans;
+.text, td	{	font-family: vibrocentric, verdana, arial, helvetica, sans-serif;
 					font-size: 10pt;
 				}
 				
@@ -143,12 +138,12 @@ td.bottom_table_bar_gray_middle {
 			
 td.bottom_table_counter {
 					text-align: center;
-					text-vertical-align: middle;
+					vertical-align: middle;
 					font-size: 9pt;
 				}
 									
 td.bottom_table_info		{
-					text-vertical-align:middle;
+					vertical-align:middle;
 					text-align: right;
 					font-size: 9pt;
 				}
@@ -194,7 +189,7 @@ td.bottom_table_info		{
 					 width: 100%;
 				}
 .link_table
-				{ width: 100%,
+				{ width: 100%;
 				  border: 10px solid;
 				  background: red;
 				 }
@@ -214,11 +209,10 @@ td.bottom_table_info		{
 				}
 				
 a.menu, .menu
-		 		{ 	font-family: vibrocentric, verdana, arial, helvetica, sans;
+		 		{ 	font-family: vibrocentric, verdana, arial, helvetica, sans-serif;
 					font-size: 8pt;
 					height: 28px;
 					width: 154px;
-					cursor: hand;
 					cursor: pointer;
 					text-indent: 12px;
 					line-height: 20pt;
@@ -229,11 +223,11 @@ a.menu, .menu
 				 	background-image: url("../img/button.gif");
 				}
 
-a.sub_menu 	{ 	font-family: vibrocentric, verdana, arial, helvetica, sans;
+a.sub_menu 	{ 	font-family: vibrocentric, verdana, arial, helvetica, sans-serif;
 					font-size: 8pt;
 					height: 28px;
 					width: 154px;
-					cursor:hand;
+					cursor:pointer;
 					text-indent: 22px;
 					line-height: 20pt;
 					text-align: left;
@@ -243,9 +237,9 @@ a.sub_menu 	{ 	font-family: vibrocentric, verdana, arial, helvetica, sans;
 				 	background-image: url("../img/button.gif");
 				}
 					
-table.link_menu 	{ 	font-family: vibrocentric, verdana, arial, helvetica, sans;
+table.link_menu 	{ 	font-family: vibrocentric, verdana, arial, helvetica, sans-serif;
 					font-size: 8pt;
-					cursor:hand;
+					cursor: pointer;
 					text-align: right;
 					display: block;
 					text-decoration: none;
@@ -263,21 +257,21 @@ a.menu:visited, a.sub_menu:visited {
 					background-image: url("../img/button.gif");
 					background-color:#FFFFFF;
 					color: #000000; 
-					cursor:hand;
+					cursor: pointer;
 				}
 
 a.menu:active, a.sub_menu:active { 
 					background-image: url("../img/buttonon.gif");
 					background-color:#FFFFFF;
 					color: #999999; 
-					cursor:hand;
+					cursor: pointer;
 				}
 
 a.menu:hover, a.sub_menu:hover { 
 					background-image: url("../img/buttonon.gif");
 					background-color:#FFFFFF;
 					color: #999999; 
-					cursor:hand;
+					cursor: pointer;
 				}
 					
 										
